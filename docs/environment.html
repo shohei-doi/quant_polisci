@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>6 Final Words | 計量政治学入門</title>
+  <title>動作環境 | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="6 Final Words | 計量政治学入門" />
+  <meta property="og:title" content="動作環境 | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,12 +16,12 @@
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="6 Final Words | 計量政治学入門" />
+  <meta name="twitter:title" content="動作環境 | Rで計量政治学入門" />
   
   <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   
 
-<meta name="author" content="土井翔平" />
+<meta name="author" content="土井　翔平" />
 
 
 <meta name="date" content="2020-04-17" />
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="applications.html"/>
+<link rel="prev" href="intro-r.html"/>
 <link rel="next" href="references.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -59,8 +59,8 @@
       gtag('config', 'UA-75879658-3');
     </script>
 
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300&amp;subset=japanese" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP:300&amp;subset=japanese" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet">
 
 
 <style type="text/css">
@@ -139,16 +139,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="3" data-path="literature.html"><a href="literature.html"><i class="fa fa-check"></i><b>3</b> Literature</a></li>
-<li class="chapter" data-level="4" data-path="methods.html"><a href="methods.html"><i class="fa fa-check"></i><b>4</b> Methods</a></li>
-<li class="chapter" data-level="5" data-path="applications.html"><a href="applications.html"><i class="fa fa-check"></i><b>5</b> Applications</a><ul>
-<li class="chapter" data-level="5.1" data-path="applications.html"><a href="applications.html#example-one"><i class="fa fa-check"></i><b>5.1</b> Example one</a></li>
-<li class="chapter" data-level="5.2" data-path="applications.html"><a href="applications.html#example-two"><i class="fa fa-check"></i><b>5.2</b> Example two</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a></li>
+<li class="part"><span><b>I データ・ハンドリング</b></span></li>
+<li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a><ul>
+<li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#使用するパッケージ"><i class="fa fa-check"></i><b>1.1</b> 使用するパッケージ</a></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="final-words.html"><a href="final-words.html"><i class="fa fa-check"></i><b>6</b> Final Words</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="appendix"><span><b>補論</b></span></li>
+<li class="chapter" data-level="A" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>A</b> Rの環境構築</a></li>
+<li class="chapter" data-level="B" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>B</b> プログラミング入門</a></li>
+<li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 </ul>
 
       </nav>
@@ -158,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">計量政治学入門</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rで計量政治学入門</a>
           </h1>
         </div>
 
@@ -166,9 +166,47 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="final-words" class="section level1">
-<h1><span class="header-section-number">6</span> Final Words</h1>
-<p>We have finished a nice book.</p>
+<div id="environment" class="section level1 unnumbered">
+<h1>動作環境</h1>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<pre><code>## R version 3.6.3 (2020-02-29)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 18.04.4 LTS
+## 
+## Matrix products: default
+## BLAS:   /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.7.1
+## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.7.1
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] forcats_0.5.0   stringr_1.4.0   dplyr_0.8.5     purrr_0.3.3    
+## [5] readr_1.3.1     tidyr_1.0.2     tibble_3.0.0    ggplot2_3.3.0  
+## [9] tidyverse_1.3.0
+## 
+## loaded via a namespace (and not attached):
+##  [1] tidyselect_1.0.0 xfun_0.13        haven_2.2.0      lattice_0.20-41 
+##  [5] colorspace_1.4-1 vctrs_0.2.4      generics_0.0.2   htmltools_0.4.0 
+##  [9] yaml_2.2.1       rlang_0.4.5      pillar_1.4.3     withr_2.1.2     
+## [13] glue_1.4.0       DBI_1.1.0        dbplyr_1.4.2     modelr_0.1.6    
+## [17] readxl_1.3.1     lifecycle_0.2.0  munsell_0.5.0    gtable_0.3.0    
+## [21] cellranger_1.1.0 rvest_0.3.5      evaluate_0.14    knitr_1.28      
+## [25] fansi_0.4.1      broom_0.5.5      Rcpp_1.0.4.6     backports_1.1.6 
+## [29] scales_1.1.0     jsonlite_1.6.1   fs_1.4.1         hms_0.5.3       
+## [33] digest_0.6.25    stringi_1.4.6    bookdown_0.18    grid_3.6.3      
+## [37] cli_2.0.2        tools_3.6.3      magrittr_1.5     crayon_1.3.4    
+## [41] pkgconfig_2.0.3  ellipsis_0.3.0   xml2_1.3.1       reprex_0.3.0    
+## [45] lubridate_1.7.8  assertthat_0.2.1 rmarkdown_2.1    httr_1.4.1      
+## [49] rstudioapi_0.11  R6_2.4.1         nlme_3.1-144     compiler_3.6.3</code></pre>
 
 </div>
             </section>
@@ -176,7 +214,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="applications.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="intro-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -221,26 +259,13 @@ gitbook.start({
 },
 "download": ["quant_polisci.pdf", "quant_polisci.epub"],
 "toc": {
-"collapse": "subsection"
+"collapse": "subsection",
+"scroll_highlight": true
 }
 });
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

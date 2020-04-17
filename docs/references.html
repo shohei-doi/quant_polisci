@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>References | 計量政治学入門</title>
+  <title>参考文献 | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="References | 計量政治学入門" />
+  <meta property="og:title" content="参考文献 | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="References | 計量政治学入門" />
+  <meta name="twitter:title" content="参考文献 | Rで計量政治学入門" />
   
   <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="intro.html"/>
+<link rel="prev" href="environment.html"/>
 
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -59,8 +59,8 @@
       gtag('config', 'UA-75879658-3');
     </script>
 
-<link href="https://fonts.googleapis.com/css?family=Noto+Sans+JP:300&amp;subset=japanese" rel="stylesheet">
-<link href="https://fonts.googleapis.com/css?family=Noto+Serif+JP:300&amp;subset=japanese" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet">
 
 
 <style type="text/css">
@@ -139,9 +139,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> はじめに</a></li>
-<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
-<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>References</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a></li>
+<li class="part"><span><b>I データ・ハンドリング</b></span></li>
+<li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a><ul>
+<li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#使用するパッケージ"><i class="fa fa-check"></i><b>1.1</b> 使用するパッケージ</a></li>
+</ul></li>
+<li class="appendix"><span><b>補論</b></span></li>
+<li class="chapter" data-level="A" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>A</b> Rの環境構築</a></li>
+<li class="chapter" data-level="B" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>B</b> プログラミング入門</a></li>
+<li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 </ul>
 
       </nav>
@@ -151,7 +158,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <div class="body-inner">
         <div class="book-header" role="navigation">
           <h1>
-            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">計量政治学入門</a>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rで計量政治学入門</a>
           </h1>
         </div>
 
@@ -160,23 +167,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="references" class="section level1 unnumbered">
-<h1>References</h1>
+<h1>参考文献</h1>
 
-<div id="refs" class="references">
-<div>
-<p>Xie, Yihui. 2015. <em>Dynamic Documents with R and Knitr</em>. 2nd ed. Boca Raton, Florida: Chapman; Hall/CRC. <a href="http://yihui.name/knitr/">http://yihui.name/knitr/</a>.</p>
-</div>
-<div>
-<p>———. 2020. <em>Bookdown: Authoring Books and Technical Documents with R Markdown</em>. <a href="https://CRAN.R-project.org/package=bookdown">https://CRAN.R-project.org/package=bookdown</a>.</p>
-</div>
-</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="intro.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="environment.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 
     </div>
   </div>
@@ -221,7 +220,8 @@ gitbook.start({
 },
 "download": ["quant_polisci.pdf", "quant_polisci.epub"],
 "toc": {
-"collapse": "subsection"
+"collapse": "subsection",
+"scroll_highlight": true
 }
 });
 });

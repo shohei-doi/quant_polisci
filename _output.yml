@@ -3,6 +3,11 @@ bookdown::gitbook:
     in_header: head.html
   css: style.css
   config:
+    toc:
+      collapse: subsection
+      scroll_highlight: yes
+      before: null
+      after: null
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:

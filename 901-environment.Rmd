@@ -1,0 +1,5 @@
+# 動作環境 {-#environment}
+
+```{r}
+sessionInfo()
+```
