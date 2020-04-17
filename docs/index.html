@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-04-17" />
+<meta name="date" content="2020-04-18" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -146,7 +146,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="appendix"><span><b>補論</b></span></li>
 <li class="chapter" data-level="A" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>A</b> Rの環境構築</a></li>
-<li class="chapter" data-level="B" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>B</b> プログラミング入門</a></li>
+<li class="chapter" data-level="B" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>B</b> Rプログラミング入門</a><ul>
+<li class="chapter" data-level="B.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>B.1</b> 関数</a></li>
+<li class="chapter" data-level="B.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>B.2</b> オブジェクト</a></li>
+<li class="chapter" data-level="B.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>B.3</b> パッケージ</a></li>
+<li class="chapter" data-level="B.4" data-path="intro-r.html"><a href="intro-r.html#rスクリプト"><i class="fa fa-check"></i><b>B.4</b> Rスクリプト</a></li>
+<li class="chapter" data-level="B.5" data-path="intro-r.html"><a href="intro-r.html#rプロジェクト"><i class="fa fa-check"></i><b>B.5</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="B.6" data-path="intro-r.html"><a href="intro-r.html#関数の作成"><i class="fa fa-check"></i><b>B.6</b> 関数の作成</a></li>
+<li class="chapter" data-level="B.7" data-path="intro-r.html"><a href="intro-r.html#ループ"><i class="fa fa-check"></i><b>B.7</b> ループ</a></li>
+<li class="chapter" data-level="B.8" data-path="intro-r.html"><a href="intro-r.html#条件分岐"><i class="fa fa-check"></i><b>B.8</b> 条件分岐</a></li>
+<li class="chapter" data-level="B.9" data-path="intro-r.html"><a href="intro-r.html#練習問題フィボナッチ数列"><i class="fa fa-check"></i><b>B.9</b> 練習問題：フィボナッチ数列</a></li>
+<li class="chapter" data-level="B.10" data-path="intro-r.html"><a href="intro-r.html#練習問題モンテカルロシミュレーション"><i class="fa fa-check"></i><b>B.10</b> 練習問題：モンテカルロ・シミュレーション</a></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 </ul>
@@ -169,14 +180,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Rで計量政治学入門</h1>
 <p class="author"><em>土井　翔平</em></p>
-<p class="date"><em>2020-04-17</em></p>
+<p class="date"><em>2020-04-18</em></p>
 </div>
 <div id="index" class="section level1 unnumbered">
 <h1>はじめに</h1>
 <p>本書はRによる計量政治学の入門レベルの講義資料です。
 質問や間違いなどがありましたら、<a href="mailto:shohei.doi0504@gmail.com">ご連絡</a>を下さい。
 筆者のプロフィールは<a href="https://shohei-doi.github.io/">こちら</a>をご覧ください。</p>
-<p>RやRStudioのインストールについては<a href="install-r.html#install-r">Rの環境構築</a>を、基本操作については<a href="intro-r.html#intro-r">プログラミング入門</a>をご覧ください。</p>
+<p>RやRStudioのインストールについては<a href="install-r.html#install-r">Rの環境構築</a>を、基本操作については<a href="intro-r.html#intro-r">Rプログラミング入門</a>をご覧ください。</p>
 
 </div>
 
@@ -233,13 +244,27 @@ gitbook.start({
 },
 "download": ["quant_polisci.pdf", "quant_polisci.epub"],
 "toc": {
-"collapse": "subsection",
+"collapse": "section",
 "scroll_highlight": true
 }
 });
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

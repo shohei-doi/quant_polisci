@@ -1,8 +1,8 @@
 book_filename: "quant_polisci"
 language:
   label:
-    fig: 'Figure '
-    tab: 'Table '
+    fig: '図 '
+    tab: '表 '
     eq: 'Equation '
     thm: 'Theorem '
     lem: 'Lemma '
