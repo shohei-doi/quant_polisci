@@ -194,8 +194,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>次のように、入力引数も出力引数も1つとは限りません。</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a></code></pre></div>
-<pre><code>##  [1] -0.70921526  0.71970880  0.56027333  1.14937646 -0.42306474 -0.01710589
-##  [7]  1.31934106 -0.51106284 -1.89525826 -0.14983030</code></pre>
+<pre><code>##  [1]  0.8029723 -0.9328444  0.7340415  0.5110543 -0.4738285 -0.9290784
+##  [7] -0.8557367  0.5963760  1.1240483  0.7359124</code></pre>
 <p>さて、この関数は何をしているのでしょうか。
 Rでは、関数名の前に<code>?</code>をつけて実行することで、その関数のヘルプを見ることができます。</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">?rnorm</a></code></pre></div>
@@ -220,37 +220,34 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <li>RStudioでは<code>&lt;-</code>はショートカット<code>Alt + -</code>で入力できます。</li>
 </ul>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">x</a></code></pre></div>
-<pre><code>##   [1] -0.358954809 -0.256783721 -0.619480408 -2.708847886 -0.321809975
-##   [6]  0.013015965 -1.832401439  0.583033179 -1.222317819  0.658753186
-##  [11]  0.161475880 -0.333505715  0.516521725 -0.422811085 -0.934057287
-##  [16]  0.613373956  0.923323392 -0.797291863  0.854144605 -1.185549242
-##  [21]  0.495397028 -1.040374469  0.355559816 -0.632279365 -0.077800901
-##  [26] -0.525662832 -1.177178106  0.855902624 -0.234499348 -1.417020673
-##  [31] -0.595646522 -2.326665771  1.778174524  0.425044480  0.693061634
-##  [36]  0.384046614  0.135826499 -0.124915001  0.189388884  0.004145034
-##  [41] -0.356128957  0.614798420  1.344255453  0.141848542  2.151323278
-##  [46]  0.739242781  0.175971965  0.223961903  0.426961227 -1.299715242
-##  [51]  2.005056576  0.448214241  0.299664519  2.164076938 -0.867973815
-##  [56]  0.070595166  1.002663922 -0.293006971 -1.770478765  1.310488379
-##  [61]  0.545261056  1.328175219 -0.069246084 -1.340151677  0.443870211
-##  [66]  0.263466857  2.289819180 -0.928157012  1.299034158 -0.776739122
-##  [71] -0.804254369 -0.974771288 -0.096316303 -0.155887746  0.738280425
-##  [76] -1.373627868 -0.262358782 -0.424146942  1.102183273 -1.362949562
-##  [81] -1.049788705  2.413035837  0.684413867  0.116308035  1.642347052
-##  [86]  0.051622553  0.681821959 -0.839110045  0.448651274  1.044486089
-##  [91]  0.111253485 -0.545884603 -1.525322289  0.658937413  1.433322306
-##  [96] -1.907497513 -0.550041825  0.081937009  0.193100507 -1.258022479</code></pre>
+<pre><code>##   [1] -0.94969661 -0.89104844 -0.02678947  0.09598613  1.57955585 -1.27511636
+##   [7]  1.07460540  0.07634585 -1.25088968 -0.37000442 -0.36936231  0.54447624
+##  [13] -0.53341289 -1.67463860 -0.71002589  1.07533371  1.17582650 -0.30642484
+##  [19]  0.11584662  0.03700420  0.15870602 -0.06779498  0.76583811  1.25847097
+##  [25]  1.69751904  0.20877803 -1.77532016  0.08787316  0.32909828 -2.43162184
+##  [31]  0.91150592  0.49969908  1.81209470  0.68203624 -1.26718303  0.45087470
+##  [37] -1.27300544  0.79326948 -0.74859889 -1.63630740  1.10545190 -1.91607786
+##  [43]  1.34541263  1.17530459 -0.45175615 -0.14450153  1.02263650  1.37649784
+##  [49]  0.27016961  0.87662367  0.22377004  1.21348959  0.61573198 -1.20120524
+##  [55] -0.61711599 -0.11880700  0.93196603 -0.28889917 -0.26109819 -1.41037894
+##  [61] -0.60772438  0.52747592 -0.24308719 -0.01487819 -1.34440597 -0.59004112
+##  [67] -1.52683320 -2.31706762  0.92548802 -0.60141709 -1.97861518  0.69757896
+##  [73] -0.74892933  0.30454488  0.21319253 -0.42656296 -2.57797984  0.92988517
+##  [79] -0.92678645  0.30518547  1.25871723 -0.98091865  1.34390765 -1.15656193
+##  [85] -1.02275619 -0.66705916  1.64158743 -1.57601589  0.82983301  0.34866248
+##  [91]  0.32183482  0.18272375 -0.58550712  0.16355611  0.71439339 -0.97908184
+##  [97]  0.10891223  0.47431984 -1.94068647  0.29180398</code></pre>
 <p>実際に、乱数が<code>x</code>に格納されていることが分かります。</p>
 <p>オブジェクトを入力引数とすることも可能です。
 <code>x</code>の平均と標準偏差を求めてみます。</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">mean</span>(x)</a></code></pre></div>
-<pre><code>## [1] 0.003532079</code></pre>
+<pre><code>## [1] -0.09608596</code></pre>
 <div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">sd</span>(x)</a></code></pre></div>
-<pre><code>## [1] 1.02272</code></pre>
+<pre><code>## [1] 1.027264</code></pre>
 <p>もちろん、出力引数を新しいオブジェクトにすることもできます。</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">x.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
 <a class="sourceLine" id="cb20-2" data-line-number="2">x.mean</a></code></pre></div>
-<pre><code>## [1] 0.003532079</code></pre>
+<pre><code>## [1] -0.09608596</code></pre>
 <ul>
 <li>オブジェクトの名前にはアルファベットと数字、<code>.</code>と<code>_</code>が使えます。</li>
 <li>ただし、数字は最初の文字としては使えません。</li>
@@ -316,7 +313,7 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <p>実際に実行してみます。</p>
 <div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
 <a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">mean_sd</span>(x)</a></code></pre></div>
-<pre><code>## [1] -0.08350387  1.00523217</code></pre>
+<pre><code>## [1] -0.03289726  0.94517521</code></pre>
 </div>
 <div id="ループ" class="section level2">
 <h2><span class="header-section-number">B.7</span> ループ</h2>
@@ -325,11 +322,11 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
 <a class="sourceLine" id="cb30-2" data-line-number="2">  <span class="kw">print</span>(<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
 <a class="sourceLine" id="cb30-3" data-line-number="3">}</a></code></pre></div>
-<pre><code>## [1] -0.1594322
-## [1] 0.07108911
-## [1] 0.3693096
-## [1] 0.00563974
-## [1] -0.04083269</code></pre>
+<pre><code>## [1] 0.09287318
+## [1] -0.02250337
+## [1] -0.02287949
+## [1] -0.05430733
+## [1] -0.06347422</code></pre>
 <p><code>for</code>ループとは<code>()</code>の中の<code>in</code>のあとのベクトルの第1要素から順番に<code>i</code>に代入して繰り返しています。
 そのことは、次の例から解ると思います。</p>
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">head</span>(letters)</a></code></pre></div>
@@ -363,7 +360,7 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <a class="sourceLine" id="cb38-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
 <a class="sourceLine" id="cb38-3" data-line-number="3">}</a>
 <a class="sourceLine" id="cb38-4" data-line-number="4">x</a></code></pre></div>
-<pre><code>## [1]  0.04187009  0.07546861  0.03156113  0.09697355 -0.08044722</code></pre>
+<pre><code>## [1] -0.10376803 -0.06620505 -0.05105917 -0.14331970 -0.07947723</code></pre>
 <p>無事、5個の平均値が<code>x</code>に保存されていることがわかります。</p>
 <p>実際に<code>for</code>ループの中で何が起こっているかは、次のコードで解ると思います。</p>
 <div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
@@ -371,11 +368,11 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <a class="sourceLine" id="cb40-3" data-line-number="3">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
 <a class="sourceLine" id="cb40-4" data-line-number="4">  <span class="kw">print</span>(x)</a>
 <a class="sourceLine" id="cb40-5" data-line-number="5">}</a></code></pre></div>
-<pre><code>## [1] -0.1194536
-## [1] -0.11945360  0.08760491
-## [1] -0.11945360  0.08760491  0.07653950
-## [1] -0.11945360  0.08760491  0.07653950 -0.15393554
-## [1] -0.11945360  0.08760491  0.07653950 -0.15393554  0.05700277</code></pre>
+<pre><code>## [1] 0.164474
+## [1]  0.164474006 -0.007479491
+## [1]  0.164474006 -0.007479491 -0.012169254
+## [1]  0.164474006 -0.007479491 -0.012169254  0.061909820
+## [1]  0.164474006 -0.007479491 -0.012169254  0.061909820 -0.062421743</code></pre>
 <ul>
 <li>ループが一周するたびに、前回の<code>x</code>に新しい要素が付け加わり、新しい<code>x</code>として保存されています。</li>
 </ul>
@@ -385,8 +382,8 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <a class="sourceLine" id="cb42-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
 <a class="sourceLine" id="cb42-3" data-line-number="3">}</a>
 <a class="sourceLine" id="cb42-4" data-line-number="4">x</a></code></pre></div>
-<pre><code>##  [1] -0.119453598  0.087604913  0.076539505 -0.153935541  0.057002765
-##  [6]  0.106662797  0.004863151  0.250623115  0.024552154  0.042991161</code></pre>
+<pre><code>##  [1]  0.164474006 -0.007479491 -0.012169254  0.061909820 -0.062421743
+##  [6]  0.116766995 -0.018552398  0.068833514 -0.123256736 -0.099229488</code></pre>
 <ul>
 <li><code>x</code>に10個の平均値が入っています。</li>
 </ul>
@@ -400,7 +397,7 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <a class="sourceLine" id="cb44-7" data-line-number="7">}</a>
 <a class="sourceLine" id="cb44-8" data-line-number="8">x &lt;-<span class="st"> </span><span class="kw">multi_mean</span>()</a>
 <a class="sourceLine" id="cb44-9" data-line-number="9">x</a></code></pre></div>
-<pre><code>## [1]  0.12853635 -0.10912494 -0.01484912 -0.01036399 -0.09959637</code></pre>
+<pre><code>## [1] -0.07698118 -0.03459311 -0.11326715 -0.07596711 -0.13516825</code></pre>
 </div>
 <div id="条件分岐" class="section level2">
 <h2><span class="header-section-number">B.8</span> 条件分岐</h2>
@@ -412,9 +409,9 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <a class="sourceLine" id="cb46-4" data-line-number="4">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb46-5" data-line-number="5">  <span class="kw">print</span>(<span class="st">&quot;negative&quot;</span>)</a>
 <a class="sourceLine" id="cb46-6" data-line-number="6">}</a></code></pre></div>
-<pre><code>## [1] &quot;negative&quot;</code></pre>
+<pre><code>## [1] &quot;positive&quot;</code></pre>
 <div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>## [1] -0.1935612</code></pre>
+<pre><code>## [1] 0.3454467</code></pre>
 <ul>
 <li><code>if(){}</code>の<code>()</code>の中に条件式を書き、<code>{}</code>の中に処理内容を書きます。</li>
 <li>それ以外の条件は<code>else</code>で示します。</li>
@@ -430,7 +427,7 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <a class="sourceLine" id="cb50-8" data-line-number="8">}</a></code></pre></div>
 <pre><code>## [1] &quot;x is less than -0.5.&quot;</code></pre>
 <div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>## [1] 0.3957145</code></pre>
+<pre><code>## [1] 0.1128649</code></pre>
 <ul>
 <li><code>&amp;</code>は「かつ」を意味します。</li>
 <li>「または」は<code>|</code>を使います。</li>
@@ -442,17 +439,17 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <h2><span class="header-section-number">B.9</span> 練習問題：フィボナッチ数列</h2>
 <p>フィボナッチ数列とは以下の条件を満たす数列です。</p>
 <p><span class="math display">\[
-\begin{align}
+\begin{aligned}
   F_0 &amp;= 0 \\
   F_1 &amp;= 1 \\
   F_{n} &amp;= F_{n-1} + F_{n-2} \quad n \geq 2
-\end{align}
+\end{aligned}
 \]</span></p>
 <p>例えば、</p>
 <p><span class="math display">\[
-\begin{align}
-  F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5, F_6 = 8,\ldotsF
-\end{align}
+\begin{aligned}
+  F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5, F_6 = 8,\ldots
+\end{aligned}
 \]</span></p>
 <p>となります。</p>
 <p>フィボナッチ数列の第<span class="math inline">\(n\)</span>項を（解析解を使わずに）求める関数を作成してみて下さい。</p>

@@ -118,7 +118,7 @@
 \setmainfont[BoldFont = Noto Serif CJK JP]{Noto Serif CJK JP Light}
 \setsansfont[BoldFont = Noto Sans CJK JP]{Noto Sans CJK JP Light}
 \setmonofont{Noto Sans Mono CJK JP}
-\setCJKmainfont[BoldFont = Noto Sans CJK JP]{Noto Sans CJK JP Light}
+\setCJKmainfont[BoldFont = Noto Serif CJK JP]{Noto Serif CJK JP Light}
 \setCJKsansfont[BoldFont = Noto Sans CJK JP]{Noto Sans CJK JP Light}
 
 \usepackage{xcolor}
@@ -155,7 +155,7 @@
 質問や間違いなどがありましたら、\href{mailto:shohei.doi0504@gmail.com}{ご連絡}を下さい。
 筆者のプロフィールは\href{https://shohei-doi.github.io/}{こちら}をご覧ください。
 
-RやRStudioのインストールについては\protect\hyperlink{install-r}{Rの環境構築}を、基本操作については\protect\hyperlink{intro-r}{プログラミング入門}をご覧ください。
+RやRStudioのインストールについては\protect\hyperlink{install-r}{Rの環境構築}を、基本操作については\protect\hyperlink{intro-r}{Rプログラミング入門}をご覧ください。
 
 \hypertarget{part-ux30c7ux30fcux30bfux30cfux30f3ux30c9ux30eaux30f3ux30b0}{%
 \part{データ・ハンドリング}\label{part-ux30c7ux30fcux30bfux30cfux30f3ux30c9ux30eaux30f3ux30b0}}
@@ -182,18 +182,607 @@ RやRStudioのインストールについては\protect\hyperlink{install-r}{R�
 \section{Rの環境構築}\label{install-r}}
 
 \hypertarget{intro-r}{%
-\section{プログラミング入門}\label{intro-r}}
+\section{Rプログラミング入門}\label{intro-r}}
 
 \hypertarget{ux95a2ux6570}{%
 \subsection{関数}\label{ux95a2ux6570}}
 
-\textbf{関数}(function)とは何かを入力すると、何かを出力するものです。
+\textbf{関数} (function) とは何かを入力すると、何かを出力するものです。
+例えば、
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(}\StringTok{"Hello, World."}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "Hello, World."
+\end{verbatim}
+
+というコードは、\texttt{"Hello,\ World."}という文字列を\texttt{print()}という関数に入力し、その文字列を出力しています。
 
 \begin{itemize}
 \tightlist
 \item
-  入力するものを入力引数(input argument)、出力するものを出力引数(output argument)と読んだりします。
+  Rでは、関数は\texttt{関数名()}という形を取ります。
+\item
+  入力するものを入力引数 (input argument) 、出力するものを出力引数 (output argument) と呼んだりします。
 \end{itemize}
+
+次のように、入力引数も出力引数も1つとは限りません。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{n =} \DecValTok{10}\NormalTok{, }\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1] -0.8331044 -0.7309096 -0.4894784  0.4881421 -0.6218853 -0.7934651
+##  [7]  0.6577110  0.6371939  0.7022634 -1.0800785
+\end{verbatim}
+
+さて、この関数は何をしているのでしょうか。
+Rでは、関数名の前に\texttt{?}をつけて実行することで、その関数のヘルプを見ることができます。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{?rnorm}
+\end{Highlighting}
+\end{Shaded}
+
+英語で関数の使い方が解説されていますが、\texttt{rnorm(n\ =\ 10,\ mean\ =\ 0,\ sd\ =\ 1)}は平均0、標準偏差1の（標準）正規分布に従う乱数を10個だけ生じさせています。
+
+入力引数は\texttt{=}で明示的に指定する場合、どのような順番でも構いません。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rnorm}\NormalTok{(}\DataTypeTok{mean =} \DecValTok{0}\NormalTok{, }\DataTypeTok{sd =} \DecValTok{1}\NormalTok{, }\DataTypeTok{n =} \DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+入力引数を明示的に指定しない場合、ヘルプにある順番で入力します。
+以下の例は上述のものと同じです。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{, }\DecValTok{0}\NormalTok{, }\DecValTok{1}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+また、ヘルプで\texttt{mean\ =\ 0,\ sd\ =\ 1}のように書かれている場合、デフォルトが定められています。
+実行者が入力引数を指定しない限り、デフォルト値が使用されます。
+したがって、以下の例もこれまでと同じコードです。
+ｘ
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{rnorm}\NormalTok{(}\DecValTok{10}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux30aaux30d6ux30b8ux30a7ux30afux30c8}{%
+\subsection{オブジェクト}\label{ux30aaux30d6ux30b8ux30a7ux30afux30c8}}
+
+Rでは\texttt{\textless{}-}でオブジェクトを作成することができます。
+例えば、100個の正規分布に従う乱数を\texttt{x}という名前のオブジェクトとして作成します。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  RStudioでは\texttt{\textless{}-}はショートカット\texttt{Alt\ +\ -}で入力できます。
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##   [1] -0.517361520 -1.455387414  0.821016180  0.333605967  0.651434049
+##   [6] -1.501008900 -0.014855765  0.447378744 -0.297534041  0.494646784
+##  [11] -1.767282811  1.032372135 -0.687838087 -1.703715358  0.131227738
+##  [16] -0.686595769  0.171029683  0.191001956 -0.119933429  1.007889187
+##  [21] -0.801638540  1.025438385  0.210437711 -0.244863002 -0.513489079
+##  [26]  1.660765742  0.515620066 -0.461772887 -1.528595764  0.885853408
+##  [31]  0.743839922  0.050017167  0.884489742  0.319596910  0.697098852
+##  [36] -1.073938097  2.084973856  0.999887474 -2.066161905 -0.488081071
+##  [41]  0.765713260 -0.790802069 -0.669135617 -1.561738371  1.878666375
+##  [46]  0.039346710 -0.519496868  0.213101325 -1.076810499 -2.694418310
+##  [51]  1.007949015 -0.026456341 -1.407199440  0.382300935  0.042891840
+##  [56]  1.498469621  1.315473927 -1.847780192  0.918504391  1.373817246
+##  [61]  1.053382991  2.223008479  0.127003622  0.232235657 -0.674348200
+##  [66] -1.296855321  0.708563953 -0.119832247 -0.236172296 -0.469442022
+##  [71] -0.039545631 -0.332874693  0.535556422 -0.417675525  0.847156097
+##  [76]  0.298682105  0.370557088  0.070012222  1.171802489  1.961270998
+##  [81]  0.133071162 -0.129005427  0.502058157 -0.506058958  0.223770433
+##  [86] -0.979688903 -0.797500792 -0.052707505  0.398869079  0.710285192
+##  [91]  0.678543554 -1.012239450  0.626761044  2.881473815  1.354093183
+##  [96]  1.418564731  2.117708421 -0.167081298  0.003465883 -0.731508756
+\end{verbatim}
+
+実際に、乱数が\texttt{x}に格納されていることが分かります。
+
+オブジェクトを入力引数とすることも可能です。
+\texttt{x}の平均と標準偏差を求めてみます。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{mean}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1095732
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{sd}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 1.020188
+\end{verbatim}
+
+もちろん、出力引数を新しいオブジェクトにすることもできます。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x.mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x)}
+\NormalTok{x.mean}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1095732
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  オブジェクトの名前にはアルファベットと数字、\texttt{.}と\texttt{\_}が使えます。
+\item
+  ただし、数字は最初の文字としては使えません。
+\end{itemize}
+
+オブジェクトは上書きすることもできます。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x.mean <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+\hypertarget{ux30d1ux30c3ux30b1ux30fcux30b8}{%
+\subsection{パッケージ}\label{ux30d1ux30c3ux30b1ux30fcux30b8}}
+
+大雑把に言って、Rによるデータ分析は\textbf{データをオブジェクトとして読み込み、いろいろな関数で処理を行うこと}で実行します。
+
+つまり、関数が重要なのですが、Rで標準に備わっている関数には限界があります。
+そこで、様々な研究者が関数を作成し、それをまとめたものを\textbf{パッケージ}として公開しています。
+
+\begin{itemize}
+\tightlist
+\item
+  基本的に、\href{https://cran.r-project.org/}{CRAM}でパッケージは公開されます。
+\end{itemize}
+
+パッケージをインストールするには、\texttt{install.packages()}という関数にパッケージ名を入れて実行します。
+試しに、\href{https://www.tidyverse.org/}{Tidyverse}という幅広く使われているパッケージをインストールしてみます。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(}\StringTok{"tidyverse"}\NormalTok{)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  RStudioの場合、\texttt{Packages}パネル（デフォルトの場合は右下）の中に\texttt{Install}というボタンがあり、そこにパッケージ名を入力していインストールすることも可能です。
+\end{itemize}
+
+\texttt{"}でパッケージ名を囲まないとエラーになります。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{install.packages}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## Error in install.packages(tidyverse): object 'tidyverse' not found
+\end{verbatim}
+
+インストールしたパッケージに対して再び\texttt{install.packages()}を行うと、最新版にアップデートされます。
+
+\begin{itemize}
+\tightlist
+\item
+  RStudioの場合、\texttt{Packages}パネルに\texttt{Update}というボタンがあり、アップデートできるパッケージを自動検索してくれます。
+\end{itemize}
+
+パッケージはインストールしただけでは使用することはできず、\texttt{library()}で読み込む必要があります。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{library}\NormalTok{(tidyverse)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{itemize}
+\tightlist
+\item
+  この場合は\texttt{"}で囲む必要はありません。
+\item
+  インストールは一回で十分です。
+\end{itemize}
+
+RStudioであれば\texttt{Packages}パネルにインストール済みのパッケージ一覧があるので、パッケージ名をクリックすると含まれる関数一覧を見ることができます。
+
+\begin{itemize}
+\tightlist
+\item
+  同様のものは\href{https://cran.r-project.org/}{CRAM}でも\texttt{pdf}形式で見ることができます。
+\item
+  一部のソフトウェアは\href{https://www.jstatsoft.org/index}{Journal of Statistical Software}などで論文が公開されています。
+\end{itemize}
+
+\hypertarget{tidyverseux3068ux306f}{%
+\subsubsection{Tidyverseとは}\label{tidyverseux3068ux306f}}
+
+\hypertarget{rux30b9ux30afux30eaux30d7ux30c8}{%
+\subsection{Rスクリプト}\label{rux30b9ux30afux30eaux30d7ux30c8}}
+
+\hypertarget{rux30d7ux30edux30b8ux30a7ux30afux30c8}{%
+\subsection{Rプロジェクト}\label{rux30d7ux30edux30b8ux30a7ux30afux30c8}}
+
+\hypertarget{ux95a2ux6570ux306eux4f5cux6210}{%
+\subsection{関数の作成}\label{ux95a2ux6570ux306eux4f5cux6210}}
+
+Rで関数を自作する際は\texttt{function()\{\}}という関数を使います。
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{()}の中に入力引数を記述します。
+\item
+  \texttt{\{\}}の中に処理内容を記述し、最後に\texttt{return()}で出力引数を指定します。
+\end{itemize}
+
+例えば、数値ベクトルを入力引数として、平均と標準偏差を出力引数とする関数を作成します。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{mean_sd <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{(x) \{ }\CommentTok{# 入力引数の名前をxとしておきます。}
+\NormalTok{  mean.x <-}\StringTok{ }\KeywordTok{mean}\NormalTok{(x) }\CommentTok{# 平均を計算します。}
+\NormalTok{  sd.x <-}\StringTok{ }\KeywordTok{sd}\NormalTok{(x) }\CommentTok{# 標準偏差を計算します。}
+  \KeywordTok{return}\NormalTok{(}\KeywordTok{c}\NormalTok{(mean.x, sd.x)) }\CommentTok{# 出力引数を指定します。}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+実際に実行してみます。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)}
+\KeywordTok{mean_sd}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.08496779  0.90721023
+\end{verbatim}
+
+\hypertarget{ux30ebux30fcux30d7}{%
+\subsection{ループ}\label{ux30ebux30fcux30d7}}
+
+\textbf{ループ}とは同一の処理を複数回実行することを指します。
+例えば、100個の標準正規分布に従う乱数の平均を5回求める処理は次のようになります。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(}\KeywordTok{mean}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)))}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.1320865
+## [1] -0.02878453
+## [1] -0.07223823
+## [1] -0.1101577
+## [1] -0.007778733
+\end{verbatim}
+
+\texttt{for}ループとは\texttt{()}の中の\texttt{in}のあとのベクトルの第1要素から順番に\texttt{i}に代入して繰り返しています。
+そのことは、次の例から解ると思います。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{head}\NormalTok{(letters)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a" "b" "c" "d" "e" "f"
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{letters}とはアルファベットのベクトルです。
+\end{itemize}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \KeywordTok{head}\NormalTok{(letters)) \{}
+  \KeywordTok{print}\NormalTok{(i)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "a"
+## [1] "b"
+## [1] "c"
+## [1] "d"
+## [1] "e"
+## [1] "f"
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{for}ループとは別に、特定の条件が満たされるまで繰り返される\texttt{while}ループもあります。
+\end{itemize}
+
+ループ処理の結果を格納するには少しテクニックが必要です。
+100個の乱数の平均を5回取ったものを\texttt{x}として保存したいとします。
+
+まず、\texttt{x}を\texttt{NULL}オブジェクトとして作成します。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\OtherTok{NULL}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## NULL
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{NULL}とは空っぽのオブジェクト（0という数値や空白という文字ではない）です。
+\end{itemize}
+
+先程のループ処理の中で、計算した平均を\texttt{c()}で\texttt{x}にくっつけていきます。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{) \{}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x, }\KeywordTok{mean}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)))}
+\NormalTok{\}}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.03359415 -0.03433155 -0.13509150  0.01220645  0.12029171
+\end{verbatim}
+
+無事、5個の平均値が\texttt{x}に保存されていることがわかります。
+
+実際に\texttt{for}ループの中で何が起こっているかは、次のコードで解ると思います。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\OtherTok{NULL}
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{) \{}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x, }\KeywordTok{mean}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)))}
+  \KeywordTok{print}\NormalTok{(x)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.111222
+## [1] 0.11122199 0.03246351
+## [1]  0.11122199  0.03246351 -0.01666441
+## [1]  0.11122199  0.03246351 -0.01666441 -0.11080168
+## [1]  0.11122199  0.03246351 -0.01666441 -0.11080168  0.11804347
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  ループが一周するたびに、前回の\texttt{x}に新しい要素が付け加わり、新しい\texttt{x}として保存されています。
+\end{itemize}
+
+\texttt{NULL}オブジェクトを使ったループ結果の保存でよくあるミスは、やり直す際に\texttt{NULL}でリセットするのを忘れることです。
+例えば、同じコードをもう一度実行しましょう。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{) \{}
+\NormalTok{  x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x, }\KeywordTok{mean}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)))}
+\NormalTok{\}}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+##  [1]  0.11122199  0.03246351 -0.01666441 -0.11080168  0.11804347 -0.03910354
+##  [7]  0.03258709 -0.11114005 -0.01832329  0.26131473
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{x}に10個の平均値が入っています。
+\end{itemize}
+
+このようなミスを避ける方法の一つは、全体を関数として作成することです。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{multi_mean <-}\StringTok{ }\ControlFlowTok{function}\NormalTok{() \{}
+\NormalTok{  x <-}\StringTok{ }\OtherTok{NULL}
+  \ControlFlowTok{for}\NormalTok{ (i }\ControlFlowTok{in} \DecValTok{1}\OperatorTok{:}\DecValTok{5}\NormalTok{) \{}
+\NormalTok{    x <-}\StringTok{ }\KeywordTok{c}\NormalTok{(x, }\KeywordTok{mean}\NormalTok{(}\KeywordTok{rnorm}\NormalTok{(}\DecValTok{100}\NormalTok{)))}
+\NormalTok{  \}}
+  \KeywordTok{return}\NormalTok{(x)}
+\NormalTok{\}}
+\NormalTok{x <-}\StringTok{ }\KeywordTok{multi_mean}\NormalTok{()}
+\NormalTok{x}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1]  0.02371186 -0.07317963  0.12399518  0.11874866 -0.03259594
+\end{verbatim}
+
+\hypertarget{ux6761ux4ef6ux5206ux5c90}{%
+\subsection{条件分岐}\label{ux6761ux4ef6ux5206ux5c90}}
+
+\textbf{条件分岐}とは、特定の条件の場合に特定の動作を行うようにすることです。
+例えば、正の場合\texttt{positive}、負の場合\texttt{negative}と出力するコマンドは次のようになります。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{>}\StringTok{ }\DecValTok{0}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"positive"}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"negative"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "negative"
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] -0.3383114
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{if()\{\}}の\texttt{()}の中に条件式を書き、\texttt{\{\}}の中に処理内容を書きます。
+\item
+  それ以外の条件は\texttt{else}で示します。
+\end{itemize}
+
+条件式は3つ以上でも構いません。
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\NormalTok{x <-}\StringTok{ }\KeywordTok{rnorm}\NormalTok{(}\DecValTok{1}\NormalTok{)}
+\ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{>}\StringTok{ }\FloatTok{-0.5}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"x is less than -0.5."}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else} \ControlFlowTok{if}\NormalTok{ (x }\OperatorTok{>=}\StringTok{ }\FloatTok{-0.5} \OperatorTok{&}\StringTok{ }\NormalTok{x }\OperatorTok{<=}\StringTok{ }\FloatTok{0.5}\NormalTok{) \{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"x is between -0.5 and 0.5."}\NormalTok{)}
+\NormalTok{\} }\ControlFlowTok{else}\NormalTok{ \{}
+  \KeywordTok{print}\NormalTok{(}\StringTok{"x is more than 0.5.ー"}\NormalTok{)}
+\NormalTok{\}}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] "x is less than -0.5."
+\end{verbatim}
+
+\begin{Shaded}
+\begin{Highlighting}[]
+\KeywordTok{print}\NormalTok{(x)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{verbatim}
+## [1] 0.3721476
+\end{verbatim}
+
+\begin{itemize}
+\tightlist
+\item
+  \texttt{\&}は「かつ」を意味します。
+\item
+  「または」は\texttt{\textbar{}}を使います。
+\item
+  \texttt{\textgreater{}=}は \(\geq\) を意味します。
+\item
+  「同じ値である」は\texttt{==}を使います（\texttt{=}ではない点に注意）。
+\end{itemize}
+
+\hypertarget{ux7df4ux7fd2ux554fux984cux30d5ux30a3ux30dcux30caux30c3ux30c1ux6570ux5217}{%
+\subsection{練習問題：フィボナッチ数列}\label{ux7df4ux7fd2ux554fux984cux30d5ux30a3ux30dcux30caux30c3ux30c1ux6570ux5217}}
+
+フィボナッチ数列とは以下の条件を満たす数列です。
+
+\[
+\begin{aligned}
+  F_0 &= 0 \\
+  F_1 &= 1 \\
+  F_{n} &= F_{n-1} + F_{n-2} \quad n \geq 2
+\end{aligned}
+\]
+
+例えば、
+
+\[
+\begin{aligned}
+  F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5, F_6 = 8,\ldots
+\end{aligned}
+\]
+
+となります。
+
+フィボナッチ数列の第\(n\)項を（解析解を使わずに）求める関数を作成してみて下さい。
+
+\hypertarget{ux7df4ux7fd2ux554fux984cux30e2ux30f3ux30c6ux30abux30ebux30edux30b7ux30dfux30e5ux30ecux30fcux30b7ux30e7ux30f3}{%
+\subsection{練習問題：モンテカルロ・シミュレーション}\label{ux7df4ux7fd2ux554fux984cux30e2ux30f3ux30c6ux30abux30ebux30edux30b7ux30dfux30e5ux30ecux30fcux30b7ux30e7ux30f3}}
+
+モンテカルロ・シミュレーション（モンテカルロ法）とは乱数を用いて近似解を求める手法です。
+
+例えば、円周率\(\pi\)の近似解は以下のように求めることができます。
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  0以上1未満の一様分布から\(n\)個の乱数\(x_i\)と\(n\)個の乱数\(y_i\)を発生させます (\(i = 1,2,\ldots,n\)) 。
+\item
+  原点と\((x_i,y_i)\)の距離が1以下である回数を計算し\(n_1\)とします。
+\item
+  円周率の近似解として\(\hat{\pi} = 4 \times n_1/n\)を得ます。
+\end{enumerate}
+
+モンテカルロ・シミュレーションによる円周率の近似解を求める関数を作成してみて下さい。
+
+また、モンテカルロ・シミュレーションによる円周率の近似解を\(m\)回求めて、その平均値や標準偏差が\(n\)によってどのように変化するか検討してみて下さい。
 
 \hypertarget{environment}{%
 \section*{動作環境}\label{environment}}

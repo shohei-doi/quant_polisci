@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.4.17)  18 APR 2020 02:35
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.4.17)  18 APR 2020 02:42
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -853,45 +853,45 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/lmtt/m/n --> TU/NotoSansMonoCJKJP(1)/b/n on input l
 ine 121.
 
-Package fontspec Info: Noto Sans CJK JP Light scale = 0.7937290297924476.
+Package fontspec Info: Noto Serif CJK JP Light scale = 0.8385125988552972.
 
 
-Package fontspec Info: Could not resolve font "Noto Sans CJK JP/I" (it
+Package fontspec Info: Could not resolve font "Noto Serif CJK JP/I" (it
 (fontspec)             probably doesn't exist).
 
 
-Package fontspec Info: Could not resolve font "Noto Sans CJK JP Light/I" (it
+Package fontspec Info: Could not resolve font "Noto Serif CJK JP Light/I" (it
 (fontspec)             probably doesn't exist).
 
 
-Package fontspec Info: Noto Sans CJK JP Light scale = 0.7937290297924476.
+Package fontspec Info: Noto Serif CJK JP Light scale = 0.8385125988552972.
 
 
-Package fontspec Info: Noto Sans CJK JP scale = 0.7937290297924476.
+Package fontspec Info: Noto Serif CJK JP scale = 0.8385125988552972.
 
 
-Package fontspec Info: Noto Sans CJK JP Light/BI scale = 0.7937290297924476.
+Package fontspec Info: Noto Serif CJK JP Light/BI scale = 0.8385125988552972.
 
 
-Package fontspec Info: Font family 'NotoSansCJKJPLight(2)' created for font
-(fontspec)             'Noto Sans CJK JP Light' with options
+Package fontspec Info: Font family 'NotoSerifCJKJPLight(2)' created for font
+(fontspec)             'Noto Serif CJK JP Light' with options
 (fontspec)             [Ligatures=TeX,Scale=MatchLowercase,Script={CJK},Scale={
 0.924715},BoldFont={Noto
-(fontspec)             Sans CJK JP}].
+(fontspec)             Serif CJK JP}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.: <->s*[0.924715]"Noto
-(fontspec)             Sans CJK JP
+(fontspec)             Serif CJK JP
 (fontspec)             Light/OT:script=hani;language=dflt;mapping=tex-text;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 (fontspec)             - 'bold' (b/n) with NFSS spec.: <->s*[0.924715]"Noto
-(fontspec)             Sans CJK
+(fontspec)             Serif CJK
 (fontspec)             JP/OT:script=hani;language=dflt;mapping=tex-text;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[0.924715]"Noto Sans CJK JP
+(fontspec)             <->s*[0.924715]"Noto Serif CJK JP
 (fontspec)             Light/BI/OT:script=hani;language=dflt;mapping=tex-text;"
 
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
@@ -919,8 +919,7 @@ Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibsep=\skip74
 LaTeX Info: Redefining \cite on input line 694.
 \c@NAT@ctr=\count316
-)
-No file quant_polisci.aux.
+) (./quant_polisci.aux)
 \openout1 = `quant_polisci.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
@@ -1534,11 +1533,55 @@ Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 LaTeX Info: Redefining \ref on input line 143.
 LaTeX Info: Redefining \pageref on input line 143.
 LaTeX Info: Redefining \nameref on input line 143.
+(./quant_polisci.out) (./quant_polisci.out)
 \@outlinefile=\write4
 \openout4 = `quant_polisci.out'.
 
+LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(2)/m/n' will be
+(Font)              scaled to size 9.24713pt on input line 143.
 
-Package hyperref Warning: Rerun to get /PageLabels entry.
+Package fontspec Info: Noto Sans CJK JP Light scale = 0.7937290297924476.
+
+
+Package fontspec Info: Could not resolve font "Noto Sans CJK JP/I" (it
+(fontspec)             probably doesn't exist).
+
+
+Package fontspec Info: Could not resolve font "Noto Sans CJK JP Light/I" (it
+(fontspec)             probably doesn't exist).
+
+
+Package fontspec Info: Noto Sans CJK JP Light scale = 0.7937290297924476.
+
+
+Package fontspec Info: Noto Sans CJK JP scale = 0.7937290297924476.
+
+
+Package fontspec Info: Noto Sans CJK JP Light/BI scale = 0.7937290297924476.
+
+
+Package fontspec Info: Font family 'NotoSansCJKJPLight(2)' created for font
+(fontspec)             'Noto Sans CJK JP Light' with options
+(fontspec)             [Ligatures=TeX,Scale=MatchLowercase,Script={CJK},Scale={
+0.924715},BoldFont={Noto
+(fontspec)             Sans CJK JP}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.: <->s*[0.924715]"Noto
+(fontspec)             Sans CJK JP
+(fontspec)             Light/OT:script=hani;language=dflt;mapping=tex-text;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+(fontspec)             - 'bold' (b/n) with NFSS spec.: <->s*[0.924715]"Noto
+(fontspec)             Sans CJK
+(fontspec)             JP/OT:script=hani;language=dflt;mapping=tex-text;"
+(fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
+(fontspec)             - 'bold italic' (b/it) with NFSS spec.:
+(fontspec)             <->s*[0.924715]"Noto Sans CJK JP
+(fontspec)             Light/BI/OT:script=hani;language=dflt;mapping=tex-text;"
+
+(fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
 (Font)              scaled to size 9.24713pt on input line 143.
@@ -1546,12 +1589,9 @@ Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `NotoSansCJKJPLight' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
-
-Package fontspec Info: Noto Sans CJK JP Light scale = 0.7937290297924476.
-
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/m/n' will be
 (Font)              scaled to size 14.48955pt on input line 145.
-LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
+LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(2)/m/n' will be
 (Font)              scaled to size 15.97903pt on input line 145.
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/m/n' will be
 (Font)              scaled to size 10.0622pt on input line 145.
@@ -1592,7 +1632,7 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/mt-msb.cfg
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
-LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
+LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(2)/m/n' will be
 (Font)              scaled to size 11.09656pt on input line 145.
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
 (Font)              scaled to size 7.93732pt on input line 148.
@@ -1602,15 +1642,38 @@ LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
 (Font)              scaled to size 11.42972pt on input line 148.
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
 (Font)              scaled to size 13.31586pt on input line 148.
+(./quant_polisci.toc
+LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
+(Font)              scaled to size 9.52478pt on input line 2.
+LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
+(Font)              scaled to size 11.09656pt on input line 2.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.9999pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 4.99992pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.00092pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.00064pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 4.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 4.
+)
 \tf@toc=\write5
 \openout5 = `quant_polisci.toc'.
 
+[1
+
+]
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
 (Font)              scaled to size 16.46199pt on input line 161.
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
 (Font)              scaled to size 19.17854pt on input line 161.
-LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
-(Font)              scaled to size 9.52478pt on input line 169.
 
 Package xcolor Warning: Incompatible color definition on input line 171.
 
@@ -1631,14 +1694,11 @@ Package xcolor Warning: Incompatible color definition on input line 175.
 
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/b/n' will be
 (Font)              scaled to size 8.38516pt on input line 190.
-LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/b/n' will be
+LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(2)/b/n' will be
 (Font)              scaled to size 9.24713pt on input line 190.
 
 Package xcolor Warning: Incompatible color definition on input line 193.
 
-[1
-
-]
 
 Package xcolor Warning: Incompatible color definition on input line 197.
 
@@ -1653,45 +1713,45 @@ Package xeCJK Warning: `\xeCJKVerbAddon' may not work properly.
 (xeCJK)                or set `Scale=1.1651' to family `\ttdefault'.
 
 
-Package fontspec Info: Noto Sans CJK JP Light scale = 0.7937290297924476.
+Package fontspec Info: Noto Serif CJK JP Light scale = 0.8385125988552972.
 
 
-Package fontspec Info: Could not resolve font "Noto Sans CJK JP/I" (it
+Package fontspec Info: Could not resolve font "Noto Serif CJK JP/I" (it
 (fontspec)             probably doesn't exist).
 
 
-Package fontspec Info: Could not resolve font "Noto Sans CJK JP Light/I" (it
+Package fontspec Info: Could not resolve font "Noto Serif CJK JP Light/I" (it
 (fontspec)             probably doesn't exist).
 
 
-Package fontspec Info: Noto Sans CJK JP Light scale = 0.7937290297924476.
+Package fontspec Info: Noto Serif CJK JP Light scale = 0.8385125988552972.
 
 
-Package fontspec Info: Noto Sans CJK JP scale = 0.7937290297924476.
+Package fontspec Info: Noto Serif CJK JP scale = 0.8385125988552972.
 
 
-Package fontspec Info: Noto Sans CJK JP Light/BI scale = 0.7937290297924476.
+Package fontspec Info: Noto Serif CJK JP Light/BI scale = 0.8385125988552972.
 
 
-Package fontspec Info: Font family 'NotoSansCJKJPLight(3)' created for font
-(fontspec)             'Noto Sans CJK JP Light' with options
+Package fontspec Info: Font family 'NotoSerifCJKJPLight(3)' created for font
+(fontspec)             'Noto Serif CJK JP Light' with options
 (fontspec)             [Ligatures=TeX,Scale=MatchLowercase,Script={CJK},Script=
 {CJK},Scale={0.924715},Scale={0.8583545097521534},BoldFont={Noto
-(fontspec)             Sans CJK JP}].
+(fontspec)             Serif CJK JP}].
 (fontspec)              
 (fontspec)              This font family consists of the following NFSS
 (fontspec)             series/shapes:
 (fontspec)              
 (fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->s*[0.8583545097521534]"Noto Sans CJK JP
+(fontspec)             <->s*[0.8583545097521534]"Noto Serif CJK JP
 (fontspec)             Light/OT:script=hani;language=dflt;mapping=tex-text;"
 (fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
 (fontspec)             - 'bold' (b/n) with NFSS spec.:
-(fontspec)             <->s*[0.8583545097521534]"Noto Sans CJK
+(fontspec)             <->s*[0.8583545097521534]"Noto Serif CJK
 (fontspec)             JP/OT:script=hani;language=dflt;mapping=tex-text;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 (fontspec)             - 'bold italic' (b/it) with NFSS spec.:
-(fontspec)             <->s*[0.8583545097521534]"Noto Sans CJK JP
+(fontspec)             <->s*[0.8583545097521534]"Noto Serif CJK JP
 (fontspec)             Light/BI/OT:script=hani;language=dflt;mapping=tex-text;"
 
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
@@ -1708,6 +1768,7 @@ Package xcolor Warning: Incompatible color definition on input line 219.
 
 Package xcolor Warning: Incompatible color definition on input line 229.
 
+[2]
 
 Package xcolor Warning: Incompatible color definition on input line 233.
 
@@ -1744,7 +1805,6 @@ Package xcolor Warning: Incompatible color definition on input line 263.
 
 Package xcolor Warning: Incompatible color definition on input line 271.
 
-[2]
 
 Package xcolor Warning: Incompatible color definition on input line 275.
 
@@ -1760,6 +1820,7 @@ Package xcolor Warning: Incompatible color definition on input line 287.
 
 Package xcolor Warning: Incompatible color definition on input line 287.
 
+[3]
 
 Package xcolor Warning: Incompatible color definition on input line 317.
 
@@ -1781,7 +1842,6 @@ Package xcolor Warning: Incompatible color definition on input line 331.
 
 Package xcolor Warning: Incompatible color definition on input line 339.
 
-[3]
 
 Package xcolor Warning: Incompatible color definition on input line 344.
 
@@ -1809,6 +1869,7 @@ Package xcolor Warning: Incompatible color definition on input line 387.
 
 Package xcolor Warning: Incompatible color definition on input line 397.
 
+[4]
 
 Package xcolor Warning: Incompatible color definition on input line 401.
 
@@ -1824,184 +1885,188 @@ Package xcolor Warning: Incompatible color definition on input line 421.
 
 Package xcolor Warning: Incompatible color definition on input line 421.
 
-[4]
 
-Package xcolor Warning: Incompatible color definition on input line 460.
+Package xcolor Warning: Incompatible color definition on input line 465.
 
 
 LaTeX Font Warning: Font shape `TU/NotoSansMonoCJKJP(0)/m/it' undefined
 (Font)              using `TU/NotoSansMonoCJKJP(0)/m/n' instead on input line 4
-62.
+67.
 
 
-LaTeX Font Warning: Font shape `TU/NotoSansCJKJPLight(2)/m/it' undefined
-(Font)              using `TU/NotoSansCJKJPLight(2)/m/n' instead on input line 
-462.
+LaTeX Font Warning: Font shape `TU/NotoSerifCJKJPLight(2)/m/it' undefined
+(Font)              using `TU/NotoSerifCJKJPLight(2)/m/n' instead on input line
+ 467.
 
 LaTeX Font Info:    Font shape `TU/NotoSansMonoCJKJP(0)/m/it' will be
-(Font)              scaled to size 7.93732pt on input line 463.
+(Font)              scaled to size 7.93732pt on input line 468.
 
-Package xcolor Warning: Incompatible color definition on input line 468.
-
-
-Package xcolor Warning: Incompatible color definition on input line 468.
+Package xcolor Warning: Incompatible color definition on input line 473.
 
 
-Package xcolor Warning: Incompatible color definition on input line 472.
+Package xcolor Warning: Incompatible color definition on input line 473.
 
 
 Package xcolor Warning: Incompatible color definition on input line 477.
-
-
-Package xcolor Warning: Incompatible color definition on input line 477.
-
-
-Package xcolor Warning: Incompatible color definition on input line 489.
-
-
-Package xcolor Warning: Incompatible color definition on input line 495.
-
-
-Package xcolor Warning: Incompatible color definition on input line 495.
 
 [5]
 
-Package xcolor Warning: Incompatible color definition on input line 508.
+Package xcolor Warning: Incompatible color definition on input line 482.
 
 
-Package xcolor Warning: Incompatible color definition on input line 512.
+Package xcolor Warning: Incompatible color definition on input line 482.
 
 
-Package xcolor Warning: Incompatible color definition on input line 512.
+Package xcolor Warning: Incompatible color definition on input line 494.
 
 
-Package xcolor Warning: Incompatible color definition on input line 524.
+Package xcolor Warning: Incompatible color definition on input line 500.
 
 
-Package xcolor Warning: Incompatible color definition on input line 530.
+Package xcolor Warning: Incompatible color definition on input line 500.
 
 
-Package xcolor Warning: Incompatible color definition on input line 530.
+Package xcolor Warning: Incompatible color definition on input line 513.
 
 
-Package xcolor Warning: Incompatible color definition on input line 552.
+Package xcolor Warning: Incompatible color definition on input line 517.
+
+
+Package xcolor Warning: Incompatible color definition on input line 517.
+
+
+Package xcolor Warning: Incompatible color definition on input line 529.
+
+
+Package xcolor Warning: Incompatible color definition on input line 535.
+
+
+Package xcolor Warning: Incompatible color definition on input line 535.
 
 
 Package xcolor Warning: Incompatible color definition on input line 557.
-
-
-Package xcolor Warning: Incompatible color definition on input line 557.
-
-
-Package xcolor Warning: Incompatible color definition on input line 571.
-
-
-Package xcolor Warning: Incompatible color definition on input line 578.
-
-
-Package xcolor Warning: Incompatible color definition on input line 578.
-
-
-Package xcolor Warning: Incompatible color definition on input line 588.
 
 [6]
 
-Package xcolor Warning: Incompatible color definition on input line 596.
+Package xcolor Warning: Incompatible color definition on input line 562.
 
 
-Package xcolor Warning: Incompatible color definition on input line 596.
+Package xcolor Warning: Incompatible color definition on input line 562.
 
 
-Package xcolor Warning: Incompatible color definition on input line 615.
+Package xcolor Warning: Incompatible color definition on input line 576.
 
 
-Package xcolor Warning: Incompatible color definition on input line 622.
+Package xcolor Warning: Incompatible color definition on input line 583.
 
 
-Package xcolor Warning: Incompatible color definition on input line 622.
+Package xcolor Warning: Incompatible color definition on input line 583.
 
 
-Package xcolor Warning: Incompatible color definition on input line 637.
+Package xcolor Warning: Incompatible color definition on input line 593.
 
 
-Package xcolor Warning: Incompatible color definition on input line 649.
+Package xcolor Warning: Incompatible color definition on input line 601.
 
 
-Package xcolor Warning: Incompatible color definition on input line 649.
+Package xcolor Warning: Incompatible color definition on input line 601.
 
 
-Package xcolor Warning: Incompatible color definition on input line 661.
+Package xcolor Warning: Incompatible color definition on input line 620.
+
+
+Package xcolor Warning: Incompatible color definition on input line 627.
+
+
+Package xcolor Warning: Incompatible color definition on input line 627.
 
 [7]
 
-Package xcolor Warning: Incompatible color definition on input line 670.
+Package xcolor Warning: Incompatible color definition on input line 642.
 
 
-Package xcolor Warning: Incompatible color definition on input line 670.
+Package xcolor Warning: Incompatible color definition on input line 654.
 
 
-Package xcolor Warning: Incompatible color definition on input line 676.
+Package xcolor Warning: Incompatible color definition on input line 654.
 
 
-Package xcolor Warning: Incompatible color definition on input line 680.
+Package xcolor Warning: Incompatible color definition on input line 666.
 
 
-Package xcolor Warning: Incompatible color definition on input line 680.
+Package xcolor Warning: Incompatible color definition on input line 675.
 
 
-Package xcolor Warning: Incompatible color definition on input line 696.
+Package xcolor Warning: Incompatible color definition on input line 675.
 
 
-Package xcolor Warning: Incompatible color definition on input line 707.
+Package xcolor Warning: Incompatible color definition on input line 681.
 
 
-Package xcolor Warning: Incompatible color definition on input line 707.
-
-LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(3)/m/n' will be
-(Font)              scaled to size 8.58353pt on input line 711.
-
-Package xcolor Warning: Incompatible color definition on input line 713.
+Package xcolor Warning: Incompatible color definition on input line 685.
 
 
-Package xcolor Warning: Incompatible color definition on input line 717.
+Package xcolor Warning: Incompatible color definition on input line 685.
 
 
-Package xcolor Warning: Incompatible color definition on input line 717.
+Package xcolor Warning: Incompatible color definition on input line 701.
 
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.9999pt on input line 730.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 4.99992pt on input line 730.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 730.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 730.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 730.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 730.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 730.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 730.
+
+Package xcolor Warning: Incompatible color definition on input line 712.
+
+
+Package xcolor Warning: Incompatible color definition on input line 712.
+
+
+Package xcolor Warning: Incompatible color definition on input line 712.
+
 [8]
 
-! Package amsmath Error: Erroneous nesting of equation structures;
-(amsmath)                trying to recover with `aligned'.
+Package xcolor Warning: Incompatible color definition on input line 712.
 
-See the amsmath package documentation for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.745 \end{align}
-                  
+
+Package xcolor Warning: Incompatible color definition on input line 712.
+
+
+Package xcolor Warning: Incompatible color definition on input line 718.
+
+
+Package xcolor Warning: Incompatible color definition on input line 722.
+
+
+Package xcolor Warning: Incompatible color definition on input line 722.
+
+
+Package xcolor Warning: Incompatible color definition on input line 791.
+
+[9]
+
+Package xcolor Warning: Incompatible color definition on input line 795.
+
+
+Package xcolor Warning: Incompatible color definition on input line 795.
+
+[10]
+No file quant_polisci.bbl.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 840.
+[11]
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 840.
+(./quant_polisci.aux)
+Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 840.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 840.
+Package rerunfilecheck Info: File `quant_polisci.out' has not changed.
+(rerunfilecheck)             Checksum: 763DE052C7F961002579A1B2F254EB01;1922.
+
+LaTeX Font Warning: Some font shapes were not available, defaults substituted.
+
+ ) 
 Here is how much of TeX's memory you used:
- 21756 strings out of 479417
- 408957 string characters out of 5884551
- 853153 words of memory out of 5000000
- 38925 multiletter control sequences out of 15000+600000
- 539077 words of font info for 113 fonts, out of 8000000 for 9000
+ 21859 strings out of 479417
+ 413434 string characters out of 5884551
+ 852922 words of memory out of 5000000
+ 39010 multiletter control sequences out of 15000+600000
+ 539141 words of font info for 121 fonts, out of 8000000 for 9000
  1353 hyphenation exceptions out of 8191
- 59i,7n,123p,821b,858s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,7n,131p,821b,856s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on quant_polisci.pdf (8 pages).
+Output written on quant_polisci.pdf (11 pages).
