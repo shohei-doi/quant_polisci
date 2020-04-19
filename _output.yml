@@ -2,12 +2,15 @@ bookdown::gitbook:
   includes:
     in_header: head.html
   css: style.css
+  split_by: chapter
   config:
     toc:
       collapse: section
       scroll_highlight: yes
-      before: null
-      after: null
+      before: |
+        <li><a href="index.html">Rで計量政治学入門</a></li>
+      after: |
+        <li><a href="../index.html">土井　翔平</a></li>
     download: ["pdf", "epub"]
 bookdown::pdf_book:
   includes:

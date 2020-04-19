@@ -5,7 +5,7 @@ date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
 documentclass: bxjsarticle
-bibliography: [book.bib, packages.bib]
+bibliography: book.bib
 biblio-style: apalike
 link-citations: yes
 github-repo: shohei-doi/quant_polisci
@@ -18,20 +18,26 @@ description: "Rによる計量政治学の入門レベルの講義資料です�
 質問や間違いなどがありましたら、[ご連絡](mailto:shohei.doi0504@gmail.com)を下さい。
 筆者のプロフィールは[こちら](https://shohei-doi.github.io/)をご覧ください。
 
-## 前提 {-}
+## 想定する読者 {-}
 
 本書は、データ分析や数学の前提知識やプログラミング経験のない社会科学系学部生を主たる読者として想定しています。
 
-- やや高度と思われる箇所には`*`を付けているので、読み飛ばしても構いません。
+- やや高度と思われる箇所には*を付けているので、読み飛ばしても構いません。
 
-なお、RやRStudioのインストールについては[Rの環境構築]を、基本操作については[Rプログラミング入門]をご覧ください。
+なお、RやRStudioのインストールについては[Rの分析環境]を、基本操作については[Rプログラミング入門]をご覧ください。
+
+## `Tidyverse`について {-}
+
+[`Tidyverse`](https://www.tidyverse.org/)とは様々なデータ操作に関するパッケージ群を指します。
+本書では、可能な限り、Rの標準関数を用いた表記と`Tidyverse`による表記を併記するようにします。
+しかし、筆者は`Tidyverse`に慣れているので、しばしば標準関数によるコードを省略します。
 
 ## ウェブサイトの操作 {-}
 
 本書は`bookdown`を用いて作成しています。
 ウェブサイトのナビゲーションバーでは、
 
-- 一番左のボタンで目次の表示・非表示の切り替え
+- 三本線のボタンで目次の表示・非表示の切り替え
 - 虫眼鏡のマークで単語検索
 - Aのマークで文字の大きさ、フォント、色のコントロール
 - ダウンロードボタンで`.pdf`ファイルや`.epub`ファイルのダウンロード

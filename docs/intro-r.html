@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-04-18" />
+<meta name="date" content="2020-04-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,7 +32,7 @@
   
   
 <link rel="prev" href="install-r.html"/>
-<link rel="next" href="environment.html"/>
+<link rel="next" href="inter-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -139,32 +139,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <nav role="navigation">
 
 <ul class="summary">
+<li><a href="index.html">Rで計量政治学入門</a></li>
+
+<li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a><ul>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html#前提"><i class="fa fa-check"></i>前提</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#想定する読者"><i class="fa fa-check"></i>想定する読者</a></li>
+<li><a href="index.html#tidyverseについて"><code>Tidyverse</code>について</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ウェブサイトの操作"><i class="fa fa-check"></i>ウェブサイトの操作</a></li>
 </ul></li>
 <li class="part"><span><b>I データ・ハンドリング</b></span></li>
 <li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a><ul>
-<li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#使用するパッケージ"><i class="fa fa-check"></i><b>1.1</b> 使用するパッケージ</a></li>
+<li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#パッケージ付属のデータ"><i class="fa fa-check"></i><b>1.1</b> パッケージ付属のデータ</a></li>
+<li class="chapter" data-level="1.2" data-path="data-import.html"><a href="data-import.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.2</b> <code>.csv</code>ファイルの読み込み</a></li>
 </ul></li>
 <li class="appendix"><span><b>補論</b></span></li>
-<li class="chapter" data-level="A" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>A</b> Rの環境構築</a></li>
+<li class="chapter" data-level="A" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>A</b> Rの分析環境</a><ul>
+<li class="chapter" data-level="A.1" data-path="install-r.html"><a href="install-r.html#rのインストール"><i class="fa fa-check"></i><b>A.1</b> Rのインストール</a></li>
+<li class="chapter" data-level="A.2" data-path="install-r.html"><a href="install-r.html#rstudioのインストール"><i class="fa fa-check"></i><b>A.2</b> RStudioのインストール</a></li>
+<li class="chapter" data-level="A.3" data-path="install-r.html"><a href="install-r.html#再現可能な分析のために"><i class="fa fa-check"></i><b>A.3</b> 再現可能な分析のために</a><ul>
+<li class="chapter" data-level="A.3.1" data-path="install-r.html"><a href="install-r.html#rスクリプト"><i class="fa fa-check"></i><b>A.3.1</b> Rスクリプト</a></li>
+<li class="chapter" data-level="A.3.2" data-path="install-r.html"><a href="install-r.html#rプロジェクト"><i class="fa fa-check"></i><b>A.3.2</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="A.3.3" data-path="install-r.html"><a href="install-r.html#rstudioの設定"><i class="fa fa-check"></i><b>A.3.3</b> RStudioの設定*</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="B" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>B</b> Rプログラミング入門</a><ul>
-<li class="chapter" data-level="B.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>B.1</b> 関数</a></li>
+<li class="chapter" data-level="B.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>B.1</b> 関数</a><ul>
+<li class="chapter" data-level="B.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>B.1.1</b> 総称関数*</a></li>
+</ul></li>
 <li class="chapter" data-level="B.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>B.2</b> オブジェクト</a></li>
 <li class="chapter" data-level="B.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>B.3</b> パッケージ</a><ul>
-<li class="chapter" data-level="B.3.1" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>B.3.1</b> Tidyverseとは</a></li>
+<li class="chapter" data-level="B.3.1" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>B.3.1</b> <code>Tidyverse</code>とは*</a></li>
 </ul></li>
-<li class="chapter" data-level="B.4" data-path="intro-r.html"><a href="intro-r.html#rスクリプト"><i class="fa fa-check"></i><b>B.4</b> Rスクリプト</a></li>
-<li class="chapter" data-level="B.5" data-path="intro-r.html"><a href="intro-r.html#rプロジェクト"><i class="fa fa-check"></i><b>B.5</b> Rプロジェクト</a></li>
-<li class="chapter" data-level="B.6" data-path="intro-r.html"><a href="intro-r.html#関数の作成"><i class="fa fa-check"></i><b>B.6</b> 関数の作成</a></li>
-<li class="chapter" data-level="B.7" data-path="intro-r.html"><a href="intro-r.html#ループ"><i class="fa fa-check"></i><b>B.7</b> ループ</a></li>
-<li class="chapter" data-level="B.8" data-path="intro-r.html"><a href="intro-r.html#条件分岐"><i class="fa fa-check"></i><b>B.8</b> 条件分岐</a></li>
-<li class="chapter" data-level="B.9" data-path="intro-r.html"><a href="intro-r.html#練習問題フィボナッチ数列"><i class="fa fa-check"></i><b>B.9</b> 練習問題：フィボナッチ数列</a></li>
-<li class="chapter" data-level="B.10" data-path="intro-r.html"><a href="intro-r.html#練習問題モンテカルロシミュレーション"><i class="fa fa-check"></i><b>B.10</b> 練習問題：モンテカルロ・シミュレーション</a></li>
 </ul></li>
+<li class="chapter" data-level="C" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>C</b> Rプログラミング中級*</a><ul>
+<li class="chapter" data-level="C.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>C.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="C.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>C.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="C.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>C.3</b> ループ</a></li>
+<li class="chapter" data-level="C.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>C.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="C.5" data-path="inter-r.html"><a href="inter-r.html#練習問題フィボナッチ数列"><i class="fa fa-check"></i><b>C.5</b> 練習問題：フィボナッチ数列</a></li>
+<li class="chapter" data-level="C.6" data-path="inter-r.html"><a href="inter-r.html#練習問題モンテカルロシミュレーション"><i class="fa fa-check"></i><b>C.6</b> 練習問題：モンテカルロ・シミュレーション</a></li>
+</ul></li>
+<li class="chapter" data-level="D" data-path="rmakdown.html"><a href="rmakdown.html"><i class="fa fa-check"></i><b>D</b> R Markdown入門</a></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="../index.html">土井　翔平</a></li>
+
 </ul>
 
       </nav>
@@ -184,11 +204,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="intro-r" class="section level1">
 <h1><span class="header-section-number">補論B</span> Rプログラミング入門</h1>
+<p>Rによるプログラミングの基本として、</p>
+<ul>
+<li><a href="intro-r.html#オブジェクト">オブジェクト</a></li>
+<li><a href="intro-r.html#関数">関数</a></li>
+<li><a href="intro-r.html#パッケージ">パッケージ</a></li>
+</ul>
+<p>について解説します。</p>
+<p>大雑把に言えば、Rではオブジェクトとしてデータを読み込み、関数によってオブジェクト（＝データ）の処理や分析を行います。
+パッケージによって様々な関数を追加することで、処理や分析の幅を広げます。</p>
 <div id="関数" class="section level2">
 <h2><span class="header-section-number">B.1</span> 関数</h2>
 <p><strong>関数</strong> (function) とは何かを入力すると、何かを出力するものです。
 例えば、</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">print</span>(<span class="st">&quot;Hello, World.&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">print</span>(<span class="st">&quot;Hello, World.&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;Hello, World.&quot;</code></pre>
 <p>というコードは、<code>&quot;Hello, World.&quot;</code>という文字列を<code>print()</code>という関数に入力し、その文字列を出力しています。</p>
 <ul>
@@ -196,67 +225,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>入力するものを入力引数 (input argument) 、出力するものを出力引数 (output argument) と呼んだりします。</li>
 </ul>
 <p>次のように、入力引数も出力引数も1つとは限りません。</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a></code></pre></div>
-<pre><code>##  [1]  0.47537386  0.01895441  1.41501108  1.01580761  0.14104600  1.05061735
-##  [7] -1.27742141  1.50553946 -0.92671547 -0.08233864</code></pre>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a></code></pre></div>
+<pre><code>##  [1] -0.2450412  1.2678203  1.0554424  0.7290494 -1.9246996 -1.0582745
+##  [7]  1.2255206 -1.0480460 -0.4366582  1.0719138</code></pre>
 <p>さて、この関数は何をしているのでしょうか。
 Rでは、関数名の前に<code>?</code>をつけて実行することで、その関数のヘルプを見ることができます。</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1">?rnorm</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1">?rnorm</a></code></pre></div>
 <p>英語で関数の使い方が解説されていますが、<code>rnorm(n = 10, mean = 0, sd = 1)</code>は平均0、標準偏差1の（標準）正規分布に従う乱数を10個だけ生じさせています。</p>
 <p>入力引数は<code>=</code>で明示的に指定する場合、どのような順番でも構いません。</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>, <span class="dt">n =</span> <span class="dv">10</span>)</a></code></pre></div>
 <p>入力引数を明示的に指定しない場合、ヘルプにある順番で入力します。
 以下の例は上述のものと同じです。</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>, <span class="dv">0</span>, <span class="dv">1</span>)</a></code></pre></div>
 <p>また、ヘルプで<code>mean = 0, sd = 1</code>のように書かれている場合、デフォルトが定められています。
 実行者が入力引数を指定しない限り、デフォルト値が使用されます。
-したがって、以下の例もこれまでと同じコードです。
-ｘ</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>)</a></code></pre></div>
+したがって、以下の例もこれまでと同じコードです。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dv">10</span>)</a></code></pre></div>
+<div id="総称関数" class="section level3">
+<h3><span class="header-section-number">B.1.1</span> 総称関数*</h3>
+<p>総称関数 (generic function) とは、Rにおいて入力引数の種類に応じて挙動が変わる関数のことを指します。
+例えば、<code>summary()</code>という関数はデータフレームが入力引数の場合には記述統計を表示しますが、回帰分析の結果の場合は回帰表を出力します。</p>
+<p>総称関数のヘルプを見る場合は、以下のように、関数名に<code>.</code>をつけて入力引数の種類を書きます。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">?summary.data.frame</a>
+<a class="sourceLine" id="cb15-2" data-line-number="2">?summary.lm</a></code></pre></div>
+</div>
 </div>
 <div id="オブジェクト" class="section level2">
 <h2><span class="header-section-number">B.2</span> オブジェクト</h2>
 <p>Rでは<code>&lt;-</code>でオブジェクトを作成することができます。
-例えば、100個の正規分布に従う乱数を<code>x</code>という名前のオブジェクトとして作成します。</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a></code></pre></div>
+例えば、20個の正規分布に従う乱数を<code>x</code>という名前のオブジェクトとして作成します。</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">20</span>)</a></code></pre></div>
 <ul>
 <li>RStudioでは<code>&lt;-</code>はショートカット<code>Alt + -</code>で入力できます。</li>
 </ul>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1">x</a></code></pre></div>
-<pre><code>##   [1]  1.26370201  0.36992552 -1.66010963  1.20358320 -0.59812883 -0.22482653
-##   [7]  1.08545367  0.63786625  0.77195071 -0.24509330  0.03600341  1.03187444
-##  [13] -0.57482020 -0.10290712  0.57208832 -0.53403926 -0.35490018 -0.86633233
-##  [19]  0.92953509  0.30874095  1.36361847 -0.65472183  1.37014262 -1.30998378
-##  [25]  0.52425008 -0.45933524  0.79070259 -0.79105025  0.87197541 -0.54585706
-##  [31]  0.77051197 -0.19626854 -0.42481555 -0.80329971  2.43983142 -1.83508856
-##  [37] -0.32752844 -0.36098910 -0.63200633 -0.33467135 -0.95244482 -1.52577201
-##  [43]  0.56668443  1.82718801 -1.00997787  0.76329696  0.58452176 -0.34265345
-##  [49]  1.45778184 -0.62036401 -0.74685990  1.77678414 -1.43614624  0.57060361
-##  [55] -1.02605787  1.87711858  1.35188979  1.19277843 -0.59360189 -0.30188829
-##  [61]  0.08766340  0.55615689  0.53681860  0.91892765 -0.76172325  0.47634812
-##  [67]  2.17694386  2.80427983  0.42023261  0.38927385  0.54933588 -0.81120038
-##  [73] -2.04616458  0.79055377  0.29415338  0.73075456  1.09580282  0.98528724
-##  [79]  0.27112013  0.52066354  0.10552296 -0.64682837  0.53479794  0.67006684
-##  [85]  0.58544414 -1.61474564 -0.36196280 -0.40707836  1.28453408  0.34585904
-##  [91]  0.32786063  0.19332390 -0.60611340 -0.30115153  1.17956907 -0.66643312
-##  [97] -1.97125282  0.73674174 -2.75517509 -0.90450939</code></pre>
 <p>実際に、乱数が<code>x</code>に格納されていることが分かります。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" data-line-number="1">x</a></code></pre></div>
+<pre><code>##  [1]  0.9919646 -0.3315820 -1.2264343 -0.5266810 -0.5608351  1.0817135
+##  [7]  0.7662577 -0.8863550  2.3010774 -1.3465840 -1.4137151  0.2366719
+## [13]  0.8714021  1.1768141  0.7604723 -0.1641942  0.2289507  0.4965313
+## [19]  1.2647888  0.7104182</code></pre>
 <p>オブジェクトを入力引数とすることも可能です。
 <code>x</code>の平均と標準偏差を求めてみます。</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" data-line-number="1"><span class="kw">mean</span>(x)</a></code></pre></div>
-<pre><code>## [1] 0.1163156</code></pre>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1"><span class="kw">sd</span>(x)</a></code></pre></div>
-<pre><code>## [1] 1.018452</code></pre>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" data-line-number="1"><span class="kw">mean</span>(x)</a></code></pre></div>
+<pre><code>## [1] 0.2215341</code></pre>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1"><span class="kw">sd</span>(x)</a></code></pre></div>
+<pre><code>## [1] 1.001763</code></pre>
 <p>もちろん、出力引数を新しいオブジェクトにすることもできます。</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" data-line-number="1">x.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
-<a class="sourceLine" id="cb20-2" data-line-number="2">x.mean</a></code></pre></div>
-<pre><code>## [1] 0.1163156</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">x.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
+<a class="sourceLine" id="cb23-2" data-line-number="2">x.mean</a></code></pre></div>
+<pre><code>## [1] 0.2215341</code></pre>
 <ul>
 <li>オブジェクトの名前にはアルファベットと数字、<code>.</code>と<code>_</code>が使えます。</li>
 <li>ただし、数字は最初の文字としては使えません。</li>
 </ul>
 <p>オブジェクトは上書きすることもできます。</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" data-line-number="1">x.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" data-line-number="1">x.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>))</a>
+<a class="sourceLine" id="cb25-2" data-line-number="2">x.mean</a></code></pre></div>
+<pre><code>## [1] 0.1111382</code></pre>
+<ul>
+<li>先ほどとは違う値に上書きされていることが分かります。</li>
+</ul>
 </div>
 <div id="パッケージ" class="section level2">
 <h2><span class="header-section-number">B.3</span> パッケージ</h2>
@@ -264,211 +292,51 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <p>つまり、関数が重要なのですが、Rで標準に備わっている関数には限界があります。
 そこで、様々な研究者が関数を作成し、それをまとめたものを<strong>パッケージ</strong>として公開しています。</p>
 <ul>
-<li>基本的に、<a href="https://cran.r-project.org/">CRAM</a>でパッケージは公開されます。</li>
+<li>基本的に、<a href="https://cran.r-project.org/">CRAN</a>でパッケージは公開されます。</li>
 </ul>
 <p>パッケージをインストールするには、<code>install.packages()</code>という関数にパッケージ名を入れて実行します。
 試しに、<a href="https://www.tidyverse.org/">Tidyverse</a>という幅広く使われているパッケージをインストールしてみます。</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tidyverse&quot;</span>)</a></code></pre></div>
 <ul>
 <li>RStudioの場合、<code>Packages</code>パネル（デフォルトの場合は右下）の中に<code>Install</code>というボタンがあり、そこにパッケージ名を入力していインストールすることも可能です。</li>
 </ul>
 <p><code>&quot;</code>でパッケージ名を囲まないとエラーになります。</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" data-line-number="1"><span class="kw">install.packages</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1"><span class="kw">install.packages</span>(tidyverse)</a></code></pre></div>
 <pre><code>## Error in install.packages(tidyverse): object &#39;tidyverse&#39; not found</code></pre>
 <p>インストールしたパッケージに対して再び<code>install.packages()</code>を行うと、最新版にアップデートされます。</p>
 <ul>
 <li>RStudioの場合、<code>Packages</code>パネルに<code>Update</code>というボタンがあり、アップデートできるパッケージを自動検索してくれます。</li>
 </ul>
 <p>パッケージはインストールしただけでは使用することはできず、<code>library()</code>で読み込む必要があります。</p>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
 <ul>
 <li>この場合は<code>&quot;</code>で囲む必要はありません。</li>
 <li>インストールは一回で十分です。</li>
 </ul>
 <p>RStudioであれば<code>Packages</code>パネルにインストール済みのパッケージ一覧があるので、パッケージ名をクリックすると含まれる関数一覧を見ることができます。</p>
 <ul>
-<li>同様のものは<a href="https://cran.r-project.org/">CRAM</a>でも<code>pdf</code>形式で見ることができます。</li>
+<li>同様のものは<a href="https://cran.r-project.org/">CRAN</a>でも<code>pdf</code>形式で見ることができます。</li>
 <li>一部のソフトウェアは<a href="https://www.jstatsoft.org/index">Journal of Statistical Software</a>などで論文が公開されています。</li>
 </ul>
 <div id="tidyverseとは" class="section level3">
-<h3><span class="header-section-number">B.3.1</span> Tidyverseとは</h3>
-</div>
-</div>
-<div id="rスクリプト" class="section level2">
-<h2><span class="header-section-number">B.4</span> Rスクリプト</h2>
-</div>
-<div id="rプロジェクト" class="section level2">
-<h2><span class="header-section-number">B.5</span> Rプロジェクト</h2>
-</div>
-<div id="関数の作成" class="section level2">
-<h2><span class="header-section-number">B.6</span> 関数の作成</h2>
-<p>Rで関数を自作する際は<code>function(){}</code>という関数を使います。</p>
+<h3><span class="header-section-number">B.3.1</span> <code>Tidyverse</code>とは*</h3>
+<p><code>Tidyverse</code>とは広義にはRにおけるデータ処理を行うためのパッケージを開発するプロジェクトであり、狭義にはそこで開発されたパッケージの一部を指します。
+具体的には、</p>
 <ul>
-<li><code>()</code>の中に入力引数を記述します。</li>
-<li><code>{}</code>の中に処理内容を記述し、最後に<code>return()</code>で出力引数を指定します。</li>
+<li><code>ggplot2</code></li>
+<li><code>dplyr</code></li>
+<li><code>tidyr</code></li>
+<li><code>readr</code></li>
+<li><code>purrr</code></li>
+<li><code>tibble</code></li>
+<li><code>stringr</code></li>
+<li><code>forcats</code></li>
 </ul>
-<p>例えば、数値ベクトルを入力引数として、平均と標準偏差を出力引数とする関数を作成します。</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb27-1" data-line-number="1">mean_sd &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="co"># 入力引数の名前をxとしておきます。</span></a>
-<a class="sourceLine" id="cb27-2" data-line-number="2">  mean.x &lt;-<span class="st"> </span><span class="kw">mean</span>(x) <span class="co"># 平均を計算します。</span></a>
-<a class="sourceLine" id="cb27-3" data-line-number="3">  sd.x &lt;-<span class="st"> </span><span class="kw">sd</span>(x) <span class="co"># 標準偏差を計算します。</span></a>
-<a class="sourceLine" id="cb27-4" data-line-number="4">  <span class="kw">return</span>(<span class="kw">c</span>(mean.x, sd.x)) <span class="co"># 出力引数を指定します。</span></a>
-<a class="sourceLine" id="cb27-5" data-line-number="5">}</a></code></pre></div>
-<p>実際に実行してみます。</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb28-2" data-line-number="2"><span class="kw">mean_sd</span>(x)</a></code></pre></div>
-<pre><code>## [1] 0.01171377 1.08212890</code></pre>
-</div>
-<div id="ループ" class="section level2">
-<h2><span class="header-section-number">B.7</span> ループ</h2>
-<p><strong>ループ</strong>とは同一の処理を複数回実行することを指します。
-例えば、100個の標準正規分布に従う乱数の平均を5回求める処理は次のようになります。</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb30-2" data-line-number="2">  <span class="kw">print</span>(<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb30-3" data-line-number="3">}</a></code></pre></div>
-<pre><code>## [1] 0.09796394
-## [1] -0.1706092
-## [1] 0.07200015
-## [1] 0.1882244
-## [1] -0.1102818</code></pre>
-<p><code>for</code>ループとは<code>()</code>の中の<code>in</code>のあとのベクトルの第1要素から順番に<code>i</code>に代入して繰り返しています。
-そのことは、次の例から解ると思います。</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" data-line-number="1"><span class="kw">head</span>(letters)</a></code></pre></div>
-<pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;</code></pre>
-<ul>
-<li><code>letters</code>とはアルファベットのベクトルです。</li>
-</ul>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">head</span>(letters)) {</a>
-<a class="sourceLine" id="cb34-2" data-line-number="2">  <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb34-3" data-line-number="3">}</a></code></pre></div>
-<pre><code>## [1] &quot;a&quot;
-## [1] &quot;b&quot;
-## [1] &quot;c&quot;
-## [1] &quot;d&quot;
-## [1] &quot;e&quot;
-## [1] &quot;f&quot;</code></pre>
-<ul>
-<li><code>for</code>ループとは別に、特定の条件が満たされるまで繰り返される<code>while</code>ループもあります。</li>
-</ul>
-<p>ループ処理の結果を格納するには少しテクニックが必要です。
-100個の乱数の平均を5回取ったものを<code>x</code>として保存したいとします。</p>
-<p>まず、<code>x</code>を<code>NULL</code>オブジェクトとして作成します。</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb36-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb36-2" data-line-number="2">x</a></code></pre></div>
-<pre><code>## NULL</code></pre>
-<ul>
-<li><code>NULL</code>とは空っぽのオブジェクト（0という数値や空白という文字ではない）です。</li>
-</ul>
-<p>先程のループ処理の中で、計算した平均を<code>c()</code>で<code>x</code>にくっつけていきます。</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb38-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb38-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb38-4" data-line-number="4">x</a></code></pre></div>
-<pre><code>## [1]  0.04279659  0.09292399 -0.05335392  0.11501198  0.10735277</code></pre>
-<p>無事、5個の平均値が<code>x</code>に保存されていることがわかります。</p>
-<p>実際に<code>for</code>ループの中で何が起こっているかは、次のコードで解ると思います。</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb40-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb40-3" data-line-number="3">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb40-4" data-line-number="4">  <span class="kw">print</span>(x)</a>
-<a class="sourceLine" id="cb40-5" data-line-number="5">}</a></code></pre></div>
-<pre><code>## [1] -0.06071562
-## [1] -0.060715620  0.006598748
-## [1] -0.060715620  0.006598748 -0.151013255
-## [1] -0.060715620  0.006598748 -0.151013255 -0.207450888
-## [1] -0.060715620  0.006598748 -0.151013255 -0.207450888  0.002572644</code></pre>
-<ul>
-<li>ループが一周するたびに、前回の<code>x</code>に新しい要素が付け加わり、新しい<code>x</code>として保存されています。</li>
-</ul>
-<p><code>NULL</code>オブジェクトを使ったループ結果の保存でよくあるミスは、やり直す際に<code>NULL</code>でリセットするのを忘れることです。
-例えば、同じコードをもう一度実行しましょう。</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb42-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb42-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb42-4" data-line-number="4">x</a></code></pre></div>
-<pre><code>##  [1] -0.060715620  0.006598748 -0.151013255 -0.207450888  0.002572644
-##  [6]  0.074124370 -0.017304441 -0.179448568  0.011781379 -0.006019522</code></pre>
-<ul>
-<li><code>x</code>に10個の平均値が入っています。</li>
-</ul>
-<p>このようなミスを避ける方法の一つは、全体を関数として作成することです。</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">multi_mean &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb44-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb44-3" data-line-number="3">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb44-4" data-line-number="4">    x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb44-5" data-line-number="5">  }</a>
-<a class="sourceLine" id="cb44-6" data-line-number="6">  <span class="kw">return</span>(x)</a>
-<a class="sourceLine" id="cb44-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb44-8" data-line-number="8">x &lt;-<span class="st"> </span><span class="kw">multi_mean</span>()</a>
-<a class="sourceLine" id="cb44-9" data-line-number="9">x</a></code></pre></div>
-<pre><code>## [1] -0.161082744  0.118224840 -0.001487909  0.068702328  0.062832841</code></pre>
-</div>
-<div id="条件分岐" class="section level2">
-<h2><span class="header-section-number">B.8</span> 条件分岐</h2>
-<p><strong>条件分岐</strong>とは、特定の条件の場合に特定の動作を行うようにすることです。
-例えば、正の場合<code>positive</code>、負の場合<code>negative</code>と出力するコマンドは次のようになります。</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb46-2" data-line-number="2"><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb46-3" data-line-number="3">  <span class="kw">print</span>(<span class="st">&quot;positive&quot;</span>)</a>
-<a class="sourceLine" id="cb46-4" data-line-number="4">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb46-5" data-line-number="5">  <span class="kw">print</span>(<span class="st">&quot;negative&quot;</span>)</a>
-<a class="sourceLine" id="cb46-6" data-line-number="6">}</a></code></pre></div>
-<pre><code>## [1] &quot;positive&quot;</code></pre>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>## [1] 1.257992</code></pre>
-<ul>
-<li><code>if(){}</code>の<code>()</code>の中に条件式を書き、<code>{}</code>の中に処理内容を書きます。</li>
-<li>それ以外の条件は<code>else</code>で示します。</li>
-</ul>
-<p>条件式は3つ以上でも構いません。</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb50-2" data-line-number="2"><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="fl">-0.5</span>) {</a>
-<a class="sourceLine" id="cb50-3" data-line-number="3">  <span class="kw">print</span>(<span class="st">&quot;x is less than -0.5.&quot;</span>)</a>
-<a class="sourceLine" id="cb50-4" data-line-number="4">} <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&gt;=</span><span class="st"> </span><span class="fl">-0.5</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.5</span>) {</a>
-<a class="sourceLine" id="cb50-5" data-line-number="5">  <span class="kw">print</span>(<span class="st">&quot;x is between -0.5 and 0.5.&quot;</span>)</a>
-<a class="sourceLine" id="cb50-6" data-line-number="6">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb50-7" data-line-number="7">  <span class="kw">print</span>(<span class="st">&quot;x is more than 0.5.ー&quot;</span>)</a>
-<a class="sourceLine" id="cb50-8" data-line-number="8">}</a></code></pre></div>
-<pre><code>## [1] &quot;x is more than 0.5.ー&quot;</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>## [1] -0.6170484</code></pre>
-<ul>
-<li><code>&amp;</code>は「かつ」を意味します。</li>
-<li>「または」は<code>|</code>を使います。</li>
-<li><code>&gt;=</code>は <span class="math inline">\(\geq\)</span> を意味します。</li>
-<li>「同じ値である」は<code>==</code>を使います（<code>=</code>ではない点に注意）。</li>
-</ul>
-</div>
-<div id="練習問題フィボナッチ数列" class="section level2">
-<h2><span class="header-section-number">B.9</span> 練習問題：フィボナッチ数列</h2>
-<p>フィボナッチ数列とは以下の条件を満たす数列です。</p>
-<p><span class="math display">\[
-\begin{aligned}
-  F_0 &amp;= 0 \\
-  F_1 &amp;= 1 \\
-  F_{n} &amp;= F_{n-1} + F_{n-2} \quad n \geq 2
-\end{aligned}
-\]</span></p>
-<p>例えば、</p>
-<p><span class="math display">\[
-\begin{aligned}
-  F_2 = 1, F_3 = 2, F_4 = 3, F_5 = 5, F_6 = 8,\ldots
-\end{aligned}
-\]</span></p>
-<p>となります。</p>
-<p>フィボナッチ数列の第<span class="math inline">\(n\)</span>項を（解析解を使わずに）求める関数を作成してみて下さい。</p>
-</div>
-<div id="練習問題モンテカルロシミュレーション" class="section level2">
-<h2><span class="header-section-number">B.10</span> 練習問題：モンテカルロ・シミュレーション</h2>
-<p>モンテカルロ・シミュレーション（モンテカルロ法）とは乱数を用いて近似解を求める手法です。</p>
-<p>例えば、円周率<span class="math inline">\(\pi\)</span>の近似解は以下のように求めることができます。</p>
-<ol style="list-style-type: decimal">
-<li>0以上1未満の一様分布から<span class="math inline">\(n\)</span>個の乱数<span class="math inline">\(x_i\)</span>と<span class="math inline">\(n\)</span>個の乱数<span class="math inline">\(y_i\)</span>を発生させます (<span class="math inline">\(i = 1,2,\ldots,n\)</span>) 。</li>
-<li>原点と<span class="math inline">\((x_i,y_i)\)</span>の距離が1以下である回数を計算し<span class="math inline">\(n_1\)</span>とします。</li>
-<li>円周率の近似解として<span class="math inline">\(\hat{\pi} = 4 \times n_1/n\)</span>を得ます。</li>
-</ol>
-<p>モンテカルロ・シミュレーションによる円周率の近似解を求める関数を作成してみて下さい。</p>
-<p>また、モンテカルロ・シミュレーションによる円周率の近似解を<span class="math inline">\(m\)</span>回求めて、その平均値や標準偏差が<span class="math inline">\(n\)</span>によってどのように変化するか検討してみて下さい。</p>
+<p>になります。</p>
+<p>パッケージとしての<code>tidyverse</code>を読み込むことで、上記のパッケージを読み込んでいます。</p>
+<p>なお、プロジェクト全体としては、上記のもの以外にも多くのパッケージが開発されています。</p>
 
+</div>
 </div>
 </div>
             </section>
@@ -477,7 +345,7 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
         </div>
       </div>
 <a href="install-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="environment.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="inter-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
