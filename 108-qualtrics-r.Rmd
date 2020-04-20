@@ -1,0 +1,270 @@
+# Qualtricsデータの処理* {#qualtrics}
+
+[Qualtrics](https://www.qualtrics.com/)はオンラインサーベイを便利に行うツールですが、政治学では特にサーベイ実験で使われていると思います。
+
+サーベイ実験では被験者ごとに処理をランダムに与える必要があり、Qualtricsでは簡単にそれを行うことができるのですが、得られたデータを統計分析する際には一手間かかります。
+
+ここでは、[ロング・ワイドの変換]で紹介したワイド形式からロング形式に変換する方法を応用してQualtricsのデータを統計分析用に整形する方法を説明します。
+
+```{r}
+library(tidyverse)
+```
+
+## Qualtricsのデータ
+
+ここではQualtricsから得られる架空のデータを使いたいと思います。
+Qualtricsでは行は各被験者でユニークな識別番号の他に設問への回答が記載されています。
+
+サーベイ実験ではグループごとに異なる設問がなされるため、例えば、グループが2つでグループ固有の設問が2種類、共通の設問が2種類の場合、以下のような形になっています。
+
+```{r}
+data <- tibble(id = c(1,2,3,4),
+       y1_1 = c(2,3,NA,NA),
+       y2_1 = c(1,4,NA,NA),
+       y1_2 = c(NA,NA,5,3),
+       y2_2 = c(NA,NA,6,4),
+       x1 = c(2,3,3,6),
+       x2 = c(6,4,1,1))
+data
+```
+
+- 1, 2番目の被験者がグループ1で、3, 4番目の被験者がグループ2である。
+    - 便宜上、グループ1を統制群、グループ2を処置群とする。
+- グループ1の固有の設問の1つ目の回答が`y1_1`で2つ目の回答が`y2_1`である。
+    - よってグループ1の被験者の`y1_2`と`y2_2`への回答は欠損値扱いになっている。
+    - グループ2についても同様である。
+- 全員共通の設問への回答は`x1`と`x2`である。
+- 5件法の場合、「回答しない」は6番目の回答であることが多いため、被験者1は`x2`への、被験者3は`y2_2`への、被験者4は`x1`への回答を拒否したものとする。
+    
+このデータを統計的に分析するには以下のような形式になっていることが望ましいです。
+
+```{r, echo = FALSE}
+tibble(id = c(1,2,3,4),
+       y1 = c(2,3,5,3),
+       y2 = c(1,4,NA,4),
+       t = c(0,0,1,1),
+       x1 = c(2,3,3,NA),
+       x2 = c(NA,4,1,1))
+```
+
+- `t`は処置群であれば`1`、統制群であれば`0`となるような変数である。
+
+## 気合による方法
+
+変数やグループの数が少ない場合は気合で書いてしまうという手もあります。
+つまり、
+
+1. 統制群の応答変数`y1_1`と`y2_1`および共変量`x1`と`x2`を選択する。
+1. 応答変数の名前を`y1`と`y2`に共通化する。
+1. 応答変数が欠損しているサンプルは処置群なので除外する。
+
+という方法です。
+
+```{r}
+control <- data[c("id", "y1_1", "y2_1", "x1", "x2")]
+names(control) <- c("id", "y1", "y2", "x1", "x2")
+control <- control[!is.na(control$y1) & !is.na(control$y2),]
+control$t <- 0
+control
+```
+
+- `control[!is.na(control$y1) & !is.na(control$y2),]`は「第1の応答変数が欠損していない」かつ「第2の応答変数が欠損していない」サンプルを指定しています。
+
+同様の処理を処置群についても行います。
+
+```{r}
+treatment <- data[c("id", "y1_2", "y2_2", "x1", "x2")]
+names(treatment) <- c("id", "y1", "y2", "x1", "x2")
+treatment <- treatment[!is.na(treatment$y1) & !is.na(treatment$y2),]
+treatment$t <- 1
+treatment
+```
+
+最後に、両者を結合し、`6`を欠損値に入れ替えます。
+
+```{r}
+data_reshaped <- bind_rows(control, treatment)
+data_reshaped[data_reshaped$y2 == 6,]$y2 <- NA
+data_reshaped[data_reshaped$x1 == 6,]$x1 <- NA
+data_reshaped[data_reshaped$x2 == 6,]$x2 <- NA
+data_reshaped
+```
+
+## ループによる方法
+
+この方法はグループの数は多くなるとめんどくさくなるという欠点があります。
+各グループについては同様の処理を行うので、`for`ループによって簡略化することができます。
+
+アイデアとしては`i`回目の処理において`id`共変量と`y1_i`と`y2_i`を抜き出します。
+文字列は`paste0()`という関数で結合することができます。
+
+```{r}
+paste0("y1_", 1)
+```
+
+ちなみに、`paste()`は文字列の間に特定の記号を含める関数です。
+
+```{r}
+paste("a", "b", sep = "/")
+```
+
+つまり、`paste0()`は`paste(..., sep = ")`のラッパー関数です。
+
+さて、ここでは`i`を`1`として選択する変数の名前を`sel_vars`というベクトルとして作成します。
+
+```{r}
+i <- 1
+sel_vars <- c("id", paste0(c("y1_", "y2_"), i), "x1", "x2")
+sel_vars
+```
+
+無事、必要な変数名を抜き出せています。
+
+```{r}
+temp <- data[sel_vars]
+temp
+```
+
+その他の処理は先ほどと変わらないので、まとめると次のようになります。
+
+```{r}
+data_reshaped <- NULL
+for (i in 1:2) {
+  sel_vars <- c("id", paste0(c("y1_", "y2_"), i), "x1", "x2")
+  temp <- data[sel_vars]
+  names(temp) <- c("id", "y1", "y2", "x1", "x2")
+  temp <- temp[!is.na(temp$y1) & !is.na(temp$y2),]
+  temp$t <- i - 1
+  data_reshaped <- bind_rows(data_reshaped, temp)
+}
+data_reshaped[data_reshaped$y2 == 6,]$y2 <- NA
+data_reshaped[data_reshaped$x1 == 6,]$x1 <- NA
+data_reshaped[data_reshaped$x2 == 6,]$x2 <- NA
+data_reshaped
+```
+
+- 処置変数はグループ番号から`1`を引いていますが本質的な問題ではありません。
+
+## tidyverseな方法
+
+実は`tidyverse`の`tidyr`を応用するとこのような処理をすることができます。
+まずは、応答変数に関して`gather()`でロングにします。
+
+```{r}
+data_reshaped <- data %>% 
+  pivot_longer(-c(id, x1, x2), names_to = "t", values_to = "y")
+data_reshaped
+```
+
+ポイントはこの段階で応答変数`y`が欠損値になっているのは、グループが異なる回答ということです。
+
+- グループ1の被験者にとっての`y1_2`と`y2_2`
+- グループ2の被験者にとっての`y1_1`と`y2_1`
+
+なので、指定した変数が欠損値であるサンプルを除外する関数`drop_na()`で`y`が欠損しているサンプルを除外します。
+
+```{r}
+data_reshaped <- data_reshaped %>% 
+  drop_na(y)
+data_reshaped
+```
+
+続いて、適当に名付けておいた`t`からグループの情報と応答変数の種類の情報を抜き出します。
+`str_extraxt()`という関数は文字列からパターンに合致したものを抜き出します。
+
+```{r}
+str_extract("y1_1", "y[0-9]")
+```
+
+パターンのマッチングには正規表現というやや難しい表記が必要になります。
+`y[0-9]`というのは`y`という文字と数字が1文字続く文字列という意味です。
+
+```{r}
+str_extract("y1_1", "_[0-9]")
+```
+
+同様にしてグループの情報も抜き出せますが、`_`が邪魔です。
+文字列から数値を抜き出す関数は`parse_naumber()`になります。
+
+```{r}
+str_extract("y1_1", "_[0-9]") %>% 
+  parse_number()
+```
+
+これでグループと応答変数の種類の情報を抜き出す準備が整いました。
+以下では`t`にグループ番号を`k`に応答変数の種類を入れる操作をします
+
+```{r}
+data_reshaped <- data_reshaped %>% 
+  mutate(k = str_extract(t, "y[0-9]"),
+         t = str_extract(t, "_[0-9]") %>% 
+           parse_number())
+data_reshaped
+```
+
+続いて、`k`の中身`y1`と`y2`を変数名に戻すために`spread()`を使います。
+
+```{r}
+data_reshaped <- data_reshaped %>% 
+  pivot_wider(names_from = "k", values_from = "y")
+data_reshaped
+```
+
+最後に欠損値を`na_if()`で代入しておきます。
+
+```{r}
+data_reshaped <- data_reshaped %>% 
+  mutate(y2 = na_if(y2, 6),
+         x1 = na_if(x1, 6),
+         x2 = na_if(x2, 6))
+data_reshaped
+```
+
+以上をパイプでまとめると次のようになります。
+
+```{r}
+data_reshaped <- data %>% 
+  pivot_longer(-c(id, x1, x2), names_to = "t", values_to = "y") %>% 
+  drop_na(y) %>% 
+  mutate(k = str_extract(t, "y[0-9]"),
+         t = str_extract(t, "_[0-9]") %>% 
+           parse_number()) %>% 
+  pivot_wider(names_from = "k", values_from = "y") %>% 
+  mutate(y2 = na_if(y2, 6),
+         x1 = na_if(x1, 6),
+         x2 = na_if(x2, 6))
+data_reshaped
+```
+
+ループを用いるか、`tidyverse`を用いるかにかかわらず重要なのは変数名の設定です。
+
+- 応答変数と共変量をグループごとに定型的な変数名としておくことで処理が楽になります。
+
+## おまけ
+
+5件法の場合、回答上では
+
+1. 賛成
+1. やや賛成
+1. どちらとも言えない
+1. やや反対
+1. 反対
+
+となっていることが多いですが、分析上では
+
+
+1. 反対
+1. やや反対
+1. どちらとも言えない
+1. やや賛成
+1. 賛成
+
+としたいのが人情です。
+
+こういうときは、`6`（ないし`5`）から引いてあげればよいです。
+
+```{r}
+data_reshaped %>% 
+  mutate(y1 = 5 - y1,
+         y2 = 5 - y2)
+```

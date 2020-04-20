@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第10章 Rプログラミング応用* | Rで計量政治学入門</title>
+  <title>第11章 Rプログラミング応用* | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第10章 Rプログラミング応用* | Rで計量政治学入門" />
+  <meta property="og:title" content="第11章 Rプログラミング応用* | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第10章 Rプログラミング応用* | Rで計量政治学入門" />
+  <meta name="twitter:title" content="第11章 Rプログラミング応用* | Rで計量政治学入門" />
   
   <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   
@@ -173,135 +173,172 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.7" data-path="data-import.html"><a href="data-import.html#rdsファイルの読み込み"><i class="fa fa-check"></i><b>1.7</b> .rdsファイルの読み込み</a></li>
 <li class="chapter" data-level="1.8" data-path="data-import.html"><a href="data-import.html#パス入力の省略"><i class="fa fa-check"></i><b>1.8</b> パス入力の省略*</a></li>
 <li class="chapter" data-level="1.9" data-path="data-import.html"><a href="data-import.html#データの書き出し"><i class="fa fa-check"></i><b>1.9</b> データの書き出し</a></li>
+<li class="chapter" data-level="1.10" data-path="data-import.html"><a href="data-import.html#データフレームの作成"><i class="fa fa-check"></i><b>1.10</b> データフレームの作成</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の作成</a><ul>
-<li class="chapter" data-level="2.1" data-path="create-vars.html"><a href="create-vars.html#四則演算"><i class="fa fa-check"></i><b>2.1</b> 四則演算</a></li>
-<li class="chapter" data-level="2.2" data-path="create-vars.html"><a href="create-vars.html#条件に基づく変数"><i class="fa fa-check"></i><b>2.2</b> 条件に基づく変数</a></li>
-<li class="chapter" data-level="2.3" data-path="create-vars.html"><a href="create-vars.html#ラグ変数"><i class="fa fa-check"></i><b>2.3</b> ラグ変数*</a></li>
-<li class="chapter" data-level="2.4" data-path="create-vars.html"><a href="create-vars.html#日付変数"><i class="fa fa-check"></i><b>2.4</b> 日付変数*</a></li>
+<li class="chapter" data-level="2" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の選択</a><ul>
+<li class="chapter" data-level="2.1" data-path="select-vars.html"><a href="select-vars.html#変数名による選択"><i class="fa fa-check"></i><b>2.1</b> 変数名による選択</a></li>
+<li class="chapter" data-level="2.2" data-path="select-vars.html"><a href="select-vars.html#番号による選択"><i class="fa fa-check"></i><b>2.2</b> 番号による選択</a></li>
+<li class="chapter" data-level="2.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更"><i class="fa fa-check"></i><b>2.3</b> 変数名の変更</a></li>
+<li class="chapter" data-level="2.4" data-path="select-vars.html"><a href="select-vars.html#高度な変数の選択方法"><i class="fa fa-check"></i><b>2.4</b> 高度な変数の選択方法*</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>3</b> 観察の選択</a><ul>
-<li class="chapter" data-level="3.1" data-path="select-obs.html"><a href="select-obs.html#数値の大小による選択"><i class="fa fa-check"></i><b>3.1</b> 数値の大小による選択</a></li>
-<li class="chapter" data-level="3.2" data-path="select-obs.html"><a href="select-obs.html#一致不一致による選択"><i class="fa fa-check"></i><b>3.2</b> 一致・不一致による選択</a></li>
-<li class="chapter" data-level="3.3" data-path="select-obs.html"><a href="select-obs.html#または"><i class="fa fa-check"></i><b>3.3</b> 「または」</a></li>
-<li class="chapter" data-level="3.4" data-path="select-obs.html"><a href="select-obs.html#かつ"><i class="fa fa-check"></i><b>3.4</b> 「かつ」</a></li>
-<li class="chapter" data-level="3.5" data-path="select-obs.html"><a href="select-obs.html#部分集合"><i class="fa fa-check"></i><b>3.5</b> 部分集合</a></li>
-<li class="chapter" data-level="3.6" data-path="select-obs.html"><a href="select-obs.html#番号による選択"><i class="fa fa-check"></i><b>3.6</b> 番号による選択</a></li>
-<li class="chapter" data-level="3.7" data-path="select-obs.html"><a href="select-obs.html#観察の並び替え"><i class="fa fa-check"></i><b>3.7</b> 観察の並び替え</a></li>
-<li class="chapter" data-level="3.8" data-path="select-obs.html"><a href="select-obs.html#ベクトルの選択"><i class="fa fa-check"></i><b>3.8</b> ベクトルの選択*</a></li>
+<li class="chapter" data-level="3" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>3</b> 変数の作成</a><ul>
+<li class="chapter" data-level="3.1" data-path="create-vars.html"><a href="create-vars.html#四則演算"><i class="fa fa-check"></i><b>3.1</b> 四則演算</a></li>
+<li class="chapter" data-level="3.2" data-path="create-vars.html"><a href="create-vars.html#条件に基づく変数"><i class="fa fa-check"></i><b>3.2</b> 条件に基づく変数</a></li>
+<li class="chapter" data-level="3.3" data-path="create-vars.html"><a href="create-vars.html#ラグ変数"><i class="fa fa-check"></i><b>3.3</b> ラグ変数*</a></li>
+<li class="chapter" data-level="3.4" data-path="create-vars.html"><a href="create-vars.html#日付変数"><i class="fa fa-check"></i><b>3.4</b> 日付変数*</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>4</b> 変数の選択</a><ul>
-<li class="chapter" data-level="4.1" data-path="select-vars.html"><a href="select-vars.html#変数名による選択"><i class="fa fa-check"></i><b>4.1</b> 変数名による選択</a></li>
-<li class="chapter" data-level="4.2" data-path="select-vars.html"><a href="select-vars.html#番号による選択-1"><i class="fa fa-check"></i><b>4.2</b> 番号による選択</a></li>
-<li class="chapter" data-level="4.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更"><i class="fa fa-check"></i><b>4.3</b> 変数名の変更</a></li>
-<li class="chapter" data-level="4.4" data-path="select-vars.html"><a href="select-vars.html#Tidyverse"><i class="fa fa-check"></i><b>4.4</b> tidyverseな方法</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="select-vars.html"><a href="select-vars.html#変数の選択"><i class="fa fa-check"></i><b>4.4.1</b> 変数の選択</a></li>
-<li class="chapter" data-level="4.4.2" data-path="select-vars.html"><a href="select-vars.html#変数の並び替え"><i class="fa fa-check"></i><b>4.4.2</b> 変数の並び替え</a></li>
-<li class="chapter" data-level="4.4.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更-1"><i class="fa fa-check"></i><b>4.4.3</b> 変数名の変更</a></li>
+<li class="chapter" data-level="4" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>4</b> 観察の選択</a><ul>
+<li class="chapter" data-level="4.1" data-path="select-obs.html"><a href="select-obs.html#数値の大小による選択"><i class="fa fa-check"></i><b>4.1</b> 数値の大小による選択</a></li>
+<li class="chapter" data-level="4.2" data-path="select-obs.html"><a href="select-obs.html#一致不一致による選択"><i class="fa fa-check"></i><b>4.2</b> 一致・不一致による選択</a></li>
+<li class="chapter" data-level="4.3" data-path="select-obs.html"><a href="select-obs.html#または"><i class="fa fa-check"></i><b>4.3</b> 「または」</a></li>
+<li class="chapter" data-level="4.4" data-path="select-obs.html"><a href="select-obs.html#かつ"><i class="fa fa-check"></i><b>4.4</b> 「かつ」</a></li>
+<li class="chapter" data-level="4.5" data-path="select-obs.html"><a href="select-obs.html#部分集合"><i class="fa fa-check"></i><b>4.5</b> 部分集合</a></li>
+<li class="chapter" data-level="4.6" data-path="select-obs.html"><a href="select-obs.html#番号による選択-1"><i class="fa fa-check"></i><b>4.6</b> 番号による選択</a></li>
+<li class="chapter" data-level="4.7" data-path="select-obs.html"><a href="select-obs.html#観察の並び替え"><i class="fa fa-check"></i><b>4.7</b> 観察の並び替え</a></li>
+<li class="chapter" data-level="4.8" data-path="select-obs.html"><a href="select-obs.html#ベクトルの選択"><i class="fa fa-check"></i><b>4.8</b> ベクトルの選択*</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-combine.html"><a href="data-combine.html#行方向の結合"><i class="fa fa-check"></i><b>5.1</b> 行方向の結合</a></li>
+<li class="chapter" data-level="5.2" data-path="data-combine.html"><a href="data-combine.html#列方向の結合"><i class="fa fa-check"></i><b>5.2</b> 列方向の結合</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data-combine.html"><a href="data-combine.html#観察の選択"><i class="fa fa-check"></i><b>5.2.1</b> 観察の選択*＊</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a></li>
-<li class="chapter" data-level="6" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>6</b> ロング・ワイドの変換</a></li>
-<li class="chapter" data-level="7" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>7</b> 欠損値の処理</a></li>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の処理*</a><ul>
+<li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
+<li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
+<li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
+<li class="chapter" data-level="6.4" data-path="missing-values.html"><a href="missing-values.html#欠損値がある場合の分析"><i class="fa fa-check"></i><b>6.4</b> 欠損値がある場合の分析*</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="missing-values.html"><a href="missing-values.html#一変数の記述統計"><i class="fa fa-check"></i><b>6.4.1</b> 一変数の記述統計</a></li>
+<li class="chapter" data-level="6.4.2" data-path="missing-values.html"><a href="missing-values.html#二変数の記述統計"><i class="fa fa-check"></i><b>6.4.2</b> 二変数の記述統計</a></li>
+<li class="chapter" data-level="6.4.3" data-path="missing-values.html"><a href="missing-values.html#回帰分析"><i class="fa fa-check"></i><b>6.4.3</b> 回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="missing-values.html"><a href="missing-values.html#欠損値のクラス"><i class="fa fa-check"></i><b>6.5</b> 欠損値のクラス*</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>7</b> ロング・ワイドの変換*</a><ul>
+<li class="chapter" data-level="7.1" data-path="reshape.html"><a href="reshape.html#パネルデータ"><i class="fa fa-check"></i><b>7.1</b> パネルデータ</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="reshape.html"><a href="reshape.html#ワイド形式"><i class="fa fa-check"></i><b>7.1.1</b> ワイド形式</a></li>
+<li class="chapter" data-level="7.1.2" data-path="reshape.html"><a href="reshape.html#ロング形式"><i class="fa fa-check"></i><b>7.1.2</b> ロング形式</a></li>
+<li class="chapter" data-level="7.1.3" data-path="reshape.html"><a href="reshape.html#前処理"><i class="fa fa-check"></i><b>7.1.3</b> 前処理</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="reshape.html"><a href="reshape.html#ループによる方法"><i class="fa fa-check"></i><b>7.2</b> ループによる方法</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="reshape.html"><a href="reshape.html#for文"><i class="fa fa-check"></i><b>7.2.1</b> for文</a></li>
+<li class="chapter" data-level="7.2.2" data-path="reshape.html"><a href="reshape.html#時点の選択による方法"><i class="fa fa-check"></i><b>7.2.2</b> 時点の選択による方法</a></li>
+<li class="chapter" data-level="7.2.3" data-path="reshape.html"><a href="reshape.html#ユニットの選択による方法"><i class="fa fa-check"></i><b>7.2.3</b> ユニットの選択による方法</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="reshape.html"><a href="reshape.html#tidyverseな方法"><i class="fa fa-check"></i><b>7.3</b> tidyverseな方法</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="reshape.html"><a href="reshape.html#ワイドからロングへ"><i class="fa fa-check"></i><b>7.3.1</b> ワイドからロングへ</a></li>
+<li class="chapter" data-level="7.3.2" data-path="reshape.html"><a href="reshape.html#パイプ"><i class="fa fa-check"></i><b>7.3.2</b> パイプ</a></li>
+<li class="chapter" data-level="7.3.3" data-path="reshape.html"><a href="reshape.html#tidyverseの利点"><i class="fa fa-check"></i><b>7.3.3</b> tidyverseの利点</a></li>
+<li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理*</a><ul>
+<li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
+<li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
+<li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
+<li class="chapter" data-level="8.4" data-path="qualtrics.html"><a href="qualtrics.html#tidyverseな方法-1"><i class="fa fa-check"></i><b>8.4</b> tidyverseな方法</a></li>
+<li class="chapter" data-level="8.5" data-path="qualtrics.html"><a href="qualtrics.html#おまけ"><i class="fa fa-check"></i><b>8.5</b> おまけ</a></li>
+</ul></li>
 <li class="part"><span><b>II R/RStudio</b></span></li>
-<li class="chapter" data-level="8" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>8</b> Rの分析環境</a><ul>
-<li class="chapter" data-level="8.1" data-path="install-r.html"><a href="install-r.html#rのインストール"><i class="fa fa-check"></i><b>8.1</b> Rのインストール</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="install-r.html"><a href="install-r.html#ダウンロード"><i class="fa fa-check"></i><b>8.1.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="8.1.2" data-path="install-r.html"><a href="install-r.html#インストール"><i class="fa fa-check"></i><b>8.1.2</b> インストール</a></li>
+<li class="chapter" data-level="9" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>9</b> Rの分析環境</a><ul>
+<li class="chapter" data-level="9.1" data-path="install-r.html"><a href="install-r.html#rのインストール"><i class="fa fa-check"></i><b>9.1</b> Rのインストール</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="install-r.html"><a href="install-r.html#ダウンロード"><i class="fa fa-check"></i><b>9.1.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="9.1.2" data-path="install-r.html"><a href="install-r.html#インストール"><i class="fa fa-check"></i><b>9.1.2</b> インストール</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="install-r.html"><a href="install-r.html#rstudioのインストール"><i class="fa fa-check"></i><b>8.2</b> RStudioのインストール</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="install-r.html"><a href="install-r.html#ダウンロード-1"><i class="fa fa-check"></i><b>8.2.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="8.2.2" data-path="install-r.html"><a href="install-r.html#インストール-1"><i class="fa fa-check"></i><b>8.2.2</b> インストール</a></li>
-<li class="chapter" data-level="8.2.3" data-path="install-r.html"><a href="install-r.html#rstudioの起動"><i class="fa fa-check"></i><b>8.2.3</b> RStudioの起動</a></li>
-<li class="chapter" data-level="8.2.4" data-path="install-r.html"><a href="install-r.html#rstudio-cloud"><i class="fa fa-check"></i><b>8.2.4</b> RStudio Cloud*</a></li>
+<li class="chapter" data-level="9.2" data-path="install-r.html"><a href="install-r.html#rstudioのインストール"><i class="fa fa-check"></i><b>9.2</b> RStudioのインストール</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="install-r.html"><a href="install-r.html#ダウンロード-1"><i class="fa fa-check"></i><b>9.2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="9.2.2" data-path="install-r.html"><a href="install-r.html#インストール-1"><i class="fa fa-check"></i><b>9.2.2</b> インストール</a></li>
+<li class="chapter" data-level="9.2.3" data-path="install-r.html"><a href="install-r.html#rstudioの起動"><i class="fa fa-check"></i><b>9.2.3</b> RStudioの起動</a></li>
+<li class="chapter" data-level="9.2.4" data-path="install-r.html"><a href="install-r.html#rstudio-cloud"><i class="fa fa-check"></i><b>9.2.4</b> RStudio Cloud*</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="install-r.html"><a href="install-r.html#再現可能な分析のために"><i class="fa fa-check"></i><b>8.3</b> 再現可能な分析のために</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="install-r.html"><a href="install-r.html#rスクリプト"><i class="fa fa-check"></i><b>8.3.1</b> Rスクリプト</a></li>
-<li class="chapter" data-level="8.3.2" data-path="install-r.html"><a href="install-r.html#rプロジェクト"><i class="fa fa-check"></i><b>8.3.2</b> Rプロジェクト</a></li>
-<li class="chapter" data-level="8.3.3" data-path="install-r.html"><a href="install-r.html#rstudioの設定"><i class="fa fa-check"></i><b>8.3.3</b> RStudioの設定*</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>9</b> Rプログラミング入門</a><ul>
-<li class="chapter" data-level="9.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>9.1</b> 関数</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>9.1.1</b> 総称関数*</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>9.2</b> オブジェクト</a></li>
-<li class="chapter" data-level="9.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>9.3</b> パッケージ</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>9.3.1</b> CRANからのインストール</a></li>
-<li class="chapter" data-level="9.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>9.3.2</b> GitHubからのインストール*</a></li>
-<li class="chapter" data-level="9.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>9.3.3</b> パッケージの読み込み</a></li>
-<li class="chapter" data-level="9.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>9.3.4</b> <code>tidyverse</code>とは*</a></li>
+<li class="chapter" data-level="9.3" data-path="install-r.html"><a href="install-r.html#再現可能な分析のために"><i class="fa fa-check"></i><b>9.3</b> 再現可能な分析のために</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="install-r.html"><a href="install-r.html#rスクリプト"><i class="fa fa-check"></i><b>9.3.1</b> Rスクリプト</a></li>
+<li class="chapter" data-level="9.3.2" data-path="install-r.html"><a href="install-r.html#rプロジェクト"><i class="fa fa-check"></i><b>9.3.2</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="9.3.3" data-path="install-r.html"><a href="install-r.html#rstudioの設定"><i class="fa fa-check"></i><b>9.3.3</b> RStudioの設定*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>10</b> Rプログラミング応用*</a><ul>
-<li class="chapter" data-level="10.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>10.1</b> オブジェクトのクラス</a></li>
-<li class="chapter" data-level="10.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>10.2</b> 関数の作成</a></li>
-<li class="chapter" data-level="10.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>10.3</b> ループ</a></li>
-<li class="chapter" data-level="10.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>10.4</b> 条件分岐</a></li>
-<li class="chapter" data-level="10.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>10.5</b> 練習問題</a><ul>
-<li class="chapter" data-level="10.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>10.5.1</b> フィボナッチ数列</a></li>
-<li class="chapter" data-level="10.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>10.5.2</b> モンテカルロ・シミュレーション</a></li>
+<li class="chapter" data-level="10" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>10</b> Rプログラミング入門</a><ul>
+<li class="chapter" data-level="10.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>10.1</b> 関数</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>10.1.1</b> 総称関数*</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>10.2</b> オブジェクト</a></li>
+<li class="chapter" data-level="10.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>10.3</b> パッケージ</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>10.3.1</b> CRANからのインストール</a></li>
+<li class="chapter" data-level="10.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>10.3.2</b> GitHubからのインストール*</a></li>
+<li class="chapter" data-level="10.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>10.3.3</b> パッケージの読み込み</a></li>
+<li class="chapter" data-level="10.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>10.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="r-makdown.html"><a href="r-makdown.html"><i class="fa fa-check"></i><b>11</b> R Markdown入門</a><ul>
-<li class="chapter" data-level="11.1" data-path="r-makdown.html"><a href="r-makdown.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>11.1</b> R Markdownファイルの作成</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="r-makdown.html"><a href="r-makdown.html#参考になるサイト"><i class="fa fa-check"></i><b>11.1.1</b> 参考になるサイト</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="r-makdown.html"><a href="r-makdown.html#markdown記法"><i class="fa fa-check"></i><b>11.2</b> Markdown記法</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="r-makdown.html"><a href="r-makdown.html#markdownとは"><i class="fa fa-check"></i><b>11.2.1</b> Markdownとは*</a></li>
-<li class="chapter" data-level="11.2.2" data-path="r-makdown.html"><a href="r-makdown.html#セクション"><i class="fa fa-check"></i><b>11.2.2</b> セクション</a></li>
-<li class="chapter" data-level="11.2.3" data-path="r-makdown.html"><a href="r-makdown.html#パラグラフ"><i class="fa fa-check"></i><b>11.2.3</b> パラグラフ</a></li>
-<li class="chapter" data-level="11.2.4" data-path="r-makdown.html"><a href="r-makdown.html#箇条書き"><i class="fa fa-check"></i><b>11.2.4</b> 箇条書き</a></li>
-<li class="chapter" data-level="11.2.5" data-path="r-makdown.html"><a href="r-makdown.html#文字の強調"><i class="fa fa-check"></i><b>11.2.5</b> 文字の強調</a></li>
-<li class="chapter" data-level="11.2.6" data-path="r-makdown.html"><a href="r-makdown.html#引用"><i class="fa fa-check"></i><b>11.2.6</b> 引用</a></li>
-<li class="chapter" data-level="11.2.7" data-path="r-makdown.html"><a href="r-makdown.html#リンク"><i class="fa fa-check"></i><b>11.2.7</b> リンク</a></li>
-<li class="chapter" data-level="11.2.8" data-path="r-makdown.html"><a href="r-makdown.html#画像表"><i class="fa fa-check"></i><b>11.2.8</b> 画像、表</a></li>
-<li class="chapter" data-level="11.2.9" data-path="r-makdown.html"><a href="r-makdown.html#数式"><i class="fa fa-check"></i><b>11.2.9</b> 数式</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="r-makdown.html"><a href="r-makdown.html#rチャンク"><i class="fa fa-check"></i><b>11.3</b> Rチャンク</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="r-makdown.html"><a href="r-makdown.html#チャンクオプション"><i class="fa fa-check"></i><b>11.3.1</b> チャンクオプション</a></li>
-</ul></li>
-<li class="chapter" data-level="11.4" data-path="r-makdown.html"><a href="r-makdown.html#yamlヘッダー"><i class="fa fa-check"></i><b>11.4</b> yamlヘッダー</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="r-makdown.html"><a href="r-makdown.html#output"><i class="fa fa-check"></i><b>11.4.1</b> output</a></li>
-<li class="chapter" data-level="11.4.2" data-path="r-makdown.html"><a href="r-makdown.html#目次"><i class="fa fa-check"></i><b>11.4.2</b> 目次</a></li>
-<li class="chapter" data-level="11.4.3" data-path="r-makdown.html"><a href="r-makdown.html#テーマ"><i class="fa fa-check"></i><b>11.4.3</b> テーマ</a></li>
-<li class="chapter" data-level="11.4.4" data-path="r-makdown.html"><a href="r-makdown.html#htmlとcss"><i class="fa fa-check"></i><b>11.4.4</b> htmlとcss</a></li>
-</ul></li>
-<li class="chapter" data-level="11.5" data-path="r-makdown.html"><a href="r-makdown.html#その他のテンプレート"><i class="fa fa-check"></i><b>11.5</b> その他のテンプレート</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="r-makdown.html"><a href="r-makdown.html#distill"><i class="fa fa-check"></i><b>11.5.1</b> Distill</a></li>
-<li class="chapter" data-level="11.5.2" data-path="r-makdown.html"><a href="r-makdown.html#tufte-handout"><i class="fa fa-check"></i><b>11.5.2</b> Tufte Handout</a></li>
-<li class="chapter" data-level="11.5.3" data-path="r-makdown.html"><a href="r-makdown.html#rmdformats"><i class="fa fa-check"></i><b>11.5.3</b> rmdformats</a></li>
-<li class="chapter" data-level="11.5.4" data-path="r-makdown.html"><a href="r-makdown.html#スライド"><i class="fa fa-check"></i><b>11.5.4</b> スライド</a></li>
-<li class="chapter" data-level="11.5.5" data-path="r-makdown.html"><a href="r-makdown.html#ダッシュボード"><i class="fa fa-check"></i><b>11.5.5</b> ダッシュボード</a></li>
-<li class="chapter" data-level="11.5.6" data-path="r-makdown.html"><a href="r-makdown.html#microsoft-office"><i class="fa fa-check"></i><b>11.5.6</b> Microsoft Office</a></li>
+<li class="chapter" data-level="11" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>11</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="11.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>11.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="11.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>11.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="11.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>11.3</b> ループ</a></li>
+<li class="chapter" data-level="11.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>11.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="11.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>11.5</b> 練習問題</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>11.5.1</b> フィボナッチ数列</a></li>
+<li class="chapter" data-level="11.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>11.5.2</b> モンテカルロ・シミュレーション</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>12</b> Rにおける文字コード*</a><ul>
-<li class="chapter" data-level="12.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>12.1</b> なぜ文字化けが起こるのか</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>12.1.1</b> エンコーディング</a></li>
-<li class="chapter" data-level="12.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>12.1.2</b> RとRStudioにおける問題</a></li>
+<li class="chapter" data-level="12" data-path="r-makdown.html"><a href="r-makdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown入門</a><ul>
+<li class="chapter" data-level="12.1" data-path="r-makdown.html"><a href="r-makdown.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>12.1</b> R Markdownファイルの作成</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="r-makdown.html"><a href="r-makdown.html#参考になるサイト"><i class="fa fa-check"></i><b>12.1.1</b> 参考になるサイト</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>12.2</b> Rスクリプトの文字化け</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>12.2.1</b> ファイルを開く</a></li>
-<li class="chapter" data-level="12.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>12.2.2</b> ファイルを保存する</a></li>
+<li class="chapter" data-level="12.2" data-path="r-makdown.html"><a href="r-makdown.html#markdown記法"><i class="fa fa-check"></i><b>12.2</b> Markdown記法</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="r-makdown.html"><a href="r-makdown.html#markdownとは"><i class="fa fa-check"></i><b>12.2.1</b> Markdownとは*</a></li>
+<li class="chapter" data-level="12.2.2" data-path="r-makdown.html"><a href="r-makdown.html#セクション"><i class="fa fa-check"></i><b>12.2.2</b> セクション</a></li>
+<li class="chapter" data-level="12.2.3" data-path="r-makdown.html"><a href="r-makdown.html#パラグラフ"><i class="fa fa-check"></i><b>12.2.3</b> パラグラフ</a></li>
+<li class="chapter" data-level="12.2.4" data-path="r-makdown.html"><a href="r-makdown.html#箇条書き"><i class="fa fa-check"></i><b>12.2.4</b> 箇条書き</a></li>
+<li class="chapter" data-level="12.2.5" data-path="r-makdown.html"><a href="r-makdown.html#文字の強調"><i class="fa fa-check"></i><b>12.2.5</b> 文字の強調</a></li>
+<li class="chapter" data-level="12.2.6" data-path="r-makdown.html"><a href="r-makdown.html#引用"><i class="fa fa-check"></i><b>12.2.6</b> 引用</a></li>
+<li class="chapter" data-level="12.2.7" data-path="r-makdown.html"><a href="r-makdown.html#リンク"><i class="fa fa-check"></i><b>12.2.7</b> リンク</a></li>
+<li class="chapter" data-level="12.2.8" data-path="r-makdown.html"><a href="r-makdown.html#画像表"><i class="fa fa-check"></i><b>12.2.8</b> 画像、表</a></li>
+<li class="chapter" data-level="12.2.9" data-path="r-makdown.html"><a href="r-makdown.html#数式"><i class="fa fa-check"></i><b>12.2.9</b> 数式</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>12.3</b> データの文字化け</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>12.3.1</b> 標準関数の場合</a></li>
-<li class="chapter" data-level="12.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>12.3.2</b> tidyverseの場合</a></li>
-<li class="chapter" data-level="12.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>12.3.3</b> エンコーディングを確認する方法</a></li>
-<li class="chapter" data-level="12.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>12.3.4</b> もとのデータを見たい場合</a></li>
-<li class="chapter" data-level="12.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>12.3.5</b> データを保存する場合</a></li>
+<li class="chapter" data-level="12.3" data-path="r-makdown.html"><a href="r-makdown.html#rチャンク"><i class="fa fa-check"></i><b>12.3</b> Rチャンク</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="r-makdown.html"><a href="r-makdown.html#チャンクオプション"><i class="fa fa-check"></i><b>12.3.1</b> チャンクオプション</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>12.4</b> その他の問題</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>12.4.1</b> アカウント名が日本語の場合</a></li>
-<li class="chapter" data-level="12.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>12.4.2</b> 画像で日本語が文字化けする場合</a></li>
+<li class="chapter" data-level="12.4" data-path="r-makdown.html"><a href="r-makdown.html#yamlヘッダー"><i class="fa fa-check"></i><b>12.4</b> yamlヘッダー</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="r-makdown.html"><a href="r-makdown.html#output"><i class="fa fa-check"></i><b>12.4.1</b> output</a></li>
+<li class="chapter" data-level="12.4.2" data-path="r-makdown.html"><a href="r-makdown.html#目次"><i class="fa fa-check"></i><b>12.4.2</b> 目次</a></li>
+<li class="chapter" data-level="12.4.3" data-path="r-makdown.html"><a href="r-makdown.html#テーマ"><i class="fa fa-check"></i><b>12.4.3</b> テーマ</a></li>
+<li class="chapter" data-level="12.4.4" data-path="r-makdown.html"><a href="r-makdown.html#htmlとcss"><i class="fa fa-check"></i><b>12.4.4</b> htmlとcss</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="r-makdown.html"><a href="r-makdown.html#その他のテンプレート"><i class="fa fa-check"></i><b>12.5</b> その他のテンプレート</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="r-makdown.html"><a href="r-makdown.html#distill"><i class="fa fa-check"></i><b>12.5.1</b> Distill</a></li>
+<li class="chapter" data-level="12.5.2" data-path="r-makdown.html"><a href="r-makdown.html#tufte-handout"><i class="fa fa-check"></i><b>12.5.2</b> Tufte Handout</a></li>
+<li class="chapter" data-level="12.5.3" data-path="r-makdown.html"><a href="r-makdown.html#rmdformats"><i class="fa fa-check"></i><b>12.5.3</b> rmdformats</a></li>
+<li class="chapter" data-level="12.5.4" data-path="r-makdown.html"><a href="r-makdown.html#スライド"><i class="fa fa-check"></i><b>12.5.4</b> スライド</a></li>
+<li class="chapter" data-level="12.5.5" data-path="r-makdown.html"><a href="r-makdown.html#ダッシュボード"><i class="fa fa-check"></i><b>12.5.5</b> ダッシュボード</a></li>
+<li class="chapter" data-level="12.5.6" data-path="r-makdown.html"><a href="r-makdown.html#microsoft-office"><i class="fa fa-check"></i><b>12.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>13</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
-<li class="chapter" data-level="13.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>13.1</b> 基本的な使い方</a></li>
-<li class="chapter" data-level="13.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>13.2</b> データの代入</a></li>
-<li class="chapter" data-level="13.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>13.3</b> 左辺の参照</a></li>
-<li class="chapter" data-level="13.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>13.4</b> 複数の出力</a></li>
+<li class="chapter" data-level="13" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>13</b> Rにおける文字コード*</a><ul>
+<li class="chapter" data-level="13.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>13.1</b> なぜ文字化けが起こるのか</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>13.1.1</b> エンコーディング</a></li>
+<li class="chapter" data-level="13.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>13.1.2</b> RとRStudioにおける問題</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>13.2</b> Rスクリプトの文字化け</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>13.2.1</b> ファイルを開く</a></li>
+<li class="chapter" data-level="13.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>13.2.2</b> ファイルを保存する</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>13.3</b> データの文字化け</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>13.3.1</b> 標準関数の場合</a></li>
+<li class="chapter" data-level="13.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>13.3.2</b> tidyverseの場合</a></li>
+<li class="chapter" data-level="13.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>13.3.3</b> エンコーディングを確認する方法</a></li>
+<li class="chapter" data-level="13.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>13.3.4</b> もとのデータを見たい場合</a></li>
+<li class="chapter" data-level="13.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>13.3.5</b> データを保存する場合</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>13.4</b> その他の問題</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>13.4.1</b> アカウント名が日本語の場合</a></li>
+<li class="chapter" data-level="13.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>13.4.2</b> 画像で日本語が文字化けする場合</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>14</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="14.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>14.1</b> 基本的な使い方</a></li>
+<li class="chapter" data-level="14.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>14.2</b> データの代入</a></li>
+<li class="chapter" data-level="14.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>14.3</b> 左辺の参照</a></li>
+<li class="chapter" data-level="14.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>14.4</b> 複数の出力</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
@@ -326,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="inter-r" class="section level1">
-<h1><span class="header-section-number">第10章</span> Rプログラミング応用*</h1>
+<h1><span class="header-section-number">第11章</span> Rプログラミング応用*</h1>
 <p>Rによる、より高度な作業のために</p>
 <ul>
 <li>代表的な<a href="inter-r.html#オブジェクトのクラス">オブジェクトのクラス</a></li>
@@ -335,112 +372,112 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>などを学びます。</p>
 <div id="オブジェクトのクラス" class="section level2">
-<h2><span class="header-section-number">10.1</span> オブジェクトのクラス</h2>
+<h2><span class="header-section-number">11.1</span> オブジェクトのクラス</h2>
 <p>オブジェクトの種類を<strong>クラス</strong>と呼びます。
 <code>class()</code>にオブジェクトを入力するとクラスが分かります。</p>
 <p>最も使われるのは数値 ()numeric, real) です。</p>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb123-1" data-line-number="1"><span class="kw">class</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="kw">class</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>厳密には数値と整数 (integer) は異なりますが、気にしないといけない局面は少ないと思います。</p>
-<div class="sourceCode" id="cb125"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb125-1" data-line-number="1"><span class="kw">class</span>(2L)</a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw">class</span>(2L)</a></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>他には、文字列 (character) や</p>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb127-1" data-line-number="1"><span class="kw">class</span>(<span class="st">&quot;Hello, World.&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1"><span class="kw">class</span>(<span class="st">&quot;Hello, World.&quot;</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>論理値 (logical) などもあります。</p>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb129-1" data-line-number="1"><span class="kw">class</span>(<span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="kw">class</span>(<span class="ot">TRUE</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 <p>論理値は主に条件式が満たされるかどうかを示します。</p>
-<div class="sourceCode" id="cb131"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb131-1" data-line-number="1"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1"><span class="dv">0</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1"><span class="dv">0</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>ちなみに、<code>TRUE</code>は数値としての<code>1</code>、<code>FALSE</code>は<code>0</code>にもなります。</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1"><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1"><span class="ot">FALSE</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="ot">FALSE</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>また、因子型 (factor) と呼ばれるクラスもあります。
 カテゴリカル変数と言ったほうが分かりやすいかもしれません。</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb139-2" data-line-number="2">x</a></code></pre></div>
+<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb293-2" data-line-number="2">x</a></code></pre></div>
 <pre><code>## [1] 1
 ## Levels: 1</code></pre>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1"><span class="kw">class</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb295"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb295-1" data-line-number="1"><span class="kw">class</span>(x)</a></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
 <p><code>X</code>の中身は<code>1</code>ですが、数値ではなくカテゴリーになっているので、数値として操作することはできません。</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb297"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb297-1" data-line-number="1">x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
 <pre><code>## Warning in Ops.factor(x, 1): &#39;+&#39; not meaningful for factors</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>Rではベクトルには特別なクラスは付与されていません。
 ベクトルは<code>c()</code>に中身を入力して作成します。</p>
-<div class="sourceCode" id="cb146"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb146-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb146-2" data-line-number="2">x</a></code></pre></div>
+<div class="sourceCode" id="cb300"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb300-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)</a>
+<a class="sourceLine" id="cb300-2" data-line-number="2">x</a></code></pre></div>
 <pre><code>## [1] 1 3 5</code></pre>
 <p>行列 (matrix) はクラスとして存在します。</p>
-<div class="sourceCode" id="cb148"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb148-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="dv">2</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb148-2" data-line-number="2">x</a></code></pre></div>
+<div class="sourceCode" id="cb302"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb302-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="dv">2</span>, <span class="dv">2</span>)</a>
+<a class="sourceLine" id="cb302-2" data-line-number="2">x</a></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    5
 ## [2,]    3    7</code></pre>
-<div class="sourceCode" id="cb150"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb150-1" data-line-number="1"><span class="kw">class</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb304"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb304-1" data-line-number="1"><span class="kw">class</span>(x)</a></code></pre></div>
 <pre><code>## [1] &quot;matrix&quot;</code></pre>
 <p>他に、データフレーム (data.frame) やリスト (list) などもあります。</p>
 <p>クラスを確認するときは、<code>is.*()</code>の形をとる関数を使います。</p>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb152-1" data-line-number="1"><span class="kw">is.numeric</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb306"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb306-1" data-line-number="1"><span class="kw">is.numeric</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb154"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb154-1" data-line-number="1"><span class="kw">is.character</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb308"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb308-1" data-line-number="1"><span class="kw">is.character</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>クラスを変更するときは、<code>as.*()</code>のような関数を使います。</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">as.factor</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb310"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb310-1" data-line-number="1"><span class="kw">as.factor</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] 1
 ## Levels: 1</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="kw">as.character</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb312"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb312-1" data-line-number="1"><span class="kw">as.character</span>(<span class="dv">1</span>)</a></code></pre></div>
 <pre><code>## [1] &quot;1&quot;</code></pre>
 <ul>
 <li>必ずしも全てのクラスが任意のクラスに変換できるわけではありません（例えば、文字列から数値など）。</li>
 </ul>
 </div>
 <div id="関数の作成" class="section level2">
-<h2><span class="header-section-number">10.2</span> 関数の作成</h2>
+<h2><span class="header-section-number">11.2</span> 関数の作成</h2>
 <p>Rで関数を自作する際は<code>function(){}</code>という関数を使います。</p>
 <ul>
 <li><code>()</code>の中に入力引数を記述します。</li>
 <li><code>{}</code>の中に処理内容を記述し、最後に<code>return()</code>で出力引数を指定します。</li>
 </ul>
 <p>例えば、数値ベクトルを入力引数として、平均と標準偏差を出力引数とする関数を作成します。</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1">mean_sd &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="co"># 入力引数の名前をxとしておきます。</span></a>
-<a class="sourceLine" id="cb160-2" data-line-number="2">  mean.x &lt;-<span class="st"> </span><span class="kw">mean</span>(x) <span class="co"># 平均を計算します。</span></a>
-<a class="sourceLine" id="cb160-3" data-line-number="3">  sd.x &lt;-<span class="st"> </span><span class="kw">sd</span>(x) <span class="co"># 標準偏差を計算します。</span></a>
-<a class="sourceLine" id="cb160-4" data-line-number="4">  <span class="kw">return</span>(<span class="kw">c</span>(mean.x, sd.x)) <span class="co"># 出力引数を指定します。</span></a>
-<a class="sourceLine" id="cb160-5" data-line-number="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb314"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb314-1" data-line-number="1">mean_sd &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="co"># 入力引数の名前をxとしておきます。</span></a>
+<a class="sourceLine" id="cb314-2" data-line-number="2">  mean.x &lt;-<span class="st"> </span><span class="kw">mean</span>(x) <span class="co"># 平均を計算します。</span></a>
+<a class="sourceLine" id="cb314-3" data-line-number="3">  sd.x &lt;-<span class="st"> </span><span class="kw">sd</span>(x) <span class="co"># 標準偏差を計算します。</span></a>
+<a class="sourceLine" id="cb314-4" data-line-number="4">  <span class="kw">return</span>(<span class="kw">c</span>(mean.x, sd.x)) <span class="co"># 出力引数を指定します。</span></a>
+<a class="sourceLine" id="cb314-5" data-line-number="5">}</a></code></pre></div>
 <p>実際に実行してみます。</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb161-2" data-line-number="2"><span class="kw">mean_sd</span>(x)</a></code></pre></div>
-<pre><code>## [1] -0.02178397  0.95346976</code></pre>
+<div class="sourceCode" id="cb315"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb315-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
+<a class="sourceLine" id="cb315-2" data-line-number="2"><span class="kw">mean_sd</span>(x)</a></code></pre></div>
+<pre><code>## [1] -0.04131966  1.01214929</code></pre>
 </div>
 <div id="ループ" class="section level2">
-<h2><span class="header-section-number">10.3</span> ループ</h2>
+<h2><span class="header-section-number">11.3</span> ループ</h2>
 <p><strong>ループ</strong>とは同一の処理を複数回実行することを指します。
 例えば、100個の標準正規分布に従う乱数の平均を5回求める処理は次のようになります。</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb163-2" data-line-number="2">  <span class="kw">print</span>(<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb163-3" data-line-number="3">}</a></code></pre></div>
-<pre><code>## [1] -9.176324e-06
-## [1] 0.02650581
-## [1] -0.1938659
-## [1] -0.1239502
-## [1] -0.1104912</code></pre>
+<div class="sourceCode" id="cb317"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb317-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb317-2" data-line-number="2">  <span class="kw">print</span>(<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb317-3" data-line-number="3">}</a></code></pre></div>
+<pre><code>## [1] 0.1007846
+## [1] 0.1128353
+## [1] 0.1414132
+## [1] -0.02242056
+## [1] -0.006795466</code></pre>
 <p><code>for</code>ループとは<code>()</code>の中の<code>in</code>のあとのベクトルの第1要素から順番に<code>i</code>に代入して繰り返しています。
 そのことは、次の例から解ると思います。</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">head</span>(letters)</a></code></pre></div>
+<div class="sourceCode" id="cb319"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb319-1" data-line-number="1"><span class="kw">head</span>(letters)</a></code></pre></div>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;</code></pre>
 <ul>
 <li><code>letters</code>とはアルファベットのベクトルです。</li>
 </ul>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">head</span>(letters)) {</a>
-<a class="sourceLine" id="cb167-2" data-line-number="2">  <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb167-3" data-line-number="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb321"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb321-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">head</span>(letters)) {</a>
+<a class="sourceLine" id="cb321-2" data-line-number="2">  <span class="kw">print</span>(i)</a>
+<a class="sourceLine" id="cb321-3" data-line-number="3">}</a></code></pre></div>
 <pre><code>## [1] &quot;a&quot;
 ## [1] &quot;b&quot;
 ## [1] &quot;c&quot;
@@ -453,85 +490,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>ループ処理の結果を格納するには少しテクニックが必要です。
 100個の乱数の平均を5回取ったものを<code>x</code>として保存したいとします。</p>
 <p>まず、<code>x</code>を<code>NULL</code>オブジェクトとして作成します。</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb169-2" data-line-number="2">x</a></code></pre></div>
+<div class="sourceCode" id="cb323"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb323-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb323-2" data-line-number="2">x</a></code></pre></div>
 <pre><code>## NULL</code></pre>
 <ul>
 <li><code>NULL</code>とは空っぽのオブジェクト（0という数値や空白という文字ではない）です。</li>
 </ul>
 <p>先程のループ処理の中で、計算した平均を<code>c()</code>で<code>x</code>にくっつけていきます。</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb171-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb171-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb171-4" data-line-number="4">x</a></code></pre></div>
-<pre><code>## [1]  0.04631948  0.09906966  0.03705817 -0.11361162 -0.15454222</code></pre>
+<div class="sourceCode" id="cb325"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb325-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb325-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb325-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb325-4" data-line-number="4">x</a></code></pre></div>
+<pre><code>## [1]  0.20733917 -0.13293450 -0.02730418  0.01237498 -0.14136356</code></pre>
 <p>無事、5個の平均値が<code>x</code>に保存されていることがわかります。</p>
 <p>実際に<code>for</code>ループの中で何が起こっているかは、次のコードで解ると思います。</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb173-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb173-3" data-line-number="3">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb173-4" data-line-number="4">  <span class="kw">print</span>(x)</a>
-<a class="sourceLine" id="cb173-5" data-line-number="5">}</a></code></pre></div>
-<pre><code>## [1] -0.1033574
-## [1] -0.10335735 -0.04766531
-## [1] -0.10335735 -0.04766531 -0.02576042
-## [1] -0.10335735 -0.04766531 -0.02576042 -0.01483150
-## [1] -0.10335735 -0.04766531 -0.02576042 -0.01483150 -0.08468440</code></pre>
+<div class="sourceCode" id="cb327"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb327-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb327-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb327-3" data-line-number="3">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb327-4" data-line-number="4">  <span class="kw">print</span>(x)</a>
+<a class="sourceLine" id="cb327-5" data-line-number="5">}</a></code></pre></div>
+<pre><code>## [1] -0.05179158
+## [1] -0.05179158 -0.13648215
+## [1] -0.05179158 -0.13648215  0.04042867
+## [1] -0.05179158 -0.13648215  0.04042867 -0.21945816
+## [1] -0.05179158 -0.13648215  0.04042867 -0.21945816 -0.02517191</code></pre>
 <ul>
 <li>ループが一周するたびに、前回の<code>x</code>に新しい要素が付け加わり、新しい<code>x</code>として保存されています。</li>
 </ul>
 <p><code>NULL</code>オブジェクトを使ったループ結果の保存でよくあるミスは、やり直す際に<code>NULL</code>でリセットするのを忘れることです。
 例えば、同じコードをもう一度実行しましょう。</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb175-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb175-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb175-4" data-line-number="4">x</a></code></pre></div>
-<pre><code>##  [1] -0.1033573520 -0.0476653118 -0.0257604195 -0.0148315042 -0.0846844022
-##  [6] -0.1843942629 -0.0003864674  0.0896376973 -0.0144994186 -0.1919437538</code></pre>
+<div class="sourceCode" id="cb329"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb329-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb329-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb329-3" data-line-number="3">}</a>
+<a class="sourceLine" id="cb329-4" data-line-number="4">x</a></code></pre></div>
+<pre><code>##  [1] -0.05179158 -0.13648215  0.04042867 -0.21945816 -0.02517191 -0.07702140
+##  [7] -0.02174493 -0.13972123  0.03009641 -0.14800757</code></pre>
 <ul>
 <li><code>x</code>に10個の平均値が入っています。</li>
 </ul>
 <p>このようなミスを避ける方法の一つは、全体を関数として作成することです。</p>
-<div class="sourceCode" id="cb177"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb177-1" data-line-number="1">multi_mean &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb177-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb177-3" data-line-number="3">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb177-4" data-line-number="4">    x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb177-5" data-line-number="5">  }</a>
-<a class="sourceLine" id="cb177-6" data-line-number="6">  <span class="kw">return</span>(x)</a>
-<a class="sourceLine" id="cb177-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb177-8" data-line-number="8">x &lt;-<span class="st"> </span><span class="kw">multi_mean</span>()</a>
-<a class="sourceLine" id="cb177-9" data-line-number="9">x</a></code></pre></div>
-<pre><code>## [1]  0.0289304806 -0.0274013245  0.0016569497  0.0006372139 -0.0212061454</code></pre>
+<div class="sourceCode" id="cb331"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb331-1" data-line-number="1">multi_mean &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
+<a class="sourceLine" id="cb331-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
+<a class="sourceLine" id="cb331-3" data-line-number="3">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
+<a class="sourceLine" id="cb331-4" data-line-number="4">    x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
+<a class="sourceLine" id="cb331-5" data-line-number="5">  }</a>
+<a class="sourceLine" id="cb331-6" data-line-number="6">  <span class="kw">return</span>(x)</a>
+<a class="sourceLine" id="cb331-7" data-line-number="7">}</a>
+<a class="sourceLine" id="cb331-8" data-line-number="8">x &lt;-<span class="st"> </span><span class="kw">multi_mean</span>()</a>
+<a class="sourceLine" id="cb331-9" data-line-number="9">x</a></code></pre></div>
+<pre><code>## [1] -0.05103035  0.03841474 -0.09986312  0.13146049 -0.04903911</code></pre>
 </div>
 <div id="条件分岐" class="section level2">
-<h2><span class="header-section-number">10.4</span> 条件分岐</h2>
+<h2><span class="header-section-number">11.4</span> 条件分岐</h2>
 <p><strong>条件分岐</strong>とは、特定の条件の場合に特定の動作を行うようにすることです。
 例えば、正の場合<code>positive</code>、負の場合<code>negative</code>と出力するコマンドは次のようになります。</p>
-<div class="sourceCode" id="cb179"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb179-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb179-2" data-line-number="2"><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb179-3" data-line-number="3">  <span class="kw">print</span>(<span class="st">&quot;positive&quot;</span>)</a>
-<a class="sourceLine" id="cb179-4" data-line-number="4">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb179-5" data-line-number="5">  <span class="kw">print</span>(<span class="st">&quot;negative&quot;</span>)</a>
-<a class="sourceLine" id="cb179-6" data-line-number="6">}</a></code></pre></div>
-<pre><code>## [1] &quot;negative&quot;</code></pre>
-<div class="sourceCode" id="cb181"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb181-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>## [1] -1.204067</code></pre>
+<div class="sourceCode" id="cb333"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb333-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb333-2" data-line-number="2"><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
+<a class="sourceLine" id="cb333-3" data-line-number="3">  <span class="kw">print</span>(<span class="st">&quot;positive&quot;</span>)</a>
+<a class="sourceLine" id="cb333-4" data-line-number="4">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb333-5" data-line-number="5">  <span class="kw">print</span>(<span class="st">&quot;negative&quot;</span>)</a>
+<a class="sourceLine" id="cb333-6" data-line-number="6">}</a></code></pre></div>
+<pre><code>## [1] &quot;positive&quot;</code></pre>
+<div class="sourceCode" id="cb335"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb335-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
+<pre><code>## [1] 1.422987</code></pre>
 <ul>
 <li><code>if(){}</code>の<code>()</code>の中に条件式を書き、<code>{}</code>の中に処理内容を書きます。</li>
 <li>それ以外の条件は<code>else</code>で示します。</li>
 </ul>
 <p>条件式は3つ以上でも構いません。</p>
-<div class="sourceCode" id="cb183"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb183-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb183-2" data-line-number="2"><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="fl">-0.5</span>) {</a>
-<a class="sourceLine" id="cb183-3" data-line-number="3">  <span class="kw">print</span>(<span class="st">&quot;x is less than -0.5.&quot;</span>)</a>
-<a class="sourceLine" id="cb183-4" data-line-number="4">} <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&gt;=</span><span class="st"> </span><span class="fl">-0.5</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.5</span>) {</a>
-<a class="sourceLine" id="cb183-5" data-line-number="5">  <span class="kw">print</span>(<span class="st">&quot;x is between -0.5 and 0.5.&quot;</span>)</a>
-<a class="sourceLine" id="cb183-6" data-line-number="6">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb183-7" data-line-number="7">  <span class="kw">print</span>(<span class="st">&quot;x is more than 0.5.ー&quot;</span>)</a>
-<a class="sourceLine" id="cb183-8" data-line-number="8">}</a></code></pre></div>
-<pre><code>## [1] &quot;x is more than 0.5.ー&quot;</code></pre>
-<div class="sourceCode" id="cb185"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb185-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>## [1] -1.320844</code></pre>
+<div class="sourceCode" id="cb337"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb337-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</a>
+<a class="sourceLine" id="cb337-2" data-line-number="2"><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="fl">-0.5</span>) {</a>
+<a class="sourceLine" id="cb337-3" data-line-number="3">  <span class="kw">print</span>(<span class="st">&quot;x is less than -0.5.&quot;</span>)</a>
+<a class="sourceLine" id="cb337-4" data-line-number="4">} <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&gt;=</span><span class="st"> </span><span class="fl">-0.5</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.5</span>) {</a>
+<a class="sourceLine" id="cb337-5" data-line-number="5">  <span class="kw">print</span>(<span class="st">&quot;x is between -0.5 and 0.5.&quot;</span>)</a>
+<a class="sourceLine" id="cb337-6" data-line-number="6">} <span class="cf">else</span> {</a>
+<a class="sourceLine" id="cb337-7" data-line-number="7">  <span class="kw">print</span>(<span class="st">&quot;x is more than 0.5.ー&quot;</span>)</a>
+<a class="sourceLine" id="cb337-8" data-line-number="8">}</a></code></pre></div>
+<pre><code>## [1] &quot;x is less than -0.5.&quot;</code></pre>
+<div class="sourceCode" id="cb339"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb339-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
+<pre><code>## [1] 0.770185</code></pre>
 <ul>
 <li><code>&amp;</code>は「かつ」を意味します。</li>
 <li>「または」は<code>|</code>を使います。</li>
@@ -540,9 +577,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="練習問題" class="section level2">
-<h2><span class="header-section-number">10.5</span> 練習問題</h2>
+<h2><span class="header-section-number">11.5</span> 練習問題</h2>
 <div id="フィボナッチ数列" class="section level3">
-<h3><span class="header-section-number">10.5.1</span> フィボナッチ数列</h3>
+<h3><span class="header-section-number">11.5.1</span> フィボナッチ数列</h3>
 <p>フィボナッチ数列とは以下の条件を満たす数列です。</p>
 <p><span class="math display">\[
 \begin{aligned}
@@ -562,7 +599,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>また、<span class="math inline">\(F_n \geq m\)</span>となるような<span class="math inline">\(n\)</span>を求める関数を作成してみて下さい。</p>
 </div>
 <div id="モンテカルロシミュレーション" class="section level3">
-<h3><span class="header-section-number">10.5.2</span> モンテカルロ・シミュレーション</h3>
+<h3><span class="header-section-number">11.5.2</span> モンテカルロ・シミュレーション</h3>
 <p>モンテカルロ・シミュレーション（モンテカルロ法）とは乱数を用いて近似解を求める手法です。</p>
 <p>例えば、円周率<span class="math inline">\(\pi\)</span>の近似解は以下のように求めることができます。</p>
 <ol style="list-style-type: decimal">

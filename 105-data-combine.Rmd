@@ -1,1 +1,146 @@
 # データの結合 {#data-combine}
+
+観察データを分析する際、大抵の場合は複数のデータを集めて、結合した上で分析をする必要があります。
+
+結合の方法には
+
+1. 行方向の結合：同じ変数を持っているデータ同士を結合させて観察数を増やす。
+1. 列方向の結合：同じ種類の観察を持っているデータ同士を結合して変数の数を増やす。
+
+の2種類があります。
+
+```{r}
+library(tidyverse)
+```
+
+```{r, echo=FALSE}
+library(knitr)
+```
+
+## 行方向の結合
+
+行方向にデータを結合する必要がある場面としてよくあるのはデータが年や地域ごとに分割されているときです。
+例えば、（なぜか）一人あたりGDPのデータが[日本](data/wb_gdp_pc_jp.csv)と[中国](data/wb_gdp_pc_cn.csv)で別々のデータになっているとします。
+
+```{r}
+japan <- read_csv("data/wb_gdp_pc_jp.csv")
+japan
+china <- read_csv("data/wb_gdp_pc_cn.csv")
+china
+```
+
+これを結合するには`rbind()`（row方向の結合）を使いますが、それぞれ同じ変数名を持っている必要があります。
+
+```{r}
+data <- rbind(japan, china)
+unique(data$name)
+```
+
+無事、日本と中国が一つのデータに含まれています。
+
+`tidyverse`で行方向の結合の場合、`bind_rows()`という関数を使います。
+
+```{r}
+data <- bind_rows(japan, china)
+unique(data$name)
+```
+
+## 列方向の結合
+
+変数を増やすためにデータセットを都合するには列方向に結合する必要があります。
+例えば、[一人あたりGDPのデータ](data/wb_gdp_pc.csv)に[GDP成長率のデータ](data/wb_gdp_growth.csv)を結合するとします。
+
+```{r}
+gdp_pc <- read_csv("data/wb_gdp_pc.csv", skip = 4) %>% 
+  select(-"Country Code", -"Indicator Name", -"Indicator Code", -X64)%>% 
+  rename(name = "Country Name") %>% 
+  gather(key = year, value = gdp_pc, -name) %>% 
+  mutate(year = as.numeric(year))
+head(gdp_pc)
+gdp_gr <- read_csv("data/wb_gdp_growth.csv", skip = 4) %>% 
+  select(-"Country Code", -"Indicator Name", -"Indicator Code", -X64)%>% 
+  rename(name = "Country Name") %>% 
+  gather(key = year, value = gdp_gr, -name) %>% 
+  mutate(year = as.numeric(year))
+head(gdp_gr)
+```
+
+- [ロング・ワイド変換]で紹介するようにワイド形式からロング形式に変換しています。
+
+つまり、モチベーションとしてはこの２つのデータセットを結合して、各国の各年の一人あたりGDPとGDP成長率のデータセットを作成したいとします。
+
+`merge()`を使うことでそれが可能になりますが、`by`によって結合するデータに共通するそれぞれの観察を特定する変数を指定します。
+この場合、各観察は各国の各年なので、`name`と`year`を指定します。
+
+```{r}
+data <- merge(gdp_pc, gdp_gr, by = c("name", "year"))
+head(data)
+```
+
+`tidyverse`で列方向の結合の場合、以下の4つの関数のうちの一つを選びます。
+ここでは、`x`と`y`というデータセットを結合するとします。
+
+1. `left_join(x, y)`：`x`にマッチする観察のみを残す。
+1. `right_join(x, y)`：`y`にマッチする観察のみを残す。
+1. `inner_join(x, y)`：両者に共通する観察のみを残す。
+1. `full_join(x, y)`：どちらかに含まれる観察を全て残す。
+
+例えば、次のような`X`と`Y`というデータセットがあり、同じ`id`のサンプル同士で結合するとします。
+
+```{r}
+X <- tibble(id = c(1,2,3), x = c("x1", "x2", "x3"))
+Y <- tibble(id = c(1,2,4), y = c("y1", "y2", "y4"))
+X
+Y
+```
+
+`left_join()`の場合は`X`にあるデータだけ残ります。
+
+```{r}
+left_join(X, Y, by = "id")
+```
+
+`right_join()`の場合はは`Y`にあるデータだけ残ります。
+
+```{r}
+right_join(X, Y, by = "id")
+```
+
+`inner_join()`の場合は共通して存在するサンプルに、`full_join()`の場合は少なくともどちらかに存在するサンプルになるので、後者が一番保守的な結合になります。
+
+```{r}
+inner_join(X, Y, by = "id")
+full_join(X, Y, by = "id") 
+```
+
+- なお、`by`で指定しなくても自動で結合してくれますが、一般的には`by`で指定したほうがいいでしょう。
+
+
+### 観察の選択*＊
+
+`semi_join()`と`anti_join()`という関数ではデータの結合ではなく、マッチングに応じた観察の選択が可能です。
+
+1. `semi_join(x, y)`：`y`とマッチした`x`だけを返す。
+1. `anti_join(x, y)`：`y`とマッチしなかった`x`だけを返す。
+
+```{r}
+semi_join(X, Y, by = "id")
+anti_join(X, Y, by = "id")
+```
+
+### データフレームの作成
+
+`tidyverse`におけるデータフレームを作成する関数は`tibble()`です。
+
+```{r}
+tibble(name = c("日本", "アメリカ", "中国"),
+       code = c("JPN", "USA", "CHN"))
+```
+
+やはりデータフレームはベクトルからも作れます。
+
+```{r}
+name <- c("日本", "アメリカ", "中国")
+code <- c("JPN", "USA", "CHN")
+tibble(name, code)
+```

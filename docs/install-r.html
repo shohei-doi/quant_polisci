@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第8章 Rの分析環境 | Rで計量政治学入門</title>
+  <title>第9章 Rの分析環境 | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第8章 Rの分析環境 | Rで計量政治学入門" />
+  <meta property="og:title" content="第9章 Rの分析環境 | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第8章 Rの分析環境 | Rで計量政治学入門" />
+  <meta name="twitter:title" content="第9章 Rの分析環境 | Rで計量政治学入門" />
   
   <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   
@@ -31,7 +31,7 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="missing-values.html"/>
+<link rel="prev" href="qualtrics.html"/>
 <link rel="next" href="intro-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -173,135 +173,172 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.7" data-path="data-import.html"><a href="data-import.html#rdsファイルの読み込み"><i class="fa fa-check"></i><b>1.7</b> .rdsファイルの読み込み</a></li>
 <li class="chapter" data-level="1.8" data-path="data-import.html"><a href="data-import.html#パス入力の省略"><i class="fa fa-check"></i><b>1.8</b> パス入力の省略*</a></li>
 <li class="chapter" data-level="1.9" data-path="data-import.html"><a href="data-import.html#データの書き出し"><i class="fa fa-check"></i><b>1.9</b> データの書き出し</a></li>
+<li class="chapter" data-level="1.10" data-path="data-import.html"><a href="data-import.html#データフレームの作成"><i class="fa fa-check"></i><b>1.10</b> データフレームの作成</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の作成</a><ul>
-<li class="chapter" data-level="2.1" data-path="create-vars.html"><a href="create-vars.html#四則演算"><i class="fa fa-check"></i><b>2.1</b> 四則演算</a></li>
-<li class="chapter" data-level="2.2" data-path="create-vars.html"><a href="create-vars.html#条件に基づく変数"><i class="fa fa-check"></i><b>2.2</b> 条件に基づく変数</a></li>
-<li class="chapter" data-level="2.3" data-path="create-vars.html"><a href="create-vars.html#ラグ変数"><i class="fa fa-check"></i><b>2.3</b> ラグ変数*</a></li>
-<li class="chapter" data-level="2.4" data-path="create-vars.html"><a href="create-vars.html#日付変数"><i class="fa fa-check"></i><b>2.4</b> 日付変数*</a></li>
+<li class="chapter" data-level="2" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の選択</a><ul>
+<li class="chapter" data-level="2.1" data-path="select-vars.html"><a href="select-vars.html#変数名による選択"><i class="fa fa-check"></i><b>2.1</b> 変数名による選択</a></li>
+<li class="chapter" data-level="2.2" data-path="select-vars.html"><a href="select-vars.html#番号による選択"><i class="fa fa-check"></i><b>2.2</b> 番号による選択</a></li>
+<li class="chapter" data-level="2.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更"><i class="fa fa-check"></i><b>2.3</b> 変数名の変更</a></li>
+<li class="chapter" data-level="2.4" data-path="select-vars.html"><a href="select-vars.html#高度な変数の選択方法"><i class="fa fa-check"></i><b>2.4</b> 高度な変数の選択方法*</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>3</b> 観察の選択</a><ul>
-<li class="chapter" data-level="3.1" data-path="select-obs.html"><a href="select-obs.html#数値の大小による選択"><i class="fa fa-check"></i><b>3.1</b> 数値の大小による選択</a></li>
-<li class="chapter" data-level="3.2" data-path="select-obs.html"><a href="select-obs.html#一致不一致による選択"><i class="fa fa-check"></i><b>3.2</b> 一致・不一致による選択</a></li>
-<li class="chapter" data-level="3.3" data-path="select-obs.html"><a href="select-obs.html#または"><i class="fa fa-check"></i><b>3.3</b> 「または」</a></li>
-<li class="chapter" data-level="3.4" data-path="select-obs.html"><a href="select-obs.html#かつ"><i class="fa fa-check"></i><b>3.4</b> 「かつ」</a></li>
-<li class="chapter" data-level="3.5" data-path="select-obs.html"><a href="select-obs.html#部分集合"><i class="fa fa-check"></i><b>3.5</b> 部分集合</a></li>
-<li class="chapter" data-level="3.6" data-path="select-obs.html"><a href="select-obs.html#番号による選択"><i class="fa fa-check"></i><b>3.6</b> 番号による選択</a></li>
-<li class="chapter" data-level="3.7" data-path="select-obs.html"><a href="select-obs.html#観察の並び替え"><i class="fa fa-check"></i><b>3.7</b> 観察の並び替え</a></li>
-<li class="chapter" data-level="3.8" data-path="select-obs.html"><a href="select-obs.html#ベクトルの選択"><i class="fa fa-check"></i><b>3.8</b> ベクトルの選択*</a></li>
+<li class="chapter" data-level="3" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>3</b> 変数の作成</a><ul>
+<li class="chapter" data-level="3.1" data-path="create-vars.html"><a href="create-vars.html#四則演算"><i class="fa fa-check"></i><b>3.1</b> 四則演算</a></li>
+<li class="chapter" data-level="3.2" data-path="create-vars.html"><a href="create-vars.html#条件に基づく変数"><i class="fa fa-check"></i><b>3.2</b> 条件に基づく変数</a></li>
+<li class="chapter" data-level="3.3" data-path="create-vars.html"><a href="create-vars.html#ラグ変数"><i class="fa fa-check"></i><b>3.3</b> ラグ変数*</a></li>
+<li class="chapter" data-level="3.4" data-path="create-vars.html"><a href="create-vars.html#日付変数"><i class="fa fa-check"></i><b>3.4</b> 日付変数*</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>4</b> 変数の選択</a><ul>
-<li class="chapter" data-level="4.1" data-path="select-vars.html"><a href="select-vars.html#変数名による選択"><i class="fa fa-check"></i><b>4.1</b> 変数名による選択</a></li>
-<li class="chapter" data-level="4.2" data-path="select-vars.html"><a href="select-vars.html#番号による選択-1"><i class="fa fa-check"></i><b>4.2</b> 番号による選択</a></li>
-<li class="chapter" data-level="4.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更"><i class="fa fa-check"></i><b>4.3</b> 変数名の変更</a></li>
-<li class="chapter" data-level="4.4" data-path="select-vars.html"><a href="select-vars.html#Tidyverse"><i class="fa fa-check"></i><b>4.4</b> tidyverseな方法</a><ul>
-<li class="chapter" data-level="4.4.1" data-path="select-vars.html"><a href="select-vars.html#変数の選択"><i class="fa fa-check"></i><b>4.4.1</b> 変数の選択</a></li>
-<li class="chapter" data-level="4.4.2" data-path="select-vars.html"><a href="select-vars.html#変数の並び替え"><i class="fa fa-check"></i><b>4.4.2</b> 変数の並び替え</a></li>
-<li class="chapter" data-level="4.4.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更-1"><i class="fa fa-check"></i><b>4.4.3</b> 変数名の変更</a></li>
+<li class="chapter" data-level="4" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>4</b> 観察の選択</a><ul>
+<li class="chapter" data-level="4.1" data-path="select-obs.html"><a href="select-obs.html#数値の大小による選択"><i class="fa fa-check"></i><b>4.1</b> 数値の大小による選択</a></li>
+<li class="chapter" data-level="4.2" data-path="select-obs.html"><a href="select-obs.html#一致不一致による選択"><i class="fa fa-check"></i><b>4.2</b> 一致・不一致による選択</a></li>
+<li class="chapter" data-level="4.3" data-path="select-obs.html"><a href="select-obs.html#または"><i class="fa fa-check"></i><b>4.3</b> 「または」</a></li>
+<li class="chapter" data-level="4.4" data-path="select-obs.html"><a href="select-obs.html#かつ"><i class="fa fa-check"></i><b>4.4</b> 「かつ」</a></li>
+<li class="chapter" data-level="4.5" data-path="select-obs.html"><a href="select-obs.html#部分集合"><i class="fa fa-check"></i><b>4.5</b> 部分集合</a></li>
+<li class="chapter" data-level="4.6" data-path="select-obs.html"><a href="select-obs.html#番号による選択-1"><i class="fa fa-check"></i><b>4.6</b> 番号による選択</a></li>
+<li class="chapter" data-level="4.7" data-path="select-obs.html"><a href="select-obs.html#観察の並び替え"><i class="fa fa-check"></i><b>4.7</b> 観察の並び替え</a></li>
+<li class="chapter" data-level="4.8" data-path="select-obs.html"><a href="select-obs.html#ベクトルの選択"><i class="fa fa-check"></i><b>4.8</b> ベクトルの選択*</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-combine.html"><a href="data-combine.html#行方向の結合"><i class="fa fa-check"></i><b>5.1</b> 行方向の結合</a></li>
+<li class="chapter" data-level="5.2" data-path="data-combine.html"><a href="data-combine.html#列方向の結合"><i class="fa fa-check"></i><b>5.2</b> 列方向の結合</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="data-combine.html"><a href="data-combine.html#観察の選択"><i class="fa fa-check"></i><b>5.2.1</b> 観察の選択*＊</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a></li>
-<li class="chapter" data-level="6" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>6</b> ロング・ワイドの変換</a></li>
-<li class="chapter" data-level="7" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>7</b> 欠損値の処理</a></li>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の処理*</a><ul>
+<li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
+<li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
+<li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
+<li class="chapter" data-level="6.4" data-path="missing-values.html"><a href="missing-values.html#欠損値がある場合の分析"><i class="fa fa-check"></i><b>6.4</b> 欠損値がある場合の分析*</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="missing-values.html"><a href="missing-values.html#一変数の記述統計"><i class="fa fa-check"></i><b>6.4.1</b> 一変数の記述統計</a></li>
+<li class="chapter" data-level="6.4.2" data-path="missing-values.html"><a href="missing-values.html#二変数の記述統計"><i class="fa fa-check"></i><b>6.4.2</b> 二変数の記述統計</a></li>
+<li class="chapter" data-level="6.4.3" data-path="missing-values.html"><a href="missing-values.html#回帰分析"><i class="fa fa-check"></i><b>6.4.3</b> 回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="missing-values.html"><a href="missing-values.html#欠損値のクラス"><i class="fa fa-check"></i><b>6.5</b> 欠損値のクラス*</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>7</b> ロング・ワイドの変換*</a><ul>
+<li class="chapter" data-level="7.1" data-path="reshape.html"><a href="reshape.html#パネルデータ"><i class="fa fa-check"></i><b>7.1</b> パネルデータ</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="reshape.html"><a href="reshape.html#ワイド形式"><i class="fa fa-check"></i><b>7.1.1</b> ワイド形式</a></li>
+<li class="chapter" data-level="7.1.2" data-path="reshape.html"><a href="reshape.html#ロング形式"><i class="fa fa-check"></i><b>7.1.2</b> ロング形式</a></li>
+<li class="chapter" data-level="7.1.3" data-path="reshape.html"><a href="reshape.html#前処理"><i class="fa fa-check"></i><b>7.1.3</b> 前処理</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="reshape.html"><a href="reshape.html#ループによる方法"><i class="fa fa-check"></i><b>7.2</b> ループによる方法</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="reshape.html"><a href="reshape.html#for文"><i class="fa fa-check"></i><b>7.2.1</b> for文</a></li>
+<li class="chapter" data-level="7.2.2" data-path="reshape.html"><a href="reshape.html#時点の選択による方法"><i class="fa fa-check"></i><b>7.2.2</b> 時点の選択による方法</a></li>
+<li class="chapter" data-level="7.2.3" data-path="reshape.html"><a href="reshape.html#ユニットの選択による方法"><i class="fa fa-check"></i><b>7.2.3</b> ユニットの選択による方法</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="reshape.html"><a href="reshape.html#tidyverseな方法"><i class="fa fa-check"></i><b>7.3</b> tidyverseな方法</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="reshape.html"><a href="reshape.html#ワイドからロングへ"><i class="fa fa-check"></i><b>7.3.1</b> ワイドからロングへ</a></li>
+<li class="chapter" data-level="7.3.2" data-path="reshape.html"><a href="reshape.html#パイプ"><i class="fa fa-check"></i><b>7.3.2</b> パイプ</a></li>
+<li class="chapter" data-level="7.3.3" data-path="reshape.html"><a href="reshape.html#tidyverseの利点"><i class="fa fa-check"></i><b>7.3.3</b> tidyverseの利点</a></li>
+<li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理*</a><ul>
+<li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
+<li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
+<li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
+<li class="chapter" data-level="8.4" data-path="qualtrics.html"><a href="qualtrics.html#tidyverseな方法-1"><i class="fa fa-check"></i><b>8.4</b> tidyverseな方法</a></li>
+<li class="chapter" data-level="8.5" data-path="qualtrics.html"><a href="qualtrics.html#おまけ"><i class="fa fa-check"></i><b>8.5</b> おまけ</a></li>
+</ul></li>
 <li class="part"><span><b>II R/RStudio</b></span></li>
-<li class="chapter" data-level="8" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>8</b> Rの分析環境</a><ul>
-<li class="chapter" data-level="8.1" data-path="install-r.html"><a href="install-r.html#rのインストール"><i class="fa fa-check"></i><b>8.1</b> Rのインストール</a><ul>
-<li class="chapter" data-level="8.1.1" data-path="install-r.html"><a href="install-r.html#ダウンロード"><i class="fa fa-check"></i><b>8.1.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="8.1.2" data-path="install-r.html"><a href="install-r.html#インストール"><i class="fa fa-check"></i><b>8.1.2</b> インストール</a></li>
+<li class="chapter" data-level="9" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>9</b> Rの分析環境</a><ul>
+<li class="chapter" data-level="9.1" data-path="install-r.html"><a href="install-r.html#rのインストール"><i class="fa fa-check"></i><b>9.1</b> Rのインストール</a><ul>
+<li class="chapter" data-level="9.1.1" data-path="install-r.html"><a href="install-r.html#ダウンロード"><i class="fa fa-check"></i><b>9.1.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="9.1.2" data-path="install-r.html"><a href="install-r.html#インストール"><i class="fa fa-check"></i><b>9.1.2</b> インストール</a></li>
 </ul></li>
-<li class="chapter" data-level="8.2" data-path="install-r.html"><a href="install-r.html#rstudioのインストール"><i class="fa fa-check"></i><b>8.2</b> RStudioのインストール</a><ul>
-<li class="chapter" data-level="8.2.1" data-path="install-r.html"><a href="install-r.html#ダウンロード-1"><i class="fa fa-check"></i><b>8.2.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="8.2.2" data-path="install-r.html"><a href="install-r.html#インストール-1"><i class="fa fa-check"></i><b>8.2.2</b> インストール</a></li>
-<li class="chapter" data-level="8.2.3" data-path="install-r.html"><a href="install-r.html#rstudioの起動"><i class="fa fa-check"></i><b>8.2.3</b> RStudioの起動</a></li>
-<li class="chapter" data-level="8.2.4" data-path="install-r.html"><a href="install-r.html#rstudio-cloud"><i class="fa fa-check"></i><b>8.2.4</b> RStudio Cloud*</a></li>
+<li class="chapter" data-level="9.2" data-path="install-r.html"><a href="install-r.html#rstudioのインストール"><i class="fa fa-check"></i><b>9.2</b> RStudioのインストール</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="install-r.html"><a href="install-r.html#ダウンロード-1"><i class="fa fa-check"></i><b>9.2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="9.2.2" data-path="install-r.html"><a href="install-r.html#インストール-1"><i class="fa fa-check"></i><b>9.2.2</b> インストール</a></li>
+<li class="chapter" data-level="9.2.3" data-path="install-r.html"><a href="install-r.html#rstudioの起動"><i class="fa fa-check"></i><b>9.2.3</b> RStudioの起動</a></li>
+<li class="chapter" data-level="9.2.4" data-path="install-r.html"><a href="install-r.html#rstudio-cloud"><i class="fa fa-check"></i><b>9.2.4</b> RStudio Cloud*</a></li>
 </ul></li>
-<li class="chapter" data-level="8.3" data-path="install-r.html"><a href="install-r.html#再現可能な分析のために"><i class="fa fa-check"></i><b>8.3</b> 再現可能な分析のために</a><ul>
-<li class="chapter" data-level="8.3.1" data-path="install-r.html"><a href="install-r.html#rスクリプト"><i class="fa fa-check"></i><b>8.3.1</b> Rスクリプト</a></li>
-<li class="chapter" data-level="8.3.2" data-path="install-r.html"><a href="install-r.html#rプロジェクト"><i class="fa fa-check"></i><b>8.3.2</b> Rプロジェクト</a></li>
-<li class="chapter" data-level="8.3.3" data-path="install-r.html"><a href="install-r.html#rstudioの設定"><i class="fa fa-check"></i><b>8.3.3</b> RStudioの設定*</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="9" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>9</b> Rプログラミング入門</a><ul>
-<li class="chapter" data-level="9.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>9.1</b> 関数</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>9.1.1</b> 総称関数*</a></li>
-</ul></li>
-<li class="chapter" data-level="9.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>9.2</b> オブジェクト</a></li>
-<li class="chapter" data-level="9.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>9.3</b> パッケージ</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>9.3.1</b> CRANからのインストール</a></li>
-<li class="chapter" data-level="9.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>9.3.2</b> GitHubからのインストール*</a></li>
-<li class="chapter" data-level="9.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>9.3.3</b> パッケージの読み込み</a></li>
-<li class="chapter" data-level="9.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>9.3.4</b> <code>tidyverse</code>とは*</a></li>
+<li class="chapter" data-level="9.3" data-path="install-r.html"><a href="install-r.html#再現可能な分析のために"><i class="fa fa-check"></i><b>9.3</b> 再現可能な分析のために</a><ul>
+<li class="chapter" data-level="9.3.1" data-path="install-r.html"><a href="install-r.html#rスクリプト"><i class="fa fa-check"></i><b>9.3.1</b> Rスクリプト</a></li>
+<li class="chapter" data-level="9.3.2" data-path="install-r.html"><a href="install-r.html#rプロジェクト"><i class="fa fa-check"></i><b>9.3.2</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="9.3.3" data-path="install-r.html"><a href="install-r.html#rstudioの設定"><i class="fa fa-check"></i><b>9.3.3</b> RStudioの設定*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>10</b> Rプログラミング応用*</a><ul>
-<li class="chapter" data-level="10.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>10.1</b> オブジェクトのクラス</a></li>
-<li class="chapter" data-level="10.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>10.2</b> 関数の作成</a></li>
-<li class="chapter" data-level="10.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>10.3</b> ループ</a></li>
-<li class="chapter" data-level="10.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>10.4</b> 条件分岐</a></li>
-<li class="chapter" data-level="10.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>10.5</b> 練習問題</a><ul>
-<li class="chapter" data-level="10.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>10.5.1</b> フィボナッチ数列</a></li>
-<li class="chapter" data-level="10.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>10.5.2</b> モンテカルロ・シミュレーション</a></li>
+<li class="chapter" data-level="10" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>10</b> Rプログラミング入門</a><ul>
+<li class="chapter" data-level="10.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>10.1</b> 関数</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>10.1.1</b> 総称関数*</a></li>
+</ul></li>
+<li class="chapter" data-level="10.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>10.2</b> オブジェクト</a></li>
+<li class="chapter" data-level="10.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>10.3</b> パッケージ</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>10.3.1</b> CRANからのインストール</a></li>
+<li class="chapter" data-level="10.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>10.3.2</b> GitHubからのインストール*</a></li>
+<li class="chapter" data-level="10.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>10.3.3</b> パッケージの読み込み</a></li>
+<li class="chapter" data-level="10.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>10.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="r-makdown.html"><a href="r-makdown.html"><i class="fa fa-check"></i><b>11</b> R Markdown入門</a><ul>
-<li class="chapter" data-level="11.1" data-path="r-makdown.html"><a href="r-makdown.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>11.1</b> R Markdownファイルの作成</a><ul>
-<li class="chapter" data-level="11.1.1" data-path="r-makdown.html"><a href="r-makdown.html#参考になるサイト"><i class="fa fa-check"></i><b>11.1.1</b> 参考になるサイト</a></li>
-</ul></li>
-<li class="chapter" data-level="11.2" data-path="r-makdown.html"><a href="r-makdown.html#markdown記法"><i class="fa fa-check"></i><b>11.2</b> Markdown記法</a><ul>
-<li class="chapter" data-level="11.2.1" data-path="r-makdown.html"><a href="r-makdown.html#markdownとは"><i class="fa fa-check"></i><b>11.2.1</b> Markdownとは*</a></li>
-<li class="chapter" data-level="11.2.2" data-path="r-makdown.html"><a href="r-makdown.html#セクション"><i class="fa fa-check"></i><b>11.2.2</b> セクション</a></li>
-<li class="chapter" data-level="11.2.3" data-path="r-makdown.html"><a href="r-makdown.html#パラグラフ"><i class="fa fa-check"></i><b>11.2.3</b> パラグラフ</a></li>
-<li class="chapter" data-level="11.2.4" data-path="r-makdown.html"><a href="r-makdown.html#箇条書き"><i class="fa fa-check"></i><b>11.2.4</b> 箇条書き</a></li>
-<li class="chapter" data-level="11.2.5" data-path="r-makdown.html"><a href="r-makdown.html#文字の強調"><i class="fa fa-check"></i><b>11.2.5</b> 文字の強調</a></li>
-<li class="chapter" data-level="11.2.6" data-path="r-makdown.html"><a href="r-makdown.html#引用"><i class="fa fa-check"></i><b>11.2.6</b> 引用</a></li>
-<li class="chapter" data-level="11.2.7" data-path="r-makdown.html"><a href="r-makdown.html#リンク"><i class="fa fa-check"></i><b>11.2.7</b> リンク</a></li>
-<li class="chapter" data-level="11.2.8" data-path="r-makdown.html"><a href="r-makdown.html#画像表"><i class="fa fa-check"></i><b>11.2.8</b> 画像、表</a></li>
-<li class="chapter" data-level="11.2.9" data-path="r-makdown.html"><a href="r-makdown.html#数式"><i class="fa fa-check"></i><b>11.2.9</b> 数式</a></li>
-</ul></li>
-<li class="chapter" data-level="11.3" data-path="r-makdown.html"><a href="r-makdown.html#rチャンク"><i class="fa fa-check"></i><b>11.3</b> Rチャンク</a><ul>
-<li class="chapter" data-level="11.3.1" data-path="r-makdown.html"><a href="r-makdown.html#チャンクオプション"><i class="fa fa-check"></i><b>11.3.1</b> チャンクオプション</a></li>
-</ul></li>
-<li class="chapter" data-level="11.4" data-path="r-makdown.html"><a href="r-makdown.html#yamlヘッダー"><i class="fa fa-check"></i><b>11.4</b> yamlヘッダー</a><ul>
-<li class="chapter" data-level="11.4.1" data-path="r-makdown.html"><a href="r-makdown.html#output"><i class="fa fa-check"></i><b>11.4.1</b> output</a></li>
-<li class="chapter" data-level="11.4.2" data-path="r-makdown.html"><a href="r-makdown.html#目次"><i class="fa fa-check"></i><b>11.4.2</b> 目次</a></li>
-<li class="chapter" data-level="11.4.3" data-path="r-makdown.html"><a href="r-makdown.html#テーマ"><i class="fa fa-check"></i><b>11.4.3</b> テーマ</a></li>
-<li class="chapter" data-level="11.4.4" data-path="r-makdown.html"><a href="r-makdown.html#htmlとcss"><i class="fa fa-check"></i><b>11.4.4</b> htmlとcss</a></li>
-</ul></li>
-<li class="chapter" data-level="11.5" data-path="r-makdown.html"><a href="r-makdown.html#その他のテンプレート"><i class="fa fa-check"></i><b>11.5</b> その他のテンプレート</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="r-makdown.html"><a href="r-makdown.html#distill"><i class="fa fa-check"></i><b>11.5.1</b> Distill</a></li>
-<li class="chapter" data-level="11.5.2" data-path="r-makdown.html"><a href="r-makdown.html#tufte-handout"><i class="fa fa-check"></i><b>11.5.2</b> Tufte Handout</a></li>
-<li class="chapter" data-level="11.5.3" data-path="r-makdown.html"><a href="r-makdown.html#rmdformats"><i class="fa fa-check"></i><b>11.5.3</b> rmdformats</a></li>
-<li class="chapter" data-level="11.5.4" data-path="r-makdown.html"><a href="r-makdown.html#スライド"><i class="fa fa-check"></i><b>11.5.4</b> スライド</a></li>
-<li class="chapter" data-level="11.5.5" data-path="r-makdown.html"><a href="r-makdown.html#ダッシュボード"><i class="fa fa-check"></i><b>11.5.5</b> ダッシュボード</a></li>
-<li class="chapter" data-level="11.5.6" data-path="r-makdown.html"><a href="r-makdown.html#microsoft-office"><i class="fa fa-check"></i><b>11.5.6</b> Microsoft Office</a></li>
+<li class="chapter" data-level="11" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>11</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="11.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>11.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="11.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>11.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="11.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>11.3</b> ループ</a></li>
+<li class="chapter" data-level="11.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>11.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="11.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>11.5</b> 練習問題</a><ul>
+<li class="chapter" data-level="11.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>11.5.1</b> フィボナッチ数列</a></li>
+<li class="chapter" data-level="11.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>11.5.2</b> モンテカルロ・シミュレーション</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>12</b> Rにおける文字コード*</a><ul>
-<li class="chapter" data-level="12.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>12.1</b> なぜ文字化けが起こるのか</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>12.1.1</b> エンコーディング</a></li>
-<li class="chapter" data-level="12.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>12.1.2</b> RとRStudioにおける問題</a></li>
+<li class="chapter" data-level="12" data-path="r-makdown.html"><a href="r-makdown.html"><i class="fa fa-check"></i><b>12</b> R Markdown入門</a><ul>
+<li class="chapter" data-level="12.1" data-path="r-makdown.html"><a href="r-makdown.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>12.1</b> R Markdownファイルの作成</a><ul>
+<li class="chapter" data-level="12.1.1" data-path="r-makdown.html"><a href="r-makdown.html#参考になるサイト"><i class="fa fa-check"></i><b>12.1.1</b> 参考になるサイト</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>12.2</b> Rスクリプトの文字化け</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>12.2.1</b> ファイルを開く</a></li>
-<li class="chapter" data-level="12.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>12.2.2</b> ファイルを保存する</a></li>
+<li class="chapter" data-level="12.2" data-path="r-makdown.html"><a href="r-makdown.html#markdown記法"><i class="fa fa-check"></i><b>12.2</b> Markdown記法</a><ul>
+<li class="chapter" data-level="12.2.1" data-path="r-makdown.html"><a href="r-makdown.html#markdownとは"><i class="fa fa-check"></i><b>12.2.1</b> Markdownとは*</a></li>
+<li class="chapter" data-level="12.2.2" data-path="r-makdown.html"><a href="r-makdown.html#セクション"><i class="fa fa-check"></i><b>12.2.2</b> セクション</a></li>
+<li class="chapter" data-level="12.2.3" data-path="r-makdown.html"><a href="r-makdown.html#パラグラフ"><i class="fa fa-check"></i><b>12.2.3</b> パラグラフ</a></li>
+<li class="chapter" data-level="12.2.4" data-path="r-makdown.html"><a href="r-makdown.html#箇条書き"><i class="fa fa-check"></i><b>12.2.4</b> 箇条書き</a></li>
+<li class="chapter" data-level="12.2.5" data-path="r-makdown.html"><a href="r-makdown.html#文字の強調"><i class="fa fa-check"></i><b>12.2.5</b> 文字の強調</a></li>
+<li class="chapter" data-level="12.2.6" data-path="r-makdown.html"><a href="r-makdown.html#引用"><i class="fa fa-check"></i><b>12.2.6</b> 引用</a></li>
+<li class="chapter" data-level="12.2.7" data-path="r-makdown.html"><a href="r-makdown.html#リンク"><i class="fa fa-check"></i><b>12.2.7</b> リンク</a></li>
+<li class="chapter" data-level="12.2.8" data-path="r-makdown.html"><a href="r-makdown.html#画像表"><i class="fa fa-check"></i><b>12.2.8</b> 画像、表</a></li>
+<li class="chapter" data-level="12.2.9" data-path="r-makdown.html"><a href="r-makdown.html#数式"><i class="fa fa-check"></i><b>12.2.9</b> 数式</a></li>
 </ul></li>
-<li class="chapter" data-level="12.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>12.3</b> データの文字化け</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>12.3.1</b> 標準関数の場合</a></li>
-<li class="chapter" data-level="12.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>12.3.2</b> tidyverseの場合</a></li>
-<li class="chapter" data-level="12.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>12.3.3</b> エンコーディングを確認する方法</a></li>
-<li class="chapter" data-level="12.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>12.3.4</b> もとのデータを見たい場合</a></li>
-<li class="chapter" data-level="12.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>12.3.5</b> データを保存する場合</a></li>
+<li class="chapter" data-level="12.3" data-path="r-makdown.html"><a href="r-makdown.html#rチャンク"><i class="fa fa-check"></i><b>12.3</b> Rチャンク</a><ul>
+<li class="chapter" data-level="12.3.1" data-path="r-makdown.html"><a href="r-makdown.html#チャンクオプション"><i class="fa fa-check"></i><b>12.3.1</b> チャンクオプション</a></li>
 </ul></li>
-<li class="chapter" data-level="12.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>12.4</b> その他の問題</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>12.4.1</b> アカウント名が日本語の場合</a></li>
-<li class="chapter" data-level="12.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>12.4.2</b> 画像で日本語が文字化けする場合</a></li>
+<li class="chapter" data-level="12.4" data-path="r-makdown.html"><a href="r-makdown.html#yamlヘッダー"><i class="fa fa-check"></i><b>12.4</b> yamlヘッダー</a><ul>
+<li class="chapter" data-level="12.4.1" data-path="r-makdown.html"><a href="r-makdown.html#output"><i class="fa fa-check"></i><b>12.4.1</b> output</a></li>
+<li class="chapter" data-level="12.4.2" data-path="r-makdown.html"><a href="r-makdown.html#目次"><i class="fa fa-check"></i><b>12.4.2</b> 目次</a></li>
+<li class="chapter" data-level="12.4.3" data-path="r-makdown.html"><a href="r-makdown.html#テーマ"><i class="fa fa-check"></i><b>12.4.3</b> テーマ</a></li>
+<li class="chapter" data-level="12.4.4" data-path="r-makdown.html"><a href="r-makdown.html#htmlとcss"><i class="fa fa-check"></i><b>12.4.4</b> htmlとcss</a></li>
+</ul></li>
+<li class="chapter" data-level="12.5" data-path="r-makdown.html"><a href="r-makdown.html#その他のテンプレート"><i class="fa fa-check"></i><b>12.5</b> その他のテンプレート</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="r-makdown.html"><a href="r-makdown.html#distill"><i class="fa fa-check"></i><b>12.5.1</b> Distill</a></li>
+<li class="chapter" data-level="12.5.2" data-path="r-makdown.html"><a href="r-makdown.html#tufte-handout"><i class="fa fa-check"></i><b>12.5.2</b> Tufte Handout</a></li>
+<li class="chapter" data-level="12.5.3" data-path="r-makdown.html"><a href="r-makdown.html#rmdformats"><i class="fa fa-check"></i><b>12.5.3</b> rmdformats</a></li>
+<li class="chapter" data-level="12.5.4" data-path="r-makdown.html"><a href="r-makdown.html#スライド"><i class="fa fa-check"></i><b>12.5.4</b> スライド</a></li>
+<li class="chapter" data-level="12.5.5" data-path="r-makdown.html"><a href="r-makdown.html#ダッシュボード"><i class="fa fa-check"></i><b>12.5.5</b> ダッシュボード</a></li>
+<li class="chapter" data-level="12.5.6" data-path="r-makdown.html"><a href="r-makdown.html#microsoft-office"><i class="fa fa-check"></i><b>12.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>13</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
-<li class="chapter" data-level="13.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>13.1</b> 基本的な使い方</a></li>
-<li class="chapter" data-level="13.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>13.2</b> データの代入</a></li>
-<li class="chapter" data-level="13.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>13.3</b> 左辺の参照</a></li>
-<li class="chapter" data-level="13.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>13.4</b> 複数の出力</a></li>
+<li class="chapter" data-level="13" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>13</b> Rにおける文字コード*</a><ul>
+<li class="chapter" data-level="13.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>13.1</b> なぜ文字化けが起こるのか</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>13.1.1</b> エンコーディング</a></li>
+<li class="chapter" data-level="13.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>13.1.2</b> RとRStudioにおける問題</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>13.2</b> Rスクリプトの文字化け</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>13.2.1</b> ファイルを開く</a></li>
+<li class="chapter" data-level="13.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>13.2.2</b> ファイルを保存する</a></li>
+</ul></li>
+<li class="chapter" data-level="13.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>13.3</b> データの文字化け</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>13.3.1</b> 標準関数の場合</a></li>
+<li class="chapter" data-level="13.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>13.3.2</b> tidyverseの場合</a></li>
+<li class="chapter" data-level="13.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>13.3.3</b> エンコーディングを確認する方法</a></li>
+<li class="chapter" data-level="13.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>13.3.4</b> もとのデータを見たい場合</a></li>
+<li class="chapter" data-level="13.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>13.3.5</b> データを保存する場合</a></li>
+</ul></li>
+<li class="chapter" data-level="13.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>13.4</b> その他の問題</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>13.4.1</b> アカウント名が日本語の場合</a></li>
+<li class="chapter" data-level="13.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>13.4.2</b> 画像で日本語が文字化けする場合</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>14</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="14.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>14.1</b> 基本的な使い方</a></li>
+<li class="chapter" data-level="14.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>14.2</b> データの代入</a></li>
+<li class="chapter" data-level="14.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>14.3</b> 左辺の参照</a></li>
+<li class="chapter" data-level="14.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>14.4</b> 複数の出力</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
@@ -326,7 +363,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="install-r" class="section level1">
-<h1><span class="header-section-number">第8章</span> Rの分析環境</h1>
+<h1><span class="header-section-number">第9章</span> Rの分析環境</h1>
 <p>Rは統計用のプログラミング言語です。
 他に、特に機械学習の分野ではPythonやJuliaも人気です。</p>
 <ul>
@@ -337,9 +374,9 @@ RStudio以外にもあるもののデファクトスタンダードになって�
 <p>RStudioはあくまでRを使いやすくするためのもので、R本体ではありません。
 なので、まずはRをインストールしてからRStudioをインストールします。</p>
 <div id="rのインストール" class="section level2">
-<h2><span class="header-section-number">8.1</span> Rのインストール</h2>
+<h2><span class="header-section-number">9.1</span> Rのインストール</h2>
 <div id="ダウンロード" class="section level3">
-<h3><span class="header-section-number">8.1.1</span> ダウンロード</h3>
+<h3><span class="header-section-number">9.1.1</span> ダウンロード</h3>
 <p>まずはRの<a href="https://www.r-project.org/">公式サイト</a>へ行き（右クリックで新しいタブで開くことができます）、<code>download R</code>をクリックします。</p>
 <p><img src="figures/R1.jpg" /><!-- --></p>
 <p>次にダウンロードする際のミラーサイトを選びます。
@@ -348,7 +385,7 @@ RStudio以外にもあるもののデファクトスタンダードになって�
 <p>自分のPCのOSに応じたものを選択します。</p>
 <p><img src="figures/R3.jpg" /><!-- --></p>
 <div id="windowsの場合" class="section level4">
-<h4><span class="header-section-number">8.1.1.1</span> Windowsの場合</h4>
+<h4><span class="header-section-number">9.1.1.1</span> Windowsの場合</h4>
 <p><code>install R for the first time</code>を選択します。</p>
 <p><img src="figures/R4.jpg" /><!-- --></p>
 <p><code>Downlosd R X.X.X for YYY</code>を選択してダウンロードします。</p>
@@ -357,11 +394,11 @@ RStudio以外にもあるもののデファクトスタンダードになって�
 <p>Windowsの場合、Rtoolsをインストールもインストールしておきましょう。</p>
 </div>
 <div id="macintoshの場合" class="section level4">
-<h4><span class="header-section-number">8.1.1.2</span> Macintoshの場合</h4>
+<h4><span class="header-section-number">9.1.1.2</span> Macintoshの場合</h4>
 </div>
 </div>
 <div id="インストール" class="section level3">
-<h3><span class="header-section-number">8.1.2</span> インストール</h3>
+<h3><span class="header-section-number">9.1.2</span> インストール</h3>
 <p>Rをダウンロードしたフォルダを開き、ファイルをクリックします。</p>
 <ul>
 <li>ファイル名はOSによって異なります。</li>
@@ -375,9 +412,9 @@ RStudio以外にもあるもののデファクトスタンダードになって�
 </div>
 </div>
 <div id="rstudioのインストール" class="section level2">
-<h2><span class="header-section-number">8.2</span> RStudioのインストール</h2>
+<h2><span class="header-section-number">9.2</span> RStudioのインストール</h2>
 <div id="ダウンロード-1" class="section level3">
-<h3><span class="header-section-number">8.2.1</span> ダウンロード</h3>
+<h3><span class="header-section-number">9.2.1</span> ダウンロード</h3>
 <p>RStudioの<a href="https://www.rstudio.com/">公式サイト</a>からRStudioのダウンロードサイトへ行きます。</p>
 <p><img src="figures/Rstudio1.jpg" /><!-- --></p>
 <p>下の方にインストーラーをダウンロードするリンクがあるのでOSに応じたものを選択します。</p>
@@ -388,11 +425,11 @@ RStudio以外にもあるもののデファクトスタンダードになって�
 </ul>
 </div>
 <div id="インストール-1" class="section level3">
-<h3><span class="header-section-number">8.2.2</span> インストール</h3>
+<h3><span class="header-section-number">9.2.2</span> インストール</h3>
 <p>あとはダウンロードしたフォルダに移り、インストーラーを起動して表示されるがままに進めていきます。</p>
 </div>
 <div id="rstudioの起動" class="section level3">
-<h3><span class="header-section-number">8.2.3</span> RStudioの起動</h3>
+<h3><span class="header-section-number">9.2.3</span> RStudioの起動</h3>
 <p>RStudioのショートカットをクリックしたり、メニューで<code>RStudio</code>と入力してクリックすると起動するはずです。</p>
 <p>RStudioを初めて起動すると次のような表示になるとはずです。
 左側の大きなパネルで<code>R</code>が表示されていればインストールの成功です。</p>
@@ -403,7 +440,7 @@ RStudio以外にもあるもののデファクトスタンダードになって�
 <p><img src="figures/Rstudio6.jpg" /><!-- --></p>
 </div>
 <div id="rstudio-cloud" class="section level3">
-<h3><span class="header-section-number">8.2.4</span> RStudio Cloud*</h3>
+<h3><span class="header-section-number">9.2.4</span> RStudio Cloud*</h3>
 <p><a href="https://rstudio.cloud/">RStudio CLoud</a>により、RStudioをブラウザを使ってオンラインで使用することができます。
 複数のユーザーで共同作業を行うことも可能です。</p>
 <ul>
@@ -412,41 +449,41 @@ RStudio以外にもあるもののデファクトスタンダードになって�
 </div>
 </div>
 <div id="再現可能な分析のために" class="section level2">
-<h2><span class="header-section-number">8.3</span> 再現可能な分析のために</h2>
+<h2><span class="header-section-number">9.3</span> 再現可能な分析のために</h2>
 <p>再現可能性 (replicability) とは、狭義では、誰がどんな環境で分析しても。オリジナルの分析結果と（ほぼ）同じものを得られることだと思っています。
 以下では、再現可能性を担保できるようなR/RStudioの使い方を解説します。</p>
 <div id="rスクリプト" class="section level3">
-<h3><span class="header-section-number">8.3.1</span> Rスクリプト</h3>
+<h3><span class="header-section-number">9.3.1</span> Rスクリプト</h3>
 <p>まず、分析の手順を記録に残し、公開する必要があります。
 RではRスクリプトと呼ばれるファイル（拡張子は<code>.R</code>）を作成し、そこにコードを残して起きます。</p>
 <ul>
 <li>もちろん、使用したデータも公開する必要があるのは言うまでもありません。</li>
 </ul>
 <div id="rスクリプトの作成" class="section level4">
-<h4><span class="header-section-number">8.3.1.1</span> Rスクリプトの作成</h4>
+<h4><span class="header-section-number">9.3.1.1</span> Rスクリプトの作成</h4>
 <p>RStudioでは左上の<code>File &gt; New File &gt; RScript</code>もしくは白い紙に緑色のプラスマークのボタンを押して<code>R Script</code>を選択します。</p>
 <p><img src="figures/workflow7.jpg" /><!-- --></p>
 <p>すると、デフォルトでは左上のパネルにRスクリプトのエディタが表示されます。</p>
 <p><img src="figures/workflow6.jpg" /><!-- --></p>
 </div>
 <div id="rスクリプトの展開" class="section level4">
-<h4><span class="header-section-number">8.3.1.2</span> Rスクリプトの展開</h4>
+<h4><span class="header-section-number">9.3.1.2</span> Rスクリプトの展開</h4>
 <p>RスクリプトをRStudioで開くには左上の<code>File &gt; Open File</code>で選択します。</p>
 </div>
 <div id="rスクリプトの実行" class="section level4">
-<h4><span class="header-section-number">8.3.1.3</span> Rスクリプトの実行</h4>
+<h4><span class="header-section-number">9.3.1.3</span> Rスクリプトの実行</h4>
 <p>Rスクリプトに書かれたコードは<code>Ctrl + Enter</code>を押すと、カーソルのある行がコンソールに流れ、実行されます。</p>
 </div>
 </div>
 <div id="rプロジェクト" class="section level3">
-<h3><span class="header-section-number">8.3.2</span> Rプロジェクト</h3>
+<h3><span class="header-section-number">9.3.2</span> Rプロジェクト</h3>
 <p><a href="data-import.html#data-import">データの読み込み</a>で解説したように、データの読み込みや保存の際には起点となる作業ディレクトリ (working directory) を決める必要があります。</p>
 <p>一般的に、作業ディレクトリはPCによって変わってしまうので、Rプロジェクトを立てることでその問題を回避します。
 簡単に言えば、Rプロジェクトをクリックすることで自動的に作業ディレクトリが設定された状態でRStudioを起動することができます。</p>
 <p>また、プロジェクトごとにRStudioを起動できるので、異なるプロジェクト間でデータやRスクリプトが混在することも回避できます。</p>
 <p>ひとまず、<strong>新しい分析を行う際は必ずRプロジェクトを作成する</strong>ようにしましょう。</p>
 <div id="rプロジェクトの作成" class="section level4">
-<h4><span class="header-section-number">8.3.2.1</span> Rプロジェクトの作成</h4>
+<h4><span class="header-section-number">9.3.2.1</span> Rプロジェクトの作成</h4>
 <p>まずは、プロジェクトの作り方ですが、RStudioの左上の青いボタンをクリックします。</p>
 <p><img src="figures/workflow2.jpg" /><!-- --></p>
 <p>続いて、新たにプロジェクト用のフォルダを作るのであれば<code>New Directory</code>を、既存のフォルダをプロジェクト用にするのであれば<code>Existing Directory</code>を選択します。</p>
@@ -466,7 +503,7 @@ RではRスクリプトと呼ばれるファイル（拡張子は<code>.R</code>
 そのフォルダの中に、プロジェクト名と同じ名前の<code>.Rproj</code>ファイルができているはずです。</p>
 </div>
 <div id="プロジェクトの起動" class="section level4">
-<h4><span class="header-section-number">8.3.2.2</span> プロジェクトの起動</h4>
+<h4><span class="header-section-number">9.3.2.2</span> プロジェクトの起動</h4>
 <p>それをダブルクリックしてみるとRStudioが起動されます。
 このとき、すでに作業ディレクトリはプロジェクト用フォルダに指定されているのです。</p>
 <ul>
@@ -474,7 +511,7 @@ RではRスクリプトと呼ばれるファイル（拡張子は<code>.R</code>
 </ul>
 </div>
 <div id="ワークスペースの保存と再開" class="section level4">
-<h4><span class="header-section-number">8.3.2.3</span> ワークスペースの保存と再開*</h4>
+<h4><span class="header-section-number">9.3.2.3</span> ワークスペースの保存と再開*</h4>
 <p>どうしても一度分析を中断して、再開したい場合はワークスペースを保存しておきましょう。
 上記画面で<code>Save workflow to .RData on exit</code>が<code>Ask</code>になっている場合、RStudioを終了する際にワークスペースを保存するのか聞かれるはずなので、保存します。</p>
 <ul>
@@ -484,15 +521,15 @@ RではRスクリプトと呼ばれるファイル（拡張子は<code>.R</code>
 </div>
 </div>
 <div id="rstudioの設定" class="section level3">
-<h3><span class="header-section-number">8.3.3</span> RStudioの設定*</h3>
+<h3><span class="header-section-number">9.3.3</span> RStudioの設定*</h3>
 <div id="rstudio起動時の挙動" class="section level4">
-<h4><span class="header-section-number">8.3.3.1</span> RStudio起動時の挙動</h4>
+<h4><span class="header-section-number">9.3.3.1</span> RStudio起動時の挙動</h4>
 <p><code>Tools &gt; Global Options</code>を開き、<code>Genral</code>の中で以下のチェックを外します。</p>
 <p><img src="figures/Rstudio4.jpg" /><!-- --></p>
 <p>平たく言うとRStudioを起動したときに前回の続きが残っていない真っさらな状態にしておきます。</p>
 </div>
 <div id="文字コード" class="section level4">
-<h4><span class="header-section-number">8.3.3.2</span> 文字コード</h4>
+<h4><span class="header-section-number">9.3.3.2</span> 文字コード</h4>
 <p>日本語がしばしば文字化けすることがあります。
 なぜならWindowsではShift-JIS、LinuxとMacではUTF-8と呼ばれるエンコーディング（平たく言うとPCが文字を表示する方法）形式だからです。</p>
 <ul>
@@ -515,7 +552,7 @@ RではRスクリプトと呼ばれるファイル（拡張子は<code>.R</code>
           </div>
         </div>
       </div>
-<a href="missing-values.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="qualtrics.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="intro-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
