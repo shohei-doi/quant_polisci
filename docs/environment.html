@@ -24,14 +24,14 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-04-19" />
+<meta name="date" content="2020-04-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="rmakdown.html"/>
+<link rel="prev" href="encoding-r.html"/>
 <link rel="next" href="references.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -144,7 +144,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a><ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#想定する読者"><i class="fa fa-check"></i>想定する読者</a></li>
-<li><a href="index.html#tidyverseについて"><code>Tidyverse</code>について</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tidyverseについて"><i class="fa fa-check"></i>Tidyverseについて</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ウェブサイトの操作"><i class="fa fa-check"></i>ウェブサイトの操作</a></li>
 </ul></li>
 <li class="part"><span><b>I データ・ハンドリング</b></span></li>
@@ -152,38 +152,104 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#パッケージ付属のデータ"><i class="fa fa-check"></i><b>1.1</b> パッケージ付属のデータ</a></li>
 <li class="chapter" data-level="1.2" data-path="data-import.html"><a href="data-import.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.2</b> <code>.csv</code>ファイルの読み込み</a></li>
 </ul></li>
-<li class="appendix"><span><b>補論</b></span></li>
-<li class="chapter" data-level="A" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>A</b> Rの分析環境</a><ul>
-<li class="chapter" data-level="A.1" data-path="install-r.html"><a href="install-r.html#rのインストール"><i class="fa fa-check"></i><b>A.1</b> Rのインストール</a></li>
-<li class="chapter" data-level="A.2" data-path="install-r.html"><a href="install-r.html#rstudioのインストール"><i class="fa fa-check"></i><b>A.2</b> RStudioのインストール</a></li>
-<li class="chapter" data-level="A.3" data-path="install-r.html"><a href="install-r.html#再現可能な分析のために"><i class="fa fa-check"></i><b>A.3</b> 再現可能な分析のために</a><ul>
-<li class="chapter" data-level="A.3.1" data-path="install-r.html"><a href="install-r.html#rスクリプト"><i class="fa fa-check"></i><b>A.3.1</b> Rスクリプト</a></li>
-<li class="chapter" data-level="A.3.2" data-path="install-r.html"><a href="install-r.html#rプロジェクト"><i class="fa fa-check"></i><b>A.3.2</b> Rプロジェクト</a></li>
-<li class="chapter" data-level="A.3.3" data-path="install-r.html"><a href="install-r.html#rstudioの設定"><i class="fa fa-check"></i><b>A.3.3</b> RStudioの設定*</a></li>
+<li class="part"><span><b>II R/RStudio</b></span></li>
+<li class="chapter" data-level="2" data-path="install-r.html"><a href="install-r.html"><i class="fa fa-check"></i><b>2</b> Rの分析環境</a><ul>
+<li class="chapter" data-level="2.1" data-path="install-r.html"><a href="install-r.html#rのインストール"><i class="fa fa-check"></i><b>2.1</b> Rのインストール</a><ul>
+<li class="chapter" data-level="2.1.1" data-path="install-r.html"><a href="install-r.html#ダウンロード"><i class="fa fa-check"></i><b>2.1.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="2.1.2" data-path="install-r.html"><a href="install-r.html#インストール"><i class="fa fa-check"></i><b>2.1.2</b> インストール</a></li>
+</ul></li>
+<li class="chapter" data-level="2.2" data-path="install-r.html"><a href="install-r.html#rstudioのインストール"><i class="fa fa-check"></i><b>2.2</b> RStudioのインストール</a><ul>
+<li class="chapter" data-level="2.2.1" data-path="install-r.html"><a href="install-r.html#ダウンロード-1"><i class="fa fa-check"></i><b>2.2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="2.2.2" data-path="install-r.html"><a href="install-r.html#インストール-1"><i class="fa fa-check"></i><b>2.2.2</b> インストール</a></li>
+<li class="chapter" data-level="2.2.3" data-path="install-r.html"><a href="install-r.html#rstudioの起動"><i class="fa fa-check"></i><b>2.2.3</b> RStudioの起動</a></li>
+<li class="chapter" data-level="2.2.4" data-path="install-r.html"><a href="install-r.html#rstudio-cloud"><i class="fa fa-check"></i><b>2.2.4</b> RStudio Cloud*</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="install-r.html"><a href="install-r.html#再現可能な分析のために"><i class="fa fa-check"></i><b>2.3</b> 再現可能な分析のために</a><ul>
+<li class="chapter" data-level="2.3.1" data-path="install-r.html"><a href="install-r.html#rスクリプト"><i class="fa fa-check"></i><b>2.3.1</b> Rスクリプト</a></li>
+<li class="chapter" data-level="2.3.2" data-path="install-r.html"><a href="install-r.html#rプロジェクト"><i class="fa fa-check"></i><b>2.3.2</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="2.3.3" data-path="install-r.html"><a href="install-r.html#rstudioの設定"><i class="fa fa-check"></i><b>2.3.3</b> RStudioの設定*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="B" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>B</b> Rプログラミング入門</a><ul>
-<li class="chapter" data-level="B.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>B.1</b> 関数</a><ul>
-<li class="chapter" data-level="B.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>B.1.1</b> 総称関数*</a></li>
+<li class="chapter" data-level="3" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>3</b> Rプログラミング入門</a><ul>
+<li class="chapter" data-level="3.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>3.1</b> 関数</a><ul>
+<li class="chapter" data-level="3.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>3.1.1</b> 総称関数*</a></li>
 </ul></li>
-<li class="chapter" data-level="B.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>B.2</b> オブジェクト</a></li>
-<li class="chapter" data-level="B.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>B.3</b> パッケージ</a><ul>
-<li class="chapter" data-level="B.3.1" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>B.3.1</b> <code>Tidyverse</code>とは*</a></li>
+<li class="chapter" data-level="3.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>3.2</b> オブジェクト</a></li>
+<li class="chapter" data-level="3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>3.3</b> パッケージ</a><ul>
+<li class="chapter" data-level="3.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>3.3.1</b> CRANからのインストール</a></li>
+<li class="chapter" data-level="3.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>3.3.2</b> GitHubからのインストール*</a></li>
+<li class="chapter" data-level="3.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>3.3.3</b> パッケージの読み込み</a></li>
+<li class="chapter" data-level="3.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>3.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="C" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>C</b> Rプログラミング中級*</a><ul>
-<li class="chapter" data-level="C.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>C.1</b> オブジェクトのクラス</a></li>
-<li class="chapter" data-level="C.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>C.2</b> 関数の作成</a></li>
-<li class="chapter" data-level="C.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>C.3</b> ループ</a></li>
-<li class="chapter" data-level="C.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>C.4</b> 条件分岐</a></li>
-<li class="chapter" data-level="C.5" data-path="inter-r.html"><a href="inter-r.html#練習問題フィボナッチ数列"><i class="fa fa-check"></i><b>C.5</b> 練習問題：フィボナッチ数列</a></li>
-<li class="chapter" data-level="C.6" data-path="inter-r.html"><a href="inter-r.html#練習問題モンテカルロシミュレーション"><i class="fa fa-check"></i><b>C.6</b> 練習問題：モンテカルロ・シミュレーション</a></li>
+<li class="chapter" data-level="4" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>4</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="4.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>4.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="4.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>4.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="4.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>4.3</b> ループ</a></li>
+<li class="chapter" data-level="4.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>4.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="4.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>4.5</b> 練習問題</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>4.5.1</b> フィボナッチ数列</a></li>
+<li class="chapter" data-level="4.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>4.5.2</b> モンテカルロ・シミュレーション</a></li>
 </ul></li>
-<li class="chapter" data-level="D" data-path="rmakdown.html"><a href="rmakdown.html"><i class="fa fa-check"></i><b>D</b> R Markdown入門</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="r-makdown.html"><a href="r-makdown.html"><i class="fa fa-check"></i><b>5</b> R Markdown入門</a><ul>
+<li class="chapter" data-level="5.1" data-path="r-makdown.html"><a href="r-makdown.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>5.1</b> R Markdownファイルの作成</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="r-makdown.html"><a href="r-makdown.html#参考になるサイト"><i class="fa fa-check"></i><b>5.1.1</b> 参考になるサイト</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="r-makdown.html"><a href="r-makdown.html#markdown記法"><i class="fa fa-check"></i><b>5.2</b> Markdown記法</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="r-makdown.html"><a href="r-makdown.html#markdownとは"><i class="fa fa-check"></i><b>5.2.1</b> Markdownとは*</a></li>
+<li class="chapter" data-level="5.2.2" data-path="r-makdown.html"><a href="r-makdown.html#セクション"><i class="fa fa-check"></i><b>5.2.2</b> セクション</a></li>
+<li class="chapter" data-level="5.2.3" data-path="r-makdown.html"><a href="r-makdown.html#パラグラフ"><i class="fa fa-check"></i><b>5.2.3</b> パラグラフ</a></li>
+<li class="chapter" data-level="5.2.4" data-path="r-makdown.html"><a href="r-makdown.html#箇条書き"><i class="fa fa-check"></i><b>5.2.4</b> 箇条書き</a></li>
+<li class="chapter" data-level="5.2.5" data-path="r-makdown.html"><a href="r-makdown.html#文字の強調"><i class="fa fa-check"></i><b>5.2.5</b> 文字の強調</a></li>
+<li class="chapter" data-level="5.2.6" data-path="r-makdown.html"><a href="r-makdown.html#引用"><i class="fa fa-check"></i><b>5.2.6</b> 引用</a></li>
+<li class="chapter" data-level="5.2.7" data-path="r-makdown.html"><a href="r-makdown.html#リンク"><i class="fa fa-check"></i><b>5.2.7</b> リンク</a></li>
+<li class="chapter" data-level="5.2.8" data-path="r-makdown.html"><a href="r-makdown.html#画像表"><i class="fa fa-check"></i><b>5.2.8</b> 画像、表</a></li>
+<li class="chapter" data-level="5.2.9" data-path="r-makdown.html"><a href="r-makdown.html#数式"><i class="fa fa-check"></i><b>5.2.9</b> 数式</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="r-makdown.html"><a href="r-makdown.html#rチャンク"><i class="fa fa-check"></i><b>5.3</b> Rチャンク</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="r-makdown.html"><a href="r-makdown.html#チャンクオプション"><i class="fa fa-check"></i><b>5.3.1</b> チャンクオプション</a></li>
+</ul></li>
+<li class="chapter" data-level="5.4" data-path="r-makdown.html"><a href="r-makdown.html#yamlヘッダー"><i class="fa fa-check"></i><b>5.4</b> yamlヘッダー</a><ul>
+<li class="chapter" data-level="5.4.1" data-path="r-makdown.html"><a href="r-makdown.html#output"><i class="fa fa-check"></i><b>5.4.1</b> output</a></li>
+<li class="chapter" data-level="5.4.2" data-path="r-makdown.html"><a href="r-makdown.html#目次"><i class="fa fa-check"></i><b>5.4.2</b> 目次</a></li>
+<li class="chapter" data-level="5.4.3" data-path="r-makdown.html"><a href="r-makdown.html#テーマ"><i class="fa fa-check"></i><b>5.4.3</b> テーマ</a></li>
+<li class="chapter" data-level="5.4.4" data-path="r-makdown.html"><a href="r-makdown.html#htmlとcss"><i class="fa fa-check"></i><b>5.4.4</b> htmlとcss</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="r-makdown.html"><a href="r-makdown.html#その他のテンプレート"><i class="fa fa-check"></i><b>5.5</b> その他のテンプレート</a><ul>
+<li class="chapter" data-level="5.5.1" data-path="r-makdown.html"><a href="r-makdown.html#distill"><i class="fa fa-check"></i><b>5.5.1</b> Distill</a></li>
+<li class="chapter" data-level="5.5.2" data-path="r-makdown.html"><a href="r-makdown.html#tufte-handout"><i class="fa fa-check"></i><b>5.5.2</b> Tufte Handout</a></li>
+<li class="chapter" data-level="5.5.3" data-path="r-makdown.html"><a href="r-makdown.html#rmdformats"><i class="fa fa-check"></i><b>5.5.3</b> rmdformats</a></li>
+<li class="chapter" data-level="5.5.4" data-path="r-makdown.html"><a href="r-makdown.html#スライド"><i class="fa fa-check"></i><b>5.5.4</b> スライド</a></li>
+<li class="chapter" data-level="5.5.5" data-path="r-makdown.html"><a href="r-makdown.html#ダッシュボード"><i class="fa fa-check"></i><b>5.5.5</b> ダッシュボード</a></li>
+<li class="chapter" data-level="5.5.6" data-path="r-makdown.html"><a href="r-makdown.html#microsoft-office"><i class="fa fa-check"></i><b>5.5.6</b> Microsoft Office</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>6</b> Rにおける文字コード*</a><ul>
+<li class="chapter" data-level="6.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>6.1</b> なぜ文字化けが起こるのか</a><ul>
+<li class="chapter" data-level="6.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>6.1.1</b> エンコーディング</a></li>
+<li class="chapter" data-level="6.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>6.1.2</b> RとRStudioにおける問題</a></li>
+</ul></li>
+<li class="chapter" data-level="6.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>6.2</b> Rスクリプトの文字化け</a><ul>
+<li class="chapter" data-level="6.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>6.2.1</b> ファイルを開く</a></li>
+<li class="chapter" data-level="6.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>6.2.2</b> ファイルを保存する</a></li>
+</ul></li>
+<li class="chapter" data-level="6.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>6.3</b> データの文字化け</a><ul>
+<li class="chapter" data-level="6.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>6.3.1</b> 標準関数の場合</a></li>
+<li class="chapter" data-level="6.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>6.3.2</b> tidyverseの場合</a></li>
+<li class="chapter" data-level="6.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>6.3.3</b> エンコーディングを確認する方法</a></li>
+<li class="chapter" data-level="6.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>6.3.4</b> もとのデータを見たい場合</a></li>
+<li class="chapter" data-level="6.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>6.3.5</b> データを保存する場合</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>6.4</b> その他の問題</a><ul>
+<li class="chapter" data-level="6.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>6.4.1</b> アカウント名が日本語の場合</a></li>
+<li class="chapter" data-level="6.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>6.4.2</b> 画像で日本語が文字化けする場合</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
-<li><a href="../index.html">土井　翔平</a></li>
+<li><a href="../index.html">&copy; 2020 Shohei Doi</a></li>
 
 </ul>
 
@@ -204,7 +270,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="environment" class="section level1 unnumbered">
 <h1>動作環境</h1>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb95-1" data-line-number="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb136"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb136-1" data-line-number="1"><span class="kw">sessionInfo</span>()</a></code></pre></div>
 <pre><code>## R version 3.6.3 (2020-02-29)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 18.04.4 LTS
@@ -232,18 +298,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## loaded via a namespace (and not attached):
 ##  [1] tidyselect_1.0.0 xfun_0.13        haven_2.2.0      lattice_0.20-41 
 ##  [5] colorspace_1.4-1 vctrs_0.2.4      generics_0.0.2   htmltools_0.4.0 
-##  [9] yaml_2.2.1       rlang_0.4.5      pillar_1.4.3     withr_2.1.2     
-## [13] glue_1.4.0       DBI_1.1.0        dbplyr_1.4.2     modelr_0.1.6    
-## [17] readxl_1.3.1     lifecycle_0.2.0  munsell_0.5.0    gtable_0.3.0    
-## [21] cellranger_1.1.0 rvest_0.3.5      evaluate_0.14    knitr_1.28      
-## [25] fansi_0.4.1      highr_0.8        broom_0.5.5      Rcpp_1.0.4.6    
-## [29] backports_1.1.6  scales_1.1.0     jsonlite_1.6.1   fs_1.4.1        
-## [33] hms_0.5.3        digest_0.6.25    stringi_1.4.6    bookdown_0.18   
-## [37] grid_3.6.3       cli_2.0.2        tools_3.6.3      magrittr_1.5    
-## [41] crayon_1.3.4     pkgconfig_2.0.3  ellipsis_0.3.0   xml2_1.3.1      
-## [45] reprex_0.3.0     lubridate_1.7.8  assertthat_0.2.1 rmarkdown_2.1   
-## [49] httr_1.4.1       rstudioapi_0.11  R6_2.4.1         nlme_3.1-144    
-## [53] compiler_3.6.3</code></pre>
+##  [9] yaml_2.2.1       utf8_1.1.4       rlang_0.4.5      pillar_1.4.3    
+## [13] withr_2.1.2      glue_1.4.0       DBI_1.1.0        dbplyr_1.4.3    
+## [17] modelr_0.1.6     readxl_1.3.1     lifecycle_0.2.0  munsell_0.5.0   
+## [21] gtable_0.3.0     cellranger_1.1.0 rvest_0.3.5      evaluate_0.14   
+## [25] knitr_1.28       fansi_0.4.1      highr_0.8        broom_0.5.5     
+## [29] Rcpp_1.0.4.6     backports_1.1.6  scales_1.1.0     jsonlite_1.6.1  
+## [33] fs_1.4.1         hms_0.5.3        digest_0.6.25    stringi_1.4.6   
+## [37] bookdown_0.18    grid_3.6.3       cli_2.0.2        tools_3.6.3     
+## [41] magrittr_1.5     crayon_1.3.4     pkgconfig_2.0.3  ellipsis_0.3.0  
+## [45] xml2_1.3.1       reprex_0.3.0     lubridate_1.7.8  assertthat_0.2.1
+## [49] rmarkdown_2.1    httr_1.4.1       rstudioapi_0.11  R6_2.4.1        
+## [53] nlme_3.1-144     compiler_3.6.3</code></pre>
 
 </div>
             </section>
@@ -251,7 +317,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="rmakdown.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="encoding-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="references.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
@@ -294,7 +360,7 @@ gitbook.start({
 "link": null,
 "text": null
 },
-"download": ["quant_polisci.pdf", "quant_polisci.epub"],
+"download": null,
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

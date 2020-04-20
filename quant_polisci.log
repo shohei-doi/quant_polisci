@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.4.19)  19 APR 2020 18:59
+This is XeTeX, Version 3.14159265-2.6-0.999992 (TeX Live 2020) (preloaded format=xelatex 2020.4.19)  20 APR 2020 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -6,8 +6,8 @@ entering extended mode
 (./quant_polisci.tex
 LaTeX2e <2020-02-02> patch level 5
 L3 programming layer <2020-04-06> (/usr/local/texlive/2020/texmf-dist/tex/latex
-/bxjscls/bxjsarticle.cls
-Document Class: bxjsarticle 2020/04/04 v2.0a BXJS document classes
+/bxjscls/bxjsreport.cls
+Document Class: bxjsreport 2020/04/04 v2.0a BXJS document classes
 (/usr/local/texlive/2020/texmf-dist/tex/latex/tools/calc.sty
 Package: calc 2017/05/25 v4.3 Infix arithmetic (KKT,FJ)
 \calc@Acount=\count163
@@ -31,11 +31,11 @@ Package: ifpdf 2019/10/25 v3.4 ifpdf legacy package. Use iftex instead.
 Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
 
-Class bxjsarticle Warning: The option 'ja' is MISSING!!
-(bxjsarticle)              So 'ja=minimal' is assumed as fallback, but
-(bxjsarticle)              such implicit setting is now DEPRECATED!
-(bxjsarticle)              You should write 'ja=minimal' explicitly,
-(bxjsarticle)              if it is intended.
+Class bxjsreport Warning: The option 'ja' is MISSING!!
+(bxjsreport)              So 'ja=minimal' is assumed as fallback, but
+(bxjsreport)              such implicit setting is now DEPRECATED!
+(bxjsreport)              You should write 'ja=minimal' explicitly,
+(bxjsreport)              if it is intended.
 
 \stockwidth=\dimen136
 \stockheight=\dimen137
@@ -68,14 +68,15 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \Gm@dimlist=\toks16
 )
 \c@part=\count169
-\c@section=\count170
-\c@subsection=\count171
-\c@subsubsection=\count172
-\c@paragraph=\count173
-\c@subparagraph=\count174
+\c@chapter=\count170
+\c@section=\count171
+\c@subsection=\count172
+\c@subsubsection=\count173
+\c@paragraph=\count174
+\c@subparagraph=\count175
 \@abstractbox=\box45
-\c@figure=\count175
-\c@table=\count176
+\c@figure=\count176
+\c@table=\count177
 \abovecaptionskip=\skip51
 \belowcaptionskip=\skip52
 \jsc@tocl@width=\dimen155
@@ -83,7 +84,7 @@ Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
 \bibindent=\dimen157
 (/usr/local/texlive/2020/texmf-dist/tex/latex/bxwareki/bxwareki.sty
 Package: bxwareki 2019/06/01 v0.6
-\c@warekiyear=\count177
+\c@warekiyear=\count178
 (/usr/local/texlive/2020/texmf-dist/tex/latex/bxwareki/bxwareki-cd.def
 File: bxwareki-cd.def 2019/06/01 v0.6
 )) (/usr/local/texlive/2020/texmf-dist/tex/latex/bxjscls/bxjsja-minimal.def
@@ -149,13 +150,13 @@ Package: amsbsy 1999/11/29 v1.2d Bold Symbols
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/amsmath/amsopn.sty
 Package: amsopn 2016/03/08 v2.02 operator names
 )
-\inf@bad=\count178
+\inf@bad=\count179
 LaTeX Info: Redefining \frac on input line 227.
-\uproot@=\count179
-\leftroot@=\count180
+\uproot@=\count180
+\leftroot@=\count181
 LaTeX Info: Redefining \overline on input line 389.
-\classnum@=\count181
-\DOTSCASE@=\count182
+\classnum@=\count182
+\DOTSCASE@=\count183
 LaTeX Info: Redefining \ldots on input line 486.
 LaTeX Info: Redefining \dots on input line 489.
 LaTeX Info: Redefining \cdots on input line 610.
@@ -164,15 +165,15 @@ LaTeX Info: Redefining \cdots on input line 610.
 \big@size=\dimen160
 LaTeX Font Info:    Redeclaring font encoding OML on input line 733.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 734.
-\macc@depth=\count183
-\c@MaxMatrixCols=\count184
+\macc@depth=\count184
+\c@MaxMatrixCols=\count185
 \dotsspace@=\muskip16
-\c@parentequation=\count185
-\dspbrk@lvl=\count186
+\c@parentequation=\count186
+\dspbrk@lvl=\count187
 \tag@help=\toks20
-\row@=\count187
-\column@=\count188
-\maxfields@=\count189
+\row@=\count188
+\column@=\count189
+\maxfields@=\count190
 \andhelp@=\toks21
 \eqnshift@=\dimen161
 \alignsep@=\dimen162
@@ -205,10 +206,10 @@ Package: expl3 2020-04-06 L3 programming layer (loader)
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/l3backend/l3backend-xdvipdfmx.def
 File: l3backend-xdvipdfmx.def 2020-03-12 L3 backend support: xdvipdfmx
-\g__graphics_track_int=\count190
+\g__graphics_track_int=\count191
 \l__pdf_internal_box=\box48
-\g__pdf_backend_object_int=\count191
-\g__pdf_backend_annotation_int=\count192
+\g__pdf_backend_object_int=\count192
+\g__pdf_backend_annotation_int=\count193
 ))
 Package: unicode-math 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLaTeX
 
@@ -218,10 +219,10 @@ Package: unicode-math-xetex 2020/01/31 v0.8q Unicode maths in XeLaTeX and LuaLa
 TeX
 (/usr/local/texlive/2020/texmf-dist/tex/latex/l3packages/xparse/xparse.sty
 Package: xparse 2020-03-06 L3 Experimental document command parser
-\l__xparse_current_arg_int=\count193
-\g__xparse_grabber_int=\count194
-\l__xparse_m_args_int=\count195
-\l__xparse_v_nesting_int=\count196
+\l__xparse_current_arg_int=\count194
+\g__xparse_grabber_int=\count195
+\l__xparse_m_args_int=\count196
+\l__xparse_v_nesting_int=\count197
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/l3packages/l3keys2e/l3keys2e.st
 y
 Package: l3keys2e 2020-03-06 LaTeX2e option processing using LaTeX3 keys
@@ -230,17 +231,17 @@ Package: fontspec 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTeX
 (/usr/local/texlive/2020/texmf-dist/tex/latex/fontspec/fontspec-xetex.sty
 Package: fontspec-xetex 2020/02/21 v2.7i Font selection for XeLaTeX and LuaLaTe
 X
-\l__fontspec_script_int=\count197
-\l__fontspec_language_int=\count198
-\l__fontspec_strnum_int=\count199
-\l__fontspec_tmp_int=\count266
-\l__fontspec_tmpa_int=\count267
-\l__fontspec_tmpb_int=\count268
-\l__fontspec_tmpc_int=\count269
-\l__fontspec_em_int=\count270
-\l__fontspec_emdef_int=\count271
-\l__fontspec_strong_int=\count272
-\l__fontspec_strongdef_int=\count273
+\l__fontspec_script_int=\count198
+\l__fontspec_language_int=\count199
+\l__fontspec_strnum_int=\count266
+\l__fontspec_tmp_int=\count267
+\l__fontspec_tmpa_int=\count268
+\l__fontspec_tmpb_int=\count269
+\l__fontspec_tmpc_int=\count270
+\l__fontspec_em_int=\count271
+\l__fontspec_emdef_int=\count272
+\l__fontspec_strong_int=\count273
+\l__fontspec_strongdef_int=\count274
 \l__fontspec_tmpa_dim=\dimen167
 \l__fontspec_tmpb_dim=\dimen168
 \l__fontspec_tmpc_dim=\dimen169
@@ -253,9 +254,9 @@ Package: fix-cm 2015/01/14 v1.1t fixes to LaTeX
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding TS1 on input line 47.
 ))
-\g__um_fam_int=\count274
-\g__um_fonts_used_int=\count275
-\l__um_primecount_int=\count276
+\g__um_fam_int=\count275
+\g__um_fonts_used_int=\count276
+\l__um_primecount_int=\count277
 \g__um_primekern_muskip=\muskip17
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/unicode-math/unicode-math-table.t
@@ -267,11 +268,11 @@ Package: textcomp 2020/02/02 v2.0n Standard LaTeX package
 )) (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/microtype.sty
 Package: microtype 2019/11/18 v2.7d Micro-typographical refinements (RS)
 \MT@toks=\toks24
-\MT@count=\count277
+\MT@count=\count278
 LaTeX Info: Redefining \textls on input line 790.
 \MT@outer@kern=\dimen170
 LaTeX Info: Redefining \textmicrotypecontext on input line 1354.
-\MT@listname@count=\count278
+\MT@listname@count=\count279
 (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/microtype-xetex.def
 File: microtype-xetex.def 2019/11/18 v2.7d Definitions specific to xetex (RS)
 LaTeX Info: Redefining \lsstyle on input line 258.
@@ -289,7 +290,7 @@ Package: ltxcmds 2019/12/15 v1.24 LaTeX kernel commands for general use (HO)
 Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
 )) (/usr/local/texlive/2020/texmf-dist/tex/latex/etoolbox/etoolbox.sty
 Package: etoolbox 2019/09/21 v2.5h e-TeX tools for LaTeX (JAW)
-\etb@tempcnta=\count279
+\etb@tempcnta=\count280
 )
 Couldn't patch \@startsection
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hyperref.sty
@@ -315,8 +316,8 @@ Package: letltxmacro 2019/12/03 v1.6 Let assignment for LaTeX macros (HO)
 Package: auxhook 2019-12-17 v1.6 Hooks for auxiliary files (HO)
 )
 \@linkdim=\dimen171
-\Hy@linkcounter=\count280
-\Hy@pagecounter=\count281
+\Hy@linkcounter=\count281
+\Hy@pagecounter=\count282
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/pd1enc.def
 File: pd1enc.def 2020/01/14 v7.00d Hyperref: PDFDocEncoding definition (HO)
 ) (/usr/local/texlive/2020/texmf-dist/tex/generic/intcalc/intcalc.sty
@@ -324,7 +325,7 @@ Package: intcalc 2019/12/15 v1.3 Expandable calculations with integers (HO)
 ) (/usr/local/texlive/2020/texmf-dist/tex/generic/etexcmds/etexcmds.sty
 Package: etexcmds 2019/12/15 v1.7 Avoid name clashes with e-TeX commands (HO)
 )
-\Hy@SavedSpaceFactor=\count282
+\Hy@SavedSpaceFactor=\count283
 Package hyperref Info: Option `unicode' set `true' on input line 4421.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/puenc.def
 File: puenc.def 2020/01/14 v7.00d Hyperref: PDF Unicode definition (HO)
@@ -336,7 +337,7 @@ Package hyperref Info: Plain pages OFF on input line 4562.
 Package hyperref Info: Backreferencing OFF on input line 4567.
 Package hyperref Info: Implicit mode ON; LaTeX internals redefined.
 Package hyperref Info: Bookmarks ON on input line 4800.
-\c@Hy@tempcnt=\count283
+\c@Hy@tempcnt=\count284
 (/usr/local/texlive/2020/texmf-dist/tex/latex/url/url.sty
 \Urlmuskip=\muskip18
 Package: url 2013/09/16  ver 3.4  Verb mode for urls, etc.
@@ -349,7 +350,7 @@ Package: bitset 2019/12/09 v1.3 Handle bit-vector datatype (HO)
 Package: bigintcalc 2019/12/15 v1.5 Expandable calculations on big integers (HO
 )
 ))
-\Fld@menulength=\count284
+\Fld@menulength=\count285
 \Field@Width=\dimen173
 \Fld@charsize=\dimen174
 Package hyperref Info: Hyper figures OFF on input line 6430.
@@ -364,9 +365,9 @@ LaTeX Info: Redefining \pageref on input line 6504.
 (/usr/local/texlive/2020/texmf-dist/tex/generic/atbegshi/atbegshi.sty
 Package: atbegshi 2019/12/05 v1.19 At begin shipout hook (HO)
 )
-\Hy@abspage=\count285
-\c@Item=\count286
-\c@Hfootnote=\count287
+\Hy@abspage=\count286
+\c@Item=\count287
+\c@Hfootnote=\count288
 )
 Package hyperref Info: Driver (autodetected): hxetex.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/hxetex.def
@@ -376,10 +377,10 @@ Package: stringenc 2019/11/29 v1.12 Convert strings between diff. encodings (HO
 )
 )
 \pdfm@box=\box49
-\c@Hy@AnnotLevel=\count288
-\HyField@AnnotCount=\count289
-\Fld@listcount=\count290
-\c@bookmark@seq@number=\count291
+\c@Hy@AnnotLevel=\count289
+\HyField@AnnotCount=\count290
+\Fld@listcount=\count291
+\c@bookmark@seq@number=\count292
 
 (/usr/local/texlive/2020/texmf-dist/tex/latex/rerunfilecheck/rerunfilecheck.sty
 Package: rerunfilecheck 2019/12/05 v1.9 Rerun checks for auxiliary files (HO)
@@ -405,11 +406,11 @@ Package color Info: Driver file: xetex.def on input line 147.
 File: xetex.def 2017/06/24 v5.0h Graphics/color driver for xetex
 )) (/usr/local/texlive/2020/texmf-dist/tex/latex/fancyvrb/fancyvrb.sty
 Package: fancyvrb 2020/01/13 v3.5 verbatim text (tvz,hv)
-\FV@CodeLineNo=\count292
+\FV@CodeLineNo=\count293
 \FV@InFile=\read2
 \FV@TabBox=\box50
-\c@FancyVerbLine=\count293
-\FV@StepNumber=\count294
+\c@FancyVerbLine=\count294
+\FV@StepNumber=\count295
 \FV@OutFile=\write3
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/framed/framed.sty
 Package: framed 2011/10/22 v 0.96: framed or shaded text with page breaks
@@ -424,16 +425,16 @@ Package: longtable 2020/01/07 v4.13 Multi-page Table package (DPC)
 \LTright=\skip59
 \LTpre=\skip60
 \LTpost=\skip61
-\LTchunksize=\count295
+\LTchunksize=\count296
 \LTcapwidth=\dimen179
 \LT@head=\box51
 \LT@firsthead=\box52
 \LT@foot=\box53
 \LT@lastfoot=\box54
-\LT@cols=\count296
-\LT@rows=\count297
-\c@LT@tables=\count298
-\c@LT@chunks=\count299
+\LT@cols=\count297
+\LT@rows=\count298
+\c@LT@tables=\count299
+\c@LT@chunks=\count300
 \LT@p@ftn=\toks25
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
@@ -447,12 +448,12 @@ Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
 \cmidrulesep=\dimen187
 \cmidrulekern=\dimen188
 \defaultaddspace=\dimen189
-\@cmidla=\count300
-\@cmidlb=\count301
+\@cmidla=\count301
+\@cmidlb=\count302
 \@aboverulesep=\dimen190
 \@belowrulesep=\dimen191
-\@thisruleclass=\count302
-\@lastruleclass=\count303
+\@thisruleclass=\count303
+\@lastruleclass=\count304
 \@thisrulewidth=\dimen192
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/mdwtools/footnote.sty
 Package: footnote 1997/01/28 1.13 Save footnotes around boxes
@@ -496,17 +497,17 @@ Package: xeCJK 2020/02/18 v3.8.2 Typesetting CJK scripts with XeLaTeX
 y
 Package: xtemplate 2020-03-06 L3 Experimental prototype document functions
 \l__xtemplate_tmp_dim=\dimen196
-\l__xtemplate_tmp_int=\count304
+\l__xtemplate_tmp_int=\count305
 \l__xtemplate_tmp_muskip=\muskip19
 \l__xtemplate_tmp_skip=\skip65
 )
-\l__xeCJK_tmp_int=\count305
+\l__xeCJK_tmp_int=\count306
 \l__xeCJK_tmp_box=\box56
 \l__xeCJK_tmp_dim=\dimen197
 \l__xeCJK_tmp_skip=\skip66
-\g__xeCJK_space_factor_int=\count306
-\l__xeCJK_begin_int=\count307
-\l__xeCJK_end_int=\count308
+\g__xeCJK_space_factor_int=\count307
+\l__xeCJK_begin_int=\count308
+\l__xeCJK_end_int=\count309
 \c__xeCJK_CJK_class_int=\XeTeXcharclass1
 \c__xeCJK_FullLeft_class_int=\XeTeXcharclass2
 \c__xeCJK_FullRight_class_int=\XeTeXcharclass3
@@ -516,7 +517,7 @@ Package: xtemplate 2020-03-06 L3 Experimental prototype document functions
 \c__xeCJK_CM_class_int=\XeTeXcharclass7
 \c__xeCJK_HangulJamo_class_int=\XeTeXcharclass8
 \l__xeCJK_last_skip=\skip67
-\g__xeCJK_node_int=\count309
+\g__xeCJK_node_int=\count310
 \c__xeCJK_CJK_node_dim=\dimen198
 \c__xeCJK_CJK-space_node_dim=\dimen199
 \c__xeCJK_default_node_dim=\dimen256
@@ -526,10 +527,10 @@ Package: xtemplate 2020-03-06 L3 Experimental prototype document functions
 \l__xeCJK_ccglue_skip=\skip68
 \l__xeCJK_ecglue_skip=\skip69
 \l__xeCJK_punct_kern_skip=\skip70
-\l__xeCJK_last_penalty_int=\count310
+\l__xeCJK_last_penalty_int=\count311
 \l__xeCJK_last_bound_dim=\dimen260
 \l__xeCJK_last_kern_dim=\dimen261
-\l__xeCJK_widow_penalty_int=\count311
+\l__xeCJK_widow_penalty_int=\count312
 
 Package xtemplate Info: Declaring object type 'xeCJK/punctuation' taking 0
 (xtemplate)             argument(s) on line 2302.
@@ -553,10 +554,10 @@ Package xtemplate Info: Declaring object type 'xeCJK/punctuation' taking 0
 \l__xeCJK_margin_dim=\dimen278
 \l__xeCJK_minimum_bound_dim=\dimen279
 \l__xeCJK_kerning_margin_dim=\dimen280
-\g__xeCJK_family_int=\count312
-\l__xeCJK_fam_int=\count313
-\g__xeCJK_fam_allocation_int=\count314
-\l__xeCJK_verb_case_int=\count315
+\g__xeCJK_family_int=\count313
+\l__xeCJK_fam_int=\count314
+\g__xeCJK_fam_allocation_int=\count315
+\l__xeCJK_verb_case_int=\count316
 \l__xeCJK_verb_exspace_skip=\skip71
 (/usr/local/texlive/2020/texmf-dist/tex/xelatex/xecjk/xeCJK.cfg
 File: xeCJK.cfg 2020/02/18 v3.8.2 Configuration file for xeCJK package
@@ -610,7 +611,7 @@ nt
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/m/n' will be
-(Font)              scaled to size 8.38516pt on input line 119.
+(Font)              scaled to size 8.38516pt on input line 126.
 
 Package fontspec Info: Noto Serif CJK JP Light scale = 0.8385125988552972.
 
@@ -656,13 +657,13 @@ Package fontspec Info: Font family 'NotoSerifCJKJPLight(1)' created for font
 
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
 (Font)                  OT1/lmr/m/n --> TU/NotoSerifCJKJPLight(1)/m/n on input 
-line 119.
+line 126.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
 (Font)                  OT1/lmr/m/it --> TU/NotoSerifCJKJPLight(1)/m/it on inpu
-t line 119.
+t line 126.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
 (Font)                  OT1/lmr/bx/n --> TU/NotoSerifCJKJPLight(1)/b/n on input
- line 119.
+ line 126.
 
 Package fontspec Info: Noto Sans CJK JP Light scale = 0.7937290297924476.
 
@@ -752,10 +753,10 @@ Package fontspec Info: Font family 'NotoSansCJKJPLight(1)' created for font
 
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
 (Font)                  OT1/lmss/m/n --> TU/NotoSansCJKJPLight(1)/m/n on input 
-line 120.
+line 127.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
 (Font)                  OT1/lmss/bx/n --> TU/NotoSansCJKJPLight(1)/b/n on input
- line 120.
+ line 127.
 
 Package fontspec Info: Noto Sans Mono CJK JP scale = 0.7937290297924476.
 
@@ -848,10 +849,10 @@ Package fontspec Info: Font family 'NotoSansMonoCJKJP(1)' created for font
 
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
 (Font)                  OT1/lmtt/m/n --> TU/NotoSansMonoCJKJP(1)/m/n on input l
-ine 121.
+ine 128.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 (Font)                  OT1/lmtt/m/n --> TU/NotoSansMonoCJKJP(1)/b/n on input l
-ine 121.
+ine 128.
 
 Package fontspec Info: Noto Serif CJK JP Light scale = 0.8385125988552972.
 
@@ -912,36 +913,37 @@ Package xcolor Info: Model `HSB' substituted by `hsb' on input line 1369.
 Package xcolor Info: Model `Gray' substituted by `gray' on input line 1370.
 Package xcolor Info: Model `wave' substituted by `hsb' on input line 1371.
 )
-Package hyperref Info: Option `colorlinks' set `true' on input line 135.
+Package hyperref Info: Option `colorlinks' set `true' on input line 142.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/natbib/natbib.sty
 Package: natbib 2010/09/13 8.31b (PWD, AO)
 \bibhang=\skip73
 \bibsep=\skip74
 LaTeX Info: Redefining \cite on input line 694.
-\c@NAT@ctr=\count316
-) (./quant_polisci.aux)
+\c@NAT@ctr=\count317
+)
+No file quant_polisci.aux.
 \openout1 = `quant_polisci.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 143.
-LaTeX Font Info:    ... okay on input line 143.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 150.
+LaTeX Font Info:    ... okay on input line 150.
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
 *geometry* verbose mode - [ preamble ] result:
@@ -1006,7 +1008,7 @@ pt=math;language=dflt;mapping=tex-text;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(0)/m/n' will be
-(Font)              scaled to size 9.99985pt on input line 143.
+(Font)              scaled to size 9.99985pt on input line 150.
 
 Package fontspec Info: latinmodern-math scale = 0.9999893790647206.
 
@@ -1046,18 +1048,18 @@ pt=math;language=dflt;mapping=tex-text;"
 (fontspec)             - 'bold small caps'  (b/sc) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 9.99985pt on input line 143.
+(Font)              scaled to size 9.99985pt on input line 150.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 143.
+(Font)              `operators' in the math version `normal' on input line 150.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
 (Font)                  OT1/lmr/m/n --> TU/latinmodern-math.otf(1)/m/n on input
- line 143.
+ line 150.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 143.
+(Font)              `operators' in the math version `bold' on input line 150.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
 (Font)                  OT1/lmr/bx/n --> TU/latinmodern-math.otf(1)/b/n on inpu
-t line 143.
+t line 150.
 
 Package fontspec Info: latinmodern-math scale = 0.9999893790647206.
 
@@ -1145,15 +1147,15 @@ t=math;language=dflt;mapping=tex-text;"
 (fontspec)             =0pt\relax \fontdimen 21\font =0pt\relax 
 
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `normal' on input line 143.
+(Font)              `symbols' in the math version `normal' on input line 150.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `normal'
 (Font)                  OMS/lmsy/m/n --> TU/latinmodern-math.otf(2)/m/n on inpu
-t line 143.
+t line 150.
 LaTeX Font Info:    Encoding `OMS' has changed to `TU' for symbol font
-(Font)              `symbols' in the math version `bold' on input line 143.
+(Font)              `symbols' in the math version `bold' on input line 150.
 LaTeX Font Info:    Overwriting symbol font `symbols' in version `bold'
 (Font)                  OMS/lmsy/b/n --> TU/latinmodern-math.otf(2)/b/n on inpu
-t line 143.
+t line 150.
 
 Package fontspec Info: latinmodern-math scale = 0.9999893790647206.
 
@@ -1224,17 +1226,17 @@ pt=math;language=dflt;mapping=tex-text;"
 
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
 (Font)              `largesymbols' in the math version `normal' on input line 1
-43.
+50.
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `normal'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/m/n on inpu
-t line 143.
+t line 150.
 LaTeX Font Info:    Encoding `OMX' has changed to `TU' for symbol font
-(Font)              `largesymbols' in the math version `bold' on input line 143
+(Font)              `largesymbols' in the math version `bold' on input line 150
 .
 LaTeX Font Info:    Overwriting symbol font `largesymbols' in version `bold'
 (Font)                  OMX/lmex/m/n --> TU/latinmodern-math.otf(3)/b/n on inpu
-t line 143.
-LaTeX Info: Redefining \microtypecontext on input line 143.
+t line 150.
+LaTeX Info: Redefining \microtypecontext on input line 150.
 Package microtype Info: Character protrusion enabled (level 2).
 Package microtype Info: Using protrusion set `basicmath'.
 Package microtype Info: No adjustment of tracking.
@@ -1518,7 +1520,7 @@ Package microtype Warning: Unknown slot number of character
 (microtype)                `microtype.cfg/376(protrusion)'.
 
 \AtBeginShipoutBox=\box58
-Package hyperref Info: Link coloring ON on input line 143.
+Package hyperref Info: Link coloring ON on input line 150.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2019/09/16 v2.46 Cross-referencing by name of section
 (/usr/local/texlive/2020/texmf-dist/tex/latex/refcount/refcount.sty
@@ -1528,17 +1530,19 @@ Package: refcount 2019/12/15 v3.6 Data extraction from label references (HO)
 ty
 Package: gettitlestring 2019/12/15 v1.6 Cleanup title references (HO)
 )
-\c@section@level=\count317
+\c@section@level=\count318
 )
-LaTeX Info: Redefining \ref on input line 143.
-LaTeX Info: Redefining \pageref on input line 143.
-LaTeX Info: Redefining \nameref on input line 143.
-(./quant_polisci.out) (./quant_polisci.out)
+LaTeX Info: Redefining \ref on input line 150.
+LaTeX Info: Redefining \pageref on input line 150.
+LaTeX Info: Redefining \nameref on input line 150.
 \@outlinefile=\write4
 \openout4 = `quant_polisci.out'.
 
+
+Package hyperref Warning: Rerun to get /PageLabels entry.
+
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(2)/m/n' will be
-(Font)              scaled to size 9.24713pt on input line 143.
+(Font)              scaled to size 9.24713pt on input line 150.
 
 Package fontspec Info: Noto Sans CJK JP Light scale = 0.7937290297924476.
 
@@ -1584,48 +1588,48 @@ Package fontspec Info: Font family 'NotoSansCJKJPLight(2)' created for font
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
 
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
-(Font)              scaled to size 9.24713pt on input line 143.
+(Font)              scaled to size 9.24713pt on input line 150.
 Package microtype Info: Loading generic protrusion settings for font family
 (microtype)             `NotoSansCJKJPLight' (encoding: TU).
 (microtype)             For optimal results, create family-specific settings.
 (microtype)             See the microtype manual for details.
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/m/n' will be
-(Font)              scaled to size 14.48955pt on input line 145.
+(Font)              scaled to size 14.48955pt on input line 152.
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(2)/m/n' will be
-(Font)              scaled to size 15.97903pt on input line 145.
+(Font)              scaled to size 15.97903pt on input line 152.
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/m/n' will be
-(Font)              scaled to size 10.0622pt on input line 145.
+(Font)              scaled to size 10.0622pt on input line 152.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 11.99982pt on input line 145.
+(Font)              scaled to size 11.99982pt on input line 152.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 7.99988pt on input line 145.
+(Font)              scaled to size 7.99988pt on input line 152.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 5.99991pt on input line 145.
+(Font)              scaled to size 5.99991pt on input line 152.
 LaTeX Font Info:    Trying to load font information for OML+lmm on input line 1
-45.
+52.
 (/usr/local/texlive/2020/texmf-dist/tex/latex/lm/omllmm.fd
 File: omllmm.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 12.0011pt on input line 145.
+(Font)              scaled to size 12.0011pt on input line 152.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 8.00073pt on input line 145.
+(Font)              scaled to size 8.00073pt on input line 152.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 6.00055pt on input line 145.
+(Font)              scaled to size 6.00055pt on input line 152.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 11.99872pt on input line 145.
+(Font)              scaled to size 11.99872pt on input line 152.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 7.99915pt on input line 145.
+(Font)              scaled to size 7.99915pt on input line 152.
 LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 5.99936pt on input line 145.
-LaTeX Font Info:    Trying to load font information for U+msa on input line 145
+(Font)              scaled to size 5.99936pt on input line 152.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 152
 .
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 ) (/usr/local/texlive/2020/texmf-dist/tex/latex/microtype/mt-msa.cfg
 File: mt-msa.cfg 2006/02/04 v1.1 microtype config. file: AMS symbols (a) (RS)
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 145
+LaTeX Font Info:    Trying to load font information for U+msb on input line 152
 .
 (/usr/local/texlive/2020/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
@@ -1633,99 +1637,177 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 File: mt-msb.cfg 2005/06/01 v1.0 microtype config. file: AMS symbols (b) (RS)
 )
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(2)/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 145.
+(Font)              scaled to size 11.09656pt on input line 152.
+[1
+
+]
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
-(Font)              scaled to size 7.93732pt on input line 148.
+(Font)              scaled to size 7.93732pt on input line 155.
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/m/n' will be
-(Font)              scaled to size 12.07462pt on input line 148.
+(Font)              scaled to size 20.86227pt on input line 155.
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
-(Font)              scaled to size 11.42972pt on input line 148.
+(Font)              scaled to size 19.74805pt on input line 155.
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
-(Font)              scaled to size 13.31586pt on input line 148.
-(./quant_polisci.toc
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 6.9999pt on input line 2.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
-(Font)              scaled to size 4.99992pt on input line 2.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 10.00092pt on input line 2.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 7.00064pt on input line 2.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
-(Font)              scaled to size 5.00046pt on input line 2.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 9.99893pt on input line 2.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 6.99925pt on input line 2.
-LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
-(Font)              scaled to size 4.99947pt on input line 2.
-
-Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
-(xeCJK)                
-(xeCJK)                Try to use `\setCJKmonofont[...]{...}' to define it.
-
-LaTeX Font Info:    Font shape `TU/NotoSansMonoCJKJP(0)/m/n' will be
-(Font)              scaled to size 7.93732pt on input line 3.
-LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
-(Font)              scaled to size 9.52478pt on input line 5.
-LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
-(Font)              scaled to size 11.09656pt on input line 5.
-)
+(Font)              scaled to size 23.00687pt on input line 155.
 \tf@toc=\write5
 \openout5 = `quant_polisci.toc'.
 
 [1
 
 ]
-LaTeX Font Info:    Font shape `TU/NotoSansMonoCJKJP(0)/m/n' will be
-(Font)              scaled to size 9.52478pt on input line 173.
+LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/m/n' will be
+(Font)              scaled to size 12.07462pt on input line 166.
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
-(Font)              scaled to size 16.46199pt on input line 204.
+(Font)              scaled to size 11.42972pt on input line 166.
 LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
-(Font)              scaled to size 19.17854pt on input line 204.
+(Font)              scaled to size 13.31586pt on input line 166.
 
-Package xcolor Warning: Incompatible color definition on input line 211.
+Package xeCJK Warning: Unknown CJK family `\CJKttdefault' is being ignored.
+(xeCJK)                
+(xeCJK)                Try to use `\setCJKmonofont[...]{...}' to define it.
 
-[2]
+LaTeX Font Info:    Font shape `TU/NotoSansMonoCJKJP(0)/m/n' will be
+(Font)              scaled to size 7.93732pt on input line 191.
+[2
+
+]
+LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/m/n' will be
+(Font)              scaled to size 17.39082pt on input line 211.
+LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
+(Font)              scaled to size 16.46199pt on input line 211.
+LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
+(Font)              scaled to size 19.17854pt on input line 211.
+[3
+
+]
+第1章
+
+Package xcolor Warning: Incompatible color definition on input line 218.
+
 LaTeX Font Info:    Font shape `TU/NotoSansMonoCJKJP(0)/b/n' will be
-(Font)              scaled to size 7.93732pt on input line 213.
+(Font)              scaled to size 7.93732pt on input line 220.
 
-Package xcolor Warning: Incompatible color definition on input line 215.
-
-
-Package xcolor Warning: Incompatible color definition on input line 215.
+Package xcolor Warning: Incompatible color definition on input line 222.
 
 
-Package xcolor Warning: Incompatible color definition on input line 223.
+Package xcolor Warning: Incompatible color definition on input line 222.
 
 
-Package xcolor Warning: Incompatible color definition on input line 227.
+Package xcolor Warning: Incompatible color definition on input line 230.
 
 
-Package xcolor Warning: Incompatible color definition on input line 227.
+Package xcolor Warning: Incompatible color definition on input line 234.
 
 
-Package xcolor Warning: Incompatible color definition on input line 231.
+Package xcolor Warning: Incompatible color definition on input line 234.
 
 
-Package xcolor Warning: Incompatible color definition on input line 235.
+Package xcolor Warning: Incompatible color definition on input line 238.
 
 
-Package xcolor Warning: Incompatible color definition on input line 235.
+Package xcolor Warning: Incompatible color definition on input line 242.
 
-[3]
+
+Package xcolor Warning: Incompatible color definition on input line 242.
+
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 6.9999pt on input line 244.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(1)/m/n' will be
+(Font)              scaled to size 4.99992pt on input line 244.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 10.00092pt on input line 244.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 7.00064pt on input line 244.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(2)/m/n' will be
+(Font)              scaled to size 5.00046pt on input line 244.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 9.99893pt on input line 244.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 6.99925pt on input line 244.
+LaTeX Font Info:    Font shape `TU/latinmodern-math.otf(3)/m/n' will be
+(Font)              scaled to size 4.99947pt on input line 244.
+LaTeX Font Info:    Font shape `TU/NotoSansMonoCJKJP(0)/m/n' will be
+(Font)              scaled to size 11.42972pt on input line 269.
+[4
+
+] [5
+
+]
+第2章
+LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(0)/m/n' will be
+(Font)              scaled to size 9.52478pt on input line 296.
+LaTeX Font Info:    Font shape `TU/NotoSansCJKJPLight(2)/m/n' will be
+(Font)              scaled to size 11.09656pt on input line 296.
+File: figures/R1.jpg Graphic file (type bmp)
+<figures/R1.jpg>
+[6
+
+]
+File: figures/R2.jpg Graphic file (type bmp)
+<figures/R2.jpg>
+[7]
+File: figures/R3.jpg Graphic file (type bmp)
+<figures/R3.jpg>
+[8]
+File: figures/R4.jpg Graphic file (type bmp)
+<figures/R4.jpg>
+[9]
+File: figures/R5.jpg Graphic file (type bmp)
+<figures/R5.jpg>
+File: figures/R6.jpg Graphic file (type bmp)
+<figures/R6.jpg>
+[10]
+File: figures/Rstudio1.jpg Graphic file (type bmp)
+<figures/Rstudio1.jpg>
+[11]
+File: figures/Rstudio2.jpg Graphic file (type bmp)
+<figures/Rstudio2.jpg>
+[12]
+File: figures/Rstudio3.jpg Graphic file (type bmp)
+<figures/Rstudio3.jpg>
+[13]
+File: figures/Rstudio5.jpg Graphic file (type bmp)
+<figures/Rstudio5.jpg>
+[14]
+File: figures/Rstudio6.jpg Graphic file (type bmp)
+<figures/Rstudio6.jpg>
+[15] [16]
+File: figures/workflow7.jpg Graphic file (type bmp)
+<figures/workflow7.jpg>
+File: figures/workflow6.jpg Graphic file (type bmp)
+<figures/workflow6.jpg>
+[17]
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/b/n' will be
-(Font)              scaled to size 8.38516pt on input line 312.
+(Font)              scaled to size 8.38516pt on input line 458.
 LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(2)/b/n' will be
-(Font)              scaled to size 9.24713pt on input line 312.
+(Font)              scaled to size 9.24713pt on input line 458.
+[18]
+File: figures/workflow2.jpg Graphic file (type bmp)
+<figures/workflow2.jpg>
+File: figures/workflow3.jpg Graphic file (type bmp)
+<figures/workflow3.jpg>
+[19]
+File: figures/workflow4.jpg Graphic file (type bmp)
+<figures/workflow4.jpg>
+[20]
+File: figures/workflow5.jpg Graphic file (type bmp)
+<figures/workflow5.jpg>
+[21] [22]
+File: figures/Rstudio4.jpg Graphic file (type bmp)
+<figures/Rstudio4.jpg>
+[23]
+File: figures/Rstudio7.jpg Graphic file (type bmp)
+<figures/Rstudio7.jpg>
+[24] [25]
+第3章
 
-Package xcolor Warning: Incompatible color definition on input line 315.
+Package xcolor Warning: Incompatible color definition on input line 594.
 
 
-Package xcolor Warning: Incompatible color definition on input line 319.
+Package xcolor Warning: Incompatible color definition on input line 598.
 
 
-Package xcolor Warning: Incompatible color definition on input line 319.
+Package xcolor Warning: Incompatible color definition on input line 598.
 
 
 Package xeCJK Warning: `\xeCJKVerbAddon' may not work properly.
@@ -1779,247 +1861,114 @@ Package fontspec Info: Font family 'NotoSerifCJKJPLight(3)' created for font
 (fontspec)             - 'bold italic small caps'  (b/scit) with NFSS spec.: 
 
 
-Package xcolor Warning: Incompatible color definition on input line 337.
+Package xcolor Warning: Incompatible color definition on input line 616.
 
+[26
 
-Package xcolor Warning: Incompatible color definition on input line 341.
+]
 
+Package xcolor Warning: Incompatible color definition on input line 620.
 
-Package xcolor Warning: Incompatible color definition on input line 341.
 
-[4]
+Package xcolor Warning: Incompatible color definition on input line 620.
 
-Package xcolor Warning: Incompatible color definition on input line 351.
 
+Package xcolor Warning: Incompatible color definition on input line 630.
 
-Package xcolor Warning: Incompatible color definition on input line 355.
 
+Package xcolor Warning: Incompatible color definition on input line 634.
 
-Package xcolor Warning: Incompatible color definition on input line 355.
 
+Package xcolor Warning: Incompatible color definition on input line 634.
 
-Package xcolor Warning: Incompatible color definition on input line 361.
 
+Package xcolor Warning: Incompatible color definition on input line 640.
 
-Package xcolor Warning: Incompatible color definition on input line 365.
 
+Package xcolor Warning: Incompatible color definition on input line 644.
 
-Package xcolor Warning: Incompatible color definition on input line 365.
 
+Package xcolor Warning: Incompatible color definition on input line 644.
 
-Package xcolor Warning: Incompatible color definition on input line 370.
 
-
-Package xcolor Warning: Incompatible color definition on input line 374.
-
-
-Package xcolor Warning: Incompatible color definition on input line 374.
-
-
-Package xcolor Warning: Incompatible color definition on input line 380.
-
-
-Package xcolor Warning: Incompatible color definition on input line 384.
-
-
-Package xcolor Warning: Incompatible color definition on input line 384.
-
-
-Package xcolor Warning: Incompatible color definition on input line 394.
-
-
-Package xcolor Warning: Incompatible color definition on input line 399.
-
-
-Package xcolor Warning: Incompatible color definition on input line 399.
-
-
-Package xcolor Warning: Incompatible color definition on input line 407.
-
-
-Package xcolor Warning: Incompatible color definition on input line 411.
-
-
-Package xcolor Warning: Incompatible color definition on input line 411.
-
-
-Package xcolor Warning: Incompatible color definition on input line 421.
-
-
-Package xcolor Warning: Incompatible color definition on input line 425.
-
-
-Package xcolor Warning: Incompatible color definition on input line 425.
-
-[5]
-
-Package xcolor Warning: Incompatible color definition on input line 437.
-
-
-Package xcolor Warning: Incompatible color definition on input line 441.
-
-
-Package xcolor Warning: Incompatible color definition on input line 441.
-
-
-Package xcolor Warning: Incompatible color definition on input line 447.
-
-
-Package xcolor Warning: Incompatible color definition on input line 451.
-
-
-Package xcolor Warning: Incompatible color definition on input line 451.
-
-
-Package xcolor Warning: Incompatible color definition on input line 459.
-
-
-Package xcolor Warning: Incompatible color definition on input line 464.
-
-
-Package xcolor Warning: Incompatible color definition on input line 464.
-
-
-Package xcolor Warning: Incompatible color definition on input line 480.
-
-
-Package xcolor Warning: Incompatible color definition on input line 485.
-
-
-Package xcolor Warning: Incompatible color definition on input line 485.
-
-
-Package xcolor Warning: Incompatible color definition on input line 514.
-
-
-Package xcolor Warning: Incompatible color definition on input line 518.
-
-
-Package xcolor Warning: Incompatible color definition on input line 518.
-
-[6]
-
-Package xcolor Warning: Incompatible color definition on input line 528.
-
-
-Package xcolor Warning: Incompatible color definition on input line 532.
-
-
-Package xcolor Warning: Incompatible color definition on input line 532.
-
-
-Package xcolor Warning: Incompatible color definition on input line 548.
-
-
-Package xcolor Warning: Incompatible color definition on input line 552.
-
-
-Package xcolor Warning: Incompatible color definition on input line 552.
-
-[7]
-
-Package xcolor Warning: Incompatible color definition on input line 629.
-
-
-Package xcolor Warning: Incompatible color definition on input line 633.
-
-
-Package xcolor Warning: Incompatible color definition on input line 633.
-
-
-Package xcolor Warning: Incompatible color definition on input line 641.
-
-
-Package xcolor Warning: Incompatible color definition on input line 645.
-
-
-Package xcolor Warning: Incompatible color definition on input line 645.
+Package xcolor Warning: Incompatible color definition on input line 649.
 
 
 Package xcolor Warning: Incompatible color definition on input line 653.
 
 
-Package xcolor Warning: Incompatible color definition on input line 657.
+Package xcolor Warning: Incompatible color definition on input line 653.
 
 
-Package xcolor Warning: Incompatible color definition on input line 657.
+Package xcolor Warning: Incompatible color definition on input line 659.
 
 
-Package xcolor Warning: Incompatible color definition on input line 665.
+Package xcolor Warning: Incompatible color definition on input line 663.
 
 
-Package xcolor Warning: Incompatible color definition on input line 669.
+Package xcolor Warning: Incompatible color definition on input line 663.
 
 
-Package xcolor Warning: Incompatible color definition on input line 669.
+Package xcolor Warning: Incompatible color definition on input line 673.
 
 
-Package xcolor Warning: Incompatible color definition on input line 677.
+Package xcolor Warning: Incompatible color definition on input line 678.
 
 
-Package xcolor Warning: Incompatible color definition on input line 681.
+Package xcolor Warning: Incompatible color definition on input line 678.
 
 
-Package xcolor Warning: Incompatible color definition on input line 681.
+Package xcolor Warning: Incompatible color definition on input line 686.
 
 
-Package xcolor Warning: Incompatible color definition on input line 687.
+Package xcolor Warning: Incompatible color definition on input line 690.
 
 
-Package xcolor Warning: Incompatible color definition on input line 691.
+Package xcolor Warning: Incompatible color definition on input line 690.
 
 
-Package xcolor Warning: Incompatible color definition on input line 691.
+Package xcolor Warning: Incompatible color definition on input line 700.
+
+[27]
+
+Package xcolor Warning: Incompatible color definition on input line 704.
 
 
-Package xcolor Warning: Incompatible color definition on input line 699.
+Package xcolor Warning: Incompatible color definition on input line 704.
 
-[8]
+File: figures/intro_r1.jpg Graphic file (type bmp)
+<figures/intro_r1.jpg>
 
-Package xcolor Warning: Incompatible color definition on input line 703.
-
-
-Package xcolor Warning: Incompatible color definition on input line 703.
+Package xcolor Warning: Incompatible color definition on input line 720.
 
 
-Package xcolor Warning: Incompatible color definition on input line 709.
+Package xcolor Warning: Incompatible color definition on input line 724.
 
 
-Package xcolor Warning: Incompatible color definition on input line 713.
+Package xcolor Warning: Incompatible color definition on input line 724.
 
 
-Package xcolor Warning: Incompatible color definition on input line 713.
-
-
-Package xcolor Warning: Incompatible color definition on input line 722.
-
-
-Package xcolor Warning: Incompatible color definition on input line 727.
-
-
-Package xcolor Warning: Incompatible color definition on input line 727.
+Package xcolor Warning: Incompatible color definition on input line 730.
 
 
 Package xcolor Warning: Incompatible color definition on input line 734.
 
 
-Package xcolor Warning: Incompatible color definition on input line 738.
+Package xcolor Warning: Incompatible color definition on input line 734.
 
 
-Package xcolor Warning: Incompatible color definition on input line 738.
+Package xcolor Warning: Incompatible color definition on input line 742.
 
 
-Package xcolor Warning: Incompatible color definition on input line 746.
+Package xcolor Warning: Incompatible color definition on input line 747.
 
 
-Package xcolor Warning: Incompatible color definition on input line 750.
-
-
-Package xcolor Warning: Incompatible color definition on input line 750.
+Package xcolor Warning: Incompatible color definition on input line 747.
 
 
 Package xcolor Warning: Incompatible color definition on input line 763.
 
+[28]
 
 Package xcolor Warning: Incompatible color definition on input line 768.
 
@@ -2027,167 +1976,156 @@ Package xcolor Warning: Incompatible color definition on input line 768.
 Package xcolor Warning: Incompatible color definition on input line 768.
 
 
-Package xcolor Warning: Incompatible color definition on input line 776.
+Package xcolor Warning: Incompatible color definition on input line 802.
 
 
-Package xcolor Warning: Incompatible color definition on input line 781.
+Package xcolor Warning: Incompatible color definition on input line 806.
 
 
-Package xcolor Warning: Incompatible color definition on input line 781.
+Package xcolor Warning: Incompatible color definition on input line 806.
 
 
-Package xcolor Warning: Incompatible color definition on input line 789.
+Package xcolor Warning: Incompatible color definition on input line 810.
 
 
-Package xcolor Warning: Incompatible color definition on input line 793.
+Package xcolor Warning: Incompatible color definition on input line 814.
 
 
-Package xcolor Warning: Incompatible color definition on input line 793.
+Package xcolor Warning: Incompatible color definition on input line 814.
 
-[9]
+File: figures/intro_r2.jpg Graphic file (type bmp)
+<figures/intro_r2.jpg>
+[29]
+File: figures/intro_r3.jpg Graphic file (type bmp)
+<figures/intro_r3.jpg>
+[30]
 
-Package xcolor Warning: Incompatible color definition on input line 803.
+Package xcolor Warning: Incompatible color definition on input line 843.
 
 
-Package xcolor Warning: Incompatible color definition on input line 807.
+Package xcolor Warning: Incompatible color definition on input line 848.
 
 
-Package xcolor Warning: Incompatible color definition on input line 807.
+Package xcolor Warning: Incompatible color definition on input line 848.
 
 
-Package xcolor Warning: Incompatible color definition on input line 813.
+Package xcolor Warning: Incompatible color definition on input line 857.
 
+[31]
 
-Package xcolor Warning: Incompatible color definition on input line 817.
+Package xcolor Warning: Incompatible color definition on input line 861.
 
 
-Package xcolor Warning: Incompatible color definition on input line 817.
+Package xcolor Warning: Incompatible color definition on input line 861.
 
+LaTeX Font Info:    Font shape `TU/NotoSansMonoCJKJP(0)/m/n' will be
+(Font)              scaled to size 9.52478pt on input line 882.
+[32]
+第4章
 
-Package xcolor Warning: Incompatible color definition on input line 825.
+Package xcolor Warning: Incompatible color definition on input line 938.
 
 
-Package xcolor Warning: Incompatible color definition on input line 829.
+Package xcolor Warning: Incompatible color definition on input line 942.
 
 
-Package xcolor Warning: Incompatible color definition on input line 829.
+Package xcolor Warning: Incompatible color definition on input line 942.
 
 
-Package xcolor Warning: Incompatible color definition on input line 836.
+Package xcolor Warning: Incompatible color definition on input line 950.
 
 
-Package xcolor Warning: Incompatible color definition on input line 840.
+Package xcolor Warning: Incompatible color definition on input line 954.
 
 
-Package xcolor Warning: Incompatible color definition on input line 840.
+Package xcolor Warning: Incompatible color definition on input line 954.
 
 
-Package xcolor Warning: Incompatible color definition on input line 867.
+Package xcolor Warning: Incompatible color definition on input line 962.
 
 
-LaTeX Font Warning: Font shape `TU/NotoSansMonoCJKJP(0)/m/it' undefined
-(Font)              using `TU/NotoSansMonoCJKJP(0)/m/n' instead on input line 8
-69.
+Package xcolor Warning: Incompatible color definition on input line 966.
 
 
-LaTeX Font Warning: Font shape `TU/NotoSerifCJKJPLight(2)/m/it' undefined
-(Font)              using `TU/NotoSerifCJKJPLight(2)/m/n' instead on input line
- 869.
+Package xcolor Warning: Incompatible color definition on input line 966.
 
-LaTeX Font Info:    Font shape `TU/NotoSansMonoCJKJP(0)/m/it' will be
-(Font)              scaled to size 7.93732pt on input line 870.
 
-Package xcolor Warning: Incompatible color definition on input line 875.
+Package xcolor Warning: Incompatible color definition on input line 974.
 
+[33
 
-Package xcolor Warning: Incompatible color definition on input line 875.
-
-
-Package xcolor Warning: Incompatible color definition on input line 879.
-
-
-Package xcolor Warning: Incompatible color definition on input line 884.
-
-
-Package xcolor Warning: Incompatible color definition on input line 884.
-
-
-Package xcolor Warning: Incompatible color definition on input line 896.
-
-[10]
-
-Package xcolor Warning: Incompatible color definition on input line 902.
-
-
-Package xcolor Warning: Incompatible color definition on input line 902.
-
-
-Package xcolor Warning: Incompatible color definition on input line 915.
-
-
-Package xcolor Warning: Incompatible color definition on input line 919.
-
-
-Package xcolor Warning: Incompatible color definition on input line 919.
-
-
-Package xcolor Warning: Incompatible color definition on input line 931.
-
-
-Package xcolor Warning: Incompatible color definition on input line 937.
-
-
-Package xcolor Warning: Incompatible color definition on input line 937.
-
-
-Package xcolor Warning: Incompatible color definition on input line 959.
-
-
-Package xcolor Warning: Incompatible color definition on input line 964.
-
-
-Package xcolor Warning: Incompatible color definition on input line 964.
-
-[11]
+]
 
 Package xcolor Warning: Incompatible color definition on input line 978.
 
 
-Package xcolor Warning: Incompatible color definition on input line 985.
+Package xcolor Warning: Incompatible color definition on input line 978.
 
 
-Package xcolor Warning: Incompatible color definition on input line 985.
+Package xcolor Warning: Incompatible color definition on input line 986.
 
 
-Package xcolor Warning: Incompatible color definition on input line 995.
+Package xcolor Warning: Incompatible color definition on input line 990.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1003.
+Package xcolor Warning: Incompatible color definition on input line 990.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1003.
+Package xcolor Warning: Incompatible color definition on input line 996.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1000.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1000.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1008.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1012.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1012.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1018.
 
 
 Package xcolor Warning: Incompatible color definition on input line 1022.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1029.
+Package xcolor Warning: Incompatible color definition on input line 1022.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1029.
+Package xcolor Warning: Incompatible color definition on input line 1031.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1044.
-
-[12]
-
-Package xcolor Warning: Incompatible color definition on input line 1056.
+Package xcolor Warning: Incompatible color definition on input line 1036.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1056.
+Package xcolor Warning: Incompatible color definition on input line 1036.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1068.
+Package xcolor Warning: Incompatible color definition on input line 1043.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1047.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1047.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1055.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1059.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1059.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1072.
 
 
 Package xcolor Warning: Incompatible color definition on input line 1077.
@@ -2196,65 +2134,271 @@ Package xcolor Warning: Incompatible color definition on input line 1077.
 Package xcolor Warning: Incompatible color definition on input line 1077.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1083.
+Package xcolor Warning: Incompatible color definition on input line 1085.
+
+[34]
+
+Package xcolor Warning: Incompatible color definition on input line 1090.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1087.
+Package xcolor Warning: Incompatible color definition on input line 1090.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1087.
+Package xcolor Warning: Incompatible color definition on input line 1098.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1103.
+Package xcolor Warning: Incompatible color definition on input line 1102.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1114.
+Package xcolor Warning: Incompatible color definition on input line 1102.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1114.
-
-[13]
-
-Package xcolor Warning: Incompatible color definition on input line 1120.
+Package xcolor Warning: Incompatible color definition on input line 1112.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1124.
+Package xcolor Warning: Incompatible color definition on input line 1116.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1124.
+Package xcolor Warning: Incompatible color definition on input line 1116.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1198.
-
-[14]
-
-Package xcolor Warning: Incompatible color definition on input line 1202.
+Package xcolor Warning: Incompatible color definition on input line 1122.
 
 
-Package xcolor Warning: Incompatible color definition on input line 1202.
+Package xcolor Warning: Incompatible color definition on input line 1126.
 
-[15]
-No file quant_polisci.bbl.
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 1248.
-[16]
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 1248.
-(./quant_polisci.aux)
-Package atveryend Info: Empty hook `AtVeryEndDocument' on input line 1248.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 1248.
 
-Package rerunfilecheck Info: File `quant_polisci.out' has not changed.
-(rerunfilecheck)             Checksum: 606F38884A7E843AFA1878E1CEEF782F;3042.
+Package xcolor Warning: Incompatible color definition on input line 1126.
 
-LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
- ) 
+Package xcolor Warning: Incompatible color definition on input line 1134.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1138.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1138.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1145.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1149.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1149.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1176.
+
+[35]
+
+LaTeX Font Warning: Font shape `TU/NotoSansMonoCJKJP(0)/m/it' undefined
+(Font)              using `TU/NotoSansMonoCJKJP(0)/m/n' instead on input line 1
+178.
+
+
+LaTeX Font Warning: Font shape `TU/NotoSerifCJKJPLight(2)/m/it' undefined
+(Font)              using `TU/NotoSerifCJKJPLight(2)/m/n' instead on input line
+ 1178.
+
+LaTeX Font Info:    Font shape `TU/NotoSansMonoCJKJP(0)/m/it' will be
+(Font)              scaled to size 7.93732pt on input line 1179.
+
+Package xcolor Warning: Incompatible color definition on input line 1184.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1184.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1188.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1193.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1193.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1205.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1211.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1211.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1224.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1228.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1228.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1240.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1246.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1246.
+
+[36]
+
+Package xcolor Warning: Incompatible color definition on input line 1268.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1273.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1273.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1287.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1294.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1294.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1304.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1312.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1312.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1331.
+
+[37]
+
+Package xcolor Warning: Incompatible color definition on input line 1338.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1338.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1353.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1365.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1365.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1377.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1386.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1386.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1392.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1396.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1396.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1412.
+
+[38]
+
+Package xcolor Warning: Incompatible color definition on input line 1423.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1423.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1429.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1433.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1433.
+
+[39] [40]
+第5章
+File: figures/rmarkdown_html1.jpg Graphic file (type bmp)
+<figures/rmarkdown_html1.jpg>
+[41
+
+]
+File: figures/rmarkdown_html2.jpg Graphic file (type bmp)
+<figures/rmarkdown_html2.jpg>
+[42]
+File: figures/rmarkdown_html3.jpg Graphic file (type bmp)
+<figures/rmarkdown_html3.jpg>
+[43]
+File: figures/rmarkdown_html4.jpg Graphic file (type bmp)
+<figures/rmarkdown_html4.jpg>
+[44] [45]
+LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(3)/m/n' will be
+(Font)              scaled to size 8.58353pt on input line 1589.
+[46] [47]
+
+LaTeX Font Warning: Font shape `TU/NotoSerifCJKJPLight(0)/m/it' undefined
+(Font)              using `TU/NotoSerifCJKJPLight(0)/m/n' instead on input line
+ 1710.
+
+File: figures/Rlogo.png Graphic file (type bmp)
+<figures/Rlogo.png>
+LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(0)/m/n' will be
+(Font)              scaled to size 7.54665pt on input line 1769.
+LaTeX Font Info:    Font shape `TU/NotoSerifCJKJPLight(2)/m/n' will be
+(Font)              scaled to size 8.32242pt on input line 1769.
+
+Package longtable Warning: Column widths have changed
+(longtable)                in table 5.1 on input line 1789.
+
+[48]
+File: figures/rmarkdown_html5_1.jpg Graphic file (type bmp)
+<figures/rmarkdown_html5_1.jpg>
+File: figures/rmarkdown_html5_2.jpg Graphic file (type bmp)
+<figures/rmarkdown_html5_2.jpg>
+[49]
+File: figures/rmarkdown_html5_3.jpg Graphic file (type bmp)
+<figures/rmarkdown_html5_3.jpg>
+[50] [51] [52]
+
+Package xcolor Warning: Incompatible color definition on input line 1965.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1969.
+
+
+Package xcolor Warning: Incompatible color definition on input line 1969.
+
+
+LaTeX Warning: File `https://bookdown.org/yihui/rmarkdown/images/tufte-overview
+.png' not found on input line 1986.
+
+! Unable to load picture or PDF file 'https://bookdown.org/yihui/rmarkdown/imag
+es/tufte-overview.png'.
+<to be read again> 
+                   }
+l.1986 ...hui/rmarkdown/images/tufte-overview.png}
+                                                   
 Here is how much of TeX's memory you used:
- 21877 strings out of 479417
- 414105 string characters out of 5884551
- 854472 words of memory out of 5000000
- 39027 multiletter control sequences out of 15000+600000
- 539149 words of font info for 122 fonts, out of 8000000 for 9000
+ 22129 strings out of 479417
+ 420872 string characters out of 5884551
+ 853849 words of memory out of 5000000
+ 39221 multiletter control sequences out of 15000+600000
+ 539213 words of font info for 130 fonts, out of 8000000 for 9000
  1353 hyphenation exceptions out of 8191
- 59i,7n,131p,821b,856s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 59i,7n,131p,821b,858s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on quant_polisci.pdf (16 pages).
+Output written on quant_polisci.pdf (53 pages).

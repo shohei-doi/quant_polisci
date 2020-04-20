@@ -7,6 +7,13 @@
 }
 \makeatother
 
+\let\asdf\section
+\renewcommand{\section}{\chapter}
+\let\asdff\subsection
+\renewcommand{\subsection}{\asdf}
+\let\asdfff\subsubsection
+\renewcommand{\subsubsection}{\asdff}
+
 \usepackage{zxjatype}
 \setmainfont[BoldFont = Noto Serif CJK JP]{Noto Serif CJK JP Light}
 \setsansfont[BoldFont = Noto Sans CJK JP]{Noto Sans CJK JP Light}

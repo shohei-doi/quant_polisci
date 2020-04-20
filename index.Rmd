@@ -3,8 +3,7 @@ title: "Rで計量政治学入門"
 author: "土井　翔平"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
-output: bookdown::gitbook
-documentclass: bxjsarticle
+documentclass: bxjsreport
 bibliography: book.bib
 biblio-style: apalike
 link-citations: yes
@@ -26,11 +25,11 @@ description: "Rによる計量政治学の入門レベルの講義資料です�
 
 なお、RやRStudioのインストールについては[Rの分析環境]を、基本操作については[Rプログラミング入門]をご覧ください。
 
-## `Tidyverse`について {-}
+## Tidyverseについて {-}
 
-[`Tidyverse`](https://www.tidyverse.org/)とは様々なデータ操作に関するパッケージ群を指します。
-本書では、可能な限り、Rの標準関数を用いた表記と`Tidyverse`による表記を併記するようにします。
-しかし、筆者は`Tidyverse`に慣れているので、しばしば標準関数によるコードを省略します。
+[Tidyverse](https://www.tidyverse.org/)とは様々なデータ操作に関するパッケージ群（あるいはそのプロジェクト）を指します。
+本書では、可能な限り、Rの標準関数を用いた表記とTidyverseによる表記を併記するようにします。
+しかし、筆者はTidyverseに慣れているので、しばしば標準関数によるコードを省略します。
 
 ## ウェブサイトの操作 {-}
 
@@ -40,7 +39,7 @@ description: "Rによる計量政治学の入門レベルの講義資料です�
 - 三本線のボタンで目次の表示・非表示の切り替え
 - 虫眼鏡のマークで単語検索
 - Aのマークで文字の大きさ、フォント、色のコントロール
-- ダウンロードボタンで`.pdf`ファイルや`.epub`ファイルのダウンロード
+<!-- - ダウンロードボタンで`.pdf`ファイルや`.epub`ファイルのダウンロード -->
 - iのマークでキーボードによる操作方法の表示
 
 が可能です。

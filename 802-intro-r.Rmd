@@ -11,6 +11,10 @@ Rによるプログラミングの基本として、
 大雑把に言えば、Rではオブジェクトとしてデータを読み込み、関数によってオブジェクト（＝データ）の処理や分析を行います。
 パッケージによって様々な関数を追加することで、処理や分析の幅を広げます。
 
+RStudioでは左（下）にコンソールが表示され、`>`の右側にコマンドを打ち込み、`Enter`を押すことで実行されます。
+
+- 本格的に分析する場合はRスクリプトを作成します。
+
 ## 関数
 
 **関数** (function) とは何かを入力すると、何かを出力するものです。
@@ -90,6 +94,12 @@ x <- rnorm(20)
 x
 ```
 
+RStudioの場合、右上の`Environment`パネルに生成されたオブジェクトが表示されます。
+
+```{r, echo=FALSE}
+knitr::include_graphics("figures/intro_r1.jpg")
+```
+
 オブジェクトを入力引数とすることも可能です。
 `x`の平均と標準偏差を求めてみます。
 
@@ -125,6 +135,9 @@ x.mean
 そこで、様々な研究者が関数を作成し、それをまとめたものを**パッケージ**として公開しています。
 
 - 基本的に、[CRAN](https://cran.r-project.org/)でパッケージは公開されます。
+- ライブラリやモジュールと呼んだりすることもあります。
+
+### CRANからのインストール
 
 パッケージをインストールするには、`install.packages()`という関数にパッケージ名を入れて実行します。
 試しに、[Tidyverse](https://www.tidyverse.org/)という幅広く使われているパッケージをインストールしてみます。
@@ -133,17 +146,42 @@ x.mean
 install.packages("tidyverse")
 ```
 
-- RStudioの場合、`Packages`パネル（デフォルトの場合は右下）の中に`Install`というボタンがあり、そこにパッケージ名を入力していインストールすることも可能です。
-
 `"`でパッケージ名を囲まないとエラーになります。
 
 ```{r, error=TRUE}
 install.packages(tidyverse)
 ```
 
+RStudioの場合、`Packages`パネル（デフォルトの場合は右下）の中に`Install`というボタンがあり、
+
+```{r, echo=FALSE}
+knitr::include_graphics("figures/intro_r2.jpg")
+```
+
+そこにパッケージ名を入力してインストールすることも可能です。
+
+```{r, echo=FALSE}
+knitr::include_graphics("figures/intro_r3.jpg")
+```
+
 インストールしたパッケージに対して再び`install.packages()`を行うと、最新版にアップデートされます。
 
 - RStudioの場合、`Packages`パネルに`Update`というボタンがあり、アップデートできるパッケージを自動検索してくれます。
+
+### GitHubからのインストール*
+
+パッケージの開発版や一部のパッケージは[GitHub](https://github.com/)上で公開されています。
+
+GitHub上のパッケージをインストールする場合は`devtools`というパッケージを使うので、まずはインストールと読み込みを行います。
+
+```{r, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+```
+
+インストールには`install_github()`を使いますが、入力はパッケージ名ではなく`ユーザー名/レポジトリ名`となる点に注意してください。
+
+### パッケージの読み込み
 
 パッケージはインストールしただけでは使用することはできず、`library()`で読み込む必要があります。
 
@@ -159,9 +197,9 @@ RStudioであれば`Packages`パネルにインストール済みのパッケー
 - 同様のものは[CRAN](https://cran.r-project.org/)でも`pdf`形式で見ることができます。
 - 一部のソフトウェアは[Journal of Statistical Software](https://www.jstatsoft.org/index)などで論文が公開されています。
 
-### `Tidyverse`とは*
+### `tidyverse`とは*
 
-`Tidyverse`とは広義にはRにおけるデータ処理を行うためのパッケージを開発するプロジェクトであり、狭義にはそこで開発されたパッケージの一部を指します。
+Tidyverseとは広義にはRにおけるデータ処理を行うためのパッケージを開発するプロジェクトであり、狭義にはそこで開発されたパッケージの一部を指します。
 具体的には、
 
 - `ggplot2`
