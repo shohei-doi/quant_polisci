@@ -1,0 +1,103 @@
+# 変数の作成 {#create-vars}
+
+ここではTriangulating Peaceの[レプリケーションデータ](data/triangle.csv)を使用します。
+
+```{r}
+library(tidyverse)
+data <- read_csv("data/triangle.csv")
+```
+
+```{r, echo=FALSE}
+library(knitr)
+```
+
+## 四則演算
+
+基本的にオブジェクトに`$`をつけて新しい変数名をつけて代入することで新しい変数を作成します。
+例えば、A国とB国の民主主義度である`demauta`と`demautb`の平均`demautm`を作成するには次のようにします。
+
+```{r}
+data$demautm <- (data$demauta + data$demautb)/2
+head(select(data, demauta, demautb, demautm))
+```
+
+- 四則演算は`+`（足し算）、`-`（引き算）、`*`（掛け算）、`/`（割り算）で行います。
+- 他にも、`%%`（整数商）や`^`（累乗）もあります。
+
+`tidyverse`表記の場合、`dplyr`の`mutate()`を使います。
+この関数は第1引数にデータフレームを取り、その後ろに新しい変数の定義を書きます。
+
+```{r}
+data <- mutate(data, 
+               demautm = (demauta + demautb)/2)
+head(select(data, demauta, demautb, demautm))
+```
+
+## 条件に基づく変数
+
+`ifelse()`関数を使うと条件によって値の変わる変数を作成します。
+例えば、`smldep`とは`dependa`と`dependb`の小さい方なので、これを`mindep`とすると次のように作成します。
+
+```{r}
+data$mindep <- ifelse(data$dependa < data$demautb, data$dependa, data$dependb)
+head(select(data, dependa, dependb, smldep, mindep))
+```
+
+さて、`if_else()`は何をしているのでしょうか？
+まず、第1引数は条件式となっています。
+そして、その条件を満たす場合は第2引数を、満たさない場合は第3引数を出力します。
+つまり、`dependa`が`dependb`よりも小さければ`dependa`を、大きければ`dependb`を返しています。
+
+`tidyverse`の場合は、ほとんど同じですが、`if_else()`という関数を使います。
+
+```{r}
+data <- mutate(data,
+               if_else(dependa < demautb, dependa, dependb))
+head(select(data, dependa, dependb, smldep, mindep))
+```
+
+`tidyverse`の`case_when()`を使うと条件に応じて作る変数の値を2種類以上にすることができます。
+例えば、`1919`年までを`prewar`、`1920`年から`1945`年を`interwar`、`1946`年からを`coldwar`とするような変数`system`を作ります。
+
+```{r}
+data <- mutate(data, 
+               system = case_when(year <= 1919 ~ "prewar",
+                                  year > 1919 & year <= 1945 ~ "interwar",
+                                  year > 1945 ~ "coldwar"))
+```
+
+長くなるので、実行しませんが、`table()`によって、`year`と`system`の対応関係をクロス表にできます.
+
+```{r}
+table(data$system, data$year)
+```
+
+ちなみに、`mutate()`の中では複数の変数を同時に作成することができます。
+
+```{r}
+data <- mutate(data, 
+               demautm = (demauta + demautb)/2,
+               if_else(dependa < demautb, dependa, dependb))
+```
+
+## ラグ変数*
+
+パネルデータの場合、ラグ変数（前の時点の変数）を作成することがあります。
+`tidyverse`の`dplyr`にある`group_by()`というグループ化する関数を使うとラグ変数を作成できます。
+例えば、`smldep`のラグ変数を`lag_smldep`として作成するとします。
+
+このデータセットでは分析単位はダイアッドなので、`cstatea`と`stateb`でグループ化して変数を作ります。
+`lag()`によって変数のラグを取ることができ、`order_by`でどの変数に関してラグを取るかを決めることができます。
+
+```{r}
+data <- data %>% 
+  group_by(statea, stateb) %>% 
+  mutate(lag_smldep = lag(smldep, order_by = year))
+data %>% 
+  select(statea, stateb, year, smldep, lag_smldep) %>% 
+  head()
+```
+
+- `lead()`によってリードを取ることもできます。
+
+## 日付変数*

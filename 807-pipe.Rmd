@@ -1,0 +1,175 @@
+# パイプ演算子` %>% `について* {#pipe}
+
+こいつは`tidyverse`内の`magrittr`というパッケージの機能で、パイプ演算子あるいは単にパイプと呼ばれたりします。
+
+以下のサイトが参考になりました。
+
+- R for Data Scienceの[Pipes](https://r4ds.had.co.nz/pipes.html)
+- [magrittrのvignetteの訳](https://qiita.com/nozma/items/9e52b446c813d7e92c8a)
+
+```{r}
+library(tidyverse)
+library(magrittr)
+```
+
+## 基本的な使い方
+
+基本的に`%>%`は左辺の出力を右辺の関数の第1引数にします。
+つまり、`f %>% g`は`g(f)`と同値です。
+ちなみに、RStudioでは`Shift + Ctrl + M`で入力します。
+
+```{r}
+summary(iris)
+iris %>% summary()
+```
+
+これだけだとパイプ演算子のご利益は分かりにくいですが、コードが長くなるにつれてその力を発揮します。
+例えば、`iris`の各品種について各変数の平均と中央値を求めてみます。
+
+パイプ演算子を使うと次のように一行のコードで書くことができます。
+
+```{r, eval=FALSE}
+iris %>% 
+  pivot_longer(-Species, names_to = "var", values_to = "val") %>% 
+  group_by(var, Species) %>% 
+  summarise(mean = mean(val),
+            median = median(val))
+```
+
+```{r}
+iris %>% 
+  pivot_longer(-Species, names_to = "var", values_to = "val") %>% 
+  group_by(var, Species) %>% 
+  summarise(mean = mean(val),
+            median = median(val)) %>% 
+  knitr::kable()
+```
+
+これをパイプ演算子を使わないと、次のようになります。
+
+```{r, eval=FALSE}
+summarise(group_by(pivot_longer(iris, -Species, names_to = "var", values_to = "val"), var, Species), mean = mean(val), median = median(val))
+```
+
+```{r}
+summarise(group_by(pivot_longer(iris, -Species, names_to = "var", values_to = "val"), var, Species), mean = mean(val), median = median(val)) %>% 
+  knitr::kable()
+```
+
+あるいは適当なオブジェクトを作成して次のようにします。
+
+```{r, eval=FALSE}
+temp <- pivot_longer(iris, -Species, names_to = "var", values_to = "val")
+temp <- group_by(temp, var, Species)
+temp <- summarise(temp, mean = mean(val), median = median(val))
+temp
+```
+
+```{r}
+temp <- pivot_longer(iris, -Species, names_to = "var", values_to = "val")
+temp <- group_by(temp, var, Species)
+temp <- summarise(temp, mean = mean(val), median = median(val))
+knitr::kable(temp)
+```
+
+このように考えるとパイプ演算子のご利益は次のようにまとめられます。
+
+1. 処理をする順番に関数が登場するので可読性を高めることができる。
+1. 一行でコードを書くことができるので無駄なオブジェクトを作らなくてよい。
+
+## データの代入
+
+データを加工する際、パイプを使うと基本的にはこのようになります。
+
+```{r}
+iris <- iris %>% 
+  mutate(species = case_when(Species == "setosa" ~ 0,
+                             Species == "versicolor" ~ 1,
+                             Species == "virginica" ~ 2))
+summary(iris)
+```
+
+しかし、左から右に流れるべきと思う場合は次のように書くこともできます。
+
+```{r}
+iris %>% 
+  mutate(species = case_when(Species == "setosa" ~ 0,
+                             Species == "versicolor" ~ 1,
+                             Species == "virginica" ~ 2)) -> iris
+summary(iris)
+```
+
+あるいは`%<>%`という演算子を使うこともできます。
+
+```{r}
+iris %<>% 
+  mutate(species = case_when(Species == "setosa" ~ 0,
+                             Species == "versicolor" ~ 1,
+                             Species == "virginica" ~ 2))
+summary(iris)
+```
+
+## 左辺の参照
+
+基本的にはパイプ演算子の左辺を右辺の第1引数にしますが、`.`を使うことで任意の引数にすることができます。
+例えば、`iris`で`setosa`を除外して回帰分析をしたい場合、第1引数は`formula`なので普通はパイプで繋げることはできないが、以下のように書くことができます。
+
+```{r}
+iris %>% 
+  filter(Species != "setosa") %>% 
+  lm(Sepal.Length ~ Sepal.Width, data = .) %>% 
+  summary()
+```
+
+また、`%$%`という演算子は右辺において左辺のデータを参照せずに変数名を指定することができます。
+したがって、次のように書くこともできます。
+
+```{r}
+iris %>% 
+  filter(Species != "setosa") %$% 
+  lm(Sepal.Length ~ Sepal.Width) %>% 
+  summary()
+```
+
+これは、次のコードと同値です。
+
+```{r}
+iris %>% 
+  filter(Species != "setosa") %>% 
+  {
+    lm(.$Sepal.Length ~ .$Sepal.Width)
+  } %>% 
+  summary()
+```
+
+## 複数の出力
+
+`.`を使うことで複数の出力を行うことも可能です。
+
+```{r}
+iris$Sepal.Length %>% 
+  {
+    mean(.) %>% print()
+    median(.) %>% print()
+    var(.) %>% print()
+  }
+```
+
+`$T>$`という演算子を使うと右辺は評価されるが、返り値は左辺のままになります。
+例えば、`plot()`に流すことで図を出力しつつ、`iris`を`summary()`にも流すことができます。
+
+```{r}
+iris %T>%
+  plot() %>% 
+  summary()
+```
+
+これは、以下のコードと同値です。
+
+```{r}
+iris %>% 
+  {
+    plot(.)
+    summary(.)
+  }
+```

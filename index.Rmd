@@ -10,7 +10,7 @@ link-citations: yes
 github-repo: shohei-doi/quant_polisci
 description: "Rによる計量政治学の入門レベルの講義資料です。"
 ---
-
+  
 # はじめに {-#index}
 
 本書はRによる計量政治学の入門レベルの講義資料です。
