@@ -4,7 +4,7 @@
 
 ```{r}
 library(tidyverse)
-data <- read_csv("data/triangle.csv")
+tri <- read_csv("data/triangle.csv")
 ```
 
 ```{r, echo=FALSE}
@@ -17,8 +17,8 @@ library(knitr)
 例えば、A国とB国の民主主義度である`demauta`と`demautb`の平均`demautm`を作成するには次のようにします。
 
 ```{r}
-data$demautm <- (data$demauta + data$demautb)/2
-data %>% 
+tri$demautm <- (tri$demauta + tri$demautb)/2
+tri %>% 
   select(demauta, demautb, demautm) %>% 
   head()
 ```
@@ -30,9 +30,9 @@ data %>%
 この関数は第1引数にデータフレームを取り、その後ろに新しい変数の定義を書きます。
 
 ```{r}
-data <- mutate(data, 
-               demautm = (demauta + demautb)/2)
-data %>% 
+tri <- tri %>% 
+  mutate(demautm = (demauta + demautb)/2)
+tri %>% 
   select(demauta, demautb, demautm) %>% 
   head()
 ```
@@ -43,8 +43,8 @@ data %>%
 例えば、`smldep`とは`dependa`と`dependb`の小さい方なので、これを`mindep`とすると次のように作成します。
 
 ```{r}
-data$mindep <- ifelse(data$dependa < data$demautb, data$dependa, data$dependb)
-data %>% 
+tri$mindep <- ifelse(tri$dependa < tri$demautb, tri$dependa, tri$dependb)
+tri %>% 
   select(dependa, dependb, smldep, mindep) %>% 
   head()
 ```
@@ -57,9 +57,9 @@ data %>%
 `tidyverse`の場合は、ほとんど同じですが、`if_else()`という関数を使います。
 
 ```{r}
-data <- mutate(data,
-               if_else(dependa < demautb, dependa, dependb))
-data %>% 
+tri <- tri %>% 
+  mutate(if_else(dependa < demautb, dependa, dependb))
+tri %>% 
   select(dependa, dependb, smldep, mindep) %>% 
   head()
 ```
@@ -68,24 +68,24 @@ data %>%
 例えば、`1919`年までを`prewar`、`1920`年から`1945`年を`interwar`、`1946`年からを`coldwar`とするような変数`system`を作ります。
 
 ```{r}
-data <- mutate(data, 
-               system = case_when(year <= 1919 ~ "prewar",
-                                  year > 1919 & year <= 1945 ~ "interwar",
-                                  year > 1945 ~ "coldwar"))
+tri <- tri %>% 
+  mutate(system = case_when(year <= 1919 ~ "prewar",
+                            year > 1919 & year <= 1945 ~ "interwar",
+                            year > 1945 ~ "coldwar"))
 ```
 
 長くなるので、実行しませんが、`table()`によって、`year`と`system`の対応関係をクロス表にできます.
 
 ```{r}
-table(data$system, data$year)
+table(tri$system, tri$year)
 ```
 
 ちなみに、`mutate()`の中では複数の変数を同時に作成することができます。
 
 ```{r}
-data <- mutate(data, 
-               demautm = (demauta + demautb)/2,
-               if_else(dependa < demautb, dependa, dependb))
+tri <- tri %>% 
+  mutate(demautm = (demauta + demautb)/2,
+         if_else(dependa < demautb, dependa, dependb))
 ```
 
 ## ラグ変数*
@@ -98,10 +98,10 @@ data <- mutate(data,
 `lag()`によって変数のラグを取ることができ、`order_by`でどの変数に関してラグを取るかを決めることができます。
 
 ```{r}
-data <- data %>% 
+tri <- tri %>% 
   group_by(statea, stateb) %>% 
   mutate(lag_smldep = lag(smldep, order_by = year))
-data %>% 
+tri %>% 
   select(statea, stateb, year, smldep, lag_smldep) %>% 
   head()
 ```

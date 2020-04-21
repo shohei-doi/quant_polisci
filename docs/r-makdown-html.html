@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第12章 R Markdown: HTML | Rで計量政治学入門</title>
+  <title>第13章 R Markdown: HTML | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第12章 R Markdown: HTML | Rで計量政治学入門" />
+  <meta property="og:title" content="第13章 R Markdown: HTML | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第12章 R Markdown: HTML | Rで計量政治学入門" />
+  <meta name="twitter:title" content="第13章 R Markdown: HTML | Rで計量政治学入門" />
   
   <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-04-21" />
+<meta name="date" content="2020-04-22" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -240,130 +240,143 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.4" data-path="qualtrics.html"><a href="qualtrics.html#tidyverseな方法-1"><i class="fa fa-check"></i><b>8.4</b> tidyverseな方法</a></li>
 <li class="chapter" data-level="8.5" data-path="qualtrics.html"><a href="qualtrics.html#おまけ"><i class="fa fa-check"></i><b>8.5</b> おまけ</a></li>
 </ul></li>
-<li class="part"><span><b>II R/RStudio</b></span></li>
-<li class="chapter" data-level="9" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>9</b> Rの分析環境</a><ul>
-<li class="chapter" data-level="9.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>9.1</b> Rのインストール</a><ul>
-<li class="chapter" data-level="9.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>9.1.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="9.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>9.1.2</b> インストール</a></li>
+<li class="part"><span><b>II データの可視化</b></span></li>
+<li class="chapter" data-level="9" data-path="desc-stats.html"><a href="desc-stats.html"><i class="fa fa-check"></i><b>9</b> データの要約</a><ul>
+<li class="chapter" data-level="9.1" data-path="desc-stats.html"><a href="desc-stats.html#データを見る"><i class="fa fa-check"></i><b>9.1</b> データを見る</a></li>
+<li class="chapter" data-level="9.2" data-path="desc-stats.html"><a href="desc-stats.html#記述統計"><i class="fa fa-check"></i><b>9.2</b> 記述統計</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="desc-stats.html"><a href="desc-stats.html#平均"><i class="fa fa-check"></i><b>9.2.1</b> 平均</a></li>
+<li class="chapter" data-level="9.2.2" data-path="desc-stats.html"><a href="desc-stats.html#分散と標準偏差"><i class="fa fa-check"></i><b>9.2.2</b> 分散と標準偏差</a></li>
+<li class="chapter" data-level="9.2.3" data-path="desc-stats.html"><a href="desc-stats.html#分位点"><i class="fa fa-check"></i><b>9.2.3</b> 分位点</a></li>
+<li class="chapter" data-level="9.2.4" data-path="desc-stats.html"><a href="desc-stats.html#記述統計表"><i class="fa fa-check"></i><b>9.2.4</b> 記述統計表</a></li>
 </ul></li>
-<li class="chapter" data-level="9.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>9.2</b> RStudioのインストール</a><ul>
-<li class="chapter" data-level="9.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>9.2.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="9.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>9.2.2</b> インストール</a></li>
-<li class="chapter" data-level="9.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>9.2.3</b> RStudioの起動</a></li>
-<li class="chapter" data-level="9.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>9.2.4</b> RStudio Cloud*</a></li>
+<li class="chapter" data-level="9.3" data-path="desc-stats.html"><a href="desc-stats.html#データのカウント"><i class="fa fa-check"></i><b>9.3</b> データのカウント</a></li>
+<li class="chapter" data-level="9.4" data-path="desc-stats.html"><a href="desc-stats.html#グループごとの要約"><i class="fa fa-check"></i><b>9.4</b> グループごとの要約</a></li>
+<li class="chapter" data-level="9.5" data-path="desc-stats.html"><a href="desc-stats.html#ユニークなデータ"><i class="fa fa-check"></i><b>9.5</b> ユニークなデータ*</a></li>
 </ul></li>
-<li class="chapter" data-level="9.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>9.3</b> 再現可能な分析のために</a><ul>
-<li class="chapter" data-level="9.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>9.3.1</b> Rスクリプト</a></li>
-<li class="chapter" data-level="9.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>9.3.2</b> Rプロジェクト</a></li>
-<li class="chapter" data-level="9.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>9.3.3</b> RStudioの設定*</a></li>
+<li class="part"><span><b>III R/RStudio</b></span></li>
+<li class="chapter" data-level="10" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>10</b> Rの分析環境</a><ul>
+<li class="chapter" data-level="10.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>10.1</b> Rのインストール</a><ul>
+<li class="chapter" data-level="10.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>10.1.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="10.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>10.1.2</b> インストール</a></li>
 </ul></li>
+<li class="chapter" data-level="10.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>10.2</b> RStudioのインストール</a><ul>
+<li class="chapter" data-level="10.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>10.2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="10.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>10.2.2</b> インストール</a></li>
+<li class="chapter" data-level="10.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>10.2.3</b> RStudioの起動</a></li>
+<li class="chapter" data-level="10.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>10.2.4</b> RStudio Cloud*</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>10</b> Rプログラミング入門</a><ul>
-<li class="chapter" data-level="10.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>10.1</b> 関数</a><ul>
-<li class="chapter" data-level="10.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>10.1.1</b> 総称関数*</a></li>
-</ul></li>
-<li class="chapter" data-level="10.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>10.2</b> オブジェクト</a></li>
-<li class="chapter" data-level="10.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>10.3</b> パッケージ</a><ul>
-<li class="chapter" data-level="10.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>10.3.1</b> CRANからのインストール</a></li>
-<li class="chapter" data-level="10.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>10.3.2</b> GitHubからのインストール*</a></li>
-<li class="chapter" data-level="10.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>10.3.3</b> パッケージの読み込み</a></li>
-<li class="chapter" data-level="10.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>10.3.4</b> <code>tidyverse</code>とは*</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="11" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>11</b> Rプログラミング応用*</a><ul>
-<li class="chapter" data-level="11.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>11.1</b> オブジェクトのクラス</a></li>
-<li class="chapter" data-level="11.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>11.2</b> 関数の作成</a></li>
-<li class="chapter" data-level="11.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>11.3</b> ループ</a></li>
-<li class="chapter" data-level="11.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>11.4</b> 条件分岐</a></li>
-<li class="chapter" data-level="11.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>11.5</b> 練習問題</a><ul>
-<li class="chapter" data-level="11.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>11.5.1</b> フィボナッチ数列</a></li>
-<li class="chapter" data-level="11.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>11.5.2</b> モンテカルロ・シミュレーション</a></li>
+<li class="chapter" data-level="10.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>10.3</b> 再現可能な分析のために</a><ul>
+<li class="chapter" data-level="10.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>10.3.1</b> Rスクリプト</a></li>
+<li class="chapter" data-level="10.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>10.3.2</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="10.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>10.3.3</b> RStudioの設定*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="r-makdown-html.html"><a href="r-makdown-html.html"><i class="fa fa-check"></i><b>12</b> R Markdown: HTML</a><ul>
-<li class="chapter" data-level="12.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>12.1</b> R Markdownファイルの作成</a><ul>
-<li class="chapter" data-level="12.1.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>12.1.1</b> 参考になるサイト</a></li>
+<li class="chapter" data-level="11" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>11</b> Rプログラミング入門</a><ul>
+<li class="chapter" data-level="11.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>11.1</b> 関数</a><ul>
+<li class="chapter" data-level="11.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>11.1.1</b> 総称関数*</a></li>
 </ul></li>
-<li class="chapter" data-level="12.2" data-path="r-makdown-html.html"><a href="r-makdown-html.html#markdown記法"><i class="fa fa-check"></i><b>12.2</b> Markdown記法</a><ul>
-<li class="chapter" data-level="12.2.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#markdownとは"><i class="fa fa-check"></i><b>12.2.1</b> Markdownとは*</a></li>
-<li class="chapter" data-level="12.2.2" data-path="r-makdown-html.html"><a href="r-makdown-html.html#セクション"><i class="fa fa-check"></i><b>12.2.2</b> セクション</a></li>
-<li class="chapter" data-level="12.2.3" data-path="r-makdown-html.html"><a href="r-makdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>12.2.3</b> パラグラフ</a></li>
-<li class="chapter" data-level="12.2.4" data-path="r-makdown-html.html"><a href="r-makdown-html.html#箇条書き"><i class="fa fa-check"></i><b>12.2.4</b> 箇条書き</a></li>
-<li class="chapter" data-level="12.2.5" data-path="r-makdown-html.html"><a href="r-makdown-html.html#文字の強調"><i class="fa fa-check"></i><b>12.2.5</b> 文字の強調</a></li>
-<li class="chapter" data-level="12.2.6" data-path="r-makdown-html.html"><a href="r-makdown-html.html#引用"><i class="fa fa-check"></i><b>12.2.6</b> 引用</a></li>
-<li class="chapter" data-level="12.2.7" data-path="r-makdown-html.html"><a href="r-makdown-html.html#リンク"><i class="fa fa-check"></i><b>12.2.7</b> リンク</a></li>
-<li class="chapter" data-level="12.2.8" data-path="r-makdown-html.html"><a href="r-makdown-html.html#画像表"><i class="fa fa-check"></i><b>12.2.8</b> 画像、表</a></li>
-<li class="chapter" data-level="12.2.9" data-path="r-makdown-html.html"><a href="r-makdown-html.html#数式"><i class="fa fa-check"></i><b>12.2.9</b> 数式</a></li>
-</ul></li>
-<li class="chapter" data-level="12.3" data-path="r-makdown-html.html"><a href="r-makdown-html.html#rチャンク"><i class="fa fa-check"></i><b>12.3</b> Rチャンク</a><ul>
-<li class="chapter" data-level="12.3.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>12.3.1</b> チャンクオプション</a></li>
-</ul></li>
-<li class="chapter" data-level="12.4" data-path="r-makdown-html.html"><a href="r-makdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>12.4</b> yamlヘッダー</a><ul>
-<li class="chapter" data-level="12.4.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#output"><i class="fa fa-check"></i><b>12.4.1</b> output</a></li>
-<li class="chapter" data-level="12.4.2" data-path="r-makdown-html.html"><a href="r-makdown-html.html#目次"><i class="fa fa-check"></i><b>12.4.2</b> 目次</a></li>
-<li class="chapter" data-level="12.4.3" data-path="r-makdown-html.html"><a href="r-makdown-html.html#テーマ"><i class="fa fa-check"></i><b>12.4.3</b> テーマ</a></li>
-<li class="chapter" data-level="12.4.4" data-path="r-makdown-html.html"><a href="r-makdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>12.4.4</b> htmlとcss</a></li>
-</ul></li>
-<li class="chapter" data-level="12.5" data-path="r-makdown-html.html"><a href="r-makdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>12.5</b> その他のテンプレート</a><ul>
-<li class="chapter" data-level="12.5.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#distill"><i class="fa fa-check"></i><b>12.5.1</b> Distill</a></li>
-<li class="chapter" data-level="12.5.2" data-path="r-makdown-html.html"><a href="r-makdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>12.5.2</b> Tufte Handout</a></li>
-<li class="chapter" data-level="12.5.3" data-path="r-makdown-html.html"><a href="r-makdown-html.html#rmdformats"><i class="fa fa-check"></i><b>12.5.3</b> rmdformats</a></li>
-<li class="chapter" data-level="12.5.4" data-path="r-makdown-html.html"><a href="r-makdown-html.html#スライド"><i class="fa fa-check"></i><b>12.5.4</b> スライド</a></li>
-<li class="chapter" data-level="12.5.5" data-path="r-makdown-html.html"><a href="r-makdown-html.html#ダッシュボード"><i class="fa fa-check"></i><b>12.5.5</b> ダッシュボード</a></li>
-<li class="chapter" data-level="12.5.6" data-path="r-makdown-html.html"><a href="r-makdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>12.5.6</b> Microsoft Office</a></li>
+<li class="chapter" data-level="11.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>11.2</b> オブジェクト</a></li>
+<li class="chapter" data-level="11.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>11.3</b> パッケージ</a><ul>
+<li class="chapter" data-level="11.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>11.3.1</b> CRANからのインストール</a></li>
+<li class="chapter" data-level="11.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>11.3.2</b> GitHubからのインストール*</a></li>
+<li class="chapter" data-level="11.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>11.3.3</b> パッケージの読み込み</a></li>
+<li class="chapter" data-level="11.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>11.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>13</b> R Markdown: pdf</a><ul>
-<li class="chapter" data-level="13.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>13.1</b> LaTeXの導入</a><ul>
-<li class="chapter" data-level="13.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>13.1.1</b> tinytexのインストール</a></li>
-<li class="chapter" data-level="13.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>13.1.2</b> タイプセット</a></li>
-</ul></li>
-<li class="chapter" data-level="13.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>13.2</b> 日本語環境の構築</a><ul>
-<li class="chapter" data-level="13.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>13.2.1</b> LaTeXエンジンのあれこれ*</a></li>
-<li class="chapter" data-level="13.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>13.2.2</b> yamlヘッダー</a></li>
-<li class="chapter" data-level="13.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>13.2.3</b> フォントのインストール</a></li>
-<li class="chapter" data-level="13.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>13.2.4</b> その他のテンプレート</a></li>
-<li class="chapter" data-level="13.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>13.2.5</b> Sumatra PDF</a></li>
-</ul></li>
-<li class="chapter" data-level="13.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>13.3</b> スライドの作成</a><ul>
-<li class="chapter" data-level="13.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-1"><i class="fa fa-check"></i><b>13.3.1</b> テーマ</a></li>
-</ul></li>
-<li class="chapter" data-level="13.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>13.4</b> LaTeX記法</a><ul>
-<li class="chapter" data-level="13.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>13.4.1</b> 定理環境</a></li>
-<li class="chapter" data-level="13.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>13.4.2</b> 数式</a></li>
-</ul></li>
-<li class="chapter" data-level="13.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>13.5</b> 参考文献と引用</a><ul>
-<li class="chapter" data-level="13.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>13.5.1</b> .bibファイル</a></li>
-<li class="chapter" data-level="13.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>13.5.2</b> 文献の引用</a></li>
-<li class="chapter" data-level="13.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>13.5.3</b> 日本語文献の引用</a></li>
+<li class="chapter" data-level="12" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>12</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="12.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>12.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="12.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>12.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="12.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>12.3</b> ループ</a></li>
+<li class="chapter" data-level="12.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>12.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="12.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>12.5</b> 練習問題</a><ul>
+<li class="chapter" data-level="12.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>12.5.1</b> フィボナッチ数列</a></li>
+<li class="chapter" data-level="12.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>12.5.2</b> モンテカルロ・シミュレーション</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>14</b> Rにおける文字コード*</a><ul>
-<li class="chapter" data-level="14.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>14.1</b> なぜ文字化けが起こるのか</a><ul>
-<li class="chapter" data-level="14.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>14.1.1</b> エンコーディング</a></li>
-<li class="chapter" data-level="14.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>14.1.2</b> RとRStudioにおける問題</a></li>
+<li class="chapter" data-level="13" data-path="r-makdown-html.html"><a href="r-makdown-html.html"><i class="fa fa-check"></i><b>13</b> R Markdown: HTML</a><ul>
+<li class="chapter" data-level="13.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>13.1</b> R Markdownファイルの作成</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>13.1.1</b> 参考になるサイト</a></li>
 </ul></li>
-<li class="chapter" data-level="14.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>14.2</b> Rスクリプトの文字化け</a><ul>
-<li class="chapter" data-level="14.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>14.2.1</b> ファイルを開く</a></li>
-<li class="chapter" data-level="14.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>14.2.2</b> ファイルを保存する</a></li>
+<li class="chapter" data-level="13.2" data-path="r-makdown-html.html"><a href="r-makdown-html.html#markdown記法"><i class="fa fa-check"></i><b>13.2</b> Markdown記法</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#markdownとは"><i class="fa fa-check"></i><b>13.2.1</b> Markdownとは*</a></li>
+<li class="chapter" data-level="13.2.2" data-path="r-makdown-html.html"><a href="r-makdown-html.html#セクション"><i class="fa fa-check"></i><b>13.2.2</b> セクション</a></li>
+<li class="chapter" data-level="13.2.3" data-path="r-makdown-html.html"><a href="r-makdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>13.2.3</b> パラグラフ</a></li>
+<li class="chapter" data-level="13.2.4" data-path="r-makdown-html.html"><a href="r-makdown-html.html#箇条書き"><i class="fa fa-check"></i><b>13.2.4</b> 箇条書き</a></li>
+<li class="chapter" data-level="13.2.5" data-path="r-makdown-html.html"><a href="r-makdown-html.html#文字の強調"><i class="fa fa-check"></i><b>13.2.5</b> 文字の強調</a></li>
+<li class="chapter" data-level="13.2.6" data-path="r-makdown-html.html"><a href="r-makdown-html.html#引用"><i class="fa fa-check"></i><b>13.2.6</b> 引用</a></li>
+<li class="chapter" data-level="13.2.7" data-path="r-makdown-html.html"><a href="r-makdown-html.html#リンク"><i class="fa fa-check"></i><b>13.2.7</b> リンク</a></li>
+<li class="chapter" data-level="13.2.8" data-path="r-makdown-html.html"><a href="r-makdown-html.html#画像表"><i class="fa fa-check"></i><b>13.2.8</b> 画像、表</a></li>
+<li class="chapter" data-level="13.2.9" data-path="r-makdown-html.html"><a href="r-makdown-html.html#数式"><i class="fa fa-check"></i><b>13.2.9</b> 数式</a></li>
 </ul></li>
-<li class="chapter" data-level="14.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>14.3</b> データの文字化け</a><ul>
-<li class="chapter" data-level="14.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>14.3.1</b> 標準関数の場合</a></li>
-<li class="chapter" data-level="14.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>14.3.2</b> tidyverseの場合</a></li>
-<li class="chapter" data-level="14.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>14.3.3</b> エンコーディングを確認する方法</a></li>
-<li class="chapter" data-level="14.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>14.3.4</b> もとのデータを見たい場合</a></li>
-<li class="chapter" data-level="14.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>14.3.5</b> データを保存する場合</a></li>
+<li class="chapter" data-level="13.3" data-path="r-makdown-html.html"><a href="r-makdown-html.html#rチャンク"><i class="fa fa-check"></i><b>13.3</b> Rチャンク</a><ul>
+<li class="chapter" data-level="13.3.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>13.3.1</b> チャンクオプション</a></li>
 </ul></li>
-<li class="chapter" data-level="14.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>14.4</b> その他の問題</a><ul>
-<li class="chapter" data-level="14.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>14.4.1</b> アカウント名が日本語の場合</a></li>
-<li class="chapter" data-level="14.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>14.4.2</b> 画像で日本語が文字化けする場合</a></li>
+<li class="chapter" data-level="13.4" data-path="r-makdown-html.html"><a href="r-makdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>13.4</b> yamlヘッダー</a><ul>
+<li class="chapter" data-level="13.4.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#output"><i class="fa fa-check"></i><b>13.4.1</b> output</a></li>
+<li class="chapter" data-level="13.4.2" data-path="r-makdown-html.html"><a href="r-makdown-html.html#目次"><i class="fa fa-check"></i><b>13.4.2</b> 目次</a></li>
+<li class="chapter" data-level="13.4.3" data-path="r-makdown-html.html"><a href="r-makdown-html.html#テーマ"><i class="fa fa-check"></i><b>13.4.3</b> テーマ</a></li>
+<li class="chapter" data-level="13.4.4" data-path="r-makdown-html.html"><a href="r-makdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>13.4.4</b> htmlとcss</a></li>
+</ul></li>
+<li class="chapter" data-level="13.5" data-path="r-makdown-html.html"><a href="r-makdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>13.5</b> その他のテンプレート</a><ul>
+<li class="chapter" data-level="13.5.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#distill"><i class="fa fa-check"></i><b>13.5.1</b> Distill</a></li>
+<li class="chapter" data-level="13.5.2" data-path="r-makdown-html.html"><a href="r-makdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>13.5.2</b> Tufte Handout</a></li>
+<li class="chapter" data-level="13.5.3" data-path="r-makdown-html.html"><a href="r-makdown-html.html#rmdformats"><i class="fa fa-check"></i><b>13.5.3</b> rmdformats</a></li>
+<li class="chapter" data-level="13.5.4" data-path="r-makdown-html.html"><a href="r-makdown-html.html#スライド"><i class="fa fa-check"></i><b>13.5.4</b> スライド</a></li>
+<li class="chapter" data-level="13.5.5" data-path="r-makdown-html.html"><a href="r-makdown-html.html#ダッシュボード"><i class="fa fa-check"></i><b>13.5.5</b> ダッシュボード</a></li>
+<li class="chapter" data-level="13.5.6" data-path="r-makdown-html.html"><a href="r-makdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>13.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="15" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>15</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
-<li class="chapter" data-level="15.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>15.1</b> 基本的な使い方</a></li>
-<li class="chapter" data-level="15.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>15.2</b> データの代入</a></li>
-<li class="chapter" data-level="15.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>15.3</b> 左辺の参照</a></li>
-<li class="chapter" data-level="15.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>15.4</b> 複数の出力</a></li>
+<li class="chapter" data-level="14" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>14</b> R Markdown: pdf</a><ul>
+<li class="chapter" data-level="14.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>14.1</b> LaTeXの導入</a><ul>
+<li class="chapter" data-level="14.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>14.1.1</b> tinytexのインストール</a></li>
+<li class="chapter" data-level="14.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>14.1.2</b> タイプセット</a></li>
+</ul></li>
+<li class="chapter" data-level="14.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>14.2</b> 日本語環境の構築</a><ul>
+<li class="chapter" data-level="14.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>14.2.1</b> LaTeXエンジンのあれこれ*</a></li>
+<li class="chapter" data-level="14.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>14.2.2</b> yamlヘッダー</a></li>
+<li class="chapter" data-level="14.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>14.2.3</b> フォントのインストール</a></li>
+<li class="chapter" data-level="14.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>14.2.4</b> その他のテンプレート</a></li>
+<li class="chapter" data-level="14.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>14.2.5</b> Sumatra PDF</a></li>
+</ul></li>
+<li class="chapter" data-level="14.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>14.3</b> スライドの作成</a><ul>
+<li class="chapter" data-level="14.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-1"><i class="fa fa-check"></i><b>14.3.1</b> テーマ</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>14.4</b> LaTeX記法</a><ul>
+<li class="chapter" data-level="14.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>14.4.1</b> 定理環境</a></li>
+<li class="chapter" data-level="14.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>14.4.2</b> 数式</a></li>
+</ul></li>
+<li class="chapter" data-level="14.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>14.5</b> 参考文献と引用</a><ul>
+<li class="chapter" data-level="14.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>14.5.1</b> .bibファイル</a></li>
+<li class="chapter" data-level="14.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>14.5.2</b> 文献の引用</a></li>
+<li class="chapter" data-level="14.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>14.5.3</b> 日本語文献の引用</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>15</b> Rにおける文字コード*</a><ul>
+<li class="chapter" data-level="15.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>15.1</b> なぜ文字化けが起こるのか</a><ul>
+<li class="chapter" data-level="15.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>15.1.1</b> エンコーディング</a></li>
+<li class="chapter" data-level="15.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>15.1.2</b> RとRStudioにおける問題</a></li>
+</ul></li>
+<li class="chapter" data-level="15.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>15.2</b> Rスクリプトの文字化け</a><ul>
+<li class="chapter" data-level="15.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>15.2.1</b> ファイルを開く</a></li>
+<li class="chapter" data-level="15.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>15.2.2</b> ファイルを保存する</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>15.3</b> データの文字化け</a><ul>
+<li class="chapter" data-level="15.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>15.3.1</b> 標準関数の場合</a></li>
+<li class="chapter" data-level="15.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>15.3.2</b> tidyverseの場合</a></li>
+<li class="chapter" data-level="15.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>15.3.3</b> エンコーディングを確認する方法</a></li>
+<li class="chapter" data-level="15.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>15.3.4</b> もとのデータを見たい場合</a></li>
+<li class="chapter" data-level="15.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>15.3.5</b> データを保存する場合</a></li>
+</ul></li>
+<li class="chapter" data-level="15.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>15.4</b> その他の問題</a><ul>
+<li class="chapter" data-level="15.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>15.4.1</b> アカウント名が日本語の場合</a></li>
+<li class="chapter" data-level="15.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>15.4.2</b> 画像で日本語が文字化けする場合</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>16</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="16.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>16.1</b> 基本的な使い方</a></li>
+<li class="chapter" data-level="16.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>16.2</b> データの代入</a></li>
+<li class="chapter" data-level="16.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>16.3</b> 左辺の参照</a></li>
+<li class="chapter" data-level="16.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>16.4</b> 複数の出力</a></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
@@ -388,7 +401,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="r-makdown-html" class="section level1">
-<h1><span class="header-section-number">第12章</span> R Markdown: HTML</h1>
+<h1><span class="header-section-number">第13章</span> R Markdown: HTML</h1>
 <p>データ分析の再現可能性の必要性は論を俟たないですが、再現可能性を担保するにはレプリケーションデータやコードを公開するだけでなく、それらが理解可能である必要があります。</p>
 <ul>
 <li>恐ろしいことに自分が書いたコードでさえ数カ月後に読み返すと意味がわからないことはまれによくあります。</li>
@@ -400,7 +413,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>更にノートブックからより見やすいファイルを作成することができ、そのファイルおよびシステムを<strong>R Markdown</strong>と呼びます。
 実は、と言うほどではないですが、このブログもR Markdownで書かれています。</p>
 <div id="r-markdownファイルの作成" class="section level2">
-<h2><span class="header-section-number">12.1</span> R Markdownファイルの作成</h2>
+<h2><span class="header-section-number">13.1</span> R Markdownファイルの作成</h2>
 <p>百聞は一見に如かずなので、一まずはR Markdownを使ってみます。
 まず、左上のファイルを作成するボタンを押し、<code>R Markdown...</code>を選択します。</p>
 <p><img src="figures/rmarkdown_html1.jpg" /><!-- --></p>
@@ -417,7 +430,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>.Rmd</code>ファイルを保存したフォルダに<code>.html</code>ファイルが生成されているはずです。
 <code>.html</code>ファイルとはウェブサイトを作成するためのファイルで、ウェブブラウザ（例、FirefoxやGoogle Chrome）で開くことできれいに見れます。</p>
 <div id="参考になるサイト" class="section level3">
-<h3><span class="header-section-number">12.1.1</span> 参考になるサイト</h3>
+<h3><span class="header-section-number">13.1.1</span> 参考になるサイト</h3>
 <ul>
 <li><a href="https://rmarkdown.rstudio.com/">R Markdownの公式サイト</a></li>
 <li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></li>
@@ -427,9 +440,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 </div>
 <div id="markdown記法" class="section level2">
-<h2><span class="header-section-number">12.2</span> Markdown記法</h2>
+<h2><span class="header-section-number">13.2</span> Markdown記法</h2>
 <div id="markdownとは" class="section level3">
-<h3><span class="header-section-number">12.2.1</span> Markdownとは*</h3>
+<h3><span class="header-section-number">13.2.1</span> Markdownとは*</h3>
 <p>R MarkdownとはMarkdownとRスクリプトを合体させたようなものです。
 ここではMarkdownについて説明しますが、読み飛ばしても構いません。</p>
 <p>Markdownとは計量マークアップ言語と呼ばれているように<a href="https://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%BC%E3%82%AF%E3%82%A2%E3%83%83%E3%83%97%E8%A8%80%E8%AA%9E">マークアップ言語</a>の一種です。
@@ -445,7 +458,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 なので、HTML記法を使うこともできます。</p>
 </div>
 <div id="セクション" class="section level3">
-<h3><span class="header-section-number">12.2.2</span> セクション</h3>
+<h3><span class="header-section-number">13.2.2</span> セクション</h3>
 <p>Markdownでは<code>#</code>を使ってセクションのタイトルを記述します。
 <code>#</code>が多くなればなるほどより小さな見出しになります。</p>
 <pre><code># レベル1
@@ -454,7 +467,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 #### レベル4</code></pre>
 </div>
 <div id="パラグラフ" class="section level3">
-<h3><span class="header-section-number">12.2.3</span> パラグラフ</h3>
+<h3><span class="header-section-number">13.2.3</span> パラグラフ</h3>
 <p>空行を入れると新しいパラグラフになります。</p>
 <pre><code>同じパラグラフです。
 同じパラグラフです。</code></pre>
@@ -470,7 +483,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="箇条書き" class="section level3">
-<h3><span class="header-section-number">12.2.4</span> 箇条書き</h3>
+<h3><span class="header-section-number">13.2.4</span> 箇条書き</h3>
 <p>番号なしの箇条書きの場合は<code>=</code>を、番号付きの箇条書きの場合は<code>1.</code>を入れます。</p>
 <pre><code>- 番号なし箇条書き
 - 番号なし箇条書き
@@ -501,7 +514,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="文字の強調" class="section level3">
-<h3><span class="header-section-number">12.2.5</span> 文字の強調</h3>
+<h3><span class="header-section-number">13.2.5</span> 文字の強調</h3>
 <p><code>*</code>もしくは<code>_</code>で囲むと斜体になり、<code>**</code>もしくは<code>__</code>で囲むと太字になります。</p>
 <pre><code>*斜体*と**太字**</code></pre>
 <p><em>斜体</em>と<strong>太字</strong></p>
@@ -513,7 +526,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="引用" class="section level3">
-<h3><span class="header-section-number">12.2.6</span> 引用</h3>
+<h3><span class="header-section-number">13.2.6</span> 引用</h3>
 <p><code>&gt;</code>から始めると引用になります。</p>
 <pre><code>&gt; 引用文です。</code></pre>
 <blockquote>
@@ -521,7 +534,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </blockquote>
 </div>
 <div id="リンク" class="section level3">
-<h3><span class="header-section-number">12.2.7</span> リンク</h3>
+<h3><span class="header-section-number">13.2.7</span> リンク</h3>
 <p>リンクを貼る場合は<code>[リンク名](リンク先のURL)</code>あるいは<code>&lt;リンク先のURL&gt;</code>とします。</p>
 <pre><code>- [RStudio](https://www.rstudio.com/)
 - &lt;https://www.rstudio.com/&gt;</code></pre>
@@ -531,7 +544,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 </div>
 <div id="画像表" class="section level3">
-<h3><span class="header-section-number">12.2.8</span> 画像、表</h3>
+<h3><span class="header-section-number">13.2.8</span> 画像、表</h3>
 <p>画像を埋め込む場合は<code>![画像名](画像のパス)</code>とします。</p>
 <pre><code>![Rlogo](figures/Rlogo.png)</code></pre>
 <div class="figure">
@@ -566,7 +579,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </table>
 </div>
 <div id="数式" class="section level3">
-<h3><span class="header-section-number">12.2.9</span> 数式</h3>
+<h3><span class="header-section-number">13.2.9</span> 数式</h3>
 <p>LaTeX記法による数式を記述できます。
 インラインの場合は<code>$</code>で囲み、ディスプレイの場合は<code>$$</code>で囲みます。</p>
 <ul>
@@ -583,7 +596,7 @@ $$</code></pre>
 </div>
 </div>
 <div id="rチャンク" class="section level2">
-<h2><span class="header-section-number">12.3</span> Rチャンク</h2>
+<h2><span class="header-section-number">13.3</span> Rチャンク</h2>
 <p>R Markdown内でRコードを記述する際にはRチャンクと呼ばれるものの中で行います。
 Rチャンクは次のような形をしています。
 <code>Ctrl + Alt + I</code>でRチャンクを挿入することができます。</p>
@@ -597,7 +610,7 @@ Rチャンクは次のような形をしています。
 <p><img src="figures/rmarkdown_html5_3.jpg" /><!-- --></p>
 <p>右上から二番目のボタンはこのRチャンクの直前のRチャンクまでのコードを全て実行するボタンになります。</p>
 <div id="チャンクオプション" class="section level3">
-<h3><span class="header-section-number">12.3.1</span> チャンクオプション</h3>
+<h3><span class="header-section-number">13.3.1</span> チャンクオプション</h3>
 <p>チャンクオプションを指定することでコードとそのアウトプットをどのように出力するかを制御することができます。
 主なものをまとめておきます。</p>
 <ul>
@@ -611,7 +624,7 @@ Rチャンクは次のような形をしています。
 </div>
 </div>
 <div id="yamlヘッダー" class="section level2">
-<h2><span class="header-section-number">12.4</span> yamlヘッダー</h2>
+<h2><span class="header-section-number">13.4</span> yamlヘッダー</h2>
 <p>yamlヘッダーとは<code>.Rmd</code>ファイルの冒頭で<code>---</code>によって囲まれた箇所で、ページ全体の設定を行います。
 初期状態では</p>
 <pre><code>---
@@ -622,7 +635,7 @@ output: html_document
 ---</code></pre>
 <p>となっていますが、<code>title</code>や<code>author</code>、<code>date</code>でタイトル、著者、日付を設定できます。</p>
 <div id="output" class="section level3">
-<h3><span class="header-section-number">12.4.1</span> output</h3>
+<h3><span class="header-section-number">13.4.1</span> output</h3>
 <p><code>output</code>によって出力形式を決定します。
 これによってyamlヘッダーにおいてどのような項目を設定できるのかも決まります。</p>
 <p>どのような出力形式が利用可能であるかは後述するとして、以下では<code>html_document</code>における主なyamlヘッダーの設定を紹介します。</p>
@@ -631,7 +644,7 @@ output: html_document
 </ul>
 </div>
 <div id="目次" class="section level3">
-<h3><span class="header-section-number">12.4.2</span> 目次</h3>
+<h3><span class="header-section-number">13.4.2</span> 目次</h3>
 <p>目次を出力するには次のように書きます。</p>
 <pre><code>output:
   html_document:
@@ -650,7 +663,7 @@ output: html_document
 </ul>
 </div>
 <div id="テーマ" class="section level3">
-<h3><span class="header-section-number">12.4.3</span> テーマ</h3>
+<h3><span class="header-section-number">13.4.3</span> テーマ</h3>
 <p>テーマを決める場合は<code>theme</code>で指定します。
 テーマ一覧は<a href="https://bootswatch.com/3/">こちら</a>になります。</p>
 <pre><code>output:
@@ -658,7 +671,7 @@ output: html_document
     theme: &quot;paper&quot;</code></pre>
 </div>
 <div id="htmlとcss" class="section level3">
-<h3><span class="header-section-number">12.4.4</span> htmlとcss</h3>
+<h3><span class="header-section-number">13.4.4</span> htmlとcss</h3>
 <p><code>css</code>によってカスタム<code>.css</code>ファイルを指定できます。
 <code>include</code>によって<code>.html</code>ファイルの挿入ができます。</p>
 <p>デフォルトでは<code>.css</code>ファイルは画像データなどは全て<code>.html</code>ファイルに含まれてスタンドアロンな形で見ることができます。
@@ -666,24 +679,24 @@ output: html_document
 </div>
 </div>
 <div id="その他のテンプレート" class="section level2">
-<h2><span class="header-section-number">12.5</span> その他のテンプレート</h2>
+<h2><span class="header-section-number">13.5</span> その他のテンプレート</h2>
 <p><code>output</code>を変更することで、いくつかのテンプレートを使用することができます。
 ここでは<code>.html</code>ファイルが出力されるいくつかのテンプレートを紹介しておきます。</p>
 <ul>
 <li>公式サイトの<a href="https://rmarkdown.rstudio.com/gallery.html">Gallery</a>や<a href="https://rmarkdown.rstudio.com/formats.html">Formats</a>をご覧ください。</li>
 </ul>
 <div id="distill" class="section level3">
-<h3><span class="header-section-number">12.5.1</span> Distill</h3>
+<h3><span class="header-section-number">13.5.1</span> Distill</h3>
 <p><a href="https://rstudio.github.io/distill/">Distill</a>はウェブで公開することを念頭に置いた専門的な記事を書くためのテンプレートになっています。
 インストールは以下のように行います。</p>
-<div class="sourceCode" id="cb360"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb360-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;rstudio/distill&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb402-1" data-line-number="1">devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">&quot;rstudio/distill&quot;</span>)</a></code></pre></div>
 <ul>
 <li>RStudioのバージョンは1.2以上であることが求められています。</li>
 </ul>
 <p>インストールに成功すると<code>R Markdown...</code>の中の<code>From Template</code>に<code>Distill Article</code>が追加されているはずです。</p>
 </div>
 <div id="tufte-handout" class="section level3">
-<h3><span class="header-section-number">12.5.2</span> Tufte Handout</h3>
+<h3><span class="header-section-number">13.5.2</span> Tufte Handout</h3>
 <p><a href="https://rstudio.github.io/tufte/">Tufte Handout</a>というテンプレートもあります。</p>
 <div class="figure">
 <img src="https://bookdown.org/yihui/rmarkdown/images/tufte-overview.png" alt="Tufte Handout" />
@@ -693,7 +706,7 @@ output: html_document
 <p><img src="figures/rmarkdown_html6.jpg" /><!-- --></p>
 </div>
 <div id="rmdformats" class="section level3">
-<h3><span class="header-section-number">12.5.3</span> rmdformats</h3>
+<h3><span class="header-section-number">13.5.3</span> rmdformats</h3>
 <p><a href="https://github.com/juba/rmdformats">rmdformats</a>というテンプレートもあります。
 同様に、<code>rmdformats</code>というパッケージをインストールします。</p>
 <div class="figure">
@@ -714,7 +727,7 @@ output: html_document
 </div>
 </div>
 <div id="スライド" class="section level3">
-<h3><span class="header-section-number">12.5.4</span> スライド</h3>
+<h3><span class="header-section-number">13.5.4</span> スライド</h3>
 <p>R Markdownから作成できる<code>.html</code>ファイルのスライドには<a href="https://bookdown.org/yihui/rmarkdown/ioslides-presentation.html">ioslides</a>と<a href="https://bookdown.org/yihui/rmarkdown/slidy-presentation.html">slidy</a>というものがあります。</p>
 <div class="figure">
 <img src="https://bookdown.org/yihui/rmarkdown/images/ioslides-1.png" alt="ioslides" />
@@ -758,7 +771,7 @@ output: html_document
 </div>
 </div>
 <div id="ダッシュボード" class="section level3">
-<h3><span class="header-section-number">12.5.5</span> ダッシュボード</h3>
+<h3><span class="header-section-number">13.5.5</span> ダッシュボード</h3>
 <p><code>flexdashboard</code>というパッケージを使うと<a href="https://rmarkdown.rstudio.com/flexdashboard/">ダッシュボード</a>を作ることができます。
 パッケージをインストールすると<code>Flex Dashboard</code>というテンプレートが追加されます。</p>
 <div class="figure">
@@ -767,7 +780,7 @@ output: html_document
 </div>
 </div>
 <div id="microsoft-office" class="section level3">
-<h3><span class="header-section-number">12.5.6</span> Microsoft Office</h3>
+<h3><span class="header-section-number">13.5.6</span> Microsoft Office</h3>
 <p>R MarkdownからMicrosoft OfficeのWordやPowerPointの形式のファイルを作成することも可能です。</p>
 
 </div>

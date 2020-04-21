@@ -4,7 +4,7 @@
 
 ```{r}
 library(tidyverse)
-data <- read.csv("data/triangle.csv")
+tri <- read.csv("data/triangle.csv")
 ```
 
 ## 変数名による選択
@@ -13,27 +13,27 @@ data <- read.csv("data/triangle.csv")
 例えば、`year`だけを抜き出したい場合は次のようにします。
 
 ```{r}
-head(data$year)
+head(tri$year)
 ```
 
 データセットとして抜き出す場合は、オブジェクト名の後に`[]`をつけて、その中に変数名をクオーテーションマーク`"`で囲んで入れます。
 
 ```{r}
-head(data["year"])
+head(tri["year"])
 ```
 
 複数の変数を指定する場合は`c()`で変数名のベクトルを作って指定します。
 例えば、`statea`と`stateb`と`year`を抜き出したい場合は次のようにします。
 
 ```{r}
-head(data[c("statea", "stateb", "year")])
+head(tri[c("statea", "stateb", "year")])
 ```
 
 `tidyverse`の`dplyr`というパッケージでは`select()`によって変数の選択ができます。
 例えば、`statea`, `stateb`, `year`を選択するには次のようにします。
 
 ```{r}
-data %>% 
+tri %>% 
   select(statea, stateb, year) %>% 
   head()
 ```
@@ -44,7 +44,7 @@ data %>%
 変数を除外する場合は`-`をつけます。
 
 ```{r}
-data %>% 
+tri %>% 
   select(-year) %>% 
   head()
 ```
@@ -52,7 +52,7 @@ data %>%
 `select`では変数の並び替えもできます。
 
 ```{r}
-data %>% 
+tri %>% 
   select(year, statea, stateb) %>% 
   head()
 ```
@@ -60,7 +60,7 @@ data %>%
 変数の選択をせずに並び替えだけしたい場合は、並び替えた後に`everything()`を入れます。
 
 ```{r}
-data %>% 
+tri %>% 
   select(year, statea, stateb, everything()) %>% 
   head()
 ```
@@ -71,19 +71,19 @@ data %>%
 番号がひとつだけの場合はベクトルになります。
 
 ```{r}
-head(data[,3])
+head(tri[,3])
 ```
 
 複数列を指定するとデータフレームとして抜き出します。
 
 ```{r}
-head(data[,c(1,2,3)])
+head(tri[,c(1,2,3)])
 ```
 
 `-`を付けるとその列を除外します。
 
 ```{r}
-head(data[,-3])
+head(tri[,-3])
 ```
 
 ## 変数名の変更
@@ -91,15 +91,15 @@ head(data[,-3])
 変数名を確認するには`names()`を使います。
 
 ```{r}
-names(data)
+names(tri)
 ```
 
 `names()`に代入することで変数名を買えることができます。
 例えば、`statea`を`StateA`にするには次のようにします。
 
 ```{r}
-names(data)[1] <- "StateA"
-names(data)
+names(tri)[1] <- "StateA"
+names(tri)
 ```
 
 - `names()`ベクトルなので第1要素を参照するには`[1]`とします。
@@ -107,14 +107,14 @@ names(data)
 あるいは、次のようにして`stateb`を`StateB`にすることもできます。
 
 ```{r}
-names(data)[names(data) == "stateb"] <- "StateB"
-names(data)
+names(tri)[names(tri) == "stateb"] <- "StateB"
+names(tri)
 ```
 
 `tidyverse`で変数名を変える場合は`select()`内部で`=`の左側に新しい変数名、右側にもとの変数名を書きます。
 
 ```{r}
-data %>% 
+tri %>% 
   select(statea = StateA, stateb = StateB, year) %>% 
   head()
 ```
@@ -122,7 +122,7 @@ data %>%
 変数名を変えるだけで変数の選択をしない場合は`rename()`を使います。
 
 ```{r}
-data %>% 
+tri %>% 
   rename(statea = StateA, stateb = StateB) %>% 
   head()
 ```

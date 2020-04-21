@@ -292,7 +292,7 @@ knitr::include_graphics("figures/rmarkdown_pdf4.jpg")
 
 引用する際には`[@citation_key]`という形で記述します。
 `citation_key`とは書誌情報の最初の要素（この場合は`fearon1995rationalist`）になります。
-したがって、`[@fearon1995rationalist]`と記述すると引用ができます。[@fearon1995rationalist]
+したがって、`[@fearon1995rationalist]`と記述すると引用ができます。
 
 - Google Scholarの場合は自動で引用キーが生成されますが長いので適当なものに書き直したほうが楽です。
 
