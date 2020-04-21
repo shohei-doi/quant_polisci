@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第2章 変数の選択 | Rで計量政治学入門</title>
+  <title>第13章 R Markdown: pdf | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第2章 変数の選択 | Rで計量政治学入門" />
+  <meta property="og:title" content="第13章 R Markdown: pdf | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第2章 変数の選択 | Rで計量政治学入門" />
+  <meta name="twitter:title" content="第13章 R Markdown: pdf | Rで計量政治学入門" />
   
   <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   
@@ -31,8 +31,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="data-import.html"/>
-<link rel="next" href="create-vars.html"/>
+<link rel="prev" href="r-makdown-html.html"/>
+<link rel="next" href="encoding-r.html"/>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -387,141 +387,267 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="select-vars" class="section level1">
-<h1><span class="header-section-number">第2章</span> 変数の選択</h1>
-<p>ここではTriangulating Peaceの<a href="data/triabgle.csv">レプリケーションデータ</a>を使用します。</p>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb37-2" data-line-number="2">data &lt;-<span class="st"> </span><span class="kw">read.csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</a></code></pre></div>
-<div id="変数名による選択" class="section level2">
-<h2><span class="header-section-number">2.1</span> 変数名による選択</h2>
-<p>特定の変数をベクトルとして抜き出したい場合はオブジェクト名と変数名の間に<code>$</code>を入れます。
-例えば、<code>year</code>だけを抜き出したい場合は次のようにします。</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" data-line-number="1"><span class="kw">head</span>(data<span class="op">$</span>year)</a></code></pre></div>
-<pre><code>## [1] 1920 1921 1922 1923 1924 1925</code></pre>
-<p>データセットとして抜き出す場合は、オブジェクト名の後に<code>[]</code>をつけて、その中に変数名をクオーテーションマーク<code>&quot;</code>で囲んで入れます。</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" data-line-number="1"><span class="kw">head</span>(data[<span class="st">&quot;year&quot;</span>])</a></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["year"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"1920","_rn_":"1"},{"1":"1921","_rn_":"2"},{"1":"1922","_rn_":"3"},{"1":"1923","_rn_":"4"},{"1":"1924","_rn_":"5"},{"1":"1925","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<p>複数の変数を指定する場合は<code>c()</code>で変数名のベクトルを作って指定します。
-例えば、<code>statea</code>と<code>stateb</code>と<code>year</code>を抜き出したい場合は次のようにします。</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" data-line-number="1"><span class="kw">head</span>(data[<span class="kw">c</span>(<span class="st">&quot;statea&quot;</span>, <span class="st">&quot;stateb&quot;</span>, <span class="st">&quot;year&quot;</span>)])</a></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","_rn_":"1"},{"1":"2","2":"20","3":"1921","_rn_":"2"},{"1":"2","2":"20","3":"1922","_rn_":"3"},{"1":"2","2":"20","3":"1923","_rn_":"4"},{"1":"2","2":"20","3":"1924","_rn_":"5"},{"1":"2","2":"20","3":"1925","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<p><code>tidyverse</code>の<code>dplyr</code>というパッケージでは<code>select()</code>によって変数の選択ができます。
-例えば、<code>statea</code>, <code>stateb</code>, <code>year</code>を選択するには次のようにします。</p>
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb42-1" data-line-number="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb42-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(statea, stateb, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb42-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","_rn_":"1"},{"1":"2","2":"20","3":"1921","_rn_":"2"},{"1":"2","2":"20","3":"1922","_rn_":"3"},{"1":"2","2":"20","3":"1923","_rn_":"4"},{"1":"2","2":"20","3":"1924","_rn_":"5"},{"1":"2","2":"20","3":"1925","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<p>なお、<code>%&gt;%</code>はパイプ演算子と呼ばれるもので、<code>tidyverse</code>の機能の一つです。
-その意味については<a href="pipe.html">こちら</a>を参照して下さい。</p>
-<p>変数を除外する場合は<code>-</code>をつけます。</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" data-line-number="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb43-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="op">-</span>year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb43-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["dependa"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dependb"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["demauta"],"name":[5],"type":["int"],"align":["right"]},{"label":["demautb"],"name":[6],"type":["int"],"align":["right"]},{"label":["allies"],"name":[7],"type":["int"],"align":["right"]},{"label":["dispute1"],"name":[8],"type":["int"],"align":["right"]},{"label":["logdstab"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["lcaprat2"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["smigoabi"],"name":[11],"type":["int"],"align":["right"]},{"label":["opena"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["openb"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["minrpwrs"],"name":[14],"type":["int"],"align":["right"]},{"label":["noncontg"],"name":[15],"type":["int"],"align":["right"]},{"label":["smldmat"],"name":[16],"type":["int"],"align":["right"]},{"label":["smldep"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["dyadid"],"name":[18],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"0.01573063","4":"0.2801780","5":"10","6":"9","7":"0","8":"0","9":"5.820108","10":"3.241306","11":"10","12":"0.15623870","13":"0.4284163","14":"0","15":"0","16":"9","17":"0.01573063","18":"2020","_rn_":"1"},{"1":"2","2":"20","3":"0.01154854","4":"0.2239006","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.171194","11":"10","12":"0.10317327","13":"0.3481170","14":"0","15":"0","16":"10","17":"0.01154854","18":"2020","_rn_":"2"},{"1":"2","2":"20","3":"0.01125047","4":"0.2008743","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.247957","11":"10","12":"0.12613152","13":"0.4684889","14":"0","15":"0","16":"10","17":"0.01125047","18":"2020","_rn_":"3"},{"1":"2","2":"20","3":"0.01117924","4":"0.2130951","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.180491","11":"10","12":"0.09024599","13":"0.3702438","14":"0","15":"0","16":"10","17":"0.01117924","18":"2020","_rn_":"4"},{"1":"2","2":"20","3":"0.01102619","4":"0.2125081","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.191799","11":"10","12":"0.09118309","13":"0.4073506","14":"0","15":"0","16":"10","17":"0.01102619","18":"2020","_rn_":"5"},{"1":"2","2":"20","3":"0.01076442","4":"0.1913874","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.190288","11":"10","12":"0.09765426","13":"0.3580277","14":"0","15":"0","16":"10","17":"0.01076442","18":"2020","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<p><code>select</code>では変数の並び替えもできます。</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb44-1" data-line-number="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb44-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(year, statea, stateb) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb44-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["statea"],"name":[2],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"1920","2":"2","3":"20","_rn_":"1"},{"1":"1921","2":"2","3":"20","_rn_":"2"},{"1":"1922","2":"2","3":"20","_rn_":"3"},{"1":"1923","2":"2","3":"20","_rn_":"4"},{"1":"1924","2":"2","3":"20","_rn_":"5"},{"1":"1925","2":"2","3":"20","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<p>変数の選択をせずに並び替えだけしたい場合は、並び替えた後に<code>everything()</code>を入れます。</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" data-line-number="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb45-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(year, statea, stateb, <span class="kw">everything</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb45-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["statea"],"name":[2],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[3],"type":["int"],"align":["right"]},{"label":["dependa"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["dependb"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["demauta"],"name":[6],"type":["int"],"align":["right"]},{"label":["demautb"],"name":[7],"type":["int"],"align":["right"]},{"label":["allies"],"name":[8],"type":["int"],"align":["right"]},{"label":["dispute1"],"name":[9],"type":["int"],"align":["right"]},{"label":["logdstab"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["lcaprat2"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["smigoabi"],"name":[12],"type":["int"],"align":["right"]},{"label":["opena"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["openb"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["minrpwrs"],"name":[15],"type":["int"],"align":["right"]},{"label":["noncontg"],"name":[16],"type":["int"],"align":["right"]},{"label":["smldmat"],"name":[17],"type":["int"],"align":["right"]},{"label":["smldep"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["dyadid"],"name":[19],"type":["int"],"align":["right"]}],"data":[{"1":"1920","2":"2","3":"20","4":"0.01573063","5":"0.2801780","6":"10","7":"9","8":"0","9":"0","10":"5.820108","11":"3.241306","12":"10","13":"0.15623870","14":"0.4284163","15":"0","16":"0","17":"9","18":"0.01573063","19":"2020","_rn_":"1"},{"1":"1921","2":"2","3":"20","4":"0.01154854","5":"0.2239006","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.171194","12":"10","13":"0.10317327","14":"0.3481170","15":"0","16":"0","17":"10","18":"0.01154854","19":"2020","_rn_":"2"},{"1":"1922","2":"2","3":"20","4":"0.01125047","5":"0.2008743","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.247957","12":"10","13":"0.12613152","14":"0.4684889","15":"0","16":"0","17":"10","18":"0.01125047","19":"2020","_rn_":"3"},{"1":"1923","2":"2","3":"20","4":"0.01117924","5":"0.2130951","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.180491","12":"10","13":"0.09024599","14":"0.3702438","15":"0","16":"0","17":"10","18":"0.01117924","19":"2020","_rn_":"4"},{"1":"1924","2":"2","3":"20","4":"0.01102619","5":"0.2125081","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.191799","12":"10","13":"0.09118309","14":"0.4073506","15":"0","16":"0","17":"10","18":"0.01102619","19":"2020","_rn_":"5"},{"1":"1925","2":"2","3":"20","4":"0.01076442","5":"0.1913874","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.190288","12":"10","13":"0.09765426","14":"0.3580277","15":"0","16":"0","17":"10","18":"0.01076442","19":"2020","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-<div id="番号による選択" class="section level2">
-<h2><span class="header-section-number">2.2</span> 番号による選択</h2>
-<p>列番号を指定することで選択することもできます。
-番号がひとつだけの場合はベクトルになります。</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" data-line-number="1"><span class="kw">head</span>(data[,<span class="dv">3</span>])</a></code></pre></div>
-<pre><code>## [1] 1920 1921 1922 1923 1924 1925</code></pre>
-<p>複数列を指定するとデータフレームとして抜き出します。</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" data-line-number="1"><span class="kw">head</span>(data[,<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)])</a></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","_rn_":"1"},{"1":"2","2":"20","3":"1921","_rn_":"2"},{"1":"2","2":"20","3":"1922","_rn_":"3"},{"1":"2","2":"20","3":"1923","_rn_":"4"},{"1":"2","2":"20","3":"1924","_rn_":"5"},{"1":"2","2":"20","3":"1925","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-<p><code>-</code>を付けるとその列を除外します。</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb49-1" data-line-number="1"><span class="kw">head</span>(data[,<span class="op">-</span><span class="dv">3</span>])</a></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["dependa"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dependb"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["demauta"],"name":[5],"type":["int"],"align":["right"]},{"label":["demautb"],"name":[6],"type":["int"],"align":["right"]},{"label":["allies"],"name":[7],"type":["int"],"align":["right"]},{"label":["dispute1"],"name":[8],"type":["int"],"align":["right"]},{"label":["logdstab"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["lcaprat2"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["smigoabi"],"name":[11],"type":["int"],"align":["right"]},{"label":["opena"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["openb"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["minrpwrs"],"name":[14],"type":["int"],"align":["right"]},{"label":["noncontg"],"name":[15],"type":["int"],"align":["right"]},{"label":["smldmat"],"name":[16],"type":["int"],"align":["right"]},{"label":["smldep"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["dyadid"],"name":[18],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"0.01573063","4":"0.2801780","5":"10","6":"9","7":"0","8":"0","9":"5.820108","10":"3.241306","11":"10","12":"0.15623870","13":"0.4284163","14":"0","15":"0","16":"9","17":"0.01573063","18":"2020","_rn_":"1"},{"1":"2","2":"20","3":"0.01154854","4":"0.2239006","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.171194","11":"10","12":"0.10317327","13":"0.3481170","14":"0","15":"0","16":"10","17":"0.01154854","18":"2020","_rn_":"2"},{"1":"2","2":"20","3":"0.01125047","4":"0.2008743","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.247957","11":"10","12":"0.12613152","13":"0.4684889","14":"0","15":"0","16":"10","17":"0.01125047","18":"2020","_rn_":"3"},{"1":"2","2":"20","3":"0.01117924","4":"0.2130951","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.180491","11":"10","12":"0.09024599","13":"0.3702438","14":"0","15":"0","16":"10","17":"0.01117924","18":"2020","_rn_":"4"},{"1":"2","2":"20","3":"0.01102619","4":"0.2125081","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.191799","11":"10","12":"0.09118309","13":"0.4073506","14":"0","15":"0","16":"10","17":"0.01102619","18":"2020","_rn_":"5"},{"1":"2","2":"20","3":"0.01076442","4":"0.1913874","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.190288","11":"10","12":"0.09765426","13":"0.3580277","14":"0","15":"0","16":"10","17":"0.01076442","18":"2020","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
-</div>
-</div>
-<div id="変数名の変更" class="section level2">
-<h2><span class="header-section-number">2.3</span> 変数名の変更</h2>
-<p>変数名を確認するには<code>names()</code>を使います。</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" data-line-number="1"><span class="kw">names</span>(data)</a></code></pre></div>
-<pre><code>##  [1] &quot;statea&quot;   &quot;stateb&quot;   &quot;year&quot;     &quot;dependa&quot;  &quot;dependb&quot;  &quot;demauta&quot; 
-##  [7] &quot;demautb&quot;  &quot;allies&quot;   &quot;dispute1&quot; &quot;logdstab&quot; &quot;lcaprat2&quot; &quot;smigoabi&quot;
-## [13] &quot;opena&quot;    &quot;openb&quot;    &quot;minrpwrs&quot; &quot;noncontg&quot; &quot;smldmat&quot;  &quot;smldep&quot;  
-## [19] &quot;dyadid&quot;</code></pre>
-<p><code>names()</code>に代入することで変数名を買えることができます。
-例えば、<code>statea</code>を<code>StateA</code>にするには次のようにします。</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb52-1" data-line-number="1"><span class="kw">names</span>(data)[<span class="dv">1</span>] &lt;-<span class="st"> &quot;StateA&quot;</span></a>
-<a class="sourceLine" id="cb52-2" data-line-number="2"><span class="kw">names</span>(data)</a></code></pre></div>
-<pre><code>##  [1] &quot;StateA&quot;   &quot;stateb&quot;   &quot;year&quot;     &quot;dependa&quot;  &quot;dependb&quot;  &quot;demauta&quot; 
-##  [7] &quot;demautb&quot;  &quot;allies&quot;   &quot;dispute1&quot; &quot;logdstab&quot; &quot;lcaprat2&quot; &quot;smigoabi&quot;
-## [13] &quot;opena&quot;    &quot;openb&quot;    &quot;minrpwrs&quot; &quot;noncontg&quot; &quot;smldmat&quot;  &quot;smldep&quot;  
-## [19] &quot;dyadid&quot;</code></pre>
+<div id="r-markdown-pdf" class="section level1">
+<h1><span class="header-section-number">第13章</span> R Markdown: pdf</h1>
+<p>R Markdownから<code>.pdf</code>ファイルを作成するにはLaTeXと呼ばれる組版システムを導入する必要があります。
+一手間かかりますが、逆にR Markdownによって簡単にLaTeXを使えるとも言えます。</p>
 <ul>
-<li><code>names()</code>ベクトルなので第1要素を参照するには<code>[1]</code>とします。</li>
+<li><a href="https://bookdown.org/yihui/rmarkdown/">R Markdown: The Definitive Guide</a></li>
 </ul>
-<p>あるいは、次のようにして<code>stateb</code>を<code>StateB</code>にすることもできます。</p>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb54-1" data-line-number="1"><span class="kw">names</span>(data)[<span class="kw">names</span>(data) <span class="op">==</span><span class="st"> &quot;stateb&quot;</span>] &lt;-<span class="st"> &quot;StateB&quot;</span></a>
-<a class="sourceLine" id="cb54-2" data-line-number="2"><span class="kw">names</span>(data)</a></code></pre></div>
-<pre><code>##  [1] &quot;StateA&quot;   &quot;StateB&quot;   &quot;year&quot;     &quot;dependa&quot;  &quot;dependb&quot;  &quot;demauta&quot; 
-##  [7] &quot;demautb&quot;  &quot;allies&quot;   &quot;dispute1&quot; &quot;logdstab&quot; &quot;lcaprat2&quot; &quot;smigoabi&quot;
-## [13] &quot;opena&quot;    &quot;openb&quot;    &quot;minrpwrs&quot; &quot;noncontg&quot; &quot;smldmat&quot;  &quot;smldep&quot;  
-## [19] &quot;dyadid&quot;</code></pre>
-<p><code>tidyverse</code>で変数名を変える場合は<code>select()</code>内部で<code>=</code>の左側に新しい変数名、右側にもとの変数名を書きます。</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb56-1" data-line-number="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb56-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="dt">statea =</span> StateA, <span class="dt">stateb =</span> StateB, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb56-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","_rn_":"1"},{"1":"2","2":"20","3":"1921","_rn_":"2"},{"1":"2","2":"20","3":"1922","_rn_":"3"},{"1":"2","2":"20","3":"1923","_rn_":"4"},{"1":"2","2":"20","3":"1924","_rn_":"5"},{"1":"2","2":"20","3":"1925","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<p>ここではLaTeXの導入から<code>.pdf</code>形式による論文とスライドの作成、そしていくつかのLaTeX記法の紹介を行います。</p>
+<div id="latexの導入" class="section level2">
+<h2><span class="header-section-number">13.1</span> LaTeXの導入</h2>
+<p>LaTeXのディストリビューションはいろいろあるのですが、今回は<a href="https://yihui.name/tinytex/">TinyTeX</a>を使って環境構築を行います。
+TinyTeXはメジャーなディストリビューションである<a href="https://www.tug.org/texlive/">TeX Live</a>のうち必要最小限の要素だけを含んでいます。</p>
+<aside>
+TeX Live以外にも<a href="https://miktex.org/">MikTeX</a>、Windowsであれば<a href="http://w32tex.org/index-ja.html">W32TeX</a>、Macでは<a href="http://www.tug.org/mactex/">MacTeX</a>も有名です。
+</aside>
+<p>TeX Liveは全てのパッケージを一度にダウンロードするので非常に時間がかかります。
+本格的にLaTeXを使わないのであればTinyTeXで十分だと思います。</p>
+<ul>
+<li>また、<a href="https://ja.overleaf.com/">Overleaf</a>というオンラインLaTeXエディタもあります。</li>
+</ul>
+<div id="tinytexのインストール" class="section level3">
+<h3><span class="header-section-number">13.1.1</span> tinytexのインストール</h3>
+<p><code>tinytex</code>というRパッケージがありますので、それをインストールします。</p>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb361-1" data-line-number="1"><span class="kw">install.packages</span>(<span class="st">&quot;tinytex&quot;</span>)</a></code></pre></div>
+<p>続いて、TinyTeX本体を以下のコマンドでインストールします。</p>
+<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb362-1" data-line-number="1">tinytex<span class="op">::</span><span class="kw">install_tinytex</span>()</a></code></pre></div>
+<ul>
+<li>エラーメッセージが出てくるかもしれませんがダイアログにあるように無視して進めて問題ありません。</li>
+</ul>
+<p>そこそこ時間がかかりますが、TeX Liveを使ったことがある人はあまりの速さにびっくりするかもしれません。</p>
 </div>
-<p>変数名を変えるだけで変数の選択をしない場合は<code>rename()</code>を使います。</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb57-1" data-line-number="1">data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb57-2" data-line-number="2"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">statea =</span> StateA, <span class="dt">stateb =</span> StateB) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb57-3" data-line-number="3"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
-<div data-pagedtable="false">
-<script data-pagedtable-source type="application/json">
-{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["dependa"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["dependb"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["demauta"],"name":[6],"type":["int"],"align":["right"]},{"label":["demautb"],"name":[7],"type":["int"],"align":["right"]},{"label":["allies"],"name":[8],"type":["int"],"align":["right"]},{"label":["dispute1"],"name":[9],"type":["int"],"align":["right"]},{"label":["logdstab"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["lcaprat2"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["smigoabi"],"name":[12],"type":["int"],"align":["right"]},{"label":["opena"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["openb"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["minrpwrs"],"name":[15],"type":["int"],"align":["right"]},{"label":["noncontg"],"name":[16],"type":["int"],"align":["right"]},{"label":["smldmat"],"name":[17],"type":["int"],"align":["right"]},{"label":["smldep"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["dyadid"],"name":[19],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","4":"0.01573063","5":"0.2801780","6":"10","7":"9","8":"0","9":"0","10":"5.820108","11":"3.241306","12":"10","13":"0.15623870","14":"0.4284163","15":"0","16":"0","17":"9","18":"0.01573063","19":"2020","_rn_":"1"},{"1":"2","2":"20","3":"1921","4":"0.01154854","5":"0.2239006","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.171194","12":"10","13":"0.10317327","14":"0.3481170","15":"0","16":"0","17":"10","18":"0.01154854","19":"2020","_rn_":"2"},{"1":"2","2":"20","3":"1922","4":"0.01125047","5":"0.2008743","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.247957","12":"10","13":"0.12613152","14":"0.4684889","15":"0","16":"0","17":"10","18":"0.01125047","19":"2020","_rn_":"3"},{"1":"2","2":"20","3":"1923","4":"0.01117924","5":"0.2130951","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.180491","12":"10","13":"0.09024599","14":"0.3702438","15":"0","16":"0","17":"10","18":"0.01117924","19":"2020","_rn_":"4"},{"1":"2","2":"20","3":"1924","4":"0.01102619","5":"0.2125081","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.191799","12":"10","13":"0.09118309","14":"0.4073506","15":"0","16":"0","17":"10","18":"0.01102619","19":"2020","_rn_":"5"},{"1":"2","2":"20","3":"1925","4":"0.01076442","5":"0.1913874","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.190288","12":"10","13":"0.09765426","14":"0.3580277","15":"0","16":"0","17":"10","18":"0.01076442","19":"2020","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
-  </script>
+<div id="タイプセット" class="section level3">
+<h3><span class="header-section-number">13.1.2</span> タイプセット</h3>
+<p>R Markdownファイルを作成する際に<code>Document</code>の<code>PDF</code>を選択します。</p>
+<p><img src="figures/rmarkdown_pdf1.jpg" /><!-- --></p>
+<p>やはりサンプルファイルができるので、適当なフォルダに保存して<code>Knit</code>もしくは<code>Shift + Ctrl + K</code>でタイプセットすると<code>.pdf</code>ファイルが作成されるはずです。</p>
+<ul>
+<li><code>.tex</code>からタイプセットする場合は<code>pdflatex()</code>、<code>lualatex()</code>、<code>xelatex()</code>でパスを指定して使います。</li>
+</ul>
+<p>タイプセット時にいろいろとインストールを行い、時間がかかるかもしれません。
+これはTiny TeXが最低限のパッケージだけを持っていて、必要なパッケージは適宜インストールするからです。
+一度、パッケージをインストールすると再度インストールはしないので時間は掛かりません。</p>
 </div>
 </div>
-<div id="高度な変数の選択方法" class="section level2">
-<h2><span class="header-section-number">2.4</span> 高度な変数の選択方法*</h2>
+<div id="日本語環境の構築" class="section level2">
+<h2><span class="header-section-number">13.2</span> 日本語環境の構築</h2>
+<p>残念ながら、デフォルトの状態では日本語を含むファイルをタイプセットすることはできません。
+実際に、サンプルファイルに適当な日本語を入れてタイプセットしてみるとエラーが出るはずです。</p>
+<p>今回はXeLaTeXによる日本語ファイルのタイプセットを目指します。</p>
+<ul>
+<li>Windowsでしか確認していないのでMacではうまくいかないかもしれません。
+その時は教えてください。</li>
+</ul>
+<div id="latexエンジンのあれこれ" class="section level3">
+<h3><span class="header-section-number">13.2.1</span> LaTeXエンジンのあれこれ*</h3>
+<p>なぜXeLaTeXを使うのかについて説明しますが読み飛ばしても構いません。</p>
+<p>僕も詳しくはないですが、LaTeXエンジンにはいろいろな種類があります。
+モダンなエンジンはpdfLaTeX、LuaLaTeX、XeLaTeXと呼ばれています。</p>
+<ul>
+<li>例えば、<a href="https://qiita.com/yyu/items/6404656f822ce14db935">こちら</a>を参照。</li>
+<li>実際にR MarkdownやTinyTeXで対応しているのはこの3つになります。</li>
+<li>Overleafでもこの3つにpLaTeXを加えたものに対応しています。</li>
+</ul>
+<p>一方で、日本語ファイルをタイプセットする際にこれまで用いられてきたのは[u]pLaTeXと呼ばれるエンジンです。
+しかし、今後は徐々にモダンなエンジンが主流になると思われます。</p>
+<p>このうち、pdfLaTeXでは日本語を扱えないので選択肢はLuaLaTeXとXeLaTeXのどちらかになります。
+どうやら、LuaLaTeXが主流となりつつあるらしく、またLuaと呼ばれる言語を使えるという利点もありそうです。</p>
+<p>しかし、僕はLuaが何なのか分かりませんし（したがって、どんなご利益があるのかも知りません）、XeLaTeXの方がタイプセットの速度が早いらしいので、現時点ではこちらを使用しています。</p>
+</div>
+<div id="yamlヘッダー-1" class="section level3">
+<h3><span class="header-section-number">13.2.2</span> yamlヘッダー</h3>
+<p>XeLaTeXによってR Markdownから<code>.。pdf</code>ファイルを生成するにはyamlヘッダーの<code>output</code>以下を次のようにします。</p>
+<pre><code>output:
+  pdf_document: 
+    latex_engine: xelatex 
+    number_sections: true
+documentclass: bxjsarticle
+header-includes: 
+  - \usepackage{zxjatype} 
+  - \usepackage[ipa]{zxjafont} 
+geometry: no</code></pre>
+<ul>
+<li>目次を出力する際は<code>.html</code>の時と同様に設定します。</li>
+<li>フォントの大きさは<code>fontsize: 10pt</code>のように指定します。</li>
+</ul>
+</div>
+<div id="フォントのインストール" class="section level3">
+<h3><span class="header-section-number">13.2.3</span> フォントのインストール</h3>
+<p>もしIPAexフォントがPCに入っていない場合は以下のコマンドでインストールします。</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb364-1" data-line-number="1">tinytex<span class="op">::</span><span class="kw">tlmgr_install</span>(<span class="st">&quot;ipaex&quot;</span>)</a></code></pre></div>
+<p>あるいは<a href="https://ipafont.ipa.go.jp/old/">こちら</a>からダウンロード&amp;インストールします。</p>
+<p>この状態でタイプセットすると日本語も表示されるはずです。</p>
+</div>
+<div id="その他のテンプレート-1" class="section level3">
+<h3><span class="header-section-number">13.2.4</span> その他のテンプレート</h3>
+<p><code>.html</code>の時と同様に<code>.pdf</code>のときもいくつかの<a href="https://github.com/rstudio/rticles">rtciles</a>にテンプレートが用意されています。
+<code>rticles</code>というパッケージをインストールするとテンプレートが追加されます。</p>
+</div>
+<div id="sumatra-pdf" class="section level3">
+<h3><span class="header-section-number">13.2.5</span> Sumatra PDF</h3>
+<p>おそらく、Adobe AcrobatがPDFリーダーとしては人気だとは思いますが、Acrobatで開いている<code>.pdf</code>ファイルを編集することはできないという欠点があります。</p>
+<p>そこで、<a href="https://www.sumatrapdfreader.org/download-free-pdf-viewer.html">Sumatra PDF</a>などのPDFリーダーを使用することがおすすめです。</p>
+</div>
+</div>
+<div id="スライドの作成" class="section level2">
+<h2><span class="header-section-number">13.3</span> スライドの作成</h2>
+<p>LaTeXでスライドを作成する際によく用いられているのが<a href="https://ja.wikipedia.org/wiki/Beamer">Beamer</a>と呼ばれるドキュメントクラスです。
+R MarkdownからBeamerスライドを作成することも可能です。</p>
+<ul>
+<li>京都府立大学の秦先生がPowerPointでBeamer風のスライドを作るため<a href="http://hatam.sakura.ne.jp/nisebeamer.html">テンプレート</a>を公開しています。</li>
+</ul>
+<div class="figure">
+<img src="https://upload.wikimedia.org/wikipedia/commons/b/b9/Beamer01.png" alt="こんな感じの。" />
+<p class="caption">こんな感じの。</p>
+</div>
+<p>まず、<code>Presentation</code>の中の<code>PDF (Beamer)</code>を選択します。</p>
+<p><img src="figures/rmarkdown_pdf2.jpg" /><!-- --></p>
+<p>そして、yamlヘッダーの<code>output</code>以下を次のように書き換えます。</p>
+<pre><code>output: 
+  beamer_presentation:
+    latex_engine: xelatex 
+header-includes: 
+  - \usepackage{zxjatype} 
+  - \usepackage[ipa]{zxjafont} </code></pre>
+<ul>
+<li>スライドでは<code>#</code>がセクションタイトル、<code>##</code>が各スライドのタイトルになります。</li>
+<li><code>classoption: &quot;aspectratio=169&quot;</code>とするとアスペクト比が16:9になります。</li>
+</ul>
+<div id="テーマ-1" class="section level3">
+<h3><span class="header-section-number">13.3.1</span> テーマ</h3>
+<p>Beamerにはデフォルトで多くの<a href="https://hartwork.org/beamer-theme-matrix/">テーマとカラー</a>があります。
+以下のようにして設定することができます。</p>
+<pre><code>output:
+  beamer_presentation:
+    theme: &quot;AnnArbor&quot;
+    colortheme: &quot;dolphin&quot;
+    fonttheme: &quot;structurebold&quot;</code></pre>
+</div>
+</div>
+<div id="latex記法" class="section level2">
+<h2><span class="header-section-number">13.4</span> LaTeX記法</h2>
+<p>もちろん、Markdown記法はそのまま使うことができます。
+LaTeXもhtmlと同様にマークアップ言語であり、専用の記法があります。
+Markdown記法ではできないことはLaTeX記法で直接書き込むことで可能になります。</p>
+<div id="定理環境" class="section level3">
+<h3><span class="header-section-number">13.4.1</span> 定理環境</h3>
+<p>定理や仮説を書くときには、まずyamlヘッダーに以下を付け加えます。</p>
+<pre><code>header-includes:
+  - \usepackage{amsthm}
+  - \newtheorem{hypo}{仮説}</code></pre>
+<p>そして仮説を書くときには次のように書きます。</p>
+<pre><code>\begin{hypo}
+  Xが大きくなるとYも大きくなりやすくなる。
+\end{hypo}</code></pre>
+</div>
+<div id="数式-1" class="section level3">
+<h3><span class="header-section-number">13.4.2</span> 数式</h3>
+<p>数式はインラインであれば<code>$</code>で、ディスプレイであれば<code>$$</code>で囲みます。</p>
+<div id="添字" class="section level4">
+<h4><span class="header-section-number">13.4.2.1</span> 添字</h4>
+<p>上付きの添字は<code>~</code>で、下付きの添字は<code>_</code>で書きます。
+複数の文字列をまとめるときは<code>{}</code>で囲みます。</p>
+<pre><code>$x^n, y_{it}$</code></pre>
+<p><span class="math inline">\(x^n, y_{it}\)</span></p>
+</div>
+<div id="太字" class="section level4">
+<h4><span class="header-section-number">13.4.2.2</span> 太字</h4>
+<p>数式内で太字にする場合は<code>\mathbf{}</code>を使います。</p>
+<pre><code>$\mathbf{x}$</code></pre>
+<p><span class="math inline">\(\mathbf{x}\)</span></p>
+</div>
+<div id="条件" class="section level4">
+<h4><span class="header-section-number">13.4.2.3</span> 条件</h4>
+<p>条件に応じて値が変わる場合は次のように書きます。</p>
+<pre><code>$$
+  T_i = 
+  \begin{cases}
+    1 &amp; もしiさんが処置群にいた場合 \\
+    0 &amp; そうでない場合 \\
+  \end{cases}
+$$</code></pre>
+<p><span class="math display">\[
+  T_i = 
+  \begin{cases}
+    1 &amp; もしiさんが処置群にいた場合 \\
+    0 &amp; そうでない場合 \\
+  \end{cases}
+\]</span></p>
+</div>
+</div>
+</div>
+<div id="参考文献と引用" class="section level2">
+<h2><span class="header-section-number">13.5</span> 参考文献と引用</h2>
+<p>R Markdownでは文献ファイルから引用と参考文献を作成することができます。
+<a href="https://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html">いろいろな形式</a>に対応しているようですが、ここではLaTeXでよく使われている<code>.bib</code>ファイルを使います。</p>
+<div id="bibファイル" class="section level3">
+<h3><span class="header-section-number">13.5.1</span> .bibファイル</h3>
+<p><code>.bib</code>ファイルは文献情報を保存する形式の一つです。</p>
+<p>まず、RStudioでも他のテキストエディタでもいいので、<code>.Rmd</code>ファイルがあるディレクトリに<code>.bib</code>ファイルを作成します。
+ここでは<code>reference.bib</code>という名前で作成したとします。</p>
+<p><a href="https://scholar.google.co.jp/">Google Scholar</a>に登録されている文献であれば次のように<code>bib</code>形式の情報を取得することができます。</p>
+<aside>
+ただし、Google Scholarの文献情報はいい加減であることも多いので気をつけてください。
+</aside>
+<p>まず、引用したい文献を検索します。
+続いて、引用したい文献の引用ボタンをクリックします。</p>
+<p><img src="figures/rmarkdown_pdf3.jpg" /><!-- --></p>
+<p>そして、<code>BibTeX</code>ボタンをクリックすると<code>.bib</code>形式の書誌情報が表示されます。</p>
+<p><img src="figures/rmarkdown_pdf4.jpg" /><!-- --></p>
+<pre><code>@article{fearon1995rationalist,
+  title={Rationalist explanations for war},
+  author={Fearon, James D},
+  journal={International organization},
+  volume={49},
+  number={3},
+  pages={379--414},
+  year={1995},
+  publisher={Cambridge University Press}
+}</code></pre>
+<p>これを先ほど作成した<code>reference.bib</code>にコピペして保存します。</p>
+<ul>
+<li>直接<code>.bib</code>ファイルを編集したい場合は<a href="http://www.jabref.org/">JabRef</a>などのソフトを使うといいでしょう。</li>
+<li><a href="https://www.mendeley.com/">Mendeley</a>を使うと<code>/pdf</code>ファイルを取り込んで自動で<code>.bib</code>ファイルを作成してくれます。</li>
+</ul>
+</div>
+<div id="文献の引用" class="section level3">
+<h3><span class="header-section-number">13.5.2</span> 文献の引用</h3>
+<p>引用する際には<code>[@citation_key]</code>という形で記述します。
+<code>citation_key</code>とは書誌情報の最初の要素（この場合は<code>fearon1995rationalist</code>）になります。
+したがって、<code>[@fearon1995rationalist]</code>と記述すると引用ができます。<span class="citation">(<span class="citeproc-not-found" data-reference-id="fearon1995rationalist"><strong>???</strong></span>)</span></p>
+<ul>
+<li>Google Scholarの場合は自動で引用キーが生成されますが長いので適当なものに書き直したほうが楽です。</li>
+</ul>
+</div>
+<div id="日本語文献の引用" class="section level3">
+<h3><span class="header-section-number">13.5.3</span> 日本語文献の引用</h3>
+<p>日本語文献の場合も概ね同様の方法で行います。
+ただし、Google Scholarに収録されていないことも多いので次のようなサービスも利用できます。</p>
+<ul>
+<li><a href="http://lead.to/amazon/jp/">Lead2Amazon</a>でAmazonの検索結果からBibTeX情報を取り出す。</li>
+<li><a href="https://ci.nii.ac.jp/">CiNii</a>には標準でBibTeXをエクスポートする機能があります。</li>
+</ul>
+<p>例えば、Lead2Amazonで取り出した高坂正堯の「国際政治」の書誌情報は以下のようになります。
+ただし、このまま引用すると、名前と名字が入れ替わって表示されてしまうので、名字の後ろに<code>,</code>をつける必要があります。</p>
+<pre><code>@BOOK{高坂201710,
+title={国際政治 - 恐怖と希望 (中公新書)},
+author={高坂 正堯},
+publisher={中央公論新社},
+year={2017},
+month={10},
+edition={改},
+isbn={9784121801081},
+url={http://amazon.co.jp/o/ASIN/4121801083/},
+totalpages={233},
+timestamp={2019.04.10},
+}</code></pre>
+<ul>
+<li>本格的に日本語文献を適切な形で表示するには<a href="http://shirotakeda.org/ja/tex-ja/jecon-ja.html">jecon.bst</a>のようなBibTeXスタイルファイルを使う必要があります。</li>
+</ul>
 
+</div>
 </div>
 </div>
             </section>
@@ -529,8 +655,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           </div>
         </div>
       </div>
-<a href="data-import.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="create-vars.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="r-makdown-html.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="encoding-r.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
