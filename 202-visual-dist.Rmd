@@ -1,0 +1,142 @@
+# 分布のグラフ {#visual-dist}
+
+記述統計はデータの概形を把握する基本ですが、少数の統計量で要約するため、多くの情報量が失われてしまいます。
+変数の散らばりをグラフにすることで過度に情報量を損なわずにデータを理解することができます。
+
+まずは、1つの変数がどのように散らばっているのか、どの値を取りやすいのかを理解できるグラフの書き方を学びます。
+具体的には、連続変数の場合には
+
+- ヒストグラム
+- カーネル密度
+
+を使い、離散変数の場合は
+
+- 棒グラフ
+
+を使います。
+
+```{r}
+library(tidyverse)
+```
+
+```{r, echo=FALSE}
+library(knitr)
+```
+
+```{r}
+tri <- read_csv("data/triangle.csv")
+```
+
+## ヒストグラム
+
+Rの標準作画関数でヒストグラムを作成する場合は、`shit()`を使います。
+
+```{r}
+hist(tri$smldep)
+```
+
+このように、分布が歪んでいる変数の場合、対数を取ることで見やすくなります。
+
+```{r}
+hist(log(tri$smldep))
+```
+
+- ただし、対数を取るともともと0だった変数は除外される点に注意して下さい。
+
+`breaks`というオプションで、ヒストグラムのビン（棒）の数を決めることもできます。
+
+```{r}
+hist(log(tri$smldep), breaks = 100)
+```
+
+`tiduverse`では`ggplot2`というパッケージで作図を行います。
+`ggplot2`では、まず、データを`ggplot()`という関数に入力し、さらに`+`でグラフの内容や表示方法を「重ね合わせ」ていきます。
+
+ヒストグラムは次のように描きます。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_histogram(aes(x = smldep)) + 
+  scale_x_log10()
+```
+
+- `ggplot()`でグラフの作成を宣言します。
+- `geom_histogrom()`でヒストグラムを作成します。
+  - `aes()`は変数を指定する関数です。
+- `scale_x_log10()`はx軸を対数スケールにする関数です。
+
+## カーネル密度
+
+カーネル密度とはヒストグラムを「滑らか」にしたものです。
+
+```{r}
+plot(density(log(tri$smldep)))
+```
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep)) + 
+  scale_x_log10()
+```
+
+## 棒グラフ
+
+棒グラフは離散変数の分布を見るときに使います。
+
+```{r}
+barplot(table(tri$smldmat))
+```
+
+- `smldmat`は二国間の民主主義度を表します。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_bar(aes(x = smldmat))
+```
+
+## グループごとの分布
+
+`ggplot2`では`aes()`の中で`fill`を指定することで、グループごとの分布を見ることができます。
+
+- 今回は紛争の有無を示す`dispute1`でグループ分けをしますが、データでは0と1の数値になっているので、`as.factor()`でカテゴリカル変数に変換します。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_histogram(aes(x = smldep, fill = as.factor(dispute1))) + 
+  scale_x_log10()
+```
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep, fill = as.factor(dispute1)), alpha = 0.5) + 
+  scale_x_log10()
+```
+
+- カーネル密度プロットは`alpha`で透過させたほうがかっこいいです。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_bar(aes(x = smldmat, fill = as.factor(dispute1)))
+```
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_bar(aes(x = smldmat, fill = as.factor(dispute1)), position = "dodge")
+```
+
+- `position = "dodge"`でグループごとに「すらして」表示します。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_bar(aes(x = smldmat, fill = as.factor(dispute1)), position = "fill")
+```
+
+`position = "filL"`で割合を表示します。

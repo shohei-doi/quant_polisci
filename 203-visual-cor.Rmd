@@ -1,0 +1,115 @@
+# 相関のグラフ {#visual-cor}
+
+2変数がどのように相関しているのかを把握する場合には、連続変数と連続変数の間では
+
+- 散布図
+
+を、離散変数と連続変数の場合は
+
+- ジッター
+- 箱ひげ図
+- バイオリンプロット
+
+などを使います。
+
+```{r}
+library(tidyverse)
+```
+
+```{r, echo=FALSE}
+library(knitr)
+```
+
+```{r}
+tri <- read_csv("data/triangle.csv")
+```
+
+## 散布図
+
+散布図を描くには`plot()`にx軸とy軸の変数を指定します。
+相互依存度とパワーバランスの関係を見てみます。
+
+```{r}
+plot(tri$lcaprat2, log(tri$smldep))
+```
+
+`ggplot2`では`geom_point()`を使います。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_point(aes(x = lcaprat2, y = smldep)) + 
+  scale_y_log10()
+```
+
+## ジッター
+
+x軸がカテゴリカル変数の場合、素直に散布図を描くと、よくわからないことになります。
+
+```{r}
+plot(tri$smldmat, log(tri$smldep))
+```
+
+このようなときは、ジッターをかけると、ましになります。
+
+```{r}
+plot(jitter(tri$smldmat), log(tri$smldep))
+```
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_jitter(aes(x = smldmat, y = smldep)) + 
+  scale_y_log10()
+```
+
+## 箱ひげ図
+
+しかし、ジッターをかけてもデータポイントが多すぎると分布が直感的にはわからないかもしれません。
+そのような場合は箱ひげ図を使います。
+
+```{r}
+boxplot(log(smldep) ~ smldmat, data = tri[tri$smldep != 0,])
+```
+
+- `smldep`が0の観察を除外しています。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_boxplot(aes(x = as.factor(smldmat), y = smldep)) + 
+  scale_y_log10()
+```
+
+- x軸はカテゴリカル変数でないといけないので、`as.factor()`で変換しています。
+
+## バイオリンプロット
+
+同様の趣旨のグラフとしてバイオリンプロットというものもあります。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_violin(aes(x = as.factor(smldmat), y = smldep)) + 
+  scale_y_log10()
+```
+
+## グループごとの相関
+
+`ggplot2`の散布図で色分けをするときは`colour`を使います。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_point(aes(x = lcaprat2, y = smldep, colour = as.factor(dispute1)), alpha = 0.3) + 
+  scale_y_log10()
+```
+
+箱ひげ図の場合は`fill`です。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_boxplot(aes(x = as.factor(smldmat), y = smldep, fill = as.factor(dispute1))) + 
+  scale_y_log10()
+```

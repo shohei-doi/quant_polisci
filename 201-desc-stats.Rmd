@@ -10,11 +10,16 @@
 
 ```{r}
 library(tidyverse)
+library(skimr)
 library(summarytools)
 ```
 
 ```{r, echo=FALSE}
 library(knitr)
+```
+
+```{r}
+tri <- read_csv("data/triangle.csv")
 ```
 
 ## データを見る
@@ -23,8 +28,7 @@ library(knitr)
 例えば、`.csv`や`.xls`ファイルであれば適当な表計算ソフトで開くことで見ることができます。
 また、`View()`という関数でRに取り込んだデータを見ることもできます。
 
-```{r}
-tri <- read_csv("data/triangle.csv")
+```{r, eval=FALSE}
 View(tri)
 ```
 
@@ -47,7 +51,7 @@ head(tri)
 
 ### 平均
 
-平均 (mean) は次のように定義されます。
+**平均** (mean) は次のように定義されます。
 
 $$
 \bar{x}_i = \sum_{i=1}^n \frac{x_i}{n}
@@ -74,7 +78,7 @@ tri %>%
 
 ### 分散と標準偏差
 
-分散 (variance) は次のように定義され、変数の散らばりを意味します。
+**分散** (variance) は次のように定義され、変数の散らばりを意味します。
 
 $$
 \sigma^2 = \sum_{i=1}^n \frac{(x - \bar{x})^2}{n}
@@ -88,7 +92,7 @@ Rでは`var()`によって求めます。
 var(tri$smldep)
 ```
 
-分散の平方根$\sigma$を標準偏差 (standard error) と呼び`sd()`で計算します。
+分散の平方根$\sigma$を**標準偏差** (standard error) と呼び`sd()`で計算します。
 
 ```{r}
 sd(tri$smldep)
@@ -102,8 +106,8 @@ sd(tri$smldep)^2
 
 ### 分位点
 
-$q$%分位点 (quantile) とは、下から数えて$q$％に当たる点を意味します。
-例えば、50%分位点は、中央値 (median) とも呼ばれ、上から見ても下から見てもちょうど真ん中に位置します。
+$q$%**分位点** (quantile) とは、下から数えて$q$％に当たる点を意味します。
+例えば、50%分位点は、**中央値** (median) とも呼ばれ、上から見ても下から見てもちょうど真ん中に位置します。
 
 中央値は`median()`で求めることができ、一般的に分位点は`quantile()`で求めることができます。
 
@@ -130,6 +134,13 @@ quantile(tri$smldep, c(0.25, 0.5, 0.75))
 ```{r}
 summary(tri)
 ```
+
+`skimr`の`skim()`のほうがカッコよく見えます。
+
+```{r}
+skim(tri)
+```
+
 
 ただし、これをそのまま論文などに載せるのはカッコよくありません。
 そこで、`summarytools`というパッケージを使います。

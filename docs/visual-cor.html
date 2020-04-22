@@ -1,0 +1,618 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第11章 相関のグラフ | Rで計量政治学入門</title>
+  <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第11章 相関のグラフ | Rで計量政治学入門" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  <meta name="github-repo" content="shohei-doi/quant_polisci" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第11章 相関のグラフ | Rで計量政治学入門" />
+  
+  <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  
+
+<meta name="author" content="土井　翔平" />
+
+
+<meta name="date" content="2020-04-22" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="visual-dist.html"/>
+<link rel="next" href="visual-ts.html"/>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-75879658-3"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'UA-75879658-3');
+    </script>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet">
+
+
+<style type="text/css">
+a.sourceLine { display: inline-block; line-height: 1.25; }
+a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
+a.sourceLine:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode { white-space: pre; position: relative; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+code.sourceCode { white-space: pre-wrap; }
+a.sourceLine { text-indent: -1em; padding-left: 1em; }
+}
+pre.numberSource a.sourceLine
+  { position: relative; left: -4em; }
+pre.numberSource a.sourceLine::before
+  { content: attr(data-line-number);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; pointer-events: all; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {  }
+@media screen {
+a.sourceLine::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html">Rで計量政治学入門</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#想定する読者"><i class="fa fa-check"></i>想定する読者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tidyverseについて"><i class="fa fa-check"></i>Tidyverseについて</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ウェブサイトの操作"><i class="fa fa-check"></i>ウェブサイトの操作</a></li>
+</ul></li>
+<li class="part"><span><b>I データの操作</b></span></li>
+<li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a><ul>
+<li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#パッケージ付属のデータ"><i class="fa fa-check"></i><b>1.1</b> パッケージ付属のデータ</a></li>
+<li><a href="data-import.html#主なデータ形式-テキストデータ-.txtファイル-.csvファイル-.tsvファイル-.htmlファイル-バイナリデータ-.xls-.xlsxファイル-.dtaファイル-.savファイル-.rdsファイル-good-bye-excel-パスと作業ディレクトリ-パス-絶対パス-相対パス-パスに関する注意点-作業ディレクトリ-.csvファイルの読み込み-変数名の適切な読み込み-.xlsxファイルの読み込み-シートの選択-変数名の適切な読み込み-again-欠損値の処理-.dtaファイルの読み込み-.rdsファイルの読み込み-パス入力の省略"><span class="toc-section-number">1.2</span> 主なデータ形式<em>
+### テキストデータ
+#### .txtファイル
+#### .csvファイル
+#### .tsvファイル
+#### .htmlファイル
+### バイナリデータ
+#### .xls, .xlsxファイル
+#### .dtaファイル
+#### .savファイル
+#### .rdsファイル
+### Good bye, Excel!
+## パスと作業ディレクトリ
+### パス
+#### 絶対パス
+#### 相対パス
+#### パスに関する注意点
+### 作業ディレクトリ
+## .csvファイルの読み込み
+### 変数名の適切な読み込み
+## .xls[x]ファイルの読み込み
+### シートの選択
+### 変数名の適切な読み込み (again)
+### 欠損値の処理
+## .dtaファイルの読み込み
+## .rdsファイルの読み込み
+## パス入力の省略</em></a></li>
+<li class="chapter" data-level="1.3" data-path="data-import.html"><a href="data-import.html#データの書き出し"><i class="fa fa-check"></i><b>1.3</b> データの書き出し</a></li>
+<li class="chapter" data-level="1.4" data-path="data-import.html"><a href="data-import.html#データフレームの作成"><i class="fa fa-check"></i><b>1.4</b> データフレームの作成</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の選択</a><ul>
+<li class="chapter" data-level="2.1" data-path="select-vars.html"><a href="select-vars.html#変数名による選択"><i class="fa fa-check"></i><b>2.1</b> 変数名による選択</a></li>
+<li class="chapter" data-level="2.2" data-path="select-vars.html"><a href="select-vars.html#番号による選択"><i class="fa fa-check"></i><b>2.2</b> 番号による選択</a></li>
+<li class="chapter" data-level="2.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更"><i class="fa fa-check"></i><b>2.3</b> 変数名の変更</a></li>
+<li class="chapter" data-level="2.4" data-path="select-vars.html"><a href="select-vars.html#高度な変数の選択方法"><i class="fa fa-check"></i><b>2.4</b> 高度な変数の選択方法*</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>3</b> 変数の作成</a><ul>
+<li class="chapter" data-level="3.1" data-path="create-vars.html"><a href="create-vars.html#四則演算"><i class="fa fa-check"></i><b>3.1</b> 四則演算</a></li>
+<li class="chapter" data-level="3.2" data-path="create-vars.html"><a href="create-vars.html#条件に基づく変数"><i class="fa fa-check"></i><b>3.2</b> 条件に基づく変数</a></li>
+<li><a href="create-vars.html#ラグ変数-日付変数"><span class="toc-section-number">3.3</span> ラグ変数<em>
+## 日付変数</em></a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>4</b> 観察の選択</a><ul>
+<li class="chapter" data-level="4.1" data-path="select-obs.html"><a href="select-obs.html#数値の大小による選択"><i class="fa fa-check"></i><b>4.1</b> 数値の大小による選択</a></li>
+<li class="chapter" data-level="4.2" data-path="select-obs.html"><a href="select-obs.html#一致不一致による選択"><i class="fa fa-check"></i><b>4.2</b> 一致・不一致による選択</a></li>
+<li class="chapter" data-level="4.3" data-path="select-obs.html"><a href="select-obs.html#または"><i class="fa fa-check"></i><b>4.3</b> 「または」</a></li>
+<li class="chapter" data-level="4.4" data-path="select-obs.html"><a href="select-obs.html#かつ"><i class="fa fa-check"></i><b>4.4</b> 「かつ」</a></li>
+<li class="chapter" data-level="4.5" data-path="select-obs.html"><a href="select-obs.html#部分集合"><i class="fa fa-check"></i><b>4.5</b> 部分集合</a></li>
+<li class="chapter" data-level="4.6" data-path="select-obs.html"><a href="select-obs.html#番号による選択-1"><i class="fa fa-check"></i><b>4.6</b> 番号による選択</a></li>
+<li class="chapter" data-level="4.7" data-path="select-obs.html"><a href="select-obs.html#観察の並び替え"><i class="fa fa-check"></i><b>4.7</b> 観察の並び替え</a></li>
+<li class="chapter" data-level="4.8" data-path="select-obs.html"><a href="select-obs.html#ベクトルの選択"><i class="fa fa-check"></i><b>4.8</b> ベクトルの選択*</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a><ul>
+<li class="chapter" data-level="5.1" data-path="data-combine.html"><a href="data-combine.html#行方向の結合"><i class="fa fa-check"></i><b>5.1</b> 行方向の結合</a></li>
+<li class="chapter" data-level="5.2" data-path="data-combine.html"><a href="data-combine.html#列方向の結合"><i class="fa fa-check"></i><b>5.2</b> 列方向の結合</a><ul>
+<li><a href="data-combine.html#観察の選択-データフレームの作成"><span class="toc-section-number">5.2.1</span> 観察の選択*＊
+### データフレームの作成</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の処理*</a><ul>
+<li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
+<li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
+<li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
+<li><a href="missing-values.html#欠損値がある場合の分析-一変数の記述統計-二変数の記述統計-everythingの場合-all.obsの場合-complete.obsの場合-pairwise.completeの場合-回帰分析-欠損値のクラス"><span class="toc-section-number">6.4</span> 欠損値がある場合の分析<em>
+### 一変数の記述統計
+### 二変数の記述統計
+#### everythingの場合
+#### all.obsの場合
+#### complete.obsの場合
+#### pairwise.completeの場合
+### 回帰分析
+## 欠損値のクラス</em></a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>7</b> ロング・ワイドの変換</a><ul>
+<li class="chapter" data-level="7.1" data-path="reshape.html"><a href="reshape.html#パネルデータ"><i class="fa fa-check"></i><b>7.1</b> パネルデータ</a><ul>
+<li class="chapter" data-level="7.1.1" data-path="reshape.html"><a href="reshape.html#ワイド形式"><i class="fa fa-check"></i><b>7.1.1</b> ワイド形式</a></li>
+<li class="chapter" data-level="7.1.2" data-path="reshape.html"><a href="reshape.html#ロング形式"><i class="fa fa-check"></i><b>7.1.2</b> ロング形式</a></li>
+<li class="chapter" data-level="7.1.3" data-path="reshape.html"><a href="reshape.html#前処理"><i class="fa fa-check"></i><b>7.1.3</b> 前処理</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="reshape.html"><a href="reshape.html#ループによる方法"><i class="fa fa-check"></i><b>7.2</b> ループによる方法</a><ul>
+<li class="chapter" data-level="7.2.1" data-path="reshape.html"><a href="reshape.html#for文"><i class="fa fa-check"></i><b>7.2.1</b> for文</a></li>
+<li class="chapter" data-level="7.2.2" data-path="reshape.html"><a href="reshape.html#時点の選択による方法"><i class="fa fa-check"></i><b>7.2.2</b> 時点の選択による方法</a></li>
+<li class="chapter" data-level="7.2.3" data-path="reshape.html"><a href="reshape.html#ユニットの選択による方法"><i class="fa fa-check"></i><b>7.2.3</b> ユニットの選択による方法</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="reshape.html"><a href="reshape.html#tidyverseな方法"><i class="fa fa-check"></i><b>7.3</b> tidyverseな方法</a><ul>
+<li class="chapter" data-level="7.3.1" data-path="reshape.html"><a href="reshape.html#ワイドからロングへ"><i class="fa fa-check"></i><b>7.3.1</b> ワイドからロングへ</a></li>
+<li class="chapter" data-level="7.3.2" data-path="reshape.html"><a href="reshape.html#パイプ"><i class="fa fa-check"></i><b>7.3.2</b> パイプ</a></li>
+<li class="chapter" data-level="7.3.3" data-path="reshape.html"><a href="reshape.html#tidyverseの利点"><i class="fa fa-check"></i><b>7.3.3</b> tidyverseの利点</a></li>
+<li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理*</a><ul>
+<li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
+<li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
+<li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
+<li class="chapter" data-level="8.4" data-path="qualtrics.html"><a href="qualtrics.html#tidyverseな方法-1"><i class="fa fa-check"></i><b>8.4</b> tidyverseな方法</a></li>
+<li class="chapter" data-level="8.5" data-path="qualtrics.html"><a href="qualtrics.html#おまけ"><i class="fa fa-check"></i><b>8.5</b> おまけ</a></li>
+</ul></li>
+<li class="part"><span><b>II データの可視化</b></span></li>
+<li class="chapter" data-level="9" data-path="desc-stats.html"><a href="desc-stats.html"><i class="fa fa-check"></i><b>9</b> データの要約</a><ul>
+<li class="chapter" data-level="9.1" data-path="desc-stats.html"><a href="desc-stats.html#データを見る"><i class="fa fa-check"></i><b>9.1</b> データを見る</a></li>
+<li class="chapter" data-level="9.2" data-path="desc-stats.html"><a href="desc-stats.html#記述統計"><i class="fa fa-check"></i><b>9.2</b> 記述統計</a><ul>
+<li class="chapter" data-level="9.2.1" data-path="desc-stats.html"><a href="desc-stats.html#平均"><i class="fa fa-check"></i><b>9.2.1</b> 平均</a></li>
+<li class="chapter" data-level="9.2.2" data-path="desc-stats.html"><a href="desc-stats.html#分散と標準偏差"><i class="fa fa-check"></i><b>9.2.2</b> 分散と標準偏差</a></li>
+<li class="chapter" data-level="9.2.3" data-path="desc-stats.html"><a href="desc-stats.html#分位点"><i class="fa fa-check"></i><b>9.2.3</b> 分位点</a></li>
+<li class="chapter" data-level="9.2.4" data-path="desc-stats.html"><a href="desc-stats.html#記述統計表"><i class="fa fa-check"></i><b>9.2.4</b> 記述統計表</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="desc-stats.html"><a href="desc-stats.html#データのカウント"><i class="fa fa-check"></i><b>9.3</b> データのカウント</a></li>
+<li class="chapter" data-level="9.4" data-path="desc-stats.html"><a href="desc-stats.html#グループごとの要約"><i class="fa fa-check"></i><b>9.4</b> グループごとの要約</a></li>
+<li class="chapter" data-level="9.5" data-path="desc-stats.html"><a href="desc-stats.html#ユニークなデータ"><i class="fa fa-check"></i><b>9.5</b> ユニークなデータ*</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="visual-dist.html"><a href="visual-dist.html"><i class="fa fa-check"></i><b>10</b> 分布のグラフ</a><ul>
+<li class="chapter" data-level="10.1" data-path="visual-dist.html"><a href="visual-dist.html#ヒストグラム"><i class="fa fa-check"></i><b>10.1</b> ヒストグラム</a></li>
+<li class="chapter" data-level="10.2" data-path="visual-dist.html"><a href="visual-dist.html#カーネル密度"><i class="fa fa-check"></i><b>10.2</b> カーネル密度</a></li>
+<li class="chapter" data-level="10.3" data-path="visual-dist.html"><a href="visual-dist.html#棒グラフ"><i class="fa fa-check"></i><b>10.3</b> 棒グラフ</a></li>
+<li class="chapter" data-level="10.4" data-path="visual-dist.html"><a href="visual-dist.html#グループごとの分布"><i class="fa fa-check"></i><b>10.4</b> グループごとの分布</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="visual-cor.html"><a href="visual-cor.html"><i class="fa fa-check"></i><b>11</b> 相関のグラフ</a><ul>
+<li class="chapter" data-level="11.1" data-path="visual-cor.html"><a href="visual-cor.html#散布図"><i class="fa fa-check"></i><b>11.1</b> 散布図</a></li>
+<li class="chapter" data-level="11.2" data-path="visual-cor.html"><a href="visual-cor.html#ジッター"><i class="fa fa-check"></i><b>11.2</b> ジッター</a></li>
+<li class="chapter" data-level="11.3" data-path="visual-cor.html"><a href="visual-cor.html#箱ひげ図"><i class="fa fa-check"></i><b>11.3</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="11.4" data-path="visual-cor.html"><a href="visual-cor.html#バイオリンプロット"><i class="fa fa-check"></i><b>11.4</b> バイオリンプロット</a></li>
+<li class="chapter" data-level="11.5" data-path="visual-cor.html"><a href="visual-cor.html#グループごとの散布図"><i class="fa fa-check"></i><b>11.5</b> グループごとの散布図</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="visual-ts.html"><a href="visual-ts.html"><i class="fa fa-check"></i><b>12</b> 時系列のグラフ</a><ul>
+<li class="chapter" data-level="12.1" data-path="visual-ts.html"><a href="visual-ts.html#折れ線グラフ"><i class="fa fa-check"></i><b>12.1</b> 折れ線グラフ</a></li>
+<li class="chapter" data-level="12.2" data-path="visual-ts.html"><a href="visual-ts.html#エラーバー"><i class="fa fa-check"></i><b>12.2</b> エラーバー</a></li>
+<li class="chapter" data-level="12.3" data-path="visual-ts.html"><a href="visual-ts.html#箱ひげ図-1"><i class="fa fa-check"></i><b>12.3</b> 箱ひげ図</a></li>
+</ul></li>
+<li class="part"><span><b>III R/RStudio</b></span></li>
+<li class="chapter" data-level="13" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>13</b> Rの分析環境</a><ul>
+<li class="chapter" data-level="13.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>13.1</b> Rのインストール</a><ul>
+<li class="chapter" data-level="13.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>13.1.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="13.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>13.1.2</b> インストール</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>13.2</b> RStudioのインストール</a><ul>
+<li class="chapter" data-level="13.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>13.2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="13.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>13.2.2</b> インストール</a></li>
+<li class="chapter" data-level="13.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>13.2.3</b> RStudioの起動</a></li>
+<li><a href="r-envir.html#rstudio-cloud-再現可能な分析のために-rスクリプト-rスクリプトの作成-rスクリプトの展開-rスクリプトの実行-rプロジェクト-rプロジェクトの作成-プロジェクトの起動-ワークスペースの保存と再開"><span class="toc-section-number">13.2.4</span> RStudio Cloud<em>
+## 再現可能な分析のために
+### Rスクリプト
+#### Rスクリプトの作成
+#### Rスクリプトの展開
+#### Rスクリプトの実行
+### Rプロジェクト
+#### Rプロジェクトの作成
+#### プロジェクトの起動
+#### ワークスペースの保存と再開</em></a></li>
+<li><a href="r-envir.html#rstudioの設定-rstudio起動時の挙動-文字コード"><span class="toc-section-number">13.2.5</span> RStudioの設定*
+#### RStudio起動時の挙動
+#### 文字コード</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>14</b> Rプログラミング入門</a><ul>
+<li class="chapter" data-level="14.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>14.1</b> 関数</a><ul>
+<li><a href="intro-r.html#総称関数-オブジェクト-パッケージ-cranからのインストール-githubからのインストール"><span class="toc-section-number">14.1.1</span> 総称関数<em>
+## オブジェクト
+## パッケージ
+### CRANからのインストール
+### GitHubからのインストール</em></a></li>
+<li class="chapter" data-level="14.1.2" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>14.1.2</b> パッケージの読み込み</a></li>
+<li class="chapter" data-level="14.1.3" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>14.1.3</b> <code>tidyverse</code>とは*</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="15" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>15</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="15.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>15.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="15.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>15.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="15.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>15.3</b> ループ</a></li>
+<li class="chapter" data-level="15.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>15.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="15.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>15.5</b> 練習問題</a><ul>
+<li class="chapter" data-level="15.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>15.5.1</b> フィボナッチ数列</a></li>
+<li class="chapter" data-level="15.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>15.5.2</b> モンテカルロ・シミュレーション</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="r-makdown-html.html"><a href="r-makdown-html.html"><i class="fa fa-check"></i><b>16</b> R Markdown: HTML</a><ul>
+<li class="chapter" data-level="16.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>16.1</b> R Markdownファイルの作成</a><ul>
+<li class="chapter" data-level="16.1.1" data-path="r-makdown-html.html"><a href="r-makdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>16.1.1</b> 参考になるサイト</a></li>
+</ul></li>
+<li class="chapter" data-level="16.2" data-path="r-makdown-html.html"><a href="r-makdown-html.html#markdown記法"><i class="fa fa-check"></i><b>16.2</b> Markdown記法</a><ul>
+<li><a href="r-makdown-html.html#markdownとは-セクション-パラグラフ-箇条書き-文字の強調-引用-リンク-画像表-数式-rチャンク-チャンクオプション-yamlヘッダー-output-目次-テーマ-htmlとcss-その他のテンプレート-distill-tufte-handout-rmdformats-スライド-ダッシュボード-microsoft-office"><span class="toc-section-number">16.2.1</span> Markdownとは*
+### セクション
+### パラグラフ
+### 箇条書き
+### 文字の強調
+### 引用
+### リンク
+### 画像、表
+### 数式
+## Rチャンク
+### チャンクオプション
+## yamlヘッダー
+### output
+### 目次
+### テーマ
+### htmlとcss
+## その他のテンプレート
+### Distill
+### Tufte Handout
+### rmdformats
+### スライド
+### ダッシュボード
+### Microsoft Office</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="17" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>17</b> R Markdown: pdf</a><ul>
+<li class="chapter" data-level="17.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>17.1</b> LaTeXの導入</a><ul>
+<li class="chapter" data-level="17.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>17.1.1</b> tinytexのインストール</a></li>
+<li class="chapter" data-level="17.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>17.1.2</b> タイプセット</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>17.2</b> 日本語環境の構築</a><ul>
+<li><a href="r-markdown-pdf.html#latexエンジンのあれこれ-yamlヘッダー-フォントのインストール-その他のテンプレート-sumatra-pdf-スライドの作成-テーマ-latex記法-定理環境-数式-添字-太字-条件-参考文献と引用-.bibファイル-文献の引用-日本語文献の引用"><span class="toc-section-number">17.2.1</span> LaTeXエンジンのあれこれ*
+### yamlヘッダー
+### フォントのインストール
+### その他のテンプレート
+### Sumatra PDF
+## スライドの作成
+### テーマ
+## LaTeX記法
+### 定理環境
+### 数式
+#### 添字
+#### 太字
+#### 条件
+## 参考文献と引用
+### .bibファイル
+### 文献の引用
+### 日本語文献の引用</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>18</b> Rにおける文字コード*</a><ul>
+<li class="chapter" data-level="18.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>18.1</b> なぜ文字化けが起こるのか</a><ul>
+<li class="chapter" data-level="18.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>18.1.1</b> エンコーディング</a></li>
+<li class="chapter" data-level="18.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>18.1.2</b> RとRStudioにおける問題</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>18.2</b> Rスクリプトの文字化け</a><ul>
+<li class="chapter" data-level="18.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>18.2.1</b> ファイルを開く</a></li>
+<li class="chapter" data-level="18.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>18.2.2</b> ファイルを保存する</a></li>
+</ul></li>
+<li class="chapter" data-level="18.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>18.3</b> データの文字化け</a><ul>
+<li class="chapter" data-level="18.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>18.3.1</b> 標準関数の場合</a></li>
+<li class="chapter" data-level="18.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>18.3.2</b> tidyverseの場合</a></li>
+<li class="chapter" data-level="18.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>18.3.3</b> エンコーディングを確認する方法</a></li>
+<li class="chapter" data-level="18.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>18.3.4</b> もとのデータを見たい場合</a></li>
+<li class="chapter" data-level="18.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>18.3.5</b> データを保存する場合</a></li>
+</ul></li>
+<li class="chapter" data-level="18.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>18.4</b> その他の問題</a><ul>
+<li class="chapter" data-level="18.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>18.4.1</b> アカウント名が日本語の場合</a></li>
+<li class="chapter" data-level="18.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>18.4.2</b> 画像で日本語が文字化けする場合</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>19</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="19.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>19.1</b> 基本的な使い方</a></li>
+<li class="chapter" data-level="19.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>19.2</b> データの代入</a></li>
+<li class="chapter" data-level="19.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>19.3</b> 左辺の参照</a></li>
+<li class="chapter" data-level="19.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>19.4</b> 複数の出力</a></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="../index.html">&copy; 2020 Shohei Doi</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rで計量政治学入門</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visual-cor" class="section level1">
+<h1><span class="header-section-number">第11章</span> 相関のグラフ</h1>
+<p>2変数がどのように相関しているのかを把握する場合には、連続変数と連続変数の間では</p>
+<ul>
+<li>散布図</li>
+</ul>
+<p>を、離散変数と連続変数の場合は</p>
+<ul>
+<li>ジッター</li>
+<li>箱ひげ図</li>
+<li>バイオリンプロット</li>
+</ul>
+<p>などを使います。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<pre><code>## ── Attaching packages ────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.0     ✓ purrr   0.3.4
+## ✓ tibble  3.0.1     ✓ dplyr   0.8.5
+## ✓ tidyr   1.0.2     ✓ stringr 1.4.0
+## ✓ readr   1.3.1     ✓ forcats 0.5.0</code></pre>
+<pre><code>## ── Conflicts ───────────────────────────────────────────────────────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1">tri &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</a></code></pre></div>
+<pre><code>## Parsed with column specification:
+## cols(
+##   statea = col_double(),
+##   stateb = col_double(),
+##   year = col_double(),
+##   dependa = col_double(),
+##   dependb = col_double(),
+##   demauta = col_double(),
+##   demautb = col_double(),
+##   allies = col_double(),
+##   dispute1 = col_double(),
+##   logdstab = col_double(),
+##   lcaprat2 = col_double(),
+##   smigoabi = col_double(),
+##   opena = col_double(),
+##   openb = col_double(),
+##   minrpwrs = col_double(),
+##   noncontg = col_double(),
+##   smldmat = col_double(),
+##   smldep = col_double(),
+##   dyadid = col_double()
+## )</code></pre>
+<div id="散布図" class="section level2">
+<h2><span class="header-section-number">11.1</span> 散布図</h2>
+<p>散布図を描くには<code>plot()</code>にx軸とy軸の変数を指定します。
+相互依存度とパワーバランスの関係を見てみます。</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw">plot</span>(tri<span class="op">$</span>lcaprat2, <span class="kw">log</span>(tri<span class="op">$</span>smldep))</a></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><code>ggplot2</code>では<code>geom_point()</code>を使います。</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> lcaprat2, <span class="dt">y =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb8-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+</div>
+<div id="ジッター" class="section level2">
+<h2><span class="header-section-number">11.2</span> ジッター</h2>
+<p>x軸がカテゴリカル変数の場合、素直に散布図を描くと、よくわからないことになります。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw">plot</span>(tri<span class="op">$</span>smldmat, <span class="kw">log</span>(tri<span class="op">$</span>smldep))</a></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>このようなときは、ジッターをかけると、ましになります。</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" data-line-number="1"><span class="kw">plot</span>(<span class="kw">jitter</span>(tri<span class="op">$</span>smldmat), <span class="kw">log</span>(tri<span class="op">$</span>smldep))</a></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_jitter</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldmat, <span class="dt">y =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb12-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+</div>
+<div id="箱ひげ図" class="section level2">
+<h2><span class="header-section-number">11.3</span> 箱ひげ図</h2>
+<p>しかし、ジッターをかけてもデータポイントが多すぎると分布が直感的にはわからないかもしれません。
+そのような場合は箱ひげ図を使います。</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" data-line-number="1"><span class="kw">boxplot</span>(<span class="kw">log</span>(smldep) <span class="op">~</span><span class="st"> </span>smldmat, <span class="dt">data =</span> tri[tri<span class="op">$</span>smldep <span class="op">!=</span><span class="st"> </span><span class="dv">0</span>,])</a></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<ul>
+<li><code>smldep</code>が0の観察を除外しています。</li>
+</ul>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(smldmat), <span class="dt">y =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb15-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
+<ul>
+<li>x軸はカテゴリカル変数でないといけないので、<code>as.factor()</code>で変換しています。</li>
+</ul>
+</div>
+<div id="バイオリンプロット" class="section level2">
+<h2><span class="header-section-number">11.4</span> バイオリンプロット</h2>
+<p>同様の趣旨のグラフとしてバイオリンプロットというものもあります。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_violin</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(smldmat), <span class="dt">y =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb18-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_ydensity).</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="グループごとの散布図" class="section level2">
+<h2><span class="header-section-number">11.5</span> グループごとの散布図</h2>
+<p><code>ggplot2</code>の散布図で色分けをするときは<code>colour</code>を使います。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> lcaprat2, <span class="dt">y =</span> smldep, <span class="dt">colour =</span> <span class="kw">as.factor</span>(dispute1)), <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb21-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>箱ひげ図の場合は<code>fill</code>です。</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_boxplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> <span class="kw">as.factor</span>(smldmat), <span class="dt">y =</span> smldep, <span class="dt">fill =</span> <span class="kw">as.factor</span>(dispute1))) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb23-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_y_log10</span>()</a></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visual-dist.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="visual-ts.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+</body>
+
+</html>

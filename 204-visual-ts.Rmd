@@ -1,0 +1,125 @@
+# 時系列のグラフ {#visual-ts}
+
+x軸が年のような時間軸の場合、
+
+- 折れ線グラフ
+
+による可視化が適当でしょう。
+
+パネルデータのように、複数の時系列データが含まれている場合は、
+
+- エラーバー
+- 箱ひげ図
+
+などにより、散らばりも同時に可視化することもできます。
+
+```{r}
+library(tidyverse)
+```
+
+```{r, echo=FALSE}
+library(knitr)
+```
+
+```{r}
+tri <- read_csv("data/triangle.csv")
+```
+
+## 折れ線グラフ
+
+まず、二国間の相互依存度`smldep`を年ごとに平均を取ったデータを`df`として作成します。
+
+```{r}
+df <- tri %>% 
+  group_by(year) %>% 
+  summarise(smldep = mean(smldep, na.rm = TRUE))
+df
+```
+
+標準作画関数では`plot()`を使い、オプションで`type = "l"`とします。
+
+```{r}
+plot(df$year, log(df$smldep), type = "l")
+```
+
+`ggplot2`では`geom_line()`を使います。
+
+```{r}
+df %>% 
+  ggplot() + 
+  geom_line(aes(x = year, y = smldep)) + 
+  scale_y_log10()
+```
+
+複数の時系列データの場合、`group`を指定することで、例えば二国間ごとにプロットすることができます。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_line(aes(x = year, y = smldep, group = as.factor(dyadid)), alpha = 0.3) + 
+  scale_y_log10()
+```
+
+## エラーバー
+
+しかし、分析単位の数が多すぎると複数の折れ線グラフは見にくいかもしれません。
+そのようなときは、箱ひげ図やバイオリンプロットを使うのも一案です。
+
+すでに、それらの作図方法は解説しているので、ここでは別のアプローチを考えます。
+変数の5%, 50%, 95%分位点をプロットしたいとします。
+
+まず、各年の各四分位点を求めて。`df`というデータフレームを作成します。
+
+```{r}
+df <- tri %>% 
+  group_by(year) %>% 
+  summarise(median = quantile(smldep, 0.5, na.rm = TRUE),
+            low = quantile(smldep, 0.05, na.rm = TRUE),
+            high = quantile(smldep, 0.95, na.rm = TRUE))
+df
+```
+
+一つのやり方は、`geom_pointrange()`を使う方法です。
+
+```{r}
+df %>% 
+  ggplot() + 
+  geom_pointrange(aes(x = year, y = median, ymin = low, ymax = high)) + 
+  scale_y_log10()
+```
+
+`geom_line()`と`geom_ribbon()`を使うという手もあります。
+
+```{r}
+df %>% 
+  ggplot() + 
+  geom_line(aes(x = year, y = median)) + 
+  geom_ribbon(aes(x = year, ymin = low, ymax = high), alpha = 0.3) + 
+  scale_y_log10()
+```
+
+## グループごとの時系列
+
+グループごとに時系列を表示する場合、`geom_line()`では`colour`を、`geom_ribbon()`では`fill`を指定します。
+
+まず。`smldep`を紛争の有無で分けて各年の各分位点を求めて`df`とします。
+
+```{r}
+df <- tri %>% 
+  group_by(year, dispute1) %>% 
+  summarise(median = quantile(smldep, 0.5, na.rm = TRUE),
+            low = quantile(smldep, 0.05, na.rm = TRUE),
+            high = quantile(smldep, 0.95, na.rm = TRUE))
+df
+```
+
+続いて、折れ線グラフとエラーバーをプロットします。
+
+```{r}
+df %>% 
+  ggplot() + 
+  geom_line(aes(x = year, y = median, colour = as.factor(dispute1))) + 
+  geom_ribbon(aes(x = year, ymin = low, ymax = high, fill = as.factor(dispute1)), alpha = 0.3) + 
+  scale_y_log10()
+```
+
