@@ -21,6 +21,7 @@ library(tidyverse)
 
 ```{r, echo=FALSE}
 library(knitr)
+theme_set(theme_minimal())
 ```
 
 ```{r}
@@ -97,6 +98,14 @@ tri %>%
   geom_bar(aes(x = smldmat))
 ```
 
+y軸に指定すると反転します。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_bar(aes(y = smldmat))
+```
+
 ## グループごとの分布
 
 `ggplot2`では`aes()`の中で`fill`を指定することで、グループごとの分布を見ることができます。
@@ -125,18 +134,18 @@ tri %>%
   geom_bar(aes(x = smldmat, fill = as.factor(dispute1)))
 ```
 
+`position = "dodge"`でグループごとに「すらして」表示します。
+
 ```{r}
 tri %>% 
   ggplot() + 
   geom_bar(aes(x = smldmat, fill = as.factor(dispute1)), position = "dodge")
 ```
 
-- `position = "dodge"`でグループごとに「すらして」表示します。
+`position = "filL"`で割合を表示します。
 
 ```{r}
 tri %>% 
   ggplot() + 
   geom_bar(aes(x = smldmat, fill = as.factor(dispute1)), position = "fill")
 ```
-
-`position = "filL"`で割合を表示します。

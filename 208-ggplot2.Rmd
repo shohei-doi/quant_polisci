@@ -1,0 +1,214 @@
+# ggplot2いろいろ* {#ggplot2}
+
+`ggplot2`は簡単にきれいなグラフを作ってくれます。
+より、もう一手間加えることで、より見やすいグラフになるので、いろいろな設定の方法を紹介します。
+
+```{r}
+library(tidyverse)
+library(gghighlight)
+library(ggrepel)
+```
+
+```{r, echo=FALSE}
+library(knitr)
+```
+
+```{r}
+tri <- read_csv("data/triangle.csv")
+```
+
+## テーマ
+
+`ggplot2`ではテーマを重ねることで見た目を変えることができます。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep)) + 
+  scale_x_log10() + 
+  theme_bw()
+```
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep)) + 
+  scale_x_log10() + 
+  theme_classic()
+```
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep)) + 
+  scale_x_log10() + 
+  theme_dark()
+```
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep)) + 
+  scale_x_log10() + 
+  theme_bw()
+```
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep)) + 
+  scale_x_log10() + 
+  theme_light()
+```
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep)) + 
+  scale_x_log10() + 
+  theme_minimal()
+```
+
+実際には、全てのグラフでテーマを統一したいので、最初に`theme_set()`で決めます。
+
+```{r}
+theme_set(theme_minimal())
+```
+
+## 色
+
+`ggplot2`ではデフォルトでもきれいな色でグラフを書いてくれますが、違う色が良いなと思うときもあります。
+もちろん、自分で指定することもできますが、とりあえず既存のカラーパレットを使う方法を紹介します。
+
+使えるカラーパレットは次のように確認できます。
+
+```{r, fig.height=10}
+RColorBrewer::display.brewer.all()
+```
+
+実際は、ユニバーサルデザインのカラーパレットを使うのが良いでしょう。
+
+```{r, fig.height=10}
+RColorBrewer::display.brewer.all(colorblindFriendly = TRUE)
+```
+
+例えば、このように色指定を行います。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep, fill = as.factor(dispute1)), alpha = 0.5) + 
+  scale_x_log10() + 
+  scale_fill_brewer(palette = "Set2")
+```
+
+## パネルの分割
+
+`ggplot2`では簡単にパネルを分割し、グループごとにグラフを作ることができます。
+
+`facet_grid()`はx軸と（あるいは）y軸を指定して、分割します。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep)) + 
+  scale_x_log10() + 
+  facet_grid(dispute1 ~ noncontg)
+```
+
+`facet_wrap()`は一つの変数の値に応じて分割します。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep)) + 
+  scale_x_log10() + 
+  facet_wrap(~ smldmat)
+```
+
+### 記述統計のグラフ
+
+`pivot_longer()`を応用すると、記述統計をグラフで表示することもできます。
+
+```{r}
+tri %>% 
+  mutate(smldep = log(smldep + 10^-10)) %>% 
+  select(smldep, smldmat, lcaprat2, logdstab) %>% 
+  pivot_longer(everything(), names_to = "vars", values_to = "val") %>% 
+  ggplot() + 
+  geom_density(aes(x = val)) + 
+  facet_wrap(~vars, scales = "free")
+```
+
+- `"scales = "free"`とすることで、軸の範囲を各パネルで統一しないようにします。
+
+## ラベル
+
+x軸やy軸、あるいは凡例には変数名がそのまま表示されるのでかっこ悪いです。
+そこで`labs()`でラベルを変えます。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep, fill = as.factor(dispute1)), alpha = 0.5) + 
+  scale_x_log10() + 
+  scale_fill_brewer(palette = "Set2") + 
+  labs(x = "Economic Interdependece", y = "Density", fill = "Militarized Dispute")
+```
+
+- Macintoshで日本語を表示させる際にはフォントを指定する必要があります。
+
+## 凡例
+
+凡例の位置を`theme()`変えることもできます。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep, fill = as.factor(dispute1)), alpha = 0.5) + 
+  scale_x_log10() + 
+  scale_fill_brewer(palette = "Set2") + 
+  labs(x = "Economic Interdependece", y = "Density", fill = "Militarized Dispute") + 
+  theme(legend.position = "bottom")
+```
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density(aes(x = smldep, fill = as.factor(dispute1)), alpha = 0.5) + 
+  scale_x_log10() + 
+  scale_fill_brewer(palette = "Set2") + 
+  labs(x = "Economic Interdependece", y = "Density", fill = "Militarized Dispute") + 
+  theme(legend.position = c(0,1), legend.justification = c(0,1))
+```
+
+## 強調
+
+データポイントが膨大な場合、一部だけ強調したい場合があります。
+そのようなときは`gghighlight`というパッケージを使います。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_line(aes(x = year, y = lcaprat2, colour = as.factor(dyadid))) + 
+  gghighlight(statea == 2, stateb == 710, label_key = dyadid)
+```
+
+## テキスト
+
+一部を強調せずにテキストでラベルをつける際には`ggrepel`というパッケージを使います。
+
+```{r}
+tri %>% 
+  mutate(dispute1 = if_else(dispute1 == 1, "Dispute", "Peace")) %>% 
+  group_by(dispute1, year) %>% 
+  summarise(smldep = median(smldep, na.rm = TRUE)) %>% 
+  ggplot() + 
+  geom_line(aes(x = year, y = smldep, colour = as.factor(dispute1))) + 
+  geom_label_repel(aes(x = year, y = smldep, colour = as.factor(dispute1), label = dispute1),
+                  data = . %>% 
+                    filter(year == max(year))) + 
+  scale_y_log10() + 
+  theme(legend.position = "none")
+```
+

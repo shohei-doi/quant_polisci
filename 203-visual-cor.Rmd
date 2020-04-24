@@ -18,6 +18,7 @@ library(tidyverse)
 
 ```{r, echo=FALSE}
 library(knitr)
+theme_set(theme_minimal())
 ```
 
 ```{r}
@@ -39,6 +40,17 @@ plot(tri$lcaprat2, log(tri$smldep))
 tri %>% 
   ggplot() + 
   geom_point(aes(x = lcaprat2, y = smldep)) + 
+  scale_y_log10()
+```
+
+## カーネル密度
+
+2次元のカーネル密度を求めてプロットすることもできます。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_density2d(aes(x = lcaprat2, y = smldep)) + 
   scale_y_log10()
 ```
 
@@ -111,5 +123,38 @@ tri %>%
 tri %>% 
   ggplot() + 
   geom_boxplot(aes(x = as.factor(smldmat), y = smldep, fill = as.factor(dispute1))) + 
+  scale_y_log10()
+```
+
+## 単回帰
+
+単回帰（正確に言えば説明変数の種類が1つの）分析結果は`geom_smooth()`で表示できます。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_smooth(aes(x = lcaprat2, y = smldep)) + 
+  scale_y_log10()
+```
+
+- デフォルトではLoessになっています。
+- `se = FALSE`で信頼区間を表示しないことができます。
+
+線形回帰の場合は`method`を変えます。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_smooth(aes(x = lcaprat2, y = smldep), method = "lm") + 
+  scale_y_log10()
+```
+
+散布図と重ねることもできます。
+
+```{r}
+tri %>% 
+  ggplot() + 
+  geom_point(aes(x = lcaprat2, y = smldep), alpha = 0.3) + 
+  geom_smooth(aes(x = lcaprat2, y = smldep), method = "lm") + 
   scale_y_log10()
 ```

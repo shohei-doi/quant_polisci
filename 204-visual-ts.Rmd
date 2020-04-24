@@ -19,6 +19,7 @@ library(tidyverse)
 
 ```{r, echo=FALSE}
 library(knitr)
+theme_set(theme_minimal())
 ```
 
 ```{r}

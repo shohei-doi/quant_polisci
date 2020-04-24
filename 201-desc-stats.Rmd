@@ -54,7 +54,7 @@ head(tri)
 **平均** (mean) は次のように定義されます。
 
 $$
-\bar{x}_i = \sum_{i=1}^n \frac{x_i}{n}
+\bar{x} = \sum_{i=1}^n \frac{x_i}{n}
 $$
 
 Rでは、まずデータフレームから変数を抜き出し、`mean()`に入れます。
