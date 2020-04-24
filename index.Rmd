@@ -25,6 +25,8 @@ description: "Rによる計量政治学の入門レベルの講義資料です�
 
 なお、RやRStudioのインストールについては[Rの分析環境]を、基本操作については[Rプログラミング入門]をご覧ください。
 
+- [RStudio Education](https://education.rstudio.com/learn/beginner/)の初学者向け案内、特に[RStudio Primers](https://rstudio.cloud/learn/primers)のチュートリアルをまずはやることをおすすめします。
+
 ## Tidyverseについて {-}
 
 [Tidyverse](https://www.tidyverse.org/)とは様々なデータ操作に関するパッケージ群（あるいはそのプロジェクト）を指します。
