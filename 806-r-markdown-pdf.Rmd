@@ -1,4 +1,4 @@
-# R Markdown: pdf {#r-markdown-pdf}
+# R Markdown: pdf* {#r-markdown-pdf}
 
 R Markdownから`.pdf`ファイルを作成するにはLaTeXと呼ばれる組版システムを導入する必要があります。
 一手間かかりますが、逆にR Markdownによって簡単にLaTeXを使えるとも言えます。
