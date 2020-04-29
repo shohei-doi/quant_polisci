@@ -1,1 +1,118 @@
 # Googleデータ {#google-data}
+
+## はじめに
+
+Googleで特定の単語がどれくらい検索されているのかは[Googleトレンド](https://trends.google.co.jp/trends/)で調べることができます。
+
+- 正確には、「検索数」ではなく「ピーク時を100としたときの検索割合」になります。
+- 詳しくは[こちら](http://ysklog.net/googleanalytics/5632.html)を参照。
+
+```{r}
+library(tidyverse)
+library(gtrendsR)
+library(rvest)
+```
+
+```{r, echo=FALSE}
+library(knitr)
+theme_set(theme_minimal())
+```
+
+## 時系列トレンド
+
+### 一つの単語
+
+`gtrends()`という関数で検索スコアを取ってくることができます。
+ここでは、「新型 コロナ」と「マスク」の検索トレンドを調べてみます。
+
+```{r}
+trend <- gtrends(keyword = "新型 コロナ", geo = "JP")
+plot(trend)
+```
+
+- "geo"オプションで地域を指定できます。
+
+```{r}
+trend <- gtrends(keyword = "マスク", geo = "JP")
+plot(trend)
+```
+
+### 複数の単語
+
+しかし、このままでは「新型 コロナ」と「マスク」のそれぞれのピークで100となってしまうので、両者の比較をすることはできません。
+そこで、両者を同時に調べてみます。
+
+```{r}
+trend <- gtrends(keyword = c("新型 コロナ", "マスク"), geo = "JP")
+plot(trend)
+```
+
+マスクのほうが注目されていることがわかります。
+
+- ただし、同時に検索できるのは5つまでになります。
+
+## 地域別のトレンド
+
+`gtrends`の出力の中身を見てみましょう。
+
+```{r}
+str(trend, max.level = 1)
+```
+
+時系列以外にも地域別のスコアがあるのが分かります。
+
+```{r}
+trend$interest_by_region
+```
+
+グラフにすることもできます。
+
+```{r}
+trend$interest_by_region %>% 
+  mutate(location = str_remove(location, " Prefecture")) %>% 
+  arrange(location) %>% 
+  ggplot() + 
+  geom_bar(aes(x = keyword, y = hits, fill = keyword), stat = "identity") + 
+  facet_wrap(~location) + 
+  theme(axis.text.x = element_text(angle = 90, hjust = 1))
+```
+
+## 関連単語
+
+関連検索ワードもあることがわかります。
+
+```{r}
+trend$related_queries
+```
+
+- `related_queries`には`top`と`rising`があります。
+
+## 検索ヒット数*
+
+ある単語でGoogle検索したときにいくつのウェブサイトにヒットするか知りたいかもしれません。
+このような場合は、検索パラメータをいじって検索します。
+
+- 本格的にRヤPythonからブラウザを操作したい場合はSeleniumを使うとよいでしょう。
+
+具体的には、`XXXX`という単語を検索したい場合は`https://www.google.co.jp/search?q=XXXX`とすればいいことが分かります。
+そこで、今回は`新海誠`と`秒速5センチメートル`で検索してみようと思います。
+
+```{r}
+html <- html_session("https://www.google.co.jp/search?q=新海誠+秒速5センチメートル",
+                     httr::user_agent("Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:75.0) Gecko/20100101 Firefox/75.0"))
+```
+
+- 複数の単語で検索する場合は`+`で繋げます。
+- 自分のPCのブラウザのユーザーエージェントを確認して`httr::user_agent()`の中に文字列として入力します。
+
+検索ヒット数は`id`が`resultStats`のタグの中にあることが分かるので、数字をパースします。
+
+```{r}
+hits <- html %>% 
+  html_node("div#result-stats") %>% 
+  html_text() %>% 
+  parse_number()
+hits
+```
+
+- 実際の結果とは少しずれてしまいます。
