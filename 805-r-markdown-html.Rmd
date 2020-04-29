@@ -1,4 +1,4 @@
-# R Markdown: html {#r-makdown-html}
+# R Markdown: html {#r-markdown-html}
 
 データ分析の再現可能性の必要性は論を俟たないですが、再現可能性を担保するにはレプリケーションデータやコードを公開するだけでなく、それらが理解可能である必要があります。
 
