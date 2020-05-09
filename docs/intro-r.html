@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-04-29" />
+<meta name="date" content="2020-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -427,7 +427,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにおける文字コード*</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにエンコーディング問題*</a><ul>
 <li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
@@ -504,8 +504,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>次のように、入力引数も出力引数も1つとは限りません。</p>
 <div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a></code></pre></div>
-<pre><code>##  [1] -2.4051388  0.5922883 -1.2428809  0.5907962 -1.1769881  2.9393236
-##  [7] -0.6123017  0.9728769  2.7757572 -1.2848848</code></pre>
+<pre><code>##  [1] -0.0821987730  0.1122572936  0.0007535966 -0.1068226589  1.3078031412
+##  [6]  0.1545627104  0.8933767039 -0.1456971972 -0.3379565359  1.4453349976</code></pre>
 <p>さて、この関数は何をしているのでしょうか。
 Rでは、関数名の前に<code>?</code>をつけて実行することで、その関数のヘルプを見ることができます。</p>
 <div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb519-1" data-line-number="1">?rnorm</a></code></pre></div>
@@ -538,22 +538,22 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 </ul>
 <p>実際に、乱数が<code>x</code>に格納されていることが分かります。</p>
 <div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb525-1" data-line-number="1">x</a></code></pre></div>
-<pre><code>##  [1] -0.76372741  1.72132678 -0.27805813  0.11075876 -0.41097049  0.18465500
-##  [7] -0.10506834  0.46547459 -0.41239316  1.58873183  0.32801020 -0.41816374
-## [13]  0.71912265  0.03654972  0.56378399  0.03100709  0.64918974 -0.06737723
-## [19]  0.90368493  1.02551268</code></pre>
+<pre><code>##  [1] -1.71392456 -1.33556819 -1.49019699 -0.51997795 -0.16027926  1.13332476
+##  [7] -2.13016296  0.70072248  1.09867854  1.39324921 -0.42763032 -2.41595569
+## [13]  1.77120002  0.16850587  0.07922553  0.52454286 -0.22457086 -1.30823426
+## [19] -0.60539173 -1.86501227</code></pre>
 <p>RStudioの場合、右上の<code>Environment</code>パネルに生成されたオブジェクトが表示されます。</p>
 <p><img src="figures/intro_r1.jpg" /><!-- --></p>
 <p>オブジェクトを入力引数とすることも可能です。
 <code>x</code>の平均と標準偏差を求めてみます。</p>
 <div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb527-1" data-line-number="1"><span class="kw">mean</span>(x)</a></code></pre></div>
-<pre><code>## [1] 0.2936025</code></pre>
+<pre><code>## [1] -0.3663728</code></pre>
 <div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" data-line-number="1"><span class="kw">sd</span>(x)</a></code></pre></div>
-<pre><code>## [1] 0.6669122</code></pre>
+<pre><code>## [1] 1.237316</code></pre>
 <p>もちろん、出力引数を新しいオブジェクトにすることもできます。</p>
 <div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" data-line-number="1">x.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
 <a class="sourceLine" id="cb531-2" data-line-number="2">x.mean</a></code></pre></div>
-<pre><code>## [1] 0.2936025</code></pre>
+<pre><code>## [1] -0.3663728</code></pre>
 <ul>
 <li>オブジェクトの名前にはアルファベットと数字、<code>.</code>と<code>_</code>が使えます。</li>
 <li>ただし、数字は最初の文字としては使えません。</li>
@@ -561,7 +561,7 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <p>オブジェクトは上書きすることもできます。</p>
 <div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" data-line-number="1">x.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>))</a>
 <a class="sourceLine" id="cb533-2" data-line-number="2">x.mean</a></code></pre></div>
-<pre><code>## [1] 0.1435477</code></pre>
+<pre><code>## [1] 0.302022</code></pre>
 <ul>
 <li>先ほどとは違う値に上書きされていることが分かります。</li>
 </ul>

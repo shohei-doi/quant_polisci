@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-04-29" />
+<meta name="date" content="2020-05-09" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -427,7 +427,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにおける文字コード*</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにエンコーディング問題*</a><ul>
 <li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
@@ -568,7 +568,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>実際に実行してみます。</p>
 <div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb578-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
 <a class="sourceLine" id="cb578-2" data-line-number="2"><span class="kw">mean_sd</span>(x)</a></code></pre></div>
-<pre><code>## [1] 0.03006861 1.04243147</code></pre>
+<pre><code>## [1] -0.06465677  0.99785486</code></pre>
 </div>
 <div id="ループ" class="section level2">
 <h2><span class="header-section-number">20.3</span> ループ</h2>
@@ -577,11 +577,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb580-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
 <a class="sourceLine" id="cb580-2" data-line-number="2">  <span class="kw">print</span>(<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
 <a class="sourceLine" id="cb580-3" data-line-number="3">}</a></code></pre></div>
-<pre><code>## [1] -0.006086281
-## [1] 0.03331409
-## [1] -0.2039173
-## [1] 0.02741395
-## [1] 0.0339749</code></pre>
+<pre><code>## [1] 0.06049985
+## [1] 0.2296746
+## [1] -0.0304103
+## [1] 0.08076651
+## [1] -0.04774673</code></pre>
 <p><code>for</code>ループとは<code>()</code>の中の<code>in</code>のあとのベクトルの第1要素から順番に<code>i</code>に代入して繰り返しています。
 そのことは、次の例から解ると思います。</p>
 <div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb582-1" data-line-number="1"><span class="kw">head</span>(letters)</a></code></pre></div>
@@ -615,7 +615,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb588-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
 <a class="sourceLine" id="cb588-3" data-line-number="3">}</a>
 <a class="sourceLine" id="cb588-4" data-line-number="4">x</a></code></pre></div>
-<pre><code>## [1] -0.0204239311  0.0008997816 -0.0257679653  0.2251536506 -0.0491630774</code></pre>
+<pre><code>## [1]  0.054248910  0.006273875 -0.071629734 -0.124071531 -0.024259504</code></pre>
 <p>無事、5個の平均値が<code>x</code>に保存されていることがわかります。</p>
 <p>実際に<code>for</code>ループの中で何が起こっているかは、次のコードで解ると思います。</p>
 <div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb590-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
@@ -623,11 +623,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb590-3" data-line-number="3">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
 <a class="sourceLine" id="cb590-4" data-line-number="4">  <span class="kw">print</span>(x)</a>
 <a class="sourceLine" id="cb590-5" data-line-number="5">}</a></code></pre></div>
-<pre><code>## [1] 0.0888096
-## [1]  0.0888096 -0.0101636
-## [1]  0.08880960 -0.01016360 -0.03981483
-## [1]  0.08880960 -0.01016360 -0.03981483 -0.06370579
-## [1]  0.08880960 -0.01016360 -0.03981483 -0.06370579  0.03785043</code></pre>
+<pre><code>## [1] -0.1296515
+## [1] -0.12965152 -0.08314934
+## [1] -0.12965152 -0.08314934 -0.09100115
+## [1] -0.12965152 -0.08314934 -0.09100115 -0.02839327
+## [1] -0.12965152 -0.08314934 -0.09100115 -0.02839327 -0.11027258</code></pre>
 <ul>
 <li>ループが一周するたびに、前回の<code>x</code>に新しい要素が付け加わり、新しい<code>x</code>として保存されています。</li>
 </ul>
@@ -637,8 +637,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb592-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
 <a class="sourceLine" id="cb592-3" data-line-number="3">}</a>
 <a class="sourceLine" id="cb592-4" data-line-number="4">x</a></code></pre></div>
-<pre><code>##  [1]  0.08880960 -0.01016360 -0.03981483 -0.06370579  0.03785043 -0.03581373
-##  [7]  0.14479761  0.07418191 -0.02149961  0.10784517</code></pre>
+<pre><code>##  [1] -0.12965152 -0.08314934 -0.09100115 -0.02839327 -0.11027258  0.03046709
+##  [7] -0.17359514 -0.05070270 -0.15567935  0.02105746</code></pre>
 <ul>
 <li><code>x</code>に10個の平均値が入っています。</li>
 </ul>
@@ -652,7 +652,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb594-7" data-line-number="7">}</a>
 <a class="sourceLine" id="cb594-8" data-line-number="8">x &lt;-<span class="st"> </span><span class="kw">multi_mean</span>()</a>
 <a class="sourceLine" id="cb594-9" data-line-number="9">x</a></code></pre></div>
-<pre><code>## [1]  0.03548147 -0.29836528 -0.01431967 -0.05171863 -0.03244866</code></pre>
+<pre><code>## [1] -0.10176372  0.04968657 -0.01565200  0.04502212 -0.08153188</code></pre>
 </div>
 <div id="条件分岐" class="section level2">
 <h2><span class="header-section-number">20.4</span> 条件分岐</h2>
@@ -666,7 +666,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb596-6" data-line-number="6">}</a></code></pre></div>
 <pre><code>## [1] &quot;positive&quot;</code></pre>
 <div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb598-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>## [1] 0.1537065</code></pre>
+<pre><code>## [1] 1.289726</code></pre>
 <ul>
 <li><code>if(){}</code>の<code>()</code>の中に条件式を書き、<code>{}</code>の中に処理内容を書きます。</li>
 <li>それ以外の条件は<code>else</code>で示します。</li>
@@ -680,9 +680,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <a class="sourceLine" id="cb600-6" data-line-number="6">} <span class="cf">else</span> {</a>
 <a class="sourceLine" id="cb600-7" data-line-number="7">  <span class="kw">print</span>(<span class="st">&quot;x is more than 0.5.ー&quot;</span>)</a>
 <a class="sourceLine" id="cb600-8" data-line-number="8">}</a></code></pre></div>
-<pre><code>## [1] &quot;x is less than -0.5.&quot;</code></pre>
+<pre><code>## [1] &quot;x is more than 0.5.ー&quot;</code></pre>
 <div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb602-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>## [1] -0.2645542</code></pre>
+<pre><code>## [1] -0.8829016</code></pre>
 <ul>
 <li><code>&amp;</code>は「かつ」を意味します。</li>
 <li>「または」は<code>|</code>を使います。</li>
