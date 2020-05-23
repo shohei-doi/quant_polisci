@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-05-09" />
+<meta name="date" content="2020-05-17" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -504,8 +504,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>次のように、入力引数も出力引数も1つとは限りません。</p>
 <div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb517-1" data-line-number="1"><span class="kw">rnorm</span>(<span class="dt">n =</span> <span class="dv">10</span>, <span class="dt">mean =</span> <span class="dv">0</span>, <span class="dt">sd =</span> <span class="dv">1</span>)</a></code></pre></div>
-<pre><code>##  [1] -0.0821987730  0.1122572936  0.0007535966 -0.1068226589  1.3078031412
-##  [6]  0.1545627104  0.8933767039 -0.1456971972 -0.3379565359  1.4453349976</code></pre>
+<pre><code>##  [1]  2.0357882 -0.3507200  0.1813498 -2.0032458  1.4071329  1.7302373
+##  [7] -0.2360755 -1.1439319  2.7601920 -1.1376100</code></pre>
 <p>さて、この関数は何をしているのでしょうか。
 Rでは、関数名の前に<code>?</code>をつけて実行することで、その関数のヘルプを見ることができます。</p>
 <div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb519-1" data-line-number="1">?rnorm</a></code></pre></div>
@@ -538,22 +538,22 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 </ul>
 <p>実際に、乱数が<code>x</code>に格納されていることが分かります。</p>
 <div class="sourceCode" id="cb525"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb525-1" data-line-number="1">x</a></code></pre></div>
-<pre><code>##  [1] -1.71392456 -1.33556819 -1.49019699 -0.51997795 -0.16027926  1.13332476
-##  [7] -2.13016296  0.70072248  1.09867854  1.39324921 -0.42763032 -2.41595569
-## [13]  1.77120002  0.16850587  0.07922553  0.52454286 -0.22457086 -1.30823426
-## [19] -0.60539173 -1.86501227</code></pre>
+<pre><code>##  [1]  0.563832400 -0.958314844  0.357038996 -0.404148471 -0.489897777
+##  [6]  0.003265969  0.494317134 -1.007410663  2.759724794  0.547640183
+## [11]  0.169047649  0.037262383 -0.125329768 -0.711695994  0.027625618
+## [16]  1.469410506 -0.325127724 -0.069984333 -1.158415679 -0.625129035</code></pre>
 <p>RStudioの場合、右上の<code>Environment</code>パネルに生成されたオブジェクトが表示されます。</p>
 <p><img src="figures/intro_r1.jpg" /><!-- --></p>
 <p>オブジェクトを入力引数とすることも可能です。
 <code>x</code>の平均と標準偏差を求めてみます。</p>
 <div class="sourceCode" id="cb527"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb527-1" data-line-number="1"><span class="kw">mean</span>(x)</a></code></pre></div>
-<pre><code>## [1] -0.3663728</code></pre>
+<pre><code>## [1] 0.02768557</code></pre>
 <div class="sourceCode" id="cb529"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb529-1" data-line-number="1"><span class="kw">sd</span>(x)</a></code></pre></div>
-<pre><code>## [1] 1.237316</code></pre>
+<pre><code>## [1] 0.9026982</code></pre>
 <p>もちろん、出力引数を新しいオブジェクトにすることもできます。</p>
 <div class="sourceCode" id="cb531"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb531-1" data-line-number="1">x.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(x)</a>
 <a class="sourceLine" id="cb531-2" data-line-number="2">x.mean</a></code></pre></div>
-<pre><code>## [1] -0.3663728</code></pre>
+<pre><code>## [1] 0.02768557</code></pre>
 <ul>
 <li>オブジェクトの名前にはアルファベットと数字、<code>.</code>と<code>_</code>が使えます。</li>
 <li>ただし、数字は最初の文字としては使えません。</li>
@@ -561,7 +561,7 @@ Rでは、関数名の前に<code>?</code>をつけて実行することで、�
 <p>オブジェクトは上書きすることもできます。</p>
 <div class="sourceCode" id="cb533"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb533-1" data-line-number="1">x.mean &lt;-<span class="st"> </span><span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">20</span>))</a>
 <a class="sourceLine" id="cb533-2" data-line-number="2">x.mean</a></code></pre></div>
-<pre><code>## [1] 0.302022</code></pre>
+<pre><code>## [1] 0.1921502</code></pre>
 <ul>
 <li>先ほどとは違う値に上書きされていることが分かります。</li>
 </ul>

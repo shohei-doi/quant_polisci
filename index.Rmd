@@ -27,6 +27,10 @@ description: "Rによる計量政治学の入門レベルの講義資料です�
 
 - [RStudio Education](https://education.rstudio.com/learn/beginner/)の初学者向け案内、特に[RStudio Primers](https://rstudio.cloud/learn/primers)のチュートリアルをまずはやることをおすすめします。
 
+データ分析についてもいずれまとめたいとは思いますが、当面は以下の講義資料をご覧下さい。
+
+- [国際政治の計量分析](https://shohei-doi.github.io/hit-quant-ir-2020.html)
+
 ## Tidyverseについて {-}
 
 [Tidyverse](https://www.tidyverse.org/)とは様々なデータ操作に関するパッケージ群（あるいはそのプロジェクト）を指します。
