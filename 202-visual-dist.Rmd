@@ -30,7 +30,7 @@ tri <- read_csv("data/triangle.csv")
 
 ## ヒストグラム
 
-Rの標準作画関数でヒストグラムを作成する場合は、`shit()`を使います。
+Rの標準作画関数でヒストグラムを作成する場合は、`hist()`を使います。
 
 ```{r}
 hist(tri$smldep)
