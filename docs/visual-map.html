@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第13章 地図のグラフ | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第13章 地図のグラフ | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-05-17" />
+<meta name="date" content="2020-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -66,9 +66,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -77,14 +77,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -93,9 +95,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -204,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の処理*</a><ul>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a><ul>
 <li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
 <li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
 <li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
@@ -233,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理*</a><ul>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a><ul>
 <li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
 <li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
 <li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
@@ -286,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ*</a><ul>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a><ul>
 <li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
 <li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
 <li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a><ul>
@@ -359,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a><ul>
 <li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
 <li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
 <li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
@@ -402,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf*</a><ul>
+<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a><ul>
 <li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a><ul>
 <li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
 <li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
@@ -427,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにエンコーディング問題*</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a><ul>
 <li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
@@ -448,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a><ul>
 <li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
 <li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
@@ -478,18 +480,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
             <section class="normal" id="section-">
 <div id="visual-map" class="section level1">
 <h1><span class="header-section-number">第13章</span> 地図のグラフ</h1>
-<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb375-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb375-2" data-line-number="2"><span class="kw">library</span>(maps)</a></code></pre></div>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="visual-map.html#cb383-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb383-2"><a href="visual-map.html#cb383-2"></a><span class="kw">library</span>(maps)</span></code></pre></div>
 <pre><code>## 
 ## Attaching package: &#39;maps&#39;</code></pre>
 <pre><code>## The following object is masked from &#39;package:purrr&#39;:
 ## 
 ##     map</code></pre>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb378-1" data-line-number="1"><span class="kw">library</span>(jpndistrict)</a></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="visual-map.html#cb386-1"></a><span class="kw">library</span>(jpndistrict)</span></code></pre></div>
 <pre><code>## This package provide map data is based on the Digital Map 25000 (Map
 ## Image) published by Geospatial Information Authority of Japan (Approval
-## No.603FY2017 information usage &lt;http://www.gsi.go.jp&gt;)</code></pre>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb380-1" data-line-number="1"><span class="kw">library</span>(countrycode)</a></code></pre></div>
+## No.603FY2017 information usage &lt;https://www.gsi.go.jp&gt;)</code></pre>
+<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb388-1"><a href="visual-map.html#cb388-1"></a><span class="kw">library</span>(countrycode)</span></code></pre></div>
 <ul>
 <li><code>maps</code>は世界地図情報のパッケージです。
 <ul>
@@ -503,21 +505,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="世界地図" class="section level3">
 <h3><span class="header-section-number">13.1.1</span> 世界地図</h3>
 <p>まず、世界地図のデータを呼び出します。</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb381-1" data-line-number="1">world &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;world&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="visual-map.html#cb389-1"></a>world &lt;-<span class="st"> </span><span class="kw">map_data</span>(<span class="st">&quot;world&quot;</span>)</span></code></pre></div>
 <ul>
 <li><code>map</code>パッケージには世界、アメリカ、フランス、イタリア、ニュージーランドのデータが入っています。</li>
 </ul>
 <p>こんな感じで緯度、軽度、グループ、地域などの情報が入っています。</p>
-<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb382-1" data-line-number="1"><span class="kw">head</span>(world)</a></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="visual-map.html#cb390-1"></a><span class="kw">head</span>(world)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["long"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["lat"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["group"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["order"],"name":[4],"type":["int"],"align":["right"]},{"label":["region"],"name":[5],"type":["chr"],"align":["left"]},{"label":["subregion"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"-69.89912","2":"12.45200","3":"1","4":"1","5":"Aruba","6":"NA","_rn_":"1"},{"1":"-69.89571","2":"12.42300","3":"1","4":"2","5":"Aruba","6":"NA","_rn_":"2"},{"1":"-69.94219","2":"12.43853","3":"1","4":"3","5":"Aruba","6":"NA","_rn_":"3"},{"1":"-70.00415","2":"12.50049","3":"1","4":"4","5":"Aruba","6":"NA","_rn_":"4"},{"1":"-70.06612","2":"12.54697","3":"1","4":"5","5":"Aruba","6":"NA","_rn_":"5"},{"1":"-70.05088","2":"12.59707","3":"1","4":"6","5":"Aruba","6":"NA","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>境界線が緯度経度で<code>geom_polygon()</code>で描くことができます。</p>
-<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb383-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb383-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb383-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb391-1"><a href="visual-map.html#cb391-1"></a>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb391-2"><a href="visual-map.html#cb391-2"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb391-3"><a href="visual-map.html#cb391-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
 <ul>
 <li>国境を描くために、<code>group</code>で指定しています。</li>
@@ -526,42 +528,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="日本地図" class="section level3">
 <h3><span class="header-section-number">13.1.2</span> 日本地図</h3>
 <p>もちろん、<code>filter()</code>でデータを限定すれば、一部の国の地図を描くこともできます。</p>
-<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb384-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb384-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(region <span class="op">==</span><span class="st"> &quot;Japan&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb384-3" data-line-number="3"><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb384-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="visual-map.html#cb392-1"></a>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb392-2"><a href="visual-map.html#cb392-2"></a><span class="st">  </span><span class="kw">filter</span>(region <span class="op">==</span><span class="st"> &quot;Japan&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb392-3"><a href="visual-map.html#cb392-3"></a><span class="st">  </span><span class="kw">ggplot</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group)) <span class="op">+</span></span>
+<span id="cb392-4"><a href="visual-map.html#cb392-4"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-240-1.png" width="480" /></p>
 </div>
 <div id="都道府県地図" class="section level3">
 <h3><span class="header-section-number">13.1.3</span> 都道府県地図</h3>
 <p>残念ながら、<code>map</code>パッケージには国レベルの情報しかありません。</p>
-<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb385-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb385-2" data-line-number="2"><span class="st">  </span><span class="kw">arrange</span>(region) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb385-3" data-line-number="3"><span class="st">  </span><span class="kw">pull</span>(region) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb385-4" data-line-number="4"><span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb385-5" data-line-number="5"><span class="st">  </span><span class="kw">head</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="visual-map.html#cb393-1"></a>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb393-2"><a href="visual-map.html#cb393-2"></a><span class="st">  </span><span class="kw">arrange</span>(region) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb393-3"><a href="visual-map.html#cb393-3"></a><span class="st">  </span><span class="kw">pull</span>(region) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb393-4"><a href="visual-map.html#cb393-4"></a><span class="st">  </span><span class="kw">unique</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb393-5"><a href="visual-map.html#cb393-5"></a><span class="st">  </span><span class="kw">head</span>()</span></code></pre></div>
 <pre><code>## [1] &quot;Afghanistan&quot;    &quot;Albania&quot;        &quot;Algeria&quot;        &quot;American Samoa&quot;
 ## [5] &quot;Andorra&quot;        &quot;Angola&quot;</code></pre>
 <p>都道府県の地図を描きたい場合は<code>jpndistrict</code>というパッケージを使用します。
 パッケージ付属の<code>jpnprefs</code>に都道府県一覧が存在します。</p>
-<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb387-1" data-line-number="1"><span class="kw">head</span>(jpnprefs)</a></code></pre></div>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="visual-map.html#cb395-1"></a><span class="kw">head</span>(jpnprefs)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["jis_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["prefecture"],"name":[2],"type":["fctr"],"align":["left"]},{"label":["capital"],"name":[3],"type":["chr"],"align":["left"]},{"label":["region"],"name":[4],"type":["chr"],"align":["left"]},{"label":["major_island"],"name":[5],"type":["chr"],"align":["left"]},{"label":["prefecture_en"],"name":[6],"type":["chr"],"align":["left"]},{"label":["capital_en"],"name":[7],"type":["chr"],"align":["left"]},{"label":["region_en"],"name":[8],"type":["chr"],"align":["left"]},{"label":["major_island_en"],"name":[9],"type":["chr"],"align":["left"]},{"label":["capital_latitude"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["capital_longitude"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"01","2":"北海道","3":"札幌市","4":"北海道","5":"北海道","6":"Hokkaido","7":"Sapporo-shi","8":"Hokkaido","9":"Hokkaido","10":"43.06208","11":"141.3544"},{"1":"02","2":"青森県","3":"青森市","4":"東北","5":"本州","6":"Aomori-ken","7":"Aomori-shi","8":"Tohoku","9":"Honshu","10":"40.82200","11":"140.7472"},{"1":"03","2":"岩手県","3":"盛岡市","4":"東北","5":"本州","6":"Iwate-ken","7":"Morioka-shi","8":"Tohoku","9":"Honshu","10":"39.70197","11":"141.1544"},{"1":"04","2":"宮城県","3":"仙台市","4":"東北","5":"本州","6":"Miyagi-ken","7":"Sendai-shi","8":"Tohoku","9":"Honshu","10":"38.26811","11":"140.8693"},{"1":"05","2":"秋田県","3":"秋田市","4":"東北","5":"本州","6":"Akita-ken","7":"Akita-shi","8":"Tohoku","9":"Honshu","10":"39.71975","11":"140.1022"},{"1":"06","2":"山形県","3":"山形市","4":"東北","5":"本州","6":"Yamagata-ken","7":"Yamagata-shi","8":"Tohoku","9":"Honshu","10":"38.25539","11":"140.3395"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>都道府県データを引っ張るには<code>jpn_pref()</code>に該当する都道府県の数字を入力します。</p>
-<div class="sourceCode" id="cb388"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb388-1" data-line-number="1">kyoto &lt;-<span class="st"> </span><span class="kw">jpn_pref</span>(<span class="dv">26</span>)</a>
-<a class="sourceLine" id="cb388-2" data-line-number="2"><span class="kw">head</span>(kyoto)</a></code></pre></div>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="visual-map.html#cb396-1"></a>kyoto &lt;-<span class="st"> </span><span class="kw">jpn_pref</span>(<span class="dv">26</span>)</span>
+<span id="cb396-2"><a href="visual-map.html#cb396-2"></a><span class="kw">head</span>(kyoto)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["pref_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["prefecture"],"name":[2],"type":["chr"],"align":["left"]},{"label":["city_code"],"name":[3],"type":["chr"],"align":["left"]},{"label":["city"],"name":[4],"type":["chr"],"align":["left"]},{"label":["geometry"],"name":[5],"type":["S3: sfc_POLYGON"],"align":["right"]}],"data":[{"1":"26","2":"京都府","3":"26101","4":"京都市 北区","5":"<S3: sfc_POLYGON>"},{"1":"26","2":"京都府","3":"26102","4":"京都市 上京区","5":"<S3: sfc_POLYGON>"},{"1":"26","2":"京都府","3":"26103","4":"京都市 左京区","5":"<S3: sfc_POLYGON>"},{"1":"26","2":"京都府","3":"26104","4":"京都市 中京区","5":"<S3: sfc_POLYGON>"},{"1":"26","2":"京都府","3":"26105","4":"京都市 東山区","5":"<S3: sfc_POLYGON>"},{"1":"26","2":"京都府","3":"26106","4":"京都市 下京区","5":"<S3: sfc_POLYGON>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>今回は市区町村の境界線がsimple features (sf)と呼ばれる規格なので、<code>geom_sf()</code>を使います。</p>
-<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb389-1" data-line-number="1">kyoto <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb389-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb389-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_sf</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="visual-map.html#cb397-1"></a>kyoto <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb397-2"><a href="visual-map.html#cb397-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb397-3"><a href="visual-map.html#cb397-3"></a><span class="st">  </span><span class="kw">geom_sf</span>()</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
 </div>
 </div>
@@ -569,16 +571,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">13.2</span> 地域の違い</h2>
 <p>地域ごとの違いを見るために、色を塗り分けたいともいます。
 <code>tidyr</code>の中に<code>population</code>というWHOの人口データがあります。</p>
-<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb390-1" data-line-number="1"><span class="kw">head</span>(population)</a></code></pre></div>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="visual-map.html#cb398-1"></a><span class="kw">head</span>(population)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["int"],"align":["right"]},{"label":["population"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"Afghanistan","2":"1995","3":"17586073"},{"1":"Afghanistan","2":"1996","3":"18415307"},{"1":"Afghanistan","2":"1997","3":"19021226"},{"1":"Afghanistan","2":"1998","3":"19496836"},{"1":"Afghanistan","2":"1999","3":"19987071"},{"1":"Afghanistan","2":"2000","3":"20595360"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>2013年時点の人口データを取り出します。</p>
-<div class="sourceCode" id="cb391"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb391-1" data-line-number="1">pop2013 &lt;-<span class="st"> </span>population <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb391-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb391-3" data-line-number="3"><span class="st">  </span><span class="kw">rename</span>(<span class="dt">region =</span> country)</a></code></pre></div>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="visual-map.html#cb399-1"></a>pop2013 &lt;-<span class="st"> </span>population <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb399-2"><a href="visual-map.html#cb399-2"></a><span class="st">  </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="dv">2013</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb399-3"><a href="visual-map.html#cb399-3"></a><span class="st">  </span><span class="kw">rename</span>(<span class="dt">region =</span> country)</span></code></pre></div>
 <ul>
 <li><code>population</code>では国名が<code>country</code>ですが、<code>world</code>では<code>region</code>なので、<code>rename()</code>で後者に合わせます。</li>
 </ul>
@@ -587,73 +589,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><a href="https://dainachiba.github.io/">千葉大奈先生</a>にご指摘いただきました。</li>
 </ul>
-<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb392-1" data-line-number="1">pop2013 &lt;-<span class="st"> </span>pop2013 <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb392-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">iso3c =</span> <span class="kw">countrycode</span>(<span class="dt">sourcevar =</span> region, <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>, <span class="dt">destination =</span> <span class="st">&quot;iso3c&quot;</span>))</a>
-<a class="sourceLine" id="cb392-3" data-line-number="3"></a>
-<a class="sourceLine" id="cb392-4" data-line-number="4">world &lt;-<span class="st"> </span>world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb392-5" data-line-number="5"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">iso3c =</span> <span class="kw">countrycode</span>(<span class="dt">sourcevar =</span> region, <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>, <span class="dt">destination =</span> <span class="st">&quot;iso3c&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="visual-map.html#cb400-1"></a>pop2013 &lt;-<span class="st"> </span>pop2013 <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb400-2"><a href="visual-map.html#cb400-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">iso3c =</span> <span class="kw">countrycode</span>(<span class="dt">sourcevar =</span> region, <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>, <span class="dt">destination =</span> <span class="st">&quot;iso3c&quot;</span>))</span>
+<span id="cb400-3"><a href="visual-map.html#cb400-3"></a></span>
+<span id="cb400-4"><a href="visual-map.html#cb400-4"></a>world &lt;-<span class="st"> </span>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb400-5"><a href="visual-map.html#cb400-5"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">iso3c =</span> <span class="kw">countrycode</span>(<span class="dt">sourcevar =</span> region, <span class="dt">origin =</span> <span class="st">&quot;country.name&quot;</span>, <span class="dt">destination =</span> <span class="st">&quot;iso3c&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning in countrycode(sourcevar = region, origin = &quot;country.name&quot;, destination = &quot;iso3c&quot;): Some values were not matched unambiguously: Ascension Island, Azores, Barbuda, Bonaire, Canary Islands, Chagos Archipelago, Grenadines, Heard Island, Kosovo, Madeira Islands, Micronesia, Saba, Saint Martin, Siachen Glacier, Sint Eustatius, Virgin Islands</code></pre>
-<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb394-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb394-2" data-line-number="2"><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(iso3c) <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb394-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(region) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb394-4" data-line-number="4"><span class="st">  </span><span class="kw">distinct</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="visual-map.html#cb402-1"></a>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb402-2"><a href="visual-map.html#cb402-2"></a><span class="st">  </span><span class="kw">filter</span>(<span class="kw">is.na</span>(iso3c) <span class="op">==</span><span class="st"> </span><span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb402-3"><a href="visual-map.html#cb402-3"></a><span class="st">  </span><span class="kw">select</span>(region) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb402-4"><a href="visual-map.html#cb402-4"></a><span class="st">  </span><span class="kw">distinct</span>()</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Barbuda"},{"1":"Canary Islands"},{"1":"Micronesia"},{"1":"Heard Island"},{"1":"Chagos Archipelago"},{"1":"Siachen Glacier"},{"1":"Kosovo"},{"1":"Saint Martin"},{"1":"Bonaire"},{"1":"Sint Eustatius"},{"1":"Saba"},{"1":"Madeira Islands"},{"1":"Azores"},{"1":"Ascension Island"},{"1":"Grenadines"},{"1":"Virgin Islands"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb395-1" data-line-number="1"><span class="kw">left_join</span>(world, pop2013, <span class="dt">by =</span> <span class="st">&quot;region&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb395-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb395-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> <span class="kw">log</span>(population)),</a>
-<a class="sourceLine" id="cb395-4" data-line-number="4">               <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb395-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Population (log)&quot;</span>, <span class="dt">low =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;darkblue&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb403"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb403-1"><a href="visual-map.html#cb403-1"></a><span class="kw">left_join</span>(world, pop2013, <span class="dt">by =</span> <span class="st">&quot;region&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb403-2"><a href="visual-map.html#cb403-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb403-3"><a href="visual-map.html#cb403-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group, <span class="dt">fill =</span> <span class="kw">log</span>(population)),</span>
+<span id="cb403-4"><a href="visual-map.html#cb403-4"></a>               <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb403-5"><a href="visual-map.html#cb403-5"></a><span class="st">  </span><span class="kw">scale_fill_continuous</span>(<span class="dt">name =</span> <span class="st">&quot;Population (log)&quot;</span>, <span class="dt">low =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
 <p><code>geom_sf()</code>でも同じです。</p>
-<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb396-1" data-line-number="1">kyoto <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb396-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb396-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> city), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="visual-map.html#cb404-1"></a>kyoto <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb404-2"><a href="visual-map.html#cb404-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb404-3"><a href="visual-map.html#cb404-3"></a><span class="st">  </span><span class="kw">geom_sf</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> city), <span class="dt">show.legend =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
 </div>
 <div id="空間の分布" class="section level2">
 <h2><span class="header-section-number">13.3</span> 空間の分布</h2>
 <p>地図上に点を打つ場合は<code>geom_point()</code>を使うだけです。
 <code>maps</code>パッケージの中に<code>world.cities</code>というデータセットがあるので、各国の都市を表示します。</p>
-<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb397-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb397-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb397-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group),</a>
-<a class="sourceLine" id="cb397-4" data-line-number="4">               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb397-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">alpha =</span> pop<span class="op">/</span><span class="dv">10000</span>),</a>
-<a class="sourceLine" id="cb397-6" data-line-number="6">             <span class="dt">size =</span> <span class="fl">0.1</span>, <span class="dt">data =</span> world.cities)</a></code></pre></div>
+<div class="sourceCode" id="cb405"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb405-1"><a href="visual-map.html#cb405-1"></a>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb405-2"><a href="visual-map.html#cb405-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb405-3"><a href="visual-map.html#cb405-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group),</span>
+<span id="cb405-4"><a href="visual-map.html#cb405-4"></a>               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb405-5"><a href="visual-map.html#cb405-5"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">alpha =</span> pop<span class="op">/</span><span class="dv">10000</span>),</span>
+<span id="cb405-6"><a href="visual-map.html#cb405-6"></a>             <span class="dt">size =</span> <span class="fl">0.1</span>, <span class="dt">data =</span> world.cities)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-249-1.png" width="672" /></p>
 <ul>
 <li>ただし、地図データとは別のデータセットのはずなので、別途指定する必要があります。</li>
 </ul>
 <p><code>geom_sf()</code>の場合も同様にできます。</p>
-<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb398-1" data-line-number="1">kyoto <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb398-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb398-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb398-4" data-line-number="4"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> capital_longitude, <span class="dt">y =</span> capital_latitude),</a>
-<a class="sourceLine" id="cb398-5" data-line-number="5">             <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">data =</span> jpnprefs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(prefecture <span class="op">==</span><span class="st"> &quot;京都府&quot;</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb406"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb406-1"><a href="visual-map.html#cb406-1"></a>kyoto <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb406-2"><a href="visual-map.html#cb406-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb406-3"><a href="visual-map.html#cb406-3"></a><span class="st">  </span><span class="kw">geom_sf</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb406-4"><a href="visual-map.html#cb406-4"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> capital_longitude, <span class="dt">y =</span> capital_latitude),</span>
+<span id="cb406-5"><a href="visual-map.html#cb406-5"></a>             <span class="dt">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="dt">data =</span> jpnprefs <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">filter</span>(prefecture <span class="op">==</span><span class="st"> &quot;京都府&quot;</span>))</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
 <p>また、<code>geom_density_2d()</code>で2次元の分布を描くこともできます。
 試しに、都市の分布を示します。</p>
-<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb399-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb399-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb399-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group),</a>
-<a class="sourceLine" id="cb399-4" data-line-number="4">               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb399-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_density_2d</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat),</a>
-<a class="sourceLine" id="cb399-6" data-line-number="6">                  <span class="dt">data =</span> world.cities)</a></code></pre></div>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="visual-map.html#cb407-1"></a>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb407-2"><a href="visual-map.html#cb407-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb407-3"><a href="visual-map.html#cb407-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group),</span>
+<span id="cb407-4"><a href="visual-map.html#cb407-4"></a>               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb407-5"><a href="visual-map.html#cb407-5"></a><span class="st">  </span><span class="kw">geom_density_2d</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat),</span>
+<span id="cb407-6"><a href="visual-map.html#cb407-6"></a>                  <span class="dt">data =</span> world.cities)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
 <ul>
 <li>一般的には、<code>geom_contour()</code>で等高線を描くことができます。</li>
 </ul>
 <p>色をつけることもできます。</p>
-<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb400-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb400-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb400-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group),</a>
-<a class="sourceLine" id="cb400-4" data-line-number="4">               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb400-5" data-line-number="5"><span class="st">  </span><span class="kw">stat_density2d</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">fill =</span> <span class="kw">stat</span>(level)), </a>
-<a class="sourceLine" id="cb400-6" data-line-number="6">                 <span class="dt">geom =</span> <span class="st">&quot;polygon&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) </a></code></pre></div>
+<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb408-1"><a href="visual-map.html#cb408-1"></a>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb408-2"><a href="visual-map.html#cb408-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb408-3"><a href="visual-map.html#cb408-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group),</span>
+<span id="cb408-4"><a href="visual-map.html#cb408-4"></a>               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span></span>
+<span id="cb408-5"><a href="visual-map.html#cb408-5"></a><span class="st">  </span><span class="kw">stat_density2d</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">fill =</span> <span class="kw">stat</span>(level)), </span>
+<span id="cb408-6"><a href="visual-map.html#cb408-6"></a>                 <span class="dt">geom =</span> <span class="st">&quot;polygon&quot;</span>, <span class="dt">alpha =</span> <span class="fl">0.5</span>) </span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
 </div>
 <div id="データの繋がり" class="section level2">
@@ -663,8 +665,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>データポイントを打った後は、それぞれを線で繋ぎたいのが人情だと思います。
 <code>geom_segment()</code>を使うと、始点と終点のx軸とy軸の値を決めると線を引いてくれます。</p>
 <p>まず、準備として<a href="https://openflights.org/data.html">OpenFlights</a>から世界の空港と航路のデータを取得し、結合させます。</p>
-<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb401-1" data-line-number="1">airports &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airports.dat&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb401-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="dt">id =</span> X1, <span class="dt">lat =</span> X7, <span class="dt">long =</span> X8)</a></code></pre></div>
+<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb409-1"><a href="visual-map.html#cb409-1"></a>airports &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/airports.dat&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb409-2"><a href="visual-map.html#cb409-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">id =</span> X1, <span class="dt">lat =</span> X7, <span class="dt">long =</span> X8)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   X1 = col_double(),
@@ -691,9 +693,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## 6986 X10 a double    \N &#39;data/airports.dat&#39;
 ## .... ... ........ ...... ...................
 ## See problems(...) for more details.</code></pre>
-<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb404-1" data-line-number="1">route &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/routes.dat&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb404-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="dt">source_id =</span> X4, <span class="dt">dest_id =</span> X6) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb404-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate_all</span>(as.numeric)</a></code></pre></div>
+<div class="sourceCode" id="cb412"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb412-1"><a href="visual-map.html#cb412-1"></a>route &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/routes.dat&quot;</span>, <span class="dt">col_names =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb412-2"><a href="visual-map.html#cb412-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">source_id =</span> X4, <span class="dt">dest_id =</span> X6) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb412-3"><a href="visual-map.html#cb412-3"></a><span class="st">  </span><span class="kw">mutate_all</span>(as.numeric)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   X1 = col_character(),
@@ -706,46 +708,46 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##   X8 = col_double(),
 ##   X9 = col_character()
 ## )</code></pre>
-<pre><code>## Warning: NAs introduced by coercion</code></pre>
-<pre><code>## Warning: NAs introduced by coercion</code></pre>
-<div class="sourceCode" id="cb408"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb408-1" data-line-number="1">df_flight &lt;-<span class="st"> </span>route <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb408-2" data-line-number="2"><span class="st">  </span><span class="kw">left_join</span>(airports <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb408-3" data-line-number="3"><span class="st">              </span><span class="kw">rename</span>(<span class="dt">source_id =</span> id, <span class="dt">source_lat =</span> lat, <span class="dt">source_long =</span> long),</a>
-<a class="sourceLine" id="cb408-4" data-line-number="4">            <span class="dt">by =</span> <span class="st">&quot;source_id&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb408-5" data-line-number="5"><span class="st">  </span><span class="kw">left_join</span>(airports <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb408-6" data-line-number="6"><span class="st">              </span><span class="kw">rename</span>(<span class="dt">dest_id =</span> id,<span class="dt">dest_lat =</span> lat, <span class="dt">dest_long =</span> long),</a>
-<a class="sourceLine" id="cb408-7" data-line-number="7">            <span class="dt">by =</span> <span class="st">&quot;dest_id&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb408-8" data-line-number="8"><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(source_long <span class="op">==</span><span class="st"> </span>dest_long <span class="op">&amp;</span><span class="st"> </span>source_lat <span class="op">==</span><span class="st"> </span>dest_lat))</a></code></pre></div>
+<pre><code>## Warning in mask$eval_all_mutate(dots[[i]]): NAs introduced by coercion</code></pre>
+<pre><code>## Warning in mask$eval_all_mutate(dots[[i]]): NAs introduced by coercion</code></pre>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="visual-map.html#cb416-1"></a>df_flight &lt;-<span class="st"> </span>route <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb416-2"><a href="visual-map.html#cb416-2"></a><span class="st">  </span><span class="kw">left_join</span>(airports <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb416-3"><a href="visual-map.html#cb416-3"></a><span class="st">              </span><span class="kw">rename</span>(<span class="dt">source_id =</span> id, <span class="dt">source_lat =</span> lat, <span class="dt">source_long =</span> long),</span>
+<span id="cb416-4"><a href="visual-map.html#cb416-4"></a>            <span class="dt">by =</span> <span class="st">&quot;source_id&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb416-5"><a href="visual-map.html#cb416-5"></a><span class="st">  </span><span class="kw">left_join</span>(airports <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb416-6"><a href="visual-map.html#cb416-6"></a><span class="st">              </span><span class="kw">rename</span>(<span class="dt">dest_id =</span> id,<span class="dt">dest_lat =</span> lat, <span class="dt">dest_long =</span> long),</span>
+<span id="cb416-7"><a href="visual-map.html#cb416-7"></a>            <span class="dt">by =</span> <span class="st">&quot;dest_id&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb416-8"><a href="visual-map.html#cb416-8"></a><span class="st">  </span><span class="kw">filter</span>(<span class="op">!</span>(source_long <span class="op">==</span><span class="st"> </span>dest_long <span class="op">&amp;</span><span class="st"> </span>source_lat <span class="op">==</span><span class="st"> </span>dest_lat))</span></code></pre></div>
 <ul>
 <li><code>source_long</code>と<code>source_lat</code>が出発地の緯度経度、<code>dest_long</code>と<code>dest_lat</code>が到着地の緯度経度を示しています。</li>
 </ul>
 <p>それを世界地図の上に重ねてプロットします。</p>
-<div class="sourceCode" id="cb409"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb409-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb409-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb409-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
-<a class="sourceLine" id="cb409-4" data-line-number="4">               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb409-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> source_long, <span class="dt">y =</span> source_lat, <span class="dt">xend =</span> dest_long, <span class="dt">yend =</span> dest_lat),</a>
-<a class="sourceLine" id="cb409-6" data-line-number="6">               <span class="dt">size =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>, </a>
-<a class="sourceLine" id="cb409-7" data-line-number="7">               <span class="dt">data =</span> df_flight)</a></code></pre></div>
+<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb417-1"><a href="visual-map.html#cb417-1"></a>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb417-2"><a href="visual-map.html#cb417-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb417-3"><a href="visual-map.html#cb417-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </span>
+<span id="cb417-4"><a href="visual-map.html#cb417-4"></a>               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb417-5"><a href="visual-map.html#cb417-5"></a><span class="st">  </span><span class="kw">geom_segment</span>(<span class="kw">aes</span>(<span class="dt">x =</span> source_long, <span class="dt">y =</span> source_lat, <span class="dt">xend =</span> dest_long, <span class="dt">yend =</span> dest_lat),</span>
+<span id="cb417-6"><a href="visual-map.html#cb417-6"></a>               <span class="dt">size =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>, </span>
+<span id="cb417-7"><a href="visual-map.html#cb417-7"></a>               <span class="dt">data =</span> df_flight)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
 <ul>
 <li>太平洋を横断する路線も西回りになってしまうのは課題です……</li>
 </ul>
 <p><code>geom_curve()</code>で曲線になります。</p>
-<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb410-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb410-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb410-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
-<a class="sourceLine" id="cb410-4" data-line-number="4">               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb410-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_curve</span>(<span class="kw">aes</span>(<span class="dt">x =</span> source_long, <span class="dt">y =</span> source_lat, <span class="dt">xend =</span> dest_long, <span class="dt">yend =</span> dest_lat),</a>
-<a class="sourceLine" id="cb410-6" data-line-number="6">               <span class="dt">size =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>, </a>
-<a class="sourceLine" id="cb410-7" data-line-number="7">               <span class="dt">data =</span> df_flight)</a></code></pre></div>
+<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb418-1"><a href="visual-map.html#cb418-1"></a>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb418-2"><a href="visual-map.html#cb418-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb418-3"><a href="visual-map.html#cb418-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </span>
+<span id="cb418-4"><a href="visual-map.html#cb418-4"></a>               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb418-5"><a href="visual-map.html#cb418-5"></a><span class="st">  </span><span class="kw">geom_curve</span>(<span class="kw">aes</span>(<span class="dt">x =</span> source_long, <span class="dt">y =</span> source_lat, <span class="dt">xend =</span> dest_long, <span class="dt">yend =</span> dest_lat),</span>
+<span id="cb418-6"><a href="visual-map.html#cb418-6"></a>               <span class="dt">size =</span> <span class="fl">0.1</span>, <span class="dt">alpha =</span> <span class="fl">0.1</span>, </span>
+<span id="cb418-7"><a href="visual-map.html#cb418-7"></a>               <span class="dt">data =</span> df_flight)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
 </div>
 <div id="経路を見る" class="section level3">
 <h3><span class="header-section-number">13.4.2</span> 経路を見る</h3>
 <p>二点間を繋ぐのではなく、一連の経路を描きたい場合は、この方法では非効率的です。
 例として、2019年の台風の経路をプロットするために、デジタル台風のサイト（<a href="http://agora.ex.nii.ac.jp/digital-typhoon/summary/wnp/l/201928.html.ja">例</a>）からデータを収集します。</p>
-<div class="sourceCode" id="cb411"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb411-1" data-line-number="1"><span class="kw">library</span>(rvest)</a></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="visual-map.html#cb419-1"></a><span class="kw">library</span>(rvest)</span></code></pre></div>
 <pre><code>## Loading required package: xml2</code></pre>
 <pre><code>## 
 ## Attaching package: &#39;rvest&#39;</code></pre>
@@ -755,32 +757,32 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:readr&#39;:
 ## 
 ##     guess_encoding</code></pre>
-<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb416-1" data-line-number="1">df_typhoon &lt;-<span class="st"> </span><span class="kw">tibble</span>()</a>
-<a class="sourceLine" id="cb416-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">formatC</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">28</span>, <span class="dt">width =</span> <span class="dv">2</span>, <span class="dt">flag =</span> <span class="st">&quot;0&quot;</span>)) {</a>
-<a class="sourceLine" id="cb416-3" data-line-number="3">  url &lt;-<span class="st"> </span><span class="kw">str_glue</span>(<span class="st">&quot;http://agora.ex.nii.ac.jp/digital-typhoon/summary/wnp/l/2019{i}.html.ja&quot;</span>)</a>
-<a class="sourceLine" id="cb416-4" data-line-number="4">  df_typhoon &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(df_typhoon,</a>
-<a class="sourceLine" id="cb416-5" data-line-number="5">                          url <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb416-6" data-line-number="6"><span class="st">                            </span><span class="kw">read_html</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb416-7" data-line-number="7"><span class="st">                            </span><span class="kw">html_node</span>(<span class="st">&quot;table.TRACKINFO&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb416-8" data-line-number="8"><span class="st">                            </span><span class="kw">html_table</span>(<span class="dt">fill =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb416-9" data-line-number="9"><span class="st">                            </span><span class="kw">select</span>(<span class="dt">long =</span> <span class="st">&quot;経度&quot;</span>, <span class="dt">lat =</span> <span class="st">&quot;緯度&quot;</span>, <span class="dt">hpa =</span> <span class="st">&quot;中心気圧 (hPa)&quot;</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb416-10" data-line-number="10"><span class="st">                            </span><span class="kw">mutate</span>(<span class="dt">id =</span> i))</a>
-<a class="sourceLine" id="cb416-11" data-line-number="11">}</a></code></pre></div>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="visual-map.html#cb424-1"></a>df_typhoon &lt;-<span class="st"> </span><span class="kw">tibble</span>()</span>
+<span id="cb424-2"><a href="visual-map.html#cb424-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">formatC</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">28</span>, <span class="dt">width =</span> <span class="dv">2</span>, <span class="dt">flag =</span> <span class="st">&quot;0&quot;</span>)) {</span>
+<span id="cb424-3"><a href="visual-map.html#cb424-3"></a>  url &lt;-<span class="st"> </span><span class="kw">str_glue</span>(<span class="st">&quot;http://agora.ex.nii.ac.jp/digital-typhoon/summary/wnp/l/2019{i}.html.ja&quot;</span>)</span>
+<span id="cb424-4"><a href="visual-map.html#cb424-4"></a>  df_typhoon &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(df_typhoon,</span>
+<span id="cb424-5"><a href="visual-map.html#cb424-5"></a>                          url <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-6"><a href="visual-map.html#cb424-6"></a><span class="st">                            </span><span class="kw">read_html</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-7"><a href="visual-map.html#cb424-7"></a><span class="st">                            </span><span class="kw">html_node</span>(<span class="st">&quot;table.TRACKINFO&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-8"><a href="visual-map.html#cb424-8"></a><span class="st">                            </span><span class="kw">html_table</span>(<span class="dt">fill =</span> <span class="ot">TRUE</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb424-9"><a href="visual-map.html#cb424-9"></a><span class="st">                            </span><span class="kw">select</span>(<span class="dt">long =</span> <span class="st">&quot;経度&quot;</span>, <span class="dt">lat =</span> <span class="st">&quot;緯度&quot;</span>, <span class="dt">hpa =</span> <span class="st">&quot;中心気圧 (hPa)&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb424-10"><a href="visual-map.html#cb424-10"></a><span class="st">                            </span><span class="kw">mutate</span>(<span class="dt">id =</span> i))</span>
+<span id="cb424-11"><a href="visual-map.html#cb424-11"></a>}</span></code></pre></div>
 <p>このように時系列に緯度経度が並んでいます。</p>
-<div class="sourceCode" id="cb417"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb417-1" data-line-number="1"><span class="kw">head</span>(df_typhoon)</a></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="visual-map.html#cb425-1"></a><span class="kw">head</span>(df_typhoon)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["long"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["lat"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["hpa"],"name":[3],"type":["int"],"align":["right"]},{"label":["id"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"111.9","2":"7.6","3":"1004","4":"01"},{"1":"111.3","2":"7.3","3":"1004","4":"01"},{"1":"111.1","2":"7.0","3":"1004","4":"01"},{"1":"110.7","2":"6.6","3":"1004","4":"01"},{"1":"110.2","2":"6.3","3":"1000","4":"01"},{"1":"109.9","2":"6.0","3":"1000","4":"01"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>経路の場合は<code>geom_path()</code>を使います。</p>
-<div class="sourceCode" id="cb418"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb418-1" data-line-number="1">world <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb418-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></a>
-<a class="sourceLine" id="cb418-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </a>
-<a class="sourceLine" id="cb418-4" data-line-number="4">               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb418-5" data-line-number="5"><span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">colour =</span> hpa, <span class="dt">group =</span> id),</a>
-<a class="sourceLine" id="cb418-6" data-line-number="6">            <span class="dt">data =</span> df_typhoon) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb418-7" data-line-number="7"><span class="st">  </span><span class="kw">scale_colour_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;darkblue&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb426"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb426-1"><a href="visual-map.html#cb426-1"></a>world <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb426-2"><a href="visual-map.html#cb426-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span></span>
+<span id="cb426-3"><a href="visual-map.html#cb426-3"></a><span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">group =</span> group), </span>
+<span id="cb426-4"><a href="visual-map.html#cb426-4"></a>               <span class="dt">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="dt">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="dt">size =</span> <span class="fl">0.1</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb426-5"><a href="visual-map.html#cb426-5"></a><span class="st">  </span><span class="kw">geom_path</span>(<span class="kw">aes</span>(<span class="dt">x =</span> long, <span class="dt">y =</span> lat, <span class="dt">colour =</span> hpa, <span class="dt">group =</span> id),</span>
+<span id="cb426-6"><a href="visual-map.html#cb426-6"></a>            <span class="dt">data =</span> df_typhoon) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb426-7"><a href="visual-map.html#cb426-7"></a><span class="st">  </span><span class="kw">scale_colour_continuous</span>(<span class="dt">low =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="dt">high =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
 <ul>
 <li>複数の経路がある場合は<code>group</code>で指定するのを忘れずに。</li>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第8章 Qualtricsデータの処理* | Rで計量政治学入門</title>
+  <title>第8章 Qualtricsデータの処理 | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第8章 Qualtricsデータの処理* | Rで計量政治学入門" />
+  <meta property="og:title" content="第8章 Qualtricsデータの処理 | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第8章 Qualtricsデータの処理* | Rで計量政治学入門" />
+  <meta name="twitter:title" content="第8章 Qualtricsデータの処理 | Rで計量政治学入門" />
   
   <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-05-17" />
+<meta name="date" content="2020-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -66,9 +66,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -77,14 +77,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -93,9 +95,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -204,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の処理*</a><ul>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a><ul>
 <li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
 <li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
 <li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
@@ -233,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理*</a><ul>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a><ul>
 <li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
 <li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
 <li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
@@ -286,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ*</a><ul>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a><ul>
 <li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
 <li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
 <li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a><ul>
@@ -359,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a><ul>
 <li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
 <li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
 <li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
@@ -402,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf*</a><ul>
+<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a><ul>
 <li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a><ul>
 <li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
 <li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
@@ -427,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにエンコーディング問題*</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a><ul>
 <li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
@@ -448,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a><ul>
 <li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
 <li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
@@ -477,24 +479,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="qualtrics" class="section level1">
-<h1><span class="header-section-number">第8章</span> Qualtricsデータの処理*</h1>
+<h1><span class="header-section-number">第8章</span> Qualtricsデータの処理</h1>
 <p><a href="https://www.qualtrics.com/">Qualtrics</a>はオンラインサーベイを便利に行うツールですが、政治学では特にサーベイ実験で使われていると思います。</p>
 <p>サーベイ実験では被験者ごとに処理をランダムに与える必要があり、Qualtricsでは簡単にそれを行うことができるのですが、得られたデータを統計分析する際には一手間かかります。</p>
 <p>ここでは、<a href="reshape.html#reshape">ロング・ワイドの変換</a>で紹介したワイド形式からロング形式に変換する方法を応用してQualtricsのデータを統計分析用に整形する方法を説明します。</p>
-<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb226-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a></code></pre></div>
+<div class="sourceCode" id="cb226"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb226-1"><a href="qualtrics.html#cb226-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
 <div id="qualtricsのデータ" class="section level2">
 <h2><span class="header-section-number">8.1</span> Qualtricsのデータ</h2>
 <p>ここではQualtricsから得られる架空のデータを使いたいと思います。
 Qualtricsでは行は各被験者でユニークな識別番号の他に設問への回答が記載されています。</p>
 <p>サーベイ実験ではグループごとに異なる設問がなされるため、例えば、グループが2つでグループ固有の設問が2種類、共通の設問が2種類の場合、以下のような形になっています。</p>
-<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb227-1" data-line-number="1">data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</a>
-<a class="sourceLine" id="cb227-2" data-line-number="2">       <span class="dt">y1_1 =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="ot">NA</span>,<span class="ot">NA</span>),</a>
-<a class="sourceLine" id="cb227-3" data-line-number="3">       <span class="dt">y2_1 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="ot">NA</span>,<span class="ot">NA</span>),</a>
-<a class="sourceLine" id="cb227-4" data-line-number="4">       <span class="dt">y1_2 =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="dv">5</span>,<span class="dv">3</span>),</a>
-<a class="sourceLine" id="cb227-5" data-line-number="5">       <span class="dt">y2_2 =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="dv">6</span>,<span class="dv">4</span>),</a>
-<a class="sourceLine" id="cb227-6" data-line-number="6">       <span class="dt">x1 =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">6</span>),</a>
-<a class="sourceLine" id="cb227-7" data-line-number="7">       <span class="dt">x2 =</span> <span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>))</a>
-<a class="sourceLine" id="cb227-8" data-line-number="8">data</a></code></pre></div>
+<div class="sourceCode" id="cb227"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb227-1"><a href="qualtrics.html#cb227-1"></a>data &lt;-<span class="st"> </span><span class="kw">tibble</span>(<span class="dt">id =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">4</span>),</span>
+<span id="cb227-2"><a href="qualtrics.html#cb227-2"></a>       <span class="dt">y1_1 =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="ot">NA</span>,<span class="ot">NA</span>),</span>
+<span id="cb227-3"><a href="qualtrics.html#cb227-3"></a>       <span class="dt">y2_1 =</span> <span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">4</span>,<span class="ot">NA</span>,<span class="ot">NA</span>),</span>
+<span id="cb227-4"><a href="qualtrics.html#cb227-4"></a>       <span class="dt">y1_2 =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="dv">5</span>,<span class="dv">3</span>),</span>
+<span id="cb227-5"><a href="qualtrics.html#cb227-5"></a>       <span class="dt">y2_2 =</span> <span class="kw">c</span>(<span class="ot">NA</span>,<span class="ot">NA</span>,<span class="dv">6</span>,<span class="dv">4</span>),</span>
+<span id="cb227-6"><a href="qualtrics.html#cb227-6"></a>       <span class="dt">x1 =</span> <span class="kw">c</span>(<span class="dv">2</span>,<span class="dv">3</span>,<span class="dv">3</span>,<span class="dv">6</span>),</span>
+<span id="cb227-7"><a href="qualtrics.html#cb227-7"></a>       <span class="dt">x2 =</span> <span class="kw">c</span>(<span class="dv">6</span>,<span class="dv">4</span>,<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb227-8"><a href="qualtrics.html#cb227-8"></a>data</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y1_1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y2_1"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["y1_2"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["y2_2"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[7],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"1","4":"NA","5":"NA","6":"2","7":"6"},{"1":"2","2":"3","3":"4","4":"NA","5":"NA","6":"3","7":"4"},{"1":"3","2":"NA","3":"NA","4":"5","5":"6","6":"3","7":"1"},{"1":"4","2":"NA","3":"NA","4":"3","5":"4","6":"6","7":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -533,11 +535,11 @@ Qualtricsでは行は各被験者でユニークな識別番号の他に設問�
 <li>応答変数が欠損しているサンプルは処置群なので除外する。</li>
 </ol>
 <p>という方法です。</p>
-<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb228-1" data-line-number="1">control &lt;-<span class="st"> </span>data[<span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;y1_1&quot;</span>, <span class="st">&quot;y2_1&quot;</span>, <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)]</a>
-<a class="sourceLine" id="cb228-2" data-line-number="2"><span class="kw">names</span>(control) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)</a>
-<a class="sourceLine" id="cb228-3" data-line-number="3">control &lt;-<span class="st"> </span>control[<span class="op">!</span><span class="kw">is.na</span>(control<span class="op">$</span>y1) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(control<span class="op">$</span>y2),]</a>
-<a class="sourceLine" id="cb228-4" data-line-number="4">control<span class="op">$</span>t &lt;-<span class="st"> </span><span class="dv">0</span></a>
-<a class="sourceLine" id="cb228-5" data-line-number="5">control</a></code></pre></div>
+<div class="sourceCode" id="cb228"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb228-1"><a href="qualtrics.html#cb228-1"></a>control &lt;-<span class="st"> </span>data[<span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;y1_1&quot;</span>, <span class="st">&quot;y2_1&quot;</span>, <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)]</span>
+<span id="cb228-2"><a href="qualtrics.html#cb228-2"></a><span class="kw">names</span>(control) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)</span>
+<span id="cb228-3"><a href="qualtrics.html#cb228-3"></a>control &lt;-<span class="st"> </span>control[<span class="op">!</span><span class="kw">is.na</span>(control<span class="op">$</span>y1) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(control<span class="op">$</span>y2),]</span>
+<span id="cb228-4"><a href="qualtrics.html#cb228-4"></a>control<span class="op">$</span>t &lt;-<span class="st"> </span><span class="dv">0</span></span>
+<span id="cb228-5"><a href="qualtrics.html#cb228-5"></a>control</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"1","4":"2","5":"6","6":"0"},{"1":"2","2":"3","3":"4","4":"3","5":"4","6":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -547,22 +549,22 @@ Qualtricsでは行は各被験者でユニークな識別番号の他に設問�
 <li><code>control[!is.na(control$y1) &amp; !is.na(control$y2),]</code>は「第1の応答変数が欠損していない」かつ「第2の応答変数が欠損していない」サンプルを指定しています。</li>
 </ul>
 <p>同様の処理を処置群についても行います。</p>
-<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb229-1" data-line-number="1">treatment &lt;-<span class="st"> </span>data[<span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;y1_2&quot;</span>, <span class="st">&quot;y2_2&quot;</span>, <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)]</a>
-<a class="sourceLine" id="cb229-2" data-line-number="2"><span class="kw">names</span>(treatment) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)</a>
-<a class="sourceLine" id="cb229-3" data-line-number="3">treatment &lt;-<span class="st"> </span>treatment[<span class="op">!</span><span class="kw">is.na</span>(treatment<span class="op">$</span>y1) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(treatment<span class="op">$</span>y2),]</a>
-<a class="sourceLine" id="cb229-4" data-line-number="4">treatment<span class="op">$</span>t &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb229-5" data-line-number="5">treatment</a></code></pre></div>
+<div class="sourceCode" id="cb229"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb229-1"><a href="qualtrics.html#cb229-1"></a>treatment &lt;-<span class="st"> </span>data[<span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;y1_2&quot;</span>, <span class="st">&quot;y2_2&quot;</span>, <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)]</span>
+<span id="cb229-2"><a href="qualtrics.html#cb229-2"></a><span class="kw">names</span>(treatment) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)</span>
+<span id="cb229-3"><a href="qualtrics.html#cb229-3"></a>treatment &lt;-<span class="st"> </span>treatment[<span class="op">!</span><span class="kw">is.na</span>(treatment<span class="op">$</span>y1) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(treatment<span class="op">$</span>y2),]</span>
+<span id="cb229-4"><a href="qualtrics.html#cb229-4"></a>treatment<span class="op">$</span>t &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb229-5"><a href="qualtrics.html#cb229-5"></a>treatment</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"3","2":"5","3":"6","4":"3","5":"1","6":"1"},{"1":"4","2":"3","3":"4","4":"6","5":"1","6":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>最後に、両者を結合し、<code>6</code>を欠損値に入れ替えます。</p>
-<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb230-1" data-line-number="1">data_reshaped &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(control, treatment)</a>
-<a class="sourceLine" id="cb230-2" data-line-number="2">data_reshaped[data_reshaped<span class="op">$</span>y2 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>y2 &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb230-3" data-line-number="3">data_reshaped[data_reshaped<span class="op">$</span>x1 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>x1 &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb230-4" data-line-number="4">data_reshaped[data_reshaped<span class="op">$</span>x2 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>x2 &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb230-5" data-line-number="5">data_reshaped</a></code></pre></div>
+<div class="sourceCode" id="cb230"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb230-1"><a href="qualtrics.html#cb230-1"></a>data_reshaped &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(control, treatment)</span>
+<span id="cb230-2"><a href="qualtrics.html#cb230-2"></a>data_reshaped[data_reshaped<span class="op">$</span>y2 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>y2 &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb230-3"><a href="qualtrics.html#cb230-3"></a>data_reshaped[data_reshaped<span class="op">$</span>x1 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>x1 &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb230-4"><a href="qualtrics.html#cb230-4"></a>data_reshaped[data_reshaped<span class="op">$</span>x2 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>x2 &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb230-5"><a href="qualtrics.html#cb230-5"></a>data_reshaped</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"1","4":"2","5":"NA","6":"0"},{"1":"2","2":"3","3":"4","4":"3","5":"4","6":"0"},{"1":"3","2":"5","3":"NA","4":"3","5":"1","6":"1"},{"1":"4","2":"3","3":"4","4":"NA","5":"1","6":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -575,39 +577,39 @@ Qualtricsでは行は各被験者でユニークな識別番号の他に設問�
 各グループについては同様の処理を行うので、<code>for</code>ループによって簡略化することができます。</p>
 <p>アイデアとしては<code>i</code>回目の処理において<code>id</code>共変量と<code>y1_i</code>と<code>y2_i</code>を抜き出します。
 文字列は<code>paste0()</code>という関数で結合することができます。</p>
-<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb231-1" data-line-number="1"><span class="kw">paste0</span>(<span class="st">&quot;y1_&quot;</span>, <span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb231"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb231-1"><a href="qualtrics.html#cb231-1"></a><span class="kw">paste0</span>(<span class="st">&quot;y1_&quot;</span>, <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;y1_1&quot;</code></pre>
 <p>ちなみに、<code>paste()</code>は文字列の間に特定の記号を含める関数です。</p>
-<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb233-1" data-line-number="1"><span class="kw">paste</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb233"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb233-1"><a href="qualtrics.html#cb233-1"></a><span class="kw">paste</span>(<span class="st">&quot;a&quot;</span>, <span class="st">&quot;b&quot;</span>, <span class="dt">sep =</span> <span class="st">&quot;/&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;a/b&quot;</code></pre>
-<p>つまり、<code>paste0()</code>は<code>paste(..., sep = &quot;)</code>のラッパー関数です。</p>
+<p>つまり、<code>paste0()</code>は<code>paste(..., sep = ")</code>のラッパー関数です。</p>
 <p>さて、ここでは<code>i</code>を<code>1</code>として選択する変数の名前を<code>sel_vars</code>というベクトルとして作成します。</p>
-<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb235-1" data-line-number="1">i &lt;-<span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb235-2" data-line-number="2">sel_vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="kw">paste0</span>(<span class="kw">c</span>(<span class="st">&quot;y1_&quot;</span>, <span class="st">&quot;y2_&quot;</span>), i), <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)</a>
-<a class="sourceLine" id="cb235-3" data-line-number="3">sel_vars</a></code></pre></div>
+<div class="sourceCode" id="cb235"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb235-1"><a href="qualtrics.html#cb235-1"></a>i &lt;-<span class="st"> </span><span class="dv">1</span></span>
+<span id="cb235-2"><a href="qualtrics.html#cb235-2"></a>sel_vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="kw">paste0</span>(<span class="kw">c</span>(<span class="st">&quot;y1_&quot;</span>, <span class="st">&quot;y2_&quot;</span>), i), <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)</span>
+<span id="cb235-3"><a href="qualtrics.html#cb235-3"></a>sel_vars</span></code></pre></div>
 <pre><code>## [1] &quot;id&quot;   &quot;y1_1&quot; &quot;y2_1&quot; &quot;x1&quot;   &quot;x2&quot;</code></pre>
 <p>無事、必要な変数名を抜き出せています。</p>
-<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb237-1" data-line-number="1">temp &lt;-<span class="st"> </span>data[sel_vars]</a>
-<a class="sourceLine" id="cb237-2" data-line-number="2">temp</a></code></pre></div>
+<div class="sourceCode" id="cb237"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb237-1"><a href="qualtrics.html#cb237-1"></a>temp &lt;-<span class="st"> </span>data[sel_vars]</span>
+<span id="cb237-2"><a href="qualtrics.html#cb237-2"></a>temp</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y1_1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y2_1"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"1","4":"2","5":"6"},{"1":"2","2":"3","3":"4","4":"3","5":"4"},{"1":"3","2":"NA","3":"NA","4":"3","5":"1"},{"1":"4","2":"NA","3":"NA","4":"6","5":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>その他の処理は先ほどと変わらないので、まとめると次のようになります。</p>
-<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb238-1" data-line-number="1">data_reshaped &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb238-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) {</a>
-<a class="sourceLine" id="cb238-3" data-line-number="3">  sel_vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="kw">paste0</span>(<span class="kw">c</span>(<span class="st">&quot;y1_&quot;</span>, <span class="st">&quot;y2_&quot;</span>), i), <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)</a>
-<a class="sourceLine" id="cb238-4" data-line-number="4">  temp &lt;-<span class="st"> </span>data[sel_vars]</a>
-<a class="sourceLine" id="cb238-5" data-line-number="5">  <span class="kw">names</span>(temp) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)</a>
-<a class="sourceLine" id="cb238-6" data-line-number="6">  temp &lt;-<span class="st"> </span>temp[<span class="op">!</span><span class="kw">is.na</span>(temp<span class="op">$</span>y1) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(temp<span class="op">$</span>y2),]</a>
-<a class="sourceLine" id="cb238-7" data-line-number="7">  temp<span class="op">$</span>t &lt;-<span class="st"> </span>i <span class="op">-</span><span class="st"> </span><span class="dv">1</span></a>
-<a class="sourceLine" id="cb238-8" data-line-number="8">  data_reshaped &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(data_reshaped, temp)</a>
-<a class="sourceLine" id="cb238-9" data-line-number="9">}</a>
-<a class="sourceLine" id="cb238-10" data-line-number="10">data_reshaped[data_reshaped<span class="op">$</span>y2 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>y2 &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb238-11" data-line-number="11">data_reshaped[data_reshaped<span class="op">$</span>x1 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>x1 &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb238-12" data-line-number="12">data_reshaped[data_reshaped<span class="op">$</span>x2 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>x2 &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb238-13" data-line-number="13">data_reshaped</a></code></pre></div>
+<div class="sourceCode" id="cb238"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb238-1"><a href="qualtrics.html#cb238-1"></a>data_reshaped &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb238-2"><a href="qualtrics.html#cb238-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">2</span>) {</span>
+<span id="cb238-3"><a href="qualtrics.html#cb238-3"></a>  sel_vars &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="kw">paste0</span>(<span class="kw">c</span>(<span class="st">&quot;y1_&quot;</span>, <span class="st">&quot;y2_&quot;</span>), i), <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)</span>
+<span id="cb238-4"><a href="qualtrics.html#cb238-4"></a>  temp &lt;-<span class="st"> </span>data[sel_vars]</span>
+<span id="cb238-5"><a href="qualtrics.html#cb238-5"></a>  <span class="kw">names</span>(temp) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;id&quot;</span>, <span class="st">&quot;y1&quot;</span>, <span class="st">&quot;y2&quot;</span>, <span class="st">&quot;x1&quot;</span>, <span class="st">&quot;x2&quot;</span>)</span>
+<span id="cb238-6"><a href="qualtrics.html#cb238-6"></a>  temp &lt;-<span class="st"> </span>temp[<span class="op">!</span><span class="kw">is.na</span>(temp<span class="op">$</span>y1) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(temp<span class="op">$</span>y2),]</span>
+<span id="cb238-7"><a href="qualtrics.html#cb238-7"></a>  temp<span class="op">$</span>t &lt;-<span class="st"> </span>i <span class="op">-</span><span class="st"> </span><span class="dv">1</span></span>
+<span id="cb238-8"><a href="qualtrics.html#cb238-8"></a>  data_reshaped &lt;-<span class="st"> </span><span class="kw">bind_rows</span>(data_reshaped, temp)</span>
+<span id="cb238-9"><a href="qualtrics.html#cb238-9"></a>}</span>
+<span id="cb238-10"><a href="qualtrics.html#cb238-10"></a>data_reshaped[data_reshaped<span class="op">$</span>y2 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>y2 &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb238-11"><a href="qualtrics.html#cb238-11"></a>data_reshaped[data_reshaped<span class="op">$</span>x1 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>x1 &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb238-12"><a href="qualtrics.html#cb238-12"></a>data_reshaped[data_reshaped<span class="op">$</span>x2 <span class="op">==</span><span class="st"> </span><span class="dv">6</span>,]<span class="op">$</span>x2 &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb238-13"><a href="qualtrics.html#cb238-13"></a>data_reshaped</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["y1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["y2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"1","4":"2","5":"NA","6":"0"},{"1":"2","2":"3","3":"4","4":"3","5":"4","6":"0"},{"1":"3","2":"5","3":"NA","4":"3","5":"1","6":"1"},{"1":"4","2":"3","3":"4","4":"NA","5":"1","6":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -621,9 +623,9 @@ Qualtricsでは行は各被験者でユニークな識別番号の他に設問�
 <h2><span class="header-section-number">8.4</span> tidyverseな方法</h2>
 <p>実は<code>tidyverse</code>の<code>tidyr</code>を応用するとこのような処理をすることができます。
 まずは、応答変数に関して<code>gather()</code>でロングにします。</p>
-<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb239-1" data-line-number="1">data_reshaped &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb239-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span><span class="kw">c</span>(id, x1, x2), <span class="dt">names_to =</span> <span class="st">&quot;t&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;y&quot;</span>)</a>
-<a class="sourceLine" id="cb239-3" data-line-number="3">data_reshaped</a></code></pre></div>
+<div class="sourceCode" id="cb239"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb239-1"><a href="qualtrics.html#cb239-1"></a>data_reshaped &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb239-2"><a href="qualtrics.html#cb239-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span><span class="kw">c</span>(id, x1, x2), <span class="dt">names_to =</span> <span class="st">&quot;t&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb239-3"><a href="qualtrics.html#cb239-3"></a>data_reshaped</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[4],"type":["chr"],"align":["left"]},{"label":["y"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"6","4":"y1_1","5":"2"},{"1":"1","2":"2","3":"6","4":"y2_1","5":"1"},{"1":"1","2":"2","3":"6","4":"y1_2","5":"NA"},{"1":"1","2":"2","3":"6","4":"y2_2","5":"NA"},{"1":"2","2":"3","3":"4","4":"y1_1","5":"3"},{"1":"2","2":"3","3":"4","4":"y2_1","5":"4"},{"1":"2","2":"3","3":"4","4":"y1_2","5":"NA"},{"1":"2","2":"3","3":"4","4":"y2_2","5":"NA"},{"1":"3","2":"3","3":"1","4":"y1_1","5":"NA"},{"1":"3","2":"3","3":"1","4":"y2_1","5":"NA"},{"1":"3","2":"3","3":"1","4":"y1_2","5":"5"},{"1":"3","2":"3","3":"1","4":"y2_2","5":"6"},{"1":"4","2":"6","3":"1","4":"y1_1","5":"NA"},{"1":"4","2":"6","3":"1","4":"y2_1","5":"NA"},{"1":"4","2":"6","3":"1","4":"y1_2","5":"3"},{"1":"4","2":"6","3":"1","4":"y2_2","5":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -635,9 +637,9 @@ Qualtricsでは行は各被験者でユニークな識別番号の他に設問�
 <li>グループ2の被験者にとっての<code>y1_1</code>と<code>y2_1</code></li>
 </ul>
 <p>なので、指定した変数が欠損値であるサンプルを除外する関数<code>drop_na()</code>で<code>y</code>が欠損しているサンプルを除外します。</p>
-<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb240-1" data-line-number="1">data_reshaped &lt;-<span class="st"> </span>data_reshaped <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb240-2" data-line-number="2"><span class="st">  </span><span class="kw">drop_na</span>(y)</a>
-<a class="sourceLine" id="cb240-3" data-line-number="3">data_reshaped</a></code></pre></div>
+<div class="sourceCode" id="cb240"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb240-1"><a href="qualtrics.html#cb240-1"></a>data_reshaped &lt;-<span class="st"> </span>data_reshaped <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb240-2"><a href="qualtrics.html#cb240-2"></a><span class="st">  </span><span class="kw">drop_na</span>(y)</span>
+<span id="cb240-3"><a href="qualtrics.html#cb240-3"></a>data_reshaped</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[4],"type":["chr"],"align":["left"]},{"label":["y"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"6","4":"y1_1","5":"2"},{"1":"1","2":"2","3":"6","4":"y2_1","5":"1"},{"1":"2","2":"3","3":"4","4":"y1_1","5":"3"},{"1":"2","2":"3","3":"4","4":"y2_1","5":"4"},{"1":"3","2":"3","3":"1","4":"y1_2","5":"5"},{"1":"3","2":"3","3":"1","4":"y2_2","5":"6"},{"1":"4","2":"6","3":"1","4":"y1_2","5":"3"},{"1":"4","2":"6","3":"1","4":"y2_2","5":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -645,61 +647,61 @@ Qualtricsでは行は各被験者でユニークな識別番号の他に設問�
 </div>
 <p>続いて、適当に名付けておいた<code>t</code>からグループの情報と応答変数の種類の情報を抜き出します。
 <code>str_extraxt()</code>という関数は文字列からパターンに合致したものを抜き出します。</p>
-<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb241-1" data-line-number="1"><span class="kw">str_extract</span>(<span class="st">&quot;y1_1&quot;</span>, <span class="st">&quot;y[0-9]&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb241"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb241-1"><a href="qualtrics.html#cb241-1"></a><span class="kw">str_extract</span>(<span class="st">&quot;y1_1&quot;</span>, <span class="st">&quot;y[0-9]&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;y1&quot;</code></pre>
 <p>パターンのマッチングには正規表現というやや難しい表記が必要になります。
 <code>y[0-9]</code>というのは<code>y</code>という文字と数字が1文字続く文字列という意味です。</p>
-<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb243-1" data-line-number="1"><span class="kw">str_extract</span>(<span class="st">&quot;y1_1&quot;</span>, <span class="st">&quot;_[0-9]&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb243"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb243-1"><a href="qualtrics.html#cb243-1"></a><span class="kw">str_extract</span>(<span class="st">&quot;y1_1&quot;</span>, <span class="st">&quot;_[0-9]&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;_1&quot;</code></pre>
 <p>同様にしてグループの情報も抜き出せますが、<code>_</code>が邪魔です。
 文字列から数値を抜き出す関数は<code>parse_naumber()</code>になります。</p>
-<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb245-1" data-line-number="1"><span class="kw">str_extract</span>(<span class="st">&quot;y1_1&quot;</span>, <span class="st">&quot;_[0-9]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb245-2" data-line-number="2"><span class="st">  </span><span class="kw">parse_number</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb245"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb245-1"><a href="qualtrics.html#cb245-1"></a><span class="kw">str_extract</span>(<span class="st">&quot;y1_1&quot;</span>, <span class="st">&quot;_[0-9]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb245-2"><a href="qualtrics.html#cb245-2"></a><span class="st">  </span><span class="kw">parse_number</span>()</span></code></pre></div>
 <pre><code>## [1] 1</code></pre>
 <p>これでグループと応答変数の種類の情報を抜き出す準備が整いました。
 以下では<code>t</code>にグループ番号を<code>k</code>に応答変数の種類を入れる操作をします</p>
-<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb247-1" data-line-number="1">data_reshaped &lt;-<span class="st"> </span>data_reshaped <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb247-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">k =</span> <span class="kw">str_extract</span>(t, <span class="st">&quot;y[0-9]&quot;</span>),</a>
-<a class="sourceLine" id="cb247-3" data-line-number="3">         <span class="dt">t =</span> <span class="kw">str_extract</span>(t, <span class="st">&quot;_[0-9]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb247-4" data-line-number="4"><span class="st">           </span><span class="kw">parse_number</span>())</a>
-<a class="sourceLine" id="cb247-5" data-line-number="5">data_reshaped</a></code></pre></div>
+<div class="sourceCode" id="cb247"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb247-1"><a href="qualtrics.html#cb247-1"></a>data_reshaped &lt;-<span class="st"> </span>data_reshaped <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb247-2"><a href="qualtrics.html#cb247-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">k =</span> <span class="kw">str_extract</span>(t, <span class="st">&quot;y[0-9]&quot;</span>),</span>
+<span id="cb247-3"><a href="qualtrics.html#cb247-3"></a>         <span class="dt">t =</span> <span class="kw">str_extract</span>(t, <span class="st">&quot;_[0-9]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb247-4"><a href="qualtrics.html#cb247-4"></a><span class="st">           </span><span class="kw">parse_number</span>())</span>
+<span id="cb247-5"><a href="qualtrics.html#cb247-5"></a>data_reshaped</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["y"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["k"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"1","2":"2","3":"6","4":"1","5":"2","6":"y1"},{"1":"1","2":"2","3":"6","4":"1","5":"1","6":"y2"},{"1":"2","2":"3","3":"4","4":"1","5":"3","6":"y1"},{"1":"2","2":"3","3":"4","4":"1","5":"4","6":"y2"},{"1":"3","2":"3","3":"1","4":"2","5":"5","6":"y1"},{"1":"3","2":"3","3":"1","4":"2","5":"6","6":"y2"},{"1":"4","2":"6","3":"1","4":"2","5":"3","6":"y1"},{"1":"4","2":"6","3":"1","4":"2","5":"4","6":"y2"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>続いて、<code>k</code>の中身<code>y1</code>と<code>y2</code>を変数名に戻すために<code>spread()</code>を使います。</p>
-<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb248-1" data-line-number="1">data_reshaped &lt;-<span class="st"> </span>data_reshaped <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb248-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;k&quot;</span>, <span class="dt">values_from =</span> <span class="st">&quot;y&quot;</span>)</a>
-<a class="sourceLine" id="cb248-3" data-line-number="3">data_reshaped</a></code></pre></div>
+<div class="sourceCode" id="cb248"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb248-1"><a href="qualtrics.html#cb248-1"></a>data_reshaped &lt;-<span class="st"> </span>data_reshaped <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb248-2"><a href="qualtrics.html#cb248-2"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;k&quot;</span>, <span class="dt">values_from =</span> <span class="st">&quot;y&quot;</span>)</span>
+<span id="cb248-3"><a href="qualtrics.html#cb248-3"></a>data_reshaped</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["y1"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["y2"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"6","4":"1","5":"2","6":"1"},{"1":"2","2":"3","3":"4","4":"1","5":"3","6":"4"},{"1":"3","2":"3","3":"1","4":"2","5":"5","6":"6"},{"1":"4","2":"6","3":"1","4":"2","5":"3","6":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>最後に欠損値を<code>na_if()</code>で代入しておきます。</p>
-<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb249-1" data-line-number="1">data_reshaped &lt;-<span class="st"> </span>data_reshaped <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb249-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y2 =</span> <span class="kw">na_if</span>(y2, <span class="dv">6</span>),</a>
-<a class="sourceLine" id="cb249-3" data-line-number="3">         <span class="dt">x1 =</span> <span class="kw">na_if</span>(x1, <span class="dv">6</span>),</a>
-<a class="sourceLine" id="cb249-4" data-line-number="4">         <span class="dt">x2 =</span> <span class="kw">na_if</span>(x2, <span class="dv">6</span>))</a>
-<a class="sourceLine" id="cb249-5" data-line-number="5">data_reshaped</a></code></pre></div>
+<div class="sourceCode" id="cb249"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb249-1"><a href="qualtrics.html#cb249-1"></a>data_reshaped &lt;-<span class="st"> </span>data_reshaped <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb249-2"><a href="qualtrics.html#cb249-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y2 =</span> <span class="kw">na_if</span>(y2, <span class="dv">6</span>),</span>
+<span id="cb249-3"><a href="qualtrics.html#cb249-3"></a>         <span class="dt">x1 =</span> <span class="kw">na_if</span>(x1, <span class="dv">6</span>),</span>
+<span id="cb249-4"><a href="qualtrics.html#cb249-4"></a>         <span class="dt">x2 =</span> <span class="kw">na_if</span>(x2, <span class="dv">6</span>))</span>
+<span id="cb249-5"><a href="qualtrics.html#cb249-5"></a>data_reshaped</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["y1"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["y2"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"NA","4":"1","5":"2","6":"1"},{"1":"2","2":"3","3":"4","4":"1","5":"3","6":"4"},{"1":"3","2":"3","3":"1","4":"2","5":"5","6":"NA"},{"1":"4","2":"NA","3":"1","4":"2","5":"3","6":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>以上をパイプでまとめると次のようになります。</p>
-<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb250-1" data-line-number="1">data_reshaped &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb250-2" data-line-number="2"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span><span class="kw">c</span>(id, x1, x2), <span class="dt">names_to =</span> <span class="st">&quot;t&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;y&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb250-3" data-line-number="3"><span class="st">  </span><span class="kw">drop_na</span>(y) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb250-4" data-line-number="4"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">k =</span> <span class="kw">str_extract</span>(t, <span class="st">&quot;y[0-9]&quot;</span>),</a>
-<a class="sourceLine" id="cb250-5" data-line-number="5">         <span class="dt">t =</span> <span class="kw">str_extract</span>(t, <span class="st">&quot;_[0-9]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb250-6" data-line-number="6"><span class="st">           </span><span class="kw">parse_number</span>()) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb250-7" data-line-number="7"><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;k&quot;</span>, <span class="dt">values_from =</span> <span class="st">&quot;y&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb250-8" data-line-number="8"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y2 =</span> <span class="kw">na_if</span>(y2, <span class="dv">6</span>),</a>
-<a class="sourceLine" id="cb250-9" data-line-number="9">         <span class="dt">x1 =</span> <span class="kw">na_if</span>(x1, <span class="dv">6</span>),</a>
-<a class="sourceLine" id="cb250-10" data-line-number="10">         <span class="dt">x2 =</span> <span class="kw">na_if</span>(x2, <span class="dv">6</span>))</a>
-<a class="sourceLine" id="cb250-11" data-line-number="11">data_reshaped</a></code></pre></div>
+<div class="sourceCode" id="cb250"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb250-1"><a href="qualtrics.html#cb250-1"></a>data_reshaped &lt;-<span class="st"> </span>data <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb250-2"><a href="qualtrics.html#cb250-2"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="op">-</span><span class="kw">c</span>(id, x1, x2), <span class="dt">names_to =</span> <span class="st">&quot;t&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;y&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb250-3"><a href="qualtrics.html#cb250-3"></a><span class="st">  </span><span class="kw">drop_na</span>(y) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb250-4"><a href="qualtrics.html#cb250-4"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">k =</span> <span class="kw">str_extract</span>(t, <span class="st">&quot;y[0-9]&quot;</span>),</span>
+<span id="cb250-5"><a href="qualtrics.html#cb250-5"></a>         <span class="dt">t =</span> <span class="kw">str_extract</span>(t, <span class="st">&quot;_[0-9]&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb250-6"><a href="qualtrics.html#cb250-6"></a><span class="st">           </span><span class="kw">parse_number</span>()) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb250-7"><a href="qualtrics.html#cb250-7"></a><span class="st">  </span><span class="kw">pivot_wider</span>(<span class="dt">names_from =</span> <span class="st">&quot;k&quot;</span>, <span class="dt">values_from =</span> <span class="st">&quot;y&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb250-8"><a href="qualtrics.html#cb250-8"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y2 =</span> <span class="kw">na_if</span>(y2, <span class="dv">6</span>),</span>
+<span id="cb250-9"><a href="qualtrics.html#cb250-9"></a>         <span class="dt">x1 =</span> <span class="kw">na_if</span>(x1, <span class="dv">6</span>),</span>
+<span id="cb250-10"><a href="qualtrics.html#cb250-10"></a>         <span class="dt">x2 =</span> <span class="kw">na_if</span>(x2, <span class="dv">6</span>))</span>
+<span id="cb250-11"><a href="qualtrics.html#cb250-11"></a>data_reshaped</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["y1"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["y2"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"NA","4":"1","5":"2","6":"1"},{"1":"2","2":"3","3":"4","4":"1","5":"3","6":"4"},{"1":"3","2":"3","3":"1","4":"2","5":"5","6":"NA"},{"1":"4","2":"NA","3":"1","4":"2","5":"3","6":"4"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -730,9 +732,9 @@ Qualtricsでは行は各被験者でユニークな識別番号の他に設問�
 </ol>
 <p>としたいのが人情です。</p>
 <p>こういうときは、<code>6</code>（ないし<code>5</code>）から引いてあげればよいです。</p>
-<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb251-1" data-line-number="1">data_reshaped <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb251-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y1 =</span> <span class="dv">5</span> <span class="op">-</span><span class="st"> </span>y1,</a>
-<a class="sourceLine" id="cb251-3" data-line-number="3">         <span class="dt">y2 =</span> <span class="dv">5</span> <span class="op">-</span><span class="st"> </span>y2)</a></code></pre></div>
+<div class="sourceCode" id="cb251"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb251-1"><a href="qualtrics.html#cb251-1"></a>data_reshaped <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb251-2"><a href="qualtrics.html#cb251-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">y1 =</span> <span class="dv">5</span> <span class="op">-</span><span class="st"> </span>y1,</span>
+<span id="cb251-3"><a href="qualtrics.html#cb251-3"></a>         <span class="dt">y2 =</span> <span class="dv">5</span> <span class="op">-</span><span class="st"> </span>y2)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["id"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["x1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["x2"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["t"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["y1"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["y2"],"name":[6],"type":["dbl"],"align":["right"]}],"data":[{"1":"1","2":"2","3":"NA","4":"1","5":"3","6":"4"},{"1":"2","2":"3","3":"4","4":"1","5":"2","6":"1"},{"1":"3","2":"3","3":"1","4":"2","5":"0","6":"NA"},{"1":"4","2":"NA","3":"1","4":"2","5":"2","6":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}

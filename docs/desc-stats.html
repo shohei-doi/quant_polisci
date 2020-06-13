@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第9章 データの要約 | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第9章 データの要約 | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-05-17" />
+<meta name="date" content="2020-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -66,9 +66,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -77,14 +77,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -93,9 +95,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -204,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の処理*</a><ul>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a><ul>
 <li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
 <li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
 <li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
@@ -233,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理*</a><ul>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a><ul>
 <li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
 <li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
 <li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
@@ -286,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ*</a><ul>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a><ul>
 <li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
 <li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
 <li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a><ul>
@@ -359,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a><ul>
 <li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
 <li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
 <li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
@@ -402,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf*</a><ul>
+<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a><ul>
 <li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a><ul>
 <li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
 <li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
@@ -427,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにエンコーディング問題*</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a><ul>
 <li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
@@ -448,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a><ul>
 <li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
 <li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
@@ -483,9 +485,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>データから代表的な値を計算することでデータを要約することができます。
 このような方法を<strong>記述統計</strong> (descriptive statistics) と呼びます。</p>
 <p>もう一つのアプローチはグラフなどを描いて視覚的に把握することですが、これは後述します。</p>
-<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb252-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb252-2" data-line-number="2"><span class="kw">library</span>(skimr)</a>
-<a class="sourceLine" id="cb252-3" data-line-number="3"><span class="kw">library</span>(summarytools)</a></code></pre></div>
+<div class="sourceCode" id="cb252"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb252-1"><a href="desc-stats.html#cb252-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb252-2"><a href="desc-stats.html#cb252-2"></a><span class="kw">library</span>(skimr)</span>
+<span id="cb252-3"><a href="desc-stats.html#cb252-3"></a><span class="kw">library</span>(summarytools)</span></code></pre></div>
 <pre><code>## Registered S3 method overwritten by &#39;pryr&#39;:
 ##   method      from
 ##   print.bytes Rcpp</code></pre>
@@ -495,7 +497,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <pre><code>## The following object is masked from &#39;package:tibble&#39;:
 ## 
 ##     view</code></pre>
-<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb257-1" data-line-number="1">tri &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb257"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb257-1"><a href="desc-stats.html#cb257-1"></a>tri &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   statea = col_double(),
@@ -523,14 +525,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>データを把握する最もナイーブな方法は生のデータを見ることです。
 例えば、<code>.csv</code>や<code>.xls</code>ファイルであれば適当な表計算ソフトで開くことで見ることができます。
 また、<code>View()</code>という関数でRに取り込んだデータを見ることもできます。</p>
-<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb259-1" data-line-number="1"><span class="kw">View</span>(tri)</a></code></pre></div>
+<div class="sourceCode" id="cb259"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb259-1"><a href="desc-stats.html#cb259-1"></a><span class="kw">View</span>(tri)</span></code></pre></div>
 <p>しかし、大抵の場合、観察数が多すぎてデータをそのまま見てもなんだかよく分からないことが多いです。</p>
 <ul>
 <li>データが大きすぎると開くのに時間がかかることもあります。</li>
 </ul>
 <p>まずは、<code>head()</code>によって、データの冒頭だけ見るのがよいでしょう。
 これによって、データの形式が想定通りか暫定的にチェックできます。</p>
-<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb260-1" data-line-number="1"><span class="kw">head</span>(tri)</a></code></pre></div>
+<div class="sourceCode" id="cb260"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb260-1"><a href="desc-stats.html#cb260-1"></a><span class="kw">head</span>(tri)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["statea"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dependa"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["dependb"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["demauta"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["demautb"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["allies"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["dispute1"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["logdstab"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["lcaprat2"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["smigoabi"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["opena"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["openb"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["minrpwrs"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["noncontg"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["smldmat"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["smldep"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["dyadid"],"name":[19],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","4":"0.01573063","5":"0.2801780","6":"10","7":"9","8":"0","9":"0","10":"5.820108","11":"3.241306","12":"10","13":"0.15623870","14":"0.4284163","15":"0","16":"0","17":"9","18":"0.01573063","19":"2020"},{"1":"2","2":"20","3":"1921","4":"0.01154854","5":"0.2239006","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.171194","12":"10","13":"0.10317327","14":"0.3481170","15":"0","16":"0","17":"10","18":"0.01154854","19":"2020"},{"1":"2","2":"20","3":"1922","4":"0.01125047","5":"0.2008743","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.247957","12":"10","13":"0.12613152","14":"0.4684889","15":"0","16":"0","17":"10","18":"0.01125047","19":"2020"},{"1":"2","2":"20","3":"1923","4":"0.01117924","5":"0.2130951","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.180491","12":"10","13":"0.09024599","14":"0.3702438","15":"0","16":"0","17":"10","18":"0.01117924","19":"2020"},{"1":"2","2":"20","3":"1924","4":"0.01102619","5":"0.2125081","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.191799","12":"10","13":"0.09118309","14":"0.4073506","15":"0","16":"0","17":"10","18":"0.01102619","19":"2020"},{"1":"2","2":"20","3":"1925","4":"0.01076442","5":"0.1913874","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.190288","12":"10","13":"0.09765426","14":"0.3580277","15":"0","16":"0","17":"10","18":"0.01076442","19":"2020"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -550,16 +552,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 \bar{x} = \sum_{i=1}^n \frac{x_i}{n}
 \]</span></p>
 <p>Rでは、まずデータフレームから変数を抜き出し、<code>mean()</code>に入れます。</p>
-<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb261-1" data-line-number="1"><span class="kw">mean</span>(tri<span class="op">$</span>smldep)</a></code></pre></div>
+<div class="sourceCode" id="cb261"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb261-1"><a href="desc-stats.html#cb261-1"></a><span class="kw">mean</span>(tri<span class="op">$</span>smldep)</span></code></pre></div>
 <pre><code>## [1] 0.002328343</code></pre>
 <ul>
 <li>ちなみに、欠損値がある場合は<code>NA</code>となるので、<code>na.rm = TRUE</code>というオプションを付けます。</li>
 <li><code>smldep</code>は二国間の相互依存度を示しています。</li>
 </ul>
 <p><code>tidyverse</code>風に書くなら、次のようになります。</p>
-<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb263-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb263-2" data-line-number="2"><span class="st">  </span><span class="kw">pull</span>(smldep) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb263-3" data-line-number="3"><span class="st">  </span><span class="kw">mean</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb263"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb263-1"><a href="desc-stats.html#cb263-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb263-2"><a href="desc-stats.html#cb263-2"></a><span class="st">  </span><span class="kw">pull</span>(smldep) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb263-3"><a href="desc-stats.html#cb263-3"></a><span class="st">  </span><span class="kw">mean</span>()</span></code></pre></div>
 <pre><code>## [1] 0.002328343</code></pre>
 <ul>
 <li><code>pull()</code>でベクトルを抜き出すことができます。</li>
@@ -575,13 +577,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>厳密に言えば、不偏分散と呼ばれるもので、<span class="math inline">\(n\)</span>の代わりに<span class="math inline">\(n-1\)</span>で割られています。</li>
 </ul>
-<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb265-1" data-line-number="1"><span class="kw">var</span>(tri<span class="op">$</span>smldep)</a></code></pre></div>
+<div class="sourceCode" id="cb265"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb265-1"><a href="desc-stats.html#cb265-1"></a><span class="kw">var</span>(tri<span class="op">$</span>smldep)</span></code></pre></div>
 <pre><code>## [1] 5.220904e-05</code></pre>
 <p>分散の平方根<span class="math inline">\(\sigma\)</span>を<strong>標準偏差</strong> (standard error) と呼び<code>sd()</code>で計算します。</p>
-<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb267-1" data-line-number="1"><span class="kw">sd</span>(tri<span class="op">$</span>smldep)</a></code></pre></div>
+<div class="sourceCode" id="cb267"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb267-1"><a href="desc-stats.html#cb267-1"></a><span class="kw">sd</span>(tri<span class="op">$</span>smldep)</span></code></pre></div>
 <pre><code>## [1] 0.007225582</code></pre>
 <p>実際に二乗すると分散と同じ値になります。</p>
-<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb269-1" data-line-number="1"><span class="kw">sd</span>(tri<span class="op">$</span>smldep)<span class="op">^</span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb269"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb269-1"><a href="desc-stats.html#cb269-1"></a><span class="kw">sd</span>(tri<span class="op">$</span>smldep)<span class="op">^</span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 5.220904e-05</code></pre>
 </div>
 <div id="分位点" class="section level3">
@@ -589,16 +591,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><span class="math inline">\(q\)</span>%<strong>分位点</strong> (quantile) とは、下から数えて<span class="math inline">\(q\)</span>％に当たる点を意味します。
 例えば、50%分位点は、<strong>中央値</strong> (median) とも呼ばれ、上から見ても下から見てもちょうど真ん中に位置します。</p>
 <p>中央値は<code>median()</code>で求めることができ、一般的に分位点は<code>quantile()</code>で求めることができます。</p>
-<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb271-1" data-line-number="1"><span class="kw">median</span>(tri<span class="op">$</span>smldep)</a></code></pre></div>
+<div class="sourceCode" id="cb271"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb271-1"><a href="desc-stats.html#cb271-1"></a><span class="kw">median</span>(tri<span class="op">$</span>smldep)</span></code></pre></div>
 <pre><code>## [1] 0.0002466768</code></pre>
-<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb273-1" data-line-number="1"><span class="kw">quantile</span>(tri<span class="op">$</span>smldep, <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb273"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb273-1"><a href="desc-stats.html#cb273-1"></a><span class="kw">quantile</span>(tri<span class="op">$</span>smldep, <span class="fl">0.5</span>)</span></code></pre></div>
 <pre><code>##          50% 
 ## 0.0002466768</code></pre>
 <ul>
 <li>どっちも同じであることが分かります。</li>
 </ul>
 <p><code>quantile()</code>は一度に複数の分位点を求めることができます。</p>
-<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb275-1" data-line-number="1"><span class="kw">quantile</span>(tri<span class="op">$</span>smldep, <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb275"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb275-1"><a href="desc-stats.html#cb275-1"></a><span class="kw">quantile</span>(tri<span class="op">$</span>smldep, <span class="kw">c</span>(<span class="fl">0.25</span>, <span class="fl">0.5</span>, <span class="fl">0.75</span>))</span></code></pre></div>
 <pre><code>##          25%          50%          75% 
 ## 9.789278e-06 2.466768e-04 1.486773e-03</code></pre>
 <ul>
@@ -609,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">9.2.4</span> 記述統計表</h3>
 <p>通常は、特定の変数だけの記述統計を報告するということはなく、分析で使用する変数全てについて報告します。
 <code>summary()</code>にデータフレームを入れると、全体の記述統計を出してくれます。</p>
-<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb277-1" data-line-number="1"><span class="kw">summary</span>(tri)</a></code></pre></div>
+<div class="sourceCode" id="cb277"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb277-1"><a href="desc-stats.html#cb277-1"></a><span class="kw">summary</span>(tri)</span></code></pre></div>
 <pre><code>##      statea        stateb           year         dependa         
 ##  Min.   :  2   Min.   : 20.0   Min.   :1885   Min.   :0.0000000  
 ##  1st Qu.:100   1st Qu.:300.0   1st Qu.:1935   1st Qu.:0.0000233  
@@ -651,7 +653,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  Max.   : 10.000   Max.   :1.719e-01   Max.   :900910  
 ## </code></pre>
 <p><code>skimr</code>の<code>skim()</code>のほうがカッコよく見えます。</p>
-<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb279-1" data-line-number="1"><span class="kw">skim</span>(tri)</a></code></pre></div>
+<div class="sourceCode" id="cb279"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb279-1"><a href="desc-stats.html#cb279-1"></a><span class="kw">skim</span>(tri)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-179">表 9.1: </span>Data summary</caption>
 <tbody>
@@ -962,20 +964,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>データフレームにすることにこだわらないのであれば、<code>stargazer</code>というパッケージでもいいと思います。</li>
 </ul>
 <p><code>descr()</code>という関数でmarkdownのテーブル形式で表示します。</p>
-<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb280-1" data-line-number="1"><span class="kw">descr</span>(tri, <span class="dt">transpose =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb280"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb280-1"><a href="desc-stats.html#cb280-1"></a><span class="kw">descr</span>(tri, <span class="dt">transpose =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
+<pre><code>## Warning: `funs()` is deprecated as of dplyr 0.8.0.
+## Please use a list of either functions or lambdas: 
+## 
+##   # Simple named list: 
+##   list(mean = mean, median = median)
+## 
+##   # Auto named with `tibble::lst()`: 
+##   tibble::lst(mean, median)
+## 
+##   # Using lambdas
+##   list(~ mean(., trim = .2), ~ median(., na.rm = TRUE))
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Mean"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Std.Dev"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Min"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Q1"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Median"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["Q3"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Max"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["MAD"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["IQR"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["CV"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["Skewness"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["SE.Skewness"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Kurtosis"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["N.Valid"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["Pct.Valid"],"name":[15],"type":["dbl"],"align":["right"]}],"data":[{"1":"2.154965e-01","2":"4.111715e-01","3":"0.000000e+00","4":"0.000000e+00","5":"0.000000e+00","6":"0.000000e+00","7":"1.000000e+00","8":"0.000000e+00","9":"0.000000e+00","10":"1.90801901","11":"1.38383291","12":"0.01224760","13":"-0.08500859","14":"39996","15":"100.00000","_rn_":"allies"},{"1":"2.538379e+00","2":"7.700400e+00","3":"-1.000000e+01","4":"-7.000000e+00","5":"6.000000e+00","6":"1.000000e+01","7":"1.000000e+01","8":"5.930400e+00","9":"1.700000e+01","10":"3.03358984","11":"-0.38322882","12":"0.01224760","13":"-1.61076255","14":"39996","15":"100.00000","_rn_":"demauta"},{"1":"-1.164816e+00","2":"7.519143e+00","3":"-1.000000e+01","4":"-7.000000e+00","5":"-5.000000e+00","6":"8.000000e+00","7":"1.000000e+01","8":"5.930400e+00","9":"1.500000e+01","10":"-6.45521652","11":"0.44934504","12":"0.01224760","13":"-1.48634898","14":"39996","15":"100.00000","_rn_":"demautb"},{"1":"6.849134e-03","2":"2.356854e-02","3":"0.000000e+00","4":"2.328065e-05","5":"6.987362e-04","6":"3.849794e-03","7":"8.484982e-01","8":"1.035946e-03","9":"3.826202e-03","10":"3.44109743","11":"8.14507273","12":"0.01224760","13":"104.71953156","14":"39996","15":"100.00000","_rn_":"dependa"},{"1":"1.757592e-02","2":"4.074399e-02","3":"0.000000e+00","4":"3.174094e-05","5":"1.976278e-03","6":"1.531981e-02","7":"6.529297e-01","8":"2.930029e-03","9":"1.528784e-02","10":"2.31817043","11":"4.85099400","12":"0.01224760","13":"34.46469261","14":"39996","15":"100.00000","_rn_":"dependb"},{"1":"4.700470e-02","2":"2.116516e-01","3":"0.000000e+00","4":"0.000000e+00","5":"0.000000e+00","6":"0.000000e+00","7":"1.000000e+00","8":"0.000000e+00","9":"0.000000e+00","10":"4.50277415","11":"4.28046923","12":"0.01224760","13":"16.32282493","14":"39996","15":"100.00000","_rn_":"dispute1"},{"1":"2.485163e+05","2":"1.951490e+05","3":"2.020000e+03","4":"1.003650e+05","5":"2.122200e+05","6":"3.654390e+05","7":"9.009100e+05","8":"1.779120e+05","9":"2.650740e+05","10":"0.78525651","11":"0.90093860","12":"0.01224760","13":"0.36722037","14":"39996","15":"100.00000","_rn_":"dyadid"},{"1":"2.978976e+00","2":"1.859317e+00","3":"1.029915e-04","4":"1.485984e+00","5":"2.830705e+00","6":"4.246413e+00","7":"9.494078e+00","8":"2.029555e+00","9":"2.760185e+00","10":"0.62414636","11":"0.45217306","12":"0.01224760","13":"-0.45569215","14":"39996","15":"100.00000","_rn_":"lcaprat2"},{"1":"7.625548e+00","2":"1.201279e+00","3":"1.871744e+00","4":"6.737236e+00","5":"8.042244e+00","6":"8.630425e+00","7":"9.407043e+00","8":"1.160265e+00","9":"1.890722e+00","10":"0.15753344","11":"-0.73317753","12":"0.01224760","13":"-0.24452538","14":"39996","15":"100.00000","_rn_":"logdstab"},{"1":"2.355986e-01","2":"4.243776e-01","3":"0.000000e+00","4":"0.000000e+00","5":"0.000000e+00","6":"0.000000e+00","7":"1.000000e+00","8":"0.000000e+00","9":"0.000000e+00","10":"1.80127434","11":"1.24603563","12":"0.01224760","13":"-0.44740640","14":"39996","15":"100.00000","_rn_":"minrpwrs"},{"1":"6.306881e-01","2":"4.826245e-01","3":"0.000000e+00","4":"0.000000e+00","5":"1.000000e+00","6":"1.000000e+00","7":"1.000000e+00","8":"0.000000e+00","9":"1.000000e+00","10":"0.76523494","11":"-0.54155887","12":"0.01224760","13":"-1.70675666","14":"39996","15":"100.00000","_rn_":"noncontg"},{"1":"3.082745e-01","2":"2.506571e-01","3":"7.535780e-04","4":"1.261315e-01","5":"2.346115e-01","6":"4.263000e-01","7":"1.998500e+00","8":"1.978324e-01","9":"3.001685e-01","10":"0.81309719","11":"2.11191933","12":"0.01243620","13":"6.96240744","14":"38792","15":"96.98970","_rn_":"opena"},{"1":"3.236590e-01","2":"2.828342e-01","3":"7.535780e-04","4":"1.149376e-01","5":"2.439306e-01","6":"4.550000e-01","7":"1.998500e+00","8":"2.246210e-01","9":"3.400624e-01","10":"0.87386492","11":"1.75537471","12":"0.01268842","13":"4.20910423","14":"37265","15":"93.17182","_rn_":"openb"},{"1":"2.533373e+01","2":"1.756941e+01","3":"0.000000e+00","4":"1.300000e+01","5":"2.200000e+01","6":"3.400000e+01","7":"1.300000e+02","8":"1.482600e+01","9":"2.100000e+01","10":"0.69351856","11":"1.32927939","12":"0.01224760","13":"2.81292281","14":"39996","15":"100.00000","_rn_":"smigoabi"},{"1":"2.328343e-03","2":"7.225582e-03","3":"0.000000e+00","4":"9.788926e-06","5":"2.466768e-04","6":"1.486847e-03","7":"1.719316e-01","8":"3.657231e-04","9":"1.476984e-03","10":"3.10331494","11":"8.43773857","12":"0.01224760","13":"109.02113712","14":"39996","15":"100.00000","_rn_":"smldep"},{"1":"-3.311056e+00","2":"6.675320e+00","3":"-1.000000e+01","4":"-8.000000e+00","5":"-7.000000e+00","6":"1.000000e+00","7":"1.000000e+01","8":"2.965200e+00","9":"9.000000e+00","10":"-2.01606977","11":"0.97542014","12":"0.01224760","13":"-0.58248924","14":"39996","15":"100.00000","_rn_":"smldmat"},{"1":"2.480428e+02","2":"1.950379e+02","3":"2.000000e+00","4":"1.000000e+02","5":"2.120000e+02","6":"3.650000e+02","7":"9.000000e+02","8":"1.779120e+02","9":"2.650000e+02","10":"0.78630751","11":"0.90068502","12":"0.01224760","13":"0.36703072","14":"39996","15":"100.00000","_rn_":"statea"},{"1":"4.734786e+02","2":"2.237710e+02","3":"2.000000e+01","4":"3.000000e+02","5":"4.380000e+02","6":"7.100000e+02","7":"9.500000e+02","8":"3.157938e+02","9":"4.100000e+02","10":"0.47261053","11":"0.07244092","12":"0.01224760","13":"-1.14163170","14":"39996","15":"100.00000","_rn_":"stateb"},{"1":"1.957430e+03","2":"2.759578e+01","3":"1.885000e+03","4":"1.935000e+03","5":"1.967000e+03","6":"1.979000e+03","7":"1.991000e+03","8":"2.223900e+01","9":"4.400000e+01","10":"0.01409797","11":"-0.88555479","12":"0.01224760","13":"-0.28227136","14":"39996","15":"100.00000","_rn_":"year"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>その結果をさらに<code>tb()</code>に入れることで、データフレームにできるので、<code>.csv</code>ファイルなどとして書き出すこともできます。</p>
-<div class="sourceCode" id="cb281"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb281-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb281-2" data-line-number="2"><span class="st">  </span><span class="kw">descr</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb281-3" data-line-number="3"><span class="st">  </span><span class="kw">tb</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb282-1"><a href="desc-stats.html#cb282-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb282-2"><a href="desc-stats.html#cb282-2"></a><span class="st">  </span><span class="kw">descr</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb282-3"><a href="desc-stats.html#cb282-3"></a><span class="st">  </span><span class="kw">tb</span>()</span></code></pre></div>
 <p>また、<code>dfSummary()</code>と<code>view()</code>でファンシーに表示してくれます。</p>
-<div class="sourceCode" id="cb282"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb282-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb282-2" data-line-number="2"><span class="st">  </span><span class="kw">dfSummary</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb282-3" data-line-number="3"><span class="st">  </span>summarytools<span class="op">::</span><span class="kw">view</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb283-1"><a href="desc-stats.html#cb283-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb283-2"><a href="desc-stats.html#cb283-2"></a><span class="st">  </span><span class="kw">dfSummary</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb283-3"><a href="desc-stats.html#cb283-3"></a><span class="st">  </span>summarytools<span class="op">::</span><span class="kw">view</span>()</span></code></pre></div>
 <ul>
 <li><code>summarytools::view()</code>としているのは、<code>tidyr</code>にも<code>view()</code>という関数があるので、<code>summarytools</code>のもであることを明示するためです。</li>
 </ul>
@@ -985,26 +1000,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">9.3</span> データのカウント</h2>
 <p>例えば、戦争が起こった・起こらなかった、のようにカテゴリカル変数の場合、上記の記述統計を用いるより、数えてしまう方が良いことがあります。
 <code>table()</code>で数えることができます。</p>
-<div class="sourceCode" id="cb283"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb283-1" data-line-number="1"><span class="kw">table</span>(tri<span class="op">$</span>dispute1)</a></code></pre></div>
+<div class="sourceCode" id="cb284"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb284-1"><a href="desc-stats.html#cb284-1"></a><span class="kw">table</span>(tri<span class="op">$</span>dispute1)</span></code></pre></div>
 <pre><code>## 
 ##     0     1 
 ## 38116  1880</code></pre>
 <p><code>table()</code>に複数の便数を入れることで、クロス表を作ることもできます。</p>
-<div class="sourceCode" id="cb285"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb285-1" data-line-number="1"><span class="kw">table</span>(tri<span class="op">$</span>dispute1, tri<span class="op">$</span>noncontg)</a></code></pre></div>
+<div class="sourceCode" id="cb286"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb286-1"><a href="desc-stats.html#cb286-1"></a><span class="kw">table</span>(tri<span class="op">$</span>dispute1, tri<span class="op">$</span>noncontg)</span></code></pre></div>
 <pre><code>##    
 ##         0     1
 ##   0 13492 24624
 ##   1  1279   601</code></pre>
 <p><code>tidyverse</code>には<code>count()</code>という関数があり、数えることができます。</p>
-<div class="sourceCode" id="cb287"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb287-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb287-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(dispute1)</a></code></pre></div>
+<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb288-1"><a href="desc-stats.html#cb288-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb288-2"><a href="desc-stats.html#cb288-2"></a><span class="st">  </span><span class="kw">count</span>(dispute1)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["dispute1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[2],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"38116"},{"1":"1","2":"1880"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb288"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb288-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb288-2" data-line-number="2"><span class="st">  </span><span class="kw">count</span>(dispute1, noncontg)</a></code></pre></div>
+<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb289-1"><a href="desc-stats.html#cb289-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb289-2"><a href="desc-stats.html#cb289-2"></a><span class="st">  </span><span class="kw">count</span>(dispute1, noncontg)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["dispute1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["noncontg"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["n"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"0","2":"0","3":"13492"},{"1":"0","2":"1","3":"24624"},{"1":"1","2":"0","3":"1279"},{"1":"1","2":"1","3":"601"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1014,7 +1029,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>count()</code>の結果をクロス表にするには<code>pivot_wider()</code>を使います。</li>
 </ul>
 <p><code>summarytools()</code>であれば、<code>freq()</code>や<code>ctable()</code>を使います。</p>
-<div class="sourceCode" id="cb289"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb289-1" data-line-number="1"><span class="kw">freq</span>(tri<span class="op">$</span>dispute1)</a></code></pre></div>
+<div class="sourceCode" id="cb290"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb290-1"><a href="desc-stats.html#cb290-1"></a><span class="kw">freq</span>(tri<span class="op">$</span>dispute1)</span></code></pre></div>
 <pre><code>## Frequencies  
 ## tri$dispute1  
 ## Type: Numeric  
@@ -1025,7 +1040,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##           1    1880      4.70         100.00      4.70         100.00
 ##        &lt;NA&gt;       0                               0.00         100.00
 ##       Total   39996    100.00         100.00    100.00         100.00</code></pre>
-<div class="sourceCode" id="cb291"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb291-1" data-line-number="1"><span class="kw">ctable</span>(tri<span class="op">$</span>dispute1, tri<span class="op">$</span>noncontg)</a></code></pre></div>
+<div class="sourceCode" id="cb292"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb292-1"><a href="desc-stats.html#cb292-1"></a><span class="kw">ctable</span>(tri<span class="op">$</span>dispute1, tri<span class="op">$</span>noncontg)</span></code></pre></div>
 <pre><code>## Cross-Tabulation, Row Proportions  
 ## dispute1 * noncontg  
 ## Data Frame: tri  
@@ -1043,9 +1058,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>特定のグループごとに記述統計を求めたい場合があるとします。
 このような場合、<code>tidyverse</code>の<code>group_by()</code>と<code>summarise()</code>を組み合わせます。</p>
 <p>例えば、次のようにして各年の<code>smldep</code>の平均値を求めることができます。</p>
-<div class="sourceCode" id="cb293"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb293-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb293-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb293-3" data-line-number="3"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_smldep =</span> <span class="kw">mean</span>(smldep))</a></code></pre></div>
+<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb294-1"><a href="desc-stats.html#cb294-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb294-2"><a href="desc-stats.html#cb294-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb294-3"><a href="desc-stats.html#cb294-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">mean_smldep =</span> <span class="kw">mean</span>(smldep))</span></code></pre></div>
+<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["mean_smldep"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1885","2":"0.0082543585"},{"1":"1886","2":"0.0079952870"},{"1":"1887","2":"0.0074479261"},{"1":"1888","2":"0.0074489535"},{"1":"1889","2":"0.0076578921"},{"1":"1890","2":"0.0071053858"},{"1":"1891","2":"0.0075742261"},{"1":"1892","2":"0.0070929492"},{"1":"1893","2":"0.0066553949"},{"1":"1894","2":"0.0069148870"},{"1":"1895","2":"0.0062161008"},{"1":"1896","2":"0.0065274621"},{"1":"1897","2":"0.0063339808"},{"1":"1898","2":"0.0059817309"},{"1":"1899","2":"0.0054178817"},{"1":"1900","2":"0.0041865279"},{"1":"1901","2":"0.0047447857"},{"1":"1902","2":"0.0046686136"},{"1":"1903","2":"0.0050058135"},{"1":"1904","2":"0.0050083941"},{"1":"1905","2":"0.0048029002"},{"1":"1906","2":"0.0046952450"},{"1":"1907","2":"0.0046495950"},{"1":"1908","2":"0.0042506368"},{"1":"1909","2":"0.0042139414"},{"1":"1910","2":"0.0048337255"},{"1":"1911","2":"0.0047696058"},{"1":"1912","2":"0.0046898729"},{"1":"1913","2":"0.0043875685"},{"1":"1920","2":"0.0035041529"},{"1":"1921","2":"0.0029448798"},{"1":"1922","2":"0.0036074834"},{"1":"1923","2":"0.0027343735"},{"1":"1924","2":"0.0032878061"},{"1":"1925","2":"0.0022966201"},{"1":"1926","2":"0.0024468442"},{"1":"1927","2":"0.0023352616"},{"1":"1928","2":"0.0022050915"},{"1":"1929","2":"0.0021170408"},{"1":"1930","2":"0.0019125895"},{"1":"1931","2":"0.0016754529"},{"1":"1932","2":"0.0013384492"},{"1":"1933","2":"0.0011724678"},{"1":"1934","2":"0.0015528390"},{"1":"1935","2":"0.0011349201"},{"1":"1936","2":"0.0014173403"},{"1":"1937","2":"0.0015014816"},{"1":"1938","2":"0.0012180611"},{"1":"1946","2":"0.0006531247"},{"1":"1947","2":"0.0005974403"},{"1":"1948","2":"0.0001307067"},{"1":"1949","2":"0.0001306927"},{"1":"1950","2":"0.0013688887"},{"1":"1951","2":"0.0016612350"},{"1":"1952","2":"0.0014841039"},{"1":"1953","2":"0.0014356505"},{"1":"1954","2":"0.0014532929"},{"1":"1955","2":"0.0016503514"},{"1":"1956","2":"0.0016845021"},{"1":"1957","2":"0.0015780123"},{"1":"1958","2":"0.0014322909"},{"1":"1959","2":"0.0014683903"},{"1":"1960","2":"0.0013609952"},{"1":"1961","2":"0.0012872913"},{"1":"1962","2":"0.0012319641"},{"1":"1963","2":"0.0013156001"},{"1":"1964","2":"0.0013825369"},{"1":"1965","2":"0.0013510903"},{"1":"1966","2":"0.0014193550"},{"1":"1967","2":"0.0014481180"},{"1":"1968","2":"0.0014920023"},{"1":"1969","2":"0.0015482856"},{"1":"1970","2":"0.0015506675"},{"1":"1971","2":"0.0015103575"},{"1":"1972","2":"0.0016355549"},{"1":"1973","2":"0.0019929859"},{"1":"1974","2":"0.0024545136"},{"1":"1975","2":"0.0022575447"},{"1":"1976","2":"0.0022055843"},{"1":"1977","2":"0.0023028730"},{"1":"1978","2":"0.0024085864"},{"1":"1979","2":"0.0026966458"},{"1":"1980","2":"0.0029620308"},{"1":"1981","2":"0.0026011985"},{"1":"1982","2":"0.0022651610"},{"1":"1983","2":"0.0020721880"},{"1":"1984","2":"0.0019780345"},{"1":"1985","2":"0.0019391462"},{"1":"1986","2":"0.0021279629"},{"1":"1987","2":"0.0023896180"},{"1":"1988","2":"0.0024606001"},{"1":"1989","2":"0.0021140556"},{"1":"1990","2":"0.0025482805"},{"1":"1991","2":"0.0025445694"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -1053,10 +1069,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><code>group_by()</code>は<code>summarytools</code>でも使えます。
 紛争が起こっているかどうかでグループ分けをします。</p>
-<div class="sourceCode" id="cb294"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb294-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb294-2" data-line-number="2"><span class="st">  </span><span class="kw">group_by</span>(dispute1) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb294-3" data-line-number="3"><span class="st">  </span><span class="kw">descr</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb294-4" data-line-number="4"><span class="st">  </span><span class="kw">tb</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb296"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb296-1"><a href="desc-stats.html#cb296-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb296-2"><a href="desc-stats.html#cb296-2"></a><span class="st">  </span><span class="kw">group_by</span>(dispute1) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb296-3"><a href="desc-stats.html#cb296-3"></a><span class="st">  </span><span class="kw">descr</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb296-4"><a href="desc-stats.html#cb296-4"></a><span class="st">  </span><span class="kw">tb</span>()</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["dispute1"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["variable"],"name":[2],"type":["chr"],"align":["left"]},{"label":["mean"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["sd"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["min"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["q1"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["med"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["q3"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["max"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["mad"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["iqr"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["cv"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["skewness"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["se.skewness"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["kurtosis"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["n.valid"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["pct.valid"],"name":[17],"type":["dbl"],"align":["right"]}],"data":[{"1":"0","2":"allies","3":"2.150803e-01","4":"4.108834e-01","5":"0.000000e+00","6":"0.000000e+00","7":"0.000000e+00","8":"0.000000e+00","9":"1.000000e+00","10":"0.000000e+00","11":"0.000000e+00","12":"1.91037233","13":"1.38682766","14":"0.01254599","15":"-0.07671106","16":"38116","17":"100.00000"},{"1":"0","2":"demauta","3":"2.684437e+00","4":"7.655148e+00","5":"-1.000000e+01","6":"-7.000000e+00","7":"7.000000e+00","8":"1.000000e+01","9":"1.000000e+01","10":"4.447800e+00","11":"1.700000e+01","12":"2.85167743","13":"-0.41657141","14":"0.01254599","15":"-1.57868401","16":"38116","17":"100.00000"},{"1":"0","2":"demautb","3":"-1.126561e+00","4":"7.537927e+00","5":"-1.000000e+01","6":"-7.000000e+00","7":"-5.000000e+00","8":"8.000000e+00","9":"1.000000e+01","10":"5.930400e+00","11":"1.500000e+01","12":"-6.69109527","13":"0.44054611","14":"0.01254599","15":"-1.49965141","16":"38116","17":"100.00000"},{"1":"0","2":"dependa","3":"6.993320e-03","4":"2.389991e-02","5":"0.000000e+00","6":"2.852161e-05","7":"7.338641e-04","8":"3.927954e-03","9":"8.484982e-01","10":"1.088027e-03","11":"3.899112e-03","12":"3.41753445","13":"8.02108177","14":"0.01254599","15":"101.73023771","16":"38116","17":"100.00000"},{"1":"0","2":"dependb","3":"1.792609e-02","4":"4.109498e-02","5":"0.000000e+00","6":"3.886951e-05","7":"2.101816e-03","8":"1.587307e-02","9":"6.529297e-01","10":"3.116153e-03","11":"1.583383e-02","12":"2.29246758","13":"4.80521717","14":"0.01254599","15":"33.94848672","16":"38116","17":"100.00000"},{"1":"0","2":"dyadid","3":"2.417942e+05","4":"1.892969e+05","5":"2.020000e+03","6":"1.002100e+05","7":"2.112350e+05","8":"3.653800e+05","9":"9.009100e+05","10":"1.747541e+05","11":"2.651700e+05","12":"0.78288437","13":"0.92195662","14":"0.01254599","15":"0.51826992","16":"38116","17":"100.00000"},{"1":"0","2":"lcaprat2","3":"3.030597e+00","4":"1.862411e+00","5":"1.029915e-04","6":"1.551268e+00","7":"2.885867e+00","8":"4.313279e+00","9":"9.494078e+00","10":"2.039395e+00","11":"2.761935e+00","12":"0.61453607","13":"0.43101258","14":"0.01254599","15":"-0.47421061","16":"38116","17":"100.00000"},{"1":"0","2":"logdstab","3":"7.662913e+00","4":"1.184899e+00","5":"1.871744e+00","6":"6.801015e+00","7":"8.082421e+00","8":"8.634527e+00","9":"9.407043e+00","10":"1.111870e+00","11":"1.833512e+00","12":"0.15462774","13":"-0.74960033","14":"0.01254599","15":"-0.28576662","16":"38116","17":"100.00000"},{"1":"0","2":"minrpwrs","3":"2.249187e-01","4":"4.175342e-01","5":"0.000000e+00","6":"0.000000e+00","7":"0.000000e+00","8":"0.000000e+00","9":"1.000000e+00","10":"0.000000e+00","11":"0.000000e+00","12":"1.85637872","13":"1.31761227","14":"0.01254599","15":"-0.26390483","16":"38116","17":"100.00000"},{"1":"0","2":"noncontg","3":"6.460279e-01","4":"4.782069e-01","5":"0.000000e+00","6":"0.000000e+00","7":"1.000000e+00","8":"1.000000e+00","9":"1.000000e+00","10":"0.000000e+00","11":"1.000000e+00","12":"0.74022639","13":"-0.61071507","14":"0.01254599","15":"-1.62706978","16":"38116","17":"100.00000"},{"1":"0","2":"opena","3":"3.113372e-01","4":"2.522125e-01","5":"7.535780e-04","6":"1.295422e-01","7":"2.376067e-01","8":"4.315482e-01","9":"1.998500e+00","10":"1.988266e-01","11":"3.020059e-01","12":"0.81009413","13":"2.11421304","14":"0.01272261","15":"6.93038058","16":"37065","17":"97.24263"},{"1":"0","2":"openb","3":"3.234819e-01","4":"2.836574e-01","5":"7.535780e-04","6":"1.145917e-01","7":"2.430545e-01","8":"4.550000e-01","9":"1.998500e+00","10":"2.243804e-01","11":"3.404083e-01","12":"0.87688810","13":"1.76594535","14":"0.01296953","15":"4.24715063","16":"35667","17":"93.57488"},{"1":"0","2":"smigoabi","3":"2.543278e+01","4":"1.766137e+01","5":"0.000000e+00","6":"1.300000e+01","7":"2.200000e+01","8":"3.400000e+01","9":"1.300000e+02","10":"1.482600e+01","11":"2.100000e+01","12":"0.69443333","13":"1.34484371","14":"0.01254599","15":"2.84358453","16":"38116","17":"100.00000"},{"1":"0","2":"smldep","3":"2.354952e-03","4":"7.311134e-03","5":"0.000000e+00","6":"1.158987e-05","7":"2.505219e-04","8":"1.490854e-03","9":"1.719316e-01","10":"3.714238e-04","11":"1.479226e-03","12":"3.10457931","13":"8.39727802","14":"0.01254599","15":"107.55691781","16":"38116","17":"100.00000"},{"1":"0","2":"smldmat","3":"-3.188556e+00","4":"6.734316e+00","5":"-1.000000e+01","6":"-8.000000e+00","7":"-7.000000e+00","8":"1.000000e+00","9":"1.000000e+01","10":"2.965200e+00","11":"9.000000e+00","12":"-2.11202691","13":"0.94090308","14":"0.01254599","15":"-0.66175190","16":"38116","17":"100.00000"},{"1":"0","2":"statea","3":"2.413251e+02","4":"1.891892e+02","5":"2.000000e+00","6":"1.000000e+02","7":"2.110000e+02","8":"3.650000e+02","9":"9.000000e+02","10":"1.749468e+02","11":"2.650000e+02","12":"0.78395987","13":"0.92168015","14":"0.01254599","15":"0.51802140","16":"38116","17":"100.00000"},{"1":"0","2":"stateb","3":"4.691150e+02","4":"2.225682e+02","5":"2.000000e+01","6":"3.000000e+02","7":"4.360000e+02","8":"6.980000e+02","9":"9.500000e+02","10":"3.098634e+02","11":"3.980000e+02","12":"0.47444267","13":"0.10363405","14":"0.01254599","15":"-1.12556632","16":"38116","17":"100.00000"},{"1":"0","2":"year","3":"1.957405e+03","4":"2.772203e+01","5":"1.885000e+03","6":"1.935000e+03","7":"1.967000e+03","8":"1.979000e+03","9":"1.991000e+03","10":"2.223900e+01","11":"4.400000e+01","12":"0.01416264","13":"-0.87872520","14":"0.01254599","15":"-0.30813015","16":"38116","17":"100.00000"},{"1":"1","2":"allies","3":"2.239362e-01","4":"4.169907e-01","5":"0.000000e+00","6":"0.000000e+00","7":"0.000000e+00","8":"0.000000e+00","9":"1.000000e+00","10":"0.000000e+00","11":"0.000000e+00","12":"1.86209628","13":"1.32337235","14":"0.05644826","15":"-0.24881713","16":"1880","17":"100.00000"},{"1":"1","2":"demauta","3":"-4.228723e-01","4":"8.013520e+00","5":"-1.000000e+01","6":"-8.000000e+00","7":"-5.000000e+00","8":"1.000000e+01","9":"1.000000e+01","10":"5.930400e+00","11":"1.800000e+01","12":"-18.95021143","13":"0.27515062","14":"0.05644826","15":"-1.72848462","16":"1880","17":"100.00000"},{"1":"1","2":"demautb","3":"-1.940426e+00","4":"7.085103e+00","5":"-1.000000e+01","6":"-8.000000e+00","7":"-5.000000e+00","8":"4.000000e+00","9":"1.000000e+01","10":"5.930400e+00","11":"1.200000e+01","12":"-3.65131404","13":"0.62792826","14":"0.05644826","15":"-1.15823621","16":"1880","17":"100.00000"},{"1":"1","2":"dependa","3":"3.925835e-03","4":"1.509050e-02","5":"0.000000e+00","6":"0.000000e+00","7":"2.135160e-04","8":"2.222674e-03","9":"3.651710e-01","10":"3.165588e-04","11":"2.217386e-03","12":"3.84389692","13":"13.23585326","14":"0.05644826","15":"258.18621780","16":"1880","17":"100.00000"},{"1":"1","2":"dependb","3":"1.047645e-02","4":"3.202116e-02","5":"0.000000e+00","6":"0.000000e+00","7":"6.568555e-04","8":"5.626253e-03","9":"4.180520e-01","10":"9.738540e-04","11":"5.617586e-03","12":"3.05648877","13":"6.25378456","14":"0.05644826","15":"50.31167525","16":"1880","17":"100.00000"},{"1":"1","2":"dyadid","3":"3.848018e+05","4":"2.534561e+05","5":"2.020000e+03","6":"2.003875e+05","7":"3.656300e+05","8":"6.516660e+05","9":"8.509100e+05","10":"3.194558e+05","11":"4.512772e+05","12":"0.65866643","13":"0.09393245","14":"0.05644826","15":"-1.25955192","16":"1880","17":"100.00000"},{"1":"1","2":"lcaprat2","3":"1.932372e+00","4":"1.440575e+00","5":"1.196860e-03","6":"7.423045e-01","7":"1.614804e+00","8":"2.955026e+00","9":"6.969616e+00","10":"1.577001e+00","11":"2.210722e+00","12":"0.74549558","13":"0.71878679","14":"0.05644826","15":"-0.16867357","16":"1880","17":"100.00000"},{"1":"1","2":"logdstab","3":"6.867980e+00","4":"1.278332e+00","5":"1.871744e+00","6":"6.062032e+00","7":"6.809336e+00","8":"7.840549e+00","9":"9.374251e+00","10":"1.272496e+00","11":"1.778517e+00","12":"0.18612923","13":"-0.38390844","14":"0.05644826","15":"0.28028363","16":"1880","17":"100.00000"},{"1":"1","2":"minrpwrs","3":"4.521277e-01","4":"4.978354e-01","5":"0.000000e+00","6":"0.000000e+00","7":"0.000000e+00","8":"1.000000e+00","9":"1.000000e+00","10":"0.000000e+00","11":"1.000000e+00","12":"1.10109473","13":"0.19221967","14":"0.05644826","15":"-1.96409548","16":"1880","17":"100.00000"},{"1":"1","2":"noncontg","3":"3.196809e-01","4":"4.664770e-01","5":"0.000000e+00","6":"0.000000e+00","7":"0.000000e+00","8":"1.000000e+00","9":"1.000000e+00","10":"0.000000e+00","11":"1.000000e+00","12":"1.45919580","13":"0.77269941","14":"0.05644826","15":"-1.40368141","16":"1880","17":"100.00000"},{"1":"1","2":"opena","3":"2.425407e-01","4":"2.038250e-01","5":"7.535780e-04","6":"9.307151e-02","7":"1.788701e-01","8":"3.354260e-01","9":"1.835624e+00","10":"1.484666e-01","11":"2.423545e-01","12":"0.84037456","13":"1.77453715","14":"0.05889151","15":"5.58826609","16":"1727","17":"91.86170"},{"1":"1","2":"openb","3":"3.276110e-01","4":"2.638447e-01","5":"7.535780e-04","6":"1.229197e-01","7":"2.621052e-01","8":"4.687000e-01","9":"1.895892e+00","10":"2.304736e-01","11":"3.455492e-01","12":"0.80535963","13":"1.45352643","14":"0.06121814","15":"2.94353096","16":"1598","17":"85.00000"},{"1":"1","2":"smigoabi","3":"2.332553e+01","4":"1.545628e+01","5":"0.000000e+00","6":"1.300000e+01","7":"2.100000e+01","8":"3.300000e+01","9":"1.020000e+02","10":"1.482600e+01","11":"2.000000e+01","12":"0.66263361","13":"0.73964718","14":"0.05644826","15":"0.72697334","16":"1880","17":"100.00000"},{"1":"1","2":"smldep","3":"1.788871e-03","4":"5.167621e-03","5":"0.000000e+00","6":"0.000000e+00","7":"1.550319e-04","8":"1.341955e-03","9":"1.098470e-01","10":"2.298503e-04","11":"1.341800e-03","12":"2.88876047","13":"8.26775615","14":"0.05644826","15":"119.06887917","16":"1880","17":"100.00000"},{"1":"1","2":"smldmat","3":"-5.794681e+00","4":"4.696808e+00","5":"-1.000000e+01","6":"-9.000000e+00","7":"-7.000000e+00","8":"-5.000000e+00","9":"1.000000e+01","10":"2.965200e+00","11":"4.000000e+00","12":"-0.81053779","13":"1.81627491","14":"0.05644826","15":"2.54186388","16":"1880","17":"100.00000"},{"1":"1","2":"statea","3":"3.842399e+02","4":"2.533170e+02","5":"2.000000e+00","6":"2.000000e+02","7":"3.650000e+02","8":"6.510000e+02","9":"8.500000e+02","10":"3.187590e+02","11":"4.510000e+02","12":"0.65926774","13":"0.09382013","14":"0.05644826","15":"-1.25940208","16":"1880","17":"100.00000"},{"1":"1","2":"stateb","3":"5.619479e+02","4":"2.297232e+02","5":"2.000000e+01","6":"3.650000e+02","7":"6.450000e+02","8":"7.320000e+02","9":"9.200000e+02","10":"1.897728e+02","11":"3.670000e+02","12":"0.40879811","13":"-0.61366549","14":"0.05644826","15":"-0.75249337","16":"1880","17":"100.00000"},{"1":"1","2":"year","3":"1.957921e+03","4":"2.490014e+01","5":"1.885000e+03","6":"1.938000e+03","7":"1.965000e+03","8":"1.976000e+03","9":"1.991000e+03","10":"2.075640e+01","11":"3.800000e+01","12":"0.01271764","13":"-1.04533387","14":"0.05644826","15":"0.35808351","16":"1880","17":"100.00000"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}

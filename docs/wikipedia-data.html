@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第17章 Wikipediaデータ | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第17章 Wikipediaデータ | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-05-17" />
+<meta name="date" content="2020-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -66,9 +66,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -77,14 +77,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -93,9 +95,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -204,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の処理*</a><ul>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a><ul>
 <li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
 <li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
 <li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
@@ -233,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理*</a><ul>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a><ul>
 <li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
 <li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
 <li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
@@ -286,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ*</a><ul>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a><ul>
 <li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
 <li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
 <li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a><ul>
@@ -359,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a><ul>
 <li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
 <li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
 <li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
@@ -402,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf*</a><ul>
+<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a><ul>
 <li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a><ul>
 <li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
 <li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
@@ -427,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにエンコーディング問題*</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a><ul>
 <li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
@@ -448,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a><ul>
 <li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
 <li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
@@ -481,93 +483,93 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Twitterのスクレイピングでは10日以上前のツイートを取得できないことを知りました。
 また、Googleトレンドは同時に5つまでしか取得できないのに、相対的な値しか取れません。
 そこで、Wikipediaの閲覧数を取得する方法を説明します。</p>
-<div class="sourceCode" id="cb493"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb493-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb493-2" data-line-number="2"><span class="kw">library</span>(pageviews)</a>
-<a class="sourceLine" id="cb493-3" data-line-number="3"><span class="kw">library</span>(WikipediR)</a>
-<a class="sourceLine" id="cb493-4" data-line-number="4"><span class="kw">library</span>(gtrendsR)</a>
-<a class="sourceLine" id="cb493-5" data-line-number="5"><span class="kw">library</span>(httr)</a>
-<a class="sourceLine" id="cb493-6" data-line-number="6"><span class="kw">library</span>(rvest)</a></code></pre></div>
+<div class="sourceCode" id="cb502"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb502-1"><a href="wikipedia-data.html#cb502-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb502-2"><a href="wikipedia-data.html#cb502-2"></a><span class="kw">library</span>(pageviews)</span>
+<span id="cb502-3"><a href="wikipedia-data.html#cb502-3"></a><span class="kw">library</span>(WikipediR)</span>
+<span id="cb502-4"><a href="wikipedia-data.html#cb502-4"></a><span class="kw">library</span>(gtrendsR)</span>
+<span id="cb502-5"><a href="wikipedia-data.html#cb502-5"></a><span class="kw">library</span>(httr)</span>
+<span id="cb502-6"><a href="wikipedia-data.html#cb502-6"></a><span class="kw">library</span>(rvest)</span></code></pre></div>
 <div id="Trend" class="section level2">
 <h2><span class="header-section-number">17.1</span> Wikipediaのトレンド</h2>
 <p><code>pageviews</code>の<code>article_pageview()</code>という関数で閲覧数を取得します。
 ただし、取得できるデータは2015年7月1日以降に限られます。</p>
 <p>試しに、小泉純一郎と小泉進次郎の検索数を取得します。</p>
-<div class="sourceCode" id="cb494"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb494-1" data-line-number="1">wiki_trend &lt;-<span class="st"> </span><span class="kw">article_pageviews</span>(<span class="dt">project =</span> <span class="st">&quot;ja.wikipedia&quot;</span>,</a>
-<a class="sourceLine" id="cb494-2" data-line-number="2">                                <span class="dt">article =</span> <span class="kw">c</span>(<span class="st">&quot;小泉純一郎&quot;</span>, <span class="st">&quot;小泉進次郎&quot;</span>),</a>
-<a class="sourceLine" id="cb494-3" data-line-number="3">                                <span class="dt">start =</span> <span class="st">&quot;2015070100&quot;</span>,</a>
-<a class="sourceLine" id="cb494-4" data-line-number="4">                                <span class="dt">end =</span> <span class="kw">Sys.Date</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb503-1"><a href="wikipedia-data.html#cb503-1"></a>wiki_trend &lt;-<span class="st"> </span><span class="kw">article_pageviews</span>(<span class="dt">project =</span> <span class="st">&quot;ja.wikipedia&quot;</span>,</span>
+<span id="cb503-2"><a href="wikipedia-data.html#cb503-2"></a>                                <span class="dt">article =</span> <span class="kw">c</span>(<span class="st">&quot;小泉純一郎&quot;</span>, <span class="st">&quot;小泉進次郎&quot;</span>),</span>
+<span id="cb503-3"><a href="wikipedia-data.html#cb503-3"></a>                                <span class="dt">start =</span> <span class="st">&quot;2015070100&quot;</span>,</span>
+<span id="cb503-4"><a href="wikipedia-data.html#cb503-4"></a>                                <span class="dt">end =</span> <span class="kw">Sys.Date</span>())</span></code></pre></div>
 <p>時系列のグラフにします。</p>
-<div class="sourceCode" id="cb495"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb495-1" data-line-number="1">wiki_trend <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb495-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb495-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> views, <span class="dt">colour =</span> article))</a></code></pre></div>
+<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb504-1"><a href="wikipedia-data.html#cb504-1"></a>wiki_trend <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb504-2"><a href="wikipedia-data.html#cb504-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb504-3"><a href="wikipedia-data.html#cb504-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> date, <span class="dt">y =</span> views, <span class="dt">colour =</span> article))</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-303-1.png" width="672" /></p>
 <p>Googleトレンドをも取得してみます。
 スパイクはかなり一致しているように見えます。</p>
-<div class="sourceCode" id="cb496"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb496-1" data-line-number="1">google_trend &lt;-<span class="st"> </span><span class="kw">gtrends</span>(<span class="dt">keyword =</span> <span class="kw">c</span>(<span class="st">&quot;小泉純一郎&quot;</span>, <span class="st">&quot;小泉進次郎&quot;</span>), </a>
-<a class="sourceLine" id="cb496-2" data-line-number="2">                        <span class="dt">geo =</span> <span class="st">&quot;JP&quot;</span>, </a>
-<a class="sourceLine" id="cb496-3" data-line-number="3">                        <span class="dt">time =</span> <span class="kw">str_c</span>(<span class="st">&quot;2015-07-01&quot;</span>, <span class="kw">Sys.Date</span>(), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>))</a>
-<a class="sourceLine" id="cb496-4" data-line-number="4"><span class="kw">plot</span>(google_trend)</a></code></pre></div>
+<div class="sourceCode" id="cb505"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb505-1"><a href="wikipedia-data.html#cb505-1"></a>google_trend &lt;-<span class="st"> </span><span class="kw">gtrends</span>(<span class="dt">keyword =</span> <span class="kw">c</span>(<span class="st">&quot;小泉純一郎&quot;</span>, <span class="st">&quot;小泉進次郎&quot;</span>), </span>
+<span id="cb505-2"><a href="wikipedia-data.html#cb505-2"></a>                        <span class="dt">geo =</span> <span class="st">&quot;JP&quot;</span>, </span>
+<span id="cb505-3"><a href="wikipedia-data.html#cb505-3"></a>                        <span class="dt">time =</span> <span class="kw">str_c</span>(<span class="st">&quot;2015-07-01&quot;</span>, <span class="kw">Sys.Date</span>(), <span class="dt">sep =</span> <span class="st">&quot; &quot;</span>))</span>
+<span id="cb505-4"><a href="wikipedia-data.html#cb505-4"></a><span class="kw">plot</span>(google_trend)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-304-1.png" width="672" /></p>
 <p>両者が相関しているのかどうかを確認します。</p>
-<div class="sourceCode" id="cb497"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb497-1" data-line-number="1"><span class="kw">full_join</span>(wiki_trend <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb497-2" data-line-number="2"><span class="st">            </span><span class="kw">select</span>(date, <span class="dt">term =</span> article, <span class="dt">wiki =</span> views),</a>
-<a class="sourceLine" id="cb497-3" data-line-number="3">          google_trend<span class="op">$</span>interest_over_time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb497-4" data-line-number="4"><span class="st">            </span><span class="kw">select</span>(date, <span class="dt">term =</span> keyword, <span class="dt">google =</span> hits) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb497-5" data-line-number="5"><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">google =</span> <span class="kw">parse_number</span>(google)),</a>
-<a class="sourceLine" id="cb497-6" data-line-number="6">          <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;term&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb497-7" data-line-number="7"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb497-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wiki, <span class="dt">y =</span> google, <span class="dt">colour =</span> term)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb497-9" data-line-number="9"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>term)</a></code></pre></div>
-<pre><code>## Warning: Removed 3056 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb506-1"><a href="wikipedia-data.html#cb506-1"></a><span class="kw">full_join</span>(wiki_trend <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb506-2"><a href="wikipedia-data.html#cb506-2"></a><span class="st">            </span><span class="kw">select</span>(date, <span class="dt">term =</span> article, <span class="dt">wiki =</span> views),</span>
+<span id="cb506-3"><a href="wikipedia-data.html#cb506-3"></a>          google_trend<span class="op">$</span>interest_over_time <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb506-4"><a href="wikipedia-data.html#cb506-4"></a><span class="st">            </span><span class="kw">select</span>(date, <span class="dt">term =</span> keyword, <span class="dt">google =</span> hits) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb506-5"><a href="wikipedia-data.html#cb506-5"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">google =</span> <span class="kw">parse_number</span>(google)),</span>
+<span id="cb506-6"><a href="wikipedia-data.html#cb506-6"></a>          <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;term&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb506-7"><a href="wikipedia-data.html#cb506-7"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb506-8"><a href="wikipedia-data.html#cb506-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wiki, <span class="dt">y =</span> google, <span class="dt">colour =</span> term)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb506-9"><a href="wikipedia-data.html#cb506-9"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>term)</span></code></pre></div>
+<pre><code>## Warning: Removed 3102 rows containing missing values (geom_point).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-305-1.png" width="672" /></p>
 <p>見にくいので両軸の対数を取ると正の相関がありそうなのが分かります。</p>
-<div class="sourceCode" id="cb499"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb499-1" data-line-number="1"><span class="kw">full_join</span>(wiki_trend <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb499-2" data-line-number="2"><span class="st">            </span><span class="kw">select</span>(date, <span class="dt">term =</span> article, <span class="dt">wiki =</span> views),</a>
-<a class="sourceLine" id="cb499-3" data-line-number="3">          google_trend<span class="op">$</span>interest_over_time <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb499-4" data-line-number="4"><span class="st">            </span><span class="kw">select</span>(date, <span class="dt">term =</span> keyword, <span class="dt">google =</span> hits) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb499-5" data-line-number="5"><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">google =</span> <span class="kw">parse_number</span>(google)),</a>
-<a class="sourceLine" id="cb499-6" data-line-number="6">          <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;term&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb499-7" data-line-number="7"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb499-8" data-line-number="8"><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wiki, <span class="dt">y =</span> google, <span class="dt">colour =</span> term)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb499-9" data-line-number="9"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb499-10" data-line-number="10"><span class="st">  </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb499-11" data-line-number="11"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>term)</a></code></pre></div>
-<pre><code>## Warning: Removed 3056 rows containing missing values (geom_point).</code></pre>
+<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb508-1"><a href="wikipedia-data.html#cb508-1"></a><span class="kw">full_join</span>(wiki_trend <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb508-2"><a href="wikipedia-data.html#cb508-2"></a><span class="st">            </span><span class="kw">select</span>(date, <span class="dt">term =</span> article, <span class="dt">wiki =</span> views),</span>
+<span id="cb508-3"><a href="wikipedia-data.html#cb508-3"></a>          google_trend<span class="op">$</span>interest_over_time <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb508-4"><a href="wikipedia-data.html#cb508-4"></a><span class="st">            </span><span class="kw">select</span>(date, <span class="dt">term =</span> keyword, <span class="dt">google =</span> hits) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb508-5"><a href="wikipedia-data.html#cb508-5"></a><span class="st">            </span><span class="kw">mutate</span>(<span class="dt">google =</span> <span class="kw">parse_number</span>(google)),</span>
+<span id="cb508-6"><a href="wikipedia-data.html#cb508-6"></a>          <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">&quot;date&quot;</span>, <span class="st">&quot;term&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb508-7"><a href="wikipedia-data.html#cb508-7"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb508-8"><a href="wikipedia-data.html#cb508-8"></a><span class="st">  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">x =</span> wiki, <span class="dt">y =</span> google, <span class="dt">colour =</span> term)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb508-9"><a href="wikipedia-data.html#cb508-9"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb508-10"><a href="wikipedia-data.html#cb508-10"></a><span class="st">  </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb508-11"><a href="wikipedia-data.html#cb508-11"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>term)</span></code></pre></div>
+<pre><code>## Warning: Removed 3102 rows containing missing values (geom_point).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-306-1.png" width="672" /></p>
 </div>
 <div id="wikipediaの記事の情報" class="section level2">
 <h2><span class="header-section-number">17.2</span> Wikipediaの記事の情報</h2>
 <p><code>WikipediR</code>の<code>page_info()</code>で記事の情報を取得できます。
 役に立ちそうな情報は記事の長さでしょうか。</p>
-<div class="sourceCode" id="cb501"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb501-1" data-line-number="1">wiki_info &lt;-<span class="st"> </span><span class="kw">page_info</span>(<span class="st">&quot;ja&quot;</span>, <span class="st">&quot;wikipedia&quot;</span>, <span class="dt">page =</span> <span class="st">&quot;小泉進次郎&quot;</span>)</a>
-<a class="sourceLine" id="cb501-2" data-line-number="2">wiki_info<span class="op">$</span>query<span class="op">$</span>pages<span class="op">$</span><span class="st">`</span><span class="dt">1875027</span><span class="st">`</span><span class="op">$</span>length</a></code></pre></div>
-<pre><code>## [1] 39860</code></pre>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="wikipedia-data.html#cb510-1"></a>wiki_info &lt;-<span class="st"> </span><span class="kw">page_info</span>(<span class="st">&quot;ja&quot;</span>, <span class="st">&quot;wikipedia&quot;</span>, <span class="dt">page =</span> <span class="st">&quot;小泉進次郎&quot;</span>)</span>
+<span id="cb510-2"><a href="wikipedia-data.html#cb510-2"></a>wiki_info<span class="op">$</span>query<span class="op">$</span>pages<span class="op">$</span><span class="st">`</span><span class="dt">1875027</span><span class="st">`</span><span class="op">$</span>length</span></code></pre></div>
+<pre><code>## [1] 39902</code></pre>
 </div>
 <div id="wikipediaの記事" class="section level2">
 <h2><span class="header-section-number">17.3</span> Wikipediaの記事</h2>
 <p><code>page_content()</code>で<code>.html</code>を取得できます。
 <code>rvest</code>の<code>read_html()</code>で読み込みます。</p>
-<div class="sourceCode" id="cb503"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb503-1" data-line-number="1">wiki_page &lt;-<span class="st"> </span><span class="kw">page_content</span>(<span class="st">&quot;ja&quot;</span>, <span class="st">&quot;wikipedia&quot;</span>, <span class="dt">page_name =</span> <span class="st">&quot;小泉進次郎&quot;</span>)</a>
-<a class="sourceLine" id="cb503-2" data-line-number="2">wiki_html &lt;-<span class="st"> </span>wiki_page<span class="op">$</span>parse<span class="op">$</span>text[[<span class="dv">1</span>]] <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb503-3" data-line-number="3"><span class="st">  </span><span class="kw">read_html</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="wikipedia-data.html#cb512-1"></a>wiki_page &lt;-<span class="st"> </span><span class="kw">page_content</span>(<span class="st">&quot;ja&quot;</span>, <span class="st">&quot;wikipedia&quot;</span>, <span class="dt">page_name =</span> <span class="st">&quot;小泉進次郎&quot;</span>)</span>
+<span id="cb512-2"><a href="wikipedia-data.html#cb512-2"></a>wiki_html &lt;-<span class="st"> </span>wiki_page<span class="op">$</span>parse<span class="op">$</span>text[[<span class="dv">1</span>]] <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb512-3"><a href="wikipedia-data.html#cb512-3"></a><span class="st">  </span><span class="kw">read_html</span>()</span></code></pre></div>
 <p>とりあえず<code>p</code>タグのテキストを抽出します。</p>
-<div class="sourceCode" id="cb504"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb504-1" data-line-number="1">wiki_text &lt;-<span class="st"> </span>wiki_html <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb504-2" data-line-number="2"><span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb504-3" data-line-number="3"><span class="st">  </span><span class="kw">html_text</span>()</a>
-<a class="sourceLine" id="cb504-4" data-line-number="4"><span class="kw">head</span>(wiki_text)</a></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="wikipedia-data.html#cb513-1"></a>wiki_text &lt;-<span class="st"> </span>wiki_html <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb513-2"><a href="wikipedia-data.html#cb513-2"></a><span class="st">  </span><span class="kw">html_nodes</span>(<span class="st">&quot;p&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb513-3"><a href="wikipedia-data.html#cb513-3"></a><span class="st">  </span><span class="kw">html_text</span>()</span>
+<span id="cb513-4"><a href="wikipedia-data.html#cb513-4"></a><span class="kw">head</span>(wiki_text)</span></code></pre></div>
 <pre><code>## [1] &quot;\n&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
 ## [2] &quot;小泉 進次郎（こいずみ しんじろう、1981年〈昭和56年〉4月14日 - ）は、日本の男性政治家。自由民主党所属の衆議院議員（4期）、環境大臣（第27代）、内閣府特命担当大臣（原子力防災担当）。血液型AB型。\n&quot;                                                                                                                                                                                                                                                                                                                                                                
 ## [3] &quot;内閣府大臣政務官兼復興大臣政務官、自民党青年局長、自民党農林部会長、自民党筆頭副幹事長、自民党厚生労働部会長などを歴任。\n&quot;                                                                                                                                                                                                                                                                                                                                                                                                                                       
 ## [4] &quot;父は、第87代・第88代・第89代内閣総理大臣の小泉純一郎。母は宮本佳代子 （エスエス製薬元会長、泰道照山の孫）。兄は俳優、タレントの小泉孝太郎。\n&quot;                                                                                                                                                                                                                                                                                                                                                                                                                    
 ## [5] &quot;小泉純一郎の次男として神奈川県横須賀市に生まれた（現住所は同市三春町1丁目[2]）。1982年に産まれて間もなく両親が離婚したため小泉家が引き取り、多忙な父に代わり、純一郎の実姉で同居する道子に育てられた。進次郎は伯母・道子を実の母と信じており「ママ」と呼んでいた。純一郎は道子と息子たちの関係（伯母と甥）を進次郎には伝えておらず、進次郎は中学二年生まで伯母とは知らされていなかった。兄の孝太郎は伯母の存在を認識していたが、進次郎には伝えていなかった。中学生の進次郎は少なからずこの事実に驚いたが、2016年8月に道子が他界するまで実の母として大切にした。\n&quot;
 ## [6] &quot;1988年（昭和63年）に関東学院六浦小学校に入学して、大学卒業まで関東学院で過ごす。関東学院六浦中学校・高等学校ではスポーツ、特に野球に熱中した。2004年（平成16年）3月、23歳の時に関東学院大学経済学部経営学科を卒業。その後コロンビア大学大学院に留学し、ジェラルド・カーティスに師事して、2006年（平成18年）に政治学の修士号\n[3]を取得した。その後、アメリカ合衆国にある、ロンドンタビストック人間関係研究所配下の戦略国際問題研究所非常勤研究員を経て2007年（平成19年）に帰国し、それ以後は父である純一郎の私設秘書を務める。\n&quot;</code></pre>
-<p>文字列ベクトルを一つの文章にするときは<code>str_c()</code>でオプション<code>collapse = &quot;&quot;</code>を指定します。</p>
-<div class="sourceCode" id="cb506"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb506-1" data-line-number="1">wiki_text &lt;-<span class="st"> </span>wiki_text <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb506-2" data-line-number="2"><span class="st">  </span><span class="kw">str_c</span>(<span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)</a>
-<a class="sourceLine" id="cb506-3" data-line-number="3">wiki_text</a></code></pre></div>
+<p>文字列ベクトルを一つの文章にするときは<code>str_c()</code>でオプション<code>collapse = ""</code>を指定します。</p>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="wikipedia-data.html#cb515-1"></a>wiki_text &lt;-<span class="st"> </span>wiki_text <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb515-2"><a href="wikipedia-data.html#cb515-2"></a><span class="st">  </span><span class="kw">str_c</span>(<span class="dt">collapse =</span> <span class="st">&quot;&quot;</span>)</span>
+<span id="cb515-3"><a href="wikipedia-data.html#cb515-3"></a>wiki_text</span></code></pre></div>
 <pre><code>## [1] &quot;\n小泉 進次郎（こいずみ しんじろう、1981年〈昭和56年〉4月14日 - ）は、日本の男性政治家。自由民主党所属の衆議院議員（4期）、環境大臣（第27代）、内閣府特命担当大臣（原子力防災担当）。血液型AB型。\n内閣府大臣政務官兼復興大臣政務官、自民党青年局長、自民党農林部会長、自民党筆頭副幹事長、自民党厚生労働部会長などを歴任。\n父は、第87代・第88代・第89代内閣総理大臣の小泉純一郎。母は宮本佳代子 （エスエス製薬元会長、泰道照山の孫）。兄は俳優、タレントの小泉孝太郎。\n小泉純一郎の次男として神奈川県横須賀市に生まれた（現住所は同市三春町1丁目[2]）。1982年に産まれて間もなく両親が離婚したため小泉家が引き取り、多忙な父に代わり、純一郎の実姉で同居する道子に育てられた。進次郎は伯母・道子を実の母と信じており「ママ」と呼んでいた。純一郎は道子と息子たちの関係（伯母と甥）を進次郎には伝えておらず、進次郎は中学二年生まで伯母とは知らされていなかった。兄の孝太郎は伯母の存在を認識していたが、進次郎には伝えていなかった。中学生の進次郎は少なからずこの事実に驚いたが、2016年8月に道子が他界するまで実の母として大切にした。\n1988年（昭和63年）に関東学院六浦小学校に入学して、大学卒業まで関東学院で過ごす。関東学院六浦中学校・高等学校ではスポーツ、特に野球に熱中した。2004年（平成16年）3月、23歳の時に関東学院大学経済学部経営学科を卒業。その後コロンビア大学大学院に留学し、ジェラルド・カーティスに師事して、2006年（平成18年）に政治学の修士号\n[3]を取得した。その後、アメリカ合衆国にある、ロンドンタビストック人間関係研究所配下の戦略国際問題研究所非常勤研究員を経て2007年（平成19年）に帰国し、それ以後は父である純一郎の私設秘書を務める。\n2008年（平成20年）に父・純一郎が政界引退を表明して、進次郎を後継候補に指名する。自由民主党の公認を受け、2009年（平成21年）の第45回衆議院議員総選挙に神奈川11区から出馬し、初当選。選挙戦では重複立候補を辞退し、また当時の連立与党である公明党からの選挙協力も受けなかった。地元の一部有権者からは世襲を批判されたものの父から受け継いだ強固な地盤と後援会をバックに終始優勢を維持し[4]、投票総数の過半数である150,893票（得票率57.1%）を獲得して初当選した[5]。この総選挙で初当選した5人の自民党の1期生のうち、政治や行政の経験がない唯一の新人議員である[6]。また小選挙区で当選した新人議員は小泉、橘慶一郎、伊東良孝の3人のみ。\n2009年12月13日、自民党が小泉による海上自衛隊横須賀基地（神奈川県横須賀市）見学ツアーを実施した際には、50人の定員に約5200人の応募が殺到するなど、「スター不在」とされる自民党内で際立った存在と見られている[7][8]。\n2010年1月の時点で衆議院では内閣委員会、総務委員会、安全保障委員会に所属し、自民党では遊説局長代理、青年局次長、外交副部会長、財務金融副部会長、環境副部会長などの役職を兼務して、外交、財務金融、環境の3つの部会に所属していた。同年10月には自民党学生部長、新聞出版局次長にも併せて就任した。\n2011年10月に自民党青年局長、国会対策委員会委員に就任した。\n2012年4月、郵政改正法案に造反[9]しても処分されなかった。同年6月26日の消費税増税法案には賛成票を投じた。同年8月9日、国民の生活が第一など野党6党が提出した野田内閣不信任決議案の採決では、棄権方針の自民党執行部に造反し、元幹事長の中川秀直などとともに賛成票を投じた。同年9月26日の自民党総裁選挙で青年局主催の候補者公開討論会を自民党青年局長として仕切る立場であり、当初は9月19日の公開討論会後に支持候補を表明すると明言していた[10]が、人気や知名度の高い小泉の支持表明は党員票や議員票として総裁選に影響を与えると目されるとして報道が過熱したことから、「衆議院1回生の私の1票が影響を与えるのは不本意。身の程をわきまえて行動する」と述べ、総裁選が終わるまで支持表明を行わない方針を示した[11][12]。総裁選終了後に石破茂に投票したことを発表した[13]。\n同年12月の第46回衆議院議員総選挙で再選し、党職では本人の希望もあって2期目の青年局長続投となった。この選挙で自民党が大勝した結果、青年局所属議員は82人となった[14]。\n2013年9月30日、青年局長を退任し内閣府大臣政務官（経済再生、経済財政、環太平洋経済連携協定（TPP）等担当[15]）兼復興大臣政務官に就任した。\n2014年12月の第47回衆議院議員総選挙で3選。\n2015年10月23日、自民党農林部会長に就任[16]。同年12月、政府が2015年度補正予算案に、低所得の年金受給者に一人あたり3万円を支給する臨時給付金を盛り込む方針について、「軽減税率対策として6000億足りない。一方で臨時給付金の4000億は簡単に出る。これが国民にどう思われるか。」と主張[17]、これらがきっかけとなり、2016年2月、若手議員の視点からの議論を期待して、自民党財政再建に関する特命委員会の下に、「2020年以降の経済財政構想小委員会」が設置され、小泉は事務局長に就任した[18]。\n同年8月、2020年以降の経済財政構想小委員会の委員長代行に昇格しつつ[19]、自民党農林部会長に留任。党部会長の人事では小泉のみ留任となった[20]。9月に第3次安倍第2次改造内閣下で設立された内閣府規制改革推進会議から、11月に「農薬などの資材を農家に売る事業からの撤退」や「農産品の委託販売の廃止」などの組織改革を早期に行うよう迫る厳しい提言があったが、党内で話合いの末に全農による自主的な組織刷新を行うという政府・自民党の農業改革案が了承されている[21]。「全農の体制こそ農家の経営の自由を奪う存在だ」と主張し、自民農林部会長として農業改革を主導している[22][23]。\n2017年8月より柴山昌彦とともに自民党筆頭副幹事長[24]。\n同年の第48回衆議院議員総選挙で4選。\n2018年10月、自民党厚生労働部会長。\n2019年9月11日より環境大臣として田中角栄以来男性最年少で入閣[25]。\n「交渉参加に賛成。交渉の中で勝ち取るべきは勝ち取る」との立場をとる[29]。\n関西学院大学での講演の中で、「日本人は国際競争というキーワードに過激な反応を示す、TPPで自由化されたら農業はやられると感情論に走る。TPPに参加しなければ農業は発展するのか?」と述べている。他の講演でも同様の発言を行っており、TPP参加について「後ろ向きに考えず、若い人はチャンスだと思ってほしい」「新しいルールができれば、既得権益にとらわれず新たなフィールドで活躍できる」「多少の痛みはあるかもしれないが、TPP1つで日本が壊れると思わない」と述べた。 \n反対が多い党内で、賛成派は少数だけに「血まみれになっている」という[30]。\n日本経済新聞社と米国戦略国際問題研究所CSISとで設立された日経・CSISバーチャル・シンクタンクに民主党に在籍していた前原誠司・長島昭久・近藤洋介・玄葉光一郎、みんなの党に在籍していた浅尾慶一郎、自民党の林芳正・西村康稔・齋藤健・岩屋毅等と共に、政治フォーラムとして在籍している。上級アドバイザーは石破茂が務めている。CSIS上級顧問兼日本支部長であるマイケル・グリーンはCSIS在籍時に秘書として従事した上司であり、直接指導を徹底的に施して小泉を親米派として作り上げることに成功した人物であると評論家の中田安彦は解説している[31]。\n2011年1月10日にまちおこしを目的とするグループ「TEAM YOKOSUKA」を立ち上げた。Tourism（観光）、Eco &amp; Environment（エコと環境）、America、Merchant &amp; Manufacture（商業と工業）の頭文字から成る[32]。\n2017年4月13日、13日、小泉は日本経済新聞のインタビューに応じ、将来の社会保障制度について「真の全世代型にする」と述べた。「自民党が高齢者偏重を助長してきた面もある」という指摘に対しては　「これは政治の責任がある。60歳以上は投票率が7割、20代は3割くらいの中でどちらの声が大きいか。全ての予算の裏にはそういった人たちがいる。ここと真剣に向き合っていかないといけない。こども保険はその覚悟の表れでもある」と主張。「消費税率を引き上げる選択肢はないのか」という疑問に対しては「8％から10％に上がるのは2年後だ。使い道は決まっている。新しいことをやるには10％以上の消費増税の話を決め、理解を得て執行されない限りできない。何年かかるのか。筋論として消費税はそうだと思うが、現実的な解としてはない」と答えた[33]。経済学者の田中秀臣は、小泉は財務省の消費増税路線やその背景にある財政再建主義に親和的であると評している[34]。\n自民党内で浮上した教育国債案については、「次世代への負担のつけ回し」と批判的な立場を取る[35]。代案として社会保険料に上乗せして徴収する「こども保険」を提唱した[35]。\n炭素税などのカーボンプライシングについて「議論を深める必要がある」と述べた[36]。進次郎氏は、炭素税の導入に前向きであるとされる。\n主要農作物種子法の廃止を勝ち取った。種子法の廃止は、無駄な予算を切り、農業政策を大転換させることになった。\n&quot;</code></pre>
 <p><code>str_length()</code>で文字列の長さを調べることができます。</p>
-<div class="sourceCode" id="cb508"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb508-1" data-line-number="1"><span class="kw">str_length</span>(wiki_text)</a></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="wikipedia-data.html#cb517-1"></a><span class="kw">str_length</span>(wiki_text)</span></code></pre></div>
 <pre><code>## [1] 3991</code></pre>
 <ul>
 <li>ページ情報の記事の長さとはだいぶ違います……</li>
@@ -577,9 +579,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">17.4</span> Wikipediaの記事のリンク</h2>
 <p>Wikipediaの記事のリンクを求めることもできます。
 記事にある他のWikipedia記事へのリンク、外部サイトへのリンク、当該記事にリンクを貼っている他のWikipedia記事のリンクをそれぞれ求めることができます。</p>
-<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb510-1" data-line-number="1">internal_link &lt;-<span class="st"> </span><span class="kw">page_links</span>(<span class="st">&quot;ja&quot;</span>, <span class="st">&quot;wikipedia&quot;</span>, <span class="dt">page =</span> <span class="st">&quot;小泉進次郎&quot;</span>, <span class="dt">limit =</span> <span class="dv">500</span>)</a>
-<a class="sourceLine" id="cb510-2" data-line-number="2">external_link &lt;-<span class="st"> </span><span class="kw">page_external_links</span>(<span class="st">&quot;ja&quot;</span>, <span class="st">&quot;wikipedia&quot;</span>, <span class="dt">page =</span> <span class="st">&quot;小泉進次郎&quot;</span>)</a>
-<a class="sourceLine" id="cb510-3" data-line-number="3">back_link &lt;-<span class="st"> </span><span class="kw">page_backlinks</span>(<span class="st">&quot;ja&quot;</span>, <span class="st">&quot;wikipedia&quot;</span>, <span class="dt">page =</span> <span class="st">&quot;小泉進次郎&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb519"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb519-1"><a href="wikipedia-data.html#cb519-1"></a>internal_link &lt;-<span class="st"> </span><span class="kw">page_links</span>(<span class="st">&quot;ja&quot;</span>, <span class="st">&quot;wikipedia&quot;</span>, <span class="dt">page =</span> <span class="st">&quot;小泉進次郎&quot;</span>, <span class="dt">limit =</span> <span class="dv">500</span>)</span>
+<span id="cb519-2"><a href="wikipedia-data.html#cb519-2"></a>external_link &lt;-<span class="st"> </span><span class="kw">page_external_links</span>(<span class="st">&quot;ja&quot;</span>, <span class="st">&quot;wikipedia&quot;</span>, <span class="dt">page =</span> <span class="st">&quot;小泉進次郎&quot;</span>)</span>
+<span id="cb519-3"><a href="wikipedia-data.html#cb519-3"></a>back_link &lt;-<span class="st"> </span><span class="kw">page_backlinks</span>(<span class="st">&quot;ja&quot;</span>, <span class="st">&quot;wikipedia&quot;</span>, <span class="dt">page =</span> <span class="st">&quot;小泉進次郎&quot;</span>)</span></code></pre></div>
 <ul>
 <li>内部リンクは最大500個までしか取れないようです。</li>
 </ul>
@@ -588,27 +590,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">17.5</span> Wikipediaの記事の作成日の取得*</h2>
 <p>直接APIを叩いてWikipediaの記事の作成日を取得してみます。</p>
 <p>まず、検索したい単語のベクトルを作成します。</p>
-<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb511-1" data-line-number="1">key.words &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;新世紀エヴァンゲリオン&quot;</span>, <span class="st">&quot;魔法少女まどか☆マギカ&quot;</span>, <span class="st">&quot;けものフレンズ&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="wikipedia-data.html#cb520-1"></a>key.words &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;新世紀エヴァンゲリオン&quot;</span>, <span class="st">&quot;魔法少女まどか☆マギカ&quot;</span>, <span class="st">&quot;けものフレンズ&quot;</span>)</span></code></pre></div>
 <p>続いて、作成日を格納する空のベクトルを作成します。</p>
-<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb512-1" data-line-number="1">wiki.date &lt;-<span class="st"> </span><span class="ot">NULL</span></a></code></pre></div>
+<div class="sourceCode" id="cb521"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb521-1"><a href="wikipedia-data.html#cb521-1"></a>wiki.date &lt;-<span class="st"> </span><span class="ot">NULL</span></span></code></pre></div>
 <p>最後に、ループによって各単語の記事の作成日を取得します。</p>
-<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb513-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> key.words) {</a>
-<a class="sourceLine" id="cb513-2" data-line-number="2">  wiki.date &lt;-<span class="st"> </span><span class="kw">c</span>(wiki.date,</a>
-<a class="sourceLine" id="cb513-3" data-line-number="3">                 <span class="kw">GET</span>(<span class="st">&quot;https://ja.wikipedia.org/w/api.php&quot;</span>,</a>
-<a class="sourceLine" id="cb513-4" data-line-number="4">                     <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">action =</span> <span class="st">&quot;query&quot;</span>,</a>
-<a class="sourceLine" id="cb513-5" data-line-number="5">                                  <span class="dt">prop =</span> <span class="st">&quot;revisions&quot;</span>,</a>
-<a class="sourceLine" id="cb513-6" data-line-number="6">                                  <span class="dt">rvlimit =</span> <span class="dv">1</span>,</a>
-<a class="sourceLine" id="cb513-7" data-line-number="7">                                  <span class="dt">rvprop =</span> <span class="st">&quot;timestamp&quot;</span>,</a>
-<a class="sourceLine" id="cb513-8" data-line-number="8">                                  <span class="dt">rvdir =</span> <span class="st">&quot;newer&quot;</span>,</a>
-<a class="sourceLine" id="cb513-9" data-line-number="9">                                  <span class="dt">titles =</span> i,</a>
-<a class="sourceLine" id="cb513-10" data-line-number="10">                                  <span class="dt">format =</span> <span class="st">&quot;json&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb513-11" data-line-number="11"><span class="st">                   </span><span class="kw">content</span>(<span class="st">&quot;text&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb513-12" data-line-number="12"><span class="st">                   </span><span class="kw">str_extract</span>(<span class="st">&quot;[0-9]+-[0-9]+-[0-9]+&quot;</span>))</a>
-<a class="sourceLine" id="cb513-13" data-line-number="13">}</a></code></pre></div>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="wikipedia-data.html#cb522-1"></a><span class="cf">for</span> (i <span class="cf">in</span> key.words) {</span>
+<span id="cb522-2"><a href="wikipedia-data.html#cb522-2"></a>  wiki.date &lt;-<span class="st"> </span><span class="kw">c</span>(wiki.date,</span>
+<span id="cb522-3"><a href="wikipedia-data.html#cb522-3"></a>                 <span class="kw">GET</span>(<span class="st">&quot;https://ja.wikipedia.org/w/api.php&quot;</span>,</span>
+<span id="cb522-4"><a href="wikipedia-data.html#cb522-4"></a>                     <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">action =</span> <span class="st">&quot;query&quot;</span>,</span>
+<span id="cb522-5"><a href="wikipedia-data.html#cb522-5"></a>                                  <span class="dt">prop =</span> <span class="st">&quot;revisions&quot;</span>,</span>
+<span id="cb522-6"><a href="wikipedia-data.html#cb522-6"></a>                                  <span class="dt">rvlimit =</span> <span class="dv">1</span>,</span>
+<span id="cb522-7"><a href="wikipedia-data.html#cb522-7"></a>                                  <span class="dt">rvprop =</span> <span class="st">&quot;timestamp&quot;</span>,</span>
+<span id="cb522-8"><a href="wikipedia-data.html#cb522-8"></a>                                  <span class="dt">rvdir =</span> <span class="st">&quot;newer&quot;</span>,</span>
+<span id="cb522-9"><a href="wikipedia-data.html#cb522-9"></a>                                  <span class="dt">titles =</span> i,</span>
+<span id="cb522-10"><a href="wikipedia-data.html#cb522-10"></a>                                  <span class="dt">format =</span> <span class="st">&quot;json&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb522-11"><a href="wikipedia-data.html#cb522-11"></a><span class="st">                   </span><span class="kw">content</span>(<span class="st">&quot;text&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb522-12"><a href="wikipedia-data.html#cb522-12"></a><span class="st">                   </span><span class="kw">str_extract</span>(<span class="st">&quot;[0-9]+-[0-9]+-[0-9]+&quot;</span>))</span>
+<span id="cb522-13"><a href="wikipedia-data.html#cb522-13"></a>}</span></code></pre></div>
 <p>念のため、データフレームにしておきます。</p>
-<div class="sourceCode" id="cb514"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb514-1" data-line-number="1">df &lt;-<span class="st"> </span><span class="kw">tibble</span>(key.words,</a>
-<a class="sourceLine" id="cb514-2" data-line-number="2">             wiki.date)</a>
-<a class="sourceLine" id="cb514-3" data-line-number="3">df</a></code></pre></div>
+<div class="sourceCode" id="cb523"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb523-1"><a href="wikipedia-data.html#cb523-1"></a>df &lt;-<span class="st"> </span><span class="kw">tibble</span>(key.words,</span>
+<span id="cb523-2"><a href="wikipedia-data.html#cb523-2"></a>             wiki.date)</span>
+<span id="cb523-3"><a href="wikipedia-data.html#cb523-3"></a>df</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["key.words"],"name":[1],"type":["chr"],"align":["left"]},{"label":["wiki.date"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"新世紀エヴァンゲリオン","2":"2003-06-25"},{"1":"魔法少女まどか☆マギカ","2":"2010-10-30"},{"1":"けものフレンズ","2":"2016-04-16"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}

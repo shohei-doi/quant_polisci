@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第6章 欠損値の処理* | Rで計量政治学入門</title>
+  <title>第6章 欠損値の扱い | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第6章 欠損値の処理* | Rで計量政治学入門" />
+  <meta property="og:title" content="第6章 欠損値の扱い | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第6章 欠損値の処理* | Rで計量政治学入門" />
+  <meta name="twitter:title" content="第6章 欠損値の扱い | Rで計量政治学入門" />
   
   <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-05-17" />
+<meta name="date" content="2020-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -66,9 +66,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -77,14 +77,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -93,9 +95,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -204,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の処理*</a><ul>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a><ul>
 <li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
 <li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
 <li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
@@ -233,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理*</a><ul>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a><ul>
 <li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
 <li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
 <li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
@@ -286,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ*</a><ul>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a><ul>
 <li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
 <li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
 <li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a><ul>
@@ -359,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a><ul>
 <li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
 <li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
 <li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
@@ -402,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf*</a><ul>
+<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a><ul>
 <li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a><ul>
 <li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
 <li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
@@ -427,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにエンコーディング問題*</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a><ul>
 <li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
@@ -448,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a><ul>
 <li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
 <li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
@@ -477,22 +479,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="missing-values" class="section level1">
-<h1><span class="header-section-number">第6章</span> 欠損値の処理*</h1>
+<h1><span class="header-section-number">第6章</span> 欠損値の扱い</h1>
 <p>欠損値 (missing value) とは観測ができなかった、あるいはその時点において観察対象が存在していなかった、などの理由から変数が欠損していることを示しています。</p>
 <p>Rでは主に<code>NA</code>として表示されます。
 ここでは、Rにおける欠損値の扱い方について説明します。</p>
 <ul>
 <li>ここでは欠損値の対処法（例、多重代入法）は触れません。</li>
 </ul>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb132-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb132-2" data-line-number="2"><span class="kw">library</span>(readxl)</a></code></pre></div>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="missing-values.html#cb132-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb132-2"><a href="missing-values.html#cb132-2"></a><span class="kw">library</span>(readxl)</span></code></pre></div>
 <div id="欠損値を読み込む" class="section level2">
 <h2><span class="header-section-number">6.1</span> 欠損値を読み込む</h2>
 <p>Rでは読み込むデータにおいて空欄である場合に欠損値として認識し、データセット内では<code>NA</code>と表示されます。
 例えば、<code>dyplyr</code>に含まれている<code>starwars</code>というデータセットを見てみると、身長や重量、誕生年に<code>NA</code>がいくつかあるのが分かります。</p>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb133-1" data-line-number="1">starwars &lt;-<span class="st"> </span>starwars <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb133-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</a>
-<a class="sourceLine" id="cb133-3" data-line-number="3"><span class="kw">summary</span>(starwars)</a></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="missing-values.html#cb133-1"></a>starwars &lt;-<span class="st"> </span>starwars <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb133-2"><a href="missing-values.html#cb133-2"></a><span class="st">  </span><span class="kw">select</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>)</span>
+<span id="cb133-3"><a href="missing-values.html#cb133-3"></a><span class="kw">summary</span>(starwars)</span></code></pre></div>
 <pre><code>##      name               height           mass          hair_color       
 ##  Length:87          Min.   : 66.0   Min.   :  15.00   Length:87         
 ##  Class :character   1st Qu.:167.0   1st Qu.:  55.60   Class :character  
@@ -501,7 +503,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                     3rd Qu.:191.0   3rd Qu.:  84.50                     
 ##                     Max.   :264.0   Max.   :1358.00                     
 ##                     NA&#39;s   :6       NA&#39;s   :28                          
-##   skin_color         eye_color           birth_year        gender         
+##   skin_color         eye_color           birth_year         sex           
 ##  Length:87          Length:87          Min.   :  8.00   Length:87         
 ##  Class :character   Class :character   1st Qu.: 35.00   Class :character  
 ##  Mode  :character   Mode  :character   Median : 52.00   Mode  :character  
@@ -509,7 +511,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##                                        3rd Qu.: 72.00                     
 ##                                        Max.   :896.00                     
 ##                                        NA&#39;s   :44                         
-##   homeworld           species         
+##     gender           homeworld        
 ##  Length:87          Length:87         
 ##  Class :character   Class :character  
 ##  Mode  :character   Mode  :character  
@@ -519,9 +521,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## </code></pre>
 <p>問題は、もとのデータセットにおいて欠損値が空欄になっているとは限らないという点です。
 例えば、<a href="http://www.systemicpeace.org/polityproject.html">Polity IV</a>という<a href="data/p4v2017.xls">データセット</a>を開いてみます。</p>
-<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb135-1" data-line-number="1">polity &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/p4v2017.xls&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb135-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(ccode, country, year, democ, autoc)</a>
-<a class="sourceLine" id="cb135-3" data-line-number="3"><span class="kw">summary</span>(polity)</a></code></pre></div>
+<div class="sourceCode" id="cb135"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb135-1"><a href="missing-values.html#cb135-1"></a>polity &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/p4v2017.xls&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb135-2"><a href="missing-values.html#cb135-2"></a><span class="st">  </span><span class="kw">select</span>(ccode, country, year, democ, autoc)</span>
+<span id="cb135-3"><a href="missing-values.html#cb135-3"></a><span class="kw">summary</span>(polity)</span></code></pre></div>
 <pre><code>##      ccode         country               year          democ          
 ##  Min.   :  2.0   Length:17395       Min.   :1800   Min.   :-88.00000  
 ##  1st Qu.:200.0   Class :character   1st Qu.:1894   1st Qu.:  0.00000  
@@ -539,9 +541,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>一見すると欠損値はないように見えますが、よく見ると<code>democ</code>と<code>autoc</code>の最小値が<code>-88</code>となっています。
 コードブックをよく見ると分かるのですが、実は<code>-66</code>、<code>-77</code>、<code>-88</code>はそれぞれ被介入、無政府、移行期を意味しています。
 それらの違いを無視することは問題があるものの、これらを欠損値に置き換えることがしばしばあります。</p>
-<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb137-1" data-line-number="1">polity<span class="op">$</span>democ[polity<span class="op">$</span>democ <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">66</span>, <span class="dv">-77</span>, <span class="dv">-88</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb137-2" data-line-number="2">polity<span class="op">$</span>autoc[polity<span class="op">$</span>autoc <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">66</span>, <span class="dv">-77</span>, <span class="dv">-88</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb137-3" data-line-number="3"><span class="kw">summary</span>(polity)</a></code></pre></div>
+<div class="sourceCode" id="cb137"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb137-1"><a href="missing-values.html#cb137-1"></a>polity<span class="op">$</span>democ[polity<span class="op">$</span>democ <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">66</span>, <span class="dv">-77</span>, <span class="dv">-88</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb137-2"><a href="missing-values.html#cb137-2"></a>polity<span class="op">$</span>autoc[polity<span class="op">$</span>autoc <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">66</span>, <span class="dv">-77</span>, <span class="dv">-88</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb137-3"><a href="missing-values.html#cb137-3"></a><span class="kw">summary</span>(polity)</span></code></pre></div>
 <pre><code>##      ccode         country               year          democ       
 ##  Min.   :  2.0   Length:17395       Min.   :1800   Min.   : 0.000  
 ##  1st Qu.:200.0   Class :character   1st Qu.:1894   1st Qu.: 0.000  
@@ -564,9 +566,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>なお、欠損値が<code>-</code>や<code>.</code>のような文字列になっている場合、欠損値に入れ替えた後に<code>as.numeric()</code>などで数値データに変換するのを忘れないようにしましょう。</p>
 <p><code>tidyverse</code>の<code>dplyr</code>で欠損値を扱うときの方法を説明します。
 まず。元データにおける欠損値が空欄ではない場合は、データを読み込む際にオプション<code>na</code>で指定します。</p>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb139-1" data-line-number="1">polity &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/p4v2017.xls&quot;</span>, <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;-66&quot;</span>, <span class="st">&quot;-77&quot;</span>, <span class="st">&quot;-88&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb139-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(ccode, country, year, democ, autoc)</a>
-<a class="sourceLine" id="cb139-3" data-line-number="3"><span class="kw">summary</span>(polity)</a></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="missing-values.html#cb139-1"></a>polity &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/p4v2017.xls&quot;</span>, <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;-66&quot;</span>, <span class="st">&quot;-77&quot;</span>, <span class="st">&quot;-88&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb139-2"><a href="missing-values.html#cb139-2"></a><span class="st">  </span><span class="kw">select</span>(ccode, country, year, democ, autoc)</span>
+<span id="cb139-3"><a href="missing-values.html#cb139-3"></a><span class="kw">summary</span>(polity)</span></code></pre></div>
 <pre><code>##      ccode         country               year          democ       
 ##  Min.   :  2.0   Length:17395       Min.   :1800   Min.   : 0.000  
 ##  1st Qu.:200.0   Class :character   1st Qu.:1894   1st Qu.: 0.000  
@@ -587,15 +589,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>文字列として指定する点に注意してください。</li>
 </ul>
 <p>あるいは、面倒くさいですが<code>na_if()</code>という関数を使うことも可能です。</p>
-<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb141-1" data-line-number="1">polity &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/p4v2017.xls&quot;</span>, <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;-66&quot;</span>, <span class="st">&quot;-77&quot;</span>, <span class="st">&quot;-88&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb141-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(ccode, country, year, democ, autoc) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb141-3" data-line-number="3"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">democ =</span> <span class="kw">na_if</span>(democ, <span class="dv">-66</span>),</a>
-<a class="sourceLine" id="cb141-4" data-line-number="4">         <span class="dt">democ =</span> <span class="kw">na_if</span>(democ, <span class="dv">-77</span>),</a>
-<a class="sourceLine" id="cb141-5" data-line-number="5">         <span class="dt">democ =</span> <span class="kw">na_if</span>(democ, <span class="dv">-88</span>),</a>
-<a class="sourceLine" id="cb141-6" data-line-number="6">         <span class="dt">autoc =</span> <span class="kw">na_if</span>(autoc, <span class="dv">-66</span>),</a>
-<a class="sourceLine" id="cb141-7" data-line-number="7">         <span class="dt">autoc =</span> <span class="kw">na_if</span>(autoc, <span class="dv">-77</span>),</a>
-<a class="sourceLine" id="cb141-8" data-line-number="8">         <span class="dt">autoc =</span> <span class="kw">na_if</span>(autoc, <span class="dv">-88</span>))</a>
-<a class="sourceLine" id="cb141-9" data-line-number="9"><span class="kw">summary</span>(polity)</a></code></pre></div>
+<div class="sourceCode" id="cb141"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb141-1"><a href="missing-values.html#cb141-1"></a>polity &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/p4v2017.xls&quot;</span>, <span class="dt">na =</span> <span class="kw">c</span>(<span class="st">&quot;-66&quot;</span>, <span class="st">&quot;-77&quot;</span>, <span class="st">&quot;-88&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb141-2"><a href="missing-values.html#cb141-2"></a><span class="st">  </span><span class="kw">select</span>(ccode, country, year, democ, autoc) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb141-3"><a href="missing-values.html#cb141-3"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">democ =</span> <span class="kw">na_if</span>(democ, <span class="dv">-66</span>),</span>
+<span id="cb141-4"><a href="missing-values.html#cb141-4"></a>         <span class="dt">democ =</span> <span class="kw">na_if</span>(democ, <span class="dv">-77</span>),</span>
+<span id="cb141-5"><a href="missing-values.html#cb141-5"></a>         <span class="dt">democ =</span> <span class="kw">na_if</span>(democ, <span class="dv">-88</span>),</span>
+<span id="cb141-6"><a href="missing-values.html#cb141-6"></a>         <span class="dt">autoc =</span> <span class="kw">na_if</span>(autoc, <span class="dv">-66</span>),</span>
+<span id="cb141-7"><a href="missing-values.html#cb141-7"></a>         <span class="dt">autoc =</span> <span class="kw">na_if</span>(autoc, <span class="dv">-77</span>),</span>
+<span id="cb141-8"><a href="missing-values.html#cb141-8"></a>         <span class="dt">autoc =</span> <span class="kw">na_if</span>(autoc, <span class="dv">-88</span>))</span>
+<span id="cb141-9"><a href="missing-values.html#cb141-9"></a><span class="kw">summary</span>(polity)</span></code></pre></div>
 <pre><code>##      ccode         country               year          democ       
 ##  Min.   :  2.0   Length:17395       Min.   :1800   Min.   : 0.000  
 ##  1st Qu.:200.0   Class :character   1st Qu.:1894   1st Qu.: 0.000  
@@ -618,8 +620,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>後述するように基本的には欠損値がデータセットに含まれていても問題ないのですが、しばしば欠損値を含む観察を取り除く必要があります。</p>
 <p>特定のベクトルのどの要素が欠損しているかを判定する関数は<code>is.na()</code>です。
 これは名前の通り、欠損している場合に<code>TRUE</code>が返ってくるので、次のようにすることで<code>democ</code>と<code>autoc</code>が欠損しているサンプルを除外できます。</p>
-<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb143-1" data-line-number="1">no_na &lt;-<span class="st"> </span>polity[<span class="op">!</span>(<span class="kw">is.na</span>(polity<span class="op">$</span>democ) <span class="op">|</span><span class="st"> </span><span class="kw">is.na</span>(polity<span class="op">$</span>autoc)),]</a>
-<a class="sourceLine" id="cb143-2" data-line-number="2"><span class="kw">summary</span>(no_na)</a></code></pre></div>
+<div class="sourceCode" id="cb143"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb143-1"><a href="missing-values.html#cb143-1"></a>no_na &lt;-<span class="st"> </span>polity[<span class="op">!</span>(<span class="kw">is.na</span>(polity<span class="op">$</span>democ) <span class="op">|</span><span class="st"> </span><span class="kw">is.na</span>(polity<span class="op">$</span>autoc)),]</span>
+<span id="cb143-2"><a href="missing-values.html#cb143-2"></a><span class="kw">summary</span>(no_na)</span></code></pre></div>
 <pre><code>##      ccode         country               year          democ       
 ##  Min.   :  2.0   Length:16619       Min.   :1800   Min.   : 0.000  
 ##  1st Qu.:200.0   Class :character   1st Qu.:1892   1st Qu.: 0.000  
@@ -635,8 +637,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  3rd Qu.: 7.000  
 ##  Max.   :10.000</code></pre>
 <p>同様のことは次のようにもできます。</p>
-<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb145-1" data-line-number="1">no_na &lt;-<span class="st"> </span>polity[<span class="op">!</span><span class="kw">is.na</span>(polity<span class="op">$</span>democ) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(polity<span class="op">$</span>autoc),]</a>
-<a class="sourceLine" id="cb145-2" data-line-number="2"><span class="kw">summary</span>(no_na)</a></code></pre></div>
+<div class="sourceCode" id="cb145"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb145-1"><a href="missing-values.html#cb145-1"></a>no_na &lt;-<span class="st"> </span>polity[<span class="op">!</span><span class="kw">is.na</span>(polity<span class="op">$</span>democ) <span class="op">&amp;</span><span class="st"> </span><span class="op">!</span><span class="kw">is.na</span>(polity<span class="op">$</span>autoc),]</span>
+<span id="cb145-2"><a href="missing-values.html#cb145-2"></a><span class="kw">summary</span>(no_na)</span></code></pre></div>
 <pre><code>##      ccode         country               year          democ       
 ##  Min.   :  2.0   Length:16619       Min.   :1800   Min.   : 0.000  
 ##  1st Qu.:200.0   Class :character   1st Qu.:1892   1st Qu.: 0.000  
@@ -652,9 +654,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  3rd Qu.: 7.000  
 ##  Max.   :10.000</code></pre>
 <p><code>tidyverse</code>で欠損値を除く場合は<code>drop_na()</code>を使います。</p>
-<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb147-1" data-line-number="1">polity <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb147-2" data-line-number="2"><span class="st">  </span><span class="kw">drop_na</span>() <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb147-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb147"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb147-1"><a href="missing-values.html#cb147-1"></a>polity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb147-2"><a href="missing-values.html#cb147-2"></a><span class="st">  </span><span class="kw">drop_na</span>() <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb147-3"><a href="missing-values.html#cb147-3"></a><span class="st">  </span><span class="kw">summary</span>()</span></code></pre></div>
 <pre><code>##      ccode         country               year          democ       
 ##  Min.   :  2.0   Length:16619       Min.   :1800   Min.   : 0.000  
 ##  1st Qu.:200.0   Class :character   1st Qu.:1892   1st Qu.: 0.000  
@@ -670,9 +672,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  3rd Qu.: 7.000  
 ##  Max.   :10.000</code></pre>
 <p><code>drop_na()</code>の中で変数を指定することで、その変数が欠損している観察だけを除外することもできます。</p>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb149-1" data-line-number="1">polity <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb149-2" data-line-number="2"><span class="st">  </span><span class="kw">drop_na</span>(democ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb149-3" data-line-number="3"><span class="st">  </span><span class="kw">summary</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="missing-values.html#cb149-1"></a>polity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb149-2"><a href="missing-values.html#cb149-2"></a><span class="st">  </span><span class="kw">drop_na</span>(democ) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb149-3"><a href="missing-values.html#cb149-3"></a><span class="st">  </span><span class="kw">summary</span>()</span></code></pre></div>
 <pre><code>##      ccode         country               year          democ       
 ##  Min.   :  2.0   Length:16619       Min.   :1800   Min.   : 0.000  
 ##  1st Qu.:200.0   Class :character   1st Qu.:1892   1st Qu.: 0.000  
@@ -692,9 +694,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">6.3</span> 欠損値を置き換える</h2>
 <p><code>is.na()</code>を使うと欠損値を他の数値に書き換えることも可能です。
 例えば、欠損値を全て<code>-1</code>に置き換えるには次のようにします。</p>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb151-1" data-line-number="1">polity[<span class="kw">is.na</span>(polity<span class="op">$</span>democ),]<span class="op">$</span>democ &lt;-<span class="st"> </span><span class="dv">-1</span></a>
-<a class="sourceLine" id="cb151-2" data-line-number="2">polity[<span class="kw">is.na</span>(polity<span class="op">$</span>autoc),]<span class="op">$</span>autoc &lt;-<span class="st"> </span><span class="dv">-1</span></a>
-<a class="sourceLine" id="cb151-3" data-line-number="3"><span class="kw">summary</span>(polity)</a></code></pre></div>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="missing-values.html#cb151-1"></a>polity[<span class="kw">is.na</span>(polity<span class="op">$</span>democ),]<span class="op">$</span>democ &lt;-<span class="st"> </span><span class="dv">-1</span></span>
+<span id="cb151-2"><a href="missing-values.html#cb151-2"></a>polity[<span class="kw">is.na</span>(polity<span class="op">$</span>autoc),]<span class="op">$</span>autoc &lt;-<span class="st"> </span><span class="dv">-1</span></span>
+<span id="cb151-3"><a href="missing-values.html#cb151-3"></a><span class="kw">summary</span>(polity)</span></code></pre></div>
 <pre><code>##      ccode         country               year          democ       
 ##  Min.   :  2.0   Length:17395       Min.   :1800   Min.   :-1.000  
 ##  1st Qu.:200.0   Class :character   1st Qu.:1894   1st Qu.: 0.000  
@@ -710,10 +712,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ##  3rd Qu.: 7.000  
 ##  Max.   :10.000</code></pre>
 <p><code>tidyverse</code>で欠損値を他の値に置き換えるときは<code>replace_na()</code>を使います。</p>
-<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb153-1" data-line-number="1">polity &lt;-<span class="st"> </span>polity <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb153-2" data-line-number="2"><span class="st">  </span><span class="kw">replace_na</span>(<span class="kw">list</span>(<span class="dt">democ =</span> <span class="dv">-1</span>,</a>
-<a class="sourceLine" id="cb153-3" data-line-number="3">                  <span class="dt">autoc =</span> <span class="dv">-1</span>))</a>
-<a class="sourceLine" id="cb153-4" data-line-number="4"><span class="kw">summary</span>(polity)</a></code></pre></div>
+<div class="sourceCode" id="cb153"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb153-1"><a href="missing-values.html#cb153-1"></a>polity &lt;-<span class="st"> </span>polity <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb153-2"><a href="missing-values.html#cb153-2"></a><span class="st">  </span><span class="kw">replace_na</span>(<span class="kw">list</span>(<span class="dt">democ =</span> <span class="dv">-1</span>,</span>
+<span id="cb153-3"><a href="missing-values.html#cb153-3"></a>                  <span class="dt">autoc =</span> <span class="dv">-1</span>))</span>
+<span id="cb153-4"><a href="missing-values.html#cb153-4"></a><span class="kw">summary</span>(polity)</span></code></pre></div>
 <pre><code>##      ccode         country               year          democ       
 ##  Min.   :  2.0   Length:17395       Min.   :1800   Min.   :-1.000  
 ##  1st Qu.:200.0   Class :character   1st Qu.:1894   1st Qu.: 0.000  
@@ -735,16 +737,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="欠損値がある場合の分析" class="section level2">
 <h2><span class="header-section-number">6.4</span> 欠損値がある場合の分析*</h2>
 <p>基本的に、欠損値がある場合でも分析をする上で問題はありません。</p>
-<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb155-1" data-line-number="1">polity &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/p4v2017.xls&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb155-2" data-line-number="2"><span class="st">  </span><span class="kw">select</span>(ccode, country, year, democ, autoc)</a>
-<a class="sourceLine" id="cb155-3" data-line-number="3">polity<span class="op">$</span>democ[polity<span class="op">$</span>democ <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">66</span>, <span class="dv">-77</span>, <span class="dv">-88</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb155-4" data-line-number="4">polity<span class="op">$</span>autoc[polity<span class="op">$</span>autoc <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">66</span>, <span class="dv">-77</span>, <span class="dv">-88</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></a></code></pre></div>
+<div class="sourceCode" id="cb155"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb155-1"><a href="missing-values.html#cb155-1"></a>polity &lt;-<span class="st"> </span><span class="kw">read_excel</span>(<span class="st">&quot;data/p4v2017.xls&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb155-2"><a href="missing-values.html#cb155-2"></a><span class="st">  </span><span class="kw">select</span>(ccode, country, year, democ, autoc)</span>
+<span id="cb155-3"><a href="missing-values.html#cb155-3"></a>polity<span class="op">$</span>democ[polity<span class="op">$</span>democ <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">66</span>, <span class="dv">-77</span>, <span class="dv">-88</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb155-4"><a href="missing-values.html#cb155-4"></a>polity<span class="op">$</span>autoc[polity<span class="op">$</span>autoc <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="op">-</span><span class="dv">66</span>, <span class="dv">-77</span>, <span class="dv">-88</span>)] &lt;-<span class="st"> </span><span class="ot">NA</span></span></code></pre></div>
 <div id="一変数の記述統計" class="section level3">
 <h3><span class="header-section-number">6.4.1</span> 一変数の記述統計</h3>
 <p>例えば、平均値などの記述統計を求める際には<code>na.rm = TRUE</code>というオプションをつけます。</p>
-<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb156-1" data-line-number="1"><span class="kw">mean</span>(polity<span class="op">$</span>democ)</a></code></pre></div>
+<div class="sourceCode" id="cb156"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb156-1"><a href="missing-values.html#cb156-1"></a><span class="kw">mean</span>(polity<span class="op">$</span>democ)</span></code></pre></div>
 <pre><code>## [1] NA</code></pre>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb158-1" data-line-number="1"><span class="kw">mean</span>(polity<span class="op">$</span>democ, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="missing-values.html#cb158-1"></a><span class="kw">mean</span>(polity<span class="op">$</span>democ, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] 3.564174</code></pre>
 </div>
 <div id="二変数の記述統計" class="section level3">
@@ -759,11 +761,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>いまいちよくわからないのでデモデータを作って確認してみます。
 <code>iris</code>の上から10のサンプルで品種以外のデータを使います。</p>
-<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb160-1" data-line-number="1">demo &lt;-<span class="st"> </span>iris[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</a>
-<a class="sourceLine" id="cb160-2" data-line-number="2">demo[<span class="dv">1</span>,<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb160-3" data-line-number="3">demo[<span class="dv">2</span>,<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb160-4" data-line-number="4">demo[<span class="dv">3</span>,<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></a>
-<a class="sourceLine" id="cb160-5" data-line-number="5">demo</a></code></pre></div>
+<div class="sourceCode" id="cb160"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb160-1"><a href="missing-values.html#cb160-1"></a>demo &lt;-<span class="st"> </span>iris[<span class="dv">1</span><span class="op">:</span><span class="dv">10</span>,<span class="dv">1</span><span class="op">:</span><span class="dv">4</span>]</span>
+<span id="cb160-2"><a href="missing-values.html#cb160-2"></a>demo[<span class="dv">1</span>,<span class="dv">1</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb160-3"><a href="missing-values.html#cb160-3"></a>demo[<span class="dv">2</span>,<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb160-4"><a href="missing-values.html#cb160-4"></a>demo[<span class="dv">3</span>,<span class="dv">2</span>] &lt;-<span class="st"> </span><span class="ot">NA</span></span>
+<span id="cb160-5"><a href="missing-values.html#cb160-5"></a>demo</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"NA","2":"3.5","3":"1.4","4":"0.2","_rn_":"1"},{"1":"4.9","2":"NA","3":"1.4","4":"0.2","_rn_":"2"},{"1":"4.7","2":"NA","3":"1.3","4":"0.2","_rn_":"3"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","_rn_":"4"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","_rn_":"6"},{"1":"4.6","2":"3.4","3":"1.4","4":"0.3","_rn_":"7"},{"1":"5.0","2":"3.4","3":"1.5","4":"0.2","_rn_":"8"},{"1":"4.4","2":"2.9","3":"1.4","4":"0.2","_rn_":"9"},{"1":"4.9","2":"3.1","3":"1.5","4":"0.1","_rn_":"10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -772,7 +774,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="everythingの場合" class="section level4">
 <h4><span class="header-section-number">6.4.2.1</span> everythingの場合</h4>
 <p>欠損値を含まない変数<code>Petal.Length</code>と<code>Petal.WIdth</code>のみ計算されています。</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb161-1" data-line-number="1"><span class="kw">cor</span>(demo, <span class="dt">use =</span> <span class="st">&quot;everything&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="missing-values.html#cb161-1"></a><span class="kw">cor</span>(demo, <span class="dt">use =</span> <span class="st">&quot;everything&quot;</span>)</span></code></pre></div>
 <pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
 ## Sepal.Length            1          NA           NA          NA
 ## Sepal.Width            NA           1           NA          NA
@@ -782,19 +784,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="all.obsの場合" class="section level4">
 <h4><span class="header-section-number">6.4.2.2</span> all.obsの場合</h4>
 <p>欠損値が含まれているのでエラーが起こります。</p>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb163-1" data-line-number="1"><span class="kw">cor</span>(demo, <span class="dt">use =</span> <span class="st">&quot;all.obs&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="missing-values.html#cb163-1"></a><span class="kw">cor</span>(demo, <span class="dt">use =</span> <span class="st">&quot;all.obs&quot;</span>)</span></code></pre></div>
 <pre><code>## Error in cor(demo, use = &quot;all.obs&quot;): missing observations in cov/cor</code></pre>
 </div>
 <div id="complete.obsの場合" class="section level4">
 <h4><span class="header-section-number">6.4.2.3</span> complete.obsの場合</h4>
 <p>これはどの変数も欠損していないサンプル（つまり、4番目から10番目のサンプル）の相関係数になります。</p>
-<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb165-1" data-line-number="1"><span class="kw">cor</span>(demo, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb165"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb165-1"><a href="missing-values.html#cb165-1"></a><span class="kw">cor</span>(demo, <span class="dt">use =</span> <span class="st">&quot;complete.obs&quot;</span>)</span></code></pre></div>
 <pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
 ## Sepal.Length    1.0000000   0.8545604    0.7624091   0.4247114
 ## Sepal.Width     0.8545604   1.0000000    0.5684454   0.7269985
 ## Petal.Length    0.7624091   0.5684454    1.0000000   0.5385368
 ## Petal.Width     0.4247114   0.7269985    0.5385368   1.0000000</code></pre>
-<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb167-1" data-line-number="1"><span class="kw">cor</span>(demo[<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>,])</a></code></pre></div>
+<div class="sourceCode" id="cb167"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb167-1"><a href="missing-values.html#cb167-1"></a><span class="kw">cor</span>(demo[<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>,])</span></code></pre></div>
 <pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
 ## Sepal.Length    1.0000000   0.8545604    0.7624091   0.4247114
 ## Sepal.Width     0.8545604   1.0000000    0.5684454   0.7269985
@@ -804,7 +806,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="pairwise.completeの場合" class="section level4">
 <h4><span class="header-section-number">6.4.2.4</span> pairwise.completeの場合</h4>
 <p>先ほどと一致しているところと一致していないところがあります。</p>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb169-1" data-line-number="1"><span class="kw">cor</span>(demo, <span class="dt">use =</span> <span class="st">&quot;pairwise.complete&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="missing-values.html#cb169-1"></a><span class="kw">cor</span>(demo, <span class="dt">use =</span> <span class="st">&quot;pairwise.complete&quot;</span>)</span></code></pre></div>
 <pre><code>##              Sepal.Length Sepal.Width Petal.Length Petal.Width
 ## Sepal.Length    1.0000000   0.8545604    0.6853616   0.4225771
 ## Sepal.Width     0.8545604   1.0000000    0.4845437   0.6915641
@@ -812,10 +814,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 ## Petal.Width     0.4225771   0.6915641    0.5216405   1.0000000</code></pre>
 <p>例えば、<code>Sepal.Length</code>と<code>Sepal.Width</code>の場合、どちらも欠損していないのは4番目から10番目のサンプルになります。
 なので、<code>complete.obs</code>のときと同じ結果になります。</p>
-<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb171-1" data-line-number="1"><span class="kw">cor</span>(demo[<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>,]<span class="op">$</span>Sepal.Length, demo[<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>,]<span class="op">$</span>Sepal.Width)</a></code></pre></div>
+<div class="sourceCode" id="cb171"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb171-1"><a href="missing-values.html#cb171-1"></a><span class="kw">cor</span>(demo[<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>,]<span class="op">$</span>Sepal.Length, demo[<span class="dv">4</span><span class="op">:</span><span class="dv">10</span>,]<span class="op">$</span>Sepal.Width)</span></code></pre></div>
 <pre><code>## [1] 0.8545604</code></pre>
 <p>しかし、<code>Petal.Length</code>と<code>Petal.Width</code>の場合、欠損しているサンプルはないので、1番目から10番目のサンプル全てを使った値になります。</p>
-<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb173-1" data-line-number="1"><span class="kw">cor</span>(demo<span class="op">$</span>Petal.Length, demo<span class="op">$</span>Petal.Width)</a></code></pre></div>
+<div class="sourceCode" id="cb173"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb173-1"><a href="missing-values.html#cb173-1"></a><span class="kw">cor</span>(demo<span class="op">$</span>Petal.Length, demo<span class="op">$</span>Petal.Width)</span></code></pre></div>
 <pre><code>## [1] 0.5216405</code></pre>
 <ul>
 <li><code>everything</code>のときと同じであることも分かります。</li>
@@ -825,7 +827,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="回帰分析" class="section level3">
 <h3><span class="header-section-number">6.4.3</span> 回帰分析</h3>
 <p>回帰分析の際には欠損値を含むサンプルを除外した上で計算します。</p>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb175-1" data-line-number="1"><span class="kw">summary</span>(<span class="kw">lm</span>(democ <span class="op">~</span><span class="st"> </span>autoc, <span class="dt">data =</span> polity))</a></code></pre></div>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="missing-values.html#cb175-1"></a><span class="kw">summary</span>(<span class="kw">lm</span>(democ <span class="op">~</span><span class="st"> </span>autoc, <span class="dt">data =</span> polity))</span></code></pre></div>
 <pre><code>## 
 ## Call:
 ## lm(formula = democ ~ autoc, data = polity)

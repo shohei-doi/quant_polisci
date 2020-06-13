@@ -1,4 +1,4 @@
-# Qualtricsデータの処理* {#qualtrics}
+# Qualtricsデータの処理 {#qualtrics}
 
 [Qualtrics](https://www.qualtrics.com/)はオンラインサーベイを便利に行うツールですが、政治学では特にサーベイ実験で使われていると思います。
 

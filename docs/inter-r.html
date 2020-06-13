@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第20章 Rプログラミング応用* | Rで計量政治学入門</title>
+  <title>第20章 Rプログラミング応用 | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第20章 Rプログラミング応用* | Rで計量政治学入門" />
+  <meta property="og:title" content="第20章 Rプログラミング応用 | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第20章 Rプログラミング応用* | Rで計量政治学入門" />
+  <meta name="twitter:title" content="第20章 Rプログラミング応用 | Rで計量政治学入門" />
   
   <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-05-17" />
+<meta name="date" content="2020-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -66,9 +66,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -77,14 +77,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -93,9 +95,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -204,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の処理*</a><ul>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a><ul>
 <li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
 <li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
 <li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
@@ -233,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理*</a><ul>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a><ul>
 <li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
 <li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
 <li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
@@ -286,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ*</a><ul>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a><ul>
 <li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
 <li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
 <li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a><ul>
@@ -359,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a><ul>
 <li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
 <li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
 <li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
@@ -402,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf*</a><ul>
+<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a><ul>
 <li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a><ul>
 <li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
 <li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
@@ -427,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにエンコーディング問題*</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a><ul>
 <li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
@@ -448,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a><ul>
 <li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
 <li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
@@ -477,7 +479,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="inter-r" class="section level1">
-<h1><span class="header-section-number">第20章</span> Rプログラミング応用*</h1>
+<h1><span class="header-section-number">第20章</span> Rプログラミング応用</h1>
 <p>Rによる、より高度な作業のために</p>
 <ul>
 <li>代表的な<a href="inter-r.html#オブジェクトのクラス">オブジェクトのクラス</a></li>
@@ -490,63 +492,63 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>オブジェクトの種類を<strong>クラス</strong>と呼びます。
 <code>class()</code>にオブジェクトを入力するとクラスが分かります。</p>
 <p>最も使われるのは数値 ()numeric, real) です。</p>
-<div class="sourceCode" id="cb540"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb540-1" data-line-number="1"><span class="kw">class</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb549"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb549-1"><a href="inter-r.html#cb549-1"></a><span class="kw">class</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;numeric&quot;</code></pre>
 <p>厳密には数値と整数 (integer) は異なりますが、気にしないといけない局面は少ないと思います。</p>
-<div class="sourceCode" id="cb542"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb542-1" data-line-number="1"><span class="kw">class</span>(2L)</a></code></pre></div>
+<div class="sourceCode" id="cb551"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb551-1"><a href="inter-r.html#cb551-1"></a><span class="kw">class</span>(2L)</span></code></pre></div>
 <pre><code>## [1] &quot;integer&quot;</code></pre>
 <p>他には、文字列 (character) や</p>
-<div class="sourceCode" id="cb544"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb544-1" data-line-number="1"><span class="kw">class</span>(<span class="st">&quot;Hello, World.&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb553"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb553-1"><a href="inter-r.html#cb553-1"></a><span class="kw">class</span>(<span class="st">&quot;Hello, World.&quot;</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;character&quot;</code></pre>
 <p>論理値 (logical) などもあります。</p>
-<div class="sourceCode" id="cb546"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb546-1" data-line-number="1"><span class="kw">class</span>(<span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb555"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb555-1"><a href="inter-r.html#cb555-1"></a><span class="kw">class</span>(<span class="ot">TRUE</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;logical&quot;</code></pre>
 <p>論理値は主に条件式が満たされるかどうかを示します。</p>
-<div class="sourceCode" id="cb548"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb548-1" data-line-number="1"><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb557"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb557-1"><a href="inter-r.html#cb557-1"></a><span class="dv">1</span> <span class="op">==</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb550"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb550-1" data-line-number="1"><span class="dv">0</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb559"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb559-1"><a href="inter-r.html#cb559-1"></a><span class="dv">0</span> <span class="op">&gt;</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>ちなみに、<code>TRUE</code>は数値としての<code>1</code>、<code>FALSE</code>は<code>0</code>にもなります。</p>
-<div class="sourceCode" id="cb552"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb552-1" data-line-number="1"><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb561"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb561-1"><a href="inter-r.html#cb561-1"></a><span class="ot">TRUE</span> <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## [1] 2</code></pre>
-<div class="sourceCode" id="cb554"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb554-1" data-line-number="1"><span class="ot">FALSE</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></a></code></pre></div>
+<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb563-1"><a href="inter-r.html#cb563-1"></a><span class="ot">FALSE</span> <span class="op">*</span><span class="st"> </span><span class="dv">2</span></span></code></pre></div>
 <pre><code>## [1] 0</code></pre>
 <p>また、因子型 (factor) と呼ばれるクラスもあります。
 カテゴリカル変数と言ったほうが分かりやすいかもしれません。</p>
-<div class="sourceCode" id="cb556"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb556-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb556-2" data-line-number="2">x</a></code></pre></div>
+<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb565-1"><a href="inter-r.html#cb565-1"></a>x &lt;-<span class="st"> </span><span class="kw">factor</span>(<span class="dv">1</span>)</span>
+<span id="cb565-2"><a href="inter-r.html#cb565-2"></a>x</span></code></pre></div>
 <pre><code>## [1] 1
 ## Levels: 1</code></pre>
-<div class="sourceCode" id="cb558"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb558-1" data-line-number="1"><span class="kw">class</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb567-1"><a href="inter-r.html#cb567-1"></a><span class="kw">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;factor&quot;</code></pre>
 <p><code>X</code>の中身は<code>1</code>ですが、数値ではなくカテゴリーになっているので、数値として操作することはできません。</p>
-<div class="sourceCode" id="cb560"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb560-1" data-line-number="1">x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></a></code></pre></div>
+<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb569-1"><a href="inter-r.html#cb569-1"></a>x <span class="op">+</span><span class="st"> </span><span class="dv">1</span></span></code></pre></div>
 <pre><code>## Warning in Ops.factor(x, 1): &#39;+&#39; not meaningful for factors</code></pre>
 <pre><code>## [1] NA</code></pre>
 <p>Rではベクトルには特別なクラスは付与されていません。
 ベクトルは<code>c()</code>に中身を入力して作成します。</p>
-<div class="sourceCode" id="cb563"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb563-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)</a>
-<a class="sourceLine" id="cb563-2" data-line-number="2">x</a></code></pre></div>
+<div class="sourceCode" id="cb572"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb572-1"><a href="inter-r.html#cb572-1"></a>x &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>)</span>
+<span id="cb572-2"><a href="inter-r.html#cb572-2"></a>x</span></code></pre></div>
 <pre><code>## [1] 1 3 5</code></pre>
 <p>行列 (matrix) はクラスとして存在します。</p>
-<div class="sourceCode" id="cb565"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb565-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="dv">2</span>, <span class="dv">2</span>)</a>
-<a class="sourceLine" id="cb565-2" data-line-number="2">x</a></code></pre></div>
+<div class="sourceCode" id="cb574"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb574-1"><a href="inter-r.html#cb574-1"></a>x &lt;-<span class="st"> </span><span class="kw">matrix</span>(<span class="kw">c</span>(<span class="dv">1</span>,<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">7</span>), <span class="dv">2</span>, <span class="dv">2</span>)</span>
+<span id="cb574-2"><a href="inter-r.html#cb574-2"></a>x</span></code></pre></div>
 <pre><code>##      [,1] [,2]
 ## [1,]    1    5
 ## [2,]    3    7</code></pre>
-<div class="sourceCode" id="cb567"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb567-1" data-line-number="1"><span class="kw">class</span>(x)</a></code></pre></div>
+<div class="sourceCode" id="cb576"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb576-1"><a href="inter-r.html#cb576-1"></a><span class="kw">class</span>(x)</span></code></pre></div>
 <pre><code>## [1] &quot;matrix&quot; &quot;array&quot;</code></pre>
 <p>他に、データフレーム (data.frame) やリスト (list) などもあります。</p>
 <p>クラスを確認するときは、<code>is.*()</code>の形をとる関数を使います。</p>
-<div class="sourceCode" id="cb569"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb569-1" data-line-number="1"><span class="kw">is.numeric</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb578-1"><a href="inter-r.html#cb578-1"></a><span class="kw">is.numeric</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] TRUE</code></pre>
-<div class="sourceCode" id="cb571"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb571-1" data-line-number="1"><span class="kw">is.character</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb580-1"><a href="inter-r.html#cb580-1"></a><span class="kw">is.character</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] FALSE</code></pre>
 <p>クラスを変更するときは、<code>as.*()</code>のような関数を使います。</p>
-<div class="sourceCode" id="cb573"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb573-1" data-line-number="1"><span class="kw">as.factor</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb582-1"><a href="inter-r.html#cb582-1"></a><span class="kw">as.factor</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] 1
 ## Levels: 1</code></pre>
-<div class="sourceCode" id="cb575"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb575-1" data-line-number="1"><span class="kw">as.character</span>(<span class="dv">1</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb584-1"><a href="inter-r.html#cb584-1"></a><span class="kw">as.character</span>(<span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## [1] &quot;1&quot;</code></pre>
 <ul>
 <li>必ずしも全てのクラスが任意のクラスに変換できるわけではありません（例えば、文字列から数値など）。</li>
@@ -560,38 +562,38 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>{}</code>の中に処理内容を記述し、最後に<code>return()</code>で出力引数を指定します。</li>
 </ul>
 <p>例えば、数値ベクトルを入力引数として、平均と標準偏差を出力引数とする関数を作成します。</p>
-<div class="sourceCode" id="cb577"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb577-1" data-line-number="1">mean_sd &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="co"># 入力引数の名前をxとしておきます。</span></a>
-<a class="sourceLine" id="cb577-2" data-line-number="2">  mean.x &lt;-<span class="st"> </span><span class="kw">mean</span>(x) <span class="co"># 平均を計算します。</span></a>
-<a class="sourceLine" id="cb577-3" data-line-number="3">  sd.x &lt;-<span class="st"> </span><span class="kw">sd</span>(x) <span class="co"># 標準偏差を計算します。</span></a>
-<a class="sourceLine" id="cb577-4" data-line-number="4">  <span class="kw">return</span>(<span class="kw">c</span>(mean.x, sd.x)) <span class="co"># 出力引数を指定します。</span></a>
-<a class="sourceLine" id="cb577-5" data-line-number="5">}</a></code></pre></div>
+<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb586-1"><a href="inter-r.html#cb586-1"></a>mean_sd &lt;-<span class="st"> </span><span class="cf">function</span>(x) { <span class="co"># 入力引数の名前をxとしておきます。</span></span>
+<span id="cb586-2"><a href="inter-r.html#cb586-2"></a>  mean.x &lt;-<span class="st"> </span><span class="kw">mean</span>(x) <span class="co"># 平均を計算します。</span></span>
+<span id="cb586-3"><a href="inter-r.html#cb586-3"></a>  sd.x &lt;-<span class="st"> </span><span class="kw">sd</span>(x) <span class="co"># 標準偏差を計算します。</span></span>
+<span id="cb586-4"><a href="inter-r.html#cb586-4"></a>  <span class="kw">return</span>(<span class="kw">c</span>(mean.x, sd.x)) <span class="co"># 出力引数を指定します。</span></span>
+<span id="cb586-5"><a href="inter-r.html#cb586-5"></a>}</span></code></pre></div>
 <p>実際に実行してみます。</p>
-<div class="sourceCode" id="cb578"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb578-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</a>
-<a class="sourceLine" id="cb578-2" data-line-number="2"><span class="kw">mean_sd</span>(x)</a></code></pre></div>
-<pre><code>## [1] -0.06040036  0.95507965</code></pre>
+<div class="sourceCode" id="cb587"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb587-1"><a href="inter-r.html#cb587-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">100</span>)</span>
+<span id="cb587-2"><a href="inter-r.html#cb587-2"></a><span class="kw">mean_sd</span>(x)</span></code></pre></div>
+<pre><code>## [1] -0.01472691  0.96133642</code></pre>
 </div>
 <div id="ループ" class="section level2">
 <h2><span class="header-section-number">20.3</span> ループ</h2>
 <p><strong>ループ</strong>とは同一の処理を複数回実行することを指します。
 例えば、100個の標準正規分布に従う乱数の平均を5回求める処理は次のようになります。</p>
-<div class="sourceCode" id="cb580"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb580-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb580-2" data-line-number="2">  <span class="kw">print</span>(<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb580-3" data-line-number="3">}</a></code></pre></div>
-<pre><code>## [1] -0.01674012
-## [1] 0.05358716
-## [1] -0.006429993
-## [1] -0.05328658
-## [1] -0.07709551</code></pre>
+<div class="sourceCode" id="cb589"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb589-1"><a href="inter-r.html#cb589-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</span>
+<span id="cb589-2"><a href="inter-r.html#cb589-2"></a>  <span class="kw">print</span>(<span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</span>
+<span id="cb589-3"><a href="inter-r.html#cb589-3"></a>}</span></code></pre></div>
+<pre><code>## [1] 0.09851629
+## [1] 0.0636278
+## [1] -0.1019185
+## [1] -0.01609289
+## [1] -0.04542928</code></pre>
 <p><code>for</code>ループとは<code>()</code>の中の<code>in</code>のあとのベクトルの第1要素から順番に<code>i</code>に代入して繰り返しています。
 そのことは、次の例から解ると思います。</p>
-<div class="sourceCode" id="cb582"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb582-1" data-line-number="1"><span class="kw">head</span>(letters)</a></code></pre></div>
+<div class="sourceCode" id="cb591"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb591-1"><a href="inter-r.html#cb591-1"></a><span class="kw">head</span>(letters)</span></code></pre></div>
 <pre><code>## [1] &quot;a&quot; &quot;b&quot; &quot;c&quot; &quot;d&quot; &quot;e&quot; &quot;f&quot;</code></pre>
 <ul>
 <li><code>letters</code>とはアルファベットのベクトルです。</li>
 </ul>
-<div class="sourceCode" id="cb584"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb584-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">head</span>(letters)) {</a>
-<a class="sourceLine" id="cb584-2" data-line-number="2">  <span class="kw">print</span>(i)</a>
-<a class="sourceLine" id="cb584-3" data-line-number="3">}</a></code></pre></div>
+<div class="sourceCode" id="cb593"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb593-1"><a href="inter-r.html#cb593-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="kw">head</span>(letters)) {</span>
+<span id="cb593-2"><a href="inter-r.html#cb593-2"></a>  <span class="kw">print</span>(i)</span>
+<span id="cb593-3"><a href="inter-r.html#cb593-3"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;a&quot;
 ## [1] &quot;b&quot;
 ## [1] &quot;c&quot;
@@ -604,85 +606,85 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>ループ処理の結果を格納するには少しテクニックが必要です。
 100個の乱数の平均を5回取ったものを<code>x</code>として保存したいとします。</p>
 <p>まず、<code>x</code>を<code>NULL</code>オブジェクトとして作成します。</p>
-<div class="sourceCode" id="cb586"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb586-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb586-2" data-line-number="2">x</a></code></pre></div>
+<div class="sourceCode" id="cb595"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb595-1"><a href="inter-r.html#cb595-1"></a>x &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb595-2"><a href="inter-r.html#cb595-2"></a>x</span></code></pre></div>
 <pre><code>## NULL</code></pre>
 <ul>
 <li><code>NULL</code>とは空っぽのオブジェクト（0という数値や空白という文字ではない）です。</li>
 </ul>
 <p>先程のループ処理の中で、計算した平均を<code>c()</code>で<code>x</code>にくっつけていきます。</p>
-<div class="sourceCode" id="cb588"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb588-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb588-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb588-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb588-4" data-line-number="4">x</a></code></pre></div>
-<pre><code>## [1]  0.07800220 -0.02412754 -0.02666261  0.02335987 -0.13662617</code></pre>
+<div class="sourceCode" id="cb597"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb597-1"><a href="inter-r.html#cb597-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</span>
+<span id="cb597-2"><a href="inter-r.html#cb597-2"></a>  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</span>
+<span id="cb597-3"><a href="inter-r.html#cb597-3"></a>}</span>
+<span id="cb597-4"><a href="inter-r.html#cb597-4"></a>x</span></code></pre></div>
+<pre><code>## [1]  0.01242996  0.00349691 -0.07151655 -0.01892009 -0.17742199</code></pre>
 <p>無事、5個の平均値が<code>x</code>に保存されていることがわかります。</p>
 <p>実際に<code>for</code>ループの中で何が起こっているかは、次のコードで解ると思います。</p>
-<div class="sourceCode" id="cb590"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb590-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb590-2" data-line-number="2"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb590-3" data-line-number="3">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb590-4" data-line-number="4">  <span class="kw">print</span>(x)</a>
-<a class="sourceLine" id="cb590-5" data-line-number="5">}</a></code></pre></div>
-<pre><code>## [1] -0.07316569
-## [1] -0.07316569 -0.03749343
-## [1] -0.073165686 -0.037493428  0.008666079
-## [1] -0.073165686 -0.037493428  0.008666079 -0.055982903
-## [1] -7.316569e-02 -3.749343e-02  8.666079e-03 -5.598290e-02 -3.790198e-05</code></pre>
+<div class="sourceCode" id="cb599"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb599-1"><a href="inter-r.html#cb599-1"></a>x &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb599-2"><a href="inter-r.html#cb599-2"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</span>
+<span id="cb599-3"><a href="inter-r.html#cb599-3"></a>  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</span>
+<span id="cb599-4"><a href="inter-r.html#cb599-4"></a>  <span class="kw">print</span>(x)</span>
+<span id="cb599-5"><a href="inter-r.html#cb599-5"></a>}</span></code></pre></div>
+<pre><code>## [1] 0.07132597
+## [1] 0.07132597 0.01892245
+## [1]  0.07132597  0.01892245 -0.16014605
+## [1]  0.07132597  0.01892245 -0.16014605 -0.04272138
+## [1]  0.071325969  0.018922447 -0.160146050 -0.042721381 -0.003891877</code></pre>
 <ul>
 <li>ループが一周するたびに、前回の<code>x</code>に新しい要素が付け加わり、新しい<code>x</code>として保存されています。</li>
 </ul>
 <p><code>NULL</code>オブジェクトを使ったループ結果の保存でよくあるミスは、やり直す際に<code>NULL</code>でリセットするのを忘れることです。
 例えば、同じコードをもう一度実行しましょう。</p>
-<div class="sourceCode" id="cb592"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb592-1" data-line-number="1"><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb592-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb592-3" data-line-number="3">}</a>
-<a class="sourceLine" id="cb592-4" data-line-number="4">x</a></code></pre></div>
-<pre><code>##  [1] -7.316569e-02 -3.749343e-02  8.666079e-03 -5.598290e-02 -3.790198e-05
-##  [6] -1.865924e-01  1.165458e-01  1.253345e-01  1.173198e-01 -2.006749e-01</code></pre>
+<div class="sourceCode" id="cb601"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb601-1"><a href="inter-r.html#cb601-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</span>
+<span id="cb601-2"><a href="inter-r.html#cb601-2"></a>  x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</span>
+<span id="cb601-3"><a href="inter-r.html#cb601-3"></a>}</span>
+<span id="cb601-4"><a href="inter-r.html#cb601-4"></a>x</span></code></pre></div>
+<pre><code>##  [1]  0.071325969  0.018922447 -0.160146050 -0.042721381 -0.003891877
+##  [6]  0.181980210  0.017098258  0.234961971  0.007104972 -0.021349265</code></pre>
 <ul>
 <li><code>x</code>に10個の平均値が入っています。</li>
 </ul>
 <p>このようなミスを避ける方法の一つは、全体を関数として作成することです。</p>
-<div class="sourceCode" id="cb594"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb594-1" data-line-number="1">multi_mean &lt;-<span class="st"> </span><span class="cf">function</span>() {</a>
-<a class="sourceLine" id="cb594-2" data-line-number="2">  x &lt;-<span class="st"> </span><span class="ot">NULL</span></a>
-<a class="sourceLine" id="cb594-3" data-line-number="3">  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</a>
-<a class="sourceLine" id="cb594-4" data-line-number="4">    x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</a>
-<a class="sourceLine" id="cb594-5" data-line-number="5">  }</a>
-<a class="sourceLine" id="cb594-6" data-line-number="6">  <span class="kw">return</span>(x)</a>
-<a class="sourceLine" id="cb594-7" data-line-number="7">}</a>
-<a class="sourceLine" id="cb594-8" data-line-number="8">x &lt;-<span class="st"> </span><span class="kw">multi_mean</span>()</a>
-<a class="sourceLine" id="cb594-9" data-line-number="9">x</a></code></pre></div>
-<pre><code>## [1] -0.008116691 -0.191427354 -0.045294544  0.110586863 -0.015169473</code></pre>
+<div class="sourceCode" id="cb603"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb603-1"><a href="inter-r.html#cb603-1"></a>multi_mean &lt;-<span class="st"> </span><span class="cf">function</span>() {</span>
+<span id="cb603-2"><a href="inter-r.html#cb603-2"></a>  x &lt;-<span class="st"> </span><span class="ot">NULL</span></span>
+<span id="cb603-3"><a href="inter-r.html#cb603-3"></a>  <span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="op">:</span><span class="dv">5</span>) {</span>
+<span id="cb603-4"><a href="inter-r.html#cb603-4"></a>    x &lt;-<span class="st"> </span><span class="kw">c</span>(x, <span class="kw">mean</span>(<span class="kw">rnorm</span>(<span class="dv">100</span>)))</span>
+<span id="cb603-5"><a href="inter-r.html#cb603-5"></a>  }</span>
+<span id="cb603-6"><a href="inter-r.html#cb603-6"></a>  <span class="kw">return</span>(x)</span>
+<span id="cb603-7"><a href="inter-r.html#cb603-7"></a>}</span>
+<span id="cb603-8"><a href="inter-r.html#cb603-8"></a>x &lt;-<span class="st"> </span><span class="kw">multi_mean</span>()</span>
+<span id="cb603-9"><a href="inter-r.html#cb603-9"></a>x</span></code></pre></div>
+<pre><code>## [1]  0.02361923  0.10858991  0.11928147 -0.05369383  0.19632307</code></pre>
 </div>
 <div id="条件分岐" class="section level2">
 <h2><span class="header-section-number">20.4</span> 条件分岐</h2>
 <p><strong>条件分岐</strong>とは、特定の条件の場合に特定の動作を行うようにすることです。
 例えば、正の場合<code>positive</code>、負の場合<code>negative</code>と出力するコマンドは次のようになります。</p>
-<div class="sourceCode" id="cb596"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb596-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb596-2" data-line-number="2"><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</a>
-<a class="sourceLine" id="cb596-3" data-line-number="3">  <span class="kw">print</span>(<span class="st">&quot;positive&quot;</span>)</a>
-<a class="sourceLine" id="cb596-4" data-line-number="4">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb596-5" data-line-number="5">  <span class="kw">print</span>(<span class="st">&quot;negative&quot;</span>)</a>
-<a class="sourceLine" id="cb596-6" data-line-number="6">}</a></code></pre></div>
-<pre><code>## [1] &quot;negative&quot;</code></pre>
-<div class="sourceCode" id="cb598"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb598-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>## [1] -0.1369953</code></pre>
+<div class="sourceCode" id="cb605"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb605-1"><a href="inter-r.html#cb605-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb605-2"><a href="inter-r.html#cb605-2"></a><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="dv">0</span>) {</span>
+<span id="cb605-3"><a href="inter-r.html#cb605-3"></a>  <span class="kw">print</span>(<span class="st">&quot;positive&quot;</span>)</span>
+<span id="cb605-4"><a href="inter-r.html#cb605-4"></a>} <span class="cf">else</span> {</span>
+<span id="cb605-5"><a href="inter-r.html#cb605-5"></a>  <span class="kw">print</span>(<span class="st">&quot;negative&quot;</span>)</span>
+<span id="cb605-6"><a href="inter-r.html#cb605-6"></a>}</span></code></pre></div>
+<pre><code>## [1] &quot;positive&quot;</code></pre>
+<div class="sourceCode" id="cb607"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb607-1"><a href="inter-r.html#cb607-1"></a><span class="kw">print</span>(x)</span></code></pre></div>
+<pre><code>## [1] 0.1087327</code></pre>
 <ul>
 <li><code>if(){}</code>の<code>()</code>の中に条件式を書き、<code>{}</code>の中に処理内容を書きます。</li>
 <li>それ以外の条件は<code>else</code>で示します。</li>
 </ul>
 <p>条件式は3つ以上でも構いません。</p>
-<div class="sourceCode" id="cb600"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb600-1" data-line-number="1">x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</a>
-<a class="sourceLine" id="cb600-2" data-line-number="2"><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="fl">-0.5</span>) {</a>
-<a class="sourceLine" id="cb600-3" data-line-number="3">  <span class="kw">print</span>(<span class="st">&quot;x is less than -0.5.&quot;</span>)</a>
-<a class="sourceLine" id="cb600-4" data-line-number="4">} <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&gt;=</span><span class="st"> </span><span class="fl">-0.5</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.5</span>) {</a>
-<a class="sourceLine" id="cb600-5" data-line-number="5">  <span class="kw">print</span>(<span class="st">&quot;x is between -0.5 and 0.5.&quot;</span>)</a>
-<a class="sourceLine" id="cb600-6" data-line-number="6">} <span class="cf">else</span> {</a>
-<a class="sourceLine" id="cb600-7" data-line-number="7">  <span class="kw">print</span>(<span class="st">&quot;x is more than 0.5.ー&quot;</span>)</a>
-<a class="sourceLine" id="cb600-8" data-line-number="8">}</a></code></pre></div>
+<div class="sourceCode" id="cb609"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb609-1"><a href="inter-r.html#cb609-1"></a>x &lt;-<span class="st"> </span><span class="kw">rnorm</span>(<span class="dv">1</span>)</span>
+<span id="cb609-2"><a href="inter-r.html#cb609-2"></a><span class="cf">if</span> (x <span class="op">&gt;</span><span class="st"> </span><span class="fl">-0.5</span>) {</span>
+<span id="cb609-3"><a href="inter-r.html#cb609-3"></a>  <span class="kw">print</span>(<span class="st">&quot;x is less than -0.5.&quot;</span>)</span>
+<span id="cb609-4"><a href="inter-r.html#cb609-4"></a>} <span class="cf">else</span> <span class="cf">if</span> (x <span class="op">&gt;=</span><span class="st"> </span><span class="fl">-0.5</span> <span class="op">&amp;</span><span class="st"> </span>x <span class="op">&lt;=</span><span class="st"> </span><span class="fl">0.5</span>) {</span>
+<span id="cb609-5"><a href="inter-r.html#cb609-5"></a>  <span class="kw">print</span>(<span class="st">&quot;x is between -0.5 and 0.5.&quot;</span>)</span>
+<span id="cb609-6"><a href="inter-r.html#cb609-6"></a>} <span class="cf">else</span> {</span>
+<span id="cb609-7"><a href="inter-r.html#cb609-7"></a>  <span class="kw">print</span>(<span class="st">&quot;x is more than 0.5.ー&quot;</span>)</span>
+<span id="cb609-8"><a href="inter-r.html#cb609-8"></a>}</span></code></pre></div>
 <pre><code>## [1] &quot;x is less than -0.5.&quot;</code></pre>
-<div class="sourceCode" id="cb602"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb602-1" data-line-number="1"><span class="kw">print</span>(x)</a></code></pre></div>
-<pre><code>## [1] 0.908376</code></pre>
+<div class="sourceCode" id="cb611"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb611-1"><a href="inter-r.html#cb611-1"></a><span class="kw">print</span>(x)</span></code></pre></div>
+<pre><code>## [1] 1.066247</code></pre>
 <ul>
 <li><code>&amp;</code>は「かつ」を意味します。</li>
 <li>「または」は<code>|</code>を使います。</li>

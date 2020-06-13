@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>第14章 ggplot2いろいろ* | Rで計量政治学入門</title>
+  <title>第14章 ggplot2いろいろ | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.18 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="第14章 ggplot2いろいろ* | Rで計量政治学入門" />
+  <meta property="og:title" content="第14章 ggplot2いろいろ | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="第14章 ggplot2いろいろ* | Rで計量政治学入門" />
+  <meta name="twitter:title" content="第14章 ggplot2いろいろ | Rで計量政治学入門" />
   
   <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-05-17" />
+<meta name="date" content="2020-06-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -66,9 +66,9 @@
 
 
 <style type="text/css">
-a.sourceLine { display: inline-block; line-height: 1.25; }
-a.sourceLine { pointer-events: none; color: inherit; text-decoration: inherit; }
-a.sourceLine:empty { height: 1.2em; }
+code.sourceCode > span { display: inline-block; line-height: 1.25; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
@@ -77,14 +77,16 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 code.sourceCode { white-space: pre-wrap; }
-a.sourceLine { text-indent: -1em; padding-left: 1em; }
+code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
-pre.numberSource a.sourceLine
-  { position: relative; left: -4em; }
-pre.numberSource a.sourceLine::before
-  { content: attr(data-line-number);
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
     position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; pointer-events: all; display: inline-block;
+    border: none; display: inline-block;
     -webkit-touch-callout: none; -webkit-user-select: none;
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
@@ -93,9 +95,9 @@ pre.numberSource a.sourceLine::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {  }
+  {   }
 @media screen {
-a.sourceLine::before { text-decoration: underline; }
+code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -204,7 +206,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の処理*</a><ul>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a><ul>
 <li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
 <li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
 <li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
@@ -233,7 +235,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理*</a><ul>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a><ul>
 <li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
 <li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
 <li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
@@ -286,7 +288,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ*</a><ul>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a><ul>
 <li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
 <li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
 <li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a><ul>
@@ -359,7 +361,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用*</a><ul>
+<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a><ul>
 <li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
 <li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
 <li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
@@ -402,7 +404,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf*</a><ul>
+<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a><ul>
 <li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a><ul>
 <li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
 <li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
@@ -427,7 +429,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rにエンコーディング問題*</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a><ul>
 <li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
@@ -448,7 +450,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について*</a><ul>
+<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a><ul>
 <li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
 <li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
@@ -477,13 +479,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
             <section class="normal" id="section-">
 <div id="ggplot2" class="section level1">
-<h1><span class="header-section-number">第14章</span> ggplot2いろいろ*</h1>
+<h1><span class="header-section-number">第14章</span> ggplot2いろいろ</h1>
 <p><code>ggplot2</code>は簡単にきれいなグラフを作ってくれます。
 より、もう一手間加えることで、より見やすいグラフになるので、いろいろな設定の方法を紹介します。</p>
-<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb419-1" data-line-number="1"><span class="kw">library</span>(tidyverse)</a>
-<a class="sourceLine" id="cb419-2" data-line-number="2"><span class="kw">library</span>(gghighlight)</a>
-<a class="sourceLine" id="cb419-3" data-line-number="3"><span class="kw">library</span>(ggrepel)</a></code></pre></div>
-<div class="sourceCode" id="cb420"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb420-1" data-line-number="1">tri &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb427"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb427-1"><a href="ggplot2.html#cb427-1"></a><span class="kw">library</span>(tidyverse)</span>
+<span id="cb427-2"><a href="ggplot2.html#cb427-2"></a><span class="kw">library</span>(gghighlight)</span>
+<span id="cb427-3"><a href="ggplot2.html#cb427-3"></a><span class="kw">library</span>(ggrepel)</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="ggplot2.html#cb428-1"></a>tri &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Parsed with column specification:
 ## cols(
 ##   statea = col_double(),
@@ -509,73 +511,73 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="テーマ" class="section level2">
 <h2><span class="header-section-number">14.1</span> テーマ</h2>
 <p><code>ggplot2</code>ではテーマを重ねることで見た目を変えることができます。</p>
-<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb422-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb422-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb422-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb422-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb422-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb430"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb430-1"><a href="ggplot2.html#cb430-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb430-2"><a href="ggplot2.html#cb430-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb430-3"><a href="ggplot2.html#cb430-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb430-4"><a href="ggplot2.html#cb430-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb430-5"><a href="ggplot2.html#cb430-5"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
-<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb425-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb425-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb425-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb425-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb425-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_classic</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb433"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb433-1"><a href="ggplot2.html#cb433-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb433-2"><a href="ggplot2.html#cb433-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb433-3"><a href="ggplot2.html#cb433-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb433-4"><a href="ggplot2.html#cb433-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb433-5"><a href="ggplot2.html#cb433-5"></a><span class="st">  </span><span class="kw">theme_classic</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
-<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb428-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb428-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb428-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb428-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb428-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_dark</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb436"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb436-1"><a href="ggplot2.html#cb436-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb436-2"><a href="ggplot2.html#cb436-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb436-3"><a href="ggplot2.html#cb436-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb436-4"><a href="ggplot2.html#cb436-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb436-5"><a href="ggplot2.html#cb436-5"></a><span class="st">  </span><span class="kw">theme_dark</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-264-1.png" width="672" /></p>
-<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb431-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb431-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb431-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb431-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb431-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_bw</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb439"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb439-1"><a href="ggplot2.html#cb439-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb439-2"><a href="ggplot2.html#cb439-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb439-3"><a href="ggplot2.html#cb439-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb439-4"><a href="ggplot2.html#cb439-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb439-5"><a href="ggplot2.html#cb439-5"></a><span class="st">  </span><span class="kw">theme_bw</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
-<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb434-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb434-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb434-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb434-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb434-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_light</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb442-1"><a href="ggplot2.html#cb442-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb442-2"><a href="ggplot2.html#cb442-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb442-3"><a href="ggplot2.html#cb442-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb442-4"><a href="ggplot2.html#cb442-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb442-5"><a href="ggplot2.html#cb442-5"></a><span class="st">  </span><span class="kw">theme_light</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p>
-<div class="sourceCode" id="cb437"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb437-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb437-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb437-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb437-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb437-5" data-line-number="5"><span class="st">  </span><span class="kw">theme_minimal</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="ggplot2.html#cb445-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb445-2"><a href="ggplot2.html#cb445-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb445-3"><a href="ggplot2.html#cb445-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb445-4"><a href="ggplot2.html#cb445-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb445-5"><a href="ggplot2.html#cb445-5"></a><span class="st">  </span><span class="kw">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
 <p>実際には、全てのグラフでテーマを統一したいので、最初に<code>theme_set()</code>で決めます。</p>
-<div class="sourceCode" id="cb440"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb440-1" data-line-number="1"><span class="kw">theme_set</span>(<span class="kw">theme_minimal</span>())</a></code></pre></div>
+<div class="sourceCode" id="cb448"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb448-1"><a href="ggplot2.html#cb448-1"></a><span class="kw">theme_set</span>(<span class="kw">theme_minimal</span>())</span></code></pre></div>
 </div>
 <div id="色" class="section level2">
 <h2><span class="header-section-number">14.2</span> 色</h2>
 <p><code>ggplot2</code>ではデフォルトでもきれいな色でグラフを書いてくれますが、違う色が良いなと思うときもあります。
 もちろん、自分で指定することもできますが、とりあえず既存のカラーパレットを使う方法を紹介します。</p>
 <p>使えるカラーパレットは次のように確認できます。</p>
-<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb441-1" data-line-number="1">RColorBrewer<span class="op">::</span><span class="kw">display.brewer.all</span>()</a></code></pre></div>
+<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="ggplot2.html#cb449-1"></a>RColorBrewer<span class="op">::</span><span class="kw">display.brewer.all</span>()</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
 <p>実際は、ユニバーサルデザインのカラーパレットを使うのが良いでしょう。</p>
-<div class="sourceCode" id="cb442"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb442-1" data-line-number="1">RColorBrewer<span class="op">::</span><span class="kw">display.brewer.all</span>(<span class="dt">colorblindFriendly =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb450"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb450-1"><a href="ggplot2.html#cb450-1"></a>RColorBrewer<span class="op">::</span><span class="kw">display.brewer.all</span>(<span class="dt">colorblindFriendly =</span> <span class="ot">TRUE</span>)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
 <p>例えば、このように色指定を行います。</p>
-<div class="sourceCode" id="cb443"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb443-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb443-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb443-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep, <span class="dt">fill =</span> <span class="kw">as.factor</span>(dispute1)), <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb443-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb443-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb451"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb451-1"><a href="ggplot2.html#cb451-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb451-2"><a href="ggplot2.html#cb451-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb451-3"><a href="ggplot2.html#cb451-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep, <span class="dt">fill =</span> <span class="kw">as.factor</span>(dispute1)), <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb451-4"><a href="ggplot2.html#cb451-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb451-5"><a href="ggplot2.html#cb451-5"></a><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
@@ -584,36 +586,36 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">14.3</span> パネルの分割</h2>
 <p><code>ggplot2</code>では簡単にパネルを分割し、グループごとにグラフを作ることができます。</p>
 <p><code>facet_grid()</code>はx軸と（あるいは）y軸を指定して、分割します。</p>
-<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb446-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb446-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb446-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb446-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb446-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_grid</span>(dispute1 <span class="op">~</span><span class="st"> </span>noncontg)</a></code></pre></div>
+<div class="sourceCode" id="cb454"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb454-1"><a href="ggplot2.html#cb454-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb454-2"><a href="ggplot2.html#cb454-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb454-3"><a href="ggplot2.html#cb454-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb454-4"><a href="ggplot2.html#cb454-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb454-5"><a href="ggplot2.html#cb454-5"></a><span class="st">  </span><span class="kw">facet_grid</span>(dispute1 <span class="op">~</span><span class="st"> </span>noncontg)</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
 <p><code>facet_wrap()</code>は一つの変数の値に応じて分割します。</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb449-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb449-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb449-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb449-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb449-5" data-line-number="5"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>smldmat)</a></code></pre></div>
+<div class="sourceCode" id="cb457"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb457-1"><a href="ggplot2.html#cb457-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb457-2"><a href="ggplot2.html#cb457-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb457-3"><a href="ggplot2.html#cb457-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb457-4"><a href="ggplot2.html#cb457-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb457-5"><a href="ggplot2.html#cb457-5"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span><span class="st"> </span>smldmat)</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
 <div id="記述統計のグラフ" class="section level3">
 <h3><span class="header-section-number">14.3.1</span> 記述統計のグラフ</h3>
 <p><code>pivot_longer()</code>を応用すると、記述統計をグラフで表示することもできます。</p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb452-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb452-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">smldep =</span> <span class="kw">log</span>(smldep <span class="op">+</span><span class="st"> </span><span class="dv">10</span><span class="op">^-</span><span class="dv">10</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb452-3" data-line-number="3"><span class="st">  </span><span class="kw">select</span>(smldep, smldmat, lcaprat2, logdstab) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb452-4" data-line-number="4"><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">everything</span>(), <span class="dt">names_to =</span> <span class="st">&quot;vars&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb452-5" data-line-number="5"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb452-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> val)) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb452-7" data-line-number="7"><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>vars, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb460"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb460-1"><a href="ggplot2.html#cb460-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb460-2"><a href="ggplot2.html#cb460-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">smldep =</span> <span class="kw">log</span>(smldep <span class="op">+</span><span class="st"> </span><span class="dv">10</span><span class="op">^-</span><span class="dv">10</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb460-3"><a href="ggplot2.html#cb460-3"></a><span class="st">  </span><span class="kw">select</span>(smldep, smldmat, lcaprat2, logdstab) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb460-4"><a href="ggplot2.html#cb460-4"></a><span class="st">  </span><span class="kw">pivot_longer</span>(<span class="kw">everything</span>(), <span class="dt">names_to =</span> <span class="st">&quot;vars&quot;</span>, <span class="dt">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb460-5"><a href="ggplot2.html#cb460-5"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb460-6"><a href="ggplot2.html#cb460-6"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> val)) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb460-7"><a href="ggplot2.html#cb460-7"></a><span class="st">  </span><span class="kw">facet_wrap</span>(<span class="op">~</span>vars, <span class="dt">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-274-1.png" width="672" /></p>
 <ul>
-<li><code>&quot;scales = &quot;free&quot;</code>とすることで、軸の範囲を各パネルで統一しないようにします。</li>
+<li><code>"scales = "free"</code>とすることで、軸の範囲を各パネルで統一しないようにします。</li>
 </ul>
 </div>
 </div>
@@ -621,12 +623,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">14.4</span> ラベル</h2>
 <p>x軸やy軸、あるいは凡例には変数名がそのまま表示されるのでかっこ悪いです。
 そこで<code>labs()</code>でラベルを変えます。</p>
-<div class="sourceCode" id="cb453"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb453-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb453-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb453-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep, <span class="dt">fill =</span> <span class="kw">as.factor</span>(dispute1)), <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb453-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb453-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb453-6" data-line-number="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="ggplot2.html#cb461-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb461-2"><a href="ggplot2.html#cb461-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb461-3"><a href="ggplot2.html#cb461-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep, <span class="dt">fill =</span> <span class="kw">as.factor</span>(dispute1)), <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb461-4"><a href="ggplot2.html#cb461-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb461-5"><a href="ggplot2.html#cb461-5"></a><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb461-6"><a href="ggplot2.html#cb461-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-275-1.png" width="672" /></p>
@@ -637,23 +639,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="凡例" class="section level2">
 <h2><span class="header-section-number">14.5</span> 凡例</h2>
 <p>凡例の位置を<code>theme()</code>変えることもできます。</p>
-<div class="sourceCode" id="cb456"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb456-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb456-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb456-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep, <span class="dt">fill =</span> <span class="kw">as.factor</span>(dispute1)), <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb456-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb456-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb456-6" data-line-number="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb456-7" data-line-number="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="ggplot2.html#cb464-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb464-2"><a href="ggplot2.html#cb464-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb464-3"><a href="ggplot2.html#cb464-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep, <span class="dt">fill =</span> <span class="kw">as.factor</span>(dispute1)), <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb464-4"><a href="ggplot2.html#cb464-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb464-5"><a href="ggplot2.html#cb464-5"></a><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb464-6"><a href="ggplot2.html#cb464-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb464-7"><a href="ggplot2.html#cb464-7"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
-<div class="sourceCode" id="cb459"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb459-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb459-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb459-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep, <span class="dt">fill =</span> <span class="kw">as.factor</span>(dispute1)), <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb459-4" data-line-number="4"><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb459-5" data-line-number="5"><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb459-6" data-line-number="6"><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb459-7" data-line-number="7"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">legend.justification =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="ggplot2.html#cb467-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb467-2"><a href="ggplot2.html#cb467-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb467-3"><a href="ggplot2.html#cb467-3"></a><span class="st">  </span><span class="kw">geom_density</span>(<span class="kw">aes</span>(<span class="dt">x =</span> smldep, <span class="dt">fill =</span> <span class="kw">as.factor</span>(dispute1)), <span class="dt">alpha =</span> <span class="fl">0.5</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb467-4"><a href="ggplot2.html#cb467-4"></a><span class="st">  </span><span class="kw">scale_x_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb467-5"><a href="ggplot2.html#cb467-5"></a><span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb467-6"><a href="ggplot2.html#cb467-6"></a><span class="st">  </span><span class="kw">labs</span>(<span class="dt">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="dt">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="dt">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb467-7"><a href="ggplot2.html#cb467-7"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="dt">legend.justification =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
 <pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
@@ -662,10 +664,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">14.6</span> 強調</h2>
 <p>データポイントが膨大な場合、一部だけ強調したい場合があります。
 そのようなときは<code>gghighlight</code>というパッケージを使います。</p>
-<div class="sourceCode" id="cb462"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb462-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb462-2" data-line-number="2"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb462-3" data-line-number="3"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lcaprat2, <span class="dt">colour =</span> <span class="kw">as.factor</span>(dyadid))) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb462-4" data-line-number="4"><span class="st">  </span><span class="kw">gghighlight</span>(statea <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, stateb <span class="op">==</span><span class="st"> </span><span class="dv">710</span>, <span class="dt">label_key =</span> dyadid)</a></code></pre></div>
+<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="ggplot2.html#cb470-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb470-2"><a href="ggplot2.html#cb470-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb470-3"><a href="ggplot2.html#cb470-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> lcaprat2, <span class="dt">colour =</span> <span class="kw">as.factor</span>(dyadid))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb470-4"><a href="ggplot2.html#cb470-4"></a><span class="st">  </span><span class="kw">gghighlight</span>(statea <span class="op">==</span><span class="st"> </span><span class="dv">2</span>, stateb <span class="op">==</span><span class="st"> </span><span class="dv">710</span>, <span class="dt">label_key =</span> dyadid)</span></code></pre></div>
 <pre><code>## Warning: Tried to calculate with group_by(), but the calculation failed.
 ## Falling back to ungrouped filter operation...</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
@@ -673,17 +675,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="テキスト" class="section level2">
 <h2><span class="header-section-number">14.7</span> テキスト</h2>
 <p>一部を強調せずにテキストでラベルをつける際には<code>ggrepel</code>というパッケージを使います。</p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb464-1" data-line-number="1">tri <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb464-2" data-line-number="2"><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dispute1 =</span> <span class="kw">if_else</span>(dispute1 <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Dispute&quot;</span>, <span class="st">&quot;Peace&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb464-3" data-line-number="3"><span class="st">  </span><span class="kw">group_by</span>(dispute1, year) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb464-4" data-line-number="4"><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">smldep =</span> <span class="kw">median</span>(smldep, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb464-5" data-line-number="5"><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb464-6" data-line-number="6"><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> smldep, <span class="dt">colour =</span> <span class="kw">as.factor</span>(dispute1))) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb464-7" data-line-number="7"><span class="st">  </span><span class="kw">geom_label_repel</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> smldep, <span class="dt">colour =</span> <span class="kw">as.factor</span>(dispute1), <span class="dt">label =</span> dispute1),</a>
-<a class="sourceLine" id="cb464-8" data-line-number="8">                  <span class="dt">data =</span> . <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb464-9" data-line-number="9"><span class="st">                    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(year))) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb464-10" data-line-number="10"><span class="st">  </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb464-11" data-line-number="11"><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb472"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb472-1"><a href="ggplot2.html#cb472-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb472-2"><a href="ggplot2.html#cb472-2"></a><span class="st">  </span><span class="kw">mutate</span>(<span class="dt">dispute1 =</span> <span class="kw">if_else</span>(dispute1 <span class="op">==</span><span class="st"> </span><span class="dv">1</span>, <span class="st">&quot;Dispute&quot;</span>, <span class="st">&quot;Peace&quot;</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb472-3"><a href="ggplot2.html#cb472-3"></a><span class="st">  </span><span class="kw">group_by</span>(dispute1, year) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb472-4"><a href="ggplot2.html#cb472-4"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">smldep =</span> <span class="kw">median</span>(smldep, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb472-5"><a href="ggplot2.html#cb472-5"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb472-6"><a href="ggplot2.html#cb472-6"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> smldep, <span class="dt">colour =</span> <span class="kw">as.factor</span>(dispute1))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb472-7"><a href="ggplot2.html#cb472-7"></a><span class="st">  </span><span class="kw">geom_label_repel</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> smldep, <span class="dt">colour =</span> <span class="kw">as.factor</span>(dispute1), <span class="dt">label =</span> dispute1),</span>
+<span id="cb472-8"><a href="ggplot2.html#cb472-8"></a>                  <span class="dt">data =</span> . <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb472-9"><a href="ggplot2.html#cb472-9"></a><span class="st">                    </span><span class="kw">filter</span>(year <span class="op">==</span><span class="st"> </span><span class="kw">max</span>(year))) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb472-10"><a href="ggplot2.html#cb472-10"></a><span class="st">  </span><span class="kw">scale_y_log10</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb472-11"><a href="ggplot2.html#cb472-11"></a><span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<pre><code>## `summarise()` regrouping output by &#39;dispute1&#39; (override with `.groups` argument)</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis
 
 ## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
