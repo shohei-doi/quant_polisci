@@ -126,7 +126,7 @@ world %>%
   select(region) %>% 
   distinct()
 
-left_join(world, pop2013, by = "region") %>% 
+left_join(world, pop2013, by = "iso3c") %>% 
   ggplot() + 
   geom_polygon(aes(x = long, y = lat, group = group, fill = log(population)),
                colour = "black", size = 0.1) + 
