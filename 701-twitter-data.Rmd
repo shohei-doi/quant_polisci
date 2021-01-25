@@ -36,6 +36,7 @@ theme_set(theme_minimal())
 今回は`新型コロナ`で100件取得してみます。
 
 - 一回につき最大で18000件まで取得できるそうです。
+  - `retryonratelimit = TRUE`のオプションを設定すると上限を越えることができるそうです。
 - 不適切なツイートがあったらすいません。
 
 ```{r}
@@ -49,13 +50,15 @@ tweets %>%
 ## ユーザーによるツイートの取得
 
 `get_timelines()`では特定のユーザーのタイムラインを取得することができます。
-例えば、ドナルド・トランプの[公式アカウント](https://twitter.com/realdonaldtrump)`@realDonaldTrump`のツイートを取得するにはこのようにします。
+例えば、ジョー・バイデンの[公式アカウント](https://twitter.com/joebiden)`@JoeBiden`のツイートを取得するにはこのようにします。
 
 ```{r}
-tweets <- get_timelines("realDonaldTrump", n = 100)
+tweets <- get_timelines("JoeBiden", n = 100)
 tweets %>% 
   select(text)
 ```
+
+- もともと、ドナルド・トランプのアカウントを使っていましたが、BANされたので変更しました。
 
 ## 言語によるツイートの取得
 

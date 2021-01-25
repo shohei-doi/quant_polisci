@@ -17,6 +17,12 @@ theme_set(theme_minimal())
 - `jpndistrict`は都道府県地図情報のパッケージです。
 - `countrycode`は国名を統一するパッケージです。
 
+なお、（2021年1月25日現在）`jpndistrict`はCRANから外されていますので、どうしてもインストールしたい方はgithubのリポジトリより直接インストールして下さい。
+
+```{r, eval = FALSE、}
+devtools::install_github("uribo/jpndistrict")
+```
+
 ## 地図
 
 ### 世界地図
