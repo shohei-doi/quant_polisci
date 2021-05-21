@@ -7,15 +7,18 @@ Googleで特定の単語がどれくらい検索されているのかは[Google�
 - 正確には、「検索数」ではなく「ピーク時を100としたときの検索割合」になります。
 - 詳しくは[こちら](http://ysklog.net/googleanalytics/5632.html)を参照。
 
+また、1800年からの書籍において単語がどの程度使用されてきたのかは[Google Books Ngram Viewer](https://books.google.com/ngrams)で調べることができます。
+
 ```{r}
 library(tidyverse)
 library(gtrendsR)
 library(rvest)
+library(ngramr)
 ```
 
 ```{r, echo=FALSE}
 library(knitr)
-theme_set(theme_minimal())
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
 ## 時系列トレンド
@@ -116,3 +119,14 @@ hits
 ```
 
 - 実際の結果とは少しずれてしまいます。
+
+## Nグラム
+
+Ngram Viewerの結果は次のように取得することができます。
+
+```{r}
+gngram <- ngram(c("world war", "cold war"))
+ggplot(gngram) + 
+  geom_line(aes(x = Year, y = Frequency, colour = Phrase))
+```
+

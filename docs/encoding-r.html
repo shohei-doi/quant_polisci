@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第23章 Rのエンコーディング問題 | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第23章 Rのエンコーディング問題 | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-06-13" />
+<meta name="date" content="2021-05-21" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="r-markdown-pdf.html"/>
 <link rel="next" href="pipe.html"/>
+<script src="libs/header-attrs-2.8/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +53,8 @@
 
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75879658-3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -62,22 +65,22 @@
     </script>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet"> 
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -97,7 +100,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -130,6 +133,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -146,27 +150,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="index.html">Rで計量政治学入門</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#想定する読者"><i class="fa fa-check"></i>想定する読者</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#tidyverseについて"><i class="fa fa-check"></i>Tidyverseについて</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ウェブサイトの操作"><i class="fa fa-check"></i>ウェブサイトの操作</a></li>
 </ul></li>
 <li class="part"><span><b>I データの操作</b></span></li>
-<li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a><ul>
+<li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#パッケージ付属のデータ"><i class="fa fa-check"></i><b>1.1</b> パッケージ付属のデータ</a></li>
-<li class="chapter" data-level="1.2" data-path="data-import.html"><a href="data-import.html#主なデータ形式"><i class="fa fa-check"></i><b>1.2</b> 主なデータ形式*</a><ul>
+<li class="chapter" data-level="1.2" data-path="data-import.html"><a href="data-import.html#主なデータ形式"><i class="fa fa-check"></i><b>1.2</b> 主なデータ形式*</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="data-import.html"><a href="data-import.html#テキストデータ"><i class="fa fa-check"></i><b>1.2.1</b> テキストデータ</a></li>
 <li class="chapter" data-level="1.2.2" data-path="data-import.html"><a href="data-import.html#バイナリデータ"><i class="fa fa-check"></i><b>1.2.2</b> バイナリデータ</a></li>
 <li class="chapter" data-level="1.2.3" data-path="data-import.html"><a href="data-import.html#good-bye-excel"><i class="fa fa-check"></i><b>1.2.3</b> Good bye, Excel!</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="data-import.html"><a href="data-import.html#パスと作業ディレクトリ"><i class="fa fa-check"></i><b>1.3</b> パスと作業ディレクトリ</a><ul>
+<li class="chapter" data-level="1.3" data-path="data-import.html"><a href="data-import.html#パスと作業ディレクトリ"><i class="fa fa-check"></i><b>1.3</b> パスと作業ディレクトリ</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="data-import.html"><a href="data-import.html#パス"><i class="fa fa-check"></i><b>1.3.1</b> パス</a></li>
 <li class="chapter" data-level="1.3.2" data-path="data-import.html"><a href="data-import.html#作業ディレクトリ"><i class="fa fa-check"></i><b>1.3.2</b> 作業ディレクトリ</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="data-import.html"><a href="data-import.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.4</b> .csvファイルの読み込み</a><ul>
+<li class="chapter" data-level="1.4" data-path="data-import.html"><a href="data-import.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.4</b> .csvファイルの読み込み</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="data-import.html"><a href="data-import.html#変数名の適切な読み込み"><i class="fa fa-check"></i><b>1.4.1</b> 変数名の適切な読み込み</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="data-import.html"><a href="data-import.html#xlsxファイルの読み込み"><i class="fa fa-check"></i><b>1.5</b> .xls[x]ファイルの読み込み</a><ul>
+<li class="chapter" data-level="1.5" data-path="data-import.html"><a href="data-import.html#xlsxファイルの読み込み"><i class="fa fa-check"></i><b>1.5</b> .xls[x]ファイルの読み込み</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="data-import.html"><a href="data-import.html#シートの選択"><i class="fa fa-check"></i><b>1.5.1</b> シートの選択</a></li>
 <li class="chapter" data-level="1.5.2" data-path="data-import.html"><a href="data-import.html#変数名の適切な読み込み-again"><i class="fa fa-check"></i><b>1.5.2</b> 変数名の適切な読み込み (again)</a></li>
 <li class="chapter" data-level="1.5.3" data-path="data-import.html"><a href="data-import.html#欠損値の処理"><i class="fa fa-check"></i><b>1.5.3</b> 欠損値の処理</a></li>
@@ -177,19 +187,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.9" data-path="data-import.html"><a href="data-import.html#データの書き出し"><i class="fa fa-check"></i><b>1.9</b> データの書き出し</a></li>
 <li class="chapter" data-level="1.10" data-path="data-import.html"><a href="data-import.html#データフレームの作成"><i class="fa fa-check"></i><b>1.10</b> データフレームの作成</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の選択</a><ul>
+<li class="chapter" data-level="2" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の選択</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="select-vars.html"><a href="select-vars.html#変数名による選択"><i class="fa fa-check"></i><b>2.1</b> 変数名による選択</a></li>
 <li class="chapter" data-level="2.2" data-path="select-vars.html"><a href="select-vars.html#番号による選択"><i class="fa fa-check"></i><b>2.2</b> 番号による選択</a></li>
 <li class="chapter" data-level="2.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更"><i class="fa fa-check"></i><b>2.3</b> 変数名の変更</a></li>
 <li class="chapter" data-level="2.4" data-path="select-vars.html"><a href="select-vars.html#高度な変数の選択方法"><i class="fa fa-check"></i><b>2.4</b> 高度な変数の選択方法*</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>3</b> 変数の作成</a><ul>
+<li class="chapter" data-level="3" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>3</b> 変数の作成</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="create-vars.html"><a href="create-vars.html#四則演算"><i class="fa fa-check"></i><b>3.1</b> 四則演算</a></li>
 <li class="chapter" data-level="3.2" data-path="create-vars.html"><a href="create-vars.html#条件に基づく変数"><i class="fa fa-check"></i><b>3.2</b> 条件に基づく変数</a></li>
 <li class="chapter" data-level="3.3" data-path="create-vars.html"><a href="create-vars.html#ラグ変数"><i class="fa fa-check"></i><b>3.3</b> ラグ変数*</a></li>
 <li class="chapter" data-level="3.4" data-path="create-vars.html"><a href="create-vars.html#日付変数"><i class="fa fa-check"></i><b>3.4</b> 日付変数*</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>4</b> 観察の選択</a><ul>
+<li class="chapter" data-level="4" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>4</b> 観察の選択</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="select-obs.html"><a href="select-obs.html#数値の大小による選択"><i class="fa fa-check"></i><b>4.1</b> 数値の大小による選択</a></li>
 <li class="chapter" data-level="4.2" data-path="select-obs.html"><a href="select-obs.html#一致不一致による選択"><i class="fa fa-check"></i><b>4.2</b> 一致・不一致による選択</a></li>
 <li class="chapter" data-level="4.3" data-path="select-obs.html"><a href="select-obs.html#または"><i class="fa fa-check"></i><b>4.3</b> 「または」</a></li>
@@ -199,43 +212,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7" data-path="select-obs.html"><a href="select-obs.html#観察の並び替え"><i class="fa fa-check"></i><b>4.7</b> 観察の並び替え</a></li>
 <li class="chapter" data-level="4.8" data-path="select-obs.html"><a href="select-obs.html#ベクトルの選択"><i class="fa fa-check"></i><b>4.8</b> ベクトルの選択*</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a><ul>
+<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="data-combine.html"><a href="data-combine.html#行方向の結合"><i class="fa fa-check"></i><b>5.1</b> 行方向の結合</a></li>
-<li class="chapter" data-level="5.2" data-path="data-combine.html"><a href="data-combine.html#列方向の結合"><i class="fa fa-check"></i><b>5.2</b> 列方向の結合</a><ul>
+<li class="chapter" data-level="5.2" data-path="data-combine.html"><a href="data-combine.html#列方向の結合"><i class="fa fa-check"></i><b>5.2</b> 列方向の結合</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="data-combine.html"><a href="data-combine.html#観察の選択"><i class="fa fa-check"></i><b>5.2.1</b> 観察の選択*＊</a></li>
 <li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a><ul>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
 <li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
 <li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
-<li class="chapter" data-level="6.4" data-path="missing-values.html"><a href="missing-values.html#欠損値がある場合の分析"><i class="fa fa-check"></i><b>6.4</b> 欠損値がある場合の分析*</a><ul>
+<li class="chapter" data-level="6.4" data-path="missing-values.html"><a href="missing-values.html#欠損値がある場合の分析"><i class="fa fa-check"></i><b>6.4</b> 欠損値がある場合の分析*</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="missing-values.html"><a href="missing-values.html#一変数の記述統計"><i class="fa fa-check"></i><b>6.4.1</b> 一変数の記述統計</a></li>
 <li class="chapter" data-level="6.4.2" data-path="missing-values.html"><a href="missing-values.html#二変数の記述統計"><i class="fa fa-check"></i><b>6.4.2</b> 二変数の記述統計</a></li>
 <li class="chapter" data-level="6.4.3" data-path="missing-values.html"><a href="missing-values.html#回帰分析"><i class="fa fa-check"></i><b>6.4.3</b> 回帰分析</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="missing-values.html"><a href="missing-values.html#欠損値のクラス"><i class="fa fa-check"></i><b>6.5</b> 欠損値のクラス*</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>7</b> ロング・ワイドの変換</a><ul>
-<li class="chapter" data-level="7.1" data-path="reshape.html"><a href="reshape.html#パネルデータ"><i class="fa fa-check"></i><b>7.1</b> パネルデータ</a><ul>
+<li class="chapter" data-level="7" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>7</b> ロング・ワイドの変換</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="reshape.html"><a href="reshape.html#パネルデータ"><i class="fa fa-check"></i><b>7.1</b> パネルデータ</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="reshape.html"><a href="reshape.html#ワイド形式"><i class="fa fa-check"></i><b>7.1.1</b> ワイド形式</a></li>
 <li class="chapter" data-level="7.1.2" data-path="reshape.html"><a href="reshape.html#ロング形式"><i class="fa fa-check"></i><b>7.1.2</b> ロング形式</a></li>
 <li class="chapter" data-level="7.1.3" data-path="reshape.html"><a href="reshape.html#前処理"><i class="fa fa-check"></i><b>7.1.3</b> 前処理</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="reshape.html"><a href="reshape.html#ループによる方法"><i class="fa fa-check"></i><b>7.2</b> ループによる方法</a><ul>
+<li class="chapter" data-level="7.2" data-path="reshape.html"><a href="reshape.html#ループによる方法"><i class="fa fa-check"></i><b>7.2</b> ループによる方法</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="reshape.html"><a href="reshape.html#for文"><i class="fa fa-check"></i><b>7.2.1</b> for文</a></li>
 <li class="chapter" data-level="7.2.2" data-path="reshape.html"><a href="reshape.html#時点の選択による方法"><i class="fa fa-check"></i><b>7.2.2</b> 時点の選択による方法</a></li>
 <li class="chapter" data-level="7.2.3" data-path="reshape.html"><a href="reshape.html#ユニットの選択による方法"><i class="fa fa-check"></i><b>7.2.3</b> ユニットの選択による方法</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="reshape.html"><a href="reshape.html#tidyverseな方法"><i class="fa fa-check"></i><b>7.3</b> tidyverseな方法</a><ul>
+<li class="chapter" data-level="7.3" data-path="reshape.html"><a href="reshape.html#tidyverseな方法"><i class="fa fa-check"></i><b>7.3</b> tidyverseな方法</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="reshape.html"><a href="reshape.html#ワイドからロングへ"><i class="fa fa-check"></i><b>7.3.1</b> ワイドからロングへ</a></li>
 <li class="chapter" data-level="7.3.2" data-path="reshape.html"><a href="reshape.html#パイプ"><i class="fa fa-check"></i><b>7.3.2</b> パイプ</a></li>
 <li class="chapter" data-level="7.3.3" data-path="reshape.html"><a href="reshape.html#tidyverseの利点"><i class="fa fa-check"></i><b>7.3.3</b> tidyverseの利点</a></li>
 <li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a><ul>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
 <li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
 <li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
@@ -243,9 +265,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="qualtrics.html"><a href="qualtrics.html#おまけ"><i class="fa fa-check"></i><b>8.5</b> おまけ</a></li>
 </ul></li>
 <li class="part"><span><b>II データの可視化</b></span></li>
-<li class="chapter" data-level="9" data-path="desc-stats.html"><a href="desc-stats.html"><i class="fa fa-check"></i><b>9</b> データの要約</a><ul>
+<li class="chapter" data-level="9" data-path="desc-stats.html"><a href="desc-stats.html"><i class="fa fa-check"></i><b>9</b> データの要約</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="desc-stats.html"><a href="desc-stats.html#データを見る"><i class="fa fa-check"></i><b>9.1</b> データを見る</a></li>
-<li class="chapter" data-level="9.2" data-path="desc-stats.html"><a href="desc-stats.html#記述統計"><i class="fa fa-check"></i><b>9.2</b> 記述統計</a><ul>
+<li class="chapter" data-level="9.2" data-path="desc-stats.html"><a href="desc-stats.html#記述統計"><i class="fa fa-check"></i><b>9.2</b> 記述統計</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="desc-stats.html"><a href="desc-stats.html#平均"><i class="fa fa-check"></i><b>9.2.1</b> 平均</a></li>
 <li class="chapter" data-level="9.2.2" data-path="desc-stats.html"><a href="desc-stats.html#分散と標準偏差"><i class="fa fa-check"></i><b>9.2.2</b> 分散と標準偏差</a></li>
 <li class="chapter" data-level="9.2.3" data-path="desc-stats.html"><a href="desc-stats.html#分位点"><i class="fa fa-check"></i><b>9.2.3</b> 分位点</a></li>
@@ -255,13 +279,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="desc-stats.html"><a href="desc-stats.html#グループごとの要約"><i class="fa fa-check"></i><b>9.4</b> グループごとの要約</a></li>
 <li class="chapter" data-level="9.5" data-path="desc-stats.html"><a href="desc-stats.html#ユニークなデータ"><i class="fa fa-check"></i><b>9.5</b> ユニークなデータ*</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="visual-dist.html"><a href="visual-dist.html"><i class="fa fa-check"></i><b>10</b> 分布のグラフ</a><ul>
+<li class="chapter" data-level="10" data-path="visual-dist.html"><a href="visual-dist.html"><i class="fa fa-check"></i><b>10</b> 分布のグラフ</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="visual-dist.html"><a href="visual-dist.html#ヒストグラム"><i class="fa fa-check"></i><b>10.1</b> ヒストグラム</a></li>
 <li class="chapter" data-level="10.2" data-path="visual-dist.html"><a href="visual-dist.html#カーネル密度"><i class="fa fa-check"></i><b>10.2</b> カーネル密度</a></li>
 <li class="chapter" data-level="10.3" data-path="visual-dist.html"><a href="visual-dist.html#棒グラフ"><i class="fa fa-check"></i><b>10.3</b> 棒グラフ</a></li>
 <li class="chapter" data-level="10.4" data-path="visual-dist.html"><a href="visual-dist.html#グループごとの分布"><i class="fa fa-check"></i><b>10.4</b> グループごとの分布</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="visual-cor.html"><a href="visual-cor.html"><i class="fa fa-check"></i><b>11</b> 相関のグラフ</a><ul>
+<li class="chapter" data-level="11" data-path="visual-cor.html"><a href="visual-cor.html"><i class="fa fa-check"></i><b>11</b> 相関のグラフ</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="visual-cor.html"><a href="visual-cor.html#散布図"><i class="fa fa-check"></i><b>11.1</b> 散布図</a></li>
 <li class="chapter" data-level="11.2" data-path="visual-cor.html"><a href="visual-cor.html#カーネル密度-1"><i class="fa fa-check"></i><b>11.2</b> カーネル密度</a></li>
 <li class="chapter" data-level="11.3" data-path="visual-cor.html"><a href="visual-cor.html#ジッター"><i class="fa fa-check"></i><b>11.3</b> ジッター</a></li>
@@ -270,28 +296,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.6" data-path="visual-cor.html"><a href="visual-cor.html#グループごとの相関"><i class="fa fa-check"></i><b>11.6</b> グループごとの相関</a></li>
 <li class="chapter" data-level="11.7" data-path="visual-cor.html"><a href="visual-cor.html#単回帰"><i class="fa fa-check"></i><b>11.7</b> 単回帰</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="visual-ts.html"><a href="visual-ts.html"><i class="fa fa-check"></i><b>12</b> 時系列のグラフ</a><ul>
+<li class="chapter" data-level="12" data-path="visual-ts.html"><a href="visual-ts.html"><i class="fa fa-check"></i><b>12</b> 時系列のグラフ</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="visual-ts.html"><a href="visual-ts.html#折れ線グラフ"><i class="fa fa-check"></i><b>12.1</b> 折れ線グラフ</a></li>
 <li class="chapter" data-level="12.2" data-path="visual-ts.html"><a href="visual-ts.html#エラーバー"><i class="fa fa-check"></i><b>12.2</b> エラーバー</a></li>
 <li class="chapter" data-level="12.3" data-path="visual-ts.html"><a href="visual-ts.html#グループごとの時系列"><i class="fa fa-check"></i><b>12.3</b> グループごとの時系列</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="visual-map.html"><a href="visual-map.html"><i class="fa fa-check"></i><b>13</b> 地図のグラフ</a><ul>
-<li class="chapter" data-level="13.1" data-path="visual-map.html"><a href="visual-map.html#地図"><i class="fa fa-check"></i><b>13.1</b> 地図</a><ul>
+<li class="chapter" data-level="13" data-path="visual-map.html"><a href="visual-map.html"><i class="fa fa-check"></i><b>13</b> 地図のグラフ</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="visual-map.html"><a href="visual-map.html#地図"><i class="fa fa-check"></i><b>13.1</b> 地図</a>
+<ul>
 <li class="chapter" data-level="13.1.1" data-path="visual-map.html"><a href="visual-map.html#世界地図"><i class="fa fa-check"></i><b>13.1.1</b> 世界地図</a></li>
 <li class="chapter" data-level="13.1.2" data-path="visual-map.html"><a href="visual-map.html#日本地図"><i class="fa fa-check"></i><b>13.1.2</b> 日本地図</a></li>
 <li class="chapter" data-level="13.1.3" data-path="visual-map.html"><a href="visual-map.html#都道府県地図"><i class="fa fa-check"></i><b>13.1.3</b> 都道府県地図</a></li>
 </ul></li>
 <li class="chapter" data-level="13.2" data-path="visual-map.html"><a href="visual-map.html#地域の違い"><i class="fa fa-check"></i><b>13.2</b> 地域の違い</a></li>
 <li class="chapter" data-level="13.3" data-path="visual-map.html"><a href="visual-map.html#空間の分布"><i class="fa fa-check"></i><b>13.3</b> 空間の分布</a></li>
-<li class="chapter" data-level="13.4" data-path="visual-map.html"><a href="visual-map.html#データの繋がり"><i class="fa fa-check"></i><b>13.4</b> データの繋がり</a><ul>
+<li class="chapter" data-level="13.4" data-path="visual-map.html"><a href="visual-map.html#データの繋がり"><i class="fa fa-check"></i><b>13.4</b> データの繋がり</a>
+<ul>
 <li class="chapter" data-level="13.4.1" data-path="visual-map.html"><a href="visual-map.html#二点間の繋がりを見る"><i class="fa fa-check"></i><b>13.4.1</b> 二点間の繋がりを見る</a></li>
 <li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a><ul>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
 <li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
-<li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a><ul>
+<li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a>
+<ul>
 <li class="chapter" data-level="14.3.1" data-path="ggplot2.html"><a href="ggplot2.html#記述統計のグラフ"><i class="fa fa-check"></i><b>14.3.1</b> 記述統計のグラフ</a></li>
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="ggplot2.html"><a href="ggplot2.html#ラベル"><i class="fa fa-check"></i><b>14.4</b> ラベル</a></li>
@@ -300,8 +332,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.7" data-path="ggplot2.html"><a href="ggplot2.html#テキスト"><i class="fa fa-check"></i><b>14.7</b> テキスト</a></li>
 </ul></li>
 <li class="part"><span><b>III データの収集</b></span></li>
-<li class="chapter" data-level="15" data-path="twitter-data.html"><a href="twitter-data.html"><i class="fa fa-check"></i><b>15</b> Twitterデータ</a><ul>
-<li class="chapter" data-level="15.1" data-path="twitter-data.html"><a href="twitter-data.html#事前準備"><i class="fa fa-check"></i><b>15.1</b> 事前準備</a><ul>
+<li class="chapter" data-level="15" data-path="twitter-data.html"><a href="twitter-data.html"><i class="fa fa-check"></i><b>15</b> Twitterデータ</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="twitter-data.html"><a href="twitter-data.html#事前準備"><i class="fa fa-check"></i><b>15.1</b> 事前準備</a>
+<ul>
 <li class="chapter" data-level="15.1.1" data-path="twitter-data.html"><a href="twitter-data.html#twitterアカウントの作成"><i class="fa fa-check"></i><b>15.1.1</b> Twitterアカウントの作成</a></li>
 <li class="chapter" data-level="15.1.2" data-path="twitter-data.html"><a href="twitter-data.html#認証"><i class="fa fa-check"></i><b>15.1.2</b> 認証</a></li>
 </ul></li>
@@ -309,22 +343,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.3" data-path="twitter-data.html"><a href="twitter-data.html#ユーザーによるツイートの取得"><i class="fa fa-check"></i><b>15.3</b> ユーザーによるツイートの取得</a></li>
 <li class="chapter" data-level="15.4" data-path="twitter-data.html"><a href="twitter-data.html#言語によるツイートの取得"><i class="fa fa-check"></i><b>15.4</b> 言語によるツイートの取得</a></li>
 <li class="chapter" data-level="15.5" data-path="twitter-data.html"><a href="twitter-data.html#地域によるツイートの取得"><i class="fa fa-check"></i><b>15.5</b> 地域によるツイートの取得</a></li>
-<li class="chapter" data-level="15.6" data-path="twitter-data.html"><a href="twitter-data.html#ライブストリームの取得"><i class="fa fa-check"></i><b>15.6</b> ライブストリームの取得</a><ul>
+<li class="chapter" data-level="15.6" data-path="twitter-data.html"><a href="twitter-data.html#ライブストリームの取得"><i class="fa fa-check"></i><b>15.6</b> ライブストリームの取得</a>
+<ul>
 <li class="chapter" data-level="15.6.1" data-path="twitter-data.html"><a href="twitter-data.html#地域のライブストリームの取得"><i class="fa fa-check"></i><b>15.6.1</b> 地域のライブストリームの取得</a></li>
 </ul></li>
 <li class="chapter" data-level="15.7" data-path="twitter-data.html"><a href="twitter-data.html#その他の情報の取得"><i class="fa fa-check"></i><b>15.7</b> その他の情報の取得</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>16</b> Googleデータ</a><ul>
+<li class="chapter" data-level="16" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>16</b> Googleデータ</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="google-data.html"><a href="google-data.html#はじめに"><i class="fa fa-check"></i><b>16.1</b> はじめに</a></li>
-<li class="chapter" data-level="16.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>16.2</b> 時系列トレンド</a><ul>
+<li class="chapter" data-level="16.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>16.2</b> 時系列トレンド</a>
+<ul>
 <li class="chapter" data-level="16.2.1" data-path="google-data.html"><a href="google-data.html#一つの単語"><i class="fa fa-check"></i><b>16.2.1</b> 一つの単語</a></li>
 <li class="chapter" data-level="16.2.2" data-path="google-data.html"><a href="google-data.html#複数の単語"><i class="fa fa-check"></i><b>16.2.2</b> 複数の単語</a></li>
 </ul></li>
 <li class="chapter" data-level="16.3" data-path="google-data.html"><a href="google-data.html#地域別のトレンド"><i class="fa fa-check"></i><b>16.3</b> 地域別のトレンド</a></li>
 <li class="chapter" data-level="16.4" data-path="google-data.html"><a href="google-data.html#関連単語"><i class="fa fa-check"></i><b>16.4</b> 関連単語</a></li>
 <li class="chapter" data-level="16.5" data-path="google-data.html"><a href="google-data.html#検索ヒット数"><i class="fa fa-check"></i><b>16.5</b> 検索ヒット数*</a></li>
+<li class="chapter" data-level="16.6" data-path="google-data.html"><a href="google-data.html#nグラム"><i class="fa fa-check"></i><b>16.6</b> Nグラム</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>17</b> Wikipediaデータ</a><ul>
+<li class="chapter" data-level="17" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>17</b> Wikipediaデータ</a>
+<ul>
 <li class="chapter" data-level="17.1" data-path="wikipedia-data.html"><a href="wikipedia-data.html#Trend"><i class="fa fa-check"></i><b>17.1</b> Wikipediaのトレンド</a></li>
 <li class="chapter" data-level="17.2" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の情報"><i class="fa fa-check"></i><b>17.2</b> Wikipediaの記事の情報</a></li>
 <li class="chapter" data-level="17.3" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事"><i class="fa fa-check"></i><b>17.3</b> Wikipediaの記事</a></li>
@@ -332,50 +371,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.5" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の作成日の取得"><i class="fa fa-check"></i><b>17.5</b> Wikipediaの記事の作成日の取得*</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="18" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>18</b> Rの分析環境</a><ul>
-<li class="chapter" data-level="18.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>18.1</b> Rのインストール</a><ul>
+<li class="chapter" data-level="18" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>18</b> Rの分析環境</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>18.1</b> Rのインストール</a>
+<ul>
 <li class="chapter" data-level="18.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>18.1.1</b> ダウンロード</a></li>
 <li class="chapter" data-level="18.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>18.1.2</b> インストール</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>18.2</b> RStudioのインストール</a><ul>
+<li class="chapter" data-level="18.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>18.2</b> RStudioのインストール</a>
+<ul>
 <li class="chapter" data-level="18.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>18.2.1</b> ダウンロード</a></li>
 <li class="chapter" data-level="18.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>18.2.2</b> インストール</a></li>
 <li class="chapter" data-level="18.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>18.2.3</b> RStudioの起動</a></li>
 <li class="chapter" data-level="18.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>18.2.4</b> RStudio Cloud*</a></li>
 </ul></li>
-<li class="chapter" data-level="18.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>18.3</b> 再現可能な分析のために</a><ul>
+<li class="chapter" data-level="18.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>18.3</b> 再現可能な分析のために</a>
+<ul>
 <li class="chapter" data-level="18.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>18.3.1</b> Rスクリプト</a></li>
 <li class="chapter" data-level="18.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>18.3.2</b> Rプロジェクト</a></li>
 <li class="chapter" data-level="18.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>18.3.3</b> RStudioの設定*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング入門</a><ul>
-<li class="chapter" data-level="19.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>19.1</b> 関数</a><ul>
+<li class="chapter" data-level="19" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング入門</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>19.1</b> 関数</a>
+<ul>
 <li class="chapter" data-level="19.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>19.1.1</b> 総称関数*</a></li>
 </ul></li>
 <li class="chapter" data-level="19.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>19.2</b> オブジェクト</a></li>
-<li class="chapter" data-level="19.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>19.3</b> パッケージ</a><ul>
+<li class="chapter" data-level="19.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>19.3</b> パッケージ</a>
+<ul>
 <li class="chapter" data-level="19.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>19.3.1</b> CRANからのインストール</a></li>
 <li class="chapter" data-level="19.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>19.3.2</b> GitHubからのインストール*</a></li>
 <li class="chapter" data-level="19.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>19.3.3</b> パッケージの読み込み</a></li>
 <li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a><ul>
+<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a>
+<ul>
 <li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
 <li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
 <li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
 <li class="chapter" data-level="20.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>20.4</b> 条件分岐</a></li>
-<li class="chapter" data-level="20.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>20.5</b> 練習問題</a><ul>
+<li class="chapter" data-level="20.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>20.5</b> 練習問題</a>
+<ul>
 <li class="chapter" data-level="20.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>20.5.1</b> フィボナッチ数列</a></li>
 <li class="chapter" data-level="20.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>20.5.2</b> モンテカルロ・シミュレーション</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>21</b> R Markdown: html</a><ul>
-<li class="chapter" data-level="21.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>21.1</b> R Markdownファイルの作成</a><ul>
+<li class="chapter" data-level="21" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>21</b> R Markdown: html</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>21.1</b> R Markdownファイルの作成</a>
+<ul>
 <li class="chapter" data-level="21.1.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>21.1.1</b> 参考になるサイト</a></li>
 </ul></li>
-<li class="chapter" data-level="21.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>21.2</b> Markdown記法</a><ul>
+<li class="chapter" data-level="21.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>21.2</b> Markdown記法</a>
+<ul>
 <li class="chapter" data-level="21.2.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdownとは"><i class="fa fa-check"></i><b>21.2.1</b> Markdownとは*</a></li>
 <li class="chapter" data-level="21.2.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#セクション"><i class="fa fa-check"></i><b>21.2.2</b> セクション</a></li>
 <li class="chapter" data-level="21.2.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>21.2.3</b> パラグラフ</a></li>
@@ -386,16 +437,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.2.8" data-path="r-markdown-html.html"><a href="r-markdown-html.html#画像表"><i class="fa fa-check"></i><b>21.2.8</b> 画像、表</a></li>
 <li class="chapter" data-level="21.2.9" data-path="r-markdown-html.html"><a href="r-markdown-html.html#数式"><i class="fa fa-check"></i><b>21.2.9</b> 数式</a></li>
 </ul></li>
-<li class="chapter" data-level="21.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>21.3</b> Rチャンク</a><ul>
+<li class="chapter" data-level="21.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>21.3</b> Rチャンク</a>
+<ul>
 <li class="chapter" data-level="21.3.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>21.3.1</b> チャンクオプション</a></li>
 </ul></li>
-<li class="chapter" data-level="21.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>21.4</b> yamlヘッダー</a><ul>
+<li class="chapter" data-level="21.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>21.4</b> yamlヘッダー</a>
+<ul>
 <li class="chapter" data-level="21.4.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#output"><i class="fa fa-check"></i><b>21.4.1</b> output</a></li>
 <li class="chapter" data-level="21.4.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#目次"><i class="fa fa-check"></i><b>21.4.2</b> 目次</a></li>
 <li class="chapter" data-level="21.4.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#テーマ-1"><i class="fa fa-check"></i><b>21.4.3</b> テーマ</a></li>
 <li class="chapter" data-level="21.4.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>21.4.4</b> htmlとcss</a></li>
 </ul></li>
-<li class="chapter" data-level="21.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>21.5</b> その他のテンプレート</a><ul>
+<li class="chapter" data-level="21.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>21.5</b> その他のテンプレート</a>
+<ul>
 <li class="chapter" data-level="21.5.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#distill"><i class="fa fa-check"></i><b>21.5.1</b> Distill</a></li>
 <li class="chapter" data-level="21.5.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>21.5.2</b> Tufte Handout</a></li>
 <li class="chapter" data-level="21.5.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rmdformats"><i class="fa fa-check"></i><b>21.5.3</b> rmdformats</a></li>
@@ -404,53 +458,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a><ul>
-<li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a><ul>
+<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a>
+<ul>
 <li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
 <li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
 </ul></li>
-<li class="chapter" data-level="22.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>22.2</b> 日本語環境の構築</a><ul>
+<li class="chapter" data-level="22.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>22.2</b> 日本語環境の構築</a>
+<ul>
 <li class="chapter" data-level="22.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>22.2.1</b> LaTeXエンジンのあれこれ*</a></li>
 <li class="chapter" data-level="22.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>22.2.2</b> yamlヘッダー</a></li>
 <li class="chapter" data-level="22.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>22.2.3</b> フォントのインストール</a></li>
 <li class="chapter" data-level="22.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>22.2.4</b> その他のテンプレート</a></li>
 <li class="chapter" data-level="22.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>22.2.5</b> Sumatra PDF</a></li>
 </ul></li>
-<li class="chapter" data-level="22.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>22.3</b> スライドの作成</a><ul>
+<li class="chapter" data-level="22.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>22.3</b> スライドの作成</a>
+<ul>
 <li class="chapter" data-level="22.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-2"><i class="fa fa-check"></i><b>22.3.1</b> テーマ</a></li>
 </ul></li>
-<li class="chapter" data-level="22.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>22.4</b> LaTeX記法</a><ul>
+<li class="chapter" data-level="22.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>22.4</b> LaTeX記法</a>
+<ul>
 <li class="chapter" data-level="22.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>22.4.1</b> 定理環境</a></li>
 <li class="chapter" data-level="22.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>22.4.2</b> 数式</a></li>
 </ul></li>
-<li class="chapter" data-level="22.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>22.5</b> 参考文献と引用</a><ul>
+<li class="chapter" data-level="22.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>22.5</b> 参考文献と引用</a>
+<ul>
 <li class="chapter" data-level="22.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>22.5.1</b> .bibファイル</a></li>
 <li class="chapter" data-level="22.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>22.5.2</b> 文献の引用</a></li>
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a><ul>
-<li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a>
+<ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
 </ul></li>
-<li class="chapter" data-level="23.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>23.2</b> Rスクリプトの文字化け</a><ul>
+<li class="chapter" data-level="23.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>23.2</b> Rスクリプトの文字化け</a>
+<ul>
 <li class="chapter" data-level="23.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>23.2.1</b> ファイルを開く</a></li>
 <li class="chapter" data-level="23.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>23.2.2</b> ファイルを保存する</a></li>
 </ul></li>
-<li class="chapter" data-level="23.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>23.3</b> データの文字化け</a><ul>
+<li class="chapter" data-level="23.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>23.3</b> データの文字化け</a>
+<ul>
 <li class="chapter" data-level="23.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>23.3.1</b> 標準関数の場合</a></li>
 <li class="chapter" data-level="23.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>23.3.2</b> tidyverseの場合</a></li>
 <li class="chapter" data-level="23.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>23.3.3</b> エンコーディングを確認する方法</a></li>
 <li class="chapter" data-level="23.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>23.3.4</b> もとのデータを見たい場合</a></li>
 <li class="chapter" data-level="23.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>23.3.5</b> データを保存する場合</a></li>
 </ul></li>
-<li class="chapter" data-level="23.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>23.4</b> その他の問題</a><ul>
+<li class="chapter" data-level="23.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>23.4</b> その他の問題</a>
+<ul>
 <li class="chapter" data-level="23.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>23.4.1</b> アカウント名が日本語の場合</a></li>
 <li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a><ul>
+<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a>
+<ul>
 <li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
 <li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
@@ -478,14 +544,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="encoding-r" class="section level1">
+<div id="encoding-r" class="section level1" number="23">
 <h1><span class="header-section-number">第23章</span> Rのエンコーディング問題</h1>
 <p>Rに限らず文字化けはPCにおいてしばしば起こる問題です。
 平たく言ってしまうと、PCでは文字にコードが付与されており、機械がコードを読み取って文字を表示します。
 そのコードと文字の対応関係をエンコーディングと呼び、異なるエンコーディングでデータを読み込むと文字化けが起こります。</p>
-<div id="なぜ文字化けが起こるのか" class="section level2">
+<div id="なぜ文字化けが起こるのか" class="section level2" number="23.1">
 <h2><span class="header-section-number">23.1</span> なぜ文字化けが起こるのか</h2>
-<div id="エンコーディング" class="section level3">
+<div id="エンコーディング" class="section level3" number="23.1.1">
 <h3><span class="header-section-number">23.1.1</span> エンコーディング</h3>
 <p>実用上、日本語で文字化けが起こる問題の大半は</p>
 <ul>
@@ -496,7 +562,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><code>UTF-8</code>の<code>U</code>は<code>unicode</code>であることからも分かるように、世界で共通の規格として作られているエンコーディング方式になります。
 なので、RおよびRStudioでは日本語独自の<code>Shift-JIS</code>ではなく<code>UTF-8</code>を使うようにしたほうがよいでしょう。</p>
 </div>
-<div id="rとrstudioにおける問題" class="section level3">
+<div id="rとrstudioにおける問題" class="section level3" number="23.1.2">
 <h3><span class="header-section-number">23.1.2</span> RとRStudioにおける問題</h3>
 <p>RとRStudioで文字化けが起こる問題は大きく2つに分けられます。</p>
 <ol style="list-style-type: decimal">
@@ -506,12 +572,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>以下では、それぞれの問題の対処法を紹介します。</p>
 </div>
 </div>
-<div id="rスクリプトの文字化け" class="section level2">
+<div id="rスクリプトの文字化け" class="section level2" number="23.2">
 <h2><span class="header-section-number">23.2</span> Rスクリプトの文字化け</h2>
 <p>Rスクリプトが文字化けしている場合はRStudiで対処します。
 例として<a href="script/script_utf8.R"><code>UTF-8</code>でエンコードしたRスクリプト</a>と<a href="script/script_sjis.R"><code>Shift-JIS</code>でエンコードしたRスクリプト</a>をRStudioで開いてみてください。
 （設定を変更していなければ）Windowsの場合は前者が、Linux/Macの人は後者が文字化けしているはずです。</p>
-<div id="ファイルを開く" class="section level3">
+<div id="ファイルを開く" class="section level3" number="23.2.1">
 <h3><span class="header-section-number">23.2.1</span> ファイルを開く</h3>
 <p>まず、デフォルトを<code>UTF-8</code>に変更しましょう。
 メニューの中の<code>File</code>に<code>Reopen with Encoding...</code>というのがあるので、<code>UTF-8</code>を選択します。
@@ -521,53 +587,65 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>そのような場合には<code>Reopen with Encoding...</code>で適当なエンコーディングを選択します。
 例えば、<code>Shift-JIS</code>を選択すると正しく表示されるはずです。</p>
 </div>
-<div id="ファイルを保存する" class="section level3">
+<div id="ファイルを保存する" class="section level3" number="23.2.2">
 <h3><span class="header-section-number">23.2.2</span> ファイルを保存する</h3>
 <p>自分で作成したRスクリプトを保存する際にはメニューの<code>File</code>の中の<code>Save with Encoding...</code>で<code>UTF-8</code>を選択してください。
 ここでも<code>UTF-8</code>がデフォルトになるようにチェックを入れておきましょう。</p>
 </div>
 </div>
-<div id="データの文字化け" class="section level2">
+<div id="データの文字化け" class="section level2" number="23.3">
 <h2><span class="header-section-number">23.3</span> データの文字化け</h2>
 <p>データが文字化けしているときはRで対処します。
 <a href="data/data_utf8.csv"><code>UTF-8</code>でエンコーディングしたデータ</a>と<a href="data/data_sjis.csv"><code>Shift-JIS</code>でエンコーディングしたデータ</a>をそれぞれ読み込んでみてください。
 やはりWindowsでは前者が、Linux/Macでは後者が文字化けをしているはずです。</p>
-<div class="sourceCode" id="cb646"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb646-1"><a href="encoding-r.html#cb646-1"></a><span class="kw">read.csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="encoding-r.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["member"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"イヌ"},{"1":"サル"},{"1":"キジ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="encoding-r.html#cb647-1"></a><span class="kw">read.csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="encoding-r.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Error in type.convert.default(data[[i]], as.is = as.is[i], dec = dec, : invalid multibyte string at &#39;&lt;83&gt;C&lt;83&gt;k&#39;</code></pre>
 <ul>
 <li>僕はLinuxを使っているので後者が文字化けを起こしてエラーが出ています。</li>
 </ul>
-<div id="標準関数の場合" class="section level3">
+<div id="標準関数の場合" class="section level3" number="23.3.1">
 <h3><span class="header-section-number">23.3.1</span> 標準関数の場合</h3>
 <p>標準関数の場合、<code>fileEncoding</code>というオプションでエンコーディングを指定します。</p>
-<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="encoding-r.html#cb649-1"></a><span class="kw">read.csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>, <span class="dt">fileEncoding =</span> <span class="st">&quot;utf8&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="encoding-r.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;utf8&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["member"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"イヌ"},{"1":"サル"},{"1":"キジ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb650"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb650-1"><a href="encoding-r.html#cb650-1"></a><span class="kw">read.csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>, <span class="dt">fileEncoding =</span> <span class="st">&quot;shift-jis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="encoding-r.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;shift-jis&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["member"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"イヌ"},{"1":"サル"},{"1":"キジ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
+<ul>
+<li><code>utf8</code>を指定しても不正なマルチバイト (invalid multibyte) があるとエラーが出る場合、<code>UTF-8=BOM</code>とするとうまくいきます。</li>
+</ul>
 </div>
-<div id="tidyverseの場合" class="section level3">
+<div id="tidyverseの場合" class="section level3" number="23.3.2">
 <h3><span class="header-section-number">23.3.2</span> tidyverseの場合</h3>
 <p><code>tidyverse</code>の<code>readr</code>の場合は<code>locale</code>で指定します。</p>
 <ul>
 <li><code>readr</code>は<code>tidyverse</code>に含まれているので、<code>tidyverse</code>を読み込んだ場合は、別途読み込む必要はありません。</li>
 </ul>
-<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="encoding-r.html#cb651-1"></a><span class="kw">library</span>(tidyverse)</span>
-<span id="cb651-2"><a href="encoding-r.html#cb651-2"></a><span class="kw">read_csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>, <span class="dt">locale =</span> <span class="kw">locale</span>(<span class="dt">encoding =</span> <span class="st">&quot;utf8&quot;</span>))</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="encoding-r.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
+<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
+## ✓ tibble  3.1.2     ✓ dplyr   1.0.6
+## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
+## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
+<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+## x dplyr::filter() masks stats::filter()
+## x dplyr::lag()    masks stats::lag()</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="encoding-r.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;utf8&quot;</span>))</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   member = col_character()
 ## )</code></pre>
@@ -576,8 +654,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 {"columns":[{"label":["member"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"イヌ"},{"1":"サル"},{"1":"キジ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="encoding-r.html#cb653-1"></a><span class="kw">read_csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>, <span class="dt">locale =</span> <span class="kw">locale</span>(<span class="dt">encoding =</span> <span class="st">&quot;shift-jis&quot;</span>))</span></code></pre></div>
-<pre><code>## Parsed with column specification:
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="encoding-r.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;shift-jis&quot;</span>))</span></code></pre></div>
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
 ## cols(
 ##   member = col_character()
 ## )</code></pre>
@@ -587,41 +666,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </script>
 </div>
 </div>
-<div id="エンコーディングを確認する方法" class="section level3">
+<div id="エンコーディングを確認する方法" class="section level3" number="23.3.3">
 <h3><span class="header-section-number">23.3.3</span> エンコーディングを確認する方法</h3>
 <p><code>readr</code>の<code>guess_encoding()</code>という関数を使うと、どのようなエンコーディングがされているかを推測します。</p>
-<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="encoding-r.html#cb655-1"></a><span class="kw">guess_encoding</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="encoding-r.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["encoding"],"name":[1],"type":["chr"],"align":["left"]},{"label":["language"],"name":[2],"type":["chr"],"align":["left"]},{"label":["confidence"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"ISO-8859-1","2":"it","3":"0.50"},{"1":"ISO-8859-2","2":"ro","3":"0.16"},{"1":"ISO-8859-9","2":"tr","3":"0.16"},{"1":"UTF-8","2":"","3":"0.15"},{"1":"UTF-16BE","2":"","3":"0.10"},{"1":"UTF-16LE","2":"","3":"0.10"},{"1":"Shift_JIS","2":"ja","3":"0.10"},{"1":"GB18030","2":"zh","3":"0.10"},{"1":"EUC-JP","2":"ja","3":"0.10"},{"1":"EUC-KR","2":"ko","3":"0.10"},{"1":"Big5","2":"zh","3":"0.10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["encoding"],"name":[1],"type":["chr"],"align":["left"]},{"label":["confidence"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"UTF-8","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb656"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb656-1"><a href="encoding-r.html#cb656-1"></a><span class="kw">guess_encoding</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="encoding-r.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["encoding"],"name":[1],"type":["chr"],"align":["left"]},{"label":["language"],"name":[2],"type":["chr"],"align":["left"]},{"label":["confidence"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"ISO-8859-1","2":"it","3":"0.63"},{"1":"ISO-8859-2","2":"hu","3":"0.31"},{"1":"UTF-8","2":"","3":"0.15"},{"1":"ISO-8859-9","2":"tr","3":"0.15"},{"1":"UTF-16BE","2":"","3":"0.10"},{"1":"UTF-16LE","2":"","3":"0.10"},{"1":"Shift_JIS","2":"ja","3":"0.10"},{"1":"GB18030","2":"zh","3":"0.10"},{"1":"EUC-JP","2":"ja","3":"0.10"},{"1":"EUC-KR","2":"ko","3":"0.10"},{"1":"Big5","2":"zh","3":"0.10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["encoding"],"name":[1],"type":["chr"],"align":["left"]},{"label":["confidence"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"windows-1252","2":"0.35"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <ul>
 <li><code>windows-1215</code>というのはCP1215とも呼ばれるエンコーディングで、Shift-JISの親戚のようなものです（きっと）。</li>
 </ul>
 </div>
-<div id="もとのデータを見たい場合" class="section level3">
+<div id="もとのデータを見たい場合" class="section level3" number="23.3.4">
 <h3><span class="header-section-number">23.3.4</span> もとのデータを見たい場合</h3>
 <p>しばしばRではなく直接データを見たいときがあります。
 そのような場合は、<a href="https://ja.libreoffice.org/">LibreOffice</a>のCalcというソフトで開くとエンコーディングを指定することができます。</p>
 </div>
-<div id="データを保存する場合" class="section level3">
+<div id="データを保存する場合" class="section level3" number="23.3.5">
 <h3><span class="header-section-number">23.3.5</span> データを保存する場合</h3>
 <p>データを書き出す場合、<code>UTF-8</code>で行うのが望ましいですが、そうするとWindowsからExcelなどで開いた場合に文字化けしてしまいます。
 それを回避するために、<code>readr</code>の<code>write_excel_csv()</code>を使うとエクセルで開いても文字化けしません。</p>
 </div>
 </div>
-<div id="Others" class="section level2">
+<div id="Others" class="section level2" number="23.4">
 <h2><span class="header-section-number">23.4</span> その他の問題</h2>
-<div id="アカウント名が日本語の場合" class="section level3">
+<div id="アカウント名が日本語の場合" class="section level3" number="23.4.1">
 <h3><span class="header-section-number">23.4.1</span> アカウント名が日本語の場合</h3>
-<p>Windowsでアカウント名が日本語の場合、パスを通すときにエラーが出てくる場合があります。
+<p>~Windowsでアカウント名が日本語の場合、パスを通すときにエラーが出てくる場合があります。
 そのような場合は、</p>
 <ol style="list-style-type: decimal">
 <li>新しいアカウントを作成する。</li>
@@ -633,15 +712,16 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>デュアルブートをする。</li>
 </ol></li>
 </ol>
-<p>といった選択肢が考えられます（下に行くほど難易度が高い）。</p>
+<p>といった選択肢が考えられます（下に行くほど難易度が高い）。~</p>
+<p>矢内先生の<a href="https://yukiyanai.github.io/jp/resources/">RとRStudioのインストール方法</a>の資料を見てください！</p>
 </div>
-<div id="画像で日本語が文字化けする場合" class="section level3">
+<div id="画像で日本語が文字化けする場合" class="section level3" number="23.4.2">
 <h3><span class="header-section-number">23.4.2</span> 画像で日本語が文字化けする場合</h3>
-<p>Macで画像を出力する際に日本語が文字化けすることがあります。
+<p>Macで画像を出力する際に日本語が文字化け（というか豆腐化）することがあります。
 <code>plot()</code>の場合は、</p>
-<div class="sourceCode" id="cb657"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb657-1"><a href="encoding-r.html#cb657-1"></a><span class="kw">par</span>(<span class="dt">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="encoding-r.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)</span></code></pre></div>
 <p><code>ggplot2</code>の場合は、</p>
-<div class="sourceCode" id="cb658"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb658-1"><a href="encoding-r.html#cb658-1"></a><span class="kw">theme</span>(<span class="dt">base_family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="encoding-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)</span></code></pre></div>
 <p>とするらしいです（Macは使ったことがないので分かりません）。</p>
 <ul>
 <li><code>quanteda</code>でプロットする際、うまくフォントが指定できない場合があるので、<a href="https://github.com/quanteda/quanteda/issues/1317">こちら</a>を参考に、<code>extrafont::fonts()</code>でフォント一覧を確認して、適当なものを指定して下さい。</li>
@@ -679,6 +759,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -707,20 +788,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>

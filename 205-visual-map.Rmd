@@ -19,7 +19,7 @@ theme_set(theme_minimal())
 
 なお、（2021年1月25日現在）`jpndistrict`はCRANから外されていますので、どうしてもインストールしたい方はgithubのリポジトリより直接インストールして下さい。
 
-```{r, eval = FALSE、}
+```{r, eval = FALSE}
 devtools::install_github("uribo/jpndistrict")
 ```
 

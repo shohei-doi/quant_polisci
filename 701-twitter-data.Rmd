@@ -14,7 +14,7 @@ library(rtweet)
 
 ```{r, echo=FALSE}
 library(knitr)
-theme_set(theme_minimal())
+theme_set(theme_minimal() + theme(legend.position = "bottom"))
 ```
 
 ## 事前準備
@@ -85,10 +85,10 @@ tweets %>%
 apikey <- "AIzaSyAfORPG6TAsOuK6VpJxRcRSBDyBwTnYKIw"
 ```
 
-例えば、京都でつぶやかれたツイートのみを取得する場合は次のようにします。
+例えば、東京でつぶやかれたツイートのみを取得する場合は次のようにします。
 
 ```{r}
-tweets <- search_tweets("", geocode = lookup_coords("kyoto, jp", apikey = apikey), n = 100)
+tweets <- search_tweets("", geocode = lookup_coords("tokyo", apikey = apikey), n = 100)
 tweets %>% 
   select(text)
 ```

@@ -56,8 +56,7 @@ plot(google_trend)
 full_join(wiki_trend %>% 
             select(date, term = article, wiki = views),
           google_trend$interest_over_time %>% 
-            select(date, term = keyword, google = hits) %>% 
-            mutate(google = parse_number(google)),
+            select(date, term = keyword, google = hits),
           by = c("date", "term")) %>% 
   ggplot() + 
   geom_point(aes(x = wiki, y = google, colour = term)) + 
@@ -70,8 +69,7 @@ full_join(wiki_trend %>%
 full_join(wiki_trend %>% 
             select(date, term = article, wiki = views),
           google_trend$interest_over_time %>% 
-            select(date, term = keyword, google = hits) %>% 
-            mutate(google = parse_number(google)),
+            select(date, term = keyword, google = hits),
           by = c("date", "term")) %>% 
   ggplot() + 
   geom_point(aes(x = wiki, y = google, colour = term)) + 

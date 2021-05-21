@@ -72,6 +72,8 @@ read.csv("data/data_utf8.csv", fileEncoding = "utf8")
 read.csv("data/data_sjis.csv", fileEncoding = "shift-jis")
 ```
 
+- `utf8`を指定しても不正なマルチバイト (invalid multibyte) があるとエラーが出る場合、`UTF-8=BOM`とするとうまくいきます。
+
 ### tidyverseの場合
 
 `tidyverse`の`readr`の場合は`locale`で指定します。
@@ -109,7 +111,7 @@ guess_encoding("data/data_sjis.csv")
 
 ### アカウント名が日本語の場合
 
-Windowsでアカウント名が日本語の場合、パスを通すときにエラーが出てくる場合があります。
+~Windowsでアカウント名が日本語の場合、パスを通すときにエラーが出てくる場合があります。
 そのような場合は、
 
 1. 新しいアカウントを作成する。
@@ -119,11 +121,13 @@ Windowsでアカウント名が日本語の場合、パスを通すときにエ�
     1. 仮想マシン（VMwareやVirtualBox）を使う。
     1. デュアルブートをする。
 
-といった選択肢が考えられます（下に行くほど難易度が高い）。
+といった選択肢が考えられます（下に行くほど難易度が高い）。~
+
+矢内先生の[RとRStudioのインストール方法](https://yukiyanai.github.io/jp/resources/)の資料を見てください！
 
 ### 画像で日本語が文字化けする場合
 
-Macで画像を出力する際に日本語が文字化けすることがあります。
+Macで画像を出力する際に日本語が文字化け（というか豆腐化）することがあります。
 `plot()`の場合は、
 
 ```{r, eval = FALSE}
