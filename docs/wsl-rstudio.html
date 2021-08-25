@@ -611,7 +611,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="wsl2のインストール" class="section level2" number="25.2">
 <h2><span class="header-section-number">25.2</span> WSL2のインストール</h2>
 <p>Windowsのバージョンが2004以降であれば（普通にアップデートしていればそのはず）、コマンドプロンプトないしPowerShellを管理者権限で開き、以下のコマンドを実行すれば、Ubuntuをインストールできます。</p>
-<div class="sourceCode" id="cb721"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb721-1"><a href="wsl-rstudio.html#cb721-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> <span class="at">--install</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb1-1"><a href="wsl-rstudio.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ex">wsl</span> <span class="at">--install</span></span></code></pre></div>
 <ul>
 <li>Ubuntu以外を使いたい場合はOSを指定してください。</li>
 </ul>
@@ -622,8 +622,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>以降はスタートメニューでUbuntuと入力すると実行できます。</li>
 </ul>
 <p>Ubuntuが起動するとコマンドプロンプトのようなターミナルが表示されるので、以下のコマンドを実行します。</p>
-<div class="sourceCode" id="cb722"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb722-1"><a href="wsl-rstudio.html#cb722-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
-<span id="cb722-2"><a href="wsl-rstudio.html#cb722-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb2-1"><a href="wsl-rstudio.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt update</span>
+<span id="cb2-2"><a href="wsl-rstudio.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt upgrade</span></code></pre></div>
 <ul>
 <li><code>sudo</code>というのは管理者 (super user) として実行 (do) するという、おまじないです。</li>
 <li>“Do you want to continue?”と聞かれたら、<code>y</code>を入力してEnterを押すとインストールが開始します。</li>
@@ -638,22 +638,22 @@ Ubuntuの左上のオレンジ色の丸いマークをクリックしてプロ�
 <div id="rのインストール-1" class="section level2" number="25.3">
 <h2><span class="header-section-number">25.3</span> Rのインストール</h2>
 <p>次に、以下のコマンドでRをインストールします。</p>
-<div class="sourceCode" id="cb723"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb723-1"><a href="wsl-rstudio.html#cb723-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc</span>
-<span id="cb723-2"><a href="wsl-rstudio.html#cb723-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="st">&quot;deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="va">$(</span><span class="ex">lsb_release</span> <span class="at">-cs</span><span class="va">)</span><span class="st">-cran40/&quot;</span></span>
-<span id="cb723-3"><a href="wsl-rstudio.html#cb723-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">--no-install-recommends</span> r-base</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb3-1"><a href="wsl-rstudio.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> <span class="at">-qO-</span> https://cloud.r-project.org/bin/linux/ubuntu/marutter_pubkey.asc <span class="kw">|</span> <span class="fu">sudo</span> tee <span class="at">-a</span> /etc/apt/trusted.gpg.d/cran_ubuntu_key.asc</span>
+<span id="cb3-2"><a href="wsl-rstudio.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> add-apt-repository <span class="st">&quot;deb https://cloud.r-project.org/bin/linux/ubuntu </span><span class="va">$(</span><span class="ex">lsb_release</span> <span class="at">-cs</span><span class="va">)</span><span class="st">-cran40/&quot;</span></span>
+<span id="cb3-3"><a href="wsl-rstudio.html#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install <span class="at">--no-install-recommends</span> r-base</span></code></pre></div>
 <p>次のコマンドを実行してRのバージョンが確認できればインストールの成功です。</p>
-<div class="sourceCode" id="cb724"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb724-1"><a href="wsl-rstudio.html#cb724-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb4-1"><a href="wsl-rstudio.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ex">R</span> <span class="at">--version</span></span></code></pre></div>
 </div>
 <div id="rstusio-serverのインストール" class="section level2" number="25.4">
 <h2><span class="header-section-number">25.4</span> RStusio Serverのインストール</h2>
 <p>次に以下のコマンドでRStudio Serverをインストールします。
 通常はRStudioをインストールしますがWSL2ではGUIをサポートしていないので（近々、される予定）、RStudio Serverを立てて、Windows上のブラウザからアクセスするという方法を取ります。</p>
-<div class="sourceCode" id="cb725"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb725-1"><a href="wsl-rstudio.html#cb725-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://rstudio.org/download/latest/stable/server/bionic/rstudio-server-latest-amd64.deb</span>
-<span id="cb725-2"><a href="wsl-rstudio.html#cb725-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install gdebi</span>
-<span id="cb725-3"><a href="wsl-rstudio.html#cb725-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi rstudio-server-latest-amd64.deb</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb5-1"><a href="wsl-rstudio.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">wget</span> https://rstudio.org/download/latest/stable/server/bionic/rstudio-server-latest-amd64.deb</span>
+<span id="cb5-2"><a href="wsl-rstudio.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install gdebi</span>
+<span id="cb5-3"><a href="wsl-rstudio.html#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> gdebi rstudio-server-latest-amd64.deb</span></code></pre></div>
 <p>その後、以下のコマンドを実行するとRStudio Serverが起動します。
 何も表示されて<strong>いない</strong>場合は成功しています。</p>
-<div class="sourceCode" id="cb726"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb726-1"><a href="wsl-rstudio.html#cb726-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rstudio-server start</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb6-1"><a href="wsl-rstudio.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> rstudio-server start</span></code></pre></div>
 <ul>
 <li>WSL2を起動するたびに実行する必要があります。</li>
 </ul>
@@ -665,12 +665,13 @@ Ubuntuの左上のオレンジ色の丸いマークをクリックしてプロ�
 </div>
 <div id="rstudio-server-on-wsl2の注意点" class="section level2" number="25.5">
 <h2><span class="header-section-number">25.5</span> RStudio Server on WSL2の注意点</h2>
+<p>おそらく、以下の処理を行えば問題なくR/Rstudioを使用できると思いますが、なにか不具合があれば教えてください。</p>
 <div id="パッケージのインストール" class="section level3" number="25.5.1">
 <h3><span class="header-section-number">25.5.1</span> パッケージのインストール</h3>
 <p>いくつかのパッケージはインストールできないことがあります。
 大抵の場合、Ubuntuに必要なソフトがインストールされていないことが原因です。
 おそらく、以下のおまじないをUbuntuのターミナルで実行すれば、うまくいきます。</p>
-<div class="sourceCode" id="cb727"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb727-1"><a href="wsl-rstudio.html#cb727-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install build-essential libcurl4-gnutls-dev openjdk-7-<span class="pp">*</span> libxml2-dev libssl-dev zlib1g-dev</span></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb7-1"><a href="wsl-rstudio.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt install build-essential libcurl4-gnutls-dev openjdk-7-<span class="pp">*</span> libxml2-dev libssl-dev zlib1g-dev</span></code></pre></div>
 </div>
 <div id="警告メッセージ" class="section level3" number="25.5.2">
 <h3><span class="header-section-number">25.5.2</span> 警告メッセージ</h3>
@@ -681,7 +682,7 @@ Failed to create bus connection: Host is down</code></pre>
 <div id="日本語フォント" class="section level3" number="25.5.3">
 <h3><span class="header-section-number">25.5.3</span> 日本語フォント</h3>
 <p>デフォルトでは日本語のフォントがないので文字化けが起こりますが、例えば以下のコードでNotoフォントをインストールするとうまくいきます。</p>
-<div class="sourceCode" id="cb729"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb729-1"><a href="wsl-rstudio.html#cb729-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt intall fonts-noto-cjk</span></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode bash"><code class="sourceCode bash"><span id="cb9-1"><a href="wsl-rstudio.html#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sudo</span> apt intall fonts-noto-cjk</span></code></pre></div>
 <ul>
 <li><a href="https://www.google.com/get/noto/help/cjk/">Notoフォント</a>とはGoogleが開発しているフォントで、CJKはその中の中日韓のフォントです。</li>
 </ul>
@@ -692,7 +693,7 @@ Failed to create bus connection: Host is down</code></pre>
 <p>具体的には<code>/mnt/c</code>がWindowsのCドライブの（WLS2から見た）パスになっています。
 この中の<code>Users</code>の中にWindowsの各ユーザーのホームディレクトリがあります（ディレクトリ名はアカウント名です）。</p>
 <p>基本的にはパスを全て打てば良いのですが、例えばユーザー名が<code>xxxx</code>の場合、</p>
-<div class="sourceCode" id="cb730"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb730-1"><a href="wsl-rstudio.html#cb730-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/mnt/c/Users/xxxx&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="wsl-rstudio.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">setwd</span>(<span class="st">&quot;/mnt/c/Users/xxxx&quot;</span>)</span></code></pre></div>
 <p>とワーキングディレクトリを設定してから、RStudioの（デフォルトでは）右下の<code>Files</code>パネルの中の<code>More</code>の<code>Go to working directory</code>をクリックしてWindowsのホームディレクトリに飛んで、そこからお目当てのファイルなりRProjectなりにアクセスするのが直観的かと思います。</p>
 <ul>
 <li>このコードを記載した<code>.Rprofile</code>ファイルをLinuxのホームディレクトリ（デフォルトでRStusio Serverを起動した時に表示されている場所）に保存をすれば、R起動時に自動的にワーキングディレクトリが設定されます。</li>
@@ -763,20 +764,6 @@ gitbook.start({
 });
 </script>
 
-<!-- dynamically load mathjax for compatibility with self-contained -->
-<script>
-  (function () {
-    var script = document.createElement("script");
-    script.type = "text/javascript";
-    var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
-    if (location.protocol !== "file:")
-      if (/^https?:/.test(src))
-        src = src.replace(/^https?:/, '');
-    script.src = src;
-    document.getElementsByTagName("head")[0].appendChild(script);
-  })();
-</script>
 </body>
 
 </html>
