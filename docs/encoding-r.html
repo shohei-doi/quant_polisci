@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第23章 Rのエンコーディング問題 | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第23章 Rのエンコーディング問題 | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2021-05-21" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,8 @@
   
 <link rel="prev" href="r-markdown-pdf.html"/>
 <link rel="next" href="pipe.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -522,6 +522,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
 <li class="chapter" data-level="24.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>24.4</b> 複数の出力</a></li>
 </ul></li>
+<li class="chapter" data-level="25" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>25</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>25.1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="25.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>25.1.1</b> 問題</a></li>
+<li class="chapter" data-level="25.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>25.1.2</b> Linux上のR/RStudioを使う</a></li>
+<li class="chapter" data-level="25.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>25.1.3</b> 概要</a></li>
+</ul></li>
+<li class="chapter" data-level="25.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>25.2</b> WSL2のインストール</a></li>
+<li class="chapter" data-level="25.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>25.3</b> Rのインストール</a></li>
+<li class="chapter" data-level="25.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>25.4</b> RStusio Serverのインストール</a></li>
+<li class="chapter" data-level="25.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>25.5</b> RStudio Server on WSL2の注意点</a>
+<ul>
+<li class="chapter" data-level="25.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>25.5.1</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="25.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>25.5.2</b> 警告メッセージ</a></li>
+<li class="chapter" data-level="25.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>25.5.3</b> 日本語フォント</a></li>
+<li class="chapter" data-level="25.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>25.5.4</b> Windows側のファイルへのアクセス</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -598,13 +617,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>データが文字化けしているときはRで対処します。
 <a href="data/data_utf8.csv"><code>UTF-8</code>でエンコーディングしたデータ</a>と<a href="data/data_sjis.csv"><code>Shift-JIS</code>でエンコーディングしたデータ</a>をそれぞれ読み込んでみてください。
 やはりWindowsでは前者が、Linux/Macでは後者が文字化けをしているはずです。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="encoding-r.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb667"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb667-1"><a href="encoding-r.html#cb667-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["member"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"イヌ"},{"1":"サル"},{"1":"キジ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="encoding-r.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb668"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb668-1"><a href="encoding-r.html#cb668-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>)</span></code></pre></div>
 <pre><code>## Error in type.convert.default(data[[i]], as.is = as.is[i], dec = dec, : invalid multibyte string at &#39;&lt;83&gt;C&lt;83&gt;k&#39;</code></pre>
 <ul>
 <li>僕はLinuxを使っているので後者が文字化けを起こしてエラーが出ています。</li>
@@ -612,13 +631,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="標準関数の場合" class="section level3" number="23.3.1">
 <h3><span class="header-section-number">23.3.1</span> 標準関数の場合</h3>
 <p>標準関数の場合、<code>fileEncoding</code>というオプションでエンコーディングを指定します。</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="encoding-r.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;utf8&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb670"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb670-1"><a href="encoding-r.html#cb670-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;utf8&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["member"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"イヌ"},{"1":"サル"},{"1":"キジ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="encoding-r.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;shift-jis&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb671"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb671-1"><a href="encoding-r.html#cb671-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read.csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>, <span class="at">fileEncoding =</span> <span class="st">&quot;shift-jis&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["member"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"イヌ"},{"1":"サル"},{"1":"キジ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -634,32 +653,28 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li><code>readr</code>は<code>tidyverse</code>に含まれているので、<code>tidyverse</code>を読み込んだ場合は、別途読み込む必要はありません。</li>
 </ul>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="encoding-r.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.1 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
-## ✓ tibble  3.1.2     ✓ dplyr   1.0.6
-## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="encoding-r.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;utf8&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb672"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb672-1"><a href="encoding-r.html#cb672-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb672-2"><a href="encoding-r.html#cb672-2" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;utf8&quot;</span>))</span></code></pre></div>
+<pre><code>## Rows: 3 Columns: 1</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): member</code></pre>
 <pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   member = col_character()
-## )</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["member"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"イヌ"},{"1":"サル"},{"1":"キジ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="encoding-r.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;shift-jis&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb676"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb676-1"><a href="encoding-r.html#cb676-1" aria-hidden="true" tabindex="-1"></a><span class="fu">read_csv</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">&quot;shift-jis&quot;</span>))</span></code></pre></div>
+<pre><code>## Rows: 3 Columns: 1</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (1): member</code></pre>
 <pre><code>## 
-## ── Column specification ────────────────────────────────────────────────────────
-## cols(
-##   member = col_character()
-## )</code></pre>
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["member"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"イヌ"},{"1":"サル"},{"1":"キジ"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -669,16 +684,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="エンコーディングを確認する方法" class="section level3" number="23.3.3">
 <h3><span class="header-section-number">23.3.3</span> エンコーディングを確認する方法</h3>
 <p><code>readr</code>の<code>guess_encoding()</code>という関数を使うと、どのようなエンコーディングがされているかを推測します。</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="encoding-r.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb680"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb680-1"><a href="encoding-r.html#cb680-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">&quot;data/data_utf8.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Warning: `guess_encoding()` was deprecated in rvest 1.0.0.
+## Please use `html_encoding_guess()` instead.</code></pre>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["encoding"],"name":[1],"type":["chr"],"align":["left"]},{"label":["confidence"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"UTF-8","2":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["encoding"],"name":[1],"type":["chr"],"align":["left"]},{"label":["language"],"name":[2],"type":["chr"],"align":["left"]},{"label":["confidence"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"ISO-8859-1","2":"it","3":"0.50"},{"1":"ISO-8859-2","2":"ro","3":"0.16"},{"1":"ISO-8859-9","2":"tr","3":"0.16"},{"1":"UTF-8","2":"","3":"0.15"},{"1":"UTF-16BE","2":"","3":"0.10"},{"1":"UTF-16LE","2":"","3":"0.10"},{"1":"Shift_JIS","2":"ja","3":"0.10"},{"1":"GB18030","2":"zh","3":"0.10"},{"1":"EUC-JP","2":"ja","3":"0.10"},{"1":"EUC-KR","2":"ko","3":"0.10"},{"1":"Big5","2":"zh","3":"0.10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="encoding-r.html#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb682"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb682-1"><a href="encoding-r.html#cb682-1" aria-hidden="true" tabindex="-1"></a><span class="fu">guess_encoding</span>(<span class="st">&quot;data/data_sjis.csv&quot;</span>)</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["encoding"],"name":[1],"type":["chr"],"align":["left"]},{"label":["confidence"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"windows-1252","2":"0.35"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["encoding"],"name":[1],"type":["chr"],"align":["left"]},{"label":["language"],"name":[2],"type":["chr"],"align":["left"]},{"label":["confidence"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"ISO-8859-1","2":"it","3":"0.63"},{"1":"ISO-8859-2","2":"hu","3":"0.31"},{"1":"UTF-8","2":"","3":"0.15"},{"1":"ISO-8859-9","2":"tr","3":"0.15"},{"1":"UTF-16BE","2":"","3":"0.10"},{"1":"UTF-16LE","2":"","3":"0.10"},{"1":"Shift_JIS","2":"ja","3":"0.10"},{"1":"GB18030","2":"zh","3":"0.10"},{"1":"EUC-JP","2":"ja","3":"0.10"},{"1":"EUC-KR","2":"ko","3":"0.10"},{"1":"Big5","2":"zh","3":"0.10"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <ul>
@@ -711,9 +728,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">23.4.2</span> 画像で日本語が文字化けする場合</h3>
 <p>Macで画像を出力する際に日本語が文字化け（というか豆腐化）することがあります。
 <code>plot()</code>の場合は、</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="encoding-r.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb683"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb683-1"><a href="encoding-r.html#cb683-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)</span></code></pre></div>
 <p><code>ggplot2</code>の場合は、</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="encoding-r.html#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb684"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb684-1"><a href="encoding-r.html#cb684-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme</span>(<span class="at">base_family =</span> <span class="st">&quot;HiraKakuProN-W3&quot;</span>)</span></code></pre></div>
 <p>とするらしいです（Macは使ったことがないので分かりません）。</p>
 <ul>
 <li><code>quanteda</code>でプロットする際、うまくフォントが指定できない場合があるので、<a href="https://github.com/quanteda/quanteda/issues/1317">こちら</a>を参考に、<code>extrafont::fonts()</code>でフォント一覧を確認して、適当なものを指定して下さい。</li>
@@ -772,6 +789,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
@@ -780,6 +801,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第12章 時系列のグラフ | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.19 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第12章 時系列のグラフ | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2020-06-13" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,8 @@
   
 <link rel="prev" href="visual-cor.html"/>
 <link rel="next" href="visual-map.html"/>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -52,6 +53,8 @@
 
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75879658-3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -62,22 +65,22 @@
     </script>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet"> 
-<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet"> 
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -97,7 +100,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -130,6 +133,7 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
 
@@ -146,27 +150,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="index.html">Rで計量政治学入門</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a><ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a>
+<ul>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#想定する読者"><i class="fa fa-check"></i>想定する読者</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#tidyverseについて"><i class="fa fa-check"></i>Tidyverseについて</a></li>
 <li class="chapter" data-level="" data-path="index.html"><a href="index.html#ウェブサイトの操作"><i class="fa fa-check"></i>ウェブサイトの操作</a></li>
 </ul></li>
 <li class="part"><span><b>I データの操作</b></span></li>
-<li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a><ul>
+<li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#パッケージ付属のデータ"><i class="fa fa-check"></i><b>1.1</b> パッケージ付属のデータ</a></li>
-<li class="chapter" data-level="1.2" data-path="data-import.html"><a href="data-import.html#主なデータ形式"><i class="fa fa-check"></i><b>1.2</b> 主なデータ形式*</a><ul>
+<li class="chapter" data-level="1.2" data-path="data-import.html"><a href="data-import.html#主なデータ形式"><i class="fa fa-check"></i><b>1.2</b> 主なデータ形式*</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="data-import.html"><a href="data-import.html#テキストデータ"><i class="fa fa-check"></i><b>1.2.1</b> テキストデータ</a></li>
 <li class="chapter" data-level="1.2.2" data-path="data-import.html"><a href="data-import.html#バイナリデータ"><i class="fa fa-check"></i><b>1.2.2</b> バイナリデータ</a></li>
 <li class="chapter" data-level="1.2.3" data-path="data-import.html"><a href="data-import.html#good-bye-excel"><i class="fa fa-check"></i><b>1.2.3</b> Good bye, Excel!</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="data-import.html"><a href="data-import.html#パスと作業ディレクトリ"><i class="fa fa-check"></i><b>1.3</b> パスと作業ディレクトリ</a><ul>
+<li class="chapter" data-level="1.3" data-path="data-import.html"><a href="data-import.html#パスと作業ディレクトリ"><i class="fa fa-check"></i><b>1.3</b> パスと作業ディレクトリ</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="data-import.html"><a href="data-import.html#パス"><i class="fa fa-check"></i><b>1.3.1</b> パス</a></li>
 <li class="chapter" data-level="1.3.2" data-path="data-import.html"><a href="data-import.html#作業ディレクトリ"><i class="fa fa-check"></i><b>1.3.2</b> 作業ディレクトリ</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="data-import.html"><a href="data-import.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.4</b> .csvファイルの読み込み</a><ul>
+<li class="chapter" data-level="1.4" data-path="data-import.html"><a href="data-import.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.4</b> .csvファイルの読み込み</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="data-import.html"><a href="data-import.html#変数名の適切な読み込み"><i class="fa fa-check"></i><b>1.4.1</b> 変数名の適切な読み込み</a></li>
 </ul></li>
-<li class="chapter" data-level="1.5" data-path="data-import.html"><a href="data-import.html#xlsxファイルの読み込み"><i class="fa fa-check"></i><b>1.5</b> .xls[x]ファイルの読み込み</a><ul>
+<li class="chapter" data-level="1.5" data-path="data-import.html"><a href="data-import.html#xlsxファイルの読み込み"><i class="fa fa-check"></i><b>1.5</b> .xls[x]ファイルの読み込み</a>
+<ul>
 <li class="chapter" data-level="1.5.1" data-path="data-import.html"><a href="data-import.html#シートの選択"><i class="fa fa-check"></i><b>1.5.1</b> シートの選択</a></li>
 <li class="chapter" data-level="1.5.2" data-path="data-import.html"><a href="data-import.html#変数名の適切な読み込み-again"><i class="fa fa-check"></i><b>1.5.2</b> 変数名の適切な読み込み (again)</a></li>
 <li class="chapter" data-level="1.5.3" data-path="data-import.html"><a href="data-import.html#欠損値の処理"><i class="fa fa-check"></i><b>1.5.3</b> 欠損値の処理</a></li>
@@ -177,19 +187,22 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="1.9" data-path="data-import.html"><a href="data-import.html#データの書き出し"><i class="fa fa-check"></i><b>1.9</b> データの書き出し</a></li>
 <li class="chapter" data-level="1.10" data-path="data-import.html"><a href="data-import.html#データフレームの作成"><i class="fa fa-check"></i><b>1.10</b> データフレームの作成</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の選択</a><ul>
+<li class="chapter" data-level="2" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の選択</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="select-vars.html"><a href="select-vars.html#変数名による選択"><i class="fa fa-check"></i><b>2.1</b> 変数名による選択</a></li>
 <li class="chapter" data-level="2.2" data-path="select-vars.html"><a href="select-vars.html#番号による選択"><i class="fa fa-check"></i><b>2.2</b> 番号による選択</a></li>
 <li class="chapter" data-level="2.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更"><i class="fa fa-check"></i><b>2.3</b> 変数名の変更</a></li>
 <li class="chapter" data-level="2.4" data-path="select-vars.html"><a href="select-vars.html#高度な変数の選択方法"><i class="fa fa-check"></i><b>2.4</b> 高度な変数の選択方法*</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>3</b> 変数の作成</a><ul>
+<li class="chapter" data-level="3" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>3</b> 変数の作成</a>
+<ul>
 <li class="chapter" data-level="3.1" data-path="create-vars.html"><a href="create-vars.html#四則演算"><i class="fa fa-check"></i><b>3.1</b> 四則演算</a></li>
 <li class="chapter" data-level="3.2" data-path="create-vars.html"><a href="create-vars.html#条件に基づく変数"><i class="fa fa-check"></i><b>3.2</b> 条件に基づく変数</a></li>
 <li class="chapter" data-level="3.3" data-path="create-vars.html"><a href="create-vars.html#ラグ変数"><i class="fa fa-check"></i><b>3.3</b> ラグ変数*</a></li>
 <li class="chapter" data-level="3.4" data-path="create-vars.html"><a href="create-vars.html#日付変数"><i class="fa fa-check"></i><b>3.4</b> 日付変数*</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>4</b> 観察の選択</a><ul>
+<li class="chapter" data-level="4" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>4</b> 観察の選択</a>
+<ul>
 <li class="chapter" data-level="4.1" data-path="select-obs.html"><a href="select-obs.html#数値の大小による選択"><i class="fa fa-check"></i><b>4.1</b> 数値の大小による選択</a></li>
 <li class="chapter" data-level="4.2" data-path="select-obs.html"><a href="select-obs.html#一致不一致による選択"><i class="fa fa-check"></i><b>4.2</b> 一致・不一致による選択</a></li>
 <li class="chapter" data-level="4.3" data-path="select-obs.html"><a href="select-obs.html#または"><i class="fa fa-check"></i><b>4.3</b> 「または」</a></li>
@@ -199,43 +212,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="4.7" data-path="select-obs.html"><a href="select-obs.html#観察の並び替え"><i class="fa fa-check"></i><b>4.7</b> 観察の並び替え</a></li>
 <li class="chapter" data-level="4.8" data-path="select-obs.html"><a href="select-obs.html#ベクトルの選択"><i class="fa fa-check"></i><b>4.8</b> ベクトルの選択*</a></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a><ul>
+<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a>
+<ul>
 <li class="chapter" data-level="5.1" data-path="data-combine.html"><a href="data-combine.html#行方向の結合"><i class="fa fa-check"></i><b>5.1</b> 行方向の結合</a></li>
-<li class="chapter" data-level="5.2" data-path="data-combine.html"><a href="data-combine.html#列方向の結合"><i class="fa fa-check"></i><b>5.2</b> 列方向の結合</a><ul>
+<li class="chapter" data-level="5.2" data-path="data-combine.html"><a href="data-combine.html#列方向の結合"><i class="fa fa-check"></i><b>5.2</b> 列方向の結合</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="data-combine.html"><a href="data-combine.html#観察の選択"><i class="fa fa-check"></i><b>5.2.1</b> 観察の選択*＊</a></li>
 <li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a><ul>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a>
+<ul>
 <li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
 <li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
 <li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
-<li class="chapter" data-level="6.4" data-path="missing-values.html"><a href="missing-values.html#欠損値がある場合の分析"><i class="fa fa-check"></i><b>6.4</b> 欠損値がある場合の分析*</a><ul>
+<li class="chapter" data-level="6.4" data-path="missing-values.html"><a href="missing-values.html#欠損値がある場合の分析"><i class="fa fa-check"></i><b>6.4</b> 欠損値がある場合の分析*</a>
+<ul>
 <li class="chapter" data-level="6.4.1" data-path="missing-values.html"><a href="missing-values.html#一変数の記述統計"><i class="fa fa-check"></i><b>6.4.1</b> 一変数の記述統計</a></li>
 <li class="chapter" data-level="6.4.2" data-path="missing-values.html"><a href="missing-values.html#二変数の記述統計"><i class="fa fa-check"></i><b>6.4.2</b> 二変数の記述統計</a></li>
 <li class="chapter" data-level="6.4.3" data-path="missing-values.html"><a href="missing-values.html#回帰分析"><i class="fa fa-check"></i><b>6.4.3</b> 回帰分析</a></li>
 </ul></li>
 <li class="chapter" data-level="6.5" data-path="missing-values.html"><a href="missing-values.html#欠損値のクラス"><i class="fa fa-check"></i><b>6.5</b> 欠損値のクラス*</a></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>7</b> ロング・ワイドの変換</a><ul>
-<li class="chapter" data-level="7.1" data-path="reshape.html"><a href="reshape.html#パネルデータ"><i class="fa fa-check"></i><b>7.1</b> パネルデータ</a><ul>
+<li class="chapter" data-level="7" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>7</b> ロング・ワイドの変換</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="reshape.html"><a href="reshape.html#パネルデータ"><i class="fa fa-check"></i><b>7.1</b> パネルデータ</a>
+<ul>
 <li class="chapter" data-level="7.1.1" data-path="reshape.html"><a href="reshape.html#ワイド形式"><i class="fa fa-check"></i><b>7.1.1</b> ワイド形式</a></li>
 <li class="chapter" data-level="7.1.2" data-path="reshape.html"><a href="reshape.html#ロング形式"><i class="fa fa-check"></i><b>7.1.2</b> ロング形式</a></li>
 <li class="chapter" data-level="7.1.3" data-path="reshape.html"><a href="reshape.html#前処理"><i class="fa fa-check"></i><b>7.1.3</b> 前処理</a></li>
 </ul></li>
-<li class="chapter" data-level="7.2" data-path="reshape.html"><a href="reshape.html#ループによる方法"><i class="fa fa-check"></i><b>7.2</b> ループによる方法</a><ul>
+<li class="chapter" data-level="7.2" data-path="reshape.html"><a href="reshape.html#ループによる方法"><i class="fa fa-check"></i><b>7.2</b> ループによる方法</a>
+<ul>
 <li class="chapter" data-level="7.2.1" data-path="reshape.html"><a href="reshape.html#for文"><i class="fa fa-check"></i><b>7.2.1</b> for文</a></li>
 <li class="chapter" data-level="7.2.2" data-path="reshape.html"><a href="reshape.html#時点の選択による方法"><i class="fa fa-check"></i><b>7.2.2</b> 時点の選択による方法</a></li>
 <li class="chapter" data-level="7.2.3" data-path="reshape.html"><a href="reshape.html#ユニットの選択による方法"><i class="fa fa-check"></i><b>7.2.3</b> ユニットの選択による方法</a></li>
 </ul></li>
-<li class="chapter" data-level="7.3" data-path="reshape.html"><a href="reshape.html#tidyverseな方法"><i class="fa fa-check"></i><b>7.3</b> tidyverseな方法</a><ul>
+<li class="chapter" data-level="7.3" data-path="reshape.html"><a href="reshape.html#tidyverseな方法"><i class="fa fa-check"></i><b>7.3</b> tidyverseな方法</a>
+<ul>
 <li class="chapter" data-level="7.3.1" data-path="reshape.html"><a href="reshape.html#ワイドからロングへ"><i class="fa fa-check"></i><b>7.3.1</b> ワイドからロングへ</a></li>
 <li class="chapter" data-level="7.3.2" data-path="reshape.html"><a href="reshape.html#パイプ"><i class="fa fa-check"></i><b>7.3.2</b> パイプ</a></li>
 <li class="chapter" data-level="7.3.3" data-path="reshape.html"><a href="reshape.html#tidyverseの利点"><i class="fa fa-check"></i><b>7.3.3</b> tidyverseの利点</a></li>
 <li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a><ul>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a>
+<ul>
 <li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
 <li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
 <li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
@@ -243,9 +265,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="8.5" data-path="qualtrics.html"><a href="qualtrics.html#おまけ"><i class="fa fa-check"></i><b>8.5</b> おまけ</a></li>
 </ul></li>
 <li class="part"><span><b>II データの可視化</b></span></li>
-<li class="chapter" data-level="9" data-path="desc-stats.html"><a href="desc-stats.html"><i class="fa fa-check"></i><b>9</b> データの要約</a><ul>
+<li class="chapter" data-level="9" data-path="desc-stats.html"><a href="desc-stats.html"><i class="fa fa-check"></i><b>9</b> データの要約</a>
+<ul>
 <li class="chapter" data-level="9.1" data-path="desc-stats.html"><a href="desc-stats.html#データを見る"><i class="fa fa-check"></i><b>9.1</b> データを見る</a></li>
-<li class="chapter" data-level="9.2" data-path="desc-stats.html"><a href="desc-stats.html#記述統計"><i class="fa fa-check"></i><b>9.2</b> 記述統計</a><ul>
+<li class="chapter" data-level="9.2" data-path="desc-stats.html"><a href="desc-stats.html#記述統計"><i class="fa fa-check"></i><b>9.2</b> 記述統計</a>
+<ul>
 <li class="chapter" data-level="9.2.1" data-path="desc-stats.html"><a href="desc-stats.html#平均"><i class="fa fa-check"></i><b>9.2.1</b> 平均</a></li>
 <li class="chapter" data-level="9.2.2" data-path="desc-stats.html"><a href="desc-stats.html#分散と標準偏差"><i class="fa fa-check"></i><b>9.2.2</b> 分散と標準偏差</a></li>
 <li class="chapter" data-level="9.2.3" data-path="desc-stats.html"><a href="desc-stats.html#分位点"><i class="fa fa-check"></i><b>9.2.3</b> 分位点</a></li>
@@ -255,13 +279,15 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="9.4" data-path="desc-stats.html"><a href="desc-stats.html#グループごとの要約"><i class="fa fa-check"></i><b>9.4</b> グループごとの要約</a></li>
 <li class="chapter" data-level="9.5" data-path="desc-stats.html"><a href="desc-stats.html#ユニークなデータ"><i class="fa fa-check"></i><b>9.5</b> ユニークなデータ*</a></li>
 </ul></li>
-<li class="chapter" data-level="10" data-path="visual-dist.html"><a href="visual-dist.html"><i class="fa fa-check"></i><b>10</b> 分布のグラフ</a><ul>
+<li class="chapter" data-level="10" data-path="visual-dist.html"><a href="visual-dist.html"><i class="fa fa-check"></i><b>10</b> 分布のグラフ</a>
+<ul>
 <li class="chapter" data-level="10.1" data-path="visual-dist.html"><a href="visual-dist.html#ヒストグラム"><i class="fa fa-check"></i><b>10.1</b> ヒストグラム</a></li>
 <li class="chapter" data-level="10.2" data-path="visual-dist.html"><a href="visual-dist.html#カーネル密度"><i class="fa fa-check"></i><b>10.2</b> カーネル密度</a></li>
 <li class="chapter" data-level="10.3" data-path="visual-dist.html"><a href="visual-dist.html#棒グラフ"><i class="fa fa-check"></i><b>10.3</b> 棒グラフ</a></li>
 <li class="chapter" data-level="10.4" data-path="visual-dist.html"><a href="visual-dist.html#グループごとの分布"><i class="fa fa-check"></i><b>10.4</b> グループごとの分布</a></li>
 </ul></li>
-<li class="chapter" data-level="11" data-path="visual-cor.html"><a href="visual-cor.html"><i class="fa fa-check"></i><b>11</b> 相関のグラフ</a><ul>
+<li class="chapter" data-level="11" data-path="visual-cor.html"><a href="visual-cor.html"><i class="fa fa-check"></i><b>11</b> 相関のグラフ</a>
+<ul>
 <li class="chapter" data-level="11.1" data-path="visual-cor.html"><a href="visual-cor.html#散布図"><i class="fa fa-check"></i><b>11.1</b> 散布図</a></li>
 <li class="chapter" data-level="11.2" data-path="visual-cor.html"><a href="visual-cor.html#カーネル密度-1"><i class="fa fa-check"></i><b>11.2</b> カーネル密度</a></li>
 <li class="chapter" data-level="11.3" data-path="visual-cor.html"><a href="visual-cor.html#ジッター"><i class="fa fa-check"></i><b>11.3</b> ジッター</a></li>
@@ -270,28 +296,34 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="11.6" data-path="visual-cor.html"><a href="visual-cor.html#グループごとの相関"><i class="fa fa-check"></i><b>11.6</b> グループごとの相関</a></li>
 <li class="chapter" data-level="11.7" data-path="visual-cor.html"><a href="visual-cor.html#単回帰"><i class="fa fa-check"></i><b>11.7</b> 単回帰</a></li>
 </ul></li>
-<li class="chapter" data-level="12" data-path="visual-ts.html"><a href="visual-ts.html"><i class="fa fa-check"></i><b>12</b> 時系列のグラフ</a><ul>
+<li class="chapter" data-level="12" data-path="visual-ts.html"><a href="visual-ts.html"><i class="fa fa-check"></i><b>12</b> 時系列のグラフ</a>
+<ul>
 <li class="chapter" data-level="12.1" data-path="visual-ts.html"><a href="visual-ts.html#折れ線グラフ"><i class="fa fa-check"></i><b>12.1</b> 折れ線グラフ</a></li>
 <li class="chapter" data-level="12.2" data-path="visual-ts.html"><a href="visual-ts.html#エラーバー"><i class="fa fa-check"></i><b>12.2</b> エラーバー</a></li>
 <li class="chapter" data-level="12.3" data-path="visual-ts.html"><a href="visual-ts.html#グループごとの時系列"><i class="fa fa-check"></i><b>12.3</b> グループごとの時系列</a></li>
 </ul></li>
-<li class="chapter" data-level="13" data-path="visual-map.html"><a href="visual-map.html"><i class="fa fa-check"></i><b>13</b> 地図のグラフ</a><ul>
-<li class="chapter" data-level="13.1" data-path="visual-map.html"><a href="visual-map.html#地図"><i class="fa fa-check"></i><b>13.1</b> 地図</a><ul>
+<li class="chapter" data-level="13" data-path="visual-map.html"><a href="visual-map.html"><i class="fa fa-check"></i><b>13</b> 地図のグラフ</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="visual-map.html"><a href="visual-map.html#地図"><i class="fa fa-check"></i><b>13.1</b> 地図</a>
+<ul>
 <li class="chapter" data-level="13.1.1" data-path="visual-map.html"><a href="visual-map.html#世界地図"><i class="fa fa-check"></i><b>13.1.1</b> 世界地図</a></li>
 <li class="chapter" data-level="13.1.2" data-path="visual-map.html"><a href="visual-map.html#日本地図"><i class="fa fa-check"></i><b>13.1.2</b> 日本地図</a></li>
 <li class="chapter" data-level="13.1.3" data-path="visual-map.html"><a href="visual-map.html#都道府県地図"><i class="fa fa-check"></i><b>13.1.3</b> 都道府県地図</a></li>
 </ul></li>
 <li class="chapter" data-level="13.2" data-path="visual-map.html"><a href="visual-map.html#地域の違い"><i class="fa fa-check"></i><b>13.2</b> 地域の違い</a></li>
 <li class="chapter" data-level="13.3" data-path="visual-map.html"><a href="visual-map.html#空間の分布"><i class="fa fa-check"></i><b>13.3</b> 空間の分布</a></li>
-<li class="chapter" data-level="13.4" data-path="visual-map.html"><a href="visual-map.html#データの繋がり"><i class="fa fa-check"></i><b>13.4</b> データの繋がり</a><ul>
+<li class="chapter" data-level="13.4" data-path="visual-map.html"><a href="visual-map.html#データの繋がり"><i class="fa fa-check"></i><b>13.4</b> データの繋がり</a>
+<ul>
 <li class="chapter" data-level="13.4.1" data-path="visual-map.html"><a href="visual-map.html#二点間の繋がりを見る"><i class="fa fa-check"></i><b>13.4.1</b> 二点間の繋がりを見る</a></li>
 <li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a><ul>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a>
+<ul>
 <li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
 <li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
-<li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a><ul>
+<li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a>
+<ul>
 <li class="chapter" data-level="14.3.1" data-path="ggplot2.html"><a href="ggplot2.html#記述統計のグラフ"><i class="fa fa-check"></i><b>14.3.1</b> 記述統計のグラフ</a></li>
 </ul></li>
 <li class="chapter" data-level="14.4" data-path="ggplot2.html"><a href="ggplot2.html#ラベル"><i class="fa fa-check"></i><b>14.4</b> ラベル</a></li>
@@ -300,8 +332,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.7" data-path="ggplot2.html"><a href="ggplot2.html#テキスト"><i class="fa fa-check"></i><b>14.7</b> テキスト</a></li>
 </ul></li>
 <li class="part"><span><b>III データの収集</b></span></li>
-<li class="chapter" data-level="15" data-path="twitter-data.html"><a href="twitter-data.html"><i class="fa fa-check"></i><b>15</b> Twitterデータ</a><ul>
-<li class="chapter" data-level="15.1" data-path="twitter-data.html"><a href="twitter-data.html#事前準備"><i class="fa fa-check"></i><b>15.1</b> 事前準備</a><ul>
+<li class="chapter" data-level="15" data-path="twitter-data.html"><a href="twitter-data.html"><i class="fa fa-check"></i><b>15</b> Twitterデータ</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="twitter-data.html"><a href="twitter-data.html#事前準備"><i class="fa fa-check"></i><b>15.1</b> 事前準備</a>
+<ul>
 <li class="chapter" data-level="15.1.1" data-path="twitter-data.html"><a href="twitter-data.html#twitterアカウントの作成"><i class="fa fa-check"></i><b>15.1.1</b> Twitterアカウントの作成</a></li>
 <li class="chapter" data-level="15.1.2" data-path="twitter-data.html"><a href="twitter-data.html#認証"><i class="fa fa-check"></i><b>15.1.2</b> 認証</a></li>
 </ul></li>
@@ -309,22 +343,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="15.3" data-path="twitter-data.html"><a href="twitter-data.html#ユーザーによるツイートの取得"><i class="fa fa-check"></i><b>15.3</b> ユーザーによるツイートの取得</a></li>
 <li class="chapter" data-level="15.4" data-path="twitter-data.html"><a href="twitter-data.html#言語によるツイートの取得"><i class="fa fa-check"></i><b>15.4</b> 言語によるツイートの取得</a></li>
 <li class="chapter" data-level="15.5" data-path="twitter-data.html"><a href="twitter-data.html#地域によるツイートの取得"><i class="fa fa-check"></i><b>15.5</b> 地域によるツイートの取得</a></li>
-<li class="chapter" data-level="15.6" data-path="twitter-data.html"><a href="twitter-data.html#ライブストリームの取得"><i class="fa fa-check"></i><b>15.6</b> ライブストリームの取得</a><ul>
+<li class="chapter" data-level="15.6" data-path="twitter-data.html"><a href="twitter-data.html#ライブストリームの取得"><i class="fa fa-check"></i><b>15.6</b> ライブストリームの取得</a>
+<ul>
 <li class="chapter" data-level="15.6.1" data-path="twitter-data.html"><a href="twitter-data.html#地域のライブストリームの取得"><i class="fa fa-check"></i><b>15.6.1</b> 地域のライブストリームの取得</a></li>
 </ul></li>
 <li class="chapter" data-level="15.7" data-path="twitter-data.html"><a href="twitter-data.html#その他の情報の取得"><i class="fa fa-check"></i><b>15.7</b> その他の情報の取得</a></li>
 </ul></li>
-<li class="chapter" data-level="16" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>16</b> Googleデータ</a><ul>
+<li class="chapter" data-level="16" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>16</b> Googleデータ</a>
+<ul>
 <li class="chapter" data-level="16.1" data-path="google-data.html"><a href="google-data.html#はじめに"><i class="fa fa-check"></i><b>16.1</b> はじめに</a></li>
-<li class="chapter" data-level="16.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>16.2</b> 時系列トレンド</a><ul>
+<li class="chapter" data-level="16.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>16.2</b> 時系列トレンド</a>
+<ul>
 <li class="chapter" data-level="16.2.1" data-path="google-data.html"><a href="google-data.html#一つの単語"><i class="fa fa-check"></i><b>16.2.1</b> 一つの単語</a></li>
 <li class="chapter" data-level="16.2.2" data-path="google-data.html"><a href="google-data.html#複数の単語"><i class="fa fa-check"></i><b>16.2.2</b> 複数の単語</a></li>
 </ul></li>
 <li class="chapter" data-level="16.3" data-path="google-data.html"><a href="google-data.html#地域別のトレンド"><i class="fa fa-check"></i><b>16.3</b> 地域別のトレンド</a></li>
 <li class="chapter" data-level="16.4" data-path="google-data.html"><a href="google-data.html#関連単語"><i class="fa fa-check"></i><b>16.4</b> 関連単語</a></li>
 <li class="chapter" data-level="16.5" data-path="google-data.html"><a href="google-data.html#検索ヒット数"><i class="fa fa-check"></i><b>16.5</b> 検索ヒット数*</a></li>
+<li class="chapter" data-level="16.6" data-path="google-data.html"><a href="google-data.html#nグラム"><i class="fa fa-check"></i><b>16.6</b> Nグラム</a></li>
 </ul></li>
-<li class="chapter" data-level="17" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>17</b> Wikipediaデータ</a><ul>
+<li class="chapter" data-level="17" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>17</b> Wikipediaデータ</a>
+<ul>
 <li class="chapter" data-level="17.1" data-path="wikipedia-data.html"><a href="wikipedia-data.html#Trend"><i class="fa fa-check"></i><b>17.1</b> Wikipediaのトレンド</a></li>
 <li class="chapter" data-level="17.2" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の情報"><i class="fa fa-check"></i><b>17.2</b> Wikipediaの記事の情報</a></li>
 <li class="chapter" data-level="17.3" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事"><i class="fa fa-check"></i><b>17.3</b> Wikipediaの記事</a></li>
@@ -332,50 +371,62 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="17.5" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の作成日の取得"><i class="fa fa-check"></i><b>17.5</b> Wikipediaの記事の作成日の取得*</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="18" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>18</b> Rの分析環境</a><ul>
-<li class="chapter" data-level="18.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>18.1</b> Rのインストール</a><ul>
+<li class="chapter" data-level="18" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>18</b> Rの分析環境</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>18.1</b> Rのインストール</a>
+<ul>
 <li class="chapter" data-level="18.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>18.1.1</b> ダウンロード</a></li>
 <li class="chapter" data-level="18.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>18.1.2</b> インストール</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>18.2</b> RStudioのインストール</a><ul>
+<li class="chapter" data-level="18.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>18.2</b> RStudioのインストール</a>
+<ul>
 <li class="chapter" data-level="18.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>18.2.1</b> ダウンロード</a></li>
 <li class="chapter" data-level="18.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>18.2.2</b> インストール</a></li>
 <li class="chapter" data-level="18.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>18.2.3</b> RStudioの起動</a></li>
 <li class="chapter" data-level="18.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>18.2.4</b> RStudio Cloud*</a></li>
 </ul></li>
-<li class="chapter" data-level="18.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>18.3</b> 再現可能な分析のために</a><ul>
+<li class="chapter" data-level="18.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>18.3</b> 再現可能な分析のために</a>
+<ul>
 <li class="chapter" data-level="18.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>18.3.1</b> Rスクリプト</a></li>
 <li class="chapter" data-level="18.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>18.3.2</b> Rプロジェクト</a></li>
 <li class="chapter" data-level="18.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>18.3.3</b> RStudioの設定*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="19" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング入門</a><ul>
-<li class="chapter" data-level="19.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>19.1</b> 関数</a><ul>
+<li class="chapter" data-level="19" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング入門</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>19.1</b> 関数</a>
+<ul>
 <li class="chapter" data-level="19.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>19.1.1</b> 総称関数*</a></li>
 </ul></li>
 <li class="chapter" data-level="19.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>19.2</b> オブジェクト</a></li>
-<li class="chapter" data-level="19.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>19.3</b> パッケージ</a><ul>
+<li class="chapter" data-level="19.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>19.3</b> パッケージ</a>
+<ul>
 <li class="chapter" data-level="19.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>19.3.1</b> CRANからのインストール</a></li>
 <li class="chapter" data-level="19.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>19.3.2</b> GitHubからのインストール*</a></li>
 <li class="chapter" data-level="19.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>19.3.3</b> パッケージの読み込み</a></li>
 <li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a><ul>
+<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a>
+<ul>
 <li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
 <li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
 <li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
 <li class="chapter" data-level="20.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>20.4</b> 条件分岐</a></li>
-<li class="chapter" data-level="20.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>20.5</b> 練習問題</a><ul>
+<li class="chapter" data-level="20.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>20.5</b> 練習問題</a>
+<ul>
 <li class="chapter" data-level="20.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>20.5.1</b> フィボナッチ数列</a></li>
 <li class="chapter" data-level="20.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>20.5.2</b> モンテカルロ・シミュレーション</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>21</b> R Markdown: html</a><ul>
-<li class="chapter" data-level="21.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>21.1</b> R Markdownファイルの作成</a><ul>
+<li class="chapter" data-level="21" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>21</b> R Markdown: html</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>21.1</b> R Markdownファイルの作成</a>
+<ul>
 <li class="chapter" data-level="21.1.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>21.1.1</b> 参考になるサイト</a></li>
 </ul></li>
-<li class="chapter" data-level="21.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>21.2</b> Markdown記法</a><ul>
+<li class="chapter" data-level="21.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>21.2</b> Markdown記法</a>
+<ul>
 <li class="chapter" data-level="21.2.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdownとは"><i class="fa fa-check"></i><b>21.2.1</b> Markdownとは*</a></li>
 <li class="chapter" data-level="21.2.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#セクション"><i class="fa fa-check"></i><b>21.2.2</b> セクション</a></li>
 <li class="chapter" data-level="21.2.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>21.2.3</b> パラグラフ</a></li>
@@ -386,16 +437,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.2.8" data-path="r-markdown-html.html"><a href="r-markdown-html.html#画像表"><i class="fa fa-check"></i><b>21.2.8</b> 画像、表</a></li>
 <li class="chapter" data-level="21.2.9" data-path="r-markdown-html.html"><a href="r-markdown-html.html#数式"><i class="fa fa-check"></i><b>21.2.9</b> 数式</a></li>
 </ul></li>
-<li class="chapter" data-level="21.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>21.3</b> Rチャンク</a><ul>
+<li class="chapter" data-level="21.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>21.3</b> Rチャンク</a>
+<ul>
 <li class="chapter" data-level="21.3.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>21.3.1</b> チャンクオプション</a></li>
 </ul></li>
-<li class="chapter" data-level="21.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>21.4</b> yamlヘッダー</a><ul>
+<li class="chapter" data-level="21.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>21.4</b> yamlヘッダー</a>
+<ul>
 <li class="chapter" data-level="21.4.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#output"><i class="fa fa-check"></i><b>21.4.1</b> output</a></li>
 <li class="chapter" data-level="21.4.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#目次"><i class="fa fa-check"></i><b>21.4.2</b> 目次</a></li>
 <li class="chapter" data-level="21.4.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#テーマ-1"><i class="fa fa-check"></i><b>21.4.3</b> テーマ</a></li>
 <li class="chapter" data-level="21.4.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>21.4.4</b> htmlとcss</a></li>
 </ul></li>
-<li class="chapter" data-level="21.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>21.5</b> その他のテンプレート</a><ul>
+<li class="chapter" data-level="21.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>21.5</b> その他のテンプレート</a>
+<ul>
 <li class="chapter" data-level="21.5.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#distill"><i class="fa fa-check"></i><b>21.5.1</b> Distill</a></li>
 <li class="chapter" data-level="21.5.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>21.5.2</b> Tufte Handout</a></li>
 <li class="chapter" data-level="21.5.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rmdformats"><i class="fa fa-check"></i><b>21.5.3</b> rmdformats</a></li>
@@ -404,57 +458,88 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a><ul>
-<li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a><ul>
+<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a>
+<ul>
 <li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
 <li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
 </ul></li>
-<li class="chapter" data-level="22.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>22.2</b> 日本語環境の構築</a><ul>
+<li class="chapter" data-level="22.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>22.2</b> 日本語環境の構築</a>
+<ul>
 <li class="chapter" data-level="22.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>22.2.1</b> LaTeXエンジンのあれこれ*</a></li>
 <li class="chapter" data-level="22.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>22.2.2</b> yamlヘッダー</a></li>
 <li class="chapter" data-level="22.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>22.2.3</b> フォントのインストール</a></li>
 <li class="chapter" data-level="22.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>22.2.4</b> その他のテンプレート</a></li>
 <li class="chapter" data-level="22.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>22.2.5</b> Sumatra PDF</a></li>
 </ul></li>
-<li class="chapter" data-level="22.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>22.3</b> スライドの作成</a><ul>
+<li class="chapter" data-level="22.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>22.3</b> スライドの作成</a>
+<ul>
 <li class="chapter" data-level="22.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-2"><i class="fa fa-check"></i><b>22.3.1</b> テーマ</a></li>
 </ul></li>
-<li class="chapter" data-level="22.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>22.4</b> LaTeX記法</a><ul>
+<li class="chapter" data-level="22.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>22.4</b> LaTeX記法</a>
+<ul>
 <li class="chapter" data-level="22.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>22.4.1</b> 定理環境</a></li>
 <li class="chapter" data-level="22.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>22.4.2</b> 数式</a></li>
 </ul></li>
-<li class="chapter" data-level="22.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>22.5</b> 参考文献と引用</a><ul>
+<li class="chapter" data-level="22.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>22.5</b> 参考文献と引用</a>
+<ul>
 <li class="chapter" data-level="22.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>22.5.1</b> .bibファイル</a></li>
 <li class="chapter" data-level="22.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>22.5.2</b> 文献の引用</a></li>
 <li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a><ul>
-<li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a><ul>
+<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a>
+<ul>
 <li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
 <li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
 </ul></li>
-<li class="chapter" data-level="23.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>23.2</b> Rスクリプトの文字化け</a><ul>
+<li class="chapter" data-level="23.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>23.2</b> Rスクリプトの文字化け</a>
+<ul>
 <li class="chapter" data-level="23.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>23.2.1</b> ファイルを開く</a></li>
 <li class="chapter" data-level="23.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>23.2.2</b> ファイルを保存する</a></li>
 </ul></li>
-<li class="chapter" data-level="23.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>23.3</b> データの文字化け</a><ul>
+<li class="chapter" data-level="23.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>23.3</b> データの文字化け</a>
+<ul>
 <li class="chapter" data-level="23.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>23.3.1</b> 標準関数の場合</a></li>
 <li class="chapter" data-level="23.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>23.3.2</b> tidyverseの場合</a></li>
 <li class="chapter" data-level="23.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>23.3.3</b> エンコーディングを確認する方法</a></li>
 <li class="chapter" data-level="23.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>23.3.4</b> もとのデータを見たい場合</a></li>
 <li class="chapter" data-level="23.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>23.3.5</b> データを保存する場合</a></li>
 </ul></li>
-<li class="chapter" data-level="23.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>23.4</b> その他の問題</a><ul>
+<li class="chapter" data-level="23.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>23.4</b> その他の問題</a>
+<ul>
 <li class="chapter" data-level="23.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>23.4.1</b> アカウント名が日本語の場合</a></li>
 <li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a><ul>
+<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a>
+<ul>
 <li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
 <li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
 <li class="chapter" data-level="24.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>24.4</b> 複数の出力</a></li>
+</ul></li>
+<li class="chapter" data-level="25" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>25</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>25.1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="25.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>25.1.1</b> 問題</a></li>
+<li class="chapter" data-level="25.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>25.1.2</b> Linux上のR/RStudioを使う</a></li>
+<li class="chapter" data-level="25.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>25.1.3</b> 概要</a></li>
+</ul></li>
+<li class="chapter" data-level="25.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>25.2</b> WSL2のインストール</a></li>
+<li class="chapter" data-level="25.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>25.3</b> Rのインストール</a></li>
+<li class="chapter" data-level="25.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>25.4</b> RStusio Serverのインストール</a></li>
+<li class="chapter" data-level="25.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>25.5</b> RStudio Server on WSL2の注意点</a>
+<ul>
+<li class="chapter" data-level="25.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>25.5.1</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="25.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>25.5.2</b> 警告メッセージ</a></li>
+<li class="chapter" data-level="25.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>25.5.3</b> 日本語フォント</a></li>
+<li class="chapter" data-level="25.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>25.5.4</b> Windows側のファイルへのアクセス</a></li>
+</ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
@@ -478,7 +563,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="visual-ts" class="section level1">
+<div id="visual-ts" class="section level1" number="12">
 <h1><span class="header-section-number">第12章</span> 時系列のグラフ</h1>
 <p>x軸が年のような時間軸の場合、</p>
 <ul>
@@ -491,117 +576,100 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>箱ひげ図</li>
 </ul>
 <p>などにより、散らばりも同時に可視化することもできます。</p>
-<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="visual-ts.html#cb361-1"></a><span class="kw">library</span>(tidyverse)</span></code></pre></div>
-<div class="sourceCode" id="cb362"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb362-1"><a href="visual-ts.html#cb362-1"></a>tri &lt;-<span class="st"> </span><span class="kw">read_csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Parsed with column specification:
-## cols(
-##   statea = col_double(),
-##   stateb = col_double(),
-##   year = col_double(),
-##   dependa = col_double(),
-##   dependb = col_double(),
-##   demauta = col_double(),
-##   demautb = col_double(),
-##   allies = col_double(),
-##   dispute1 = col_double(),
-##   logdstab = col_double(),
-##   lcaprat2 = col_double(),
-##   smigoabi = col_double(),
-##   opena = col_double(),
-##   openb = col_double(),
-##   minrpwrs = col_double(),
-##   noncontg = col_double(),
-##   smldmat = col_double(),
-##   smldep = col_double(),
-##   dyadid = col_double()
-## )</code></pre>
-<div id="折れ線グラフ" class="section level2">
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="visual-ts.html#cb379-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="visual-ts.html#cb380-1" aria-hidden="true" tabindex="-1"></a>tri <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 39996 Columns: 19</code></pre>
+<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## dbl (19): statea, stateb, year, dependa, dependb, demauta, demautb, allies, ...</code></pre>
+<pre><code>## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div id="折れ線グラフ" class="section level2" number="12.1">
 <h2><span class="header-section-number">12.1</span> 折れ線グラフ</h2>
 <p>まず、二国間の相互依存度<code>smldep</code>を年ごとに平均を取ったデータを<code>df</code>として作成します。</p>
-<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="visual-ts.html#cb364-1"></a>df &lt;-<span class="st"> </span>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb364-2"><a href="visual-ts.html#cb364-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb364-3"><a href="visual-ts.html#cb364-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">smldep =</span> <span class="kw">mean</span>(smldep, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="visual-ts.html#cb366-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="visual-ts.html#cb384-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> tri <span class="sc">%&gt;%</span> </span>
+<span id="cb384-2"><a href="visual-ts.html#cb384-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb384-3"><a href="visual-ts.html#cb384-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">smldep =</span> <span class="fu">mean</span>(smldep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb384-4"><a href="visual-ts.html#cb384-4" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["smldep"],"name":[2],"type":["dbl"],"align":["right"]}],"data":[{"1":"1885","2":"0.0082543585"},{"1":"1886","2":"0.0079952870"},{"1":"1887","2":"0.0074479261"},{"1":"1888","2":"0.0074489535"},{"1":"1889","2":"0.0076578921"},{"1":"1890","2":"0.0071053858"},{"1":"1891","2":"0.0075742261"},{"1":"1892","2":"0.0070929492"},{"1":"1893","2":"0.0066553949"},{"1":"1894","2":"0.0069148870"},{"1":"1895","2":"0.0062161008"},{"1":"1896","2":"0.0065274621"},{"1":"1897","2":"0.0063339808"},{"1":"1898","2":"0.0059817309"},{"1":"1899","2":"0.0054178817"},{"1":"1900","2":"0.0041865279"},{"1":"1901","2":"0.0047447857"},{"1":"1902","2":"0.0046686136"},{"1":"1903","2":"0.0050058135"},{"1":"1904","2":"0.0050083941"},{"1":"1905","2":"0.0048029002"},{"1":"1906","2":"0.0046952450"},{"1":"1907","2":"0.0046495950"},{"1":"1908","2":"0.0042506368"},{"1":"1909","2":"0.0042139414"},{"1":"1910","2":"0.0048337255"},{"1":"1911","2":"0.0047696058"},{"1":"1912","2":"0.0046898729"},{"1":"1913","2":"0.0043875685"},{"1":"1920","2":"0.0035041529"},{"1":"1921","2":"0.0029448798"},{"1":"1922","2":"0.0036074834"},{"1":"1923","2":"0.0027343735"},{"1":"1924","2":"0.0032878061"},{"1":"1925","2":"0.0022966201"},{"1":"1926","2":"0.0024468442"},{"1":"1927","2":"0.0023352616"},{"1":"1928","2":"0.0022050915"},{"1":"1929","2":"0.0021170408"},{"1":"1930","2":"0.0019125895"},{"1":"1931","2":"0.0016754529"},{"1":"1932","2":"0.0013384492"},{"1":"1933","2":"0.0011724678"},{"1":"1934","2":"0.0015528390"},{"1":"1935","2":"0.0011349201"},{"1":"1936","2":"0.0014173403"},{"1":"1937","2":"0.0015014816"},{"1":"1938","2":"0.0012180611"},{"1":"1946","2":"0.0006531247"},{"1":"1947","2":"0.0005974403"},{"1":"1948","2":"0.0001307067"},{"1":"1949","2":"0.0001306927"},{"1":"1950","2":"0.0013688887"},{"1":"1951","2":"0.0016612350"},{"1":"1952","2":"0.0014841039"},{"1":"1953","2":"0.0014356505"},{"1":"1954","2":"0.0014532929"},{"1":"1955","2":"0.0016503514"},{"1":"1956","2":"0.0016845021"},{"1":"1957","2":"0.0015780123"},{"1":"1958","2":"0.0014322909"},{"1":"1959","2":"0.0014683903"},{"1":"1960","2":"0.0013609952"},{"1":"1961","2":"0.0012872913"},{"1":"1962","2":"0.0012319641"},{"1":"1963","2":"0.0013156001"},{"1":"1964","2":"0.0013825369"},{"1":"1965","2":"0.0013510903"},{"1":"1966","2":"0.0014193550"},{"1":"1967","2":"0.0014481180"},{"1":"1968","2":"0.0014920023"},{"1":"1969","2":"0.0015482856"},{"1":"1970","2":"0.0015506675"},{"1":"1971","2":"0.0015103575"},{"1":"1972","2":"0.0016355549"},{"1":"1973","2":"0.0019929859"},{"1":"1974","2":"0.0024545136"},{"1":"1975","2":"0.0022575447"},{"1":"1976","2":"0.0022055843"},{"1":"1977","2":"0.0023028730"},{"1":"1978","2":"0.0024085864"},{"1":"1979","2":"0.0026966458"},{"1":"1980","2":"0.0029620308"},{"1":"1981","2":"0.0026011985"},{"1":"1982","2":"0.0022651610"},{"1":"1983","2":"0.0020721880"},{"1":"1984","2":"0.0019780345"},{"1":"1985","2":"0.0019391462"},{"1":"1986","2":"0.0021279629"},{"1":"1987","2":"0.0023896180"},{"1":"1988","2":"0.0024606001"},{"1":"1989","2":"0.0021140556"},{"1":"1990","2":"0.0025482805"},{"1":"1991","2":"0.0025445694"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>標準作画関数では<code>plot()</code>を使い、オプションで<code>type = "l"</code>とします。</p>
-<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="visual-ts.html#cb367-1"></a><span class="kw">plot</span>(df<span class="op">$</span>year, <span class="kw">log</span>(df<span class="op">$</span>smldep), <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="visual-ts.html#cb385-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(df<span class="sc">$</span>year, <span class="fu">log</span>(df<span class="sc">$</span>smldep), <span class="at">type =</span> <span class="st">&quot;l&quot;</span>)</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-227-1.png" width="672" /></p>
 <p><code>ggplot2</code>では<code>geom_line()</code>を使います。</p>
-<div class="sourceCode" id="cb368"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb368-1"><a href="visual-ts.html#cb368-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb368-2"><a href="visual-ts.html#cb368-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb368-3"><a href="visual-ts.html#cb368-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> smldep)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb368-4"><a href="visual-ts.html#cb368-4"></a><span class="st">  </span><span class="kw">scale_y_log10</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb386"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb386-1"><a href="visual-ts.html#cb386-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb386-2"><a href="visual-ts.html#cb386-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb386-3"><a href="visual-ts.html#cb386-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> smldep)) <span class="sc">+</span> </span>
+<span id="cb386-4"><a href="visual-ts.html#cb386-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-228-1.png" width="672" /></p>
 <p>複数の時系列データの場合、<code>group</code>を指定することで、例えば二国間ごとにプロットすることができます。</p>
-<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="visual-ts.html#cb369-1"></a>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb369-2"><a href="visual-ts.html#cb369-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb369-3"><a href="visual-ts.html#cb369-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> smldep, <span class="dt">group =</span> <span class="kw">as.factor</span>(dyadid)), <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb369-4"><a href="visual-ts.html#cb369-4"></a><span class="st">  </span><span class="kw">scale_y_log10</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="visual-ts.html#cb387-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb387-2"><a href="visual-ts.html#cb387-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb387-3"><a href="visual-ts.html#cb387-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> smldep, <span class="at">group =</span> <span class="fu">as.factor</span>(dyadid)), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb387-4"><a href="visual-ts.html#cb387-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-229-1.png" width="672" /></p>
 </div>
-<div id="エラーバー" class="section level2">
+<div id="エラーバー" class="section level2" number="12.2">
 <h2><span class="header-section-number">12.2</span> エラーバー</h2>
 <p>しかし、分析単位の数が多すぎると複数の折れ線グラフは見にくいかもしれません。
 そのようなときは、箱ひげ図やバイオリンプロットを使うのも一案です。</p>
 <p>すでに、それらの作図方法は解説しているので、ここでは別のアプローチを考えます。
 変数の5%, 50%, 95%分位点をプロットしたいとします。</p>
 <p>まず、各年の各四分位点を求めて。<code>df</code>というデータフレームを作成します。</p>
-<div class="sourceCode" id="cb371"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb371-1"><a href="visual-ts.html#cb371-1"></a>df &lt;-<span class="st"> </span>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb371-2"><a href="visual-ts.html#cb371-2"></a><span class="st">  </span><span class="kw">group_by</span>(year) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb371-3"><a href="visual-ts.html#cb371-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">median =</span> <span class="kw">quantile</span>(smldep, <span class="fl">0.5</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb371-4"><a href="visual-ts.html#cb371-4"></a>            <span class="dt">low =</span> <span class="kw">quantile</span>(smldep, <span class="fl">0.05</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb371-5"><a href="visual-ts.html#cb371-5"></a>            <span class="dt">high =</span> <span class="kw">quantile</span>(smldep, <span class="fl">0.95</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
-<pre><code>## `summarise()` ungrouping output (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="visual-ts.html#cb373-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="visual-ts.html#cb389-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> tri <span class="sc">%&gt;%</span> </span>
+<span id="cb389-2"><a href="visual-ts.html#cb389-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-3"><a href="visual-ts.html#cb389-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">quantile</span>(smldep, <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb389-4"><a href="visual-ts.html#cb389-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">quantile</span>(smldep, <span class="fl">0.05</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb389-5"><a href="visual-ts.html#cb389-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">quantile</span>(smldep, <span class="fl">0.95</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span>
+<span id="cb389-6"><a href="visual-ts.html#cb389-6" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["low"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["high"],"name":[4],"type":["dbl"],"align":["right"]}],"data":[{"1":"1885","2":"2.946876e-03","3":"8.665924e-06","4":"0.0276995973"},{"1":"1886","2":"3.040672e-03","3":"2.915912e-05","4":"0.0281582975"},{"1":"1887","2":"3.314304e-03","3":"0.000000e+00","4":"0.0276494420"},{"1":"1888","2":"3.135758e-03","3":"0.000000e+00","4":"0.0277950768"},{"1":"1889","2":"2.962851e-03","3":"0.000000e+00","4":"0.0288182506"},{"1":"1890","2":"2.663489e-03","3":"0.000000e+00","4":"0.0324498117"},{"1":"1891","2":"2.650860e-03","3":"0.000000e+00","4":"0.0302910844"},{"1":"1892","2":"2.728608e-03","3":"0.000000e+00","4":"0.0275012099"},{"1":"1893","2":"2.684073e-03","3":"0.000000e+00","4":"0.0256642114"},{"1":"1894","2":"2.869351e-03","3":"0.000000e+00","4":"0.0269646795"},{"1":"1895","2":"2.326244e-03","3":"0.000000e+00","4":"0.0255760308"},{"1":"1896","2":"2.178204e-03","3":"0.000000e+00","4":"0.0285504963"},{"1":"1897","2":"2.365963e-03","3":"0.000000e+00","4":"0.0282660592"},{"1":"1898","2":"2.232535e-03","3":"0.000000e+00","4":"0.0275661284"},{"1":"1899","2":"1.929387e-03","3":"0.000000e+00","4":"0.0260126431"},{"1":"1900","2":"1.346255e-03","3":"0.000000e+00","4":"0.0199895415"},{"1":"1901","2":"1.720157e-03","3":"0.000000e+00","4":"0.0216064565"},{"1":"1902","2":"1.752924e-03","3":"0.000000e+00","4":"0.0184377804"},{"1":"1903","2":"1.855315e-03","3":"0.000000e+00","4":"0.0215867194"},{"1":"1904","2":"1.905168e-03","3":"0.000000e+00","4":"0.0211315100"},{"1":"1905","2":"2.009263e-03","3":"0.000000e+00","4":"0.0156758053"},{"1":"1906","2":"1.769040e-03","3":"0.000000e+00","4":"0.0175984278"},{"1":"1907","2":"1.667123e-03","3":"0.000000e+00","4":"0.0174374112"},{"1":"1908","2":"1.308259e-03","3":"0.000000e+00","4":"0.0169702582"},{"1":"1909","2":"1.319093e-03","3":"0.000000e+00","4":"0.0163881313"},{"1":"1910","2":"1.525059e-03","3":"0.000000e+00","4":"0.0184513373"},{"1":"1911","2":"1.470119e-03","3":"0.000000e+00","4":"0.0193479094"},{"1":"1912","2":"1.629167e-03","3":"0.000000e+00","4":"0.0180552704"},{"1":"1913","2":"1.279908e-03","3":"0.000000e+00","4":"0.0180063474"},{"1":"1920","2":"8.154365e-04","3":"2.530609e-06","4":"0.0153528221"},{"1":"1921","2":"7.644437e-04","3":"5.450549e-06","4":"0.0132729529"},{"1":"1922","2":"7.845242e-04","3":"4.882767e-06","4":"0.0181810612"},{"1":"1923","2":"6.909349e-04","3":"6.747222e-06","4":"0.0117928598"},{"1":"1924","2":"8.315666e-04","3":"7.098203e-06","4":"0.0148793976"},{"1":"1925","2":"4.208769e-04","3":"0.000000e+00","4":"0.0123604769"},{"1":"1926","2":"5.072100e-04","3":"0.000000e+00","4":"0.0127794944"},{"1":"1927","2":"6.076112e-04","3":"0.000000e+00","4":"0.0112162542"},{"1":"1928","2":"4.486350e-04","3":"0.000000e+00","4":"0.0112757742"},{"1":"1929","2":"4.219301e-04","3":"0.000000e+00","4":"0.0105459001"},{"1":"1930","2":"3.747524e-04","3":"0.000000e+00","4":"0.0097698266"},{"1":"1931","2":"3.528739e-04","3":"0.000000e+00","4":"0.0088126680"},{"1":"1932","2":"2.667460e-04","3":"0.000000e+00","4":"0.0067912309"},{"1":"1933","2":"2.794318e-04","3":"0.000000e+00","4":"0.0055832935"},{"1":"1934","2":"2.994789e-04","3":"0.000000e+00","4":"0.0074060241"},{"1":"1935","2":"2.087097e-04","3":"0.000000e+00","4":"0.0057950999"},{"1":"1936","2":"2.279965e-04","3":"0.000000e+00","4":"0.0074018780"},{"1":"1937","2":"3.227658e-04","3":"0.000000e+00","4":"0.0073533069"},{"1":"1938","2":"2.524364e-04","3":"0.000000e+00","4":"0.0059113904"},{"1":"1946","2":"4.273559e-05","3":"2.560257e-06","4":"0.0032501335"},{"1":"1947","2":"9.752558e-05","3":"4.504308e-06","4":"0.0027104607"},{"1":"1948","2":"6.172689e-05","3":"2.357149e-06","4":"0.0004851030"},{"1":"1949","2":"3.870589e-05","3":"2.507826e-06","4":"0.0004480459"},{"1":"1950","2":"4.257601e-05","3":"0.000000e+00","4":"0.0072223577"},{"1":"1951","2":"6.547386e-05","3":"0.000000e+00","4":"0.0076469750"},{"1":"1952","2":"4.727207e-05","3":"0.000000e+00","4":"0.0069788783"},{"1":"1953","2":"1.025095e-04","3":"0.000000e+00","4":"0.0068588101"},{"1":"1954","2":"9.366677e-05","3":"0.000000e+00","4":"0.0075439302"},{"1":"1955","2":"1.085443e-04","3":"0.000000e+00","4":"0.0087825658"},{"1":"1956","2":"1.388636e-04","3":"0.000000e+00","4":"0.0089109456"},{"1":"1957","2":"1.090885e-04","3":"0.000000e+00","4":"0.0085141523"},{"1":"1958","2":"7.400275e-05","3":"0.000000e+00","4":"0.0084169874"},{"1":"1959","2":"7.563538e-05","3":"0.000000e+00","4":"0.0084030486"},{"1":"1960","2":"1.412580e-04","3":"0.000000e+00","4":"0.0066384177"},{"1":"1961","2":"1.396877e-04","3":"0.000000e+00","4":"0.0068138873"},{"1":"1962","2":"9.471929e-05","3":"0.000000e+00","4":"0.0067618305"},{"1":"1963","2":"1.083923e-04","3":"0.000000e+00","4":"0.0069781257"},{"1":"1964","2":"1.341734e-04","3":"0.000000e+00","4":"0.0070695574"},{"1":"1965","2":"1.315994e-04","3":"0.000000e+00","4":"0.0067506589"},{"1":"1966","2":"1.160453e-04","3":"0.000000e+00","4":"0.0072620424"},{"1":"1967","2":"1.091414e-04","3":"0.000000e+00","4":"0.0072380219"},{"1":"1968","2":"1.020945e-04","3":"0.000000e+00","4":"0.0075820412"},{"1":"1969","2":"9.945587e-05","3":"0.000000e+00","4":"0.0075782671"},{"1":"1970","2":"1.121758e-04","3":"0.000000e+00","4":"0.0076730006"},{"1":"1971","2":"1.053730e-04","3":"0.000000e+00","4":"0.0072151590"},{"1":"1972","2":"1.064739e-04","3":"0.000000e+00","4":"0.0073600497"},{"1":"1973","2":"1.397712e-04","3":"0.000000e+00","4":"0.0099605277"},{"1":"1974","2":"1.711814e-04","3":"0.000000e+00","4":"0.0127714903"},{"1":"1975","2":"1.706821e-04","3":"0.000000e+00","4":"0.0112332431"},{"1":"1976","2":"1.551258e-04","3":"0.000000e+00","4":"0.0103735446"},{"1":"1977","2":"1.794724e-04","3":"0.000000e+00","4":"0.0112134519"},{"1":"1978","2":"1.768392e-04","3":"0.000000e+00","4":"0.0116887013"},{"1":"1979","2":"2.068900e-04","3":"0.000000e+00","4":"0.0111237477"},{"1":"1980","2":"2.471405e-04","3":"0.000000e+00","4":"0.0132896984"},{"1":"1981","2":"2.179716e-04","3":"0.000000e+00","4":"0.0129760532"},{"1":"1982","2":"1.981511e-04","3":"0.000000e+00","4":"0.0103229416"},{"1":"1983","2":"1.630479e-04","3":"0.000000e+00","4":"0.0096741696"},{"1":"1984","2":"1.755475e-04","3":"0.000000e+00","4":"0.0091519747"},{"1":"1985","2":"1.583259e-04","3":"0.000000e+00","4":"0.0092454409"},{"1":"1986","2":"1.365252e-04","3":"0.000000e+00","4":"0.0094470011"},{"1":"1987","2":"1.293726e-04","3":"0.000000e+00","4":"0.0105027581"},{"1":"1988","2":"1.381413e-04","3":"0.000000e+00","4":"0.0105339376"},{"1":"1989","2":"1.341527e-04","3":"0.000000e+00","4":"0.0082402585"},{"1":"1990","2":"1.453481e-04","3":"0.000000e+00","4":"0.0118638191"},{"1":"1991","2":"1.268970e-04","3":"0.000000e+00","4":"0.0111113900"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>一つのやり方は、<code>geom_pointrange()</code>を使う方法です。</p>
-<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="visual-ts.html#cb374-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb374-2"><a href="visual-ts.html#cb374-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb374-3"><a href="visual-ts.html#cb374-3"></a><span class="st">  </span><span class="kw">geom_pointrange</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median, <span class="dt">ymin =</span> low, <span class="dt">ymax =</span> high)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb374-4"><a href="visual-ts.html#cb374-4"></a><span class="st">  </span><span class="kw">scale_y_log10</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb390"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb390-1"><a href="visual-ts.html#cb390-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb390-2"><a href="visual-ts.html#cb390-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb390-3"><a href="visual-ts.html#cb390-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_pointrange</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> median, <span class="at">ymin =</span> low, <span class="at">ymax =</span> high)) <span class="sc">+</span> </span>
+<span id="cb390-4"><a href="visual-ts.html#cb390-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-231-1.png" width="672" /></p>
 <p><code>geom_line()</code>と<code>geom_ribbon()</code>を使うという手もあります。</p>
-<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="visual-ts.html#cb376-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb376-2"><a href="visual-ts.html#cb376-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb376-3"><a href="visual-ts.html#cb376-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median)) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb376-4"><a href="visual-ts.html#cb376-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">ymin =</span> low, <span class="dt">ymax =</span> high), <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb376-5"><a href="visual-ts.html#cb376-5"></a><span class="st">  </span><span class="kw">scale_y_log10</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="visual-ts.html#cb392-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb392-2"><a href="visual-ts.html#cb392-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb392-3"><a href="visual-ts.html#cb392-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> median)) <span class="sc">+</span> </span>
+<span id="cb392-4"><a href="visual-ts.html#cb392-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">ymin =</span> low, <span class="at">ymax =</span> high), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb392-5"><a href="visual-ts.html#cb392-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-232-1.png" width="672" /></p>
 </div>
-<div id="グループごとの時系列" class="section level2">
+<div id="グループごとの時系列" class="section level2" number="12.3">
 <h2><span class="header-section-number">12.3</span> グループごとの時系列</h2>
 <p>グループごとに時系列を表示する場合、<code>geom_line()</code>では<code>colour</code>を、<code>geom_ribbon()</code>では<code>fill</code>を指定します。</p>
 <p>まず。<code>smldep</code>を紛争の有無で分けて各年の各分位点を求めて<code>df</code>とします。</p>
-<div class="sourceCode" id="cb378"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb378-1"><a href="visual-ts.html#cb378-1"></a>df &lt;-<span class="st"> </span>tri <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb378-2"><a href="visual-ts.html#cb378-2"></a><span class="st">  </span><span class="kw">group_by</span>(year, dispute1) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb378-3"><a href="visual-ts.html#cb378-3"></a><span class="st">  </span><span class="kw">summarise</span>(<span class="dt">median =</span> <span class="kw">quantile</span>(smldep, <span class="fl">0.5</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb378-4"><a href="visual-ts.html#cb378-4"></a>            <span class="dt">low =</span> <span class="kw">quantile</span>(smldep, <span class="fl">0.05</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>),</span>
-<span id="cb378-5"><a href="visual-ts.html#cb378-5"></a>            <span class="dt">high =</span> <span class="kw">quantile</span>(smldep, <span class="fl">0.95</span>, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>))</span></code></pre></div>
-<pre><code>## `summarise()` regrouping output by &#39;year&#39; (override with `.groups` argument)</code></pre>
-<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="visual-ts.html#cb380-1"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="visual-ts.html#cb394-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> tri <span class="sc">%&gt;%</span> </span>
+<span id="cb394-2"><a href="visual-ts.html#cb394-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(year, dispute1) <span class="sc">%&gt;%</span> </span>
+<span id="cb394-3"><a href="visual-ts.html#cb394-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">median =</span> <span class="fu">quantile</span>(smldep, <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb394-4"><a href="visual-ts.html#cb394-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">low =</span> <span class="fu">quantile</span>(smldep, <span class="fl">0.05</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb394-5"><a href="visual-ts.html#cb394-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">high =</span> <span class="fu">quantile</span>(smldep, <span class="fl">0.95</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;year&#39;. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb396"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb396-1"><a href="visual-ts.html#cb396-1" aria-hidden="true" tabindex="-1"></a>df</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":["year"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["dispute1"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["median"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["low"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["high"],"name":[5],"type":["dbl"],"align":["right"]}],"data":[{"1":"1885","2":"0","3":"3.053550e-03","4":"0.000000e+00","5":"2.857860e-02"},{"1":"1885","2":"1","3":"2.616425e-03","4":"1.796268e-03","5":"9.289941e-03"},{"1":"1886","2":"0","3":"2.759975e-03","4":"0.000000e+00","5":"2.849814e-02"},{"1":"1886","2":"1","3":"1.487466e-02","4":"4.223462e-03","5":"2.474131e-02"},{"1":"1887","2":"0","3":"2.845804e-03","4":"0.000000e+00","5":"2.671091e-02"},{"1":"1887","2":"1","3":"1.404182e-02","4":"6.517725e-03","5":"2.863493e-02"},{"1":"1888","2":"0","3":"3.135758e-03","4":"0.000000e+00","5":"2.795929e-02"},{"1":"1888","2":"1","3":"7.149402e-03","4":"1.876016e-03","5":"2.301825e-02"},{"1":"1889","2":"0","3":"2.962851e-03","4":"0.000000e+00","5":"2.890384e-02"},{"1":"1889","2":"1","3":"4.771317e-03","4":"2.865071e-03","5":"6.677562e-03"},{"1":"1890","2":"0","3":"2.663489e-03","4":"0.000000e+00","5":"3.250754e-02"},{"1":"1890","2":"1","3":"4.713504e-03","4":"1.417126e-03","5":"8.009882e-03"},{"1":"1891","2":"0","3":"2.650860e-03","4":"0.000000e+00","5":"3.029108e-02"},{"1":"1892","2":"0","3":"2.629922e-03","4":"0.000000e+00","5":"2.581869e-02"},{"1":"1892","2":"1","3":"1.886290e-02","4":"4.948055e-03","5":"3.277774e-02"},{"1":"1893","2":"0","3":"2.684073e-03","4":"0.000000e+00","5":"2.566421e-02"},{"1":"1894","2":"0","3":"2.869351e-03","4":"0.000000e+00","5":"2.787952e-02"},{"1":"1894","2":"1","3":"2.484538e-03","4":"4.623815e-04","5":"7.656209e-03"},{"1":"1895","2":"0","3":"2.401762e-03","4":"0.000000e+00","5":"2.542465e-02"},{"1":"1895","2":"1","3":"1.272961e-03","4":"7.504877e-04","5":"2.250273e-02"},{"1":"1896","2":"0","3":"2.178204e-03","4":"0.000000e+00","5":"2.839091e-02"},{"1":"1896","2":"1","3":"2.097803e-03","4":"5.203461e-04","5":"1.865345e-02"},{"1":"1897","2":"0","3":"2.328217e-03","4":"0.000000e+00","5":"2.699488e-02"},{"1":"1897","2":"1","3":"3.318775e-03","4":"7.981992e-04","5":"2.706758e-02"},{"1":"1898","2":"0","3":"2.232535e-03","4":"0.000000e+00","5":"2.601842e-02"},{"1":"1898","2":"1","3":"1.613416e-02","4":"1.948089e-03","5":"3.032023e-02"},{"1":"1899","2":"0","3":"1.970628e-03","4":"0.000000e+00","5":"2.414501e-02"},{"1":"1899","2":"1","3":"1.808514e-03","4":"6.892786e-04","5":"2.815912e-02"},{"1":"1900","2":"0","3":"1.317993e-03","4":"0.000000e+00","5":"2.024940e-02"},{"1":"1900","2":"1","3":"1.390105e-03","4":"5.767544e-04","5":"4.695769e-03"},{"1":"1901","2":"0","3":"1.726600e-03","4":"0.000000e+00","5":"2.015961e-02"},{"1":"1901","2":"1","3":"1.519469e-03","4":"5.461202e-05","5":"2.635757e-02"},{"1":"1902","2":"0","3":"1.768881e-03","4":"0.000000e+00","5":"1.713093e-02"},{"1":"1902","2":"1","3":"5.115160e-04","4":"5.439479e-05","5":"2.560471e-02"},{"1":"1903","2":"0","3":"1.855315e-03","4":"0.000000e+00","5":"2.216338e-02"},{"1":"1903","2":"1","3":"6.651806e-03","4":"6.941326e-04","5":"1.472151e-02"},{"1":"1904","2":"0","3":"1.806006e-03","4":"0.000000e+00","5":"2.197556e-02"},{"1":"1904","2":"1","3":"2.443448e-03","4":"4.214106e-04","5":"5.378456e-03"},{"1":"1905","2":"0","3":"1.923933e-03","4":"0.000000e+00","5":"1.586366e-02"},{"1":"1905","2":"1","3":"4.146264e-03","4":"3.008279e-03","5":"5.284250e-03"},{"1":"1906","2":"0","3":"1.752652e-03","4":"0.000000e+00","5":"1.763841e-02"},{"1":"1906","2":"1","3":"1.166091e-02","4":"1.166091e-02","5":"1.166091e-02"},{"1":"1907","2":"0","3":"1.649630e-03","4":"0.000000e+00","5":"1.745872e-02"},{"1":"1907","2":"1","3":"3.810245e-03","4":"5.574043e-04","5":"6.683497e-03"},{"1":"1908","2":"0","3":"1.249495e-03","4":"0.000000e+00","5":"1.782247e-02"},{"1":"1908","2":"1","3":"7.560214e-03","4":"3.275622e-03","5":"1.146942e-02"},{"1":"1909","2":"0","3":"1.319093e-03","4":"0.000000e+00","5":"1.648487e-02"},{"1":"1909","2":"1","3":"2.698048e-03","4":"9.434628e-04","5":"4.452634e-03"},{"1":"1910","2":"0","3":"1.419443e-03","4":"0.000000e+00","5":"1.715909e-02"},{"1":"1910","2":"1","3":"8.683379e-03","4":"2.278847e-03","5":"2.642380e-02"},{"1":"1911","2":"0","3":"1.460540e-03","4":"0.000000e+00","5":"2.015674e-02"},{"1":"1911","2":"1","3":"3.017651e-03","4":"3.052043e-04","5":"1.025741e-02"},{"1":"1912","2":"0","3":"1.627770e-03","4":"0.000000e+00","5":"1.836501e-02"},{"1":"1912","2":"1","3":"1.867465e-03","4":"2.415328e-04","5":"4.313937e-03"},{"1":"1913","2":"0","3":"9.706192e-04","4":"0.000000e+00","5":"1.656851e-02"},{"1":"1913","2":"1","3":"3.776070e-03","4":"3.142922e-04","5":"2.173579e-02"},{"1":"1920","2":"0","3":"8.063045e-04","4":"1.165498e-06","5":"1.502818e-02"},{"1":"1920","2":"1","3":"5.503333e-03","4":"9.349974e-05","5":"2.162075e-02"},{"1":"1921","2":"0","3":"6.710169e-04","4":"4.083233e-06","5":"1.176878e-02"},{"1":"1921","2":"1","3":"2.745251e-03","4":"4.773519e-04","5":"3.338196e-02"},{"1":"1922","2":"0","3":"7.241023e-04","4":"4.732570e-06","5":"1.762226e-02"},{"1":"1922","2":"1","3":"2.383554e-03","4":"2.480900e-04","5":"1.494588e-02"},{"1":"1923","2":"0","3":"6.909349e-04","4":"6.747222e-06","5":"1.179286e-02"},{"1":"1924","2":"0","3":"7.911150e-04","4":"6.980534e-06","5":"1.514482e-02"},{"1":"1924","2":"1","3":"3.909024e-03","4":"1.088912e-03","5":"1.132843e-02"},{"1":"1925","2":"0","3":"3.998993e-04","4":"0.000000e+00","5":"1.224598e-02"},{"1":"1925","2":"1","3":"1.693193e-03","4":"6.912112e-05","5":"7.611780e-03"},{"1":"1926","2":"0","3":"4.961852e-04","4":"0.000000e+00","5":"1.224177e-02"},{"1":"1926","2":"1","3":"2.390077e-03","4":"7.264824e-05","5":"1.145124e-02"},{"1":"1927","2":"0","3":"5.996686e-04","4":"0.000000e+00","5":"1.128025e-02"},{"1":"1927","2":"1","3":"1.457300e-03","4":"1.099668e-04","5":"7.097221e-03"},{"1":"1928","2":"0","3":"4.525252e-04","4":"0.000000e+00","5":"1.128521e-02"},{"1":"1928","2":"1","3":"2.862351e-04","4":"0.000000e+00","5":"1.947803e-03"},{"1":"1929","2":"0","3":"4.340260e-04","4":"0.000000e+00","5":"1.055784e-02"},{"1":"1929","2":"1","3":"1.916476e-04","4":"1.916476e-05","5":"2.708655e-04"},{"1":"1930","2":"0","3":"3.734876e-04","4":"0.000000e+00","5":"9.853735e-03"},{"1":"1930","2":"1","3":"1.046718e-03","4":"5.699837e-05","5":"6.452620e-03"},{"1":"1931","2":"0","3":"3.454110e-04","4":"0.000000e+00","5":"8.815007e-03"},{"1":"1931","2":"1","3":"2.029750e-03","4":"2.280991e-04","5":"4.764764e-03"},{"1":"1932","2":"0","3":"2.647742e-04","4":"0.000000e+00","5":"6.894023e-03"},{"1":"1932","2":"1","3":"2.863448e-04","4":"0.000000e+00","5":"2.045407e-03"},{"1":"1933","2":"0","3":"2.615732e-04","4":"0.000000e+00","5":"5.768130e-03"},{"1":"1933","2":"1","3":"5.168080e-04","4":"0.000000e+00","5":"4.005426e-03"},{"1":"1934","2":"0","3":"2.952156e-04","4":"0.000000e+00","5":"7.466319e-03"},{"1":"1934","2":"1","3":"3.294878e-04","4":"0.000000e+00","5":"3.758555e-03"},{"1":"1935","2":"0","3":"1.929718e-04","4":"0.000000e+00","5":"5.771754e-03"},{"1":"1935","2":"1","3":"7.828097e-04","4":"0.000000e+00","5":"6.084251e-03"},{"1":"1936","2":"0","3":"2.255259e-04","4":"0.000000e+00","5":"7.784912e-03"},{"1":"1936","2":"1","3":"4.539166e-04","4":"3.220313e-05","5":"3.266144e-03"},{"1":"1937","2":"0","3":"2.954260e-04","4":"0.000000e+00","5":"7.179342e-03"},{"1":"1937","2":"1","3":"1.745931e-03","4":"1.383252e-04","5":"9.343555e-03"},{"1":"1938","2":"0","3":"1.554865e-04","4":"0.000000e+00","5":"4.961621e-03"},{"1":"1938","2":"1","3":"7.847000e-04","4":"3.005728e-07","5":"6.277670e-03"},{"1":"1946","2":"0","3":"4.273559e-05","4":"2.560257e-06","5":"3.250133e-03"},{"1":"1947","2":"0","3":"9.752558e-05","4":"4.504308e-06","5":"2.710461e-03"},{"1":"1948","2":"0","3":"6.172689e-05","4":"2.357149e-06","5":"4.851030e-04"},{"1":"1949","2":"0","3":"3.870589e-05","4":"2.507826e-06","5":"4.480459e-04"},{"1":"1950","2":"0","3":"8.313677e-05","4":"0.000000e+00","5":"7.667200e-03"},{"1":"1950","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"2.828231e-03"},{"1":"1951","2":"0","3":"1.402106e-04","4":"0.000000e+00","5":"8.391517e-03"},{"1":"1951","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"3.780772e-03"},{"1":"1952","2":"0","3":"7.886365e-05","4":"0.000000e+00","5":"7.386872e-03"},{"1":"1952","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"4.650129e-05"},{"1":"1953","2":"0","3":"1.067129e-04","4":"0.000000e+00","5":"7.550519e-03"},{"1":"1953","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"1.296821e-03"},{"1":"1954","2":"0","3":"9.414148e-05","4":"0.000000e+00","5":"7.958737e-03"},{"1":"1954","2":"1","3":"2.727089e-05","4":"0.000000e+00","5":"2.077930e-03"},{"1":"1955","2":"0","3":"1.348941e-04","4":"0.000000e+00","5":"9.037484e-03"},{"1":"1955","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"1.917985e-03"},{"1":"1956","2":"0","3":"1.484087e-04","4":"0.000000e+00","5":"8.991093e-03"},{"1":"1956","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"9.902996e-04"},{"1":"1957","2":"0","3":"1.165683e-04","4":"0.000000e+00","5":"9.023556e-03"},{"1":"1957","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"1.461379e-03"},{"1":"1958","2":"0","3":"8.188977e-05","4":"0.000000e+00","5":"8.943225e-03"},{"1":"1958","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"1.603891e-03"},{"1":"1959","2":"0","3":"9.743426e-05","4":"0.000000e+00","5":"8.537378e-03"},{"1":"1959","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"2.261919e-03"},{"1":"1960","2":"0","3":"1.442927e-04","4":"0.000000e+00","5":"8.100042e-03"},{"1":"1960","2":"1","3":"9.085301e-05","4":"0.000000e+00","5":"2.897069e-03"},{"1":"1961","2":"0","3":"1.473927e-04","4":"0.000000e+00","5":"7.248896e-03"},{"1":"1961","2":"1","3":"6.071212e-05","4":"0.000000e+00","5":"2.795569e-03"},{"1":"1962","2":"0","3":"9.715078e-05","4":"0.000000e+00","5":"7.139565e-03"},{"1":"1962","2":"1","3":"3.406427e-05","4":"0.000000e+00","5":"2.512277e-03"},{"1":"1963","2":"0","3":"1.263284e-04","4":"0.000000e+00","5":"7.326326e-03"},{"1":"1963","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"2.217281e-03"},{"1":"1964","2":"0","3":"1.473207e-04","4":"0.000000e+00","5":"7.758440e-03"},{"1":"1964","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"2.153618e-03"},{"1":"1965","2":"0","3":"1.480452e-04","4":"0.000000e+00","5":"7.140344e-03"},{"1":"1965","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"2.248886e-03"},{"1":"1966","2":"0","3":"1.339606e-04","4":"0.000000e+00","5":"7.880445e-03"},{"1":"1966","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"2.226119e-03"},{"1":"1967","2":"0","3":"1.270310e-04","4":"0.000000e+00","5":"7.331699e-03"},{"1":"1967","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"2.401895e-03"},{"1":"1968","2":"0","3":"1.082390e-04","4":"0.000000e+00","5":"7.732110e-03"},{"1":"1968","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"3.219990e-03"},{"1":"1969","2":"0","3":"1.141789e-04","4":"0.000000e+00","5":"7.875531e-03"},{"1":"1969","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"3.246153e-03"},{"1":"1970","2":"0","3":"1.304912e-04","4":"0.000000e+00","5":"7.787137e-03"},{"1":"1970","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"3.905951e-03"},{"1":"1971","2":"0","3":"1.123698e-04","4":"0.000000e+00","5":"7.683526e-03"},{"1":"1971","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"9.339553e-04"},{"1":"1972","2":"0","3":"1.208874e-04","4":"0.000000e+00","5":"7.926579e-03"},{"1":"1972","2":"1","3":"1.730399e-05","4":"0.000000e+00","5":"1.714344e-03"},{"1":"1973","2":"0","3":"1.491481e-04","4":"0.000000e+00","5":"1.033142e-02"},{"1":"1973","2":"1","3":"9.540434e-06","4":"0.000000e+00","5":"1.865522e-03"},{"1":"1974","2":"0","3":"1.753191e-04","4":"0.000000e+00","5":"1.277149e-02"},{"1":"1974","2":"1","3":"8.100059e-05","4":"0.000000e+00","5":"6.681905e-03"},{"1":"1975","2":"0","3":"1.721759e-04","4":"0.000000e+00","5":"1.120959e-02"},{"1":"1975","2":"1","3":"1.031531e-04","4":"0.000000e+00","5":"9.057496e-03"},{"1":"1976","2":"0","3":"1.600741e-04","4":"0.000000e+00","5":"1.030241e-02"},{"1":"1976","2":"1","3":"8.886130e-05","4":"0.000000e+00","5":"9.743250e-03"},{"1":"1977","2":"0","3":"1.847195e-04","4":"0.000000e+00","5":"1.133437e-02"},{"1":"1977","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"5.411759e-03"},{"1":"1978","2":"0","3":"1.836588e-04","4":"0.000000e+00","5":"1.172010e-02"},{"1":"1978","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"6.302376e-03"},{"1":"1979","2":"0","3":"2.056483e-04","4":"0.000000e+00","5":"1.177277e-02"},{"1":"1979","2":"1","3":"2.116559e-04","4":"0.000000e+00","5":"3.399761e-03"},{"1":"1980","2":"0","3":"2.493437e-04","4":"0.000000e+00","5":"1.345267e-02"},{"1":"1980","2":"1","3":"1.469231e-04","4":"0.000000e+00","5":"5.867562e-03"},{"1":"1981","2":"0","3":"2.138521e-04","4":"0.000000e+00","5":"1.301088e-02"},{"1":"1981","2":"1","3":"3.491283e-04","4":"0.000000e+00","5":"7.678937e-03"},{"1":"1982","2":"0","3":"1.996931e-04","4":"0.000000e+00","5":"1.100822e-02"},{"1":"1982","2":"1","3":"8.243424e-05","4":"0.000000e+00","5":"3.642484e-03"},{"1":"1983","2":"0","3":"1.630479e-04","4":"0.000000e+00","5":"9.727157e-03"},{"1":"1983","2":"1","3":"1.741899e-04","4":"0.000000e+00","5":"8.260500e-03"},{"1":"1984","2":"0","3":"1.743930e-04","4":"0.000000e+00","5":"9.159618e-03"},{"1":"1984","2":"1","3":"1.995408e-04","4":"0.000000e+00","5":"7.406097e-03"},{"1":"1985","2":"0","3":"1.555214e-04","4":"0.000000e+00","5":"9.397505e-03"},{"1":"1985","2":"1","3":"2.111049e-04","4":"0.000000e+00","5":"6.240989e-03"},{"1":"1986","2":"0","3":"1.355946e-04","4":"0.000000e+00","5":"1.020861e-02"},{"1":"1986","2":"1","3":"1.526791e-04","4":"0.000000e+00","5":"4.439327e-03"},{"1":"1987","2":"0","3":"1.265268e-04","4":"0.000000e+00","5":"1.089225e-02"},{"1":"1987","2":"1","3":"2.617259e-04","4":"0.000000e+00","5":"5.880438e-03"},{"1":"1988","2":"0","3":"1.381413e-04","4":"0.000000e+00","5":"1.053195e-02"},{"1":"1988","2":"1","3":"1.436842e-04","4":"0.000000e+00","5":"8.647905e-03"},{"1":"1989","2":"0","3":"1.341527e-04","4":"0.000000e+00","5":"8.353998e-03"},{"1":"1989","2":"1","3":"1.451519e-04","4":"0.000000e+00","5":"9.864280e-04"},{"1":"1990","2":"0","3":"1.434233e-04","4":"0.000000e+00","5":"1.098166e-02"},{"1":"1990","2":"1","3":"3.871425e-04","4":"0.000000e+00","5":"1.475343e-02"},{"1":"1991","2":"0","3":"1.288077e-04","4":"0.000000e+00","5":"1.084670e-02"},{"1":"1991","2":"1","3":"0.000000e+00","4":"0.000000e+00","5":"6.602774e-02"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>続いて、折れ線グラフとエラーバーをプロットします。</p>
-<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="visual-ts.html#cb381-1"></a>df <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb381-2"><a href="visual-ts.html#cb381-2"></a><span class="st">  </span><span class="kw">ggplot</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb381-3"><a href="visual-ts.html#cb381-3"></a><span class="st">  </span><span class="kw">geom_line</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">y =</span> median, <span class="dt">colour =</span> <span class="kw">as.factor</span>(dispute1))) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb381-4"><a href="visual-ts.html#cb381-4"></a><span class="st">  </span><span class="kw">geom_ribbon</span>(<span class="kw">aes</span>(<span class="dt">x =</span> year, <span class="dt">ymin =</span> low, <span class="dt">ymax =</span> high, <span class="dt">fill =</span> <span class="kw">as.factor</span>(dispute1)), <span class="dt">alpha =</span> <span class="fl">0.3</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb381-5"><a href="visual-ts.html#cb381-5"></a><span class="st">  </span><span class="kw">scale_y_log10</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb397"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb397-1"><a href="visual-ts.html#cb397-1" aria-hidden="true" tabindex="-1"></a>df <span class="sc">%&gt;%</span> </span>
+<span id="cb397-2"><a href="visual-ts.html#cb397-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb397-3"><a href="visual-ts.html#cb397-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> median, <span class="at">colour =</span> <span class="fu">as.factor</span>(dispute1))) <span class="sc">+</span> </span>
+<span id="cb397-4"><a href="visual-ts.html#cb397-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_ribbon</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">ymin =</span> low, <span class="at">ymax =</span> high, <span class="at">fill =</span> <span class="fu">as.factor</span>(dispute1)), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span> </span>
+<span id="cb397-5"><a href="visual-ts.html#cb397-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis
 
 ## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
@@ -638,6 +706,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -658,6 +727,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true

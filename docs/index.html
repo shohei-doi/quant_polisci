@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.22 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Rで計量政治学入門" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2021-05-21" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,8 @@
   
 
 <link rel="next" href="data-import.html"/>
-<script src="libs/header-attrs-2.8/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -522,6 +522,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
 <li class="chapter" data-level="24.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>24.4</b> 複数の出力</a></li>
 </ul></li>
+<li class="chapter" data-level="25" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>25</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>25.1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="25.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>25.1.1</b> 問題</a></li>
+<li class="chapter" data-level="25.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>25.1.2</b> Linux上のR/RStudioを使う</a></li>
+<li class="chapter" data-level="25.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>25.1.3</b> 概要</a></li>
+</ul></li>
+<li class="chapter" data-level="25.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>25.2</b> WSL2のインストール</a></li>
+<li class="chapter" data-level="25.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>25.3</b> Rのインストール</a></li>
+<li class="chapter" data-level="25.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>25.4</b> RStusio Serverのインストール</a></li>
+<li class="chapter" data-level="25.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>25.5</b> RStudio Server on WSL2の注意点</a>
+<ul>
+<li class="chapter" data-level="25.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>25.5.1</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="25.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>25.5.2</b> 警告メッセージ</a></li>
+<li class="chapter" data-level="25.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>25.5.3</b> 日本語フォント</a></li>
+<li class="chapter" data-level="25.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>25.5.4</b> Windows側のファイルへのアクセス</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -547,7 +566,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="header">
 <h1 class="title">Rで計量政治学入門</h1>
 <p class="author"><em>土井　翔平</em></p>
-<p class="date" style="margin-top: 1.5em;"><em>2021-05-21</em></p>
+<p class="date"><em>2021-08-25</em></p>
 </div>
 <div id="index" class="section level1 unnumbered">
 <h1>はじめに</h1>
@@ -565,7 +584,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <ul>
 <li>やや高度と思われる箇所には*を付けているので、読み飛ばしても構いません。</li>
 </ul>
-<p>なお、RやRStudioのインストールについては<del><a href="r-envir.html#r-envir">Rの分析環境</a></del>矢内先生の<a href="https://yukiyanai.github.io/jp/resources/">RとRStudioのインストール方法</a>の資料〜を、基本操作については<a href="intro-r.html#intro-r">Rプログラミング入門</a>をご覧ください。</p>
+<p>なお、RやRStudioのインストールについては<del><a href="r-envir.html#r-envir">Rの分析環境</a></del>矢内先生の<a href="https://yukiyanai.github.io/jp/resources/">RとRStudioのインストール方法</a>の資料あるいは<a href="wsl-rstudio.html#wsl-rstudio">WindowsでR/RStudioをちゃんと使う方法</a>を、基本操作については<a href="intro-r.html#intro-r">Rプログラミング入門</a>をご覧ください。</p>
 <ul>
 <li><a href="https://education.rstudio.com/learn/beginner/">RStudio Education</a>の初学者向け案内、特に<a href="https://rstudio.cloud/learn/primers">RStudio Primers</a>のチュートリアルをまずはやることをおすすめします。</li>
 </ul>
@@ -645,6 +664,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
@@ -653,6 +676,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

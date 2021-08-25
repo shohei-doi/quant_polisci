@@ -67,23 +67,23 @@ data %>%
 
 - `Coutnry Code`, `Indicator Name`、`Indicator Code`という変数が不要でありそう。
 - `Country Name`という変数名に空白があると面倒なので名前を変えた方がいい。
-- `X64`という謎の変数がある。
+- `...64`という謎の変数がある。
 
 ```{r}
 names(data)
 ```
 
-そこで、`X64`の中身を確認します。
+そこで、`...64`の中身を確認します。
 
 ```{r}
-data$X64
+data$...64
 ```
 
 どうやら取り除いていい変数のようなので以下の処理を行います。
 
 ```{r}
 data <- select(data,
-               -"Country Code", -"Indicator Name", -"Indicator Code", -X64)
+               -"Country Code", -"Indicator Name", -"Indicator Code", -...64)
 data <- rename(data, name = "Country Name")
 names(data)
 ```
@@ -317,7 +317,7 @@ data %>%
 ```{r}
 data <- read_csv("data/wb_gdp_pc.csv", skip = 4)
 data <- select(data,
-               -"Country Code", -"Indicator Name", -"Indicator Code", -X64)
+               -"Country Code", -"Indicator Name", -"Indicator Code", -...64)
 data <- rename(data, name = "Country Name")
 data <- data %>% 
   pivot_longer(-name, names_to = "year", values_to = "gdp_pc") %>% 
@@ -331,7 +331,7 @@ data %>%
 
 ```{r}
 data <- read_csv("data/wb_gdp_pc.csv", skip = 4) %>% 
-  select(-"Country Code", -"Indicator Name", -"Indicator Code", -X64)%>% 
+  select(-"Country Code", -"Indicator Name", -"Indicator Code", -...64)%>% 
   rename(name = "Country Name") %>% 
   pivot_longer(-name, names_to = "year", values_to = "gdp_pc") %>% 
   mutate(year = as.numeric(year))

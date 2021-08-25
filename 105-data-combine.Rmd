@@ -52,13 +52,13 @@ unique(data$name)
 
 ```{r}
 gdp_pc <- read_csv("data/wb_gdp_pc.csv", skip = 4) %>% 
-  select(-"Country Code", -"Indicator Name", -"Indicator Code", -X64)%>% 
+  select(-"Country Code", -"Indicator Name", -"Indicator Code", -...64)%>% 
   rename(name = "Country Name") %>% 
   gather(key = year, value = gdp_pc, -name) %>% 
   mutate(year = as.numeric(year))
 head(gdp_pc)
 gdp_gr <- read_csv("data/wb_gdp_growth.csv", skip = 4) %>% 
-  select(-"Country Code", -"Indicator Name", -"Indicator Code", -X64)%>% 
+  select(-"Country Code", -"Indicator Name", -"Indicator Code", -...64)%>% 
   rename(name = "Country Name") %>% 
   gather(key = year, value = gdp_gr, -name) %>% 
   mutate(year = as.numeric(year))

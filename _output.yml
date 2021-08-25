@@ -12,16 +12,16 @@ bookdown::gitbook:
       after: |
         <li><a href="../index.html">&copy; 2020 Shohei Doi</a></li>
   df_print: paged
-  download: ["pdf"]
-bookdown::pdf_book:
-  documentclass: bxjsreport
-  header-includes: 
-      - \usepackage{xeCJK}
-      - \setCJKmainfont{Noto Sans CJK JP Light}
-      - \setCJKsansfont{Noto Sans CJK JP Light}
-      - \setCJKmonofont{Noto Serif CJK JP Light}
-  latex_engine: xelatex
-  citation_package: natbib
-  keep_tex: yes
-  toc_depth: 1
-#bookdown::epub_book: default
+  # download: ["pdf"]
+# bookdown::pdf_book:
+#   documentclass: bxjsreport
+#   header-includes: 
+#       - \usepackage{xeCJK}
+#       - \setCJKmainfont{Noto Sans CJK JP Light}
+#       - \setCJKsansfont{Noto Sans CJK JP Light}
+#       - \setCJKmonofont{Noto Serif CJK JP Light}
+#   latex_engine: xelatex
+#   citation_package: natbib
+#   keep_tex: yes
+#   toc_depth: 1
+# bookdown::epub_book: default

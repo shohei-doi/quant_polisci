@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第16章 Googleデータ | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第16章 Googleデータ | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2021-04-16" />
+<meta name="date" content="2021-08-25" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,8 @@
   
 <link rel="prev" href="twitter-data.html"/>
 <link rel="next" href="wikipedia-data.html"/>
-<script src="libs/header-attrs-2.7/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -53,6 +53,8 @@
 
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-75879658-3"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
@@ -130,6 +132,7 @@ code span.va { color: #19177c; } /* Variable */
 code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
+
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -519,6 +522,25 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
 <li class="chapter" data-level="24.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>24.4</b> 複数の出力</a></li>
 </ul></li>
+<li class="chapter" data-level="25" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>25</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<ul>
+<li class="chapter" data-level="25.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>25.1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="25.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>25.1.1</b> 問題</a></li>
+<li class="chapter" data-level="25.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>25.1.2</b> Linux上のR/RStudioを使う</a></li>
+<li class="chapter" data-level="25.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>25.1.3</b> 概要</a></li>
+</ul></li>
+<li class="chapter" data-level="25.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>25.2</b> WSL2のインストール</a></li>
+<li class="chapter" data-level="25.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>25.3</b> Rのインストール</a></li>
+<li class="chapter" data-level="25.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>25.4</b> RStusio Serverのインストール</a></li>
+<li class="chapter" data-level="25.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>25.5</b> RStudio Server on WSL2の注意点</a>
+<ul>
+<li class="chapter" data-level="25.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>25.5.1</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="25.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>25.5.2</b> 警告メッセージ</a></li>
+<li class="chapter" data-level="25.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>25.5.3</b> 日本語フォント</a></li>
+<li class="chapter" data-level="25.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>25.5.4</b> Windows側のファイルへのアクセス</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
 <li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
 <li class="divider"></li>
@@ -551,23 +573,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>詳しくは<a href="http://ysklog.net/googleanalytics/5632.html">こちら</a>を参照。</li>
 </ul>
 <p>また、1800年からの書籍において単語がどの程度使用されてきたのかは<a href="https://books.google.com/ngrams">Google Books Ngram Viewer</a>で調べることができます。</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="google-data.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
-<pre><code>## ── Attaching packages ─────────────────────────────────────── tidyverse 1.3.0 ──</code></pre>
-<pre><code>## ✓ ggplot2 3.3.3     ✓ purrr   0.3.4
-## ✓ tibble  3.1.0     ✓ dplyr   1.0.5
-## ✓ tidyr   1.1.3     ✓ stringr 1.4.0
-## ✓ readr   1.4.0     ✓ forcats 0.5.1</code></pre>
-<pre><code>## ── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-## x dplyr::filter() masks stats::filter()
-## x dplyr::lag()    masks stats::lag()</code></pre>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="google-data.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
-<span id="cb5-2"><a href="google-data.html#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div>
-<pre><code>## 
-## Attaching package: &#39;rvest&#39;</code></pre>
-<pre><code>## The following object is masked from &#39;package:readr&#39;:
-## 
-##     guess_encoding</code></pre>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="google-data.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ngramr)</span></code></pre></div>
+<div class="sourceCode" id="cb509"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb509-1"><a href="google-data.html#cb509-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb509-2"><a href="google-data.html#cb509-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gtrendsR)</span>
+<span id="cb509-3"><a href="google-data.html#cb509-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rvest)</span>
+<span id="cb509-4"><a href="google-data.html#cb509-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ngramr)</span></code></pre></div>
 </div>
 <div id="時系列トレンド" class="section level2" number="16.2">
 <h2><span class="header-section-number">16.2</span> 時系列トレンド</h2>
@@ -575,23 +584,23 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h3><span class="header-section-number">16.2.1</span> 一つの単語</h3>
 <p><code>gtrends()</code>という関数で検索スコアを取ってくることができます。
 ここでは、「新型 コロナ」と「マスク」の検索トレンドを調べてみます。</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="google-data.html#cb9-1" aria-hidden="true" tabindex="-1"></a>trend <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;新型 コロナ&quot;</span>, <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>)</span>
-<span id="cb9-2"><a href="google-data.html#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trend)</span></code></pre></div>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<div class="sourceCode" id="cb510"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb510-1"><a href="google-data.html#cb510-1" aria-hidden="true" tabindex="-1"></a>trend <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;新型 コロナ&quot;</span>, <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>)</span>
+<span id="cb510-2"><a href="google-data.html#cb510-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trend)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-292-1.png" width="672" /></p>
 <ul>
 <li>“geo”オプションで地域を指定できます。</li>
 </ul>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="google-data.html#cb10-1" aria-hidden="true" tabindex="-1"></a>trend <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;マスク&quot;</span>, <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>)</span>
-<span id="cb10-2"><a href="google-data.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trend)</span></code></pre></div>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<div class="sourceCode" id="cb511"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb511-1"><a href="google-data.html#cb511-1" aria-hidden="true" tabindex="-1"></a>trend <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="st">&quot;マスク&quot;</span>, <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>)</span>
+<span id="cb511-2"><a href="google-data.html#cb511-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trend)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-293-1.png" width="672" /></p>
 </div>
 <div id="複数の単語" class="section level3" number="16.2.2">
 <h3><span class="header-section-number">16.2.2</span> 複数の単語</h3>
 <p>しかし、このままでは「新型 コロナ」と「マスク」のそれぞれのピークで100となってしまうので、両者の比較をすることはできません。
 そこで、両者を同時に調べてみます。</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="google-data.html#cb11-1" aria-hidden="true" tabindex="-1"></a>trend <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="fu">c</span>(<span class="st">&quot;新型 コロナ&quot;</span>, <span class="st">&quot;マスク&quot;</span>), <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>)</span>
-<span id="cb11-2"><a href="google-data.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trend)</span></code></pre></div>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb512"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb512-1"><a href="google-data.html#cb512-1" aria-hidden="true" tabindex="-1"></a>trend <span class="ot">&lt;-</span> <span class="fu">gtrends</span>(<span class="at">keyword =</span> <span class="fu">c</span>(<span class="st">&quot;新型 コロナ&quot;</span>, <span class="st">&quot;マスク&quot;</span>), <span class="at">geo =</span> <span class="st">&quot;JP&quot;</span>)</span>
+<span id="cb512-2"><a href="google-data.html#cb512-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(trend)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-294-1.png" width="672" /></p>
 <p>マスクのほうが注目されていることがわかります。</p>
 <ul>
 <li>ただし、同時に検索できるのは5つまでになります。</li>
@@ -601,41 +610,41 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="地域別のトレンド" class="section level2" number="16.3">
 <h2><span class="header-section-number">16.3</span> 地域別のトレンド</h2>
 <p><code>gtrends</code>の出力の中身を見てみましょう。</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="google-data.html#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(trend, <span class="at">max.level =</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb513"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb513-1"><a href="google-data.html#cb513-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(trend, <span class="at">max.level =</span> <span class="dv">1</span>)</span></code></pre></div>
 <pre><code>## List of 7
 ##  $ interest_over_time :&#39;data.frame&#39;: 522 obs. of  7 variables:
 ##  $ interest_by_country: NULL
 ##  $ interest_by_region :&#39;data.frame&#39;: 94 obs. of  5 variables:
 ##  $ interest_by_dma    : NULL
-##  $ interest_by_city   :&#39;data.frame&#39;: 273 obs. of  5 variables:
+##  $ interest_by_city   :&#39;data.frame&#39;: 286 obs. of  5 variables:
 ##  $ related_topics     : NULL
 ##  $ related_queries    :&#39;data.frame&#39;: 100 obs. of  6 variables:
 ##   ..- attr(*, &quot;reshapeLong&quot;)=List of 4
 ##  - attr(*, &quot;class&quot;)= chr [1:2] &quot;gtrends&quot; &quot;list&quot;</code></pre>
 <p>時系列以外にも地域別のスコアがあるのが分かります。</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="google-data.html#cb14-1" aria-hidden="true" tabindex="-1"></a>trend<span class="sc">$</span>interest_by_region</span></code></pre></div>
+<div class="sourceCode" id="cb515"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb515-1"><a href="google-data.html#cb515-1" aria-hidden="true" tabindex="-1"></a>trend<span class="sc">$</span>interest_by_region</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hits"],"name":[2],"type":["int"],"align":["right"]},{"label":["keyword"],"name":[3],"type":["chr"],"align":["left"]},{"label":["geo"],"name":[4],"type":["chr"],"align":["left"]},{"label":["gprop"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"Fukui Prefecture","2":"100","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kumamoto Prefecture","2":"84","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Gunma Prefecture","2":"77","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Saga Prefecture","2":"74","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Yamaguchi Prefecture","2":"71","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Okinawa Prefecture","2":"70","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Nagano Prefecture","2":"70","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Tochigi Prefecture","2":"70","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Gifu Prefecture","2":"69","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Ishikawa Prefecture","2":"68","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Okayama Prefecture","2":"68","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Wakayama Prefecture","2":"68","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Shiga Prefecture","2":"67","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Shimane Prefecture","2":"66","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Yamanashi Prefecture","2":"66","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Hokkaido Prefecture","2":"66","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Ehime Prefecture","2":"65","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Oita Prefecture","2":"64","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kochi Prefecture","2":"63","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Mie Prefecture","2":"63","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Toyama Prefecture","2":"63","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Niigata Prefecture","2":"62","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Ibaraki Prefecture","2":"61","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Fukuoka Prefecture","2":"61","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Tokushima Prefecture","2":"60","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Yamagata Prefecture","2":"60","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Nara Prefecture","2":"59","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Miyazaki Prefecture","2":"59","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Nagasaki Prefecture","2":"58","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Hiroshima Prefecture","2":"57","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Tottori Prefecture","2":"56","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kagawa Prefecture","2":"56","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Hyogo Prefecture","2":"56","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Saitama Prefecture","2":"56","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kagoshima Prefecture","2":"55","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Shizuoka Prefecture","2":"55","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Aomori Prefecture","2":"54","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Chiba Prefecture","2":"53","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Fukushima Prefecture","2":"52","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Miyagi Prefecture","2":"52","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Aichi Prefecture","2":"52","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Iwate Prefecture","2":"51","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kyoto Prefecture","2":"51","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Akita Prefecture","2":"50","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kanagawa Prefecture","2":"47","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Osaka Prefecture","2":"42","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Tokyo","2":"37","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Saitama Prefecture","2":"100","3":"マスク","4":"JP","5":"web"},{"1":"Tochigi Prefecture","2":"96","3":"マスク","4":"JP","5":"web"},{"1":"Nara Prefecture","2":"96","3":"マスク","4":"JP","5":"web"},{"1":"Hyogo Prefecture","2":"96","3":"マスク","4":"JP","5":"web"},{"1":"Hokkaido Prefecture","2":"95","3":"マスク","4":"JP","5":"web"},{"1":"Mie Prefecture","2":"95","3":"マスク","4":"JP","5":"web"},{"1":"Chiba Prefecture","2":"94","3":"マスク","4":"JP","5":"web"},{"1":"Toyama Prefecture","2":"94","3":"マスク","4":"JP","5":"web"},{"1":"Wakayama Prefecture","2":"93","3":"マスク","4":"JP","5":"web"},{"1":"Gunma Prefecture","2":"93","3":"マスク","4":"JP","5":"web"},{"1":"Ibaraki Prefecture","2":"93","3":"マスク","4":"JP","5":"web"},{"1":"Gifu Prefecture","2":"92","3":"マスク","4":"JP","5":"web"},{"1":"Miyagi Prefecture","2":"92","3":"マスク","4":"JP","5":"web"},{"1":"Ishikawa Prefecture","2":"91","3":"マスク","4":"JP","5":"web"},{"1":"Shiga Prefecture","2":"89","3":"マスク","4":"JP","5":"web"},{"1":"Fukui Prefecture","2":"88","3":"マスク","4":"JP","5":"web"},{"1":"Shizuoka Prefecture","2":"87","3":"マスク","4":"JP","5":"web"},{"1":"Yamagata Prefecture","2":"87","3":"マスク","4":"JP","5":"web"},{"1":"Yamaguchi Prefecture","2":"87","3":"マスク","4":"JP","5":"web"},{"1":"Yamanashi Prefecture","2":"86","3":"マスク","4":"JP","5":"web"},{"1":"Kanagawa Prefecture","2":"86","3":"マスク","4":"JP","5":"web"},{"1":"Fukushima Prefecture","2":"86","3":"マスク","4":"JP","5":"web"},{"1":"Hiroshima Prefecture","2":"86","3":"マスク","4":"JP","5":"web"},{"1":"Okayama Prefecture","2":"85","3":"マスク","4":"JP","5":"web"},{"1":"Aichi Prefecture","2":"85","3":"マスク","4":"JP","5":"web"},{"1":"Oita Prefecture","2":"85","3":"マスク","4":"JP","5":"web"},{"1":"Ehime Prefecture","2":"84","3":"マスク","4":"JP","5":"web"},{"1":"Kumamoto Prefecture","2":"83","3":"マスク","4":"JP","5":"web"},{"1":"Nagano Prefecture","2":"82","3":"マスク","4":"JP","5":"web"},{"1":"Fukuoka Prefecture","2":"82","3":"マスク","4":"JP","5":"web"},{"1":"Niigata Prefecture","2":"81","3":"マスク","4":"JP","5":"web"},{"1":"Tokushima Prefecture","2":"81","3":"マスク","4":"JP","5":"web"},{"1":"Aomori Prefecture","2":"81","3":"マスク","4":"JP","5":"web"},{"1":"Saga Prefecture","2":"81","3":"マスク","4":"JP","5":"web"},{"1":"Tottori Prefecture","2":"80","3":"マスク","4":"JP","5":"web"},{"1":"Osaka Prefecture","2":"80","3":"マスク","4":"JP","5":"web"},{"1":"Iwate Prefecture","2":"79","3":"マスク","4":"JP","5":"web"},{"1":"Nagasaki Prefecture","2":"79","3":"マスク","4":"JP","5":"web"},{"1":"Kagawa Prefecture","2":"79","3":"マスク","4":"JP","5":"web"},{"1":"Kyoto Prefecture","2":"78","3":"マスク","4":"JP","5":"web"},{"1":"Akita Prefecture","2":"77","3":"マスク","4":"JP","5":"web"},{"1":"Kochi Prefecture","2":"76","3":"マスク","4":"JP","5":"web"},{"1":"Shimane Prefecture","2":"76","3":"マスク","4":"JP","5":"web"},{"1":"Kagoshima Prefecture","2":"75","3":"マスク","4":"JP","5":"web"},{"1":"Miyazaki Prefecture","2":"75","3":"マスク","4":"JP","5":"web"},{"1":"Tokyo","2":"65","3":"マスク","4":"JP","5":"web"},{"1":"Okinawa Prefecture","2":"63","3":"マスク","4":"JP","5":"web"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["location"],"name":[1],"type":["chr"],"align":["left"]},{"label":["hits"],"name":[2],"type":["int"],"align":["right"]},{"label":["keyword"],"name":[3],"type":["chr"],"align":["left"]},{"label":["geo"],"name":[4],"type":["chr"],"align":["left"]},{"label":["gprop"],"name":[5],"type":["chr"],"align":["left"]}],"data":[{"1":"Fukui Prefecture","2":"100","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kumamoto Prefecture","2":"80","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Gunma Prefecture","2":"73","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Okinawa Prefecture","2":"71","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Saga Prefecture","2":"69","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Nagano Prefecture","2":"69","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Yamaguchi Prefecture","2":"69","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Shimane Prefecture","2":"67","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kochi Prefecture","2":"66","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Yamanashi Prefecture","2":"66","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Oita Prefecture","2":"65","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Gifu Prefecture","2":"65","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Ishikawa Prefecture","2":"64","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Tochigi Prefecture","2":"64","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Mie Prefecture","2":"63","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Ehime Prefecture","2":"62","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Wakayama Prefecture","2":"62","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Shiga Prefecture","2":"62","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Tokushima Prefecture","2":"61","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kagawa Prefecture","2":"61","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Okayama Prefecture","2":"60","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Toyama Prefecture","2":"60","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Nagasaki Prefecture","2":"60","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Hokkaido Prefecture","2":"60","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Niigata Prefecture","2":"59","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Hiroshima Prefecture","2":"57","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kagoshima Prefecture","2":"57","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Yamagata Prefecture","2":"57","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Fukuoka Prefecture","2":"57","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Ibaraki Prefecture","2":"56","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Hyogo Prefecture","2":"56","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Miyazaki Prefecture","2":"55","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Nara Prefecture","2":"55","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Tottori Prefecture","2":"53","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Saitama Prefecture","2":"52","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Iwate Prefecture","2":"52","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Chiba Prefecture","2":"52","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Fukushima Prefecture","2":"51","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Aichi Prefecture","2":"51","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Shizuoka Prefecture","2":"50","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Akita Prefecture","2":"50","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Miyagi Prefecture","2":"50","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Aomori Prefecture","2":"48","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kyoto Prefecture","2":"47","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Kanagawa Prefecture","2":"46","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Osaka Prefecture","2":"41","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Tokyo","2":"36","3":"新型 コロナ","4":"JP","5":"web"},{"1":"Saitama Prefecture","2":"100","3":"マスク","4":"JP","5":"web"},{"1":"Ibaraki Prefecture","2":"96","3":"マスク","4":"JP","5":"web"},{"1":"Tochigi Prefecture","2":"96","3":"マスク","4":"JP","5":"web"},{"1":"Nara Prefecture","2":"95","3":"マスク","4":"JP","5":"web"},{"1":"Gunma Prefecture","2":"94","3":"マスク","4":"JP","5":"web"},{"1":"Chiba Prefecture","2":"94","3":"マスク","4":"JP","5":"web"},{"1":"Toyama Prefecture","2":"94","3":"マスク","4":"JP","5":"web"},{"1":"Hyogo Prefecture","2":"93","3":"マスク","4":"JP","5":"web"},{"1":"Mie Prefecture","2":"93","3":"マスク","4":"JP","5":"web"},{"1":"Gifu Prefecture","2":"92","3":"マスク","4":"JP","5":"web"},{"1":"Fukushima Prefecture","2":"91","3":"マスク","4":"JP","5":"web"},{"1":"Hokkaido Prefecture","2":"91","3":"マスク","4":"JP","5":"web"},{"1":"Wakayama Prefecture","2":"90","3":"マスク","4":"JP","5":"web"},{"1":"Ishikawa Prefecture","2":"90","3":"マスク","4":"JP","5":"web"},{"1":"Miyagi Prefecture","2":"90","3":"マスク","4":"JP","5":"web"},{"1":"Yamanashi Prefecture","2":"89","3":"マスク","4":"JP","5":"web"},{"1":"Kanagawa Prefecture","2":"87","3":"マスク","4":"JP","5":"web"},{"1":"Shiga Prefecture","2":"87","3":"マスク","4":"JP","5":"web"},{"1":"Fukui Prefecture","2":"87","3":"マスク","4":"JP","5":"web"},{"1":"Shizuoka Prefecture","2":"86","3":"マスク","4":"JP","5":"web"},{"1":"Aichi Prefecture","2":"85","3":"マスク","4":"JP","5":"web"},{"1":"Oita Prefecture","2":"85","3":"マスク","4":"JP","5":"web"},{"1":"Yamagata Prefecture","2":"85","3":"マスク","4":"JP","5":"web"},{"1":"Fukuoka Prefecture","2":"85","3":"マスク","4":"JP","5":"web"},{"1":"Hiroshima Prefecture","2":"84","3":"マスク","4":"JP","5":"web"},{"1":"Yamaguchi Prefecture","2":"84","3":"マスク","4":"JP","5":"web"},{"1":"Niigata Prefecture","2":"84","3":"マスク","4":"JP","5":"web"},{"1":"Okayama Prefecture","2":"83","3":"マスク","4":"JP","5":"web"},{"1":"Kagawa Prefecture","2":"83","3":"マスク","4":"JP","5":"web"},{"1":"Nagano Prefecture","2":"81","3":"マスク","4":"JP","5":"web"},{"1":"Ehime Prefecture","2":"81","3":"マスク","4":"JP","5":"web"},{"1":"Iwate Prefecture","2":"81","3":"マスク","4":"JP","5":"web"},{"1":"Kumamoto Prefecture","2":"81","3":"マスク","4":"JP","5":"web"},{"1":"Osaka Prefecture","2":"81","3":"マスク","4":"JP","5":"web"},{"1":"Kyoto Prefecture","2":"80","3":"マスク","4":"JP","5":"web"},{"1":"Tokushima Prefecture","2":"80","3":"マスク","4":"JP","5":"web"},{"1":"Aomori Prefecture","2":"80","3":"マスク","4":"JP","5":"web"},{"1":"Saga Prefecture","2":"79","3":"マスク","4":"JP","5":"web"},{"1":"Tottori Prefecture","2":"78","3":"マスク","4":"JP","5":"web"},{"1":"Nagasaki Prefecture","2":"76","3":"マスク","4":"JP","5":"web"},{"1":"Akita Prefecture","2":"76","3":"マスク","4":"JP","5":"web"},{"1":"Miyazaki Prefecture","2":"76","3":"マスク","4":"JP","5":"web"},{"1":"Kagoshima Prefecture","2":"76","3":"マスク","4":"JP","5":"web"},{"1":"Shimane Prefecture","2":"76","3":"マスク","4":"JP","5":"web"},{"1":"Kochi Prefecture","2":"75","3":"マスク","4":"JP","5":"web"},{"1":"Tokyo","2":"67","3":"マスク","4":"JP","5":"web"},{"1":"Okinawa Prefecture","2":"63","3":"マスク","4":"JP","5":"web"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>グラフにすることもできます。</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="google-data.html#cb15-1" aria-hidden="true" tabindex="-1"></a>trend<span class="sc">$</span>interest_by_region <span class="sc">%&gt;%</span> </span>
-<span id="cb15-2"><a href="google-data.html#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">location =</span> <span class="fu">str_remove</span>(location, <span class="st">&quot; Prefecture&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-3"><a href="google-data.html#cb15-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location) <span class="sc">%&gt;%</span> </span>
-<span id="cb15-4"><a href="google-data.html#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb15-5"><a href="google-data.html#cb15-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> keyword, <span class="at">y =</span> hits, <span class="at">fill =</span> keyword), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb15-6"><a href="google-data.html#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>location) <span class="sc">+</span> </span>
-<span id="cb15-7"><a href="google-data.html#cb15-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
+<div class="sourceCode" id="cb516"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb516-1"><a href="google-data.html#cb516-1" aria-hidden="true" tabindex="-1"></a>trend<span class="sc">$</span>interest_by_region <span class="sc">%&gt;%</span> </span>
+<span id="cb516-2"><a href="google-data.html#cb516-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">location =</span> <span class="fu">str_remove</span>(location, <span class="st">&quot; Prefecture&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb516-3"><a href="google-data.html#cb516-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(location) <span class="sc">%&gt;%</span> </span>
+<span id="cb516-4"><a href="google-data.html#cb516-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb516-5"><a href="google-data.html#cb516-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="fu">aes</span>(<span class="at">x =</span> keyword, <span class="at">y =</span> hits, <span class="at">fill =</span> keyword), <span class="at">stat =</span> <span class="st">&quot;identity&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb516-6"><a href="google-data.html#cb516-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>location) <span class="sc">+</span> </span>
+<span id="cb516-7"><a href="google-data.html#cb516-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">hjust =</span> <span class="dv">1</span>))</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-297-1.png" width="672" /></p>
 </div>
 <div id="関連単語" class="section level2" number="16.4">
 <h2><span class="header-section-number">16.4</span> 関連単語</h2>
 <p>関連検索ワードもあることがわかります。</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="google-data.html#cb16-1" aria-hidden="true" tabindex="-1"></a>trend<span class="sc">$</span>related_queries</span></code></pre></div>
+<div class="sourceCode" id="cb517"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb517-1"><a href="google-data.html#cb517-1" aria-hidden="true" tabindex="-1"></a>trend<span class="sc">$</span>related_queries</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
-{"columns":[{"label":["subject"],"name":[1],"type":["chr"],"align":["left"]},{"label":["related_queries"],"name":[2],"type":["chr"],"align":["left"]},{"label":["value"],"name":[3],"type":["chr"],"align":["left"]},{"label":["geo"],"name":[4],"type":["chr"],"align":["left"]},{"label":["keyword"],"name":[5],"type":["chr"],"align":["left"]},{"label":["category"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"100","2":"top","3":"コロナ ウイルス","4":"JP","5":"新型 コロナ","6":"0"},{"1":"95","2":"top","3":"新型 コロナ ウイルス","4":"JP","5":"新型 コロナ","6":"0"},{"1":"32","2":"top","3":"新型 コロナ ウイルス 感染","4":"JP","5":"新型 コロナ","6":"0"},{"1":"21","2":"top","3":"新型 コロナ ウイルス 感染 症","4":"JP","5":"新型 コロナ","6":"0"},{"1":"16","2":"top","3":"新型 コロナ 感染 者","4":"JP","5":"新型 コロナ","6":"0"},{"1":"10","2":"top","3":"新型 コロナ ウイルス 感染 者","4":"JP","5":"新型 コロナ","6":"0"},{"1":"9","2":"top","3":"新型 コロナ 感染 者 数","4":"JP","5":"新型 コロナ","6":"0"},{"1":"8","2":"top","3":"新型 コロナ 最新","4":"JP","5":"新型 コロナ","6":"0"},{"1":"7","2":"top","3":"東京 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"6","2":"top","3":"新型 コロナ ウイルス 最新","4":"JP","5":"新型 コロナ","6":"0"},{"1":"6","2":"top","3":"新型 コロナ 症状","4":"JP","5":"新型 コロナ","6":"0"},{"1":"5","2":"top","3":"新型 コロナ ウイルス 感染 者 数","4":"JP","5":"新型 コロナ","6":"0"},{"1":"5","2":"top","3":"新型 コロナ ニュース","4":"JP","5":"新型 コロナ","6":"0"},{"1":"5","2":"top","3":"新型 コロナ ウイルス 私 たち に できること","4":"JP","5":"新型 コロナ","6":"0"},{"1":"5","2":"top","3":"新型 コロナ 日本","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"新型 コロナ ウイルス 症状","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"新型 コロナ ウイルス 東京","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"コロナ ウイルス 症状","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"新型 コロナ ウィルス","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"コロナ ウィルス","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"新型 コロナ 大阪","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"新型 コロナ ウイルス ニュース","4":"JP","5":"新型 コロナ","6":"0"},{"1":"3","2":"top","3":"新型 コロナ ウイルス 日本","4":"JP","5":"新型 コロナ","6":"0"},{"1":"3","2":"top","3":"新型 コロナ 北海道","4":"JP","5":"新型 コロナ","6":"0"},{"1":"3","2":"top","3":"コロナ ウイルス と は","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 感染","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 感染 者","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 感染 者","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 感染 者 数","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 最新","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"東京 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 最新","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 感染 者 数","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 私 たち に できること","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 日本","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 東京","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"コロナ ウィルス","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス ニュース","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 日本","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 北海道","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"コロナ ウイルス と は","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス と は","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 福岡","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 検査","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 対策","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 最新 ニュース","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"東京 都 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 世界","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 速報","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 埼玉","4":"JP","5":"新型 コロナ","6":"0"},{"1":"100","2":"top","3":"シャープ","4":"JP","5":"マスク","6":"0"},{"1":"98","2":"top","3":"マスク シャープ","4":"JP","5":"マスク","6":"0"},{"1":"84","2":"top","3":"マスク 作り方","4":"JP","5":"マスク","6":"0"},{"1":"65","2":"top","3":"手作り マスク","4":"JP","5":"マスク","6":"0"},{"1":"60","2":"top","3":"アイリス マスク","4":"JP","5":"マスク","6":"0"},{"1":"55","2":"top","3":"アイリス オーヤマ マスク","4":"JP","5":"マスク","6":"0"},{"1":"54","2":"top","3":"マスク 販売","4":"JP","5":"マスク","6":"0"},{"1":"54","2":"top","3":"アイリス オーヤマ","4":"JP","5":"マスク","6":"0"},{"1":"53","2":"top","3":"マスク 通販","4":"JP","5":"マスク","6":"0"},{"1":"44","2":"top","3":"マスク 在庫","4":"JP","5":"マスク","6":"0"},{"1":"42","2":"top","3":"ユニクロ マスク","4":"JP","5":"マスク","6":"0"},{"1":"41","2":"top","3":"楽天 マスク","4":"JP","5":"マスク","6":"0"},{"1":"39","2":"top","3":"マスク の 作り方","4":"JP","5":"マスク","6":"0"},{"1":"33","2":"top","3":"ピッタ マスク","4":"JP","5":"マスク","6":"0"},{"1":"32","2":"top","3":"amazon マスク","4":"JP","5":"マスク","6":"0"},{"1":"31","2":"top","3":"立体 マスク","4":"JP","5":"マスク","6":"0"},{"1":"29","2":"top","3":"マスク 型紙","4":"JP","5":"マスク","6":"0"},{"1":"29","2":"top","3":"マスク 日本 製","4":"JP","5":"マスク","6":"0"},{"1":"28","2":"top","3":"子供 マスク","4":"JP","5":"マスク","6":"0"},{"1":"28","2":"top","3":"アイ マスク","4":"JP","5":"マスク","6":"0"},{"1":"27","2":"top","3":"コストコ マスク","4":"JP","5":"マスク","6":"0"},{"1":"25","2":"top","3":"マスク 不織布","4":"JP","5":"マスク","6":"0"},{"1":"25","2":"top","3":"ミズノ マスク","4":"JP","5":"マスク","6":"0"},{"1":"24","2":"top","3":"マスク 在庫 あり","4":"JP","5":"マスク","6":"0"},{"1":"24","2":"top","3":"不織布","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク 在庫 あり","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク 在庫 速報","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"シャープ マスク 会員 登録","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク 作り方 人気","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"シャープ マスク 申し込み","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"ユニクロ マスク 販売 予約","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"コストコ オンライン マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"コストコ オンライン","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク 入荷 情報","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"アイリス オーヤマ マスク 通販","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク の 型紙","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク 通販 在庫 あり","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"ユニ チャーム 通販 マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク の 作り方 人気","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"西村 大臣 マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"ミズノ の マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク 販売 在庫 あり","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"キッチン ペーパー マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"シャープ マスク 通販","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"コックス マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"エアリズム マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"エアリズム","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"エア リズム マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"シャープ マスク オンライン","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"アベノマスク","4":"JP","5":"マスク","6":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+{"columns":[{"label":["subject"],"name":[1],"type":["chr"],"align":["left"]},{"label":["related_queries"],"name":[2],"type":["chr"],"align":["left"]},{"label":["value"],"name":[3],"type":["chr"],"align":["left"]},{"label":["geo"],"name":[4],"type":["chr"],"align":["left"]},{"label":["keyword"],"name":[5],"type":["chr"],"align":["left"]},{"label":["category"],"name":[6],"type":["int"],"align":["right"]}],"data":[{"1":"100","2":"top","3":"新型 コロナ ウイルス","4":"JP","5":"新型 コロナ","6":"0"},{"1":"99","2":"top","3":"コロナ ウイルス","4":"JP","5":"新型 コロナ","6":"0"},{"1":"35","2":"top","3":"新型 コロナ ウイルス 感染","4":"JP","5":"新型 コロナ","6":"0"},{"1":"21","2":"top","3":"新型 コロナ ウイルス 感染 症","4":"JP","5":"新型 コロナ","6":"0"},{"1":"17","2":"top","3":"新型 コロナ 感染 者","4":"JP","5":"新型 コロナ","6":"0"},{"1":"10","2":"top","3":"新型 コロナ ウイルス 感染 者","4":"JP","5":"新型 コロナ","6":"0"},{"1":"8","2":"top","3":"新型 コロナ 感染 者 数","4":"JP","5":"新型 コロナ","6":"0"},{"1":"8","2":"top","3":"新型 コロナ 最新","4":"JP","5":"新型 コロナ","6":"0"},{"1":"8","2":"top","3":"東京 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"7","2":"top","3":"新型 コロナ ワクチン","4":"JP","5":"新型 コロナ","6":"0"},{"1":"6","2":"top","3":"新型 コロナ 症状","4":"JP","5":"新型 コロナ","6":"0"},{"1":"6","2":"top","3":"新型 コロナ ウイルス 最新","4":"JP","5":"新型 コロナ","6":"0"},{"1":"5","2":"top","3":"新型 コロナ ニュース","4":"JP","5":"新型 コロナ","6":"0"},{"1":"5","2":"top","3":"新型 コロナ ウイルス 感染 者 数","4":"JP","5":"新型 コロナ","6":"0"},{"1":"5","2":"top","3":"新型 コロナ 日本","4":"JP","5":"新型 コロナ","6":"0"},{"1":"5","2":"top","3":"新型 コロナ ウイルス 東京","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"新型 コロナ ウイルス 私 たち に できること","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"大阪 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"コロナ ウィルス","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"新型 コロナ ウィルス","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"新型 コロナ ウイルス 症状","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"新型 コロナ ウイルス ニュース","4":"JP","5":"新型 コロナ","6":"0"},{"1":"4","2":"top","3":"新型 コロナ 対策","4":"JP","5":"新型 コロナ","6":"0"},{"1":"3","2":"top","3":"新型 コロナ ウイルス 日本","4":"JP","5":"新型 コロナ","6":"0"},{"1":"3","2":"top","3":"北海道 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 感染 者","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 感染 者","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 感染 者 数","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 最新","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"東京 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ワクチン","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 最新","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 感染 者 数","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 日本","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 東京","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 私 たち に できること","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"大阪 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 対策","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 日本","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"北海道 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"福岡 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 大阪","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ウイルス 対策","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 世界","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ ワクチン 接種","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"東京 都 新型 コロナ","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 速報","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 最新 ニュース","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 最新 情報","4":"JP","5":"新型 コロナ","6":"0"},{"1":"Breakout","2":"rising","3":"新型 コロナ 埼玉","4":"JP","5":"新型 コロナ","6":"0"},{"1":"100","2":"top","3":"シャープ","4":"JP","5":"マスク","6":"0"},{"1":"100","2":"top","3":"シャープ マスク","4":"JP","5":"マスク","6":"0"},{"1":"82","2":"top","3":"マスク 作り方","4":"JP","5":"マスク","6":"0"},{"1":"71","2":"top","3":"手作り マスク","4":"JP","5":"マスク","6":"0"},{"1":"64","2":"top","3":"アイリス マスク","4":"JP","5":"マスク","6":"0"},{"1":"60","2":"top","3":"マスク アイリス オーヤマ","4":"JP","5":"マスク","6":"0"},{"1":"59","2":"top","3":"マスク 販売","4":"JP","5":"マスク","6":"0"},{"1":"57","2":"top","3":"アイリス オーヤマ","4":"JP","5":"マスク","6":"0"},{"1":"53","2":"top","3":"マスク 通販","4":"JP","5":"マスク","6":"0"},{"1":"45","2":"top","3":"ユニクロ マスク","4":"JP","5":"マスク","6":"0"},{"1":"44","2":"top","3":"マスク 在庫","4":"JP","5":"マスク","6":"0"},{"1":"43","2":"top","3":"楽天 マスク","4":"JP","5":"マスク","6":"0"},{"1":"39","2":"top","3":"ピッタ マスク","4":"JP","5":"マスク","6":"0"},{"1":"38","2":"top","3":"マスク の 作り方","4":"JP","5":"マスク","6":"0"},{"1":"38","2":"top","3":"マスク amazon","4":"JP","5":"マスク","6":"0"},{"1":"36","2":"top","3":"不織布 マスク","4":"JP","5":"マスク","6":"0"},{"1":"36","2":"top","3":"不織布","4":"JP","5":"マスク","6":"0"},{"1":"34","2":"top","3":"子供 マスク","4":"JP","5":"マスク","6":"0"},{"1":"32","2":"top","3":"立体 マスク","4":"JP","5":"マスク","6":"0"},{"1":"31","2":"top","3":"マスク 日本 製","4":"JP","5":"マスク","6":"0"},{"1":"30","2":"top","3":"アイ マスク","4":"JP","5":"マスク","6":"0"},{"1":"29","2":"top","3":"マスク 型紙","4":"JP","5":"マスク","6":"0"},{"1":"27","2":"top","3":"コストコ マスク","4":"JP","5":"マスク","6":"0"},{"1":"26","2":"top","3":"ミズノ マスク","4":"JP","5":"マスク","6":"0"},{"1":"25","2":"top","3":"フェイス マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク 在庫 速報","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"シャープ マスク 会員 登録","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"ヨネックス マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"シャープ マスク 申し込み","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"ユニクロ マスク 販売 予約","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"コストコ オンライン マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"コストコ オンライン","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"アイリス オーヤマ マスク 通販","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク 入荷 情報","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク 入荷","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"sharp マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"ユニ チャーム マスク 通販","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"西村 大臣 マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"エアリズム マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"コロナ マスク 効果","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"トリニティ マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"アイリス オーヤマ マスク 販売","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"マスク 販売 在庫 あり","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"シャープ マスク 通販","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"ミズノ の マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"シャープ マスク オンライン","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"接触 冷 感 マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"アベノマスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"コックス マスク","4":"JP","5":"マスク","6":"0"},{"1":"Breakout","2":"rising","3":"アイリス プラザ マスク","4":"JP","5":"マスク","6":"0"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <ul>
@@ -651,8 +660,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <p>具体的には、<code>XXXX</code>という単語を検索したい場合は<code>https://www.google.co.jp/search?q=XXXX</code>とすればいいことが分かります。
 そこで、今回は<code>新海誠</code>と<code>秒速5センチメートル</code>で検索してみようと思います。</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="google-data.html#cb17-1" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="fu">html_session</span>(<span class="st">&quot;https://www.google.co.jp/search?q=新海誠+秒速5センチメートル&quot;</span>,</span>
-<span id="cb17-2"><a href="google-data.html#cb17-2" aria-hidden="true" tabindex="-1"></a>                     httr<span class="sc">::</span><span class="fu">user_agent</span>(<span class="st">&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:75.0) Gecko/20100101 Firefox/75.0&quot;</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb518"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb518-1"><a href="google-data.html#cb518-1" aria-hidden="true" tabindex="-1"></a>html <span class="ot">&lt;-</span> <span class="fu">html_session</span>(<span class="st">&quot;https://www.google.co.jp/search?q=新海誠+秒速5センチメートル&quot;</span>,</span>
+<span id="cb518-2"><a href="google-data.html#cb518-2" aria-hidden="true" tabindex="-1"></a>                     httr<span class="sc">::</span><span class="fu">user_agent</span>(<span class="st">&quot;Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:75.0) Gecko/20100101 Firefox/75.0&quot;</span>))</span></code></pre></div>
 <pre><code>## Warning: `html_session()` was deprecated in rvest 1.0.0.
 ## Please use `session()` instead.</code></pre>
 <ul>
@@ -660,12 +669,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>自分のPCのブラウザのユーザーエージェントを確認して<code>httr::user_agent()</code>の中に文字列として入力します。</li>
 </ul>
 <p>検索ヒット数は<code>id</code>が<code>resultStats</code>のタグの中にあることが分かるので、数字をパースします。</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="google-data.html#cb19-1" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> html <span class="sc">%&gt;%</span> </span>
-<span id="cb19-2"><a href="google-data.html#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">&quot;div#result-stats&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb19-3"><a href="google-data.html#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span> </span>
-<span id="cb19-4"><a href="google-data.html#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parse_number</span>()</span>
-<span id="cb19-5"><a href="google-data.html#cb19-5" aria-hidden="true" tabindex="-1"></a>hits</span></code></pre></div>
-<pre><code>## [1] 611000</code></pre>
+<div class="sourceCode" id="cb520"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb520-1"><a href="google-data.html#cb520-1" aria-hidden="true" tabindex="-1"></a>hits <span class="ot">&lt;-</span> html <span class="sc">%&gt;%</span> </span>
+<span id="cb520-2"><a href="google-data.html#cb520-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_node</span>(<span class="st">&quot;div#result-stats&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb520-3"><a href="google-data.html#cb520-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">html_text</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb520-4"><a href="google-data.html#cb520-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">parse_number</span>()</span>
+<span id="cb520-5"><a href="google-data.html#cb520-5" aria-hidden="true" tabindex="-1"></a>hits</span></code></pre></div>
+<pre><code>## [1] 370000</code></pre>
 <ul>
 <li>実際の結果とは少しずれてしまいます。</li>
 </ul>
@@ -673,10 +682,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <div id="nグラム" class="section level2" number="16.6">
 <h2><span class="header-section-number">16.6</span> Nグラム</h2>
 <p>Ngram Viewerの結果は次のように取得することができます。</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="google-data.html#cb21-1" aria-hidden="true" tabindex="-1"></a>gngram <span class="ot">&lt;-</span> <span class="fu">ngram</span>(<span class="fu">c</span>(<span class="st">&quot;world war&quot;</span>, <span class="st">&quot;cold war&quot;</span>))</span>
-<span id="cb21-2"><a href="google-data.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gngram) <span class="sc">+</span> </span>
-<span id="cb21-3"><a href="google-data.html#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Frequency, <span class="at">colour =</span> Phrase))</span></code></pre></div>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<div class="sourceCode" id="cb522"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb522-1"><a href="google-data.html#cb522-1" aria-hidden="true" tabindex="-1"></a>gngram <span class="ot">&lt;-</span> <span class="fu">ngram</span>(<span class="fu">c</span>(<span class="st">&quot;world war&quot;</span>, <span class="st">&quot;cold war&quot;</span>))</span>
+<span id="cb522-2"><a href="google-data.html#cb522-2" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(gngram) <span class="sc">+</span> </span>
+<span id="cb522-3"><a href="google-data.html#cb522-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Frequency, <span class="at">colour =</span> Phrase))</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-301-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -709,6 +718,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
 },
 "fontsettings": {
@@ -729,6 +739,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "lunr",
+"options": null
+},
 "toc": {
 "collapse": "section",
 "scroll_highlight": true
@@ -737,6 +751,20 @@ gitbook.start({
 });
 </script>
 
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
 </body>
 
 </html>

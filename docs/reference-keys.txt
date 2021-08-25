@@ -1,3 +1,4 @@
+tab:unnamed-chunk-179
 data-import
 パッケージ付属のデータ
 主なデータ形式
@@ -268,3 +269,16 @@ pipe
 データの代入
 左辺の参照
 複数の出力
+wsl-rstudio
+はじめに-1
+問題
+linux上のrrstudioを使う
+概要
+wsl2のインストール
+rのインストール-1
+rstusio-serverのインストール
+rstudio-server-on-wsl2の注意点
+パッケージのインストール
+警告メッセージ
+日本語フォント
+windows側のファイルへのアクセス

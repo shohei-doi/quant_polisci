@@ -29,7 +29,7 @@ description: "Rによる計量政治学の入門レベルの講義資料です�
 
 - やや高度と思われる箇所には*を付けているので、読み飛ばしても構いません。
 
-なお、RやRStudioのインストールについては~~[Rの分析環境]~~矢内先生の[RとRStudioのインストール方法](https://yukiyanai.github.io/jp/resources/)の資料〜を、基本操作については[Rプログラミング入門]をご覧ください。
+なお、RやRStudioのインストールについては~~[Rの分析環境]~~矢内先生の[RとRStudioのインストール方法](https://yukiyanai.github.io/jp/resources/)の資料あるいは[WindowsでR/RStudioをちゃんと使う方法]を、基本操作については[Rプログラミング入門]をご覧ください。
 
 - [RStudio Education](https://education.rstudio.com/learn/beginner/)の初学者向け案内、特に[RStudio Primers](https://rstudio.cloud/learn/primers)のチュートリアルをまずはやることをおすすめします。
 
