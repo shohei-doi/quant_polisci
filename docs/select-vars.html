@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第2章 変数の選択 | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第2章 変数の選択 | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
@@ -24,7 +23,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2021-08-25" />
+<meta name="date" content="2023-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +32,8 @@
   
 <link rel="prev" href="data-import.html"/>
 <link rel="next" href="create-vars.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,19 +49,20 @@
 
 
 
-
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-75879658-3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'UA-75879658-3');
-    </script>
+  gtag('config', 'G-LLFB8XFPX5');
+</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet"> 
@@ -106,7 +106,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -119,7 +119,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -133,6 +133,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -332,213 +336,196 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.7" data-path="ggplot2.html"><a href="ggplot2.html#テキスト"><i class="fa fa-check"></i><b>14.7</b> テキスト</a></li>
 </ul></li>
 <li class="part"><span><b>III データの収集</b></span></li>
-<li class="chapter" data-level="15" data-path="twitter-data.html"><a href="twitter-data.html"><i class="fa fa-check"></i><b>15</b> Twitterデータ</a>
+<li class="chapter" data-level="15" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>15</b> Googleデータ</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="twitter-data.html"><a href="twitter-data.html#事前準備"><i class="fa fa-check"></i><b>15.1</b> 事前準備</a>
+<li class="chapter" data-level="15.1" data-path="google-data.html"><a href="google-data.html#はじめに"><i class="fa fa-check"></i><b>15.1</b> はじめに</a></li>
+<li class="chapter" data-level="15.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>15.2</b> 時系列トレンド</a>
 <ul>
-<li class="chapter" data-level="15.1.1" data-path="twitter-data.html"><a href="twitter-data.html#twitterアカウントの作成"><i class="fa fa-check"></i><b>15.1.1</b> Twitterアカウントの作成</a></li>
-<li class="chapter" data-level="15.1.2" data-path="twitter-data.html"><a href="twitter-data.html#認証"><i class="fa fa-check"></i><b>15.1.2</b> 認証</a></li>
+<li class="chapter" data-level="15.2.1" data-path="google-data.html"><a href="google-data.html#一つの単語"><i class="fa fa-check"></i><b>15.2.1</b> 一つの単語</a></li>
+<li class="chapter" data-level="15.2.2" data-path="google-data.html"><a href="google-data.html#複数の単語"><i class="fa fa-check"></i><b>15.2.2</b> 複数の単語</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="twitter-data.html"><a href="twitter-data.html#単語によるツイートの取得"><i class="fa fa-check"></i><b>15.2</b> 単語によるツイートの取得</a></li>
-<li class="chapter" data-level="15.3" data-path="twitter-data.html"><a href="twitter-data.html#ユーザーによるツイートの取得"><i class="fa fa-check"></i><b>15.3</b> ユーザーによるツイートの取得</a></li>
-<li class="chapter" data-level="15.4" data-path="twitter-data.html"><a href="twitter-data.html#言語によるツイートの取得"><i class="fa fa-check"></i><b>15.4</b> 言語によるツイートの取得</a></li>
-<li class="chapter" data-level="15.5" data-path="twitter-data.html"><a href="twitter-data.html#地域によるツイートの取得"><i class="fa fa-check"></i><b>15.5</b> 地域によるツイートの取得</a></li>
-<li class="chapter" data-level="15.6" data-path="twitter-data.html"><a href="twitter-data.html#ライブストリームの取得"><i class="fa fa-check"></i><b>15.6</b> ライブストリームの取得</a>
-<ul>
-<li class="chapter" data-level="15.6.1" data-path="twitter-data.html"><a href="twitter-data.html#地域のライブストリームの取得"><i class="fa fa-check"></i><b>15.6.1</b> 地域のライブストリームの取得</a></li>
+<li class="chapter" data-level="15.3" data-path="google-data.html"><a href="google-data.html#地域別のトレンド"><i class="fa fa-check"></i><b>15.3</b> 地域別のトレンド</a></li>
+<li class="chapter" data-level="15.4" data-path="google-data.html"><a href="google-data.html#関連単語"><i class="fa fa-check"></i><b>15.4</b> 関連単語</a></li>
+<li class="chapter" data-level="15.5" data-path="google-data.html"><a href="google-data.html#検索ヒット数"><i class="fa fa-check"></i><b>15.5</b> 検索ヒット数*</a></li>
+<li class="chapter" data-level="15.6" data-path="google-data.html"><a href="google-data.html#nグラム"><i class="fa fa-check"></i><b>15.6</b> Nグラム</a></li>
 </ul></li>
-<li class="chapter" data-level="15.7" data-path="twitter-data.html"><a href="twitter-data.html#その他の情報の取得"><i class="fa fa-check"></i><b>15.7</b> その他の情報の取得</a></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>16</b> Googleデータ</a>
+<li class="chapter" data-level="16" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>16</b> Wikipediaデータ</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="google-data.html"><a href="google-data.html#はじめに"><i class="fa fa-check"></i><b>16.1</b> はじめに</a></li>
-<li class="chapter" data-level="16.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>16.2</b> 時系列トレンド</a>
-<ul>
-<li class="chapter" data-level="16.2.1" data-path="google-data.html"><a href="google-data.html#一つの単語"><i class="fa fa-check"></i><b>16.2.1</b> 一つの単語</a></li>
-<li class="chapter" data-level="16.2.2" data-path="google-data.html"><a href="google-data.html#複数の単語"><i class="fa fa-check"></i><b>16.2.2</b> 複数の単語</a></li>
-</ul></li>
-<li class="chapter" data-level="16.3" data-path="google-data.html"><a href="google-data.html#地域別のトレンド"><i class="fa fa-check"></i><b>16.3</b> 地域別のトレンド</a></li>
-<li class="chapter" data-level="16.4" data-path="google-data.html"><a href="google-data.html#関連単語"><i class="fa fa-check"></i><b>16.4</b> 関連単語</a></li>
-<li class="chapter" data-level="16.5" data-path="google-data.html"><a href="google-data.html#検索ヒット数"><i class="fa fa-check"></i><b>16.5</b> 検索ヒット数*</a></li>
-<li class="chapter" data-level="16.6" data-path="google-data.html"><a href="google-data.html#nグラム"><i class="fa fa-check"></i><b>16.6</b> Nグラム</a></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>17</b> Wikipediaデータ</a>
-<ul>
-<li class="chapter" data-level="17.1" data-path="wikipedia-data.html"><a href="wikipedia-data.html#Trend"><i class="fa fa-check"></i><b>17.1</b> Wikipediaのトレンド</a></li>
-<li class="chapter" data-level="17.2" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の情報"><i class="fa fa-check"></i><b>17.2</b> Wikipediaの記事の情報</a></li>
-<li class="chapter" data-level="17.3" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事"><i class="fa fa-check"></i><b>17.3</b> Wikipediaの記事</a></li>
-<li class="chapter" data-level="17.4" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事のリンク"><i class="fa fa-check"></i><b>17.4</b> Wikipediaの記事のリンク</a></li>
-<li class="chapter" data-level="17.5" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の作成日の取得"><i class="fa fa-check"></i><b>17.5</b> Wikipediaの記事の作成日の取得*</a></li>
+<li class="chapter" data-level="16.1" data-path="wikipedia-data.html"><a href="wikipedia-data.html#Trend"><i class="fa fa-check"></i><b>16.1</b> Wikipediaのトレンド</a></li>
+<li class="chapter" data-level="16.2" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の情報"><i class="fa fa-check"></i><b>16.2</b> Wikipediaの記事の情報</a></li>
+<li class="chapter" data-level="16.3" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事"><i class="fa fa-check"></i><b>16.3</b> Wikipediaの記事</a></li>
+<li class="chapter" data-level="16.4" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事のリンク"><i class="fa fa-check"></i><b>16.4</b> Wikipediaの記事のリンク</a></li>
+<li class="chapter" data-level="16.5" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の作成日の取得"><i class="fa fa-check"></i><b>16.5</b> Wikipediaの記事の作成日の取得*</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="18" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>18</b> Rの分析環境</a>
+<li class="chapter" data-level="17" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>17</b> Rの分析環境</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>18.1</b> Rのインストール</a>
+<li class="chapter" data-level="17.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>17.1</b> Rのインストール</a>
 <ul>
-<li class="chapter" data-level="18.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>18.1.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="18.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>18.1.2</b> インストール</a></li>
+<li class="chapter" data-level="17.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>17.1.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="17.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>17.1.2</b> インストール</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>18.2</b> RStudioのインストール</a>
+<li class="chapter" data-level="17.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>17.2</b> RStudioのインストール</a>
 <ul>
-<li class="chapter" data-level="18.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>18.2.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="18.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>18.2.2</b> インストール</a></li>
-<li class="chapter" data-level="18.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>18.2.3</b> RStudioの起動</a></li>
-<li class="chapter" data-level="18.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>18.2.4</b> RStudio Cloud*</a></li>
+<li class="chapter" data-level="17.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>17.2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="17.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>17.2.2</b> インストール</a></li>
+<li class="chapter" data-level="17.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>17.2.3</b> RStudioの起動</a></li>
+<li class="chapter" data-level="17.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>17.2.4</b> RStudio Cloud*</a></li>
 </ul></li>
-<li class="chapter" data-level="18.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>18.3</b> 再現可能な分析のために</a>
+<li class="chapter" data-level="17.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>17.3</b> 再現可能な分析のために</a>
 <ul>
-<li class="chapter" data-level="18.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>18.3.1</b> Rスクリプト</a></li>
-<li class="chapter" data-level="18.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>18.3.2</b> Rプロジェクト</a></li>
-<li class="chapter" data-level="18.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>18.3.3</b> RStudioの設定*</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="19" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング入門</a>
-<ul>
-<li class="chapter" data-level="19.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>19.1</b> 関数</a>
-<ul>
-<li class="chapter" data-level="19.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>19.1.1</b> 総称関数*</a></li>
-</ul></li>
-<li class="chapter" data-level="19.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>19.2</b> オブジェクト</a></li>
-<li class="chapter" data-level="19.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>19.3</b> パッケージ</a>
-<ul>
-<li class="chapter" data-level="19.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>19.3.1</b> CRANからのインストール</a></li>
-<li class="chapter" data-level="19.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>19.3.2</b> GitHubからのインストール*</a></li>
-<li class="chapter" data-level="19.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>19.3.3</b> パッケージの読み込み</a></li>
-<li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
+<li class="chapter" data-level="17.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>17.3.1</b> Rスクリプト</a></li>
+<li class="chapter" data-level="17.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>17.3.2</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="17.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>17.3.3</b> RStudioの設定*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a>
+<li class="chapter" data-level="18" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>18</b> Rプログラミング入門</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
-<li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
-<li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
-<li class="chapter" data-level="20.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>20.4</b> 条件分岐</a></li>
-<li class="chapter" data-level="20.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>20.5</b> 練習問題</a>
+<li class="chapter" data-level="18.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>18.1</b> 関数</a>
 <ul>
-<li class="chapter" data-level="20.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>20.5.1</b> フィボナッチ数列</a></li>
-<li class="chapter" data-level="20.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>20.5.2</b> モンテカルロ・シミュレーション</a></li>
+<li class="chapter" data-level="18.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>18.1.1</b> 総称関数*</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>18.2</b> オブジェクト</a></li>
+<li class="chapter" data-level="18.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>18.3</b> パッケージ</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>18.3.1</b> CRANからのインストール</a></li>
+<li class="chapter" data-level="18.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>18.3.2</b> GitHubからのインストール*</a></li>
+<li class="chapter" data-level="18.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>18.3.3</b> パッケージの読み込み</a></li>
+<li class="chapter" data-level="18.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>18.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>21</b> R Markdown: html</a>
+<li class="chapter" data-level="19" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング応用</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>21.1</b> R Markdownファイルの作成</a>
+<li class="chapter" data-level="19.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>19.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="19.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>19.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="19.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>19.3</b> ループ</a></li>
+<li class="chapter" data-level="19.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>19.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="19.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>19.5</b> 練習問題</a>
 <ul>
-<li class="chapter" data-level="21.1.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>21.1.1</b> 参考になるサイト</a></li>
-</ul></li>
-<li class="chapter" data-level="21.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>21.2</b> Markdown記法</a>
-<ul>
-<li class="chapter" data-level="21.2.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdownとは"><i class="fa fa-check"></i><b>21.2.1</b> Markdownとは*</a></li>
-<li class="chapter" data-level="21.2.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#セクション"><i class="fa fa-check"></i><b>21.2.2</b> セクション</a></li>
-<li class="chapter" data-level="21.2.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>21.2.3</b> パラグラフ</a></li>
-<li class="chapter" data-level="21.2.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#箇条書き"><i class="fa fa-check"></i><b>21.2.4</b> 箇条書き</a></li>
-<li class="chapter" data-level="21.2.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#文字の強調"><i class="fa fa-check"></i><b>21.2.5</b> 文字の強調</a></li>
-<li class="chapter" data-level="21.2.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#引用"><i class="fa fa-check"></i><b>21.2.6</b> 引用</a></li>
-<li class="chapter" data-level="21.2.7" data-path="r-markdown-html.html"><a href="r-markdown-html.html#リンク"><i class="fa fa-check"></i><b>21.2.7</b> リンク</a></li>
-<li class="chapter" data-level="21.2.8" data-path="r-markdown-html.html"><a href="r-markdown-html.html#画像表"><i class="fa fa-check"></i><b>21.2.8</b> 画像、表</a></li>
-<li class="chapter" data-level="21.2.9" data-path="r-markdown-html.html"><a href="r-markdown-html.html#数式"><i class="fa fa-check"></i><b>21.2.9</b> 数式</a></li>
-</ul></li>
-<li class="chapter" data-level="21.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>21.3</b> Rチャンク</a>
-<ul>
-<li class="chapter" data-level="21.3.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>21.3.1</b> チャンクオプション</a></li>
-</ul></li>
-<li class="chapter" data-level="21.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>21.4</b> yamlヘッダー</a>
-<ul>
-<li class="chapter" data-level="21.4.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#output"><i class="fa fa-check"></i><b>21.4.1</b> output</a></li>
-<li class="chapter" data-level="21.4.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#目次"><i class="fa fa-check"></i><b>21.4.2</b> 目次</a></li>
-<li class="chapter" data-level="21.4.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#テーマ-1"><i class="fa fa-check"></i><b>21.4.3</b> テーマ</a></li>
-<li class="chapter" data-level="21.4.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>21.4.4</b> htmlとcss</a></li>
-</ul></li>
-<li class="chapter" data-level="21.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>21.5</b> その他のテンプレート</a>
-<ul>
-<li class="chapter" data-level="21.5.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#distill"><i class="fa fa-check"></i><b>21.5.1</b> Distill</a></li>
-<li class="chapter" data-level="21.5.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>21.5.2</b> Tufte Handout</a></li>
-<li class="chapter" data-level="21.5.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rmdformats"><i class="fa fa-check"></i><b>21.5.3</b> rmdformats</a></li>
-<li class="chapter" data-level="21.5.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#スライド"><i class="fa fa-check"></i><b>21.5.4</b> スライド</a></li>
-<li class="chapter" data-level="21.5.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#ダッシュボード"><i class="fa fa-check"></i><b>21.5.5</b> ダッシュボード</a></li>
-<li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
+<li class="chapter" data-level="19.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>19.5.1</b> フィボナッチ数列</a></li>
+<li class="chapter" data-level="19.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>19.5.2</b> モンテカルロ・シミュレーション</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a>
+<li class="chapter" data-level="20" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>20</b> R Markdown: html</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a>
+<li class="chapter" data-level="20.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>20.1</b> R Markdownファイルの作成</a>
 <ul>
-<li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
-<li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
+<li class="chapter" data-level="20.1.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>20.1.1</b> 参考になるサイト</a></li>
 </ul></li>
-<li class="chapter" data-level="22.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>22.2</b> 日本語環境の構築</a>
+<li class="chapter" data-level="20.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>20.2</b> Markdown記法</a>
 <ul>
-<li class="chapter" data-level="22.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>22.2.1</b> LaTeXエンジンのあれこれ*</a></li>
-<li class="chapter" data-level="22.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>22.2.2</b> yamlヘッダー</a></li>
-<li class="chapter" data-level="22.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>22.2.3</b> フォントのインストール</a></li>
-<li class="chapter" data-level="22.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>22.2.4</b> その他のテンプレート</a></li>
-<li class="chapter" data-level="22.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>22.2.5</b> Sumatra PDF</a></li>
+<li class="chapter" data-level="20.2.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdownとは"><i class="fa fa-check"></i><b>20.2.1</b> Markdownとは*</a></li>
+<li class="chapter" data-level="20.2.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#セクション"><i class="fa fa-check"></i><b>20.2.2</b> セクション</a></li>
+<li class="chapter" data-level="20.2.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>20.2.3</b> パラグラフ</a></li>
+<li class="chapter" data-level="20.2.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#箇条書き"><i class="fa fa-check"></i><b>20.2.4</b> 箇条書き</a></li>
+<li class="chapter" data-level="20.2.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#文字の強調"><i class="fa fa-check"></i><b>20.2.5</b> 文字の強調</a></li>
+<li class="chapter" data-level="20.2.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#引用"><i class="fa fa-check"></i><b>20.2.6</b> 引用</a></li>
+<li class="chapter" data-level="20.2.7" data-path="r-markdown-html.html"><a href="r-markdown-html.html#リンク"><i class="fa fa-check"></i><b>20.2.7</b> リンク</a></li>
+<li class="chapter" data-level="20.2.8" data-path="r-markdown-html.html"><a href="r-markdown-html.html#画像表"><i class="fa fa-check"></i><b>20.2.8</b> 画像、表</a></li>
+<li class="chapter" data-level="20.2.9" data-path="r-markdown-html.html"><a href="r-markdown-html.html#数式"><i class="fa fa-check"></i><b>20.2.9</b> 数式</a></li>
 </ul></li>
-<li class="chapter" data-level="22.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>22.3</b> スライドの作成</a>
+<li class="chapter" data-level="20.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>20.3</b> Rチャンク</a>
 <ul>
-<li class="chapter" data-level="22.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-2"><i class="fa fa-check"></i><b>22.3.1</b> テーマ</a></li>
+<li class="chapter" data-level="20.3.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>20.3.1</b> チャンクオプション</a></li>
 </ul></li>
-<li class="chapter" data-level="22.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>22.4</b> LaTeX記法</a>
+<li class="chapter" data-level="20.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>20.4</b> yamlヘッダー</a>
 <ul>
-<li class="chapter" data-level="22.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>22.4.1</b> 定理環境</a></li>
-<li class="chapter" data-level="22.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>22.4.2</b> 数式</a></li>
+<li class="chapter" data-level="20.4.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#output"><i class="fa fa-check"></i><b>20.4.1</b> output</a></li>
+<li class="chapter" data-level="20.4.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#目次"><i class="fa fa-check"></i><b>20.4.2</b> 目次</a></li>
+<li class="chapter" data-level="20.4.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#テーマ-1"><i class="fa fa-check"></i><b>20.4.3</b> テーマ</a></li>
+<li class="chapter" data-level="20.4.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>20.4.4</b> htmlとcss</a></li>
 </ul></li>
-<li class="chapter" data-level="22.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>22.5</b> 参考文献と引用</a>
+<li class="chapter" data-level="20.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>20.5</b> その他のテンプレート</a>
 <ul>
-<li class="chapter" data-level="22.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>22.5.1</b> .bibファイル</a></li>
-<li class="chapter" data-level="22.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>22.5.2</b> 文献の引用</a></li>
-<li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a>
-<ul>
-<li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a>
-<ul>
-<li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
-<li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
-</ul></li>
-<li class="chapter" data-level="23.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>23.2</b> Rスクリプトの文字化け</a>
-<ul>
-<li class="chapter" data-level="23.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>23.2.1</b> ファイルを開く</a></li>
-<li class="chapter" data-level="23.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>23.2.2</b> ファイルを保存する</a></li>
-</ul></li>
-<li class="chapter" data-level="23.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>23.3</b> データの文字化け</a>
-<ul>
-<li class="chapter" data-level="23.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>23.3.1</b> 標準関数の場合</a></li>
-<li class="chapter" data-level="23.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>23.3.2</b> tidyverseの場合</a></li>
-<li class="chapter" data-level="23.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>23.3.3</b> エンコーディングを確認する方法</a></li>
-<li class="chapter" data-level="23.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>23.3.4</b> もとのデータを見たい場合</a></li>
-<li class="chapter" data-level="23.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>23.3.5</b> データを保存する場合</a></li>
-</ul></li>
-<li class="chapter" data-level="23.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>23.4</b> その他の問題</a>
-<ul>
-<li class="chapter" data-level="23.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>23.4.1</b> アカウント名が日本語の場合</a></li>
-<li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
+<li class="chapter" data-level="20.5.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#distill"><i class="fa fa-check"></i><b>20.5.1</b> Distill</a></li>
+<li class="chapter" data-level="20.5.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>20.5.2</b> Tufte Handout</a></li>
+<li class="chapter" data-level="20.5.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rmdformats"><i class="fa fa-check"></i><b>20.5.3</b> rmdformats</a></li>
+<li class="chapter" data-level="20.5.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#スライド"><i class="fa fa-check"></i><b>20.5.4</b> スライド</a></li>
+<li class="chapter" data-level="20.5.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#ダッシュボード"><i class="fa fa-check"></i><b>20.5.5</b> ダッシュボード</a></li>
+<li class="chapter" data-level="20.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>20.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a>
+<li class="chapter" data-level="21" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>21</b> R Markdown: pdf</a>
 <ul>
-<li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
-<li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
-<li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
-<li class="chapter" data-level="24.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>24.4</b> 複数の出力</a></li>
+<li class="chapter" data-level="21.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>21.1</b> LaTeXの導入</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>21.1.1</b> tinytexのインストール</a></li>
+<li class="chapter" data-level="21.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>21.1.2</b> タイプセット</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>25</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<li class="chapter" data-level="21.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>21.2</b> 日本語環境の構築</a>
 <ul>
-<li class="chapter" data-level="25.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>25.1</b> はじめに</a>
-<ul>
-<li class="chapter" data-level="25.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>25.1.1</b> 問題</a></li>
-<li class="chapter" data-level="25.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>25.1.2</b> Linux上のR/RStudioを使う</a></li>
-<li class="chapter" data-level="25.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>25.1.3</b> 概要</a></li>
+<li class="chapter" data-level="21.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>21.2.1</b> LaTeXエンジンのあれこれ*</a></li>
+<li class="chapter" data-level="21.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>21.2.2</b> yamlヘッダー</a></li>
+<li class="chapter" data-level="21.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>21.2.3</b> フォントのインストール</a></li>
+<li class="chapter" data-level="21.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>21.2.4</b> その他のテンプレート</a></li>
+<li class="chapter" data-level="21.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>21.2.5</b> Sumatra PDF</a></li>
 </ul></li>
-<li class="chapter" data-level="25.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>25.2</b> WSL2のインストール</a></li>
-<li class="chapter" data-level="25.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>25.3</b> Rのインストール</a></li>
-<li class="chapter" data-level="25.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>25.4</b> RStusio Serverのインストール</a></li>
-<li class="chapter" data-level="25.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>25.5</b> RStudio Server on WSL2の注意点</a>
+<li class="chapter" data-level="21.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>21.3</b> スライドの作成</a>
 <ul>
-<li class="chapter" data-level="25.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>25.5.1</b> パッケージのインストール</a></li>
-<li class="chapter" data-level="25.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>25.5.2</b> 警告メッセージ</a></li>
-<li class="chapter" data-level="25.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>25.5.3</b> 日本語フォント</a></li>
-<li class="chapter" data-level="25.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>25.5.4</b> Windows側のファイルへのアクセス</a></li>
+<li class="chapter" data-level="21.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-2"><i class="fa fa-check"></i><b>21.3.1</b> テーマ</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>21.4</b> LaTeX記法</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>21.4.1</b> 定理環境</a></li>
+<li class="chapter" data-level="21.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>21.4.2</b> 数式</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>21.5</b> 参考文献と引用</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>21.5.1</b> .bibファイル</a></li>
+<li class="chapter" data-level="21.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>21.5.2</b> 文献の引用</a></li>
+<li class="chapter" data-level="21.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>21.5.3</b> 日本語文献の引用</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>22</b> Rのエンコーディング問題</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>22.1</b> なぜ文字化けが起こるのか</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>22.1.1</b> エンコーディング</a></li>
+<li class="chapter" data-level="22.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>22.1.2</b> RとRStudioにおける問題</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>22.2</b> Rスクリプトの文字化け</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>22.2.1</b> ファイルを開く</a></li>
+<li class="chapter" data-level="22.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>22.2.2</b> ファイルを保存する</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>22.3</b> データの文字化け</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>22.3.1</b> 標準関数の場合</a></li>
+<li class="chapter" data-level="22.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>22.3.2</b> tidyverseの場合</a></li>
+<li class="chapter" data-level="22.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>22.3.3</b> エンコーディングを確認する方法</a></li>
+<li class="chapter" data-level="22.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>22.3.4</b> もとのデータを見たい場合</a></li>
+<li class="chapter" data-level="22.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>22.3.5</b> データを保存する場合</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>22.4</b> その他の問題</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>22.4.1</b> アカウント名が日本語の場合</a></li>
+<li class="chapter" data-level="22.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>22.4.2</b> 画像で日本語が文字化けする場合</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>23</b> パイプ演算子<code>%&gt;%</code>について</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>23.1</b> 基本的な使い方</a></li>
+<li class="chapter" data-level="23.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>23.2</b> データの代入</a></li>
+<li class="chapter" data-level="23.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>23.3</b> 左辺の参照</a></li>
+<li class="chapter" data-level="23.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>23.4</b> 複数の出力</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>24</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>24.1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>24.1.1</b> 問題</a></li>
+<li class="chapter" data-level="24.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>24.1.2</b> Linux上のR/RStudioを使う</a></li>
+<li class="chapter" data-level="24.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>24.1.3</b> 概要</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>24.2</b> WSL2のインストール</a></li>
+<li class="chapter" data-level="24.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>24.3</b> Rのインストール</a></li>
+<li class="chapter" data-level="24.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>24.4</b> RStusio Serverのインストール</a></li>
+<li class="chapter" data-level="24.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>24.5</b> RStudio Server on WSL2の注意点</a>
+<ul>
+<li class="chapter" data-level="24.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>24.5.1</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="24.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>24.5.2</b> 警告メッセージ</a></li>
+<li class="chapter" data-level="24.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>24.5.3</b> 日本語フォント</a></li>
+<li class="chapter" data-level="24.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>24.5.4</b> Windows側のファイルへのアクセス</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
@@ -563,19 +550,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="select-vars" class="section level1" number="2">
-<h1><span class="header-section-number">第2章</span> 変数の選択</h1>
+<div id="select-vars" class="section level1 hasAnchor" number="2">
+<h1><span class="header-section-number">第2章</span> 変数の選択<a href="select-vars.html#select-vars" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p>ここではTriangulating Peaceの<a href="data/triabgle.csv">レプリケーションデータ</a>を使用します。</p>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="select-vars.html#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb40-2"><a href="select-vars.html#cb40-2" aria-hidden="true" tabindex="-1"></a>tri <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</span></code></pre></div>
-<div id="変数名による選択" class="section level2" number="2.1">
-<h2><span class="header-section-number">2.1</span> 変数名による選択</h2>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="select-vars.html#cb33-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb33-2"><a href="select-vars.html#cb33-2" tabindex="-1"></a>tri <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</span></code></pre></div>
+<div id="変数名による選択" class="section level2 hasAnchor" number="2.1">
+<h2><span class="header-section-number">2.1</span> 変数名による選択<a href="select-vars.html#変数名による選択" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>特定の変数をベクトルとして抜き出したい場合はオブジェクト名と変数名の間に<code>$</code>を入れます。
 例えば、<code>year</code>だけを抜き出したい場合は次のようにします。</p>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="select-vars.html#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tri<span class="sc">$</span>year)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="select-vars.html#cb34-1" tabindex="-1"></a><span class="fu">head</span>(tri<span class="sc">$</span>year)</span></code></pre></div>
 <pre><code>## [1] 1920 1921 1922 1923 1924 1925</code></pre>
 <p>データセットとして抜き出す場合は、オブジェクト名の後に<code>[]</code>をつけて、その中に変数名をクオーテーションマーク<code>"</code>で囲んで入れます。</p>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="select-vars.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tri[<span class="st">&quot;year&quot;</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="select-vars.html#cb36-1" tabindex="-1"></a><span class="fu">head</span>(tri[<span class="st">&quot;year&quot;</span>])</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["year"],"name":[1],"type":["int"],"align":["right"]}],"data":[{"1":"1920","_rn_":"1"},{"1":"1921","_rn_":"2"},{"1":"1922","_rn_":"3"},{"1":"1923","_rn_":"4"},{"1":"1924","_rn_":"5"},{"1":"1925","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -583,7 +570,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p>複数の変数を指定する場合は<code>c()</code>で変数名のベクトルを作って指定します。
 例えば、<code>statea</code>と<code>stateb</code>と<code>year</code>を抜き出したい場合は次のようにします。</p>
-<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="select-vars.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tri[<span class="fu">c</span>(<span class="st">&quot;statea&quot;</span>, <span class="st">&quot;stateb&quot;</span>, <span class="st">&quot;year&quot;</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="select-vars.html#cb37-1" tabindex="-1"></a><span class="fu">head</span>(tri[<span class="fu">c</span>(<span class="st">&quot;statea&quot;</span>, <span class="st">&quot;stateb&quot;</span>, <span class="st">&quot;year&quot;</span>)])</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","_rn_":"1"},{"1":"2","2":"20","3":"1921","_rn_":"2"},{"1":"2","2":"20","3":"1922","_rn_":"3"},{"1":"2","2":"20","3":"1923","_rn_":"4"},{"1":"2","2":"20","3":"1924","_rn_":"5"},{"1":"2","2":"20","3":"1925","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -591,9 +578,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <p><code>tidyverse</code>の<code>dplyr</code>というパッケージでは<code>select()</code>によって変数の選択ができます。
 例えば、<code>statea</code>, <code>stateb</code>, <code>year</code>を選択するには次のようにします。</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="select-vars.html#cb45-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb45-2"><a href="select-vars.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(statea, stateb, year) <span class="sc">%&gt;%</span> </span>
-<span id="cb45-3"><a href="select-vars.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="select-vars.html#cb38-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb38-2"><a href="select-vars.html#cb38-2" tabindex="-1"></a>  <span class="fu">select</span>(statea, stateb, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb38-3"><a href="select-vars.html#cb38-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","_rn_":"1"},{"1":"2","2":"20","3":"1921","_rn_":"2"},{"1":"2","2":"20","3":"1922","_rn_":"3"},{"1":"2","2":"20","3":"1923","_rn_":"4"},{"1":"2","2":"20","3":"1924","_rn_":"5"},{"1":"2","2":"20","3":"1925","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
@@ -602,66 +589,66 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>なお、<code>%&gt;%</code>はパイプ演算子と呼ばれるもので、<code>tidyverse</code>の機能の一つです。
 その意味については<a href="pipe.html">こちら</a>を参照して下さい。</p>
 <p>変数を除外する場合は<code>-</code>をつけます。</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="select-vars.html#cb46-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb46-2"><a href="select-vars.html#cb46-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">%&gt;%</span> </span>
-<span id="cb46-3"><a href="select-vars.html#cb46-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="select-vars.html#cb39-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb39-2"><a href="select-vars.html#cb39-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>year) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-3"><a href="select-vars.html#cb39-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["dependa"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dependb"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["demauta"],"name":[5],"type":["int"],"align":["right"]},{"label":["demautb"],"name":[6],"type":["int"],"align":["right"]},{"label":["allies"],"name":[7],"type":["int"],"align":["right"]},{"label":["dispute1"],"name":[8],"type":["int"],"align":["right"]},{"label":["logdstab"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["lcaprat2"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["smigoabi"],"name":[11],"type":["int"],"align":["right"]},{"label":["opena"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["openb"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["minrpwrs"],"name":[14],"type":["int"],"align":["right"]},{"label":["noncontg"],"name":[15],"type":["int"],"align":["right"]},{"label":["smldmat"],"name":[16],"type":["int"],"align":["right"]},{"label":["smldep"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["dyadid"],"name":[18],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"0.01573063","4":"0.2801780","5":"10","6":"9","7":"0","8":"0","9":"5.820108","10":"3.241306","11":"10","12":"0.15623870","13":"0.4284163","14":"0","15":"0","16":"9","17":"0.01573063","18":"2020","_rn_":"1"},{"1":"2","2":"20","3":"0.01154854","4":"0.2239006","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.171194","11":"10","12":"0.10317327","13":"0.3481170","14":"0","15":"0","16":"10","17":"0.01154854","18":"2020","_rn_":"2"},{"1":"2","2":"20","3":"0.01125047","4":"0.2008743","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.247957","11":"10","12":"0.12613152","13":"0.4684889","14":"0","15":"0","16":"10","17":"0.01125047","18":"2020","_rn_":"3"},{"1":"2","2":"20","3":"0.01117924","4":"0.2130951","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.180491","11":"10","12":"0.09024599","13":"0.3702438","14":"0","15":"0","16":"10","17":"0.01117924","18":"2020","_rn_":"4"},{"1":"2","2":"20","3":"0.01102619","4":"0.2125081","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.191799","11":"10","12":"0.09118309","13":"0.4073506","14":"0","15":"0","16":"10","17":"0.01102619","18":"2020","_rn_":"5"},{"1":"2","2":"20","3":"0.01076442","4":"0.1913874","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.190288","11":"10","12":"0.09765426","13":"0.3580277","14":"0","15":"0","16":"10","17":"0.01076442","18":"2020","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p><code>select</code>では変数の並び替えもできます。</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="select-vars.html#cb47-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb47-2"><a href="select-vars.html#cb47-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, statea, stateb) <span class="sc">%&gt;%</span> </span>
-<span id="cb47-3"><a href="select-vars.html#cb47-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="select-vars.html#cb40-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb40-2"><a href="select-vars.html#cb40-2" tabindex="-1"></a>  <span class="fu">select</span>(year, statea, stateb) <span class="sc">%&gt;%</span> </span>
+<span id="cb40-3"><a href="select-vars.html#cb40-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["statea"],"name":[2],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"1920","2":"2","3":"20","_rn_":"1"},{"1":"1921","2":"2","3":"20","_rn_":"2"},{"1":"1922","2":"2","3":"20","_rn_":"3"},{"1":"1923","2":"2","3":"20","_rn_":"4"},{"1":"1924","2":"2","3":"20","_rn_":"5"},{"1":"1925","2":"2","3":"20","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>変数の選択をせずに並び替えだけしたい場合は、並び替えた後に<code>everything()</code>を入れます。</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="select-vars.html#cb48-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb48-2"><a href="select-vars.html#cb48-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(year, statea, stateb, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
-<span id="cb48-3"><a href="select-vars.html#cb48-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="select-vars.html#cb41-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb41-2"><a href="select-vars.html#cb41-2" tabindex="-1"></a>  <span class="fu">select</span>(year, statea, stateb, <span class="fu">everything</span>()) <span class="sc">%&gt;%</span> </span>
+<span id="cb41-3"><a href="select-vars.html#cb41-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["year"],"name":[1],"type":["int"],"align":["right"]},{"label":["statea"],"name":[2],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[3],"type":["int"],"align":["right"]},{"label":["dependa"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["dependb"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["demauta"],"name":[6],"type":["int"],"align":["right"]},{"label":["demautb"],"name":[7],"type":["int"],"align":["right"]},{"label":["allies"],"name":[8],"type":["int"],"align":["right"]},{"label":["dispute1"],"name":[9],"type":["int"],"align":["right"]},{"label":["logdstab"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["lcaprat2"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["smigoabi"],"name":[12],"type":["int"],"align":["right"]},{"label":["opena"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["openb"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["minrpwrs"],"name":[15],"type":["int"],"align":["right"]},{"label":["noncontg"],"name":[16],"type":["int"],"align":["right"]},{"label":["smldmat"],"name":[17],"type":["int"],"align":["right"]},{"label":["smldep"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["dyadid"],"name":[19],"type":["int"],"align":["right"]}],"data":[{"1":"1920","2":"2","3":"20","4":"0.01573063","5":"0.2801780","6":"10","7":"9","8":"0","9":"0","10":"5.820108","11":"3.241306","12":"10","13":"0.15623870","14":"0.4284163","15":"0","16":"0","17":"9","18":"0.01573063","19":"2020","_rn_":"1"},{"1":"1921","2":"2","3":"20","4":"0.01154854","5":"0.2239006","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.171194","12":"10","13":"0.10317327","14":"0.3481170","15":"0","16":"0","17":"10","18":"0.01154854","19":"2020","_rn_":"2"},{"1":"1922","2":"2","3":"20","4":"0.01125047","5":"0.2008743","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.247957","12":"10","13":"0.12613152","14":"0.4684889","15":"0","16":"0","17":"10","18":"0.01125047","19":"2020","_rn_":"3"},{"1":"1923","2":"2","3":"20","4":"0.01117924","5":"0.2130951","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.180491","12":"10","13":"0.09024599","14":"0.3702438","15":"0","16":"0","17":"10","18":"0.01117924","19":"2020","_rn_":"4"},{"1":"1924","2":"2","3":"20","4":"0.01102619","5":"0.2125081","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.191799","12":"10","13":"0.09118309","14":"0.4073506","15":"0","16":"0","17":"10","18":"0.01102619","19":"2020","_rn_":"5"},{"1":"1925","2":"2","3":"20","4":"0.01076442","5":"0.1913874","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.190288","12":"10","13":"0.09765426","14":"0.3580277","15":"0","16":"0","17":"10","18":"0.01076442","19":"2020","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
-<div id="番号による選択" class="section level2" number="2.2">
-<h2><span class="header-section-number">2.2</span> 番号による選択</h2>
+<div id="番号による選択" class="section level2 hasAnchor" number="2.2">
+<h2><span class="header-section-number">2.2</span> 番号による選択<a href="select-vars.html#番号による選択" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>列番号を指定することで選択することもできます。
 番号がひとつだけの場合はベクトルになります。</p>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="select-vars.html#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tri[,<span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="select-vars.html#cb42-1" tabindex="-1"></a><span class="fu">head</span>(tri[,<span class="dv">3</span>])</span></code></pre></div>
 <pre><code>## [1] 1920 1921 1922 1923 1924 1925</code></pre>
 <p>複数列を指定するとデータフレームとして抜き出します。</p>
-<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="select-vars.html#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tri[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)])</span></code></pre></div>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="select-vars.html#cb44-1" tabindex="-1"></a><span class="fu">head</span>(tri[,<span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>)])</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","_rn_":"1"},{"1":"2","2":"20","3":"1921","_rn_":"2"},{"1":"2","2":"20","3":"1922","_rn_":"3"},{"1":"2","2":"20","3":"1923","_rn_":"4"},{"1":"2","2":"20","3":"1924","_rn_":"5"},{"1":"2","2":"20","3":"1925","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p><code>-</code>を付けるとその列を除外します。</p>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="select-vars.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(tri[,<span class="sc">-</span><span class="dv">3</span>])</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="select-vars.html#cb45-1" tabindex="-1"></a><span class="fu">head</span>(tri[,<span class="sc">-</span><span class="dv">3</span>])</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["dependa"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dependb"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["demauta"],"name":[5],"type":["int"],"align":["right"]},{"label":["demautb"],"name":[6],"type":["int"],"align":["right"]},{"label":["allies"],"name":[7],"type":["int"],"align":["right"]},{"label":["dispute1"],"name":[8],"type":["int"],"align":["right"]},{"label":["logdstab"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["lcaprat2"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["smigoabi"],"name":[11],"type":["int"],"align":["right"]},{"label":["opena"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["openb"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["minrpwrs"],"name":[14],"type":["int"],"align":["right"]},{"label":["noncontg"],"name":[15],"type":["int"],"align":["right"]},{"label":["smldmat"],"name":[16],"type":["int"],"align":["right"]},{"label":["smldep"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["dyadid"],"name":[18],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"0.01573063","4":"0.2801780","5":"10","6":"9","7":"0","8":"0","9":"5.820108","10":"3.241306","11":"10","12":"0.15623870","13":"0.4284163","14":"0","15":"0","16":"9","17":"0.01573063","18":"2020","_rn_":"1"},{"1":"2","2":"20","3":"0.01154854","4":"0.2239006","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.171194","11":"10","12":"0.10317327","13":"0.3481170","14":"0","15":"0","16":"10","17":"0.01154854","18":"2020","_rn_":"2"},{"1":"2","2":"20","3":"0.01125047","4":"0.2008743","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.247957","11":"10","12":"0.12613152","13":"0.4684889","14":"0","15":"0","16":"10","17":"0.01125047","18":"2020","_rn_":"3"},{"1":"2","2":"20","3":"0.01117924","4":"0.2130951","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.180491","11":"10","12":"0.09024599","13":"0.3702438","14":"0","15":"0","16":"10","17":"0.01117924","18":"2020","_rn_":"4"},{"1":"2","2":"20","3":"0.01102619","4":"0.2125081","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.191799","11":"10","12":"0.09118309","13":"0.4073506","14":"0","15":"0","16":"10","17":"0.01102619","18":"2020","_rn_":"5"},{"1":"2","2":"20","3":"0.01076442","4":"0.1913874","5":"10","6":"10","7":"0","8":"0","9":"5.820108","10":"3.190288","11":"10","12":"0.09765426","13":"0.3580277","14":"0","15":"0","16":"10","17":"0.01076442","18":"2020","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
-<div id="変数名の変更" class="section level2" number="2.3">
-<h2><span class="header-section-number">2.3</span> 変数名の変更</h2>
+<div id="変数名の変更" class="section level2 hasAnchor" number="2.3">
+<h2><span class="header-section-number">2.3</span> 変数名の変更<a href="select-vars.html#変数名の変更" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>変数名を確認するには<code>names()</code>を使います。</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="select-vars.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tri)</span></code></pre></div>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="select-vars.html#cb46-1" tabindex="-1"></a><span class="fu">names</span>(tri)</span></code></pre></div>
 <pre><code>##  [1] &quot;statea&quot;   &quot;stateb&quot;   &quot;year&quot;     &quot;dependa&quot;  &quot;dependb&quot;  &quot;demauta&quot; 
 ##  [7] &quot;demautb&quot;  &quot;allies&quot;   &quot;dispute1&quot; &quot;logdstab&quot; &quot;lcaprat2&quot; &quot;smigoabi&quot;
 ## [13] &quot;opena&quot;    &quot;openb&quot;    &quot;minrpwrs&quot; &quot;noncontg&quot; &quot;smldmat&quot;  &quot;smldep&quot;  
 ## [19] &quot;dyadid&quot;</code></pre>
 <p><code>names()</code>に代入することで変数名を買えることができます。
 例えば、<code>statea</code>を<code>StateA</code>にするには次のようにします。</p>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="select-vars.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tri)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;StateA&quot;</span></span>
-<span id="cb55-2"><a href="select-vars.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tri)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="select-vars.html#cb48-1" tabindex="-1"></a><span class="fu">names</span>(tri)[<span class="dv">1</span>] <span class="ot">&lt;-</span> <span class="st">&quot;StateA&quot;</span></span>
+<span id="cb48-2"><a href="select-vars.html#cb48-2" tabindex="-1"></a><span class="fu">names</span>(tri)</span></code></pre></div>
 <pre><code>##  [1] &quot;StateA&quot;   &quot;stateb&quot;   &quot;year&quot;     &quot;dependa&quot;  &quot;dependb&quot;  &quot;demauta&quot; 
 ##  [7] &quot;demautb&quot;  &quot;allies&quot;   &quot;dispute1&quot; &quot;logdstab&quot; &quot;lcaprat2&quot; &quot;smigoabi&quot;
 ## [13] &quot;opena&quot;    &quot;openb&quot;    &quot;minrpwrs&quot; &quot;noncontg&quot; &quot;smldmat&quot;  &quot;smldep&quot;  
@@ -670,33 +657,33 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><code>names()</code>ベクトルなので第1要素を参照するには<code>[1]</code>とします。</li>
 </ul>
 <p>あるいは、次のようにして<code>stateb</code>を<code>StateB</code>にすることもできます。</p>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="select-vars.html#cb57-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tri)[<span class="fu">names</span>(tri) <span class="sc">==</span> <span class="st">&quot;stateb&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;StateB&quot;</span></span>
-<span id="cb57-2"><a href="select-vars.html#cb57-2" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(tri)</span></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="select-vars.html#cb50-1" tabindex="-1"></a><span class="fu">names</span>(tri)[<span class="fu">names</span>(tri) <span class="sc">==</span> <span class="st">&quot;stateb&quot;</span>] <span class="ot">&lt;-</span> <span class="st">&quot;StateB&quot;</span></span>
+<span id="cb50-2"><a href="select-vars.html#cb50-2" tabindex="-1"></a><span class="fu">names</span>(tri)</span></code></pre></div>
 <pre><code>##  [1] &quot;StateA&quot;   &quot;StateB&quot;   &quot;year&quot;     &quot;dependa&quot;  &quot;dependb&quot;  &quot;demauta&quot; 
 ##  [7] &quot;demautb&quot;  &quot;allies&quot;   &quot;dispute1&quot; &quot;logdstab&quot; &quot;lcaprat2&quot; &quot;smigoabi&quot;
 ## [13] &quot;opena&quot;    &quot;openb&quot;    &quot;minrpwrs&quot; &quot;noncontg&quot; &quot;smldmat&quot;  &quot;smldep&quot;  
 ## [19] &quot;dyadid&quot;</code></pre>
 <p><code>tidyverse</code>で変数名を変える場合は<code>select()</code>内部で<code>=</code>の左側に新しい変数名、右側にもとの変数名を書きます。</p>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="select-vars.html#cb59-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb59-2"><a href="select-vars.html#cb59-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">statea =</span> StateA, <span class="at">stateb =</span> StateB, year) <span class="sc">%&gt;%</span> </span>
-<span id="cb59-3"><a href="select-vars.html#cb59-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="select-vars.html#cb52-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="select-vars.html#cb52-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">statea =</span> StateA, <span class="at">stateb =</span> StateB, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb52-3"><a href="select-vars.html#cb52-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","_rn_":"1"},{"1":"2","2":"20","3":"1921","_rn_":"2"},{"1":"2","2":"20","3":"1922","_rn_":"3"},{"1":"2","2":"20","3":"1923","_rn_":"4"},{"1":"2","2":"20","3":"1924","_rn_":"5"},{"1":"2","2":"20","3":"1925","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 <p>変数名を変えるだけで変数の選択をしない場合は<code>rename()</code>を使います。</p>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="select-vars.html#cb60-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb60-2"><a href="select-vars.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">statea =</span> StateA, <span class="at">stateb =</span> StateB) <span class="sc">%&gt;%</span> </span>
-<span id="cb60-3"><a href="select-vars.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="select-vars.html#cb53-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb53-2"><a href="select-vars.html#cb53-2" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">statea =</span> StateA, <span class="at">stateb =</span> StateB) <span class="sc">%&gt;%</span> </span>
+<span id="cb53-3"><a href="select-vars.html#cb53-3" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
 <div data-pagedtable="false">
 <script data-pagedtable-source type="application/json">
 {"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["statea"],"name":[1],"type":["int"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["int"],"align":["right"]},{"label":["year"],"name":[3],"type":["int"],"align":["right"]},{"label":["dependa"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["dependb"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["demauta"],"name":[6],"type":["int"],"align":["right"]},{"label":["demautb"],"name":[7],"type":["int"],"align":["right"]},{"label":["allies"],"name":[8],"type":["int"],"align":["right"]},{"label":["dispute1"],"name":[9],"type":["int"],"align":["right"]},{"label":["logdstab"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["lcaprat2"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["smigoabi"],"name":[12],"type":["int"],"align":["right"]},{"label":["opena"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["openb"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["minrpwrs"],"name":[15],"type":["int"],"align":["right"]},{"label":["noncontg"],"name":[16],"type":["int"],"align":["right"]},{"label":["smldmat"],"name":[17],"type":["int"],"align":["right"]},{"label":["smldep"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["dyadid"],"name":[19],"type":["int"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","4":"0.01573063","5":"0.2801780","6":"10","7":"9","8":"0","9":"0","10":"5.820108","11":"3.241306","12":"10","13":"0.15623870","14":"0.4284163","15":"0","16":"0","17":"9","18":"0.01573063","19":"2020","_rn_":"1"},{"1":"2","2":"20","3":"1921","4":"0.01154854","5":"0.2239006","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.171194","12":"10","13":"0.10317327","14":"0.3481170","15":"0","16":"0","17":"10","18":"0.01154854","19":"2020","_rn_":"2"},{"1":"2","2":"20","3":"1922","4":"0.01125047","5":"0.2008743","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.247957","12":"10","13":"0.12613152","14":"0.4684889","15":"0","16":"0","17":"10","18":"0.01125047","19":"2020","_rn_":"3"},{"1":"2","2":"20","3":"1923","4":"0.01117924","5":"0.2130951","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.180491","12":"10","13":"0.09024599","14":"0.3702438","15":"0","16":"0","17":"10","18":"0.01117924","19":"2020","_rn_":"4"},{"1":"2","2":"20","3":"1924","4":"0.01102619","5":"0.2125081","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.191799","12":"10","13":"0.09118309","14":"0.4073506","15":"0","16":"0","17":"10","18":"0.01102619","19":"2020","_rn_":"5"},{"1":"2","2":"20","3":"1925","4":"0.01076442","5":"0.1913874","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.190288","12":"10","13":"0.09765426","14":"0.3580277","15":"0","16":"0","17":"10","18":"0.01076442","19":"2020","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
   </script>
 </div>
 </div>
-<div id="高度な変数の選択方法" class="section level2" number="2.4">
-<h2><span class="header-section-number">2.4</span> 高度な変数の選択方法*</h2>
+<div id="高度な変数の選択方法" class="section level2 hasAnchor" number="2.4">
+<h2><span class="header-section-number">2.4</span> 高度な変数の選択方法*<a href="select-vars.html#高度な変数の選択方法" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 
 </div>
 </div>
@@ -710,7 +697,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -751,7 +737,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -768,7 +754,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

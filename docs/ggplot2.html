@@ -6,11 +6,10 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>第14章 ggplot2いろいろ | Rで計量政治学入門</title>
   <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
-  <meta name="generator" content="bookdown 0.23 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
 
   <meta property="og:title" content="第14章 ggplot2いろいろ | Rで計量政治学入門" />
   <meta property="og:type" content="book" />
-  
   
   <meta property="og:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
   <meta name="github-repo" content="shohei-doi/quant_polisci" />
@@ -24,7 +23,7 @@
 <meta name="author" content="土井　翔平" />
 
 
-<meta name="date" content="2021-08-25" />
+<meta name="date" content="2023-08-30" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -32,9 +31,9 @@
   
   
 <link rel="prev" href="visual-map.html"/>
-<link rel="next" href="twitter-data.html"/>
-<script src="libs/header-attrs-2.10/header-attrs.js"></script>
+<link rel="next" href="google-data.html"/>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,19 +49,20 @@
 
 
 
-
 <link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
 <script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
-<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-75879658-3"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
 
-      gtag('config', 'UA-75879658-3');
-    </script>
+  gtag('config', 'G-LLFB8XFPX5');
+</script>
 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet"> 
 <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet"> 
@@ -106,7 +106,7 @@ code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
 code span.at { color: #7d9029; } /* Attribute */
 code span.bn { color: #40a070; } /* BaseN */
-code span.bu { } /* BuiltIn */
+code span.bu { color: #008000; } /* BuiltIn */
 code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
 code span.ch { color: #4070a0; } /* Char */
 code span.cn { color: #880000; } /* Constant */
@@ -119,7 +119,7 @@ code span.er { color: #ff0000; font-weight: bold; } /* Error */
 code span.ex { } /* Extension */
 code span.fl { color: #40a070; } /* Float */
 code span.fu { color: #06287e; } /* Function */
-code span.im { } /* Import */
+code span.im { color: #008000; font-weight: bold; } /* Import */
 code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
 code span.kw { color: #007020; font-weight: bold; } /* Keyword */
 code span.op { color: #666666; } /* Operator */
@@ -133,6 +133,10 @@ code span.vs { color: #4070a0; } /* VerbatimString */
 code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
 
 <link rel="stylesheet" href="style.css" type="text/css" />
 </head>
@@ -332,213 +336,196 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="14.7" data-path="ggplot2.html"><a href="ggplot2.html#テキスト"><i class="fa fa-check"></i><b>14.7</b> テキスト</a></li>
 </ul></li>
 <li class="part"><span><b>III データの収集</b></span></li>
-<li class="chapter" data-level="15" data-path="twitter-data.html"><a href="twitter-data.html"><i class="fa fa-check"></i><b>15</b> Twitterデータ</a>
+<li class="chapter" data-level="15" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>15</b> Googleデータ</a>
 <ul>
-<li class="chapter" data-level="15.1" data-path="twitter-data.html"><a href="twitter-data.html#事前準備"><i class="fa fa-check"></i><b>15.1</b> 事前準備</a>
+<li class="chapter" data-level="15.1" data-path="google-data.html"><a href="google-data.html#はじめに"><i class="fa fa-check"></i><b>15.1</b> はじめに</a></li>
+<li class="chapter" data-level="15.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>15.2</b> 時系列トレンド</a>
 <ul>
-<li class="chapter" data-level="15.1.1" data-path="twitter-data.html"><a href="twitter-data.html#twitterアカウントの作成"><i class="fa fa-check"></i><b>15.1.1</b> Twitterアカウントの作成</a></li>
-<li class="chapter" data-level="15.1.2" data-path="twitter-data.html"><a href="twitter-data.html#認証"><i class="fa fa-check"></i><b>15.1.2</b> 認証</a></li>
+<li class="chapter" data-level="15.2.1" data-path="google-data.html"><a href="google-data.html#一つの単語"><i class="fa fa-check"></i><b>15.2.1</b> 一つの単語</a></li>
+<li class="chapter" data-level="15.2.2" data-path="google-data.html"><a href="google-data.html#複数の単語"><i class="fa fa-check"></i><b>15.2.2</b> 複数の単語</a></li>
 </ul></li>
-<li class="chapter" data-level="15.2" data-path="twitter-data.html"><a href="twitter-data.html#単語によるツイートの取得"><i class="fa fa-check"></i><b>15.2</b> 単語によるツイートの取得</a></li>
-<li class="chapter" data-level="15.3" data-path="twitter-data.html"><a href="twitter-data.html#ユーザーによるツイートの取得"><i class="fa fa-check"></i><b>15.3</b> ユーザーによるツイートの取得</a></li>
-<li class="chapter" data-level="15.4" data-path="twitter-data.html"><a href="twitter-data.html#言語によるツイートの取得"><i class="fa fa-check"></i><b>15.4</b> 言語によるツイートの取得</a></li>
-<li class="chapter" data-level="15.5" data-path="twitter-data.html"><a href="twitter-data.html#地域によるツイートの取得"><i class="fa fa-check"></i><b>15.5</b> 地域によるツイートの取得</a></li>
-<li class="chapter" data-level="15.6" data-path="twitter-data.html"><a href="twitter-data.html#ライブストリームの取得"><i class="fa fa-check"></i><b>15.6</b> ライブストリームの取得</a>
-<ul>
-<li class="chapter" data-level="15.6.1" data-path="twitter-data.html"><a href="twitter-data.html#地域のライブストリームの取得"><i class="fa fa-check"></i><b>15.6.1</b> 地域のライブストリームの取得</a></li>
+<li class="chapter" data-level="15.3" data-path="google-data.html"><a href="google-data.html#地域別のトレンド"><i class="fa fa-check"></i><b>15.3</b> 地域別のトレンド</a></li>
+<li class="chapter" data-level="15.4" data-path="google-data.html"><a href="google-data.html#関連単語"><i class="fa fa-check"></i><b>15.4</b> 関連単語</a></li>
+<li class="chapter" data-level="15.5" data-path="google-data.html"><a href="google-data.html#検索ヒット数"><i class="fa fa-check"></i><b>15.5</b> 検索ヒット数*</a></li>
+<li class="chapter" data-level="15.6" data-path="google-data.html"><a href="google-data.html#nグラム"><i class="fa fa-check"></i><b>15.6</b> Nグラム</a></li>
 </ul></li>
-<li class="chapter" data-level="15.7" data-path="twitter-data.html"><a href="twitter-data.html#その他の情報の取得"><i class="fa fa-check"></i><b>15.7</b> その他の情報の取得</a></li>
-</ul></li>
-<li class="chapter" data-level="16" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>16</b> Googleデータ</a>
+<li class="chapter" data-level="16" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>16</b> Wikipediaデータ</a>
 <ul>
-<li class="chapter" data-level="16.1" data-path="google-data.html"><a href="google-data.html#はじめに"><i class="fa fa-check"></i><b>16.1</b> はじめに</a></li>
-<li class="chapter" data-level="16.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>16.2</b> 時系列トレンド</a>
-<ul>
-<li class="chapter" data-level="16.2.1" data-path="google-data.html"><a href="google-data.html#一つの単語"><i class="fa fa-check"></i><b>16.2.1</b> 一つの単語</a></li>
-<li class="chapter" data-level="16.2.2" data-path="google-data.html"><a href="google-data.html#複数の単語"><i class="fa fa-check"></i><b>16.2.2</b> 複数の単語</a></li>
-</ul></li>
-<li class="chapter" data-level="16.3" data-path="google-data.html"><a href="google-data.html#地域別のトレンド"><i class="fa fa-check"></i><b>16.3</b> 地域別のトレンド</a></li>
-<li class="chapter" data-level="16.4" data-path="google-data.html"><a href="google-data.html#関連単語"><i class="fa fa-check"></i><b>16.4</b> 関連単語</a></li>
-<li class="chapter" data-level="16.5" data-path="google-data.html"><a href="google-data.html#検索ヒット数"><i class="fa fa-check"></i><b>16.5</b> 検索ヒット数*</a></li>
-<li class="chapter" data-level="16.6" data-path="google-data.html"><a href="google-data.html#nグラム"><i class="fa fa-check"></i><b>16.6</b> Nグラム</a></li>
-</ul></li>
-<li class="chapter" data-level="17" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>17</b> Wikipediaデータ</a>
-<ul>
-<li class="chapter" data-level="17.1" data-path="wikipedia-data.html"><a href="wikipedia-data.html#Trend"><i class="fa fa-check"></i><b>17.1</b> Wikipediaのトレンド</a></li>
-<li class="chapter" data-level="17.2" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の情報"><i class="fa fa-check"></i><b>17.2</b> Wikipediaの記事の情報</a></li>
-<li class="chapter" data-level="17.3" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事"><i class="fa fa-check"></i><b>17.3</b> Wikipediaの記事</a></li>
-<li class="chapter" data-level="17.4" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事のリンク"><i class="fa fa-check"></i><b>17.4</b> Wikipediaの記事のリンク</a></li>
-<li class="chapter" data-level="17.5" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の作成日の取得"><i class="fa fa-check"></i><b>17.5</b> Wikipediaの記事の作成日の取得*</a></li>
+<li class="chapter" data-level="16.1" data-path="wikipedia-data.html"><a href="wikipedia-data.html#Trend"><i class="fa fa-check"></i><b>16.1</b> Wikipediaのトレンド</a></li>
+<li class="chapter" data-level="16.2" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の情報"><i class="fa fa-check"></i><b>16.2</b> Wikipediaの記事の情報</a></li>
+<li class="chapter" data-level="16.3" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事"><i class="fa fa-check"></i><b>16.3</b> Wikipediaの記事</a></li>
+<li class="chapter" data-level="16.4" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事のリンク"><i class="fa fa-check"></i><b>16.4</b> Wikipediaの記事のリンク</a></li>
+<li class="chapter" data-level="16.5" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の作成日の取得"><i class="fa fa-check"></i><b>16.5</b> Wikipediaの記事の作成日の取得*</a></li>
 </ul></li>
 <li class="part"><span><b>IV Appendix</b></span></li>
-<li class="chapter" data-level="18" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>18</b> Rの分析環境</a>
+<li class="chapter" data-level="17" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>17</b> Rの分析環境</a>
 <ul>
-<li class="chapter" data-level="18.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>18.1</b> Rのインストール</a>
+<li class="chapter" data-level="17.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>17.1</b> Rのインストール</a>
 <ul>
-<li class="chapter" data-level="18.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>18.1.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="18.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>18.1.2</b> インストール</a></li>
+<li class="chapter" data-level="17.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>17.1.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="17.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>17.1.2</b> インストール</a></li>
 </ul></li>
-<li class="chapter" data-level="18.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>18.2</b> RStudioのインストール</a>
+<li class="chapter" data-level="17.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>17.2</b> RStudioのインストール</a>
 <ul>
-<li class="chapter" data-level="18.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>18.2.1</b> ダウンロード</a></li>
-<li class="chapter" data-level="18.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>18.2.2</b> インストール</a></li>
-<li class="chapter" data-level="18.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>18.2.3</b> RStudioの起動</a></li>
-<li class="chapter" data-level="18.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>18.2.4</b> RStudio Cloud*</a></li>
+<li class="chapter" data-level="17.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>17.2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="17.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>17.2.2</b> インストール</a></li>
+<li class="chapter" data-level="17.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>17.2.3</b> RStudioの起動</a></li>
+<li class="chapter" data-level="17.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>17.2.4</b> RStudio Cloud*</a></li>
 </ul></li>
-<li class="chapter" data-level="18.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>18.3</b> 再現可能な分析のために</a>
+<li class="chapter" data-level="17.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>17.3</b> 再現可能な分析のために</a>
 <ul>
-<li class="chapter" data-level="18.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>18.3.1</b> Rスクリプト</a></li>
-<li class="chapter" data-level="18.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>18.3.2</b> Rプロジェクト</a></li>
-<li class="chapter" data-level="18.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>18.3.3</b> RStudioの設定*</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="19" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング入門</a>
-<ul>
-<li class="chapter" data-level="19.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>19.1</b> 関数</a>
-<ul>
-<li class="chapter" data-level="19.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>19.1.1</b> 総称関数*</a></li>
-</ul></li>
-<li class="chapter" data-level="19.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>19.2</b> オブジェクト</a></li>
-<li class="chapter" data-level="19.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>19.3</b> パッケージ</a>
-<ul>
-<li class="chapter" data-level="19.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>19.3.1</b> CRANからのインストール</a></li>
-<li class="chapter" data-level="19.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>19.3.2</b> GitHubからのインストール*</a></li>
-<li class="chapter" data-level="19.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>19.3.3</b> パッケージの読み込み</a></li>
-<li class="chapter" data-level="19.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>19.3.4</b> <code>tidyverse</code>とは*</a></li>
+<li class="chapter" data-level="17.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>17.3.1</b> Rスクリプト</a></li>
+<li class="chapter" data-level="17.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>17.3.2</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="17.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>17.3.3</b> RStudioの設定*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="20" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>20</b> Rプログラミング応用</a>
+<li class="chapter" data-level="18" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>18</b> Rプログラミング入門</a>
 <ul>
-<li class="chapter" data-level="20.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>20.1</b> オブジェクトのクラス</a></li>
-<li class="chapter" data-level="20.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>20.2</b> 関数の作成</a></li>
-<li class="chapter" data-level="20.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>20.3</b> ループ</a></li>
-<li class="chapter" data-level="20.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>20.4</b> 条件分岐</a></li>
-<li class="chapter" data-level="20.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>20.5</b> 練習問題</a>
+<li class="chapter" data-level="18.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>18.1</b> 関数</a>
 <ul>
-<li class="chapter" data-level="20.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>20.5.1</b> フィボナッチ数列</a></li>
-<li class="chapter" data-level="20.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>20.5.2</b> モンテカルロ・シミュレーション</a></li>
+<li class="chapter" data-level="18.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>18.1.1</b> 総称関数*</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>18.2</b> オブジェクト</a></li>
+<li class="chapter" data-level="18.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>18.3</b> パッケージ</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>18.3.1</b> CRANからのインストール</a></li>
+<li class="chapter" data-level="18.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>18.3.2</b> GitHubからのインストール*</a></li>
+<li class="chapter" data-level="18.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>18.3.3</b> パッケージの読み込み</a></li>
+<li class="chapter" data-level="18.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>18.3.4</b> <code>tidyverse</code>とは*</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="21" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>21</b> R Markdown: html</a>
+<li class="chapter" data-level="19" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング応用</a>
 <ul>
-<li class="chapter" data-level="21.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>21.1</b> R Markdownファイルの作成</a>
+<li class="chapter" data-level="19.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>19.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="19.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>19.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="19.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>19.3</b> ループ</a></li>
+<li class="chapter" data-level="19.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>19.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="19.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>19.5</b> 練習問題</a>
 <ul>
-<li class="chapter" data-level="21.1.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>21.1.1</b> 参考になるサイト</a></li>
-</ul></li>
-<li class="chapter" data-level="21.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>21.2</b> Markdown記法</a>
-<ul>
-<li class="chapter" data-level="21.2.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdownとは"><i class="fa fa-check"></i><b>21.2.1</b> Markdownとは*</a></li>
-<li class="chapter" data-level="21.2.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#セクション"><i class="fa fa-check"></i><b>21.2.2</b> セクション</a></li>
-<li class="chapter" data-level="21.2.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>21.2.3</b> パラグラフ</a></li>
-<li class="chapter" data-level="21.2.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#箇条書き"><i class="fa fa-check"></i><b>21.2.4</b> 箇条書き</a></li>
-<li class="chapter" data-level="21.2.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#文字の強調"><i class="fa fa-check"></i><b>21.2.5</b> 文字の強調</a></li>
-<li class="chapter" data-level="21.2.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#引用"><i class="fa fa-check"></i><b>21.2.6</b> 引用</a></li>
-<li class="chapter" data-level="21.2.7" data-path="r-markdown-html.html"><a href="r-markdown-html.html#リンク"><i class="fa fa-check"></i><b>21.2.7</b> リンク</a></li>
-<li class="chapter" data-level="21.2.8" data-path="r-markdown-html.html"><a href="r-markdown-html.html#画像表"><i class="fa fa-check"></i><b>21.2.8</b> 画像、表</a></li>
-<li class="chapter" data-level="21.2.9" data-path="r-markdown-html.html"><a href="r-markdown-html.html#数式"><i class="fa fa-check"></i><b>21.2.9</b> 数式</a></li>
-</ul></li>
-<li class="chapter" data-level="21.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>21.3</b> Rチャンク</a>
-<ul>
-<li class="chapter" data-level="21.3.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>21.3.1</b> チャンクオプション</a></li>
-</ul></li>
-<li class="chapter" data-level="21.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>21.4</b> yamlヘッダー</a>
-<ul>
-<li class="chapter" data-level="21.4.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#output"><i class="fa fa-check"></i><b>21.4.1</b> output</a></li>
-<li class="chapter" data-level="21.4.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#目次"><i class="fa fa-check"></i><b>21.4.2</b> 目次</a></li>
-<li class="chapter" data-level="21.4.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#テーマ-1"><i class="fa fa-check"></i><b>21.4.3</b> テーマ</a></li>
-<li class="chapter" data-level="21.4.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>21.4.4</b> htmlとcss</a></li>
-</ul></li>
-<li class="chapter" data-level="21.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>21.5</b> その他のテンプレート</a>
-<ul>
-<li class="chapter" data-level="21.5.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#distill"><i class="fa fa-check"></i><b>21.5.1</b> Distill</a></li>
-<li class="chapter" data-level="21.5.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>21.5.2</b> Tufte Handout</a></li>
-<li class="chapter" data-level="21.5.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rmdformats"><i class="fa fa-check"></i><b>21.5.3</b> rmdformats</a></li>
-<li class="chapter" data-level="21.5.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#スライド"><i class="fa fa-check"></i><b>21.5.4</b> スライド</a></li>
-<li class="chapter" data-level="21.5.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#ダッシュボード"><i class="fa fa-check"></i><b>21.5.5</b> ダッシュボード</a></li>
-<li class="chapter" data-level="21.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>21.5.6</b> Microsoft Office</a></li>
+<li class="chapter" data-level="19.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>19.5.1</b> フィボナッチ数列</a></li>
+<li class="chapter" data-level="19.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>19.5.2</b> モンテカルロ・シミュレーション</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="22" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>22</b> R Markdown: pdf</a>
+<li class="chapter" data-level="20" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>20</b> R Markdown: html</a>
 <ul>
-<li class="chapter" data-level="22.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>22.1</b> LaTeXの導入</a>
+<li class="chapter" data-level="20.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>20.1</b> R Markdownファイルの作成</a>
 <ul>
-<li class="chapter" data-level="22.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>22.1.1</b> tinytexのインストール</a></li>
-<li class="chapter" data-level="22.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>22.1.2</b> タイプセット</a></li>
+<li class="chapter" data-level="20.1.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>20.1.1</b> 参考になるサイト</a></li>
 </ul></li>
-<li class="chapter" data-level="22.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>22.2</b> 日本語環境の構築</a>
+<li class="chapter" data-level="20.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>20.2</b> Markdown記法</a>
 <ul>
-<li class="chapter" data-level="22.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>22.2.1</b> LaTeXエンジンのあれこれ*</a></li>
-<li class="chapter" data-level="22.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>22.2.2</b> yamlヘッダー</a></li>
-<li class="chapter" data-level="22.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>22.2.3</b> フォントのインストール</a></li>
-<li class="chapter" data-level="22.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>22.2.4</b> その他のテンプレート</a></li>
-<li class="chapter" data-level="22.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>22.2.5</b> Sumatra PDF</a></li>
+<li class="chapter" data-level="20.2.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdownとは"><i class="fa fa-check"></i><b>20.2.1</b> Markdownとは*</a></li>
+<li class="chapter" data-level="20.2.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#セクション"><i class="fa fa-check"></i><b>20.2.2</b> セクション</a></li>
+<li class="chapter" data-level="20.2.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>20.2.3</b> パラグラフ</a></li>
+<li class="chapter" data-level="20.2.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#箇条書き"><i class="fa fa-check"></i><b>20.2.4</b> 箇条書き</a></li>
+<li class="chapter" data-level="20.2.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#文字の強調"><i class="fa fa-check"></i><b>20.2.5</b> 文字の強調</a></li>
+<li class="chapter" data-level="20.2.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#引用"><i class="fa fa-check"></i><b>20.2.6</b> 引用</a></li>
+<li class="chapter" data-level="20.2.7" data-path="r-markdown-html.html"><a href="r-markdown-html.html#リンク"><i class="fa fa-check"></i><b>20.2.7</b> リンク</a></li>
+<li class="chapter" data-level="20.2.8" data-path="r-markdown-html.html"><a href="r-markdown-html.html#画像表"><i class="fa fa-check"></i><b>20.2.8</b> 画像、表</a></li>
+<li class="chapter" data-level="20.2.9" data-path="r-markdown-html.html"><a href="r-markdown-html.html#数式"><i class="fa fa-check"></i><b>20.2.9</b> 数式</a></li>
 </ul></li>
-<li class="chapter" data-level="22.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>22.3</b> スライドの作成</a>
+<li class="chapter" data-level="20.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>20.3</b> Rチャンク</a>
 <ul>
-<li class="chapter" data-level="22.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-2"><i class="fa fa-check"></i><b>22.3.1</b> テーマ</a></li>
+<li class="chapter" data-level="20.3.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>20.3.1</b> チャンクオプション</a></li>
 </ul></li>
-<li class="chapter" data-level="22.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>22.4</b> LaTeX記法</a>
+<li class="chapter" data-level="20.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>20.4</b> yamlヘッダー</a>
 <ul>
-<li class="chapter" data-level="22.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>22.4.1</b> 定理環境</a></li>
-<li class="chapter" data-level="22.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>22.4.2</b> 数式</a></li>
+<li class="chapter" data-level="20.4.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#output"><i class="fa fa-check"></i><b>20.4.1</b> output</a></li>
+<li class="chapter" data-level="20.4.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#目次"><i class="fa fa-check"></i><b>20.4.2</b> 目次</a></li>
+<li class="chapter" data-level="20.4.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#テーマ-1"><i class="fa fa-check"></i><b>20.4.3</b> テーマ</a></li>
+<li class="chapter" data-level="20.4.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>20.4.4</b> htmlとcss</a></li>
 </ul></li>
-<li class="chapter" data-level="22.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>22.5</b> 参考文献と引用</a>
+<li class="chapter" data-level="20.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>20.5</b> その他のテンプレート</a>
 <ul>
-<li class="chapter" data-level="22.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>22.5.1</b> .bibファイル</a></li>
-<li class="chapter" data-level="22.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>22.5.2</b> 文献の引用</a></li>
-<li class="chapter" data-level="22.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>22.5.3</b> 日本語文献の引用</a></li>
-</ul></li>
-</ul></li>
-<li class="chapter" data-level="23" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>23</b> Rのエンコーディング問題</a>
-<ul>
-<li class="chapter" data-level="23.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>23.1</b> なぜ文字化けが起こるのか</a>
-<ul>
-<li class="chapter" data-level="23.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>23.1.1</b> エンコーディング</a></li>
-<li class="chapter" data-level="23.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>23.1.2</b> RとRStudioにおける問題</a></li>
-</ul></li>
-<li class="chapter" data-level="23.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>23.2</b> Rスクリプトの文字化け</a>
-<ul>
-<li class="chapter" data-level="23.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>23.2.1</b> ファイルを開く</a></li>
-<li class="chapter" data-level="23.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>23.2.2</b> ファイルを保存する</a></li>
-</ul></li>
-<li class="chapter" data-level="23.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>23.3</b> データの文字化け</a>
-<ul>
-<li class="chapter" data-level="23.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>23.3.1</b> 標準関数の場合</a></li>
-<li class="chapter" data-level="23.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>23.3.2</b> tidyverseの場合</a></li>
-<li class="chapter" data-level="23.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>23.3.3</b> エンコーディングを確認する方法</a></li>
-<li class="chapter" data-level="23.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>23.3.4</b> もとのデータを見たい場合</a></li>
-<li class="chapter" data-level="23.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>23.3.5</b> データを保存する場合</a></li>
-</ul></li>
-<li class="chapter" data-level="23.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>23.4</b> その他の問題</a>
-<ul>
-<li class="chapter" data-level="23.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>23.4.1</b> アカウント名が日本語の場合</a></li>
-<li class="chapter" data-level="23.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>23.4.2</b> 画像で日本語が文字化けする場合</a></li>
+<li class="chapter" data-level="20.5.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#distill"><i class="fa fa-check"></i><b>20.5.1</b> Distill</a></li>
+<li class="chapter" data-level="20.5.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>20.5.2</b> Tufte Handout</a></li>
+<li class="chapter" data-level="20.5.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rmdformats"><i class="fa fa-check"></i><b>20.5.3</b> rmdformats</a></li>
+<li class="chapter" data-level="20.5.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#スライド"><i class="fa fa-check"></i><b>20.5.4</b> スライド</a></li>
+<li class="chapter" data-level="20.5.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#ダッシュボード"><i class="fa fa-check"></i><b>20.5.5</b> ダッシュボード</a></li>
+<li class="chapter" data-level="20.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>20.5.6</b> Microsoft Office</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="24" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>24</b> パイプ演算子<code>%&gt;%</code>について</a>
+<li class="chapter" data-level="21" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>21</b> R Markdown: pdf</a>
 <ul>
-<li class="chapter" data-level="24.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>24.1</b> 基本的な使い方</a></li>
-<li class="chapter" data-level="24.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>24.2</b> データの代入</a></li>
-<li class="chapter" data-level="24.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>24.3</b> 左辺の参照</a></li>
-<li class="chapter" data-level="24.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>24.4</b> 複数の出力</a></li>
+<li class="chapter" data-level="21.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>21.1</b> LaTeXの導入</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>21.1.1</b> tinytexのインストール</a></li>
+<li class="chapter" data-level="21.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>21.1.2</b> タイプセット</a></li>
 </ul></li>
-<li class="chapter" data-level="25" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>25</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<li class="chapter" data-level="21.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>21.2</b> 日本語環境の構築</a>
 <ul>
-<li class="chapter" data-level="25.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>25.1</b> はじめに</a>
-<ul>
-<li class="chapter" data-level="25.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>25.1.1</b> 問題</a></li>
-<li class="chapter" data-level="25.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>25.1.2</b> Linux上のR/RStudioを使う</a></li>
-<li class="chapter" data-level="25.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>25.1.3</b> 概要</a></li>
+<li class="chapter" data-level="21.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>21.2.1</b> LaTeXエンジンのあれこれ*</a></li>
+<li class="chapter" data-level="21.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>21.2.2</b> yamlヘッダー</a></li>
+<li class="chapter" data-level="21.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>21.2.3</b> フォントのインストール</a></li>
+<li class="chapter" data-level="21.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>21.2.4</b> その他のテンプレート</a></li>
+<li class="chapter" data-level="21.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>21.2.5</b> Sumatra PDF</a></li>
 </ul></li>
-<li class="chapter" data-level="25.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>25.2</b> WSL2のインストール</a></li>
-<li class="chapter" data-level="25.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>25.3</b> Rのインストール</a></li>
-<li class="chapter" data-level="25.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>25.4</b> RStusio Serverのインストール</a></li>
-<li class="chapter" data-level="25.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>25.5</b> RStudio Server on WSL2の注意点</a>
+<li class="chapter" data-level="21.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>21.3</b> スライドの作成</a>
 <ul>
-<li class="chapter" data-level="25.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>25.5.1</b> パッケージのインストール</a></li>
-<li class="chapter" data-level="25.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>25.5.2</b> 警告メッセージ</a></li>
-<li class="chapter" data-level="25.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>25.5.3</b> 日本語フォント</a></li>
-<li class="chapter" data-level="25.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>25.5.4</b> Windows側のファイルへのアクセス</a></li>
+<li class="chapter" data-level="21.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-2"><i class="fa fa-check"></i><b>21.3.1</b> テーマ</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>21.4</b> LaTeX記法</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>21.4.1</b> 定理環境</a></li>
+<li class="chapter" data-level="21.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>21.4.2</b> 数式</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>21.5</b> 参考文献と引用</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>21.5.1</b> .bibファイル</a></li>
+<li class="chapter" data-level="21.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>21.5.2</b> 文献の引用</a></li>
+<li class="chapter" data-level="21.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>21.5.3</b> 日本語文献の引用</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>22</b> Rのエンコーディング問題</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>22.1</b> なぜ文字化けが起こるのか</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>22.1.1</b> エンコーディング</a></li>
+<li class="chapter" data-level="22.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>22.1.2</b> RとRStudioにおける問題</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>22.2</b> Rスクリプトの文字化け</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>22.2.1</b> ファイルを開く</a></li>
+<li class="chapter" data-level="22.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>22.2.2</b> ファイルを保存する</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>22.3</b> データの文字化け</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>22.3.1</b> 標準関数の場合</a></li>
+<li class="chapter" data-level="22.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>22.3.2</b> tidyverseの場合</a></li>
+<li class="chapter" data-level="22.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>22.3.3</b> エンコーディングを確認する方法</a></li>
+<li class="chapter" data-level="22.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>22.3.4</b> もとのデータを見たい場合</a></li>
+<li class="chapter" data-level="22.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>22.3.5</b> データを保存する場合</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>22.4</b> その他の問題</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>22.4.1</b> アカウント名が日本語の場合</a></li>
+<li class="chapter" data-level="22.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>22.4.2</b> 画像で日本語が文字化けする場合</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>23</b> パイプ演算子<code>%&gt;%</code>について</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>23.1</b> 基本的な使い方</a></li>
+<li class="chapter" data-level="23.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>23.2</b> データの代入</a></li>
+<li class="chapter" data-level="23.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>23.3</b> 左辺の参照</a></li>
+<li class="chapter" data-level="23.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>23.4</b> 複数の出力</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>24</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>24.1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>24.1.1</b> 問題</a></li>
+<li class="chapter" data-level="24.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>24.1.2</b> Linux上のR/RStudioを使う</a></li>
+<li class="chapter" data-level="24.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>24.1.3</b> 概要</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>24.2</b> WSL2のインストール</a></li>
+<li class="chapter" data-level="24.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>24.3</b> Rのインストール</a></li>
+<li class="chapter" data-level="24.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>24.4</b> RStusio Serverのインストール</a></li>
+<li class="chapter" data-level="24.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>24.5</b> RStudio Server on WSL2の注意点</a>
+<ul>
+<li class="chapter" data-level="24.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>24.5.1</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="24.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>24.5.2</b> 警告メッセージ</a></li>
+<li class="chapter" data-level="24.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>24.5.3</b> 日本語フォント</a></li>
+<li class="chapter" data-level="24.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>24.5.4</b> Windows側のファイルへのアクセス</a></li>
 </ul></li>
 </ul></li>
 <li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
@@ -563,204 +550,204 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="ggplot2" class="section level1" number="14">
-<h1><span class="header-section-number">第14章</span> ggplot2いろいろ</h1>
+<div id="ggplot2" class="section level1 hasAnchor" number="14">
+<h1><span class="header-section-number">第14章</span> ggplot2いろいろ<a href="ggplot2.html#ggplot2" class="anchor-section" aria-label="Anchor link to header"></a></h1>
 <p><code>ggplot2</code>は簡単にきれいなグラフを作ってくれます。
 より、もう一手間加えることで、より見やすいグラフになるので、いろいろな設定の方法を紹介します。</p>
-<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="ggplot2.html#cb444-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb444-2"><a href="ggplot2.html#cb444-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gghighlight)</span>
-<span id="cb444-3"><a href="ggplot2.html#cb444-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
-<div class="sourceCode" id="cb445"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb445-1"><a href="ggplot2.html#cb445-1" aria-hidden="true" tabindex="-1"></a>tri <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</span></code></pre></div>
-<pre><code>## Rows: 39996 Columns: 19</code></pre>
-<pre><code>## ── Column specification ────────────────────────────────────────────────────────
+<div class="sourceCode" id="cb401"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb401-1"><a href="ggplot2.html#cb401-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb401-2"><a href="ggplot2.html#cb401-2" tabindex="-1"></a><span class="fu">library</span>(gghighlight)</span>
+<span id="cb401-3"><a href="ggplot2.html#cb401-3" tabindex="-1"></a><span class="fu">library</span>(ggrepel)</span></code></pre></div>
+<div class="sourceCode" id="cb402"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb402-1"><a href="ggplot2.html#cb402-1" tabindex="-1"></a>tri <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/triangle.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## Rows: 39996 Columns: 19
+## ── Column specification ─────────────────────────────────────────────────────────────────────────────────
 ## Delimiter: &quot;,&quot;
-## dbl (19): statea, stateb, year, dependa, dependb, demauta, demautb, allies, ...</code></pre>
-<pre><code>## 
+## dbl (19): statea, stateb, year, dependa, dependb, demauta, demautb, allies, ...
+## 
 ## ℹ Use `spec()` to retrieve the full column specification for this data.
 ## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-<div id="テーマ" class="section level2" number="14.1">
-<h2><span class="header-section-number">14.1</span> テーマ</h2>
+<div id="テーマ" class="section level2 hasAnchor" number="14.1">
+<h2><span class="header-section-number">14.1</span> テーマ<a href="ggplot2.html#テーマ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>ggplot2</code>ではテーマを重ねることで見た目を変えることができます。</p>
-<div class="sourceCode" id="cb449"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb449-1"><a href="ggplot2.html#cb449-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb449-2"><a href="ggplot2.html#cb449-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb449-3"><a href="ggplot2.html#cb449-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
-<span id="cb449-4"><a href="ggplot2.html#cb449-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb449-5"><a href="ggplot2.html#cb449-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb404"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb404-1"><a href="ggplot2.html#cb404-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb404-2"><a href="ggplot2.html#cb404-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb404-3"><a href="ggplot2.html#cb404-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
+<span id="cb404-4"><a href="ggplot2.html#cb404-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb404-5"><a href="ggplot2.html#cb404-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-262-1.png" width="672" /></p>
+<div class="sourceCode" id="cb407"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb407-1"><a href="ggplot2.html#cb407-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb407-2"><a href="ggplot2.html#cb407-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb407-3"><a href="ggplot2.html#cb407-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
+<span id="cb407-4"><a href="ggplot2.html#cb407-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb407-5"><a href="ggplot2.html#cb407-5" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-263-1.png" width="672" /></p>
-<div class="sourceCode" id="cb452"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb452-1"><a href="ggplot2.html#cb452-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb452-2"><a href="ggplot2.html#cb452-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb452-3"><a href="ggplot2.html#cb452-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
-<span id="cb452-4"><a href="ggplot2.html#cb452-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb452-5"><a href="ggplot2.html#cb452-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_classic</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb410"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb410-1"><a href="ggplot2.html#cb410-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb410-2"><a href="ggplot2.html#cb410-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb410-3"><a href="ggplot2.html#cb410-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
+<span id="cb410-4"><a href="ggplot2.html#cb410-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb410-5"><a href="ggplot2.html#cb410-5" tabindex="-1"></a>  <span class="fu">theme_dark</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-264-1.png" width="672" /></p>
-<div class="sourceCode" id="cb455"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb455-1"><a href="ggplot2.html#cb455-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb455-2"><a href="ggplot2.html#cb455-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb455-3"><a href="ggplot2.html#cb455-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
-<span id="cb455-4"><a href="ggplot2.html#cb455-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb455-5"><a href="ggplot2.html#cb455-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_dark</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb413"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb413-1"><a href="ggplot2.html#cb413-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb413-2"><a href="ggplot2.html#cb413-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb413-3"><a href="ggplot2.html#cb413-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
+<span id="cb413-4"><a href="ggplot2.html#cb413-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb413-5"><a href="ggplot2.html#cb413-5" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-265-1.png" width="672" /></p>
-<div class="sourceCode" id="cb458"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb458-1"><a href="ggplot2.html#cb458-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb458-2"><a href="ggplot2.html#cb458-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb458-3"><a href="ggplot2.html#cb458-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
-<span id="cb458-4"><a href="ggplot2.html#cb458-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb458-5"><a href="ggplot2.html#cb458-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb416"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb416-1"><a href="ggplot2.html#cb416-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb416-2"><a href="ggplot2.html#cb416-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb416-3"><a href="ggplot2.html#cb416-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
+<span id="cb416-4"><a href="ggplot2.html#cb416-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb416-5"><a href="ggplot2.html#cb416-5" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-266-1.png" width="672" /></p>
-<div class="sourceCode" id="cb461"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb461-1"><a href="ggplot2.html#cb461-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb461-2"><a href="ggplot2.html#cb461-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb461-3"><a href="ggplot2.html#cb461-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
-<span id="cb461-4"><a href="ggplot2.html#cb461-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb461-5"><a href="ggplot2.html#cb461-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code></pre></div>
+<div class="sourceCode" id="cb419"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb419-1"><a href="ggplot2.html#cb419-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb419-2"><a href="ggplot2.html#cb419-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb419-3"><a href="ggplot2.html#cb419-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
+<span id="cb419-4"><a href="ggplot2.html#cb419-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb419-5"><a href="ggplot2.html#cb419-5" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-267-1.png" width="672" /></p>
-<div class="sourceCode" id="cb464"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb464-1"><a href="ggplot2.html#cb464-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb464-2"><a href="ggplot2.html#cb464-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb464-3"><a href="ggplot2.html#cb464-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
-<span id="cb464-4"><a href="ggplot2.html#cb464-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb464-5"><a href="ggplot2.html#cb464-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code></pre></div>
-<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-268-1.png" width="672" /></p>
 <p>実際には、全てのグラフでテーマを統一したいので、最初に<code>theme_set()</code>で決めます。</p>
-<div class="sourceCode" id="cb467"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb467-1"><a href="ggplot2.html#cb467-1" aria-hidden="true" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code></pre></div>
+<div class="sourceCode" id="cb422"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb422-1"><a href="ggplot2.html#cb422-1" tabindex="-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_minimal</span>())</span></code></pre></div>
 </div>
-<div id="色" class="section level2" number="14.2">
-<h2><span class="header-section-number">14.2</span> 色</h2>
+<div id="色" class="section level2 hasAnchor" number="14.2">
+<h2><span class="header-section-number">14.2</span> 色<a href="ggplot2.html#色" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>ggplot2</code>ではデフォルトでもきれいな色でグラフを書いてくれますが、違う色が良いなと思うときもあります。
 もちろん、自分で指定することもできますが、とりあえず既存のカラーパレットを使う方法を紹介します。</p>
 <p>使えるカラーパレットは次のように確認できます。</p>
-<div class="sourceCode" id="cb468"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb468-1"><a href="ggplot2.html#cb468-1" aria-hidden="true" tabindex="-1"></a>RColorBrewer<span class="sc">::</span><span class="fu">display.brewer.all</span>()</span></code></pre></div>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
+<div class="sourceCode" id="cb423"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb423-1"><a href="ggplot2.html#cb423-1" tabindex="-1"></a>RColorBrewer<span class="sc">::</span><span class="fu">display.brewer.all</span>()</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-269-1.png" width="672" /></p>
 <p>実際は、ユニバーサルデザインのカラーパレットを使うのが良いでしょう。</p>
-<div class="sourceCode" id="cb469"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb469-1"><a href="ggplot2.html#cb469-1" aria-hidden="true" tabindex="-1"></a>RColorBrewer<span class="sc">::</span><span class="fu">display.brewer.all</span>(<span class="at">colorblindFriendly =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
+<div class="sourceCode" id="cb424"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb424-1"><a href="ggplot2.html#cb424-1" tabindex="-1"></a>RColorBrewer<span class="sc">::</span><span class="fu">display.brewer.all</span>(<span class="at">colorblindFriendly =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-270-1.png" width="672" /></p>
 <p>例えば、このように色指定を行います。</p>
-<div class="sourceCode" id="cb470"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb470-1"><a href="ggplot2.html#cb470-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb470-2"><a href="ggplot2.html#cb470-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb470-3"><a href="ggplot2.html#cb470-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep, <span class="at">fill =</span> <span class="fu">as.factor</span>(dispute1)), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb470-4"><a href="ggplot2.html#cb470-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb470-5"><a href="ggplot2.html#cb470-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb425"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb425-1"><a href="ggplot2.html#cb425-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb425-2"><a href="ggplot2.html#cb425-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb425-3"><a href="ggplot2.html#cb425-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep, <span class="at">fill =</span> <span class="fu">as.factor</span>(dispute1)), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb425-4"><a href="ggplot2.html#cb425-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb425-5"><a href="ggplot2.html#cb425-5" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-271-1.png" width="672" /></p>
 </div>
-<div id="パネルの分割" class="section level2" number="14.3">
-<h2><span class="header-section-number">14.3</span> パネルの分割</h2>
+<div id="パネルの分割" class="section level2 hasAnchor" number="14.3">
+<h2><span class="header-section-number">14.3</span> パネルの分割<a href="ggplot2.html#パネルの分割" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p><code>ggplot2</code>では簡単にパネルを分割し、グループごとにグラフを作ることができます。</p>
 <p><code>facet_grid()</code>はx軸と（あるいは）y軸を指定して、分割します。</p>
-<div class="sourceCode" id="cb473"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb473-1"><a href="ggplot2.html#cb473-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb473-2"><a href="ggplot2.html#cb473-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb473-3"><a href="ggplot2.html#cb473-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
-<span id="cb473-4"><a href="ggplot2.html#cb473-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb473-5"><a href="ggplot2.html#cb473-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_grid</span>(dispute1 <span class="sc">~</span> noncontg)</span></code></pre></div>
+<div class="sourceCode" id="cb428"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb428-1"><a href="ggplot2.html#cb428-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb428-2"><a href="ggplot2.html#cb428-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb428-3"><a href="ggplot2.html#cb428-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
+<span id="cb428-4"><a href="ggplot2.html#cb428-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb428-5"><a href="ggplot2.html#cb428-5" tabindex="-1"></a>  <span class="fu">facet_grid</span>(dispute1 <span class="sc">~</span> noncontg)</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-272-1.png" width="672" /></p>
 <p><code>facet_wrap()</code>は一つの変数の値に応じて分割します。</p>
-<div class="sourceCode" id="cb476"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb476-1"><a href="ggplot2.html#cb476-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb476-2"><a href="ggplot2.html#cb476-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb476-3"><a href="ggplot2.html#cb476-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
-<span id="cb476-4"><a href="ggplot2.html#cb476-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb476-5"><a href="ggplot2.html#cb476-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> smldmat)</span></code></pre></div>
+<div class="sourceCode" id="cb431"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb431-1"><a href="ggplot2.html#cb431-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb431-2"><a href="ggplot2.html#cb431-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb431-3"><a href="ggplot2.html#cb431-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep)) <span class="sc">+</span> </span>
+<span id="cb431-4"><a href="ggplot2.html#cb431-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb431-5"><a href="ggplot2.html#cb431-5" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span> smldmat)</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-274-1.png" width="672" /></p>
-<div id="記述統計のグラフ" class="section level3" number="14.3.1">
-<h3><span class="header-section-number">14.3.1</span> 記述統計のグラフ</h3>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-273-1.png" width="672" /></p>
+<div id="記述統計のグラフ" class="section level3 hasAnchor" number="14.3.1">
+<h3><span class="header-section-number">14.3.1</span> 記述統計のグラフ<a href="ggplot2.html#記述統計のグラフ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
 <p><code>pivot_longer()</code>を応用すると、記述統計をグラフで表示することもできます。</p>
-<div class="sourceCode" id="cb479"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb479-1"><a href="ggplot2.html#cb479-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb479-2"><a href="ggplot2.html#cb479-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">smldep =</span> <span class="fu">log</span>(smldep <span class="sc">+</span> <span class="dv">10</span><span class="sc">^-</span><span class="dv">10</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb479-3"><a href="ggplot2.html#cb479-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(smldep, smldmat, lcaprat2, logdstab) <span class="sc">%&gt;%</span> </span>
-<span id="cb479-4"><a href="ggplot2.html#cb479-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">&quot;vars&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="sc">%&gt;%</span> </span>
-<span id="cb479-5"><a href="ggplot2.html#cb479-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb479-6"><a href="ggplot2.html#cb479-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> val)) <span class="sc">+</span> </span>
-<span id="cb479-7"><a href="ggplot2.html#cb479-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>vars, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-275-1.png" width="672" /></p>
+<div class="sourceCode" id="cb434"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb434-1"><a href="ggplot2.html#cb434-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb434-2"><a href="ggplot2.html#cb434-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">smldep =</span> <span class="fu">log</span>(smldep <span class="sc">+</span> <span class="dv">10</span><span class="sc">^-</span><span class="dv">10</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb434-3"><a href="ggplot2.html#cb434-3" tabindex="-1"></a>  <span class="fu">select</span>(smldep, smldmat, lcaprat2, logdstab) <span class="sc">%&gt;%</span> </span>
+<span id="cb434-4"><a href="ggplot2.html#cb434-4" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="fu">everything</span>(), <span class="at">names_to =</span> <span class="st">&quot;vars&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb434-5"><a href="ggplot2.html#cb434-5" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb434-6"><a href="ggplot2.html#cb434-6" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> val)) <span class="sc">+</span> </span>
+<span id="cb434-7"><a href="ggplot2.html#cb434-7" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>vars, <span class="at">scales =</span> <span class="st">&quot;free&quot;</span>)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-274-1.png" width="672" /></p>
 <ul>
 <li><code>"scales = "free"</code>とすることで、軸の範囲を各パネルで統一しないようにします。</li>
 </ul>
 </div>
 </div>
-<div id="ラベル" class="section level2" number="14.4">
-<h2><span class="header-section-number">14.4</span> ラベル</h2>
+<div id="ラベル" class="section level2 hasAnchor" number="14.4">
+<h2><span class="header-section-number">14.4</span> ラベル<a href="ggplot2.html#ラベル" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>x軸やy軸、あるいは凡例には変数名がそのまま表示されるのでかっこ悪いです。
 そこで<code>labs()</code>でラベルを変えます。</p>
-<div class="sourceCode" id="cb480"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb480-1"><a href="ggplot2.html#cb480-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb480-2"><a href="ggplot2.html#cb480-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb480-3"><a href="ggplot2.html#cb480-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep, <span class="at">fill =</span> <span class="fu">as.factor</span>(dispute1)), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb480-4"><a href="ggplot2.html#cb480-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb480-5"><a href="ggplot2.html#cb480-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb480-6"><a href="ggplot2.html#cb480-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb435"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb435-1"><a href="ggplot2.html#cb435-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb435-2"><a href="ggplot2.html#cb435-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb435-3"><a href="ggplot2.html#cb435-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep, <span class="at">fill =</span> <span class="fu">as.factor</span>(dispute1)), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb435-4"><a href="ggplot2.html#cb435-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb435-5"><a href="ggplot2.html#cb435-5" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb435-6"><a href="ggplot2.html#cb435-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-275-1.png" width="672" /></p>
 <ul>
 <li>Macintoshで日本語を表示させる際にはフォントを指定する必要があります。</li>
 </ul>
 </div>
-<div id="凡例" class="section level2" number="14.5">
-<h2><span class="header-section-number">14.5</span> 凡例</h2>
+<div id="凡例" class="section level2 hasAnchor" number="14.5">
+<h2><span class="header-section-number">14.5</span> 凡例<a href="ggplot2.html#凡例" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>凡例の位置を<code>theme()</code>変えることもできます。</p>
-<div class="sourceCode" id="cb483"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb483-1"><a href="ggplot2.html#cb483-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb483-2"><a href="ggplot2.html#cb483-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb483-3"><a href="ggplot2.html#cb483-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep, <span class="at">fill =</span> <span class="fu">as.factor</span>(dispute1)), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb483-4"><a href="ggplot2.html#cb483-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb483-5"><a href="ggplot2.html#cb483-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb483-6"><a href="ggplot2.html#cb483-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb483-7"><a href="ggplot2.html#cb483-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb438"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb438-1"><a href="ggplot2.html#cb438-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb438-2"><a href="ggplot2.html#cb438-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb438-3"><a href="ggplot2.html#cb438-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep, <span class="at">fill =</span> <span class="fu">as.factor</span>(dispute1)), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb438-4"><a href="ggplot2.html#cb438-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb438-5"><a href="ggplot2.html#cb438-5" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb438-6"><a href="ggplot2.html#cb438-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb438-7"><a href="ggplot2.html#cb438-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;bottom&quot;</span>)</span></code></pre></div>
 <pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-276-1.png" width="672" /></p>
+<div class="sourceCode" id="cb441"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb441-1"><a href="ggplot2.html#cb441-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb441-2"><a href="ggplot2.html#cb441-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb441-3"><a href="ggplot2.html#cb441-3" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep, <span class="at">fill =</span> <span class="fu">as.factor</span>(dispute1)), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
+<span id="cb441-4"><a href="ggplot2.html#cb441-4" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
+<span id="cb441-5"><a href="ggplot2.html#cb441-5" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb441-6"><a href="ggplot2.html#cb441-6" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb441-7"><a href="ggplot2.html#cb441-7" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span></code></pre></div>
+<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
+<pre><code>## Warning: Removed 7988 rows containing non-finite values (`stat_density()`).</code></pre>
 <p><img src="quant_polisci_files/figure-html/unnamed-chunk-277-1.png" width="672" /></p>
-<div class="sourceCode" id="cb486"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb486-1"><a href="ggplot2.html#cb486-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb486-2"><a href="ggplot2.html#cb486-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb486-3"><a href="ggplot2.html#cb486-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>(<span class="fu">aes</span>(<span class="at">x =</span> smldep, <span class="at">fill =</span> <span class="fu">as.factor</span>(dispute1)), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span> </span>
-<span id="cb486-4"><a href="ggplot2.html#cb486-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_log10</span>() <span class="sc">+</span> </span>
-<span id="cb486-5"><a href="ggplot2.html#cb486-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_brewer</span>(<span class="at">palette =</span> <span class="st">&quot;Set2&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb486-6"><a href="ggplot2.html#cb486-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">&quot;Economic Interdependece&quot;</span>, <span class="at">y =</span> <span class="st">&quot;Density&quot;</span>, <span class="at">fill =</span> <span class="st">&quot;Militarized Dispute&quot;</span>) <span class="sc">+</span> </span>
-<span id="cb486-7"><a href="ggplot2.html#cb486-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>), <span class="at">legend.justification =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">1</span>))</span></code></pre></div>
-<pre><code>## Warning: Transformation introduced infinite values in continuous x-axis</code></pre>
-<pre><code>## Warning: Removed 7988 rows containing non-finite values (stat_density).</code></pre>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
 </div>
-<div id="強調" class="section level2" number="14.6">
-<h2><span class="header-section-number">14.6</span> 強調</h2>
+<div id="強調" class="section level2 hasAnchor" number="14.6">
+<h2><span class="header-section-number">14.6</span> 強調<a href="ggplot2.html#強調" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>データポイントが膨大な場合、一部だけ強調したい場合があります。
 そのようなときは<code>gghighlight</code>というパッケージを使います。</p>
-<div class="sourceCode" id="cb489"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb489-1"><a href="ggplot2.html#cb489-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb489-2"><a href="ggplot2.html#cb489-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb489-3"><a href="ggplot2.html#cb489-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lcaprat2, <span class="at">colour =</span> <span class="fu">as.factor</span>(dyadid))) <span class="sc">+</span> </span>
-<span id="cb489-4"><a href="ggplot2.html#cb489-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">gghighlight</span>(statea <span class="sc">==</span> <span class="dv">2</span>, stateb <span class="sc">==</span> <span class="dv">710</span>, <span class="at">label_key =</span> dyadid)</span></code></pre></div>
+<div class="sourceCode" id="cb444"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb444-1"><a href="ggplot2.html#cb444-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb444-2"><a href="ggplot2.html#cb444-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb444-3"><a href="ggplot2.html#cb444-3" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> lcaprat2, <span class="at">colour =</span> <span class="fu">as.factor</span>(dyadid))) <span class="sc">+</span> </span>
+<span id="cb444-4"><a href="ggplot2.html#cb444-4" tabindex="-1"></a>  <span class="fu">gghighlight</span>(statea <span class="sc">==</span> <span class="dv">2</span>, stateb <span class="sc">==</span> <span class="dv">710</span>, <span class="at">label_key =</span> dyadid)</span></code></pre></div>
 <pre><code>## Warning: Tried to calculate with group_by(), but the calculation failed.
 ## Falling back to ungrouped filter operation...</code></pre>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-278-1.png" width="672" /></p>
 </div>
-<div id="テキスト" class="section level2" number="14.7">
-<h2><span class="header-section-number">14.7</span> テキスト</h2>
+<div id="テキスト" class="section level2 hasAnchor" number="14.7">
+<h2><span class="header-section-number">14.7</span> テキスト<a href="ggplot2.html#テキスト" class="anchor-section" aria-label="Anchor link to header"></a></h2>
 <p>一部を強調せずにテキストでラベルをつける際には<code>ggrepel</code>というパッケージを使います。</p>
-<div class="sourceCode" id="cb491"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb491-1"><a href="ggplot2.html#cb491-1" aria-hidden="true" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
-<span id="cb491-2"><a href="ggplot2.html#cb491-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dispute1 =</span> <span class="fu">if_else</span>(dispute1 <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&quot;Dispute&quot;</span>, <span class="st">&quot;Peace&quot;</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb491-3"><a href="ggplot2.html#cb491-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dispute1, year) <span class="sc">%&gt;%</span> </span>
-<span id="cb491-4"><a href="ggplot2.html#cb491-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">smldep =</span> <span class="fu">median</span>(smldep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
-<span id="cb491-5"><a href="ggplot2.html#cb491-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
-<span id="cb491-6"><a href="ggplot2.html#cb491-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> smldep, <span class="at">colour =</span> <span class="fu">as.factor</span>(dispute1))) <span class="sc">+</span> </span>
-<span id="cb491-7"><a href="ggplot2.html#cb491-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> smldep, <span class="at">colour =</span> <span class="fu">as.factor</span>(dispute1), <span class="at">label =</span> dispute1),</span>
-<span id="cb491-8"><a href="ggplot2.html#cb491-8" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> . <span class="sc">%&gt;%</span> </span>
-<span id="cb491-9"><a href="ggplot2.html#cb491-9" aria-hidden="true" tabindex="-1"></a>                    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">max</span>(year))) <span class="sc">+</span> </span>
-<span id="cb491-10"><a href="ggplot2.html#cb491-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span> </span>
-<span id="cb491-11"><a href="ggplot2.html#cb491-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
-<pre><code>## `summarise()` has grouped output by &#39;dispute1&#39;. You can override using the `.groups` argument.</code></pre>
+<div class="sourceCode" id="cb446"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb446-1"><a href="ggplot2.html#cb446-1" tabindex="-1"></a>tri <span class="sc">%&gt;%</span> </span>
+<span id="cb446-2"><a href="ggplot2.html#cb446-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">dispute1 =</span> <span class="fu">if_else</span>(dispute1 <span class="sc">==</span> <span class="dv">1</span>, <span class="st">&quot;Dispute&quot;</span>, <span class="st">&quot;Peace&quot;</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb446-3"><a href="ggplot2.html#cb446-3" tabindex="-1"></a>  <span class="fu">group_by</span>(dispute1, year) <span class="sc">%&gt;%</span> </span>
+<span id="cb446-4"><a href="ggplot2.html#cb446-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">smldep =</span> <span class="fu">median</span>(smldep, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb446-5"><a href="ggplot2.html#cb446-5" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb446-6"><a href="ggplot2.html#cb446-6" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> smldep, <span class="at">colour =</span> <span class="fu">as.factor</span>(dispute1))) <span class="sc">+</span> </span>
+<span id="cb446-7"><a href="ggplot2.html#cb446-7" tabindex="-1"></a>  <span class="fu">geom_label_repel</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> smldep, <span class="at">colour =</span> <span class="fu">as.factor</span>(dispute1), <span class="at">label =</span> dispute1),</span>
+<span id="cb446-8"><a href="ggplot2.html#cb446-8" tabindex="-1"></a>                  <span class="at">data =</span> . <span class="sc">%&gt;%</span> </span>
+<span id="cb446-9"><a href="ggplot2.html#cb446-9" tabindex="-1"></a>                    <span class="fu">filter</span>(year <span class="sc">==</span> <span class="fu">max</span>(year))) <span class="sc">+</span> </span>
+<span id="cb446-10"><a href="ggplot2.html#cb446-10" tabindex="-1"></a>  <span class="fu">scale_y_log10</span>() <span class="sc">+</span> </span>
+<span id="cb446-11"><a href="ggplot2.html#cb446-11" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&quot;none&quot;</span>)</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;dispute1&#39;. You can override using the
+## `.groups` argument.</code></pre>
 <pre><code>## Warning: Transformation introduced infinite values in continuous y-axis
-
-## Warning: Transformation introduced infinite values in continuous y-axis</code></pre>
-<p><img src="quant_polisci_files/figure-html/unnamed-chunk-280-1.png" width="672" /></p>
+## Transformation introduced infinite values in continuous y-axis</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-279-1.png" width="672" /></p>
 
 </div>
 </div>
@@ -774,11 +761,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
         </div>
       </div>
 <a href="visual-map.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="twitter-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="google-data.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -819,7 +805,7 @@ gitbook.start({
 },
 "download": null,
 "search": {
-"engine": "lunr",
+"engine": "fuse",
 "options": null
 },
 "toc": {
@@ -836,7 +822,7 @@ gitbook.start({
     var script = document.createElement("script");
     script.type = "text/javascript";
     var src = "true";
-    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
     if (location.protocol !== "file:")
       if (/^https?:/.test(src))
         src = src.replace(/^https?:/, '');

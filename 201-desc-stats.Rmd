@@ -197,12 +197,12 @@ tri %>%
 
 - `count()`の結果をクロス表にするには`pivot_wider()`を使います。
 
-`summarytools()`であれば、`freq()`や`ctable()`を使います。
+<!-- `summarytools()`であれば、`freq()`や`ctable()`を使います。 -->
 
-```{r}
-freq(tri$dispute1)
-ctable(tri$dispute1, tri$noncontg)
-```
+<!-- ```{r} -->
+<!-- freq(tri$dispute1) -->
+<!-- ctable(tri$dispute1, tri$noncontg) -->
+<!-- ``` -->
 
 ## グループごとの要約
 
