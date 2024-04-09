@@ -1,0 +1,179 @@
+# 一変数の要約
+
+データを分析する際には、まずデータの特徴を把握することから始めます。前章で見たGapminderには約1700の国$\times$年のデータがあるのですが、それを人間の目で見て特徴を掴むことは難しいでしょう（それができる人はデータ分析をしなくてもよいでしょう）。
+
+特に、データの特徴をなにかしらの数値で表現することをデータの**要約統計** (summary statistics) や**記述統計** (descriptive statistics) と呼びます。ここでは特定の（一つの）変数の要約を説明します。
+
+## オブジェクトへの代入
+
+既にGapminderのデータは読み込まれていますが、いちいち`gapminder`や`gapminder.gapminder`と書くのはしんどいと思います。ここでは、別名のオブジェクトとして保存します。名前はなんでもいいのですが、とりあえず`df_gap`としてみましょう。
+
+```{r filename="R"}
+library(gapminder)
+
+df_gap <- gapminder
+```
+
+```{python filename="Python"}
+import gapminder
+
+df_gap = gapminder.gapminder
+```
+
+このように、オブジェクトを別の名前のオブジェクトとして保存することを**代入**と呼びます。Rでは`<-`で、Pythonでは`=`で代入をします。
+
+作成されたオブジェクトはRStudioのEnvironmentパネル、Google Colaboratoryの`{}`ボタンをクリックしたところに表示されます。
+
+## データの大きさ
+
+データに含まれる観察の数（**サンプルサイズ**）を求めます。
+
+```{r filename="R"}
+nrow(df_gap)
+```
+
+```{python filename="Python"}
+len(df_gap)
+```
+
+データに含まれる変数の数を求めます。
+
+```{r filename="R"}
+ncol(df_gap)
+```
+
+```{python filename="Python"}
+len(df_gap.columns)
+```
+
+これらを同時に求めることもできます。
+
+```{r filename="R"}
+dim(df_gap)
+```
+
+```{python filename="Python"}
+df_gap.shape
+```
+
+- Pythonではオブジェクトの後ろに`.`を付けて属性やメソッドを呼び出すことができます。
+
+## 中心
+
+### 一変数の選択
+
+ある変数の中心、代表するような要約統計量を求めます。その準備として、データフレームから特定の変数（例えば、一人あたりGDP）だけを抜き出す方法を紹介します。RとPythonのそれぞれで2通りの書き方がありますが、どちらでも構いません。
+
+```{r filename="R"}
+#| eval: false
+
+df_gap$gdpPercap
+df_gap["gdpPercap"]
+```
+
+```{python filename="Python"}
+#| eval: false
+
+df_gap.gdpPercap
+df_gap['gdpPercap']
+```
+
+- Rでは標準でデータフレームが使えますが、Pythonでは`pandas`というパッケージを使うことがデファクト・スタンダードになっています。ここでは明示的に`pandas`を呼び出していませんが、操作方法は`pandas`のデータフレームのものになります（次章以降も同様です）。
+
+### 平均値
+
+**平均値** (mean) は全ての観察について変数の値を足し合わせ、サンプルサイズで割ったものです。
+
+$$
+\bar{x} = \frac{\sum_{i=1}^N x_i}{N}
+$$
+
+```{r filename="R"}
+mean(df_gap$gdpPercap)
+```
+
+```{python filename="Python"}
+df_gap['gdpPercap'].mean()
+```
+
+### 中央値
+
+**中央値** (median) とは、その値よりも小さな観察の数が全体の50%である（したがって、大きな観察も50%である）ような値です。
+
+```{r filename="R"}
+median(df_gap$gdpPercap)
+```
+
+```{python filename="Python"}
+df_gap['gdpPercap'].median()
+```
+
+## 散らばり
+
+平均値や中央値は変数の代表的な値、「中心」を表すものでした。しかし、変数の散らばり具合にも関心があるかもしれません。
+
+### 最小値・最大値
+
+まず思いつくのは最小値 (minimum) と最大値 (maximum) ではないでしょうか。
+
+```{r filename="R"}
+min(df_gap$gdpPercap)
+max(df_gap$gdpPercap)
+```
+
+```{python filename="Python"}
+df_gap['gdpPercap'].min()
+df_gap['gdpPercap'].max()
+```
+
+### 分位点
+
+したから数えて$q%$となるような点を$q$**分位点** (quantile) と呼びます。特に、下から数えて$25%$と$75%$を第1四分位点、第3四分位点と呼びます。第2四分位点は中央値になります。試しに第1四分位点を求めます。
+
+```{r filename="R"}
+quantile(df_gap$gdpPercap, 0.25)
+```
+
+```{python filename="Python"}
+df_gap['gdpPercap'].quantile(0.25)
+```
+
+Rの場合は`quantile()`という関数に変数と求めたい分位点の数値を入れます。関数には複数のオブジェクトを入れることができます。Pythonでは`quantile()`メソッドに数値を入れます。
+
+### 分散・標準偏差
+
+散らばりを表す要約統計量としてよく用いられるのは**分散** (variance) です。分散の二乗根を**標準偏差** (standard deviation) と呼びます。
+
+$$
+\sigma^2 = \frac{\sum_{i=1}^N (x_i - \bar{x})^2}{N}
+$$
+
+- $(x_i - \bar{x})$が平均値からどれだけ離れているかを表しています。これを二乗することで面積に変換し、その平均を求めています。
+
+```{r filename="R"}
+var(df_gap$gdpPercap)
+sd(df_gap$gdpPercap)
+```
+
+```{python filename="Python"}
+df_gap['gdpPercap'].var()
+df_gap['gdpPercap'].std()
+```
+
+## グループに含まれる観察数
+
+これまで、明示してきませんでしたが、いわゆる**連続変数** (continuous variable) の要約について議論してきました。ここではその定義は避けますが、「四則演算できる変数」という意味くらいに捉えておきます。
+
+データ分析で扱う変数は（しばしば誤解されますが）連続変数だけではありません。そのような変数の代表は**離散変数** (discrete variable) と呼ばれるものです。やはり厳密な定義は避けますが、ここでは「グループを表す変数」ということにしておきます。`gapminder`のデータでは例えば大陸という変数はグループを表しています。また、国や年もグループを表していると見てもよいでしょう。
+
+離散変数は四則演算ができないので（例えばアジアとアメリカを足すというのは定義不能です）、平均値や分散などは定義できません。その代わり、グループに含まれる観察の数を求めることで変数の特徴を掴みます。それでは大陸ごとにどれくらいの観察が含まれているかを調べてみたいと思います。
+
+```{r filename="R"}
+table(df_gap$continent)
+```
+
+```{python filename="Python"}
+df_gap.value_counts("continent")
+```
+
+アフリカが多く、オセアニアが少ないことなどが分かります。

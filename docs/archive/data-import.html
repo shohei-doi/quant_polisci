@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第1章 データの読み込み | Rで計量政治学入門</title>
+  <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第1章 データの読み込み | Rで計量政治学入門" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  <meta name="github-repo" content="shohei-doi/quant_polisci" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第1章 データの読み込み | Rで計量政治学入門" />
+  
+  <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  
+
+<meta name="author" content="土井　翔平" />
+
+
+<meta name="date" content="2023-08-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="index.html"/>
+<link rel="next" href="select-vars.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LLFB8XFPX5');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet"> 
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html">Rで計量政治学入門</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#想定する読者"><i class="fa fa-check"></i>想定する読者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tidyverseについて"><i class="fa fa-check"></i>Tidyverseについて</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ウェブサイトの操作"><i class="fa fa-check"></i>ウェブサイトの操作</a></li>
+</ul></li>
+<li class="part"><span><b>I データの操作</b></span></li>
+<li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#パッケージ付属のデータ"><i class="fa fa-check"></i><b>1.1</b> パッケージ付属のデータ</a></li>
+<li class="chapter" data-level="1.2" data-path="data-import.html"><a href="data-import.html#主なデータ形式"><i class="fa fa-check"></i><b>1.2</b> 主なデータ形式*</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="data-import.html"><a href="data-import.html#テキストデータ"><i class="fa fa-check"></i><b>1.2.1</b> テキストデータ</a></li>
+<li class="chapter" data-level="1.2.2" data-path="data-import.html"><a href="data-import.html#バイナリデータ"><i class="fa fa-check"></i><b>1.2.2</b> バイナリデータ</a></li>
+<li class="chapter" data-level="1.2.3" data-path="data-import.html"><a href="data-import.html#good-bye-excel"><i class="fa fa-check"></i><b>1.2.3</b> Good bye, Excel!</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="data-import.html"><a href="data-import.html#パスと作業ディレクトリ"><i class="fa fa-check"></i><b>1.3</b> パスと作業ディレクトリ</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="data-import.html"><a href="data-import.html#パス"><i class="fa fa-check"></i><b>1.3.1</b> パス</a></li>
+<li class="chapter" data-level="1.3.2" data-path="data-import.html"><a href="data-import.html#作業ディレクトリ"><i class="fa fa-check"></i><b>1.3.2</b> 作業ディレクトリ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="data-import.html"><a href="data-import.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.4</b> .csvファイルの読み込み</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="data-import.html"><a href="data-import.html#変数名の適切な読み込み"><i class="fa fa-check"></i><b>1.4.1</b> 変数名の適切な読み込み</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="data-import.html"><a href="data-import.html#xlsxファイルの読み込み"><i class="fa fa-check"></i><b>1.5</b> .xls[x]ファイルの読み込み</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="data-import.html"><a href="data-import.html#シートの選択"><i class="fa fa-check"></i><b>1.5.1</b> シートの選択</a></li>
+<li class="chapter" data-level="1.5.2" data-path="data-import.html"><a href="data-import.html#変数名の適切な読み込み-again"><i class="fa fa-check"></i><b>1.5.2</b> 変数名の適切な読み込み (again)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="data-import.html"><a href="data-import.html#欠損値の処理"><i class="fa fa-check"></i><b>1.5.3</b> 欠損値の処理</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="data-import.html"><a href="data-import.html#dtaファイルの読み込み"><i class="fa fa-check"></i><b>1.6</b> .dtaファイルの読み込み</a></li>
+<li class="chapter" data-level="1.7" data-path="data-import.html"><a href="data-import.html#rdsファイルの読み込み"><i class="fa fa-check"></i><b>1.7</b> .rdsファイルの読み込み</a></li>
+<li class="chapter" data-level="1.8" data-path="data-import.html"><a href="data-import.html#パス入力の省略"><i class="fa fa-check"></i><b>1.8</b> パス入力の省略*</a></li>
+<li class="chapter" data-level="1.9" data-path="data-import.html"><a href="data-import.html#データの書き出し"><i class="fa fa-check"></i><b>1.9</b> データの書き出し</a></li>
+<li class="chapter" data-level="1.10" data-path="data-import.html"><a href="data-import.html#データフレームの作成"><i class="fa fa-check"></i><b>1.10</b> データフレームの作成</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の選択</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="select-vars.html"><a href="select-vars.html#変数名による選択"><i class="fa fa-check"></i><b>2.1</b> 変数名による選択</a></li>
+<li class="chapter" data-level="2.2" data-path="select-vars.html"><a href="select-vars.html#番号による選択"><i class="fa fa-check"></i><b>2.2</b> 番号による選択</a></li>
+<li class="chapter" data-level="2.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更"><i class="fa fa-check"></i><b>2.3</b> 変数名の変更</a></li>
+<li class="chapter" data-level="2.4" data-path="select-vars.html"><a href="select-vars.html#高度な変数の選択方法"><i class="fa fa-check"></i><b>2.4</b> 高度な変数の選択方法*</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>3</b> 変数の作成</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="create-vars.html"><a href="create-vars.html#四則演算"><i class="fa fa-check"></i><b>3.1</b> 四則演算</a></li>
+<li class="chapter" data-level="3.2" data-path="create-vars.html"><a href="create-vars.html#条件に基づく変数"><i class="fa fa-check"></i><b>3.2</b> 条件に基づく変数</a></li>
+<li class="chapter" data-level="3.3" data-path="create-vars.html"><a href="create-vars.html#ラグ変数"><i class="fa fa-check"></i><b>3.3</b> ラグ変数*</a></li>
+<li class="chapter" data-level="3.4" data-path="create-vars.html"><a href="create-vars.html#日付変数"><i class="fa fa-check"></i><b>3.4</b> 日付変数*</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>4</b> 観察の選択</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="select-obs.html"><a href="select-obs.html#数値の大小による選択"><i class="fa fa-check"></i><b>4.1</b> 数値の大小による選択</a></li>
+<li class="chapter" data-level="4.2" data-path="select-obs.html"><a href="select-obs.html#一致不一致による選択"><i class="fa fa-check"></i><b>4.2</b> 一致・不一致による選択</a></li>
+<li class="chapter" data-level="4.3" data-path="select-obs.html"><a href="select-obs.html#または"><i class="fa fa-check"></i><b>4.3</b> 「または」</a></li>
+<li class="chapter" data-level="4.4" data-path="select-obs.html"><a href="select-obs.html#かつ"><i class="fa fa-check"></i><b>4.4</b> 「かつ」</a></li>
+<li class="chapter" data-level="4.5" data-path="select-obs.html"><a href="select-obs.html#部分集合"><i class="fa fa-check"></i><b>4.5</b> 部分集合</a></li>
+<li class="chapter" data-level="4.6" data-path="select-obs.html"><a href="select-obs.html#番号による選択-1"><i class="fa fa-check"></i><b>4.6</b> 番号による選択</a></li>
+<li class="chapter" data-level="4.7" data-path="select-obs.html"><a href="select-obs.html#観察の並び替え"><i class="fa fa-check"></i><b>4.7</b> 観察の並び替え</a></li>
+<li class="chapter" data-level="4.8" data-path="select-obs.html"><a href="select-obs.html#ベクトルの選択"><i class="fa fa-check"></i><b>4.8</b> ベクトルの選択*</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-combine.html"><a href="data-combine.html#行方向の結合"><i class="fa fa-check"></i><b>5.1</b> 行方向の結合</a></li>
+<li class="chapter" data-level="5.2" data-path="data-combine.html"><a href="data-combine.html#列方向の結合"><i class="fa fa-check"></i><b>5.2</b> 列方向の結合</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-combine.html"><a href="data-combine.html#観察の選択"><i class="fa fa-check"></i><b>5.2.1</b> 観察の選択*＊</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
+<li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
+<li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
+<li class="chapter" data-level="6.4" data-path="missing-values.html"><a href="missing-values.html#欠損値がある場合の分析"><i class="fa fa-check"></i><b>6.4</b> 欠損値がある場合の分析*</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="missing-values.html"><a href="missing-values.html#一変数の記述統計"><i class="fa fa-check"></i><b>6.4.1</b> 一変数の記述統計</a></li>
+<li class="chapter" data-level="6.4.2" data-path="missing-values.html"><a href="missing-values.html#二変数の記述統計"><i class="fa fa-check"></i><b>6.4.2</b> 二変数の記述統計</a></li>
+<li class="chapter" data-level="6.4.3" data-path="missing-values.html"><a href="missing-values.html#回帰分析"><i class="fa fa-check"></i><b>6.4.3</b> 回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="missing-values.html"><a href="missing-values.html#欠損値のクラス"><i class="fa fa-check"></i><b>6.5</b> 欠損値のクラス*</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>7</b> ロング・ワイドの変換</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="reshape.html"><a href="reshape.html#パネルデータ"><i class="fa fa-check"></i><b>7.1</b> パネルデータ</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="reshape.html"><a href="reshape.html#ワイド形式"><i class="fa fa-check"></i><b>7.1.1</b> ワイド形式</a></li>
+<li class="chapter" data-level="7.1.2" data-path="reshape.html"><a href="reshape.html#ロング形式"><i class="fa fa-check"></i><b>7.1.2</b> ロング形式</a></li>
+<li class="chapter" data-level="7.1.3" data-path="reshape.html"><a href="reshape.html#前処理"><i class="fa fa-check"></i><b>7.1.3</b> 前処理</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="reshape.html"><a href="reshape.html#ループによる方法"><i class="fa fa-check"></i><b>7.2</b> ループによる方法</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="reshape.html"><a href="reshape.html#for文"><i class="fa fa-check"></i><b>7.2.1</b> for文</a></li>
+<li class="chapter" data-level="7.2.2" data-path="reshape.html"><a href="reshape.html#時点の選択による方法"><i class="fa fa-check"></i><b>7.2.2</b> 時点の選択による方法</a></li>
+<li class="chapter" data-level="7.2.3" data-path="reshape.html"><a href="reshape.html#ユニットの選択による方法"><i class="fa fa-check"></i><b>7.2.3</b> ユニットの選択による方法</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="reshape.html"><a href="reshape.html#tidyverseな方法"><i class="fa fa-check"></i><b>7.3</b> tidyverseな方法</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="reshape.html"><a href="reshape.html#ワイドからロングへ"><i class="fa fa-check"></i><b>7.3.1</b> ワイドからロングへ</a></li>
+<li class="chapter" data-level="7.3.2" data-path="reshape.html"><a href="reshape.html#パイプ"><i class="fa fa-check"></i><b>7.3.2</b> パイプ</a></li>
+<li class="chapter" data-level="7.3.3" data-path="reshape.html"><a href="reshape.html#tidyverseの利点"><i class="fa fa-check"></i><b>7.3.3</b> tidyverseの利点</a></li>
+<li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
+<li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
+<li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
+<li class="chapter" data-level="8.4" data-path="qualtrics.html"><a href="qualtrics.html#tidyverseな方法-1"><i class="fa fa-check"></i><b>8.4</b> tidyverseな方法</a></li>
+<li class="chapter" data-level="8.5" data-path="qualtrics.html"><a href="qualtrics.html#おまけ"><i class="fa fa-check"></i><b>8.5</b> おまけ</a></li>
+</ul></li>
+<li class="part"><span><b>II データの可視化</b></span></li>
+<li class="chapter" data-level="9" data-path="desc-stats.html"><a href="desc-stats.html"><i class="fa fa-check"></i><b>9</b> データの要約</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="desc-stats.html"><a href="desc-stats.html#データを見る"><i class="fa fa-check"></i><b>9.1</b> データを見る</a></li>
+<li class="chapter" data-level="9.2" data-path="desc-stats.html"><a href="desc-stats.html#記述統計"><i class="fa fa-check"></i><b>9.2</b> 記述統計</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="desc-stats.html"><a href="desc-stats.html#平均"><i class="fa fa-check"></i><b>9.2.1</b> 平均</a></li>
+<li class="chapter" data-level="9.2.2" data-path="desc-stats.html"><a href="desc-stats.html#分散と標準偏差"><i class="fa fa-check"></i><b>9.2.2</b> 分散と標準偏差</a></li>
+<li class="chapter" data-level="9.2.3" data-path="desc-stats.html"><a href="desc-stats.html#分位点"><i class="fa fa-check"></i><b>9.2.3</b> 分位点</a></li>
+<li class="chapter" data-level="9.2.4" data-path="desc-stats.html"><a href="desc-stats.html#記述統計表"><i class="fa fa-check"></i><b>9.2.4</b> 記述統計表</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="desc-stats.html"><a href="desc-stats.html#データのカウント"><i class="fa fa-check"></i><b>9.3</b> データのカウント</a></li>
+<li class="chapter" data-level="9.4" data-path="desc-stats.html"><a href="desc-stats.html#グループごとの要約"><i class="fa fa-check"></i><b>9.4</b> グループごとの要約</a></li>
+<li class="chapter" data-level="9.5" data-path="desc-stats.html"><a href="desc-stats.html#ユニークなデータ"><i class="fa fa-check"></i><b>9.5</b> ユニークなデータ*</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="visual-dist.html"><a href="visual-dist.html"><i class="fa fa-check"></i><b>10</b> 分布のグラフ</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="visual-dist.html"><a href="visual-dist.html#ヒストグラム"><i class="fa fa-check"></i><b>10.1</b> ヒストグラム</a></li>
+<li class="chapter" data-level="10.2" data-path="visual-dist.html"><a href="visual-dist.html#カーネル密度"><i class="fa fa-check"></i><b>10.2</b> カーネル密度</a></li>
+<li class="chapter" data-level="10.3" data-path="visual-dist.html"><a href="visual-dist.html#棒グラフ"><i class="fa fa-check"></i><b>10.3</b> 棒グラフ</a></li>
+<li class="chapter" data-level="10.4" data-path="visual-dist.html"><a href="visual-dist.html#グループごとの分布"><i class="fa fa-check"></i><b>10.4</b> グループごとの分布</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="visual-cor.html"><a href="visual-cor.html"><i class="fa fa-check"></i><b>11</b> 相関のグラフ</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="visual-cor.html"><a href="visual-cor.html#散布図"><i class="fa fa-check"></i><b>11.1</b> 散布図</a></li>
+<li class="chapter" data-level="11.2" data-path="visual-cor.html"><a href="visual-cor.html#カーネル密度-1"><i class="fa fa-check"></i><b>11.2</b> カーネル密度</a></li>
+<li class="chapter" data-level="11.3" data-path="visual-cor.html"><a href="visual-cor.html#ジッター"><i class="fa fa-check"></i><b>11.3</b> ジッター</a></li>
+<li class="chapter" data-level="11.4" data-path="visual-cor.html"><a href="visual-cor.html#箱ひげ図"><i class="fa fa-check"></i><b>11.4</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="11.5" data-path="visual-cor.html"><a href="visual-cor.html#バイオリンプロット"><i class="fa fa-check"></i><b>11.5</b> バイオリンプロット</a></li>
+<li class="chapter" data-level="11.6" data-path="visual-cor.html"><a href="visual-cor.html#グループごとの相関"><i class="fa fa-check"></i><b>11.6</b> グループごとの相関</a></li>
+<li class="chapter" data-level="11.7" data-path="visual-cor.html"><a href="visual-cor.html#単回帰"><i class="fa fa-check"></i><b>11.7</b> 単回帰</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="visual-ts.html"><a href="visual-ts.html"><i class="fa fa-check"></i><b>12</b> 時系列のグラフ</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="visual-ts.html"><a href="visual-ts.html#折れ線グラフ"><i class="fa fa-check"></i><b>12.1</b> 折れ線グラフ</a></li>
+<li class="chapter" data-level="12.2" data-path="visual-ts.html"><a href="visual-ts.html#エラーバー"><i class="fa fa-check"></i><b>12.2</b> エラーバー</a></li>
+<li class="chapter" data-level="12.3" data-path="visual-ts.html"><a href="visual-ts.html#グループごとの時系列"><i class="fa fa-check"></i><b>12.3</b> グループごとの時系列</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="visual-map.html"><a href="visual-map.html"><i class="fa fa-check"></i><b>13</b> 地図のグラフ</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="visual-map.html"><a href="visual-map.html#地図"><i class="fa fa-check"></i><b>13.1</b> 地図</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="visual-map.html"><a href="visual-map.html#世界地図"><i class="fa fa-check"></i><b>13.1.1</b> 世界地図</a></li>
+<li class="chapter" data-level="13.1.2" data-path="visual-map.html"><a href="visual-map.html#日本地図"><i class="fa fa-check"></i><b>13.1.2</b> 日本地図</a></li>
+<li class="chapter" data-level="13.1.3" data-path="visual-map.html"><a href="visual-map.html#都道府県地図"><i class="fa fa-check"></i><b>13.1.3</b> 都道府県地図</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="visual-map.html"><a href="visual-map.html#地域の違い"><i class="fa fa-check"></i><b>13.2</b> 地域の違い</a></li>
+<li class="chapter" data-level="13.3" data-path="visual-map.html"><a href="visual-map.html#空間の分布"><i class="fa fa-check"></i><b>13.3</b> 空間の分布</a></li>
+<li class="chapter" data-level="13.4" data-path="visual-map.html"><a href="visual-map.html#データの繋がり"><i class="fa fa-check"></i><b>13.4</b> データの繋がり</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="visual-map.html"><a href="visual-map.html#二点間の繋がりを見る"><i class="fa fa-check"></i><b>13.4.1</b> 二点間の繋がりを見る</a></li>
+<li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
+<li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
+<li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="ggplot2.html"><a href="ggplot2.html#記述統計のグラフ"><i class="fa fa-check"></i><b>14.3.1</b> 記述統計のグラフ</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="ggplot2.html"><a href="ggplot2.html#ラベル"><i class="fa fa-check"></i><b>14.4</b> ラベル</a></li>
+<li class="chapter" data-level="14.5" data-path="ggplot2.html"><a href="ggplot2.html#凡例"><i class="fa fa-check"></i><b>14.5</b> 凡例</a></li>
+<li class="chapter" data-level="14.6" data-path="ggplot2.html"><a href="ggplot2.html#強調"><i class="fa fa-check"></i><b>14.6</b> 強調</a></li>
+<li class="chapter" data-level="14.7" data-path="ggplot2.html"><a href="ggplot2.html#テキスト"><i class="fa fa-check"></i><b>14.7</b> テキスト</a></li>
+</ul></li>
+<li class="part"><span><b>III データの収集</b></span></li>
+<li class="chapter" data-level="15" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>15</b> Googleデータ</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="google-data.html"><a href="google-data.html#はじめに"><i class="fa fa-check"></i><b>15.1</b> はじめに</a></li>
+<li class="chapter" data-level="15.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>15.2</b> 時系列トレンド</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="google-data.html"><a href="google-data.html#一つの単語"><i class="fa fa-check"></i><b>15.2.1</b> 一つの単語</a></li>
+<li class="chapter" data-level="15.2.2" data-path="google-data.html"><a href="google-data.html#複数の単語"><i class="fa fa-check"></i><b>15.2.2</b> 複数の単語</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="google-data.html"><a href="google-data.html#地域別のトレンド"><i class="fa fa-check"></i><b>15.3</b> 地域別のトレンド</a></li>
+<li class="chapter" data-level="15.4" data-path="google-data.html"><a href="google-data.html#関連単語"><i class="fa fa-check"></i><b>15.4</b> 関連単語</a></li>
+<li class="chapter" data-level="15.5" data-path="google-data.html"><a href="google-data.html#検索ヒット数"><i class="fa fa-check"></i><b>15.5</b> 検索ヒット数*</a></li>
+<li class="chapter" data-level="15.6" data-path="google-data.html"><a href="google-data.html#nグラム"><i class="fa fa-check"></i><b>15.6</b> Nグラム</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>16</b> Wikipediaデータ</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="wikipedia-data.html"><a href="wikipedia-data.html#Trend"><i class="fa fa-check"></i><b>16.1</b> Wikipediaのトレンド</a></li>
+<li class="chapter" data-level="16.2" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の情報"><i class="fa fa-check"></i><b>16.2</b> Wikipediaの記事の情報</a></li>
+<li class="chapter" data-level="16.3" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事"><i class="fa fa-check"></i><b>16.3</b> Wikipediaの記事</a></li>
+<li class="chapter" data-level="16.4" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事のリンク"><i class="fa fa-check"></i><b>16.4</b> Wikipediaの記事のリンク</a></li>
+<li class="chapter" data-level="16.5" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の作成日の取得"><i class="fa fa-check"></i><b>16.5</b> Wikipediaの記事の作成日の取得*</a></li>
+</ul></li>
+<li class="part"><span><b>IV Appendix</b></span></li>
+<li class="chapter" data-level="17" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>17</b> Rの分析環境</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>17.1</b> Rのインストール</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>17.1.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="17.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>17.1.2</b> インストール</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>17.2</b> RStudioのインストール</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>17.2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="17.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>17.2.2</b> インストール</a></li>
+<li class="chapter" data-level="17.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>17.2.3</b> RStudioの起動</a></li>
+<li class="chapter" data-level="17.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>17.2.4</b> RStudio Cloud*</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>17.3</b> 再現可能な分析のために</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>17.3.1</b> Rスクリプト</a></li>
+<li class="chapter" data-level="17.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>17.3.2</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="17.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>17.3.3</b> RStudioの設定*</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>18</b> Rプログラミング入門</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>18.1</b> 関数</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>18.1.1</b> 総称関数*</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>18.2</b> オブジェクト</a></li>
+<li class="chapter" data-level="18.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>18.3</b> パッケージ</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>18.3.1</b> CRANからのインストール</a></li>
+<li class="chapter" data-level="18.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>18.3.2</b> GitHubからのインストール*</a></li>
+<li class="chapter" data-level="18.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>18.3.3</b> パッケージの読み込み</a></li>
+<li class="chapter" data-level="18.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>18.3.4</b> <code>tidyverse</code>とは*</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング応用</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>19.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="19.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>19.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="19.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>19.3</b> ループ</a></li>
+<li class="chapter" data-level="19.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>19.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="19.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>19.5</b> 練習問題</a>
+<ul>
+<li class="chapter" data-level="19.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>19.5.1</b> フィボナッチ数列</a></li>
+<li class="chapter" data-level="19.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>19.5.2</b> モンテカルロ・シミュレーション</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>20</b> R Markdown: html</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>20.1</b> R Markdownファイルの作成</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>20.1.1</b> 参考になるサイト</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>20.2</b> Markdown記法</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdownとは"><i class="fa fa-check"></i><b>20.2.1</b> Markdownとは*</a></li>
+<li class="chapter" data-level="20.2.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#セクション"><i class="fa fa-check"></i><b>20.2.2</b> セクション</a></li>
+<li class="chapter" data-level="20.2.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>20.2.3</b> パラグラフ</a></li>
+<li class="chapter" data-level="20.2.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#箇条書き"><i class="fa fa-check"></i><b>20.2.4</b> 箇条書き</a></li>
+<li class="chapter" data-level="20.2.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#文字の強調"><i class="fa fa-check"></i><b>20.2.5</b> 文字の強調</a></li>
+<li class="chapter" data-level="20.2.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#引用"><i class="fa fa-check"></i><b>20.2.6</b> 引用</a></li>
+<li class="chapter" data-level="20.2.7" data-path="r-markdown-html.html"><a href="r-markdown-html.html#リンク"><i class="fa fa-check"></i><b>20.2.7</b> リンク</a></li>
+<li class="chapter" data-level="20.2.8" data-path="r-markdown-html.html"><a href="r-markdown-html.html#画像表"><i class="fa fa-check"></i><b>20.2.8</b> 画像、表</a></li>
+<li class="chapter" data-level="20.2.9" data-path="r-markdown-html.html"><a href="r-markdown-html.html#数式"><i class="fa fa-check"></i><b>20.2.9</b> 数式</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>20.3</b> Rチャンク</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>20.3.1</b> チャンクオプション</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>20.4</b> yamlヘッダー</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#output"><i class="fa fa-check"></i><b>20.4.1</b> output</a></li>
+<li class="chapter" data-level="20.4.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#目次"><i class="fa fa-check"></i><b>20.4.2</b> 目次</a></li>
+<li class="chapter" data-level="20.4.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#テーマ-1"><i class="fa fa-check"></i><b>20.4.3</b> テーマ</a></li>
+<li class="chapter" data-level="20.4.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>20.4.4</b> htmlとcss</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>20.5</b> その他のテンプレート</a>
+<ul>
+<li class="chapter" data-level="20.5.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#distill"><i class="fa fa-check"></i><b>20.5.1</b> Distill</a></li>
+<li class="chapter" data-level="20.5.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>20.5.2</b> Tufte Handout</a></li>
+<li class="chapter" data-level="20.5.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rmdformats"><i class="fa fa-check"></i><b>20.5.3</b> rmdformats</a></li>
+<li class="chapter" data-level="20.5.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#スライド"><i class="fa fa-check"></i><b>20.5.4</b> スライド</a></li>
+<li class="chapter" data-level="20.5.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#ダッシュボード"><i class="fa fa-check"></i><b>20.5.5</b> ダッシュボード</a></li>
+<li class="chapter" data-level="20.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>20.5.6</b> Microsoft Office</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>21</b> R Markdown: pdf</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>21.1</b> LaTeXの導入</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>21.1.1</b> tinytexのインストール</a></li>
+<li class="chapter" data-level="21.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>21.1.2</b> タイプセット</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>21.2</b> 日本語環境の構築</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>21.2.1</b> LaTeXエンジンのあれこれ*</a></li>
+<li class="chapter" data-level="21.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>21.2.2</b> yamlヘッダー</a></li>
+<li class="chapter" data-level="21.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>21.2.3</b> フォントのインストール</a></li>
+<li class="chapter" data-level="21.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>21.2.4</b> その他のテンプレート</a></li>
+<li class="chapter" data-level="21.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>21.2.5</b> Sumatra PDF</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>21.3</b> スライドの作成</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-2"><i class="fa fa-check"></i><b>21.3.1</b> テーマ</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>21.4</b> LaTeX記法</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>21.4.1</b> 定理環境</a></li>
+<li class="chapter" data-level="21.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>21.4.2</b> 数式</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>21.5</b> 参考文献と引用</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>21.5.1</b> .bibファイル</a></li>
+<li class="chapter" data-level="21.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>21.5.2</b> 文献の引用</a></li>
+<li class="chapter" data-level="21.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>21.5.3</b> 日本語文献の引用</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>22</b> Rのエンコーディング問題</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>22.1</b> なぜ文字化けが起こるのか</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>22.1.1</b> エンコーディング</a></li>
+<li class="chapter" data-level="22.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>22.1.2</b> RとRStudioにおける問題</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>22.2</b> Rスクリプトの文字化け</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>22.2.1</b> ファイルを開く</a></li>
+<li class="chapter" data-level="22.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>22.2.2</b> ファイルを保存する</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>22.3</b> データの文字化け</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>22.3.1</b> 標準関数の場合</a></li>
+<li class="chapter" data-level="22.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>22.3.2</b> tidyverseの場合</a></li>
+<li class="chapter" data-level="22.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>22.3.3</b> エンコーディングを確認する方法</a></li>
+<li class="chapter" data-level="22.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>22.3.4</b> もとのデータを見たい場合</a></li>
+<li class="chapter" data-level="22.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>22.3.5</b> データを保存する場合</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>22.4</b> その他の問題</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>22.4.1</b> アカウント名が日本語の場合</a></li>
+<li class="chapter" data-level="22.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>22.4.2</b> 画像で日本語が文字化けする場合</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>23</b> パイプ演算子<code>%&gt;%</code>について</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>23.1</b> 基本的な使い方</a></li>
+<li class="chapter" data-level="23.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>23.2</b> データの代入</a></li>
+<li class="chapter" data-level="23.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>23.3</b> 左辺の参照</a></li>
+<li class="chapter" data-level="23.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>23.4</b> 複数の出力</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>24</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>24.1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>24.1.1</b> 問題</a></li>
+<li class="chapter" data-level="24.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>24.1.2</b> Linux上のR/RStudioを使う</a></li>
+<li class="chapter" data-level="24.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>24.1.3</b> 概要</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>24.2</b> WSL2のインストール</a></li>
+<li class="chapter" data-level="24.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>24.3</b> Rのインストール</a></li>
+<li class="chapter" data-level="24.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>24.4</b> RStusio Serverのインストール</a></li>
+<li class="chapter" data-level="24.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>24.5</b> RStudio Server on WSL2の注意点</a>
+<ul>
+<li class="chapter" data-level="24.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>24.5.1</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="24.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>24.5.2</b> 警告メッセージ</a></li>
+<li class="chapter" data-level="24.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>24.5.3</b> 日本語フォント</a></li>
+<li class="chapter" data-level="24.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>24.5.4</b> Windows側のファイルへのアクセス</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="../index.html">&copy; 2020 Shohei Doi</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rで計量政治学入門</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="data-import" class="section level1 hasAnchor" number="1">
+<h1><span class="header-section-number">第1章</span> データの読み込み<a href="data-import.html#data-import" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>統計分析をする際にはデータを読み込む（インポート）必要があります。
+基本的にPCに保存されたデータのパスを入力することでデータを読み込みます。</p>
+<p>-　URLを入力することでオンラインのデータを読み込むこともできます。</p>
+<p>ここでは、まずRやパッケージに付属のデータセットの読み込み方を解説し、統計分析でよく使われるデータ形式を紹介した後に、Rによる読み込み方を説明します。</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="data-import.html#cb1-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<pre><code>## ── Attaching core tidyverse packages ───────────────────────────────────────────────── tidyverse 2.0.0 ──
+## ✔ dplyr     1.1.2     ✔ readr     2.1.4
+## ✔ forcats   1.0.0     ✔ stringr   1.5.0
+## ✔ ggplot2   3.4.3     ✔ tibble    3.2.1
+## ✔ lubridate 1.9.2     ✔ tidyr     1.3.0
+## ✔ purrr     1.0.2     
+## ── Conflicts ─────────────────────────────────────────────────────────────────── tidyverse_conflicts() ──
+## ✖ dplyr::filter() masks stats::filter()
+## ✖ dplyr::lag()    masks stats::lag()
+## ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+<div id="パッケージ付属のデータ" class="section level2 hasAnchor" number="1.1">
+<h2><span class="header-section-number">1.1</span> パッケージ付属のデータ<a href="data-import.html#パッケージ付属のデータ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>Rは標準でいくつかのデータセットを持っており、またパッケージを読み込むと付属のデータセットも読み込みます。
+<code>data()</code>に何も入力せずに実行すると、データセットの一覧が表示されます。</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="data-import.html#cb3-1" tabindex="-1"></a><span class="fu">data</span>()</span></code></pre></div>
+<p>よく、使われるデータセットはフィッシャーのアヤメのデータセットで、<code>iris</code>という名前で保存されています。</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="data-import.html#cb4-1" tabindex="-1"></a><span class="fu">head</span>(iris)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["Sepal.Length"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["Sepal.Width"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["Petal.Length"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["Petal.Width"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["Species"],"name":[5],"type":["fct"],"align":["left"]}],"data":[{"1":"5.1","2":"3.5","3":"1.4","4":"0.2","5":"setosa","_rn_":"1"},{"1":"4.9","2":"3.0","3":"1.4","4":"0.2","5":"setosa","_rn_":"2"},{"1":"4.7","2":"3.2","3":"1.3","4":"0.2","5":"setosa","_rn_":"3"},{"1":"4.6","2":"3.1","3":"1.5","4":"0.2","5":"setosa","_rn_":"4"},{"1":"5.0","2":"3.6","3":"1.4","4":"0.2","5":"setosa","_rn_":"5"},{"1":"5.4","2":"3.9","3":"1.7","4":"0.4","5":"setosa","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ul>
+<li><code>head()</code>は最初のいくつかの要素だけを表示する関数です（<code>tail()</code>は最後からいくつかを表示します）。</li>
+</ul>
+</div>
+<div id="主なデータ形式" class="section level2 hasAnchor" number="1.2">
+<h2><span class="header-section-number">1.2</span> 主なデータ形式*<a href="data-import.html#主なデータ形式" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>大雑把に言ってしまうとPCのデータにはテキストデータとバイナリデータに分かれます。
+さらにそれぞれ様々な種類の形式がありますが、拡張子によって判断します。</p>
+<div id="テキストデータ" class="section level3 hasAnchor" number="1.2.1">
+<h3><span class="header-section-number">1.2.1</span> テキストデータ<a href="data-import.html#テキストデータ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>テキストデータとは人間の理解できる文字列のデータのことです。</p>
+<div id="txtファイル" class="section level4 hasAnchor" number="1.2.1.1">
+<h4><span class="header-section-number">1.2.1.1</span> .txtファイル<a href="data-import.html#txtファイル" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>.txt</code>ファイルは素のテキストデータになり、データの構造を含みません。
+統計分析をする際には使いませんが、テキスト分析をする場合はしばしば遭遇します。</p>
+</div>
+<div id="csvファイル" class="section level4 hasAnchor" number="1.2.1.2">
+<h4><span class="header-section-number">1.2.1.2</span> .csvファイル<a href="data-import.html#csvファイル" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>統計分析で遭遇するテキストデータの大半は<code>.csv</code>ファイルです。
+これは”comma-separated values”の略で、各変数はカンマで区切られています。
+各観察は改行で区切られています。</p>
+</div>
+<div id="tsvファイル" class="section level4 hasAnchor" number="1.2.1.3">
+<h4><span class="header-section-number">1.2.1.3</span> .tsvファイル<a href="data-import.html#tsvファイル" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>.tsv</code>ファイルはカンマの代わりにタブで変数が区切られているテキストデータになります。</p>
+</div>
+<div id="htmlファイル" class="section level4 hasAnchor" number="1.2.1.4">
+<h4><span class="header-section-number">1.2.1.4</span> .htmlファイル<a href="data-import.html#htmlファイル" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>.html</code>ファイルとはウェブサイトの内容を記述してあるファイルです。
+ウェブスクレイピング（PCに自動でオンラインの情報を収集させること）をする際に使います。</p>
+</div>
+</div>
+<div id="バイナリデータ" class="section level3 hasAnchor" number="1.2.2">
+<h3><span class="header-section-number">1.2.2</span> バイナリデータ<a href="data-import.html#バイナリデータ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>バイナリデータとはPCは理解できるけど人間は特定のソフトを使わないと理解できないようなデータになっています。</p>
+<div id="xls-.xlsxファイル" class="section level4 hasAnchor" number="1.2.2.1">
+<h4><span class="header-section-number">1.2.2.1</span> .xls, .xlsxファイル<a href="data-import.html#xls-.xlsxファイル" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>最も有名なのはExcelで使用される<code>.xls</code>または<code>.xlsx</code>ファイルでしょう。</p>
+<ul>
+<li><code>.xlsx</code>の方が<code>.xls</code>よりも新しくて高圧縮らしいです。</li>
+</ul>
+</div>
+<div id="dtaファイル" class="section level4 hasAnchor" number="1.2.2.2">
+<h4><span class="header-section-number">1.2.2.2</span> .dtaファイル<a href="data-import.html#dtaファイル" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>.dta</code>ファイルとはStataと呼ばれる統計分析ソフト専用のデータ形式になります。
+Stataは政治学や経済学で人気のツールなのでレプリケーションデータなどはこの形式で配布されていることもあります。</p>
+</div>
+<div id="savファイル" class="section level4 hasAnchor" number="1.2.2.3">
+<h4><span class="header-section-number">1.2.2.3</span> .savファイル<a href="data-import.html#savファイル" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>.sav</code>ファイルはStataよりも前に人気だった統計ソフト用のデータ形式です。</p>
+</div>
+<div id="rdsファイル" class="section level4 hasAnchor" number="1.2.2.4">
+<h4><span class="header-section-number">1.2.2.4</span> .rdsファイル<a href="data-import.html#rdsファイル" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p><code>.rds</code>ファイルとはR戦争のデータ形式になります。
+あまり見かけることはありません。</p>
+</div>
+</div>
+<div id="good-bye-excel" class="section level3 hasAnchor" number="1.2.3">
+<h3><span class="header-section-number">1.2.3</span> Good bye, Excel!<a href="data-import.html#good-bye-excel" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>基本的にはRでデータを読み込めば中身を見ることができるのですが、後述するようにRで読み込む前に生データを見たい場合はしばしばあります。</p>
+<p>そのときにMicrosoft OfficeのExcelを使うのはあまりおすすめしません。
+なぜなら、</p>
+<ul>
+<li>Officeは高い</li>
+<li>文字エンコードを指定できない</li>
+</ul>
+<p>からです。</p>
+<p>特に後者の問題は重要だと思います。
+例えば日本語を含むデータの場合、Windowsで作成されたものをLinuxやMacで開くと、あるいはその逆をすると文字化けを起こすからです。</p>
+<p>そこで、<a href="https://ja.libreoffice.org/">LibreOffice</a>という無料のオフィスソフトをダウンロードし、その中のCalcを使用することをおすすめします。
+LibreOffice Calcであればファイルを開く際にエンコードを選択できるので文字化けすることはありません。</p>
+<ul>
+<li>Windowsで文字けする場合、エンコードを<code>UTF-8</code>にする。</li>
+<li>Linux, Macで文字化けする場合、エンコードを<code>Shift-JIS</code>あるいは<code>CP932</code>にする。
+<ul>
+<li>もちろん、LibreOfficeでMicrosoft Officeのデータを開くことは可能です。</li>
+<li>ただし、LibreOfficをインストールするとMicrosoft Officeが正常に動作しないことがあるかもしれません。</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div id="パスと作業ディレクトリ" class="section level2 hasAnchor" number="1.3">
+<h2><span class="header-section-number">1.3</span> パスと作業ディレクトリ<a href="data-import.html#パスと作業ディレクトリ" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>一般的に、PCのデータは<strong>ファイル</strong>と呼ばれ、ファイルを入れておく箱のようなものを<strong>フォルダ</strong>（ディレクトリ）と呼びます。</p>
+<p>例えば、Windowsの場合、documentsやpicturesというフォルダがあり、その中にWordファイルや画像データが入っていると思います。</p>
+<p>なお、ファイルの名前の末尾には<code>.</code>から始まる<strong>拡張子</strong>がついています。
+例えば、Wordファイルであれば<code>.docx</code>、画像データであれば<code>.png</code>や<code>.jpg</code>などです。
+これはそのファイルがどのような種類のもので、PCがどのように処理をすればいいのかを示す目印になっています。</p>
+<p>-　もし、PCで拡張子が表示されていない場合は表示するように設定しましょう。</p>
+<div id="パス" class="section level3 hasAnchor" number="1.3.1">
+<h3><span class="header-section-number">1.3.1</span> パス<a href="data-import.html#パス" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>ファイルやフォルダにアクセスする場合、<strong>パス</strong>と呼ばれるPC上の住所のようなもので指定する必要があります。</p>
+<p>例えば、Windowsの場合、documentsフォルダの中の<code>sample.docx</code>というファイルのパスは<code>C:/Users/Shohei/Documents/sample.docx</code>となります。</p>
+<ul>
+<li>正確には、Windowsでは<code>/</code>ではなく円マークになっていると思います。</li>
+</ul>
+<div id="絶対パス" class="section level4 hasAnchor" number="1.3.1.1">
+<h4><span class="header-section-number">1.3.1.1</span> 絶対パス<a href="data-import.html#絶対パス" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>このパスの意味はCドライブの中の<code>User</code>というフォルダの中の<code>Shohei</code>というフォルダの中の<code>Documents</code>というフォルダの中にある<code>sample.docx</code>という意味です。</p>
+<p>このように始点（Windowsの場合はCドライブ）から始めるパスを<strong>絶対パス</strong>と呼びます。</p>
+</div>
+<div id="相対パス" class="section level4 hasAnchor" number="1.3.1.2">
+<h4><span class="header-section-number">1.3.1.2</span> 相対パス<a href="data-import.html#相対パス" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>しかし、毎回、絶対パスを書くのは面倒ですし、コードを公開する際にはやや恥ずかしい嫌いもあります。</p>
+<p>そこで、途中から書かれるパスを<strong>相対パス</strong>と呼びます。
+例えば、<code>Shohei</code>というフォルダから見れば、上記のファイルは<code>Documents/sample.docx</code>として指定することができます。</p>
+</div>
+<div id="パスに関する注意点" class="section level4 hasAnchor" number="1.3.1.3">
+<h4><span class="header-section-number">1.3.1.3</span> パスに関する注意点<a href="data-import.html#パスに関する注意点" class="anchor-section" aria-label="Anchor link to header"></a></h4>
+<p>必ずしも直ちに問題があるわけではないですが、パスに日本語や空白があるとうまく行かないことがあります。
+なので、フォルダ名やファイル名はアルファベットで空白を入れない方がいいでしょう。</p>
+<ul>
+<li>もしユーザー名が日本語である場合、パス関連でエラーが出る場合は<a href="https://rstudio.cloud/">RStudio Cloud</a>を使うか、これを機にOSをクリーンインストールをしてしまうのもありでしょう。</li>
+</ul>
+</div>
+</div>
+<div id="作業ディレクトリ" class="section level3 hasAnchor" number="1.3.2">
+<h3><span class="header-section-number">1.3.2</span> 作業ディレクトリ<a href="data-import.html#作業ディレクトリ" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>相対パスでファイルなどを指定する際には出発点となるフォルダを決める必要があります。
+これを<strong>作業ディレクトリ</strong>と呼びます。</p>
+<p>Rでは<code>getwd()</code>（“get working directory”の略）で現在の作業ディレクトリを確認できます。</p>
+<p>また、<code>setwd()</code>に適当なパスを入力することで作業ディレクトリを設定することもできます。</p>
+<p>RStudioの場合は<code>Files</code>パネルの中の<code>More &gt; Set As Working Directory</code>で現在開いているフォルダを作業ディレクトリに指定することもできます。</p>
+<p><img src="figures/workflow1.jpg" /><!-- --></p>
+<p>ただし、作業ディレクトリを指定するよりも、<strong><a href="r-envir.html#rプロジェクト">Rプロジェクト</a>を作成するのがベター</strong>です。</p>
+</div>
+</div>
+<div id="csvファイルの読み込み" class="section level2 hasAnchor" number="1.4">
+<h2><span class="header-section-number">1.4</span> .csvファイルの読み込み<a href="data-import.html#csvファイルの読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>ここでは、例として世界銀行の<a href="data/wb_gdp_pc.csv">各国の一人あたりGDPデータ</a>を読み込んでみます。
+今回は適当に作成したプロジェクト・フォルダの中に<code>data</code>というフォルダを作成し、その中に<code>wb_gdp_pc.csv</code>というデータを保存してください。</p>
+<p>ここでは、<code>tidyverse</code>の中の<code>readr</code>の<code>read_csv()</code>という関数を使います。</p>
+<ul>
+<li>Rの標準関数は<code>read.csv()</code>です（<code>_</code>と<code>.</code>が違います）。</li>
+</ul>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="data-import.html#cb5-1" tabindex="-1"></a>gdp_pc <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/wb_gdp_pc.csv&quot;</span>)</span></code></pre></div>
+<pre><code>## New names:
+## • `` -&gt; `...3`</code></pre>
+<pre><code>## Warning: One or more parsing issues, call `problems()` on your data frame for details, e.g.:
+##   dat &lt;- vroom(...)
+##   problems(dat)</code></pre>
+<pre><code>## Rows: 266 Columns: 3
+## ── Column specification ─────────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (3): Data Source, World Development Indicators, ...3
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<p>データを読み込む際には<code>()</code>の中に読み込みたいデータのパスを入力する必要があります。
+したがって、プロジェクト・フォルダから見たデータの相対パスは<code>data/wb_gdp_pc.csv</code>となります。</p>
+<ul>
+<li>パスをクオーテーションマーク<code>"</code>で囲むことを忘れないでください。</li>
+<li>パスの頭に<code>/</code>はいりません。</li>
+<li>パスの最後に拡張子を付けることを忘れすに。</li>
+</ul>
+<p>読み込んだデータもオブジェクトなので適当な名前をつけて代入する必要があります。
+データの名前は</p>
+<ul>
+<li>打ち込むのがめんどくさくない程度に短く</li>
+<li>他人や数カ月後の自分が見ても分かる程度には意味の分かる</li>
+</ul>
+<p>ようにするのがコツです。</p>
+<p>さて、データを無事読み込めると<code>Environment</code>パネルに<code>gdp_pc</code>が表示されていると思います。</p>
+<div id="変数名の適切な読み込み" class="section level3 hasAnchor" number="1.4.1">
+<h3><span class="header-section-number">1.4.1</span> 変数名の適切な読み込み<a href="data-import.html#変数名の適切な読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>これで一安心と思いきや、<code>Warning</code>という不吉な文字列が見えます。
+<code>Environment</code>パネルをよく見ると変数の数が3つしかないということがわかります。
+そこで、データを見てみると、なにかおかしいことが起こっているようです。</p>
+<ul>
+<li><code>Warning</code>とは<code>Error</code>のように実行できないほどではないけれど、なんか問題があるかもしれない場合に表示されます。</li>
+<li><strong><code>Warning</code>が出たときは問題がないのか確認しましょう。</strong></li>
+</ul>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb9-1"><a href="data-import.html#cb9-1" tabindex="-1"></a><span class="fu">head</span>(gdp_pc)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Data Source"],"name":[1],"type":["chr"],"align":["left"]},{"label":["World Development Indicators"],"name":[2],"type":["chr"],"align":["left"]},{"label":["...3"],"name":[3],"type":["chr"],"align":["left"]}],"data":[{"1":"Last Updated Date","2":"2019-03-21","3":"NA"},{"1":"Country Name","2":"Country Code","3":"Indicator Name,Indicator Code,1960,1961,1962,1963,1964,1965,1966,1967,1968,1969,1970,1971,1972,1973,1974,1975,1976,1977,1978,1979,1980,1981,1982,1983,1984,1985,1986,1987,1988,1989,1990,1991,1992,1993,1994,1995,1996,1997,1998,1999,2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,"},{"1":"Aruba","2":"ABW","3":"GDP per capita (current US$),NY.GDP.PCAP.CD,\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",6472.50202920407,7885.79654466735,9764.78997879329,11392.4558105764,12307.3117378314,13496.0033851411,14046.5039965619,14936.827039276,16241.0463247117,16439.3563609282,16586.0684357542,17927.7496352086,19078.3431907515,19356.2033894901,20620.7006259175,20669.0319688645,20436.8871286309,20833.7616116694,22569.9749851801,23300.0395575696,24045.7494206858,25835.6431424885,27086.0398473459,24630.9392680773,23512.6025956397,24984.2794468664,24709.6022647219,25018.3089518065,25528.4037804428,25796.3802506382,25251.6396777554,25655.1020217537,\","},{"1":"Afghanistan","2":"AFG","3":"GDP per capita (current US$),NY.GDP.PCAP.CD,59.7773265083934,59.8781528089471,58.4928738323479,78.7827580362892,82.2084438594401,101.290471274167,137.899361896954,161.322000088481,129.506653844251,129.798541408375,157.187422389233,160.372835554154,136.117014381199,144.110318929266,174.94203831954,187.975604013726,199.026172729051,226.005343759305,249.287386261794,277.900741665078,274.880858701521,266.493041808705,\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",184.494712122049,195.776630341551,216.708128851229,247.664139959638,269.229693018123,366.230443242864,370.382293977374,444.18440407545,550.514973976336,599.29762975711,648.511069587633,647.966460473683,625.3395388285,590.076473832575,549.582759921642,550.068458763852,\","},{"1":"Angola","2":"AGO","3":"GDP per capita (current US$),NY.GDP.PCAP.CD,\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",664.117560200257,600.408765541326,579.2520008971,582.420126498067,596.602467242029,711.99270010471,647.563353685906,720.598938487943,761.618457662551,862.509057657804,922.550169956192,844.691134306625,640.622297879065,430.381595278873,320.657792023357,388.166766342963,512.620965887672,506.884952193443,419.639845318854,385.768853472854,555.296941863334,526.168742996854,869.851485021864,978.538933887291,1248.40490589113,1890.84972681569,2585.13352204929,3108.26864317894,4068.97845646361,3117.89694392484,3585.90555256868,4615.86747457004,5102.48996931589,5258.40737644433,5412.6923476178,4170.73035829413,3509.60421142273,4100.28978571722,\","},{"1":"Albania","2":"ALB","3":"GDP per capita (current US$),NY.GDP.PCAP.CD,\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",\",639.48473584821,639.865909445734,693.873474633887,674.793383069492,652.774321396566,697.995596576519,617.230435515505,336.586994504629,200.852219772323,367.279225077581,586.416339644261,750.604449178826,1009.97727483821,717.380047745673,813.789396580449,1033.24253162418,1126.68334010717,1281.6598256178,1425.12421860142,1846.12012081207,2373.58129170055,2673.78658429559,2972.74292399799,3595.03805682893,4370.5399247769,4114.13489916342,4094.36020359235,4437.17779448652,4247.61434236292,4413.08288688408,4578.66793446159,3952.83078116586,4131.87234065272,4537.57905556422,\","}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>このような場合はLibreOffice Calcで元データを見てみましょう。</p>
+<p><img src="figures/data_import1.jpg" /><!-- --></p>
+<p>実は<code>read_csv()</code>ではデフォルトでは第1行目を変数名として読み込む設定になっています。
+なので、元データの<code>Data Source</code>と<code>World Development Indicators</code>を変数名として認識してしまったようです。</p>
+<ul>
+<li>では、なぜ三番目も変数として認識されているのかはよく分かりません。</li>
+</ul>
+<p>変数名は第5行目なので、単純な方法は第1行目から第4行目を削除してしまうことですが、そうすべきではない理由がいくつかあります。</p>
+<ol style="list-style-type: decimal">
+<li>新しい年のデータを使うときに同じ操作をしないといけない。</li>
+<li>同じ形式のデータを使うときに同じ操作をしないといけない。</li>
+<li>第三者が元データからレプリケートするときに気付かないかもしれない。</li>
+</ol>
+<p>ということで、第5行目からデータとして読み込めないか確かめるためにヘルプを見ます。</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="data-import.html#cb10-1" tabindex="-1"></a>?read_csv</span></code></pre></div>
+<p>すると、このような記述が見つかります。</p>
+<pre><code>skip    Number of lines to skip before reading data.</code></pre>
+<p>ということで、オプションとして<code>skip=4</code>を設定して読み込むとうまく行きました</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="data-import.html#cb12-1" tabindex="-1"></a>gdp_pc <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/wb_gdp_pc.csv&quot;</span>, <span class="at">skip=</span><span class="dv">4</span>)</span></code></pre></div>
+<pre><code>## New names:
+## Rows: 264 Columns: 64
+## ── Column specification
+## ───────────────────────────────────────────────────────────────────────────────── Delimiter: &quot;,&quot; chr
+## (4): Country Name, Country Code, Indicator Name, Indicator Code dbl (58): 1960, 1961, 1962, 1963, 1964,
+## 1965, 1966, 1967, 1968, 1969, 1970, ... lgl (2): 2018, ...64
+## ℹ Use `spec()` to retrieve the full column specification for this data. ℹ Specify the column types or
+## set `show_col_types = FALSE` to quiet this message.
+## • `` -&gt; `...64`</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="data-import.html#cb14-1" tabindex="-1"></a><span class="fu">head</span>(gdp_pc)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Country Name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Country Code"],"name":[2],"type":["chr"],"align":["left"]},{"label":["Indicator Name"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Indicator Code"],"name":[4],"type":["chr"],"align":["left"]},{"label":["1960"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["1961"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["1962"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["1963"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["1964"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["1965"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["1966"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["1967"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["1968"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["1969"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["1970"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["1971"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["1972"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["1973"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["1974"],"name":[19],"type":["dbl"],"align":["right"]},{"label":["1975"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["1976"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["1977"],"name":[22],"type":["dbl"],"align":["right"]},{"label":["1978"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["1979"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["1980"],"name":[25],"type":["dbl"],"align":["right"]},{"label":["1981"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["1982"],"name":[27],"type":["dbl"],"align":["right"]},{"label":["1983"],"name":[28],"type":["dbl"],"align":["right"]},{"label":["1984"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["1985"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["1986"],"name":[31],"type":["dbl"],"align":["right"]},{"label":["1987"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["1988"],"name":[33],"type":["dbl"],"align":["right"]},{"label":["1989"],"name":[34],"type":["dbl"],"align":["right"]},{"label":["1990"],"name":[35],"type":["dbl"],"align":["right"]},{"label":["1991"],"name":[36],"type":["dbl"],"align":["right"]},{"label":["1992"],"name":[37],"type":["dbl"],"align":["right"]},{"label":["1993"],"name":[38],"type":["dbl"],"align":["right"]},{"label":["1994"],"name":[39],"type":["dbl"],"align":["right"]},{"label":["1995"],"name":[40],"type":["dbl"],"align":["right"]},{"label":["1996"],"name":[41],"type":["dbl"],"align":["right"]},{"label":["1997"],"name":[42],"type":["dbl"],"align":["right"]},{"label":["1998"],"name":[43],"type":["dbl"],"align":["right"]},{"label":["1999"],"name":[44],"type":["dbl"],"align":["right"]},{"label":["2000"],"name":[45],"type":["dbl"],"align":["right"]},{"label":["2001"],"name":[46],"type":["dbl"],"align":["right"]},{"label":["2002"],"name":[47],"type":["dbl"],"align":["right"]},{"label":["2003"],"name":[48],"type":["dbl"],"align":["right"]},{"label":["2004"],"name":[49],"type":["dbl"],"align":["right"]},{"label":["2005"],"name":[50],"type":["dbl"],"align":["right"]},{"label":["2006"],"name":[51],"type":["dbl"],"align":["right"]},{"label":["2007"],"name":[52],"type":["dbl"],"align":["right"]},{"label":["2008"],"name":[53],"type":["dbl"],"align":["right"]},{"label":["2009"],"name":[54],"type":["dbl"],"align":["right"]},{"label":["2010"],"name":[55],"type":["dbl"],"align":["right"]},{"label":["2011"],"name":[56],"type":["dbl"],"align":["right"]},{"label":["2012"],"name":[57],"type":["dbl"],"align":["right"]},{"label":["2013"],"name":[58],"type":["dbl"],"align":["right"]},{"label":["2014"],"name":[59],"type":["dbl"],"align":["right"]},{"label":["2015"],"name":[60],"type":["dbl"],"align":["right"]},{"label":["2016"],"name":[61],"type":["dbl"],"align":["right"]},{"label":["2017"],"name":[62],"type":["dbl"],"align":["right"]},{"label":["2018"],"name":[63],"type":["lgl"],"align":["right"]},{"label":["...64"],"name":[64],"type":["lgl"],"align":["right"]}],"data":[{"1":"Aruba","2":"ABW","3":"GDP per capita (current US$)","4":"NY.GDP.PCAP.CD","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA","19":"NA","20":"NA","21":"NA","22":"NA","23":"NA","24":"NA","25":"NA","26":"NA","27":"NA","28":"NA","29":"NA","30":"NA","31":"6472.5020","32":"7885.7965","33":"9764.7900","34":"11392.4558","35":"12307.3117","36":"13496.0034","37":"14046.5040","38":"14936.8270","39":"16241.0463","40":"16439.3564","41":"16586.068","42":"17927.750","43":"19078.3432","44":"19356.2034","45":"20620.7006","46":"20669.0320","47":"20436.8871","48":"20833.7616","49":"22569.9750","50":"23300.0396","51":"24045.7494","52":"25835.6431","53":"27086.0398","54":"24630.9393","55":"23512.603","56":"24984.2794","57":"24709.6023","58":"25018.3090","59":"25528.4038","60":"25796.3803","61":"25251.6397","62":"25655.1020","63":"NA","64":"NA"},{"1":"Afghanistan","2":"AFG","3":"GDP per capita (current US$)","4":"NY.GDP.PCAP.CD","5":"59.77733","6":"59.87815","7":"58.49287","8":"78.78276","9":"82.20844","10":"101.2905","11":"137.8994","12":"161.322","13":"129.5067","14":"129.7985","15":"157.1874","16":"160.3728","17":"136.1170","18":"144.1103","19":"174.9420","20":"187.9756","21":"199.0262","22":"226.0053","23":"249.2874","24":"277.9007","25":"274.8809","26":"266.4930","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NA","36":"NA","37":"NA","38":"NA","39":"NA","40":"NA","41":"NA","42":"NA","43":"NA","44":"NA","45":"NA","46":"NA","47":"184.4947","48":"195.7766","49":"216.7081","50":"247.6641","51":"269.2297","52":"366.2304","53":"370.3823","54":"444.1844","55":"550.515","56":"599.2976","57":"648.5111","58":"647.9665","59":"625.3395","60":"590.0765","61":"549.5828","62":"550.0685","63":"NA","64":"NA"},{"1":"Angola","2":"AGO","3":"GDP per capita (current US$)","4":"NY.GDP.PCAP.CD","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA","19":"NA","20":"NA","21":"NA","22":"NA","23":"NA","24":"NA","25":"664.1176","26":"600.4088","27":"579.252","28":"582.4201","29":"596.6025","30":"711.9927","31":"647.5634","32":"720.5989","33":"761.6185","34":"862.5091","35":"922.5502","36":"844.6911","37":"640.6223","38":"430.3816","39":"320.6578","40":"388.1668","41":"512.621","42":"506.885","43":"419.6398","44":"385.7689","45":"555.2969","46":"526.1687","47":"869.8515","48":"978.5389","49":"1248.4049","50":"1890.8497","51":"2585.1335","52":"3108.2686","53":"4068.9785","54":"3117.8969","55":"3585.906","56":"4615.8675","57":"5102.4900","58":"5258.4074","59":"5412.6923","60":"4170.7304","61":"3509.6042","62":"4100.2898","63":"NA","64":"NA"},{"1":"Albania","2":"ALB","3":"GDP per capita (current US$)","4":"NY.GDP.PCAP.CD","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA","19":"NA","20":"NA","21":"NA","22":"NA","23":"NA","24":"NA","25":"NA","26":"NA","27":"NA","28":"NA","29":"639.4847","30":"639.8659","31":"693.8735","32":"674.7934","33":"652.7743","34":"697.9956","35":"617.2304","36":"336.5870","37":"200.8522","38":"367.2792","39":"586.4163","40":"750.6044","41":"1009.977","42":"717.380","43":"813.7894","44":"1033.2425","45":"1126.6833","46":"1281.6598","47":"1425.1242","48":"1846.1201","49":"2373.5813","50":"2673.7866","51":"2972.7429","52":"3595.0381","53":"4370.5399","54":"4114.1349","55":"4094.360","56":"4437.1778","57":"4247.6143","58":"4413.0829","59":"4578.6679","60":"3952.8308","61":"4131.8723","62":"4537.5791","63":"NA","64":"NA"},{"1":"Andorra","2":"AND","3":"GDP per capita (current US$)","4":"NY.GDP.PCAP.CD","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"3238.5568","16":"3498.1737","17":"4217.1736","18":"5342.1686","19":"6319.7390","20":"7169.1010","21":"7152.3751","22":"7751.3702","23":"9129.7062","24":"11820.8494","25":"12377.4116","26":"10372.2328","27":"9610.266","28":"8022.6548","29":"7728.9067","30":"7774.3938","31":"10361.8160","32":"12616.1676","33":"14304.3570","34":"15166.4379","35":"18878.5060","36":"19532.5402","37":"20547.7118","38":"16516.4710","39":"16234.8090","40":"18461.0649","41":"19017.175","42":"18353.060","43":"18894.5215","44":"19261.7105","45":"21936.5301","46":"22228.8465","47":"24741.4936","48":"32776.4423","49":"38503.4796","50":"41282.0201","51":"43748.7722","52":"48582.8085","53":"47785.6591","54":"43339.3799","55":"39736.354","56":"41098.7669","57":"38391.0809","58":"40619.7113","59":"42294.9947","60":"36038.2676","61":"37231.8157","62":"39146.5488","63":"NA","64":"NA"},{"1":"Arab World","2":"ARB","3":"GDP per capita (current US$)","4":"NY.GDP.PCAP.CD","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"221.3187","14":"236.3741","15":"259.0382","16":"291.9783","17":"338.7725","18":"417.3331","19":"770.6224","20":"827.2752","21":"996.6210","22":"1113.3880","23":"1182.8807","24":"1549.9205","25":"2041.4618","26":"2032.4593","27":"1847.245","28":"1682.7032","29":"1655.7277","30":"1590.2272","31":"1473.5136","32":"1526.0518","33":"1458.7553","34":"1487.7391","35":"1988.5679","36":"1908.9793","37":"2006.7958","38":"1977.4615","39":"1970.8606","40":"2054.3843","41":"2217.417","42":"2301.162","43":"2173.4210","44":"2317.0385","45":"2590.2224","46":"2495.9399","47":"2463.3986","48":"2722.3787","49":"3119.1649","50":"3747.3130","51":"4338.3857","52":"4939.5300","53":"6116.5812","54":"5159.3428","55":"5918.316","56":"6856.0350","57":"7465.1352","58":"7510.7300","59":"7456.5982","60":"6429.1286","61":"6185.0635","62":"6239.7139","63":"NA","64":"NA"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ul>
+<li>ちなみに<code>NA</code>とはRにおける欠損値 (missing value) のことです。</li>
+</ul>
+<p>なお、実はこのように時間（この場合は年）が横方向に進んでいくデータをワイド形式と呼び、大抵の場合はこのままでは分析できないのでロング形式にする必要があります。</p>
+</div>
+</div>
+<div id="xlsxファイルの読み込み" class="section level2 hasAnchor" number="1.5">
+<h2><span class="header-section-number">1.5</span> .xls[x]ファイルの読み込み<a href="data-import.html#xlsxファイルの読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>実は<code>tidyverse</code>はいくつかのパッケージをまとめたものになっています。
+これまでテキストデータの読み込みに使っていたのは、その中の<code>readr</code>というパッケージになります。</p>
+<p>バイナリデータを読み込むには別途パッケージを使う必要があり、<code>.xls[x]</code>ファイルの場合は以下のものになります。</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="data-import.html#cb15-1" tabindex="-1"></a><span class="fu">library</span>(readxl)</span></code></pre></div>
+<p><code>.xls</code>か<code>.xslx</code>か分かっている場合は<code>read_xls()</code>もしくは<code>read_xlsx()</code>の適切な方を使い、分からない場合は<code>read_excel()</code>を使います。
+ここでは<a href="data/FH_Country.xls">Freedom Houseのデータセット</a>を読み込みます。</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="data-import.html#cb16-1" tabindex="-1"></a>fh <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/FH_Country.xls&quot;</span>)</span></code></pre></div>
+<div id="シートの選択" class="section level3 hasAnchor" number="1.5.1">
+<h3><span class="header-section-number">1.5.1</span> シートの選択<a href="data-import.html#シートの選択" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p><code>Environment</code>パネルに<code>fh</code>があるので一安心と思いきや、変数の数が1つと明らかにおかしいので、Rでデータを見て、LibreOffice Calcで開いてみます。</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="data-import.html#cb17-1" tabindex="-1"></a><span class="fu">head</span>(fh)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Introduction to Country and Territory Data"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"The following worksheets list all country ratings and statuses since the annual Freedom in the World survey was first compiled for the year 1972."},{"1":"NA"},{"1":"Methodological changes have been effected periodically.  For discussions of these changes, please consult the methodology essays for various editions of the survey."},{"1":"For a full explanation of the current methodology, please consult the most recent edition of the survey."},{"1":"NA"},{"1":"Survey Editions refer to the various editions of Freedom in the World, except for Jan-Feb 1973 through Jan-Feb 1977, which are from the bimonthly journal Freedom at Issue."}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p><img src="figures/data_import2.jpg" /><!-- --></p>
+<p>すると、全くデータが異なっていることがわかります。
+実はエクセルのデータにはシートという概念があり、異なるデータを一つにまとめることができます。</p>
+<p>LibreOffice Calcの左下をよく見ると二番目のシートが選択されていることがわかります。
+そしてその左の一番目のシートを選択するとRで読み込まれたものと同じものがあることがわかります。</p>
+<p>つまり、先程は自動で一番目のシートを読み込んでしまっていたということで、オプションで二番目のシートを読み込まないといけないわけでした。
+そこでヘルプを見ると<code>sheet</code>というオプションがあるので、<code>sheet=2</code>とするとちゃんとほしいデータを読み込んでくれます。</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="data-import.html#cb18-1" tabindex="-1"></a>fh <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/FH_Country.xls&quot;</span>, <span class="at">sheet=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## New names:
+## • `` -&gt; `...3`
+## • `` -&gt; `...4`
+## • `` -&gt; `...6`
+## • `` -&gt; `...7`
+## • `` -&gt; `...9`
+## • `` -&gt; `...10`
+## • `` -&gt; `...12`
+## • `` -&gt; `...13`
+## • `` -&gt; `...15`
+## • `` -&gt; `...16`
+## • `` -&gt; `...18`
+## • `` -&gt; `...19`
+## • `` -&gt; `...21`
+## • `` -&gt; `...22`
+## • `` -&gt; `...24`
+## • `` -&gt; `...25`
+## • `` -&gt; `...27`
+## • `` -&gt; `...28`
+## • `` -&gt; `...30`
+## • `` -&gt; `...31`
+## • `` -&gt; `...33`
+## • `` -&gt; `...34`
+## • `` -&gt; `...36`
+## • `` -&gt; `...37`
+## • `` -&gt; `...39`
+## • `` -&gt; `...40`
+## • `` -&gt; `...42`
+## • `` -&gt; `...43`
+## • `` -&gt; `...45`
+## • `` -&gt; `...46`
+## • `` -&gt; `...48`
+## • `` -&gt; `...49`
+## • `` -&gt; `...51`
+## • `` -&gt; `...52`
+## • `` -&gt; `...54`
+## • `` -&gt; `...55`
+## • `` -&gt; `...57`
+## • `` -&gt; `...58`
+## • `` -&gt; `...60`
+## • `` -&gt; `...61`
+## • `` -&gt; `...63`
+## • `` -&gt; `...64`
+## • `` -&gt; `...66`
+## • `` -&gt; `...67`
+## • `` -&gt; `...69`
+## • `` -&gt; `...70`
+## • `` -&gt; `...72`
+## • `` -&gt; `...73`
+## • `` -&gt; `...75`
+## • `` -&gt; `...76`
+## • `` -&gt; `...78`
+## • `` -&gt; `...79`
+## • `` -&gt; `...81`
+## • `` -&gt; `...82`
+## • `` -&gt; `...84`
+## • `` -&gt; `...85`
+## • `` -&gt; `...87`
+## • `` -&gt; `...88`
+## • `` -&gt; `...90`
+## • `` -&gt; `...91`
+## • `` -&gt; `...93`
+## • `` -&gt; `...94`
+## • `` -&gt; `...96`
+## • `` -&gt; `...97`
+## • `` -&gt; `...99`
+## • `` -&gt; `...100`
+## • `` -&gt; `...102`
+## • `` -&gt; `...103`
+## • `` -&gt; `...105`
+## • `` -&gt; `...106`
+## • `` -&gt; `...108`
+## • `` -&gt; `...109`
+## • `` -&gt; `...111`
+## • `` -&gt; `...112`
+## • `` -&gt; `...114`
+## • `` -&gt; `...115`
+## • `` -&gt; `...117`
+## • `` -&gt; `...118`
+## • `` -&gt; `...120`
+## • `` -&gt; `...121`
+## • `` -&gt; `...123`
+## • `` -&gt; `...124`
+## • `` -&gt; `...126`
+## • `` -&gt; `...127`
+## • `` -&gt; `...129`
+## • `` -&gt; `...130`
+## • `` -&gt; `...132`
+## • `` -&gt; `...133`</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="data-import.html#cb20-1" tabindex="-1"></a><span class="fu">head</span>(fh)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["Survey Edition"],"name":[1],"type":["chr"],"align":["left"]},{"label":["Jan.-Feb. 1973"],"name":[2],"type":["chr"],"align":["left"]},{"label":["...3"],"name":[3],"type":["chr"],"align":["left"]},{"label":["...4"],"name":[4],"type":["chr"],"align":["left"]},{"label":["Jan.-Feb. 1974"],"name":[5],"type":["chr"],"align":["left"]},{"label":["...6"],"name":[6],"type":["chr"],"align":["left"]},{"label":["...7"],"name":[7],"type":["chr"],"align":["left"]},{"label":["Jan.-Feb. 1975"],"name":[8],"type":["chr"],"align":["left"]},{"label":["...9"],"name":[9],"type":["chr"],"align":["left"]},{"label":["...10"],"name":[10],"type":["chr"],"align":["left"]},{"label":["Jan.-Feb. 1976"],"name":[11],"type":["chr"],"align":["left"]},{"label":["...12"],"name":[12],"type":["chr"],"align":["left"]},{"label":["...13"],"name":[13],"type":["chr"],"align":["left"]},{"label":["Jan.-Feb. 1977"],"name":[14],"type":["chr"],"align":["left"]},{"label":["...15"],"name":[15],"type":["chr"],"align":["left"]},{"label":["...16"],"name":[16],"type":["chr"],"align":["left"]},{"label":["1978"],"name":[17],"type":["chr"],"align":["left"]},{"label":["...18"],"name":[18],"type":["chr"],"align":["left"]},{"label":["...19"],"name":[19],"type":["chr"],"align":["left"]},{"label":["1979"],"name":[20],"type":["chr"],"align":["left"]},{"label":["...21"],"name":[21],"type":["chr"],"align":["left"]},{"label":["...22"],"name":[22],"type":["chr"],"align":["left"]},{"label":["1980"],"name":[23],"type":["chr"],"align":["left"]},{"label":["...24"],"name":[24],"type":["chr"],"align":["left"]},{"label":["...25"],"name":[25],"type":["chr"],"align":["left"]},{"label":["1981"],"name":[26],"type":["chr"],"align":["left"]},{"label":["...27"],"name":[27],"type":["chr"],"align":["left"]},{"label":["...28"],"name":[28],"type":["chr"],"align":["left"]},{"label":["1982"],"name":[29],"type":["chr"],"align":["left"]},{"label":["...30"],"name":[30],"type":["chr"],"align":["left"]},{"label":["...31"],"name":[31],"type":["chr"],"align":["left"]},{"label":["1983-84"],"name":[32],"type":["chr"],"align":["left"]},{"label":["...33"],"name":[33],"type":["chr"],"align":["left"]},{"label":["...34"],"name":[34],"type":["chr"],"align":["left"]},{"label":["1984-85"],"name":[35],"type":["chr"],"align":["left"]},{"label":["...36"],"name":[36],"type":["chr"],"align":["left"]},{"label":["...37"],"name":[37],"type":["chr"],"align":["left"]},{"label":["1985-86"],"name":[38],"type":["chr"],"align":["left"]},{"label":["...39"],"name":[39],"type":["chr"],"align":["left"]},{"label":["...40"],"name":[40],"type":["chr"],"align":["left"]},{"label":["1986-87"],"name":[41],"type":["chr"],"align":["left"]},{"label":["...42"],"name":[42],"type":["chr"],"align":["left"]},{"label":["...43"],"name":[43],"type":["chr"],"align":["left"]},{"label":["1987-88"],"name":[44],"type":["chr"],"align":["left"]},{"label":["...45"],"name":[45],"type":["chr"],"align":["left"]},{"label":["...46"],"name":[46],"type":["chr"],"align":["left"]},{"label":["1988-89"],"name":[47],"type":["chr"],"align":["left"]},{"label":["...48"],"name":[48],"type":["chr"],"align":["left"]},{"label":["...49"],"name":[49],"type":["chr"],"align":["left"]},{"label":["1989-90"],"name":[50],"type":["chr"],"align":["left"]},{"label":["...51"],"name":[51],"type":["chr"],"align":["left"]},{"label":["...52"],"name":[52],"type":["chr"],"align":["left"]},{"label":["1990-91"],"name":[53],"type":["chr"],"align":["left"]},{"label":["...54"],"name":[54],"type":["chr"],"align":["left"]},{"label":["...55"],"name":[55],"type":["chr"],"align":["left"]},{"label":["1991-92"],"name":[56],"type":["chr"],"align":["left"]},{"label":["...57"],"name":[57],"type":["chr"],"align":["left"]},{"label":["...58"],"name":[58],"type":["chr"],"align":["left"]},{"label":["1992-93"],"name":[59],"type":["chr"],"align":["left"]},{"label":["...60"],"name":[60],"type":["chr"],"align":["left"]},{"label":["...61"],"name":[61],"type":["chr"],"align":["left"]},{"label":["1993-94"],"name":[62],"type":["chr"],"align":["left"]},{"label":["...63"],"name":[63],"type":["chr"],"align":["left"]},{"label":["...64"],"name":[64],"type":["chr"],"align":["left"]},{"label":["1994-95"],"name":[65],"type":["chr"],"align":["left"]},{"label":["...66"],"name":[66],"type":["chr"],"align":["left"]},{"label":["...67"],"name":[67],"type":["chr"],"align":["left"]},{"label":["1995-96"],"name":[68],"type":["chr"],"align":["left"]},{"label":["...69"],"name":[69],"type":["chr"],"align":["left"]},{"label":["...70"],"name":[70],"type":["chr"],"align":["left"]},{"label":["1996-97"],"name":[71],"type":["chr"],"align":["left"]},{"label":["...72"],"name":[72],"type":["chr"],"align":["left"]},{"label":["...73"],"name":[73],"type":["chr"],"align":["left"]},{"label":["1997-98"],"name":[74],"type":["chr"],"align":["left"]},{"label":["...75"],"name":[75],"type":["chr"],"align":["left"]},{"label":["...76"],"name":[76],"type":["chr"],"align":["left"]},{"label":["1998-99"],"name":[77],"type":["chr"],"align":["left"]},{"label":["...78"],"name":[78],"type":["chr"],"align":["left"]},{"label":["...79"],"name":[79],"type":["chr"],"align":["left"]},{"label":["1999-2000"],"name":[80],"type":["chr"],"align":["left"]},{"label":["...81"],"name":[81],"type":["chr"],"align":["left"]},{"label":["...82"],"name":[82],"type":["chr"],"align":["left"]},{"label":["2000-01"],"name":[83],"type":["chr"],"align":["left"]},{"label":["...84"],"name":[84],"type":["chr"],"align":["left"]},{"label":["...85"],"name":[85],"type":["chr"],"align":["left"]},{"label":["2001-02"],"name":[86],"type":["chr"],"align":["left"]},{"label":["...87"],"name":[87],"type":["chr"],"align":["left"]},{"label":["...88"],"name":[88],"type":["chr"],"align":["left"]},{"label":["2003"],"name":[89],"type":["chr"],"align":["left"]},{"label":["...90"],"name":[90],"type":["chr"],"align":["left"]},{"label":["...91"],"name":[91],"type":["chr"],"align":["left"]},{"label":["2004"],"name":[92],"type":["chr"],"align":["left"]},{"label":["...93"],"name":[93],"type":["chr"],"align":["left"]},{"label":["...94"],"name":[94],"type":["chr"],"align":["left"]},{"label":["2005"],"name":[95],"type":["chr"],"align":["left"]},{"label":["...96"],"name":[96],"type":["chr"],"align":["left"]},{"label":["...97"],"name":[97],"type":["chr"],"align":["left"]},{"label":["2006"],"name":[98],"type":["chr"],"align":["left"]},{"label":["...99"],"name":[99],"type":["chr"],"align":["left"]},{"label":["...100"],"name":[100],"type":["chr"],"align":["left"]},{"label":["2007"],"name":[101],"type":["chr"],"align":["left"]},{"label":["...102"],"name":[102],"type":["chr"],"align":["left"]},{"label":["...103"],"name":[103],"type":["chr"],"align":["left"]},{"label":["2008"],"name":[104],"type":["chr"],"align":["left"]},{"label":["...105"],"name":[105],"type":["chr"],"align":["left"]},{"label":["...106"],"name":[106],"type":["chr"],"align":["left"]},{"label":["2009"],"name":[107],"type":["chr"],"align":["left"]},{"label":["...108"],"name":[108],"type":["chr"],"align":["left"]},{"label":["...109"],"name":[109],"type":["chr"],"align":["left"]},{"label":["2010"],"name":[110],"type":["chr"],"align":["left"]},{"label":["...111"],"name":[111],"type":["chr"],"align":["left"]},{"label":["...112"],"name":[112],"type":["chr"],"align":["left"]},{"label":["2011"],"name":[113],"type":["chr"],"align":["left"]},{"label":["...114"],"name":[114],"type":["chr"],"align":["left"]},{"label":["...115"],"name":[115],"type":["chr"],"align":["left"]},{"label":["2012"],"name":[116],"type":["chr"],"align":["left"]},{"label":["...117"],"name":[117],"type":["chr"],"align":["left"]},{"label":["...118"],"name":[118],"type":["chr"],"align":["left"]},{"label":["2013"],"name":[119],"type":["chr"],"align":["left"]},{"label":["...120"],"name":[120],"type":["chr"],"align":["left"]},{"label":["...121"],"name":[121],"type":["chr"],"align":["left"]},{"label":["2014"],"name":[122],"type":["chr"],"align":["left"]},{"label":["...123"],"name":[123],"type":["chr"],"align":["left"]},{"label":["...124"],"name":[124],"type":["chr"],"align":["left"]},{"label":["2015"],"name":[125],"type":["chr"],"align":["left"]},{"label":["...126"],"name":[126],"type":["chr"],"align":["left"]},{"label":["...127"],"name":[127],"type":["chr"],"align":["left"]},{"label":["2016"],"name":[128],"type":["chr"],"align":["left"]},{"label":["...129"],"name":[129],"type":["chr"],"align":["left"]},{"label":["...130"],"name":[130],"type":["chr"],"align":["left"]},{"label":["2017"],"name":[131],"type":["chr"],"align":["left"]},{"label":["...132"],"name":[132],"type":["chr"],"align":["left"]},{"label":["...133"],"name":[133],"type":["chr"],"align":["left"]}],"data":[{"1":"Year(s) Under Review","2":"1972","3":"NA","4":"NA","5":"1973","6":"NA","7":"NA","8":"1974","9":"NA","10":"NA","11":"1975","12":"NA","13":"NA","14":"1976","15":"NA","16":"NA","17":"1977","18":"NA","19":"NA","20":"1978","21":"NA","22":"NA","23":"1979","24":"NA","25":"NA","26":"1980","27":"NA","28":"NA","29":"Jan.1981-Aug. 1982","30":"NA","31":"NA","32":"Aug.1982-Nov.1983","33":"NA","34":"NA","35":"Nov.1983-Nov.1984","36":"NA","37":"NA","38":"Nov.1984-Nov.1985","39":"NA","40":"NA","41":"Nov.1985-Nov.1986","42":"NA","43":"NA","44":"Nov.1986-Nov.1987","45":"NA","46":"NA","47":"Nov.1987-Nov.1988","48":"NA","49":"NA","50":"Nov.1988-Dec.1989","51":"NA","52":"NA","53":"1990","54":"NA","55":"NA","56":"1991","57":"NA","58":"NA","59":"1992","60":"NA","61":"NA","62":"1993","63":"NA","64":"NA","65":"1994","66":"NA","67":"NA","68":"1995","69":"NA","70":"NA","71":"1996","72":"NA","73":"NA","74":"1997","75":"NA","76":"NA","77":"1998","78":"NA","79":"NA","80":"1999","81":"NA","82":"NA","83":"2000","84":"NA","85":"NA","86":"2001","87":"NA","88":"NA","89":"2002","90":"NA","91":"NA","92":"2003","93":"NA","94":"NA","95":"2004","96":"NA","97":"NA","98":"2005","99":"NA","100":"NA","101":"2006","102":"NA","103":"NA","104":"2007","105":"NA","106":"NA","107":"2008","108":"NA","109":"NA","110":"2009","111":"NA","112":"NA","113":"2010","114":"NA","115":"NA","116":"2011","117":"NA","118":"NA","119":"2012","120":"NA","121":"NA","122":"2013","123":"NA","124":"NA","125":"2014","126":"NA","127":"NA","128":"2015","129":"NA","130":"NA","131":"2016","132":"NA","133":"NA"},{"1":"NA","2":"PR","3":"CL","4":"Status","5":"PR","6":"CL","7":"Status","8":"PR","9":"CL","10":"Status","11":"PR","12":"CL","13":"Status","14":"PR","15":"CL","16":"Status","17":"PR","18":"CL","19":"Status","20":"PR","21":"CL","22":"Status","23":"PR","24":"CL","25":"Status","26":"PR","27":"CL","28":"Status","29":"PR","30":"CL","31":"Status","32":"PR","33":"CL","34":"Status","35":"PR","36":"CL","37":"Status","38":"PR","39":"CL","40":"Status","41":"PR","42":"CL","43":"Status","44":"PR","45":"CL","46":"Status","47":"PR","48":"CL","49":"Status","50":"PR","51":"CL","52":"Status","53":"PR","54":"CL","55":"Status","56":"PR","57":"CL","58":"Status","59":"PR","60":"CL","61":"Status","62":"PR","63":"CL","64":"Status","65":"PR","66":"CL","67":"Status","68":"PR","69":"CL","70":"Status","71":"PR","72":"CL","73":"Status","74":"PR","75":"CL","76":"Status","77":"PR","78":"CL","79":"Status","80":"PR","81":"CL","82":"Status","83":"PR","84":"CL","85":"Status","86":"PR","87":"CL","88":"Status","89":"PR","90":"CL","91":"Status","92":"PR","93":"CL","94":"Status","95":"PR","96":"CL","97":"Status","98":"PR","99":"CL","100":"Status","101":"PR","102":"CL","103":"Status","104":"PR","105":"CL","106":"Status","107":"PR","108":"CL","109":"Status","110":"PR","111":"CL","112":"Status","113":"PR","114":"CL","115":"Status","116":"PR","117":"CL","118":"Status","119":"PR","120":"CL","121":"Status","122":"PR","123":"CL","124":"Status","125":"PR","126":"CL","127":"Status","128":"PR","129":"CL","130":"Status","131":"PR","132":"CL","133":"Status"},{"1":"Afghanistan","2":"4","3":"5","4":"PF","5":"7","6":"6","7":"NF","8":"7","9":"6","10":"NF","11":"7","12":"6","13":"NF","14":"7","15":"6","16":"NF","17":"6","18":"6","19":"NF","20":"7","21":"7","22":"NF","23":"7","24":"7","25":"NF","26":"7","27":"7","28":"NF","29":"7","30":"7","31":"NF","32":"7","33":"7","34":"NF","35":"7","36":"7","37":"NF","38":"7","39":"7","40":"NF","41":"7","42":"7","43":"NF","44":"7","45":"7","46":"NF","47":"6","48":"6","49":"NF","50":"7","51":"7","52":"NF","53":"7","54":"7","55":"NF","56":"7","57":"7","58":"NF","59":"6","60":"6","61":"NF","62":"7","63":"7","64":"NF","65":"7","66":"7","67":"NF","68":"7","69":"7","70":"NF","71":"7","72":"7","73":"NF","74":"7","75":"7","76":"NF","77":"7","78":"7","79":"NF","80":"7","81":"7","82":"NF","83":"7","84":"7","85":"NF","86":"7","87":"7","88":"NF","89":"6","90":"6","91":"NF","92":"6","93":"6","94":"NF","95":"5","96":"6","97":"NF","98":"5","99":"5","100":"PF","101":"5","102":"5","103":"PF","104":"5","105":"5","106":"PF","107":"5","108":"6","109":"NF","110":"6","111":"6","112":"NF","113":"6","114":"6","115":"NF","116":"6","117":"6","118":"NF","119":"6","120":"6","121":"NF","122":"6","123":"6","124":"NF","125":"6","126":"6","127":"NF","128":"6","129":"6","130":"NF","131":"6","132":"6","133":"NF"},{"1":"Albania","2":"7","3":"7","4":"NF","5":"7","6":"7","7":"NF","8":"7","9":"7","10":"NF","11":"7","12":"7","13":"NF","14":"7","15":"7","16":"NF","17":"7","18":"7","19":"NF","20":"7","21":"7","22":"NF","23":"7","24":"7","25":"NF","26":"7","27":"7","28":"NF","29":"7","30":"7","31":"NF","32":"7","33":"7","34":"NF","35":"7","36":"7","37":"NF","38":"7","39":"7","40":"NF","41":"7","42":"7","43":"NF","44":"7","45":"7","46":"NF","47":"7","48":"7","49":"NF","50":"7","51":"7","52":"NF","53":"7","54":"6","55":"NF","56":"4","57":"4","58":"PF","59":"4","60":"3","61":"PF","62":"2","63":"4","64":"PF","65":"3","66":"4","67":"PF","68":"3","69":"4","70":"PF","71":"4","72":"4","73":"PF","74":"4","75":"4","76":"PF","77":"4","78":"5","79":"PF","80":"4","81":"5","82":"PF","83":"4","84":"5","85":"PF","86":"3","87":"4","88":"PF","89":"3","90":"3","91":"PF","92":"3","93":"3","94":"PF","95":"3","96":"3","97":"PF","98":"3","99":"3","100":"PF","101":"3","102":"3","103":"PF","104":"3","105":"3","106":"PF","107":"3","108":"3","109":"PF","110":"3","111":"3","112":"PF","113":"3","114":"3","115":"PF","116":"3","117":"3","118":"PF","119":"3","120":"3","121":"PF","122":"3","123":"3","124":"PF","125":"3","126":"3","127":"PF","128":"3","129":"3","130":"PF","131":"3","132":"3","133":"PF"},{"1":"Algeria","2":"6","3":"6","4":"NF","5":"6","6":"6","7":"NF","8":"6","9":"6","10":"NF","11":"7","12":"6","13":"NF","14":"6","15":"6","16":"NF","17":"6","18":"6","19":"NF","20":"6","21":"6","22":"NF","23":"6","24":"6","25":"NF","26":"6","27":"6","28":"NF","29":"6","30":"6","31":"NF","32":"6","33":"6","34":"NF","35":"6","36":"6","37":"NF","38":"6","39":"6","40":"NF","41":"6","42":"6","43":"NF","44":"6","45":"6","46":"NF","47":"5","48":"6","49":"NF","50":"6","51":"4","52":"PF","53":"4","54":"4","55":"PF","56":"4","57":"4","58":"PF","59":"7","60":"6","61":"NF","62":"7","63":"6","64":"NF","65":"7","66":"7","67":"NF","68":"6","69":"6","70":"NF","71":"6","72":"6","73":"NF","74":"6","75":"6","76":"NF","77":"6","78":"5","79":"NF","80":"6","81":"5","82":"NF","83":"6","84":"5","85":"NF","86":"6","87":"5","88":"NF","89":"6","90":"5","91":"NF","92":"6","93":"5","94":"NF","95":"6","96":"5","97":"NF","98":"6","99":"5","100":"NF","101":"6","102":"5","103":"NF","104":"6","105":"5","106":"NF","107":"6","108":"5","109":"NF","110":"6","111":"5","112":"NF","113":"6","114":"5","115":"NF","116":"6","117":"5","118":"NF","119":"6","120":"5","121":"NF","122":"6","123":"5","124":"NF","125":"6","126":"5","127":"NF","128":"6","129":"5","130":"NF","131":"6","132":"5","133":"NF"},{"1":"Andorra","2":"4","3":"3","4":"PF","5":"4","6":"4","7":"PF","8":"4","9":"4","10":"PF","11":"4","12":"4","13":"PF","14":"4","15":"4","16":"PF","17":"-","18":"-","19":"-","20":"-","21":"-","22":"-","23":"-","24":"-","25":"-","26":"-","27":"-","28":"-","29":"-","30":"-","31":"-","32":"-","33":"-","34":"-","35":"-","36":"-","37":"-","38":"-","39":"-","40":"-","41":"-","42":"-","43":"-","44":"-","45":"-","46":"-","47":"-","48":"-","49":"-","50":"-","51":"-","52":"-","53":"-","54":"-","55":"-","56":"-","57":"-","58":"-","59":"-","60":"-","61":"-","62":"2","63":"1","64":"F","65":"1","66":"1","67":"F","68":"1","69":"1","70":"F","71":"1","72":"1","73":"F","74":"1","75":"1","76":"F","77":"1","78":"1","79":"F","80":"1","81":"1","82":"F","83":"1","84":"1","85":"F","86":"1","87":"1","88":"F","89":"1","90":"1","91":"F","92":"1","93":"1","94":"F","95":"1","96":"1","97":"F","98":"1","99":"1","100":"F","101":"1","102":"1","103":"F","104":"1","105":"1","106":"F","107":"1","108":"1","109":"F","110":"1","111":"1","112":"F","113":"1","114":"1","115":"F","116":"1","117":"1","118":"F","119":"1","120":"1","121":"F","122":"1","123":"1","124":"F","125":"1","126":"1","127":"F","128":"1","129":"1","130":"F","131":"1","132":"1","133":"F"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="変数名の適切な読み込み-again" class="section level3 hasAnchor" number="1.5.2">
+<h3><span class="header-section-number">1.5.2</span> 変数名の適切な読み込み (again)<a href="data-import.html#変数名の適切な読み込み-again" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>これで一安心かと思いきや、そうではありません。
+よくみると変数名が適切に選択されていないので、先ほどと同様に<code>skip</code>を設定する必要があります。</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="data-import.html#cb21-1" tabindex="-1"></a>fh <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/FH_Country.xls&quot;</span>, <span class="at">sheet=</span><span class="dv">2</span>, <span class="at">skip=</span><span class="dv">2</span>)</span></code></pre></div>
+<pre><code>## New names:
+## • `` -&gt; `...1`
+## • `PR` -&gt; `PR...2`
+## • `CL` -&gt; `CL...3`
+## • `Status` -&gt; `Status...4`
+## • `PR` -&gt; `PR...5`
+## • `CL` -&gt; `CL...6`
+## • `Status` -&gt; `Status...7`
+## • `PR` -&gt; `PR...8`
+## • `CL` -&gt; `CL...9`
+## • `Status` -&gt; `Status...10`
+## • `PR` -&gt; `PR...11`
+## • `CL` -&gt; `CL...12`
+## • `Status` -&gt; `Status...13`
+## • `PR` -&gt; `PR...14`
+## • `CL` -&gt; `CL...15`
+## • `Status` -&gt; `Status...16`
+## • `PR` -&gt; `PR...17`
+## • `CL` -&gt; `CL...18`
+## • `Status` -&gt; `Status...19`
+## • `PR` -&gt; `PR...20`
+## • `CL` -&gt; `CL...21`
+## • `Status` -&gt; `Status...22`
+## • `PR` -&gt; `PR...23`
+## • `CL` -&gt; `CL...24`
+## • `Status` -&gt; `Status...25`
+## • `PR` -&gt; `PR...26`
+## • `CL` -&gt; `CL...27`
+## • `Status` -&gt; `Status...28`
+## • `PR` -&gt; `PR...29`
+## • `CL` -&gt; `CL...30`
+## • `Status` -&gt; `Status...31`
+## • `PR` -&gt; `PR...32`
+## • `CL` -&gt; `CL...33`
+## • `Status` -&gt; `Status...34`
+## • `PR` -&gt; `PR...35`
+## • `CL` -&gt; `CL...36`
+## • `Status` -&gt; `Status...37`
+## • `PR` -&gt; `PR...38`
+## • `CL` -&gt; `CL...39`
+## • `Status` -&gt; `Status...40`
+## • `PR` -&gt; `PR...41`
+## • `CL` -&gt; `CL...42`
+## • `Status` -&gt; `Status...43`
+## • `PR` -&gt; `PR...44`
+## • `CL` -&gt; `CL...45`
+## • `Status` -&gt; `Status...46`
+## • `PR` -&gt; `PR...47`
+## • `CL` -&gt; `CL...48`
+## • `Status` -&gt; `Status...49`
+## • `PR` -&gt; `PR...50`
+## • `CL` -&gt; `CL...51`
+## • `Status` -&gt; `Status...52`
+## • `PR` -&gt; `PR...53`
+## • `CL` -&gt; `CL...54`
+## • `Status` -&gt; `Status...55`
+## • `PR` -&gt; `PR...56`
+## • `CL` -&gt; `CL...57`
+## • `Status` -&gt; `Status...58`
+## • `PR` -&gt; `PR...59`
+## • `CL` -&gt; `CL...60`
+## • `Status` -&gt; `Status...61`
+## • `PR` -&gt; `PR...62`
+## • `CL` -&gt; `CL...63`
+## • `Status` -&gt; `Status...64`
+## • `PR` -&gt; `PR...65`
+## • `CL` -&gt; `CL...66`
+## • `Status` -&gt; `Status...67`
+## • `PR` -&gt; `PR...68`
+## • `CL` -&gt; `CL...69`
+## • `Status` -&gt; `Status...70`
+## • `PR` -&gt; `PR...71`
+## • `CL` -&gt; `CL...72`
+## • `Status` -&gt; `Status...73`
+## • `PR` -&gt; `PR...74`
+## • `CL` -&gt; `CL...75`
+## • `Status` -&gt; `Status...76`
+## • `PR` -&gt; `PR...77`
+## • `CL` -&gt; `CL...78`
+## • `Status` -&gt; `Status...79`
+## • `PR` -&gt; `PR...80`
+## • `CL` -&gt; `CL...81`
+## • `Status` -&gt; `Status...82`
+## • `PR` -&gt; `PR...83`
+## • `CL` -&gt; `CL...84`
+## • `Status` -&gt; `Status...85`
+## • `PR` -&gt; `PR...86`
+## • `CL` -&gt; `CL...87`
+## • `Status` -&gt; `Status...88`
+## • `PR` -&gt; `PR...89`
+## • `CL` -&gt; `CL...90`
+## • `Status` -&gt; `Status...91`
+## • `PR` -&gt; `PR...92`
+## • `CL` -&gt; `CL...93`
+## • `Status` -&gt; `Status...94`
+## • `PR` -&gt; `PR...95`
+## • `CL` -&gt; `CL...96`
+## • `Status` -&gt; `Status...97`
+## • `PR` -&gt; `PR...98`
+## • `CL` -&gt; `CL...99`
+## • `Status` -&gt; `Status...100`
+## • `PR` -&gt; `PR...101`
+## • `CL` -&gt; `CL...102`
+## • `Status` -&gt; `Status...103`
+## • `PR` -&gt; `PR...104`
+## • `CL` -&gt; `CL...105`
+## • `Status` -&gt; `Status...106`
+## • `PR` -&gt; `PR...107`
+## • `CL` -&gt; `CL...108`
+## • `Status` -&gt; `Status...109`
+## • `PR` -&gt; `PR...110`
+## • `CL` -&gt; `CL...111`
+## • `Status` -&gt; `Status...112`
+## • `PR` -&gt; `PR...113`
+## • `CL` -&gt; `CL...114`
+## • `Status` -&gt; `Status...115`
+## • `PR` -&gt; `PR...116`
+## • `CL` -&gt; `CL...117`
+## • `Status` -&gt; `Status...118`
+## • `PR` -&gt; `PR...119`
+## • `CL` -&gt; `CL...120`
+## • `Status` -&gt; `Status...121`
+## • `PR` -&gt; `PR...122`
+## • `CL` -&gt; `CL...123`
+## • `Status` -&gt; `Status...124`
+## • `PR` -&gt; `PR...125`
+## • `CL` -&gt; `CL...126`
+## • `Status` -&gt; `Status...127`
+## • `PR` -&gt; `PR...128`
+## • `CL` -&gt; `CL...129`
+## • `Status` -&gt; `Status...130`
+## • `PR` -&gt; `PR...131`
+## • `CL` -&gt; `CL...132`
+## • `Status` -&gt; `Status...133`</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="data-import.html#cb23-1" tabindex="-1"></a><span class="fu">head</span>(fh)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["...1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["PR...2"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CL...3"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Status...4"],"name":[4],"type":["chr"],"align":["left"]},{"label":["PR...5"],"name":[5],"type":["chr"],"align":["left"]},{"label":["CL...6"],"name":[6],"type":["chr"],"align":["left"]},{"label":["Status...7"],"name":[7],"type":["chr"],"align":["left"]},{"label":["PR...8"],"name":[8],"type":["chr"],"align":["left"]},{"label":["CL...9"],"name":[9],"type":["chr"],"align":["left"]},{"label":["Status...10"],"name":[10],"type":["chr"],"align":["left"]},{"label":["PR...11"],"name":[11],"type":["chr"],"align":["left"]},{"label":["CL...12"],"name":[12],"type":["chr"],"align":["left"]},{"label":["Status...13"],"name":[13],"type":["chr"],"align":["left"]},{"label":["PR...14"],"name":[14],"type":["chr"],"align":["left"]},{"label":["CL...15"],"name":[15],"type":["chr"],"align":["left"]},{"label":["Status...16"],"name":[16],"type":["chr"],"align":["left"]},{"label":["PR...17"],"name":[17],"type":["chr"],"align":["left"]},{"label":["CL...18"],"name":[18],"type":["chr"],"align":["left"]},{"label":["Status...19"],"name":[19],"type":["chr"],"align":["left"]},{"label":["PR...20"],"name":[20],"type":["chr"],"align":["left"]},{"label":["CL...21"],"name":[21],"type":["chr"],"align":["left"]},{"label":["Status...22"],"name":[22],"type":["chr"],"align":["left"]},{"label":["PR...23"],"name":[23],"type":["chr"],"align":["left"]},{"label":["CL...24"],"name":[24],"type":["chr"],"align":["left"]},{"label":["Status...25"],"name":[25],"type":["chr"],"align":["left"]},{"label":["PR...26"],"name":[26],"type":["chr"],"align":["left"]},{"label":["CL...27"],"name":[27],"type":["chr"],"align":["left"]},{"label":["Status...28"],"name":[28],"type":["chr"],"align":["left"]},{"label":["PR...29"],"name":[29],"type":["chr"],"align":["left"]},{"label":["CL...30"],"name":[30],"type":["chr"],"align":["left"]},{"label":["Status...31"],"name":[31],"type":["chr"],"align":["left"]},{"label":["PR...32"],"name":[32],"type":["chr"],"align":["left"]},{"label":["CL...33"],"name":[33],"type":["chr"],"align":["left"]},{"label":["Status...34"],"name":[34],"type":["chr"],"align":["left"]},{"label":["PR...35"],"name":[35],"type":["chr"],"align":["left"]},{"label":["CL...36"],"name":[36],"type":["chr"],"align":["left"]},{"label":["Status...37"],"name":[37],"type":["chr"],"align":["left"]},{"label":["PR...38"],"name":[38],"type":["chr"],"align":["left"]},{"label":["CL...39"],"name":[39],"type":["chr"],"align":["left"]},{"label":["Status...40"],"name":[40],"type":["chr"],"align":["left"]},{"label":["PR...41"],"name":[41],"type":["chr"],"align":["left"]},{"label":["CL...42"],"name":[42],"type":["chr"],"align":["left"]},{"label":["Status...43"],"name":[43],"type":["chr"],"align":["left"]},{"label":["PR...44"],"name":[44],"type":["chr"],"align":["left"]},{"label":["CL...45"],"name":[45],"type":["chr"],"align":["left"]},{"label":["Status...46"],"name":[46],"type":["chr"],"align":["left"]},{"label":["PR...47"],"name":[47],"type":["chr"],"align":["left"]},{"label":["CL...48"],"name":[48],"type":["chr"],"align":["left"]},{"label":["Status...49"],"name":[49],"type":["chr"],"align":["left"]},{"label":["PR...50"],"name":[50],"type":["chr"],"align":["left"]},{"label":["CL...51"],"name":[51],"type":["chr"],"align":["left"]},{"label":["Status...52"],"name":[52],"type":["chr"],"align":["left"]},{"label":["PR...53"],"name":[53],"type":["chr"],"align":["left"]},{"label":["CL...54"],"name":[54],"type":["chr"],"align":["left"]},{"label":["Status...55"],"name":[55],"type":["chr"],"align":["left"]},{"label":["PR...56"],"name":[56],"type":["chr"],"align":["left"]},{"label":["CL...57"],"name":[57],"type":["chr"],"align":["left"]},{"label":["Status...58"],"name":[58],"type":["chr"],"align":["left"]},{"label":["PR...59"],"name":[59],"type":["chr"],"align":["left"]},{"label":["CL...60"],"name":[60],"type":["chr"],"align":["left"]},{"label":["Status...61"],"name":[61],"type":["chr"],"align":["left"]},{"label":["PR...62"],"name":[62],"type":["chr"],"align":["left"]},{"label":["CL...63"],"name":[63],"type":["chr"],"align":["left"]},{"label":["Status...64"],"name":[64],"type":["chr"],"align":["left"]},{"label":["PR...65"],"name":[65],"type":["chr"],"align":["left"]},{"label":["CL...66"],"name":[66],"type":["chr"],"align":["left"]},{"label":["Status...67"],"name":[67],"type":["chr"],"align":["left"]},{"label":["PR...68"],"name":[68],"type":["chr"],"align":["left"]},{"label":["CL...69"],"name":[69],"type":["chr"],"align":["left"]},{"label":["Status...70"],"name":[70],"type":["chr"],"align":["left"]},{"label":["PR...71"],"name":[71],"type":["chr"],"align":["left"]},{"label":["CL...72"],"name":[72],"type":["chr"],"align":["left"]},{"label":["Status...73"],"name":[73],"type":["chr"],"align":["left"]},{"label":["PR...74"],"name":[74],"type":["chr"],"align":["left"]},{"label":["CL...75"],"name":[75],"type":["chr"],"align":["left"]},{"label":["Status...76"],"name":[76],"type":["chr"],"align":["left"]},{"label":["PR...77"],"name":[77],"type":["chr"],"align":["left"]},{"label":["CL...78"],"name":[78],"type":["chr"],"align":["left"]},{"label":["Status...79"],"name":[79],"type":["chr"],"align":["left"]},{"label":["PR...80"],"name":[80],"type":["chr"],"align":["left"]},{"label":["CL...81"],"name":[81],"type":["chr"],"align":["left"]},{"label":["Status...82"],"name":[82],"type":["chr"],"align":["left"]},{"label":["PR...83"],"name":[83],"type":["chr"],"align":["left"]},{"label":["CL...84"],"name":[84],"type":["chr"],"align":["left"]},{"label":["Status...85"],"name":[85],"type":["chr"],"align":["left"]},{"label":["PR...86"],"name":[86],"type":["chr"],"align":["left"]},{"label":["CL...87"],"name":[87],"type":["chr"],"align":["left"]},{"label":["Status...88"],"name":[88],"type":["chr"],"align":["left"]},{"label":["PR...89"],"name":[89],"type":["chr"],"align":["left"]},{"label":["CL...90"],"name":[90],"type":["chr"],"align":["left"]},{"label":["Status...91"],"name":[91],"type":["chr"],"align":["left"]},{"label":["PR...92"],"name":[92],"type":["chr"],"align":["left"]},{"label":["CL...93"],"name":[93],"type":["chr"],"align":["left"]},{"label":["Status...94"],"name":[94],"type":["chr"],"align":["left"]},{"label":["PR...95"],"name":[95],"type":["chr"],"align":["left"]},{"label":["CL...96"],"name":[96],"type":["chr"],"align":["left"]},{"label":["Status...97"],"name":[97],"type":["chr"],"align":["left"]},{"label":["PR...98"],"name":[98],"type":["chr"],"align":["left"]},{"label":["CL...99"],"name":[99],"type":["chr"],"align":["left"]},{"label":["Status...100"],"name":[100],"type":["chr"],"align":["left"]},{"label":["PR...101"],"name":[101],"type":["chr"],"align":["left"]},{"label":["CL...102"],"name":[102],"type":["chr"],"align":["left"]},{"label":["Status...103"],"name":[103],"type":["chr"],"align":["left"]},{"label":["PR...104"],"name":[104],"type":["chr"],"align":["left"]},{"label":["CL...105"],"name":[105],"type":["chr"],"align":["left"]},{"label":["Status...106"],"name":[106],"type":["chr"],"align":["left"]},{"label":["PR...107"],"name":[107],"type":["chr"],"align":["left"]},{"label":["CL...108"],"name":[108],"type":["chr"],"align":["left"]},{"label":["Status...109"],"name":[109],"type":["chr"],"align":["left"]},{"label":["PR...110"],"name":[110],"type":["chr"],"align":["left"]},{"label":["CL...111"],"name":[111],"type":["chr"],"align":["left"]},{"label":["Status...112"],"name":[112],"type":["chr"],"align":["left"]},{"label":["PR...113"],"name":[113],"type":["chr"],"align":["left"]},{"label":["CL...114"],"name":[114],"type":["chr"],"align":["left"]},{"label":["Status...115"],"name":[115],"type":["chr"],"align":["left"]},{"label":["PR...116"],"name":[116],"type":["chr"],"align":["left"]},{"label":["CL...117"],"name":[117],"type":["chr"],"align":["left"]},{"label":["Status...118"],"name":[118],"type":["chr"],"align":["left"]},{"label":["PR...119"],"name":[119],"type":["chr"],"align":["left"]},{"label":["CL...120"],"name":[120],"type":["chr"],"align":["left"]},{"label":["Status...121"],"name":[121],"type":["chr"],"align":["left"]},{"label":["PR...122"],"name":[122],"type":["chr"],"align":["left"]},{"label":["CL...123"],"name":[123],"type":["chr"],"align":["left"]},{"label":["Status...124"],"name":[124],"type":["chr"],"align":["left"]},{"label":["PR...125"],"name":[125],"type":["chr"],"align":["left"]},{"label":["CL...126"],"name":[126],"type":["chr"],"align":["left"]},{"label":["Status...127"],"name":[127],"type":["chr"],"align":["left"]},{"label":["PR...128"],"name":[128],"type":["chr"],"align":["left"]},{"label":["CL...129"],"name":[129],"type":["chr"],"align":["left"]},{"label":["Status...130"],"name":[130],"type":["chr"],"align":["left"]},{"label":["PR...131"],"name":[131],"type":["chr"],"align":["left"]},{"label":["CL...132"],"name":[132],"type":["chr"],"align":["left"]},{"label":["Status...133"],"name":[133],"type":["chr"],"align":["left"]}],"data":[{"1":"Afghanistan","2":"4","3":"5","4":"PF","5":"7","6":"6","7":"NF","8":"7","9":"6","10":"NF","11":"7","12":"6","13":"NF","14":"7","15":"6","16":"NF","17":"6","18":"6","19":"NF","20":"7","21":"7","22":"NF","23":"7","24":"7","25":"NF","26":"7","27":"7","28":"NF","29":"7","30":"7","31":"NF","32":"7","33":"7","34":"NF","35":"7","36":"7","37":"NF","38":"7","39":"7","40":"NF","41":"7","42":"7","43":"NF","44":"7","45":"7","46":"NF","47":"6","48":"6","49":"NF","50":"7","51":"7","52":"NF","53":"7","54":"7","55":"NF","56":"7","57":"7","58":"NF","59":"6","60":"6","61":"NF","62":"7","63":"7","64":"NF","65":"7","66":"7","67":"NF","68":"7","69":"7","70":"NF","71":"7","72":"7","73":"NF","74":"7","75":"7","76":"NF","77":"7","78":"7","79":"NF","80":"7","81":"7","82":"NF","83":"7","84":"7","85":"NF","86":"7","87":"7","88":"NF","89":"6","90":"6","91":"NF","92":"6","93":"6","94":"NF","95":"5","96":"6","97":"NF","98":"5","99":"5","100":"PF","101":"5","102":"5","103":"PF","104":"5","105":"5","106":"PF","107":"5","108":"6","109":"NF","110":"6","111":"6","112":"NF","113":"6","114":"6","115":"NF","116":"6","117":"6","118":"NF","119":"6","120":"6","121":"NF","122":"6","123":"6","124":"NF","125":"6","126":"6","127":"NF","128":"6","129":"6","130":"NF","131":"6","132":"6","133":"NF"},{"1":"Albania","2":"7","3":"7","4":"NF","5":"7","6":"7","7":"NF","8":"7","9":"7","10":"NF","11":"7","12":"7","13":"NF","14":"7","15":"7","16":"NF","17":"7","18":"7","19":"NF","20":"7","21":"7","22":"NF","23":"7","24":"7","25":"NF","26":"7","27":"7","28":"NF","29":"7","30":"7","31":"NF","32":"7","33":"7","34":"NF","35":"7","36":"7","37":"NF","38":"7","39":"7","40":"NF","41":"7","42":"7","43":"NF","44":"7","45":"7","46":"NF","47":"7","48":"7","49":"NF","50":"7","51":"7","52":"NF","53":"7","54":"6","55":"NF","56":"4","57":"4","58":"PF","59":"4","60":"3","61":"PF","62":"2","63":"4","64":"PF","65":"3","66":"4","67":"PF","68":"3","69":"4","70":"PF","71":"4","72":"4","73":"PF","74":"4","75":"4","76":"PF","77":"4","78":"5","79":"PF","80":"4","81":"5","82":"PF","83":"4","84":"5","85":"PF","86":"3","87":"4","88":"PF","89":"3","90":"3","91":"PF","92":"3","93":"3","94":"PF","95":"3","96":"3","97":"PF","98":"3","99":"3","100":"PF","101":"3","102":"3","103":"PF","104":"3","105":"3","106":"PF","107":"3","108":"3","109":"PF","110":"3","111":"3","112":"PF","113":"3","114":"3","115":"PF","116":"3","117":"3","118":"PF","119":"3","120":"3","121":"PF","122":"3","123":"3","124":"PF","125":"3","126":"3","127":"PF","128":"3","129":"3","130":"PF","131":"3","132":"3","133":"PF"},{"1":"Algeria","2":"6","3":"6","4":"NF","5":"6","6":"6","7":"NF","8":"6","9":"6","10":"NF","11":"7","12":"6","13":"NF","14":"6","15":"6","16":"NF","17":"6","18":"6","19":"NF","20":"6","21":"6","22":"NF","23":"6","24":"6","25":"NF","26":"6","27":"6","28":"NF","29":"6","30":"6","31":"NF","32":"6","33":"6","34":"NF","35":"6","36":"6","37":"NF","38":"6","39":"6","40":"NF","41":"6","42":"6","43":"NF","44":"6","45":"6","46":"NF","47":"5","48":"6","49":"NF","50":"6","51":"4","52":"PF","53":"4","54":"4","55":"PF","56":"4","57":"4","58":"PF","59":"7","60":"6","61":"NF","62":"7","63":"6","64":"NF","65":"7","66":"7","67":"NF","68":"6","69":"6","70":"NF","71":"6","72":"6","73":"NF","74":"6","75":"6","76":"NF","77":"6","78":"5","79":"NF","80":"6","81":"5","82":"NF","83":"6","84":"5","85":"NF","86":"6","87":"5","88":"NF","89":"6","90":"5","91":"NF","92":"6","93":"5","94":"NF","95":"6","96":"5","97":"NF","98":"6","99":"5","100":"NF","101":"6","102":"5","103":"NF","104":"6","105":"5","106":"NF","107":"6","108":"5","109":"NF","110":"6","111":"5","112":"NF","113":"6","114":"5","115":"NF","116":"6","117":"5","118":"NF","119":"6","120":"5","121":"NF","122":"6","123":"5","124":"NF","125":"6","126":"5","127":"NF","128":"6","129":"5","130":"NF","131":"6","132":"5","133":"NF"},{"1":"Andorra","2":"4","3":"3","4":"PF","5":"4","6":"4","7":"PF","8":"4","9":"4","10":"PF","11":"4","12":"4","13":"PF","14":"4","15":"4","16":"PF","17":"-","18":"-","19":"-","20":"-","21":"-","22":"-","23":"-","24":"-","25":"-","26":"-","27":"-","28":"-","29":"-","30":"-","31":"-","32":"-","33":"-","34":"-","35":"-","36":"-","37":"-","38":"-","39":"-","40":"-","41":"-","42":"-","43":"-","44":"-","45":"-","46":"-","47":"-","48":"-","49":"-","50":"-","51":"-","52":"-","53":"-","54":"-","55":"-","56":"-","57":"-","58":"-","59":"-","60":"-","61":"-","62":"2","63":"1","64":"F","65":"1","66":"1","67":"F","68":"1","69":"1","70":"F","71":"1","72":"1","73":"F","74":"1","75":"1","76":"F","77":"1","78":"1","79":"F","80":"1","81":"1","82":"F","83":"1","84":"1","85":"F","86":"1","87":"1","88":"F","89":"1","90":"1","91":"F","92":"1","93":"1","94":"F","95":"1","96":"1","97":"F","98":"1","99":"1","100":"F","101":"1","102":"1","103":"F","104":"1","105":"1","106":"F","107":"1","108":"1","109":"F","110":"1","111":"1","112":"F","113":"1","114":"1","115":"F","116":"1","117":"1","118":"F","119":"1","120":"1","121":"F","122":"1","123":"1","124":"F","125":"1","126":"1","127":"F","128":"1","129":"1","130":"F","131":"1","132":"1","133":"F"},{"1":"Angola","2":"-","3":"-","4":"-","5":"-","6":"-","7":"-","8":"-","9":"-","10":"-","11":"6","12":"6","13":"NF","14":"6","15":"6","16":"NF","17":"7","18":"7","19":"NF","20":"7","21":"7","22":"NF","23":"7","24":"7","25":"NF","26":"7","27":"7","28":"NF","29":"7","30":"7","31":"NF","32":"7","33":"7","34":"NF","35":"7","36":"7","37":"NF","38":"7","39":"7","40":"NF","41":"7","42":"7","43":"NF","44":"7","45":"7","46":"NF","47":"7","48":"7","49":"NF","50":"7","51":"7","52":"NF","53":"7","54":"7","55":"NF","56":"6","57":"4","58":"PF","59":"6","60":"6","61":"NF","62":"7","63":"7","64":"NF","65":"7","66":"7","67":"NF","68":"6","69":"6","70":"NF","71":"6","72":"6","73":"NF","74":"6","75":"6","76":"NF","77":"6","78":"6","79":"NF","80":"6","81":"6","82":"NF","83":"6","84":"6","85":"NF","86":"6","87":"6","88":"NF","89":"6","90":"5","91":"NF","92":"6","93":"5","94":"NF","95":"6","96":"5","97":"NF","98":"6","99":"5","100":"NF","101":"6","102":"5","103":"NF","104":"6","105":"5","106":"NF","107":"6","108":"5","109":"NF","110":"6","111":"5","112":"NF","113":"6","114":"5","115":"NF","116":"6","117":"5","118":"NF","119":"6","120":"5","121":"NF","122":"6","123":"5","124":"NF","125":"6","126":"5","127":"NF","128":"6","129":"6","130":"NF","131":"6","132":"6","133":"NF"},{"1":"Antigua & Barbuda","2":"-","3":"-","4":"-","5":"-","6":"-","7":"-","8":"-","9":"-","10":"-","11":"-","12":"-","13":"-","14":"-","15":"-","16":"-","17":"-","18":"-","19":"-","20":"-","21":"-","22":"-","23":"-","24":"-","25":"-","26":"-","27":"-","28":"-","29":"2","30":"2","31":"F","32":"2","33":"3","34":"F","35":"2","36":"3","37":"F","38":"2","39":"3","40":"F","41":"2","42":"3","43":"F","44":"2","45":"3","46":"F","47":"2","48":"3","49":"F","50":"2","51":"3","52":"F","53":"3","54":"2","55":"F","56":"3","57":"3","58":"PF","59":"3","60":"3","61":"PF","62":"4","63":"3","64":"PF","65":"4","66":"3","67":"PF","68":"4","69":"3","70":"PF","71":"4","72":"3","73":"PF","74":"4","75":"3","76":"PF","77":"4","78":"3","79":"PF","80":"4","81":"3","82":"PF","83":"4","84":"2","85":"PF","86":"4","87":"2","88":"PF","89":"4","90":"2","91":"PF","92":"4","93":"2","94":"PF","95":"2","96":"2","97":"F","98":"2","99":"2","100":"F","101":"2","102":"2","103":"F","104":"2","105":"2","106":"F","107":"2","108":"2","109":"F","110":"3","111":"2","112":"F","113":"3","114":"2","115":"F","116":"3","117":"2","118":"F","119":"2","120":"2","121":"F","122":"2","123":"2","124":"F","125":"2","126":"2","127":"F","128":"2","129":"2","130":"F","131":"2","132":"2","133":"F"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+</div>
+<div id="欠損値の処理" class="section level3 hasAnchor" number="1.5.3">
+<h3><span class="header-section-number">1.5.3</span> 欠損値の処理<a href="data-import.html#欠損値の処理" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>残念ながら問題はまだ残っています。
+<code>head()</code>でデータの冒頭を見たときに変数名の下に<code>&lt;chr&gt;</code>とあるのに注目してください。
+これは、当該変数が文字列 (character) であることを意味しています。</p>
+<p>国名やステータスが文字列なのは当然として、本来数値データのはずの<code>PR</code> (political rights) や<code>CL</code> (civil liberty) も文字列データになっています。
+元データを見てみると、ところどころ<code>-</code>という記号が含まれていることがわかります。</p>
+<p>実はこれはFreedom Houseのデータセットにおける欠損値なのですが、Rではデフォルトでは空欄を欠損値として認識します。
+そこで、やはりヘルプを見て<code>na</code>を設定して<code>-</code>も欠損値として読み込むようにします。</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="data-import.html#cb24-1" tabindex="-1"></a>fh <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">&quot;data/FH_Country.xls&quot;</span>, <span class="at">sheet=</span><span class="dv">2</span>, <span class="at">skip=</span><span class="dv">2</span>, <span class="at">na=</span><span class="st">&quot;-&quot;</span>)</span></code></pre></div>
+<pre><code>## New names:
+## • `` -&gt; `...1`
+## • `PR` -&gt; `PR...2`
+## • `CL` -&gt; `CL...3`
+## • `Status` -&gt; `Status...4`
+## • `PR` -&gt; `PR...5`
+## • `CL` -&gt; `CL...6`
+## • `Status` -&gt; `Status...7`
+## • `PR` -&gt; `PR...8`
+## • `CL` -&gt; `CL...9`
+## • `Status` -&gt; `Status...10`
+## • `PR` -&gt; `PR...11`
+## • `CL` -&gt; `CL...12`
+## • `Status` -&gt; `Status...13`
+## • `PR` -&gt; `PR...14`
+## • `CL` -&gt; `CL...15`
+## • `Status` -&gt; `Status...16`
+## • `PR` -&gt; `PR...17`
+## • `CL` -&gt; `CL...18`
+## • `Status` -&gt; `Status...19`
+## • `PR` -&gt; `PR...20`
+## • `CL` -&gt; `CL...21`
+## • `Status` -&gt; `Status...22`
+## • `PR` -&gt; `PR...23`
+## • `CL` -&gt; `CL...24`
+## • `Status` -&gt; `Status...25`
+## • `PR` -&gt; `PR...26`
+## • `CL` -&gt; `CL...27`
+## • `Status` -&gt; `Status...28`
+## • `PR` -&gt; `PR...29`
+## • `CL` -&gt; `CL...30`
+## • `Status` -&gt; `Status...31`
+## • `PR` -&gt; `PR...32`
+## • `CL` -&gt; `CL...33`
+## • `Status` -&gt; `Status...34`
+## • `PR` -&gt; `PR...35`
+## • `CL` -&gt; `CL...36`
+## • `Status` -&gt; `Status...37`
+## • `PR` -&gt; `PR...38`
+## • `CL` -&gt; `CL...39`
+## • `Status` -&gt; `Status...40`
+## • `PR` -&gt; `PR...41`
+## • `CL` -&gt; `CL...42`
+## • `Status` -&gt; `Status...43`
+## • `PR` -&gt; `PR...44`
+## • `CL` -&gt; `CL...45`
+## • `Status` -&gt; `Status...46`
+## • `PR` -&gt; `PR...47`
+## • `CL` -&gt; `CL...48`
+## • `Status` -&gt; `Status...49`
+## • `PR` -&gt; `PR...50`
+## • `CL` -&gt; `CL...51`
+## • `Status` -&gt; `Status...52`
+## • `PR` -&gt; `PR...53`
+## • `CL` -&gt; `CL...54`
+## • `Status` -&gt; `Status...55`
+## • `PR` -&gt; `PR...56`
+## • `CL` -&gt; `CL...57`
+## • `Status` -&gt; `Status...58`
+## • `PR` -&gt; `PR...59`
+## • `CL` -&gt; `CL...60`
+## • `Status` -&gt; `Status...61`
+## • `PR` -&gt; `PR...62`
+## • `CL` -&gt; `CL...63`
+## • `Status` -&gt; `Status...64`
+## • `PR` -&gt; `PR...65`
+## • `CL` -&gt; `CL...66`
+## • `Status` -&gt; `Status...67`
+## • `PR` -&gt; `PR...68`
+## • `CL` -&gt; `CL...69`
+## • `Status` -&gt; `Status...70`
+## • `PR` -&gt; `PR...71`
+## • `CL` -&gt; `CL...72`
+## • `Status` -&gt; `Status...73`
+## • `PR` -&gt; `PR...74`
+## • `CL` -&gt; `CL...75`
+## • `Status` -&gt; `Status...76`
+## • `PR` -&gt; `PR...77`
+## • `CL` -&gt; `CL...78`
+## • `Status` -&gt; `Status...79`
+## • `PR` -&gt; `PR...80`
+## • `CL` -&gt; `CL...81`
+## • `Status` -&gt; `Status...82`
+## • `PR` -&gt; `PR...83`
+## • `CL` -&gt; `CL...84`
+## • `Status` -&gt; `Status...85`
+## • `PR` -&gt; `PR...86`
+## • `CL` -&gt; `CL...87`
+## • `Status` -&gt; `Status...88`
+## • `PR` -&gt; `PR...89`
+## • `CL` -&gt; `CL...90`
+## • `Status` -&gt; `Status...91`
+## • `PR` -&gt; `PR...92`
+## • `CL` -&gt; `CL...93`
+## • `Status` -&gt; `Status...94`
+## • `PR` -&gt; `PR...95`
+## • `CL` -&gt; `CL...96`
+## • `Status` -&gt; `Status...97`
+## • `PR` -&gt; `PR...98`
+## • `CL` -&gt; `CL...99`
+## • `Status` -&gt; `Status...100`
+## • `PR` -&gt; `PR...101`
+## • `CL` -&gt; `CL...102`
+## • `Status` -&gt; `Status...103`
+## • `PR` -&gt; `PR...104`
+## • `CL` -&gt; `CL...105`
+## • `Status` -&gt; `Status...106`
+## • `PR` -&gt; `PR...107`
+## • `CL` -&gt; `CL...108`
+## • `Status` -&gt; `Status...109`
+## • `PR` -&gt; `PR...110`
+## • `CL` -&gt; `CL...111`
+## • `Status` -&gt; `Status...112`
+## • `PR` -&gt; `PR...113`
+## • `CL` -&gt; `CL...114`
+## • `Status` -&gt; `Status...115`
+## • `PR` -&gt; `PR...116`
+## • `CL` -&gt; `CL...117`
+## • `Status` -&gt; `Status...118`
+## • `PR` -&gt; `PR...119`
+## • `CL` -&gt; `CL...120`
+## • `Status` -&gt; `Status...121`
+## • `PR` -&gt; `PR...122`
+## • `CL` -&gt; `CL...123`
+## • `Status` -&gt; `Status...124`
+## • `PR` -&gt; `PR...125`
+## • `CL` -&gt; `CL...126`
+## • `Status` -&gt; `Status...127`
+## • `PR` -&gt; `PR...128`
+## • `CL` -&gt; `CL...129`
+## • `Status` -&gt; `Status...130`
+## • `PR` -&gt; `PR...131`
+## • `CL` -&gt; `CL...132`
+## • `Status` -&gt; `Status...133`</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="data-import.html#cb26-1" tabindex="-1"></a><span class="fu">head</span>(fh)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["...1"],"name":[1],"type":["chr"],"align":["left"]},{"label":["PR...2"],"name":[2],"type":["chr"],"align":["left"]},{"label":["CL...3"],"name":[3],"type":["chr"],"align":["left"]},{"label":["Status...4"],"name":[4],"type":["chr"],"align":["left"]},{"label":["PR...5"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["CL...6"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["Status...7"],"name":[7],"type":["chr"],"align":["left"]},{"label":["PR...8"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["CL...9"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["Status...10"],"name":[10],"type":["chr"],"align":["left"]},{"label":["PR...11"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["CL...12"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["Status...13"],"name":[13],"type":["chr"],"align":["left"]},{"label":["PR...14"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["CL...15"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["Status...16"],"name":[16],"type":["chr"],"align":["left"]},{"label":["PR...17"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["CL...18"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["Status...19"],"name":[19],"type":["chr"],"align":["left"]},{"label":["PR...20"],"name":[20],"type":["dbl"],"align":["right"]},{"label":["CL...21"],"name":[21],"type":["dbl"],"align":["right"]},{"label":["Status...22"],"name":[22],"type":["chr"],"align":["left"]},{"label":["PR...23"],"name":[23],"type":["dbl"],"align":["right"]},{"label":["CL...24"],"name":[24],"type":["dbl"],"align":["right"]},{"label":["Status...25"],"name":[25],"type":["chr"],"align":["left"]},{"label":["PR...26"],"name":[26],"type":["dbl"],"align":["right"]},{"label":["CL...27"],"name":[27],"type":["dbl"],"align":["right"]},{"label":["Status...28"],"name":[28],"type":["chr"],"align":["left"]},{"label":["PR...29"],"name":[29],"type":["dbl"],"align":["right"]},{"label":["CL...30"],"name":[30],"type":["dbl"],"align":["right"]},{"label":["Status...31"],"name":[31],"type":["chr"],"align":["left"]},{"label":["PR...32"],"name":[32],"type":["dbl"],"align":["right"]},{"label":["CL...33"],"name":[33],"type":["dbl"],"align":["right"]},{"label":["Status...34"],"name":[34],"type":["chr"],"align":["left"]},{"label":["PR...35"],"name":[35],"type":["dbl"],"align":["right"]},{"label":["CL...36"],"name":[36],"type":["dbl"],"align":["right"]},{"label":["Status...37"],"name":[37],"type":["chr"],"align":["left"]},{"label":["PR...38"],"name":[38],"type":["dbl"],"align":["right"]},{"label":["CL...39"],"name":[39],"type":["dbl"],"align":["right"]},{"label":["Status...40"],"name":[40],"type":["chr"],"align":["left"]},{"label":["PR...41"],"name":[41],"type":["dbl"],"align":["right"]},{"label":["CL...42"],"name":[42],"type":["dbl"],"align":["right"]},{"label":["Status...43"],"name":[43],"type":["chr"],"align":["left"]},{"label":["PR...44"],"name":[44],"type":["dbl"],"align":["right"]},{"label":["CL...45"],"name":[45],"type":["dbl"],"align":["right"]},{"label":["Status...46"],"name":[46],"type":["chr"],"align":["left"]},{"label":["PR...47"],"name":[47],"type":["dbl"],"align":["right"]},{"label":["CL...48"],"name":[48],"type":["dbl"],"align":["right"]},{"label":["Status...49"],"name":[49],"type":["chr"],"align":["left"]},{"label":["PR...50"],"name":[50],"type":["dbl"],"align":["right"]},{"label":["CL...51"],"name":[51],"type":["dbl"],"align":["right"]},{"label":["Status...52"],"name":[52],"type":["chr"],"align":["left"]},{"label":["PR...53"],"name":[53],"type":["dbl"],"align":["right"]},{"label":["CL...54"],"name":[54],"type":["dbl"],"align":["right"]},{"label":["Status...55"],"name":[55],"type":["chr"],"align":["left"]},{"label":["PR...56"],"name":[56],"type":["dbl"],"align":["right"]},{"label":["CL...57"],"name":[57],"type":["dbl"],"align":["right"]},{"label":["Status...58"],"name":[58],"type":["chr"],"align":["left"]},{"label":["PR...59"],"name":[59],"type":["dbl"],"align":["right"]},{"label":["CL...60"],"name":[60],"type":["dbl"],"align":["right"]},{"label":["Status...61"],"name":[61],"type":["chr"],"align":["left"]},{"label":["PR...62"],"name":[62],"type":["dbl"],"align":["right"]},{"label":["CL...63"],"name":[63],"type":["dbl"],"align":["right"]},{"label":["Status...64"],"name":[64],"type":["chr"],"align":["left"]},{"label":["PR...65"],"name":[65],"type":["dbl"],"align":["right"]},{"label":["CL...66"],"name":[66],"type":["dbl"],"align":["right"]},{"label":["Status...67"],"name":[67],"type":["chr"],"align":["left"]},{"label":["PR...68"],"name":[68],"type":["dbl"],"align":["right"]},{"label":["CL...69"],"name":[69],"type":["dbl"],"align":["right"]},{"label":["Status...70"],"name":[70],"type":["chr"],"align":["left"]},{"label":["PR...71"],"name":[71],"type":["dbl"],"align":["right"]},{"label":["CL...72"],"name":[72],"type":["dbl"],"align":["right"]},{"label":["Status...73"],"name":[73],"type":["chr"],"align":["left"]},{"label":["PR...74"],"name":[74],"type":["dbl"],"align":["right"]},{"label":["CL...75"],"name":[75],"type":["dbl"],"align":["right"]},{"label":["Status...76"],"name":[76],"type":["chr"],"align":["left"]},{"label":["PR...77"],"name":[77],"type":["dbl"],"align":["right"]},{"label":["CL...78"],"name":[78],"type":["dbl"],"align":["right"]},{"label":["Status...79"],"name":[79],"type":["chr"],"align":["left"]},{"label":["PR...80"],"name":[80],"type":["dbl"],"align":["right"]},{"label":["CL...81"],"name":[81],"type":["dbl"],"align":["right"]},{"label":["Status...82"],"name":[82],"type":["chr"],"align":["left"]},{"label":["PR...83"],"name":[83],"type":["dbl"],"align":["right"]},{"label":["CL...84"],"name":[84],"type":["dbl"],"align":["right"]},{"label":["Status...85"],"name":[85],"type":["chr"],"align":["left"]},{"label":["PR...86"],"name":[86],"type":["dbl"],"align":["right"]},{"label":["CL...87"],"name":[87],"type":["dbl"],"align":["right"]},{"label":["Status...88"],"name":[88],"type":["chr"],"align":["left"]},{"label":["PR...89"],"name":[89],"type":["dbl"],"align":["right"]},{"label":["CL...90"],"name":[90],"type":["dbl"],"align":["right"]},{"label":["Status...91"],"name":[91],"type":["chr"],"align":["left"]},{"label":["PR...92"],"name":[92],"type":["dbl"],"align":["right"]},{"label":["CL...93"],"name":[93],"type":["dbl"],"align":["right"]},{"label":["Status...94"],"name":[94],"type":["chr"],"align":["left"]},{"label":["PR...95"],"name":[95],"type":["dbl"],"align":["right"]},{"label":["CL...96"],"name":[96],"type":["dbl"],"align":["right"]},{"label":["Status...97"],"name":[97],"type":["chr"],"align":["left"]},{"label":["PR...98"],"name":[98],"type":["dbl"],"align":["right"]},{"label":["CL...99"],"name":[99],"type":["dbl"],"align":["right"]},{"label":["Status...100"],"name":[100],"type":["chr"],"align":["left"]},{"label":["PR...101"],"name":[101],"type":["dbl"],"align":["right"]},{"label":["CL...102"],"name":[102],"type":["dbl"],"align":["right"]},{"label":["Status...103"],"name":[103],"type":["chr"],"align":["left"]},{"label":["PR...104"],"name":[104],"type":["dbl"],"align":["right"]},{"label":["CL...105"],"name":[105],"type":["dbl"],"align":["right"]},{"label":["Status...106"],"name":[106],"type":["chr"],"align":["left"]},{"label":["PR...107"],"name":[107],"type":["dbl"],"align":["right"]},{"label":["CL...108"],"name":[108],"type":["dbl"],"align":["right"]},{"label":["Status...109"],"name":[109],"type":["chr"],"align":["left"]},{"label":["PR...110"],"name":[110],"type":["dbl"],"align":["right"]},{"label":["CL...111"],"name":[111],"type":["dbl"],"align":["right"]},{"label":["Status...112"],"name":[112],"type":["chr"],"align":["left"]},{"label":["PR...113"],"name":[113],"type":["dbl"],"align":["right"]},{"label":["CL...114"],"name":[114],"type":["dbl"],"align":["right"]},{"label":["Status...115"],"name":[115],"type":["chr"],"align":["left"]},{"label":["PR...116"],"name":[116],"type":["dbl"],"align":["right"]},{"label":["CL...117"],"name":[117],"type":["dbl"],"align":["right"]},{"label":["Status...118"],"name":[118],"type":["chr"],"align":["left"]},{"label":["PR...119"],"name":[119],"type":["dbl"],"align":["right"]},{"label":["CL...120"],"name":[120],"type":["dbl"],"align":["right"]},{"label":["Status...121"],"name":[121],"type":["chr"],"align":["left"]},{"label":["PR...122"],"name":[122],"type":["dbl"],"align":["right"]},{"label":["CL...123"],"name":[123],"type":["dbl"],"align":["right"]},{"label":["Status...124"],"name":[124],"type":["chr"],"align":["left"]},{"label":["PR...125"],"name":[125],"type":["dbl"],"align":["right"]},{"label":["CL...126"],"name":[126],"type":["dbl"],"align":["right"]},{"label":["Status...127"],"name":[127],"type":["chr"],"align":["left"]},{"label":["PR...128"],"name":[128],"type":["dbl"],"align":["right"]},{"label":["CL...129"],"name":[129],"type":["dbl"],"align":["right"]},{"label":["Status...130"],"name":[130],"type":["chr"],"align":["left"]},{"label":["PR...131"],"name":[131],"type":["dbl"],"align":["right"]},{"label":["CL...132"],"name":[132],"type":["dbl"],"align":["right"]},{"label":["Status...133"],"name":[133],"type":["chr"],"align":["left"]}],"data":[{"1":"Afghanistan","2":"4","3":"5","4":"PF","5":"7","6":"6","7":"NF","8":"7","9":"6","10":"NF","11":"7","12":"6","13":"NF","14":"7","15":"6","16":"NF","17":"6","18":"6","19":"NF","20":"7","21":"7","22":"NF","23":"7","24":"7","25":"NF","26":"7","27":"7","28":"NF","29":"7","30":"7","31":"NF","32":"7","33":"7","34":"NF","35":"7","36":"7","37":"NF","38":"7","39":"7","40":"NF","41":"7","42":"7","43":"NF","44":"7","45":"7","46":"NF","47":"6","48":"6","49":"NF","50":"7","51":"7","52":"NF","53":"7","54":"7","55":"NF","56":"7","57":"7","58":"NF","59":"6","60":"6","61":"NF","62":"7","63":"7","64":"NF","65":"7","66":"7","67":"NF","68":"7","69":"7","70":"NF","71":"7","72":"7","73":"NF","74":"7","75":"7","76":"NF","77":"7","78":"7","79":"NF","80":"7","81":"7","82":"NF","83":"7","84":"7","85":"NF","86":"7","87":"7","88":"NF","89":"6","90":"6","91":"NF","92":"6","93":"6","94":"NF","95":"5","96":"6","97":"NF","98":"5","99":"5","100":"PF","101":"5","102":"5","103":"PF","104":"5","105":"5","106":"PF","107":"5","108":"6","109":"NF","110":"6","111":"6","112":"NF","113":"6","114":"6","115":"NF","116":"6","117":"6","118":"NF","119":"6","120":"6","121":"NF","122":"6","123":"6","124":"NF","125":"6","126":"6","127":"NF","128":"6","129":"6","130":"NF","131":"6","132":"6","133":"NF"},{"1":"Albania","2":"7","3":"7","4":"NF","5":"7","6":"7","7":"NF","8":"7","9":"7","10":"NF","11":"7","12":"7","13":"NF","14":"7","15":"7","16":"NF","17":"7","18":"7","19":"NF","20":"7","21":"7","22":"NF","23":"7","24":"7","25":"NF","26":"7","27":"7","28":"NF","29":"7","30":"7","31":"NF","32":"7","33":"7","34":"NF","35":"7","36":"7","37":"NF","38":"7","39":"7","40":"NF","41":"7","42":"7","43":"NF","44":"7","45":"7","46":"NF","47":"7","48":"7","49":"NF","50":"7","51":"7","52":"NF","53":"7","54":"6","55":"NF","56":"4","57":"4","58":"PF","59":"4","60":"3","61":"PF","62":"2","63":"4","64":"PF","65":"3","66":"4","67":"PF","68":"3","69":"4","70":"PF","71":"4","72":"4","73":"PF","74":"4","75":"4","76":"PF","77":"4","78":"5","79":"PF","80":"4","81":"5","82":"PF","83":"4","84":"5","85":"PF","86":"3","87":"4","88":"PF","89":"3","90":"3","91":"PF","92":"3","93":"3","94":"PF","95":"3","96":"3","97":"PF","98":"3","99":"3","100":"PF","101":"3","102":"3","103":"PF","104":"3","105":"3","106":"PF","107":"3","108":"3","109":"PF","110":"3","111":"3","112":"PF","113":"3","114":"3","115":"PF","116":"3","117":"3","118":"PF","119":"3","120":"3","121":"PF","122":"3","123":"3","124":"PF","125":"3","126":"3","127":"PF","128":"3","129":"3","130":"PF","131":"3","132":"3","133":"PF"},{"1":"Algeria","2":"6","3":"6","4":"NF","5":"6","6":"6","7":"NF","8":"6","9":"6","10":"NF","11":"7","12":"6","13":"NF","14":"6","15":"6","16":"NF","17":"6","18":"6","19":"NF","20":"6","21":"6","22":"NF","23":"6","24":"6","25":"NF","26":"6","27":"6","28":"NF","29":"6","30":"6","31":"NF","32":"6","33":"6","34":"NF","35":"6","36":"6","37":"NF","38":"6","39":"6","40":"NF","41":"6","42":"6","43":"NF","44":"6","45":"6","46":"NF","47":"5","48":"6","49":"NF","50":"6","51":"4","52":"PF","53":"4","54":"4","55":"PF","56":"4","57":"4","58":"PF","59":"7","60":"6","61":"NF","62":"7","63":"6","64":"NF","65":"7","66":"7","67":"NF","68":"6","69":"6","70":"NF","71":"6","72":"6","73":"NF","74":"6","75":"6","76":"NF","77":"6","78":"5","79":"NF","80":"6","81":"5","82":"NF","83":"6","84":"5","85":"NF","86":"6","87":"5","88":"NF","89":"6","90":"5","91":"NF","92":"6","93":"5","94":"NF","95":"6","96":"5","97":"NF","98":"6","99":"5","100":"NF","101":"6","102":"5","103":"NF","104":"6","105":"5","106":"NF","107":"6","108":"5","109":"NF","110":"6","111":"5","112":"NF","113":"6","114":"5","115":"NF","116":"6","117":"5","118":"NF","119":"6","120":"5","121":"NF","122":"6","123":"5","124":"NF","125":"6","126":"5","127":"NF","128":"6","129":"5","130":"NF","131":"6","132":"5","133":"NF"},{"1":"Andorra","2":"4","3":"3","4":"PF","5":"4","6":"4","7":"PF","8":"4","9":"4","10":"PF","11":"4","12":"4","13":"PF","14":"4","15":"4","16":"PF","17":"NA","18":"NA","19":"NA","20":"NA","21":"NA","22":"NA","23":"NA","24":"NA","25":"NA","26":"NA","27":"NA","28":"NA","29":"NA","30":"NA","31":"NA","32":"NA","33":"NA","34":"NA","35":"NA","36":"NA","37":"NA","38":"NA","39":"NA","40":"NA","41":"NA","42":"NA","43":"NA","44":"NA","45":"NA","46":"NA","47":"NA","48":"NA","49":"NA","50":"NA","51":"NA","52":"NA","53":"NA","54":"NA","55":"NA","56":"NA","57":"NA","58":"NA","59":"NA","60":"NA","61":"NA","62":"2","63":"1","64":"F","65":"1","66":"1","67":"F","68":"1","69":"1","70":"F","71":"1","72":"1","73":"F","74":"1","75":"1","76":"F","77":"1","78":"1","79":"F","80":"1","81":"1","82":"F","83":"1","84":"1","85":"F","86":"1","87":"1","88":"F","89":"1","90":"1","91":"F","92":"1","93":"1","94":"F","95":"1","96":"1","97":"F","98":"1","99":"1","100":"F","101":"1","102":"1","103":"F","104":"1","105":"1","106":"F","107":"1","108":"1","109":"F","110":"1","111":"1","112":"F","113":"1","114":"1","115":"F","116":"1","117":"1","118":"F","119":"1","120":"1","121":"F","122":"1","123":"1","124":"F","125":"1","126":"1","127":"F","128":"1","129":"1","130":"F","131":"1","132":"1","133":"F"},{"1":"Angola","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"6","12":"6","13":"NF","14":"6","15":"6","16":"NF","17":"7","18":"7","19":"NF","20":"7","21":"7","22":"NF","23":"7","24":"7","25":"NF","26":"7","27":"7","28":"NF","29":"7","30":"7","31":"NF","32":"7","33":"7","34":"NF","35":"7","36":"7","37":"NF","38":"7","39":"7","40":"NF","41":"7","42":"7","43":"NF","44":"7","45":"7","46":"NF","47":"7","48":"7","49":"NF","50":"7","51":"7","52":"NF","53":"7","54":"7","55":"NF","56":"6","57":"4","58":"PF","59":"6","60":"6","61":"NF","62":"7","63":"7","64":"NF","65":"7","66":"7","67":"NF","68":"6","69":"6","70":"NF","71":"6","72":"6","73":"NF","74":"6","75":"6","76":"NF","77":"6","78":"6","79":"NF","80":"6","81":"6","82":"NF","83":"6","84":"6","85":"NF","86":"6","87":"6","88":"NF","89":"6","90":"5","91":"NF","92":"6","93":"5","94":"NF","95":"6","96":"5","97":"NF","98":"6","99":"5","100":"NF","101":"6","102":"5","103":"NF","104":"6","105":"5","106":"NF","107":"6","108":"5","109":"NF","110":"6","111":"5","112":"NF","113":"6","114":"5","115":"NF","116":"6","117":"5","118":"NF","119":"6","120":"5","121":"NF","122":"6","123":"5","124":"NF","125":"6","126":"5","127":"NF","128":"6","129":"6","130":"NF","131":"6","132":"6","133":"NF"},{"1":"Antigua & Barbuda","2":"NA","3":"NA","4":"NA","5":"NA","6":"NA","7":"NA","8":"NA","9":"NA","10":"NA","11":"NA","12":"NA","13":"NA","14":"NA","15":"NA","16":"NA","17":"NA","18":"NA","19":"NA","20":"NA","21":"NA","22":"NA","23":"NA","24":"NA","25":"NA","26":"NA","27":"NA","28":"NA","29":"2","30":"2","31":"F","32":"2","33":"3","34":"F","35":"2","36":"3","37":"F","38":"2","39":"3","40":"F","41":"2","42":"3","43":"F","44":"2","45":"3","46":"F","47":"2","48":"3","49":"F","50":"2","51":"3","52":"F","53":"3","54":"2","55":"F","56":"3","57":"3","58":"PF","59":"3","60":"3","61":"PF","62":"4","63":"3","64":"PF","65":"4","66":"3","67":"PF","68":"4","69":"3","70":"PF","71":"4","72":"3","73":"PF","74":"4","75":"3","76":"PF","77":"4","78":"3","79":"PF","80":"4","81":"3","82":"PF","83":"4","84":"2","85":"PF","86":"4","87":"2","88":"PF","89":"4","90":"2","91":"PF","92":"4","93":"2","94":"PF","95":"2","96":"2","97":"F","98":"2","99":"2","100":"F","101":"2","102":"2","103":"F","104":"2","105":"2","106":"F","107":"2","108":"2","109":"F","110":"3","111":"2","112":"F","113":"3","114":"2","115":"F","116":"3","117":"2","118":"F","119":"2","120":"2","121":"F","122":"2","123":"2","124":"F","125":"2","126":"2","127":"F","128":"2","129":"2","130":"F","131":"2","132":"2","133":"F"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>実は文字列のままの<code>PR</code>や<code>CL</code>もあるのですが、そこはややこしいので今回は見なかったことにします。</p>
+</div>
+</div>
+<div id="dtaファイルの読み込み" class="section level2 hasAnchor" number="1.6">
+<h2><span class="header-section-number">1.6</span> .dtaファイルの読み込み<a href="data-import.html#dtaファイルの読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>.xls[x]</code>ファイルと同様<code>.dta</code>ファイルもバイナリデータなので専用のパッケージを読み込みます。</p>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="data-import.html#cb27-1" tabindex="-1"></a><span class="fu">library</span>(haven)</span></code></pre></div>
+<p>ここでは、Bruce Russett and John R. Oneal (2001) “Triangulating Peace” の<a href="data/TRIANGLE.DTA">レプリケーションデータ</a>（とされるもの）を読み込みます。</p>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="data-import.html#cb28-1" tabindex="-1"></a>triangle <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">&quot;data/TRIANGLE.DTA&quot;</span>)</span>
+<span id="cb28-2"><a href="data-import.html#cb28-2" tabindex="-1"></a><span class="fu">head</span>(triangle)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["statea"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["stateb"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["year"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["dependa"],"name":[4],"type":["dbl"],"align":["right"]},{"label":["dependb"],"name":[5],"type":["dbl"],"align":["right"]},{"label":["demauta"],"name":[6],"type":["dbl"],"align":["right"]},{"label":["demautb"],"name":[7],"type":["dbl"],"align":["right"]},{"label":["allies"],"name":[8],"type":["dbl"],"align":["right"]},{"label":["dispute1"],"name":[9],"type":["dbl"],"align":["right"]},{"label":["logdstab"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["lcaprat2"],"name":[11],"type":["dbl"],"align":["right"]},{"label":["smigoabi"],"name":[12],"type":["dbl"],"align":["right"]},{"label":["opena"],"name":[13],"type":["dbl"],"align":["right"]},{"label":["openb"],"name":[14],"type":["dbl"],"align":["right"]},{"label":["minrpwrs"],"name":[15],"type":["dbl"],"align":["right"]},{"label":["noncontg"],"name":[16],"type":["dbl"],"align":["right"]},{"label":["smldmat"],"name":[17],"type":["dbl"],"align":["right"]},{"label":["smldep"],"name":[18],"type":["dbl"],"align":["right"]},{"label":["dyadid"],"name":[19],"type":["dbl"],"align":["right"]}],"data":[{"1":"2","2":"20","3":"1920","4":"0.01573063","5":"0.2801780","6":"10","7":"9","8":"0","9":"0","10":"5.820108","11":"3.241306","12":"10","13":"0.15623870","14":"0.4284163","15":"0","16":"0","17":"9","18":"0.01573063","19":"2020"},{"1":"2","2":"20","3":"1921","4":"0.01154854","5":"0.2239006","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.171194","12":"10","13":"0.10317327","14":"0.3481170","15":"0","16":"0","17":"10","18":"0.01154854","19":"2020"},{"1":"2","2":"20","3":"1922","4":"0.01125047","5":"0.2008743","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.247957","12":"10","13":"0.12613152","14":"0.4684889","15":"0","16":"0","17":"10","18":"0.01125047","19":"2020"},{"1":"2","2":"20","3":"1923","4":"0.01117924","5":"0.2130951","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.180491","12":"10","13":"0.09024599","14":"0.3702438","15":"0","16":"0","17":"10","18":"0.01117924","19":"2020"},{"1":"2","2":"20","3":"1924","4":"0.01102619","5":"0.2125081","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.191799","12":"10","13":"0.09118309","14":"0.4073506","15":"0","16":"0","17":"10","18":"0.01102619","19":"2020"},{"1":"2","2":"20","3":"1925","4":"0.01076442","5":"0.1913874","6":"10","7":"10","8":"0","9":"0","10":"5.820108","11":"3.190288","12":"10","13":"0.09765426","14":"0.3580277","15":"0","16":"0","17":"10","18":"0.01076442","19":"2020"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>ハッピーなことにStataのデータはそもそも統計分析用に加工されているので、特に面倒くさい手続きをする必要はありません。</p>
+</div>
+<div id="rdsファイルの読み込み" class="section level2 hasAnchor" number="1.7">
+<h2><span class="header-section-number">1.7</span> .rdsファイルの読み込み<a href="data-import.html#rdsファイルの読み込み" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>R専用のバイナリデータの形式は<code>.rds</code>なので、<code>write_rds()</code>で書き出し、<code>read_rds()</code>で読み込むことができます。</p>
+</div>
+<div id="パス入力の省略" class="section level2 hasAnchor" number="1.8">
+<h2><span class="header-section-number">1.8</span> パス入力の省略*<a href="data-import.html#パス入力の省略" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>データを読み込む際にいちいちパスを打ち込むのは面倒です。
+そこで、右下の<code>Files</code>パネルで読み込みたいデータをクリックすると<code>Import Dataset...</code>というのがあるのでクリックします。</p>
+<p><img src="figures/data_import3.jpg" /><!-- --></p>
+<p>すると次のような画面が出てきますが、右下にデータを読み込むためのパッケージ、関数、パスが表示されるので、関数とパスの部分をコピペしてしまうと楽です。</p>
+<p><img src="figures/data_import4.jpg" /><!-- --></p>
+<p>オブジェクト名の部分は自動的に決まるので、もとのデータの名前が長いとオブジェクト名も長くなり、かっこよくないので<strong>自分で設定する</strong>ようにしたほうがよいでしょう。</p>
+<p>また、データのプレビューも可能なのでここで<code>skip</code>などの設定をすることも可能です。</p>
+</div>
+<div id="データの書き出し" class="section level2 hasAnchor" number="1.9">
+<h2><span class="header-section-number">1.9</span> データの書き出し<a href="data-import.html#データの書き出し" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>データを書き出す際には、基本的に<code>.csv</code>ファイルでよいと思うので、<code>write_excel_csv()</code>に保存したいオブジェクト名とパスを入れておきましょう。
+ここでは試しにTriangulating Peaceのデータを保存してみます。</p>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="data-import.html#cb29-1" tabindex="-1"></a><span class="fu">write_excel_csv</span>(triangle, <span class="st">&quot;data/triangle.csv&quot;</span>)</span></code></pre></div>
+<p>指定したパスに新しくファイルができていることを確認してください。</p>
+<p>Triangulating Peaceデータの<code>.csv</code>ファイルと<code>.dta</code>ファイルの容量を見ると<code>.dta</code>ファイルのほうが小さいことがわかります。
+この程度では問題ありませんがデータがあまりにも大きくなる場合はバイナリデータで保存したほうがよいでしょう。</p>
+</div>
+<div id="データフレームの作成" class="section level2 hasAnchor" number="1.10">
+<h2><span class="header-section-number">1.10</span> データフレームの作成<a href="data-import.html#データフレームの作成" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>自ら手打ちでデータフレームを<code>data.frame()</code>によって作成することができます。</p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="data-import.html#cb30-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;日本&quot;</span>, <span class="st">&quot;アメリカ&quot;</span>, <span class="st">&quot;中国&quot;</span>),</span>
+<span id="cb30-2"><a href="data-import.html#cb30-2" tabindex="-1"></a>           <span class="at">code =</span> <span class="fu">c</span>(<span class="st">&quot;JPN&quot;</span>, <span class="st">&quot;USA&quot;</span>, <span class="st">&quot;CHN&quot;</span>))</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["code"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"日本","2":"JPN"},{"1":"アメリカ","2":"USA"},{"1":"中国","2":"CHN"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>同様のデータフレームはベクトルからも作れます。</p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="data-import.html#cb31-1" tabindex="-1"></a>name <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;日本&quot;</span>, <span class="st">&quot;アメリカ&quot;</span>, <span class="st">&quot;中国&quot;</span>)</span>
+<span id="cb31-2"><a href="data-import.html#cb31-2" tabindex="-1"></a>code <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;JPN&quot;</span>, <span class="st">&quot;USA&quot;</span>, <span class="st">&quot;CHN&quot;</span>)</span>
+<span id="cb31-3"><a href="data-import.html#cb31-3" tabindex="-1"></a><span class="fu">data.frame</span>(name, code)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["code"],"name":[2],"type":["chr"],"align":["left"]}],"data":[{"1":"日本","2":"JPN"},{"1":"アメリカ","2":"USA"},{"1":"中国","2":"CHN"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>基本的にデータフレームを作成するときのベクトルは同じ長さでないといけませんが、長さが1の場合はすべての観察に同じ値の変数にになります。</p>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="data-import.html#cb32-1" tabindex="-1"></a><span class="fu">data.frame</span>(<span class="at">name =</span> <span class="fu">c</span>(<span class="st">&quot;日本&quot;</span>, <span class="st">&quot;アメリカ&quot;</span>, <span class="st">&quot;中国&quot;</span>),</span>
+<span id="cb32-2"><a href="data-import.html#cb32-2" tabindex="-1"></a>           <span class="at">code =</span> <span class="fu">c</span>(<span class="st">&quot;JPN&quot;</span>, <span class="st">&quot;USA&quot;</span>, <span class="st">&quot;CHN&quot;</span>),</span>
+<span id="cb32-3"><a href="data-import.html#cb32-3" tabindex="-1"></a>           <span class="at">major =</span> <span class="dv">1</span>) </span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["name"],"name":[1],"type":["chr"],"align":["left"]},{"label":["code"],"name":[2],"type":["chr"],"align":["left"]},{"label":["major"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"日本","2":"JPN","3":"1"},{"1":"アメリカ","2":"USA","3":"1"},{"1":"中国","2":"CHN","3":"1"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<ul>
+<li>すべての観察で大国を表す<code>major</code>が<code>1</code>になっています。</li>
+</ul>
+<p><code>tidyverse</code>では<code>data.frame()</code>の代わりに<code>tibble()</code>を使います。</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="select-vars.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

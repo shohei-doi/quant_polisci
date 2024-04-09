@@ -1,0 +1,74 @@
+---
+execute:
+  cache: true
+---
+
+# データのダウンロード
+
+これまではGapminderのデータを使ってデータ分析を学んできましたが、自分でデータ分析をやるとなると、当然、他のデータを使いたいと思います。今回は、R/Python上からオンラインで公開されているデータを呼び出す方法を紹介します。具体的には以下のデータを扱います。
+
+- Google検索トレンド
+- Googleの電子書籍における単語割合
+- Wikipediaの閲覧トレンド
+- Wikipediaの記事
+
+## Google Trend
+
+[Google Trends](https://trends.google.com/trends/)というサービスがあります。グーグルの検索トレンドを表示してくれます（検索"数"ではない点に注意）。
+
+RやPythonではGoogle Trendsのデータをダウンロードするパッケージ[`gtrendsR`](https://github.com/PMassicotte/gtrendsR)と[`pytrends`](https://pypi.org/project/pytrends/)があります。
+
+```{r filename="R"}
+library(gtrendsR)
+```
+
+```{python filename="Python"}
+from pytrends.request import TrendReq
+```
+
+例えば、"ウクライナ"と"ガザ"のトレンドを取得します。
+
+```{r filename="R"}
+out_gtrends <- gtrends(c("ウクライナ", "ガザ"), hl = "ja-JP", time = "today 12-m", tz = 540)
+```
+
+```{python filename="Python"}
+pytrends = TrendReq(hl='ja-JP', tz=540)
+pytrends.build_payload(kw_list=["ウクライナ", "ガザ"], timeframe='today 12-m')
+```
+
+- `hl`で言語、`tz`でタイムゾーン、`time[frame]`で期間を指定します。
+
+それぞれのオブジェクトの中の`interest_over_time`にデータが含まれています。
+
+```{r filename="R"}
+head(out_gtrends$interest_over_time)
+```
+
+- Rではオブジェクトの中に別のオブジェクトが入れ子になっている場合、`$`で取り出せます。
+
+```{python filename="Python"}
+pytrends.interest_over_time
+```
+
+他にも地域別の傾向なども分かるので、調べてみてください。
+
+## Google Ngram
+
+[Google Ngram Viewer](https://books.google.com/ngrams/)というサービスがあります。グーグルが電子化した書籍に単語が各年にどれくらいの割合で出現するかが分かります。
+
+- ちなみに、国会図書館も[NDL Ngram Viewer](https://lab.ndl.go.jp/ngramviewer/)という日本語向けの同様のサービスを提供しています。
+
+RではGoogle Trendsのデータをダウンロードするパッケージ[`ngramr`](https://github.com/seancarmody/ngramr)があります。
+
+```{r filename="R"}
+library(ngramr)
+```
+
+試しに"Japan"と"China"の出現割合をダウンロードしてみます。
+
+```{r filename="R"}
+out_ngram <- ngram(c("Japan", "China"), year_start = 1950)
+
+head(out_ngram)
+```

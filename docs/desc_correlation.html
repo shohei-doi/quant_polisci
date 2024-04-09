@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.4.551">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R/Pythonで計量政治学入門 - 5&nbsp; 二変数の要約</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./plot_distribution.html" rel="next">
+<link href="./desc_summary.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
+  }
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./desc_distribution.html">データの要約</a></li><li class="breadcrumb-item"><a href="./desc_correlation.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">二変数の要約</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">R/Pythonで<br>計量政治学入門</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="サーチ"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">はじめに</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">導入</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quick_start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R/Pythonの基本操作</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_frame.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データフレーム</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">データの要約</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./desc_distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">一変数の要約</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./desc_summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">記述統計表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./desc_correlation.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">二変数の要約</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">データの可視化</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">分布のグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">相関のグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">時系列のグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_professional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">プロっぽいグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_advanced.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">発展的なグラフ</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">データの処理</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_select.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_create.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_pivot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">ロングとワイドの変換</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_missing_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">欠損値の対応</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">付録</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">エンコーディングの問題</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./session_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">動作環境</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#連続変数同士の関係" id="toc-連続変数同士の関係" class="nav-link active" data-scroll-target="#連続変数同士の関係"><span class="header-section-number">5.1</span> 連続変数同士の関係</a>
+  <ul class="collapse">
+  <li><a href="#共分散" id="toc-共分散" class="nav-link" data-scroll-target="#共分散"><span class="header-section-number">5.1.1</span> 共分散</a></li>
+  <li><a href="#複数変数の選択" id="toc-複数変数の選択" class="nav-link" data-scroll-target="#複数変数の選択"><span class="header-section-number">5.1.2</span> 複数変数の選択</a></li>
+  <li><a href="#共分散再訪" id="toc-共分散再訪" class="nav-link" data-scroll-target="#共分散再訪"><span class="header-section-number">5.1.3</span> 共分散（再訪）</a></li>
+  <li><a href="#相関係数" id="toc-相関係数" class="nav-link" data-scroll-target="#相関係数"><span class="header-section-number">5.1.4</span> 相関係数</a></li>
+  </ul></li>
+  <li><a href="#可視化の重要性" id="toc-可視化の重要性" class="nav-link" data-scroll-target="#可視化の重要性"><span class="header-section-number">5.2</span> 可視化の重要性</a></li>
+  <li><a href="#連続変数と離散変数の関係" id="toc-連続変数と離散変数の関係" class="nav-link" data-scroll-target="#連続変数と離散変数の関係"><span class="header-section-number">5.3</span> 連続変数と離散変数の関係</a>
+  <ul class="collapse">
+  <li><a href="#グループごとの平均値" id="toc-グループごとの平均値" class="nav-link" data-scroll-target="#グループごとの平均値"><span class="header-section-number">5.3.1</span> グループごとの平均値</a></li>
+  <li><a href="#グループのネスト" id="toc-グループのネスト" class="nav-link" data-scroll-target="#グループのネスト"><span class="header-section-number">5.3.2</span> グループのネスト</a></li>
+  </ul></li>
+  <li><a href="#平均値や分散共分散の性質-optional" id="toc-平均値や分散共分散の性質-optional" class="nav-link" data-scroll-target="#平均値や分散共分散の性質-optional"><span class="header-section-number">5.4</span> 平均値や分散、共分散の性質 (optional)</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./desc_distribution.html">データの要約</a></li><li class="breadcrumb-item"><a href="./desc_correlation.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">二変数の要約</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">二変数の要約</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<p>多くの場合、変数それ自体ではなく2つ（あるいは複数）の変数の間の関係に関心があることが多いのではないでしょうか。例えば、一人あたりGDPが高いと平均寿命も長くなるのかどうか、など。続いては、このように2つの変数間の関係を要約する方法を学んでいきます。</p>
+<section id="連続変数同士の関係" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="連続変数同士の関係"><span class="header-section-number">5.1</span> 連続変数同士の関係</h2>
+<section id="共分散" class="level3" data-number="5.1.1">
+<h3 data-number="5.1.1" class="anchored" data-anchor-id="共分散"><span class="header-section-number">5.1.1</span> 共分散</h3>
+<p><strong>相関係数</strong> (correlation coefficient) 、特に相関、という言葉は聞いたことがあるでしょう。相関係数とは2つの変数間の関係の強さを見る際に、よく使われる指標です。</p>
+<p>これから相関係数について説明しますが、ややこしいので、興味のない人はコードまで飛ばしてください。</p>
+<p>まずは、相関係数を理解するために、<strong>共分散</strong> (covariance) について学びます。一度、分散の定義に戻ります。</p>
+<p><span class="math display">\[
+\sigma^2 = \frac{\sum_{i=1}^N (x_i - \bar{x})^2}{N}
+\]</span></p>
+<p><span class="math inline">\(\bar{x}\)</span>は<span class="math inline">\(x\)</span>の平均でした。したがって、<span class="math inline">\((x_i - \bar{x})\)</span>は変数の値が平均からどれだけ離れているかを表しており、それを二乗して面積に変換して、その平均を求めることで、変数の散らばり具合を表していました。</p>
+<p>共分散は分散の二変数バージョンであり、次のように定義されます。分散との違いは分母の総和の中身が<span class="math inline">\((x_i - \bar{x})^2\)</span>から<span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span>に変わっていることです。</p>
+<p><span class="math display">\[
+\sigma_{xy}^2 = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{N}
+\]</span></p>
+<p>それでは、<span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span>について考えたいと思います。この前半は既に述べたように<span class="math inline">\(x_i\)</span>と平均値との差です。よって、前半は<span class="math inline">\(x_i\)</span>が平均値よりも大きければ正、小さければ負の値になります。後半については<span class="math inline">\(x_i\)</span>が<span class="math inline">\(y_i\)</span>に置き換わっただけで、意味は同様です。</p>
+<p>したがって、<span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span>全体としては<span class="math inline">\(x_i\)</span>と<span class="math inline">\(y_i\)</span>が共に平均値より大きいもしくは小さければ正の値を取ります。一方が平均値より大きく、他方が小さければ負の値を取ります。</p>
+<p>より直感的に言えば、<span class="math inline">\(\bar{x}\)</span>と<span class="math inline">\(\bar{y}\)</span>を原点とする平面を考えると、<span class="math inline">\((x_i,y_i)\)</span>が第1（右上）もしくは第3象限（左下）にあるときに、<span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span>は正の値を取ります。逆に、第2（左上）もしくは第4象限（右下）にあるときは負の値を取ります。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/covariance.drawio.png" class="img-fluid figure-img"></p>
+<figcaption><span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span>の符号</figcaption>
+</figure>
+</div>
+<p>共分散はそのような<span class="math inline">\((x_i - \bar{x})(y_i - \bar{y})\)</span>の平均値なので、正の値を取るということは<span class="math inline">\(x\)</span>と<span class="math inline">\(y\)</span>が正の比例関係にあり、負の値を取るということは負の比例関係にあるということを示唆しています。</p>
+</section>
+<section id="複数変数の選択" class="level3" data-number="5.1.2">
+<h3 data-number="5.1.2" class="anchored" data-anchor-id="複数変数の選択"><span class="header-section-number">5.1.2</span> 複数変数の選択</h3>
+<p>それでは、共分散を求めたいと思います。平均値や分散を求めるときは1つの変数をデータフレームから取り出しましたが、共分散の場合は2つ（あるいはそれ以上）の変数を取り出す必要があります。RとPythonではそれぞれ、次のように書きます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>df_gap[,<span class="fu">c</span>(<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>)]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 2
+   lifeExp gdpPercap
+     &lt;dbl&gt;     &lt;dbl&gt;
+ 1    28.8      779.
+ 2    30.3      821.
+ 3    32.0      853.
+ 4    34.0      836.
+ 5    36.1      740.
+ 6    38.4      786.
+ 7    39.9      978.
+ 8    40.8      852.
+ 9    41.7      649.
+10    41.8      635.
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
+<ul>
+<li>まず、データフレームの後ろに”[,]`を付けます。</li>
+<li><code>,</code>の左側では横（観察）を選択しますが、今回は全ての観察を用いるので何も指定しません。</li>
+<li><code>,</code>の右側では縦（変数）を選択します。<code>c()</code>の中に変数名オブジェクトを入れることで、複数の変数名のオブジェクトを作成しています。</li>
+</ul>
+<p>なお、Rでは<code>tidyverse</code>というパッケージ群を使うことで、簡便にデータフレームの処理が可能になります。</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+tidyverse
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><code>tidyverse</code>とは狭義には<a href="https://www.tidyverse.org/">特定のパッケージの集まり</a>です。広義には既存のRを改善するためのプロジェクトや考え方と言ってもいいかもしれません。</p>
+<p><code>tidyverse</code>は主観的には便利なのですが、Rの標準的な書き方とはやや異なるため、結果的にRを分断しかねない要素もあります。この資料では<code>tidyverse</code>を使って書こうと思います。</p>
+</div>
+</div>
+<p>具体的には<code>tidyverse</code>の中の<code>dplyr</code>というパッケージを使いますが、<code>tidyverse</code>を読み込むだけで関連パッケージが全て読み込まれます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df_gap <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>    <span class="fu">select</span>(lifeExp, gdpPercap)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,704 × 2
+   lifeExp gdpPercap
+     &lt;dbl&gt;     &lt;dbl&gt;
+ 1    28.8      779.
+ 2    30.3      821.
+ 3    32.0      853.
+ 4    34.0      836.
+ 5    36.1      740.
+ 6    38.4      786.
+ 7    39.9      978.
+ 8    40.8      852.
+ 9    41.7      649.
+10    41.8      635.
+# ℹ 1,694 more rows</code></pre>
+</div>
+</div>
+<ul>
+<li><a href="https://dplyr.tidyverse.org/reference/select.html"><code>select()</code></a>を使います。</li>
+</ul>
+<p><code>pandas</code>では[<code>.loc[,]</code>(https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html)]メソッドを使います。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df_gap.loc[:,[<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      lifeExp   gdpPercap
+0      28.801  779.445314
+1      30.332  820.853030
+2      31.997  853.100710
+3      34.020  836.197138
+4      36.088  739.981106
+...       ...         ...
+1699   62.351  706.157306
+1700   60.377  693.420786
+1701   46.809  792.449960
+1702   39.989  672.038623
+1703   43.487  469.709298
+
+[1704 rows x 2 columns]</code></pre>
+</div>
+</div>
+<ul>
+<li><code>,</code>の左側では横（観察）を選択しますが、今回は全ての観察を用いるので<code>:</code>を入れます。</li>
+<li><code>,</code>の右側では縦（変数）を選択します。<code>[]</code>の中に変数名オブジェクトを入れることで、複数の変数名のオブジェクトを作成しています。</li>
+</ul>
+<p>なお、次のように省略して書くこともできます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>df_gap[[<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="共分散再訪" class="level3" data-number="5.1.3">
+<h3 data-number="5.1.3" class="anchored" data-anchor-id="共分散再訪"><span class="header-section-number">5.1.3</span> 共分散（再訪）</h3>
+<p>共分散を求めます。なお、対角成分（左上や右下など）は分散を示しています。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">cov</span>(df_gap[,<span class="fu">c</span>(<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>)])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             lifeExp  gdpPercap
+lifeExp     166.8517    74323.2
+gdpPercap 74323.1957 97169410.1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df_gap.loc[:,[<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>]].cov()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                lifeExp     gdpPercap
+lifeExp      166.851664  7.432320e+04
+gdpPercap  74323.195748  9.716941e+07</code></pre>
+</div>
+</div>
+<p>ところで、<code>7.432320e+04</code>とはなんぞやと思うかもしれません。これは浮動小数点と呼ばれるもので、<span class="math inline">\(7.432320...\times10^4 = 74323.20...\)</span>を意味しています。</p>
+</section>
+<section id="相関係数" class="level3" data-number="5.1.4">
+<h3 data-number="5.1.4" class="anchored" data-anchor-id="相関係数"><span class="header-section-number">5.1.4</span> 相関係数</h3>
+<p>共分散は2つの変数の比例関係を示していますが、一つの問題があります。それは、変数の散らばり具合も含んでいるため、その値の解釈が難しいということです。試しに、人口も含めて共分散を求めてみます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">cov</span>(df_gap[,<span class="fu">c</span>(<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>)])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>               lifeExp           pop     gdpPercap
+lifeExp   1.668517e+02  8.907024e+07  7.432320e+04
+pop       8.907024e+07  1.126950e+16 -2.678859e+10
+gdpPercap 7.432320e+04 -2.678859e+10  9.716941e+07</code></pre>
+</div>
+</div>
+<p>例えば、平均寿命と人口の共分散は<span class="math inline">\(89070240\)</span>で、平均寿命と一人あたりGDPの共分散は<span class="math inline">\(74323\)</span>です。では、前者の方が大きな値を取っているので、人口のほうが一人あたりGDPよりも平均寿命と強い関係にあると言っていいでしょうか。もしかすると人口のほうが大きな値を取りやすいので、平均値よりも離れやすく、その結果として共分散も大きくなっているのかもしれません。</p>
+<p>そこで、変数の値の大きさに左右されずに関係性を示すものとして相関係数を使いたいと思います。相関係数は共分散を<span class="math inline">\(x_i\)</span>の分散と<span class="math inline">\(y_i\)</span>の分散の積で割ったものになります。</p>
+<p><span class="math display">\[
+\rho_{xy} = {\sigma^2_{xy} \over \sigma_x \sigma_y}
+\]</span></p>
+<p>直感的に言えば、<span class="math inline">\(x_i\)</span>の分散と<span class="math inline">\(y_i\)</span>の分散で割ることによって、<span class="math inline">\(x_i\)</span>と<span class="math inline">\(y_i\)</span>の散らばり具合を相殺（調整）しています。結果として、相関係数は<span class="math inline">\(-1\)</span>から<span class="math inline">\(1\)</span>の間に収まります。</p>
+<p>それでは、相関係数を求めます。人口よりも一人あたりGDPの方が平均寿命と高い相関係数を持っている、すなわち強い関係にあることが分かります。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">cor</span>(df_gap[,<span class="fu">c</span>(<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>)])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             lifeExp         pop   gdpPercap
+lifeExp   1.00000000  0.06495537  0.58370622
+pop       0.06495537  1.00000000 -0.02559958
+gdpPercap 0.58370622 -0.02559958  1.00000000</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>df_gap.loc[:,[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].corr()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>            lifeExp       pop  gdpPercap
+lifeExp    1.000000  0.064955   0.583706
+pop        0.064955  1.000000  -0.025600
+gdpPercap  0.583706 -0.025600   1.000000</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="可視化の重要性" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="可視化の重要性"><span class="header-section-number">5.2</span> 可視化の重要性</h2>
+<p>ところで、これまで「強い関係」という言葉を定義せずに用いていました。重要なことは、相関係数で分かることは「どれくらい2つの変数が直線的な関係にあるか」ということ（だけ）です。</p>
+<p>ここで、Wikipediaから画像を拝借して、この点を考えたいと思います。いわゆる<strong>散布図</strong> (scatter plot) と呼ばれるもので、横軸が<span class="math inline">\(x_i\)</span>、縦軸が<span class="math inline">\(y_i\)</span>を表していると考えてください。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/d/d4/Correlation_examples2.svg" class="img-fluid figure-img"></p>
+<figcaption>相関係数</figcaption>
+</figure>
+</div>
+<ol type="1">
+<li>まず、1段目を見ると分かるように相関係数は高い（低い）値を取れば取るほど2つの変数は直線に近づいていきます。また、相関係数が正であれば正の比例関係、負であれば負の比例関係にあることも分かります。
+<ul>
+<li>なお、「どれくらい相関係数が高ければいいのか」というのは意味のない疑問だと思っています。例えば、<span class="math inline">\(0.8\)</span>でも関係は弱いと思う人もいれば、<span class="math inline">\(0.4\)</span>でも強いと思う人もいるでしょう。</li>
+</ul></li>
+<li>続いて、2段目では全ての図において相関係数は<span class="math inline">\(1\)</span>（もしくは<span class="math inline">\(-1\)</span>）になっています。ここで異なるのはそれぞれの直線の傾きです。「強い関係」と聞くと傾きが大きいと想像するかもしれませんが、相関係数はそこまで意味しません。</li>
+<li>最後に、3段目では全ての図において相関係数は<span class="math inline">\(0\)</span>となっています。それぞれ2つの変数は何かしらの関係性を持っていそうですが、相関係数では直線以外の関係性を捉えることはできません。</li>
+</ol>
+<p>以上のことをまとめると、相関係数だけで分かることは少ないということではないでしょうか。そして教訓は相関係数という数値だけでなく、実際にグラフを作るということでしょう。</p>
+<p>この点をより実感できるものとしてAnscombe”s quartetやDatasaurus Dozenというデータ（およびグラフ）があります。これらのデータは全て同じ平均値や分散、相関係数を持っていますが、それぞれ異なる印象を与えます。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/e/ec/Anscombe%27s_quartet_3.svg" class="img-fluid figure-img"></p>
+<figcaption>Anscombe”s quartet</figcaption>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="https://damassets.autodesk.net/content/dam/autodesk/research/publications-assets/gifs/same-stats-different-graphs/DinoSequentialSmaller.gif" class="img-fluid figure-img"></p>
+<figcaption>Datasaurus Dozen</figcaption>
+</figure>
+</div>
+<p>したがって、相関係数だけでなく平均値や分散についても数値だけを見るのではなく、グラフを作って確認するのがよいでしょう。グラフの作成は次章からのテーマです。</p>
+</section>
+<section id="連続変数と離散変数の関係" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="連続変数と離散変数の関係"><span class="header-section-number">5.3</span> 連続変数と離散変数の関係</h2>
+<section id="グループごとの平均値" class="level3" data-number="5.3.1">
+<h3 data-number="5.3.1" class="anchored" data-anchor-id="グループごとの平均値"><span class="header-section-number">5.3.1</span> グループごとの平均値</h3>
+<p>グループごとに平均値を求めることで、離散変数と連続変数の関係を見ることができます。Rではすでに触れた<code>tidyverse</code>によって簡単に処理できます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>df_gap <span class="sc">|&gt;</span> </span>
+<span id="cb20-2"><a href="#cb20-2"></a>    <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span> </span>
+<span id="cb20-3"><a href="#cb20-3"></a>    <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp), </span>
+<span id="cb20-4"><a href="#cb20-4"></a>              <span class="at">mean_pop =</span> <span class="fu">mean</span>(pop), </span>
+<span id="cb20-5"><a href="#cb20-5"></a>              <span class="at">mean_gdpPercap =</span> <span class="fu">mean</span>(gdpPercap))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 4
+  continent mean_lifeExp  mean_pop mean_gdpPercap
+  &lt;fct&gt;            &lt;dbl&gt;     &lt;dbl&gt;          &lt;dbl&gt;
+1 Africa            48.9  9916003.          2194.
+2 Americas          64.7 24504795.          7136.
+3 Asia              60.1 77038722.          7902.
+4 Europe            71.9 17169765.         14469.
+5 Oceania           74.3  8874672.         18622.</code></pre>
+</div>
+</div>
+<ul>
+<li>まず、<a href="https://dplyr.tidyverse.org/reference/group_by.html"><code>group_by()</code></a>でどの変数がグループを表しているかを指定します。</li>
+<li>次に、<code>summarise()</code>の中で平均値を計算し、新しい変数として定義します。
+<ul>
+<li>ここでは<code>&lt;-</code>やないんかいと突っ込みたくなりますが、<code>=</code>なので気をつけてください。</li>
+</ul></li>
+</ul>
+<p><code>pandas</code>ではこのように書きます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>df_gap.groupby(<span class="st">"continent"</span>)[[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].mean()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>             lifeExp           pop     gdpPercap
+continent                                       
+Africa     48.865330  9.916003e+06   2193.754578
+Americas   64.658737  2.450479e+07   7136.110356
+Asia       60.064903  7.703872e+07   7902.150428
+Europe     71.903686  1.716976e+07  14469.475533
+Oceania    74.326208  8.874672e+06  18621.609223</code></pre>
+</div>
+</div>
+<ul>
+<li>まず、<a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html"><code>groupby()</code></a>でどの変数がグループを表しているかを指定します。</li>
+<li>次に<code>[[...]]</code>で平均値を計算したい変数を指定します。</li>
+<li>最後に、<code>.mean()</code>で平均値を求めます。</li>
+</ul>
+<p><code>pandas</code>での集計には注意が必要です。グループとして使った変数<code>continent</code>は集計後のデータフレームでは変数ではなく<code>index</code>になっています。</p>
+<ul>
+<li><code>index</code>とは各観察（行）を表す目印のようなものです。</li>
+</ul>
+<p>グループ化に使った変数を<code>index</code>とせずに、変数のままにする場合は、次のように<code>as_index=False</code>を付けます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>df_gap.groupby(<span class="st">"continent"</span>, as_index<span class="op">=</span><span class="va">False</span>)[[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].mean()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  continent    lifeExp           pop     gdpPercap
+0    Africa  48.865330  9.916003e+06   2193.754578
+1  Americas  64.658737  2.450479e+07   7136.110356
+2      Asia  60.064903  7.703872e+07   7902.150428
+3    Europe  71.903686  1.716976e+07  14469.475533
+4   Oceania  74.326208  8.874672e+06  18621.609223</code></pre>
+</div>
+</div>
+<p>平均値だけでなく、その他の要約統計量も同様に計算できます。</p>
+</section>
+<section id="グループのネスト" class="level3" data-number="5.3.2">
+<h3 data-number="5.3.2" class="anchored" data-anchor-id="グループのネスト"><span class="header-section-number">5.3.2</span> グループのネスト</h3>
+<p>グループを表す変数は1つに限る必要はありません。例えば、各年の各大陸の平均値を求めることも可能です。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb26-2"><a href="#cb26-2"></a></span>
+<span id="cb26-3"><a href="#cb26-3"></a>df_gap <span class="sc">|&gt;</span> </span>
+<span id="cb26-4"><a href="#cb26-4"></a>    <span class="fu">group_by</span>(continent, year) <span class="sc">|&gt;</span> </span>
+<span id="cb26-5"><a href="#cb26-5"></a>    <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp), </span>
+<span id="cb26-6"><a href="#cb26-6"></a>              <span class="at">mean_pop =</span> <span class="fu">mean</span>(pop), </span>
+<span id="cb26-7"><a href="#cb26-7"></a>              <span class="at">mean_gdpPercap =</span> <span class="fu">mean</span>(gdpPercap))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'continent'. You can override using the
+`.groups` argument.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 60 × 5
+# Groups:   continent [5]
+   continent  year mean_lifeExp  mean_pop mean_gdpPercap
+   &lt;fct&gt;     &lt;int&gt;        &lt;dbl&gt;     &lt;dbl&gt;          &lt;dbl&gt;
+ 1 Africa     1952         39.1  4570010.          1253.
+ 2 Africa     1957         41.3  5093033.          1385.
+ 3 Africa     1962         43.3  5702247.          1598.
+ 4 Africa     1967         45.3  6447875.          2050.
+ 5 Africa     1972         47.5  7305376.          2340.
+ 6 Africa     1977         49.6  8328097.          2586.
+ 7 Africa     1982         51.6  9602857.          2482.
+ 8 Africa     1987         53.3 11054502.          2283.
+ 9 Africa     1992         53.6 12674645.          2282.
+10 Africa     1997         53.6 14304480.          2379.
+# ℹ 50 more rows</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df_gap.groupby([<span class="st">"continent"</span>, <span class="st">"year"</span>])[[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].mean()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  lifeExp           pop     gdpPercap
+continent year                                       
+Africa    1952  39.135500  4.570010e+06   1252.572466
+          1957  41.266346  5.093033e+06   1385.236062
+          1962  43.319442  5.702247e+06   1598.078825
+          1967  45.334538  6.447875e+06   2050.363801
+          1972  47.450942  7.305376e+06   2339.615674
+          1977  49.580423  8.328097e+06   2585.938508
+          1982  51.592865  9.602857e+06   2481.592960
+          1987  53.344788  1.105450e+07   2282.668991
+          1992  53.629577  1.267464e+07   2281.810333
+          1997  53.598269  1.430448e+07   2378.759555
+          2002  53.325231  1.603315e+07   2599.385159
+          2007  54.806038  1.787576e+07   3089.032605
+Americas  1952  53.279840  1.380610e+07   4079.062552
+          1957  55.960280  1.547816e+07   4616.043733
+          1962  58.398760  1.733081e+07   4901.541870
+          1967  60.410920  1.922986e+07   5668.253496
+          1972  62.394920  2.117537e+07   6491.334139
+          1977  64.391560  2.312271e+07   7352.007126
+          1982  66.228840  2.521164e+07   7506.737088
+          1987  68.090720  2.731016e+07   7793.400261
+          1992  69.568360  2.957096e+07   8044.934406
+          1997  71.150480  3.187602e+07   8889.300863
+          2002  72.422040  3.399091e+07   9287.677107
+          2007  73.608120  3.595485e+07  11003.031625
+Asia      1952  46.314394  4.228356e+07   5195.484004
+          1957  49.318544  4.735699e+07   5787.732940
+          1962  51.563223  5.140476e+07   5729.369625
+          1967  54.663640  5.774736e+07   5971.173374
+          1972  57.319269  6.518098e+07   8187.468699
+          1977  59.610556  7.225799e+07   7791.314020
+          1982  62.617939  7.909502e+07   7434.135157
+          1987  64.851182  8.700669e+07   7608.226508
+          1992  66.537212  9.494825e+07   8639.690248
+          1997  68.020515  1.025238e+08   9834.093295
+          2002  69.233879  1.091455e+08  10174.090397
+          2007  70.728485  1.155138e+08  12473.026870
+Europe    1952  64.408500  1.393736e+07   5661.057435
+          1957  66.703067  1.459635e+07   6963.012816
+          1962  68.539233  1.534517e+07   8365.486814
+          1967  69.737600  1.603930e+07  10143.823757
+          1972  70.775033  1.668784e+07  12479.575246
+          1977  71.937767  1.723882e+07  14283.979110
+          1982  72.806400  1.770890e+07  15617.896551
+          1987  73.642167  1.810314e+07  17214.310727
+          1992  74.440100  1.860476e+07  17061.568084
+          1997  75.505167  1.896480e+07  19076.781802
+          2002  76.700600  1.927413e+07  21711.732422
+          2007  77.648600  1.953662e+07  25054.481636
+Oceania   1952  69.255000  5.343003e+06  10298.085650
+          1957  70.295000  5.970988e+06  11598.522455
+          1962  71.085000  6.641759e+06  12696.452430
+          1967  71.310000  7.300207e+06  14495.021790
+          1972  71.910000  8.053050e+06  16417.333380
+          1977  72.855000  8.619500e+06  17283.957605
+          1982  74.290000  9.197425e+06  18554.709840
+          1987  75.320000  9.787208e+06  20448.040160
+          1992  76.945000  1.045983e+07  20894.045885
+          1997  78.190000  1.112072e+07  24024.175170
+          2002  79.740000  1.172741e+07  26938.778040
+          2007  80.719500  1.227497e+07  29810.188275</code></pre>
+</div>
+</div>
+<p>しかし、ここまで多いとよく分からないので、やはりグラフにするのが人類には優しいのでしょう。</p>
+</section>
+</section>
+<section id="平均値や分散共分散の性質-optional" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="平均値や分散共分散の性質-optional"><span class="header-section-number">5.4</span> 平均値や分散、共分散の性質 (optional)</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "コピーしました");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "コピーしました");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./desc_summary.html" class="pagination-link" aria-label="記述統計表">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">記述統計表</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./plot_distribution.html" class="pagination-link" aria-label="分布のグラフ">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">分布のグラフ</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+</body></html>

@@ -1,0 +1,1419 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.290">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R/Pythonで計量政治学入門 - 13&nbsp; データの追加</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data_pivot.html" rel="next">
+<link href="./data_select.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索"
+  }
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_import.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_create.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">R/Pythonで<br>計量政治学入門</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="サーチ"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">はじめに</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">導入</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quick_start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R/Pythonの基本操作</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_frame.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データフレーム</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">データの要約</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./desc_distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">一変数の要約</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./desc_summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">記述統計表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./desc_correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">二変数の要約</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">データの可視化</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">分布のグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">相関のグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">時系列のグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_professional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">プロっぽいグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_advanced.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">発展的なグラフ</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">データの処理</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_import.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_select.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_create.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_pivot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">ロングとワイドの変換</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_missing_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">欠損値の対応</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">付録</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">エンコーディングの問題</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./session_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">動作環境</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#変数の作成" id="toc-変数の作成" class="nav-link active" data-scroll-target="#変数の作成"><span class="header-section-number">13.1</span> 変数の作成</a>
+  <ul class="collapse">
+  <li><a href="#四則演算" id="toc-四則演算" class="nav-link" data-scroll-target="#四則演算"><span class="header-section-number">13.1.1</span> 四則演算</a></li>
+  <li><a href="#尺度の反転" id="toc-尺度の反転" class="nav-link" data-scroll-target="#尺度の反転"><span class="header-section-number">13.1.2</span> 尺度の反転</a></li>
+  <li><a href="#条件に基づく変数" id="toc-条件に基づく変数" class="nav-link" data-scroll-target="#条件に基づく変数"><span class="header-section-number">13.1.3</span> 条件に基づく変数</a></li>
+  <li><a href="#ラグ変数" id="toc-ラグ変数" class="nav-link" data-scroll-target="#ラグ変数"><span class="header-section-number">13.1.4</span> ラグ変数</a></li>
+  <li><a href="#日付" id="toc-日付" class="nav-link" data-scroll-target="#日付"><span class="header-section-number">13.1.5</span> 日付</a></li>
+  </ul></li>
+  <li><a href="#データの結合変数の追加" id="toc-データの結合変数の追加" class="nav-link" data-scroll-target="#データの結合変数の追加"><span class="header-section-number">13.2</span> データの結合（変数の追加）</a>
+  <ul class="collapse">
+  <li><a href="#countrycode" id="toc-countrycode" class="nav-link" data-scroll-target="#countrycode"><span class="header-section-number">13.2.1</span> countrycode</a></li>
+  </ul></li>
+  <li><a href="#データの結合観察の追加" id="toc-データの結合観察の追加" class="nav-link" data-scroll-target="#データの結合観察の追加"><span class="header-section-number">13.3</span> データの結合（観察の追加）</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>前回は変数を選択したり、観察を選択したりと、データから一部を取り出す作業を学びました。今回は逆にデータを増やす作業を学びます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(readxl)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="im">import</span> polars <span class="im">as</span> pl</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<section id="変数の作成" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="変数の作成"><span class="header-section-number">13.1</span> 変数の作成</h2>
+<p>データフレームを拡張する方法の一つは変数を増やすことです。変数を増やすためには、</p>
+<ol type="1">
+<li>既存のデータフレームの変数を用いて新しい変数を作成するか、</li>
+<li>別のデータフレームと結合する</li>
+</ol>
+<p>の2通りの方法があります。まずは、前者について学びます。</p>
+<section id="四則演算" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="四則演算"><span class="header-section-number">13.1.1</span> 四則演算</h3>
+<p>一般的な四則演算が実行可能です。例えば、東大朝日の2017年衆議院選挙の有権者調査のコードブックを見てみると、問23で政策に対する賛否を聞いています（質問文は間違っていますが）。特に、(1)から(4)は外交政策についてタカ派かハト派かを表しています。</p>
+<p>そこで、これらの変数を足し合わせることでハト派度合いを表す変数を作りたいと思います。</p>
+<ul>
+<li>ただし、(4)については点数が高いほうがタカ派を意味するので、引き算します。</li>
+<li>ついでに不要な変数も除去しておきます。</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (base)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1778 Columns: 137
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (14): PREFNAME, CITY, Q2FA, Q4FA, Q5FA, Q6FA, Q8FA, Q13FA, Q18FA, Q19FA...
+dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>df_voter2017 <span class="ot">&lt;-</span> df_voter2017[,<span class="fu">c</span>(<span class="st">"Q23_1"</span>, <span class="st">"Q23_2"</span>, <span class="st">"Q23_3"</span>, <span class="st">"Q23_4"</span>)]</span>
+<span id="cb7-2"><a href="#cb7-2"></a>df_voter2017<span class="sc">$</span>dovish <span class="ot">&lt;-</span> df_voter2017<span class="sc">$</span>Q23_1 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_2 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_3 <span class="sc">-</span> df_voter2017<span class="sc">$</span>Q23_4</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  Q23_1 Q23_2 Q23_3 Q23_4 dovish
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1     2     3     2     2      5
+2     2     3     2     4      3
+3     3     4     2     2      7
+4     2     1     2     1      4
+5     4     3     2     2      7
+6     3     4     5     1     11</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="fu">select</span>(Q23_1, Q23_2, Q23_3, Q23_4) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="fu">mutate</span>(<span class="at">dovish =</span> Q23_1 <span class="sc">+</span> Q23_2 <span class="sc">+</span> Q23_3 <span class="sc">-</span> Q23_4)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1778 Columns: 137
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (14): PREFNAME, CITY, Q2FA, Q4FA, Q5FA, Q6FA, Q8FA, Q13FA, Q18FA, Q19FA...
+dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 5
+  Q23_1 Q23_2 Q23_3 Q23_4 dovish
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1     2     3     2     2      5
+2     2     3     2     4      3
+3     3     4     2     2      7
+4     2     1     2     1      4
+5     4     3     2     2      7
+6     3     4     5     1     11</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>df_voter2017 <span class="op">=</span> pd.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>df_voter2017 <span class="op">=</span> df_voter2017.loc[:,[<span class="st">"Q23_1"</span>, <span class="st">"Q23_2"</span>, <span class="st">"Q23_3"</span>, <span class="st">"Q23_4"</span>]]</span>
+<span id="cb13-4"><a href="#cb13-4"></a>df_voter2017[<span class="st">"dovish"</span>] <span class="op">=</span> df_voter2017[<span class="st">"Q23_1"</span>] <span class="op">+</span> df_voter2017[<span class="st">"Q23_2"</span>] <span class="op">+</span> df_voter2017[<span class="st">"Q23_3"</span>] <span class="op">-</span> df_voter2017[<span class="st">"Q23_4"</span>]</span>
+<span id="cb13-5"><a href="#cb13-5"></a></span>
+<span id="cb13-6"><a href="#cb13-6"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Q23_1  Q23_2  Q23_3  Q23_4  dovish
+0    2.0    3.0    2.0    2.0     5.0
+1    2.0    3.0    2.0    4.0     3.0
+2    3.0    4.0    2.0    2.0     7.0
+3    2.0    1.0    2.0    1.0     4.0
+4    4.0    3.0    2.0    2.0     7.0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df_voter2017 <span class="op">=</span> (</span>
+<span id="cb15-2"><a href="#cb15-2"></a>    pl.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a>    .select([<span class="st">"Q23_1"</span>, <span class="st">"Q23_2"</span>, <span class="st">"Q23_3"</span>, <span class="st">"Q23_4"</span>])</span>
+<span id="cb15-4"><a href="#cb15-4"></a>    .with_columns(dovish <span class="op">=</span> pl.col(<span class="st">"Q23_1"</span>) <span class="op">+</span> pl.col(<span class="st">"Q23_2"</span>) <span class="op">+</span> pl.col(<span class="st">"Q23_3"</span>) <span class="op">-</span> pl.col(<span class="st">"Q23_4"</span>))</span>
+<span id="cb15-5"><a href="#cb15-5"></a>)</span>
+<span id="cb15-6"><a href="#cb15-6"></a></span>
+<span id="cb15-7"><a href="#cb15-7"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 5)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Q23_1</th>
+<th data-quarto-table-cell-role="th">Q23_2</th>
+<th data-quarto-table-cell-role="th">Q23_3</th>
+<th data-quarto-table-cell-role="th">Q23_4</th>
+<th data-quarto-table-cell-role="th">dovish</th>
+</tr>
+<tr class="odd">
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>5</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>4</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>7</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>ここでも<code>tidyverse</code>と<code>polars</code>、R標準関数と<code>pandas</code>の共通性が見て取れます。つまり、前者では<a href="https://dplyr.tidyverse.org/reference/mutate.html"><code>mutate()</code></a>ないし<a href="https://docs.pola.rs/py-polars/html/reference/dataframe/api/polars.DataFrame.with_columns.html"><code>with_columns()</code></a>内で新しい変数を定義しています。一方で後者は存在しない変数を参照して、そこに代入することで新しい変数を作成しています。</p>
+<p>なお、<code>+</code>や<code>-</code>以外にも四則演算は可能です。</p>
+<table class="table">
+<thead>
+<tr class="header">
+<th style="text-align: center;">計算</th>
+<th style="text-align: center;">R</th>
+<th style="text-align: center;">Python</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: center;">足し算</td>
+<td style="text-align: center;"><code>+</code></td>
+<td style="text-align: center;"><code>+</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">引き算</td>
+<td style="text-align: center;"><code>-</code></td>
+<td style="text-align: center;"><code>-</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">掛け算</td>
+<td style="text-align: center;"><code>*</code></td>
+<td style="text-align: center;"><code>*</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">割り算</td>
+<td style="text-align: center;"><code>/</code></td>
+<td style="text-align: center;"><code>/</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">累乗</td>
+<td style="text-align: center;"><code>^</code></td>
+<td style="text-align: center;"><code>**</code></td>
+</tr>
+<tr class="even">
+<td style="text-align: center;">割り算の余り</td>
+<td style="text-align: center;"><code>%%</code></td>
+<td style="text-align: center;"><code>%</code></td>
+</tr>
+<tr class="odd">
+<td style="text-align: center;">割り算の商</td>
+<td style="text-align: center;"><code>%/%</code></td>
+<td style="text-align: center;"><code>//</code></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="尺度の反転" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="尺度の反転"><span class="header-section-number">13.1.2</span> 尺度の反転</h3>
+<p>ところで、先程の4つの設問では賛成が1、反対が5となる変数でした。そして、(1)から(3)は賛成のほうがタカ派であり、(4)は反対の方がタカ派と言えそうでした。</p>
+<p>そうすると、(4)でも反対が1、賛成が5となるように尺度を反転させたくなるのが人情です。このような場合、「最大値から元の変数を引いて最小値を足す」ことで反転させることができます。そのような反転させた(4)の回答を<code>Q23_4new</code>として作ってみます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (base)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1778 Columns: 137
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (14): PREFNAME, CITY, Q2FA, Q4FA, Q5FA, Q6FA, Q8FA, Q13FA, Q18FA, Q19FA...
+dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>df_voter2017 <span class="ot">&lt;-</span> df_voter2017[,<span class="fu">c</span>(<span class="st">"Q23_1"</span>, <span class="st">"Q23_2"</span>, <span class="st">"Q23_3"</span>, <span class="st">"Q23_4"</span>)]</span>
+<span id="cb18-2"><a href="#cb18-2"></a>df_voter2017<span class="sc">$</span>Q23_4new <span class="ot">&lt;-</span> <span class="fu">max</span>(df_voter2017<span class="sc">$</span>Q23_4) <span class="sc">-</span> df_voter2017<span class="sc">$</span>Q23_4 <span class="sc">+</span> <span class="fu">min</span>(df_voter2017<span class="sc">$</span>Q23_4)</span>
+<span id="cb18-3"><a href="#cb18-3"></a>df_voter2017<span class="sc">$</span>dovish <span class="ot">&lt;-</span> df_voter2017<span class="sc">$</span>Q23_1 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_2 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_3 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_4new</span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  Q23_1 Q23_2 Q23_3 Q23_4 Q23_4new dovish
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+1     2     3     2     2       NA     NA
+2     2     3     2     4       NA     NA
+3     3     4     2     2       NA     NA
+4     2     1     2     1       NA     NA
+5     4     3     2     2       NA     NA
+6     3     4     5     1       NA     NA</code></pre>
+</div>
+</div>
+<p><code>Q23_4new</code>が全て<code>NA</code>となっています。なぜなら、<code>Q23_4</code>に欠損値が含まれており、この場合は最大値も最小値も欠損値になってしまうからです。したがって、<code>na.rm = TRUE</code>とすることで欠損値を除外して最大値と最小値を求めます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (base)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1778 Columns: 137
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (14): PREFNAME, CITY, Q2FA, Q4FA, Q5FA, Q6FA, Q8FA, Q13FA, Q18FA, Q19FA...
+dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>df_voter2017 <span class="ot">&lt;-</span> df_voter2017[,<span class="fu">c</span>(<span class="st">"Q23_1"</span>, <span class="st">"Q23_2"</span>, <span class="st">"Q23_3"</span>, <span class="st">"Q23_4"</span>)]</span>
+<span id="cb22-2"><a href="#cb22-2"></a>df_voter2017<span class="sc">$</span>Q23_4new <span class="ot">&lt;-</span> <span class="fu">max</span>(df_voter2017<span class="sc">$</span>Q23_4, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> df_voter2017<span class="sc">$</span>Q23_4 <span class="sc">+</span> <span class="fu">min</span>(df_voter2017<span class="sc">$</span>Q23_4, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb22-3"><a href="#cb22-3"></a>df_voter2017<span class="sc">$</span>dovish <span class="ot">&lt;-</span> df_voter2017<span class="sc">$</span>Q23_1 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_2 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_3 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_4new</span>
+<span id="cb22-4"><a href="#cb22-4"></a></span>
+<span id="cb22-5"><a href="#cb22-5"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  Q23_1 Q23_2 Q23_3 Q23_4 Q23_4new dovish
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+1     2     3     2     2        4     11
+2     2     3     2     4        2      9
+3     3     4     2     2        4     13
+4     2     1     2     1        5     10
+5     4     3     2     2        4     13
+6     3     4     5     1        5     17</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-2"><a href="#cb24-2"></a>    <span class="fu">select</span>(Q23_1, Q23_2, Q23_3, Q23_4) <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href="#cb24-3"></a>    <span class="fu">mutate</span>(<span class="at">Q23_4new =</span> <span class="fu">max</span>(Q23_4, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> Q23_4 <span class="sc">+</span> <span class="fu">min</span>(Q23_4, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb24-4"><a href="#cb24-4"></a>           <span class="at">dovish =</span> Q23_1 <span class="sc">+</span> Q23_2 <span class="sc">+</span> Q23_3 <span class="sc">+</span> Q23_4new)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1778 Columns: 137
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (14): PREFNAME, CITY, Q2FA, Q4FA, Q5FA, Q6FA, Q8FA, Q13FA, Q18FA, Q19FA...
+dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  Q23_1 Q23_2 Q23_3 Q23_4 Q23_4new dovish
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt;
+1     2     3     2     2        4     11
+2     2     3     2     4        2      9
+3     3     4     2     2        4     13
+4     2     1     2     1        5     10
+5     4     3     2     2        4     13
+6     3     4     5     1        5     17</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a>df_voter2017 <span class="op">=</span> pd.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a>df_voter2017 <span class="op">=</span> df_voter2017.loc[:,[<span class="st">"Q23_1"</span>, <span class="st">"Q23_2"</span>, <span class="st">"Q23_3"</span>, <span class="st">"Q23_4"</span>]]</span>
+<span id="cb28-4"><a href="#cb28-4"></a>df_voter2017[<span class="st">"Q23_4new"</span>] <span class="op">=</span> df_voter2017[<span class="st">"Q23_4"</span>].<span class="bu">max</span>() <span class="op">-</span> df_voter2017[<span class="st">"Q23_4"</span>] <span class="op">+</span> df_voter2017[<span class="st">"Q23_4"</span>].<span class="bu">min</span>()</span>
+<span id="cb28-5"><a href="#cb28-5"></a>df_voter2017[<span class="st">"dovish"</span>] <span class="op">=</span> df_voter2017[<span class="st">"Q23_1"</span>] <span class="op">+</span> df_voter2017[<span class="st">"Q23_2"</span>] <span class="op">+</span> df_voter2017[<span class="st">"Q23_3"</span>] <span class="op">+</span> df_voter2017[<span class="st">"Q23_4new"</span>]</span>
+<span id="cb28-6"><a href="#cb28-6"></a></span>
+<span id="cb28-7"><a href="#cb28-7"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Q23_1  Q23_2  Q23_3  Q23_4  Q23_4new  dovish
+0    2.0    3.0    2.0    2.0       4.0    11.0
+1    2.0    3.0    2.0    4.0       2.0     9.0
+2    3.0    4.0    2.0    2.0       4.0    13.0
+3    2.0    1.0    2.0    1.0       5.0    10.0
+4    4.0    3.0    2.0    2.0       4.0    13.0</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df_voter2017 <span class="op">=</span> (</span>
+<span id="cb30-2"><a href="#cb30-2"></a>    pl.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb30-3"><a href="#cb30-3"></a>    .select([<span class="st">"Q23_1"</span>, <span class="st">"Q23_2"</span>, <span class="st">"Q23_3"</span>, <span class="st">"Q23_4"</span>])</span>
+<span id="cb30-4"><a href="#cb30-4"></a>    .with_columns(Q23_4new <span class="op">=</span> pl.col(<span class="st">"Q23_4"</span>).<span class="bu">max</span>() <span class="op">-</span> pl.col(<span class="st">"Q23_4"</span>) <span class="op">+</span> pl.col(<span class="st">"Q23_4"</span>).<span class="bu">min</span>())</span>
+<span id="cb30-5"><a href="#cb30-5"></a>    .with_columns(dovish <span class="op">=</span> pl.col(<span class="st">"Q23_1"</span>) <span class="op">+</span> pl.col(<span class="st">"Q23_2"</span>) <span class="op">+</span> pl.col(<span class="st">"Q23_3"</span>) <span class="op">+</span> pl.col(<span class="st">"Q23_4new"</span>))</span>
+<span id="cb30-6"><a href="#cb30-6"></a>)</span>
+<span id="cb30-7"><a href="#cb30-7"></a></span>
+<span id="cb30-8"><a href="#cb30-8"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 6)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Q23_1</th>
+<th data-quarto-table-cell-role="th">Q23_2</th>
+<th data-quarto-table-cell-role="th">Q23_3</th>
+<th data-quarto-table-cell-role="th">Q23_4</th>
+<th data-quarto-table-cell-role="th">Q23_4new</th>
+<th data-quarto-table-cell-role="th">dovish</th>
+</tr>
+<tr class="odd">
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>11</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+<td>2</td>
+<td>9</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>13</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>5</td>
+<td>10</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>13</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+<section id="条件に基づく変数" class="level3" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="条件に基づく変数"><span class="header-section-number">13.1.3</span> 条件に基づく変数</h3>
+<section id="条件が一つの場合" class="level4" data-number="13.1.3.1">
+<h4 data-number="13.1.3.1" class="anchored" data-anchor-id="条件が一つの場合"><span class="header-section-number">13.1.3.1</span> 条件が一つの場合</h4>
+<p>四則演算以外にも条件に基づいて新しい変数を作成することもできます。例えば、先ほど作ったハト派変数について、「平均値よりも大きければハト派、そうでなければタカ派」とする変数を作ってみます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (base)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1778 Columns: 137
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (14): PREFNAME, CITY, Q2FA, Q4FA, Q5FA, Q6FA, Q8FA, Q13FA, Q18FA, Q19FA...
+dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>df_voter2017 <span class="ot">&lt;-</span> df_voter2017[,<span class="fu">c</span>(<span class="st">"Q23_1"</span>, <span class="st">"Q23_2"</span>, <span class="st">"Q23_3"</span>, <span class="st">"Q23_4"</span>)]</span>
+<span id="cb33-2"><a href="#cb33-2"></a>df_voter2017<span class="sc">$</span>Q23_4new <span class="ot">&lt;-</span> <span class="fu">max</span>(df_voter2017<span class="sc">$</span>Q23_4, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> df_voter2017<span class="sc">$</span>Q23_4 <span class="sc">+</span> <span class="fu">min</span>(df_voter2017<span class="sc">$</span>Q23_4, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb33-3"><a href="#cb33-3"></a>df_voter2017<span class="sc">$</span>dovish <span class="ot">&lt;-</span> df_voter2017<span class="sc">$</span>Q23_1 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_2 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_3 <span class="sc">+</span> df_voter2017<span class="sc">$</span>Q23_4new</span>
+<span id="cb33-4"><a href="#cb33-4"></a>df_voter2017<span class="sc">$</span>dov_bin <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(df_voter2017<span class="sc">$</span>dovish <span class="sc">&gt;</span> <span class="fu">mean</span>(df_voter2017<span class="sc">$</span>dovish, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"dove"</span>, <span class="st">"hawk"</span>)</span>
+<span id="cb33-5"><a href="#cb33-5"></a></span>
+<span id="cb33-6"><a href="#cb33-6"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  Q23_1 Q23_2 Q23_3 Q23_4 Q23_4new dovish dov_bin
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  
+1     2     3     2     2        4     11 hawk   
+2     2     3     2     4        2      9 hawk   
+3     3     4     2     2        4     13 dove   
+4     2     1     2     1        5     10 hawk   
+5     4     3     2     2        4     13 dove   
+6     3     4     5     1        5     17 dove   </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb35-2"><a href="#cb35-2"></a>    <span class="fu">select</span>(Q23_1, Q23_2, Q23_3, Q23_4) <span class="sc">|&gt;</span> </span>
+<span id="cb35-3"><a href="#cb35-3"></a>    <span class="fu">mutate</span>(<span class="at">Q23_4new =</span> <span class="fu">max</span>(Q23_4, <span class="at">na.rm =</span> <span class="cn">TRUE</span>) <span class="sc">-</span> Q23_4 <span class="sc">+</span> <span class="fu">min</span>(Q23_4, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), </span>
+<span id="cb35-4"><a href="#cb35-4"></a>           <span class="at">dovish =</span> Q23_1 <span class="sc">+</span> Q23_2 <span class="sc">+</span> Q23_3 <span class="sc">+</span> Q23_4new, </span>
+<span id="cb35-5"><a href="#cb35-5"></a>           <span class="at">dov_bin =</span> <span class="fu">if_else</span>(dovish <span class="sc">&gt;</span> <span class="fu">mean</span>(dovish, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="st">"dove"</span>, <span class="st">"hawk"</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1778 Columns: 137
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (14): PREFNAME, CITY, Q2FA, Q4FA, Q5FA, Q6FA, Q8FA, Q13FA, Q18FA, Q19FA...
+dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  Q23_1 Q23_2 Q23_3 Q23_4 Q23_4new dovish dov_bin
+  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;chr&gt;  
+1     2     3     2     2        4     11 hawk   
+2     2     3     2     4        2      9 hawk   
+3     3     4     2     2        4     13 dove   
+4     2     1     2     1        5     10 hawk   
+5     4     3     2     2        4     13 dove   
+6     3     4     5     1        5     17 dove   </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb39-2"><a href="#cb39-2"></a></span>
+<span id="cb39-3"><a href="#cb39-3"></a>df_voter2017 <span class="op">=</span> pd.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb39-4"><a href="#cb39-4"></a></span>
+<span id="cb39-5"><a href="#cb39-5"></a>df_voter2017 <span class="op">=</span> df_voter2017.loc[:,[<span class="st">"Q23_1"</span>, <span class="st">"Q23_2"</span>, <span class="st">"Q23_3"</span>, <span class="st">"Q23_4"</span>]]</span>
+<span id="cb39-6"><a href="#cb39-6"></a>df_voter2017[<span class="st">"Q23_4new"</span>] <span class="op">=</span> df_voter2017[<span class="st">"Q23_4"</span>].<span class="bu">max</span>() <span class="op">-</span> df_voter2017[<span class="st">"Q23_4"</span>] <span class="op">+</span> df_voter2017[<span class="st">"Q23_4"</span>].<span class="bu">min</span>()</span>
+<span id="cb39-7"><a href="#cb39-7"></a>df_voter2017[<span class="st">"dovish"</span>] <span class="op">=</span> df_voter2017[<span class="st">"Q23_1"</span>] <span class="op">+</span> df_voter2017[<span class="st">"Q23_2"</span>] <span class="op">+</span> df_voter2017[<span class="st">"Q23_3"</span>] <span class="op">+</span> df_voter2017[<span class="st">"Q23_4new"</span>]</span>
+<span id="cb39-8"><a href="#cb39-8"></a>df_voter2017[<span class="st">"dov_bin"</span>] <span class="op">=</span> np.where(df_voter2017[<span class="st">"dovish"</span>] <span class="op">&gt;</span> df_voter2017[<span class="st">"dovish"</span>].mean(), <span class="st">"dove"</span>, <span class="st">"hawk"</span>)</span>
+<span id="cb39-9"><a href="#cb39-9"></a></span>
+<span id="cb39-10"><a href="#cb39-10"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Q23_1  Q23_2  Q23_3  Q23_4  Q23_4new  dovish dov_bin
+0    2.0    3.0    2.0    2.0       4.0    11.0    hawk
+1    2.0    3.0    2.0    4.0       2.0     9.0    hawk
+2    3.0    4.0    2.0    2.0       4.0    13.0    dove
+3    2.0    1.0    2.0    1.0       5.0    10.0    hawk
+4    4.0    3.0    2.0    2.0       4.0    13.0    dove</code></pre>
+</div>
+</div>
+<ul>
+<li><code>numpy</code>というパッケージを使います。</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>df_voter2017 <span class="op">=</span> (</span>
+<span id="cb41-2"><a href="#cb41-2"></a>    pl.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb41-3"><a href="#cb41-3"></a>    .select([<span class="st">"Q23_1"</span>, <span class="st">"Q23_2"</span>, <span class="st">"Q23_3"</span>, <span class="st">"Q23_4"</span>])</span>
+<span id="cb41-4"><a href="#cb41-4"></a>    .with_columns(Q23_4new <span class="op">=</span> pl.col(<span class="st">"Q23_4"</span>).<span class="bu">max</span>() <span class="op">-</span> pl.col(<span class="st">"Q23_4"</span>) <span class="op">+</span> pl.col(<span class="st">"Q23_4"</span>).<span class="bu">min</span>())</span>
+<span id="cb41-5"><a href="#cb41-5"></a>    .with_columns(dovish <span class="op">=</span> pl.col(<span class="st">"Q23_1"</span>) <span class="op">+</span> pl.col(<span class="st">"Q23_2"</span>) <span class="op">+</span> pl.col(<span class="st">"Q23_3"</span>) <span class="op">+</span> pl.col(<span class="st">"Q23_4new"</span>))</span>
+<span id="cb41-6"><a href="#cb41-6"></a>    .with_columns(dov_bin <span class="op">=</span> pl.when(pl.col(<span class="st">"dovish"</span>) <span class="op">&gt;</span> pl.col(<span class="st">"dovish"</span>).mean()).then(pl.lit(<span class="st">"dove"</span>)).otherwise(pl.lit(<span class="st">"hawk"</span>)))</span>
+<span id="cb41-7"><a href="#cb41-7"></a>)</span>
+<span id="cb41-8"><a href="#cb41-8"></a></span>
+<span id="cb41-9"><a href="#cb41-9"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 7)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Q23_1</th>
+<th data-quarto-table-cell-role="th">Q23_2</th>
+<th data-quarto-table-cell-role="th">Q23_3</th>
+<th data-quarto-table-cell-role="th">Q23_4</th>
+<th data-quarto-table-cell-role="th">Q23_4new</th>
+<th data-quarto-table-cell-role="th">dovish</th>
+<th data-quarto-table-cell-role="th">dov_bin</th>
+</tr>
+<tr class="odd">
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>11</td>
+<td>"hawk"</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+<td>2</td>
+<td>9</td>
+<td>"hawk"</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>13</td>
+<td>"dove"</td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>5</td>
+<td>10</td>
+<td>"hawk"</td>
+</tr>
+<tr class="odd">
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>13</td>
+<td>"dove"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<ul>
+<li>変数に文字列を代入するためには<code>pl.lit()</code>を使います。</li>
+</ul>
+<p>長くて分かりにくいですが、基本的な構造はいずれも同じです。Rの標準関数の場合は<code>ifelse()</code>、<code>tidyverse</code>の場合は<a href="https://dplyr.tidyverse.org/reference/if_else.html"><code>if_else()</code></a>、<code>pandas</code>では<code>numpy</code>の<a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html"><code>np.where()</code></a>、<code>polars</code>では<a href="https://docs.pola.rs/py-polars/html/reference/expressions/api/polars.when.html"><code>when().then().otherwise()</code></a>を使います。</p>
+<p>まず最初に条件式を入力し（ハト派度合いが平均値以上）、それに合致する場合は最初の値<code>dove</code>を代入し、合致しない場合は次の値<code>hawk</code>を代入しています。</p>
+</section>
+<section id="条件が複数の場合" class="level4" data-number="13.1.3.2">
+<h4 data-number="13.1.3.2" class="anchored" data-anchor-id="条件が複数の場合"><span class="header-section-number">13.1.3.2</span> 条件が複数の場合</h4>
+<p>条件が複数ある場合、つまり条件1に当てはまる場合はA、条件2に当てはまる場合はB、条件3に当てはまる場合はC……というような変数を作る場合は、次のように書くのが便利です。例えば、<code>F2</code>という変数は年代を表していますが、10代・20代を若者、30代から50代を中高年、60代以上を高齢者とするような変数を作ってみます。</p>
+<p><code>tidyverse</code>では<a href="https://dplyr.tidyverse.org/reference/case_when.html"><code>case_when()</code></a>を使います。<code>条件式 ~ 変数の値</code>とします。条件に合致しないものに対しては条件式を<code>TRUE</code>とします。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb42-2"><a href="#cb42-2"></a>    <span class="fu">select</span>(F2) <span class="sc">|&gt;</span> </span>
+<span id="cb42-3"><a href="#cb42-3"></a>    <span class="fu">mutate</span>(<span class="at">generation =</span> <span class="fu">case_when</span>(F2 <span class="sc">&lt;=</span> <span class="dv">2</span> <span class="sc">~</span> <span class="st">"youth"</span>, </span>
+<span id="cb42-4"><a href="#cb42-4"></a>                                  <span class="dv">3</span> <span class="sc">&lt;=</span> F2 <span class="sc">&amp;</span> F2 <span class="sc">&lt;=</span> <span class="dv">5</span> <span class="sc">~</span> <span class="st">"middle"</span>, </span>
+<span id="cb42-5"><a href="#cb42-5"></a>                                  <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"senior"</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1778 Columns: 137
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (14): PREFNAME, CITY, Q2FA, Q4FA, Q5FA, Q6FA, Q8FA, Q13FA, Q18FA, Q19FA...
+dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+     F2 generation
+  &lt;dbl&gt; &lt;chr&gt;     
+1     4 middle    
+2     5 middle    
+3     3 middle    
+4     7 senior    
+5     7 senior    
+6     7 senior    </code></pre>
+</div>
+</div>
+<p><code>polars</code>では<code>when().then()</code>を繰り返し、最後に<code>otherwise()</code>で条件に合致しないものの値を決めます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>df_voter2017 <span class="op">=</span> (</span>
+<span id="cb46-2"><a href="#cb46-2"></a>    pl.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb46-3"><a href="#cb46-3"></a>    .select([<span class="st">"F2"</span>])</span>
+<span id="cb46-4"><a href="#cb46-4"></a>    .with_columns(generation <span class="op">=</span> pl.when(pl.col(<span class="st">"F2"</span>) <span class="op">&lt;=</span> <span class="dv">2</span>)</span>
+<span id="cb46-5"><a href="#cb46-5"></a>                               .then(pl.lit(<span class="st">"youth"</span>))</span>
+<span id="cb46-6"><a href="#cb46-6"></a>                               .when((<span class="dv">3</span> <span class="op">&lt;=</span> pl.col(<span class="st">"F2"</span>)) <span class="op">&amp;</span> (pl.col(<span class="st">"F2"</span>) <span class="op">&lt;=</span> <span class="dv">5</span>))</span>
+<span id="cb46-7"><a href="#cb46-7"></a>                               .then(pl.lit(<span class="st">"middle"</span>))</span>
+<span id="cb46-8"><a href="#cb46-8"></a>                               .otherwise(pl.lit(<span class="st">"senior"</span>)))</span>
+<span id="cb46-9"><a href="#cb46-9"></a>)</span>
+<span id="cb46-10"><a href="#cb46-10"></a></span>
+<span id="cb46-11"><a href="#cb46-11"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 2)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">F2</th>
+<th data-quarto-table-cell-role="th">generation</th>
+</tr>
+<tr class="odd">
+<th>i64</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4</td>
+<td>"middle"</td>
+</tr>
+<tr class="even">
+<td>5</td>
+<td>"middle"</td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td>"middle"</td>
+</tr>
+<tr class="even">
+<td>7</td>
+<td>"senior"</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>"senior"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="ラグ変数" class="level3" data-number="13.1.4">
+<h3 data-number="13.1.4" class="anchored" data-anchor-id="ラグ変数"><span class="header-section-number">13.1.4</span> ラグ変数</h3>
+</section>
+<section id="日付" class="level3" data-number="13.1.5">
+<h3 data-number="13.1.5" class="anchored" data-anchor-id="日付"><span class="header-section-number">13.1.5</span> 日付</h3>
+</section>
+</section>
+<section id="データの結合変数の追加" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="データの結合変数の追加"><span class="header-section-number">13.2</span> データの結合（変数の追加）</h2>
+<section id="countrycode" class="level3" data-number="13.2.1">
+<h3 data-number="13.2.1" class="anchored" data-anchor-id="countrycode"><span class="header-section-number">13.2.1</span> countrycode</h3>
+</section>
+</section>
+<section id="データの結合観察の追加" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="データの結合観察の追加"><span class="header-section-number">13.3</span> データの結合（観察の追加）</h2>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "コピーしました");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "コピーしました");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./data_select.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data_pivot.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">ロングとワイドの変換</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

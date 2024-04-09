@@ -1,0 +1,394 @@
+# データの読み込み
+
+政治学で用いるデータの多くは、ウェブサイト上に公開されているデータです。今回は公開されているデータを読み込む方法を紹介します。
+
+## 使用するパッケージ
+
+Rでデータを読み込む場合、標準関数を用いるか、`tidyverse`に含まれるパッケージ[`readr`](https://readr.tidyverse.org/)を使うことが多いです。
+
+```{r filename="R"}
+library(tidyverse)
+```
+
+Pythonの場合、[`pandas`](https://pandas.pydata.org/)がデファクト・スタンダードですが、最近は[`polars`](https://pola.rs/)も人気ではないかと思います。
+
+```{python filename="Python"}
+import pandas as pd
+import polars as pl
+```
+
+## データの形式と読み込み
+
+しかし、本命はネット上で公開されているデータなどを読み込むことではないかと思います。データには形式があり、それに応じてデータを読み込む必要があります。データの形式はファイルの**拡張子**を見れば分かります。
+
+- 例えば、`sample.csv`というファイルであれば、`sample`がファイル名で、`.`以降の`csv`が拡張子です。このファイルは`csv`ファイルであることが分かります。
+- もしPCで拡張子が表示されていない設定であれば、表示するように設定することを勧めます。
+
+以下では、`data`フォルダに入っている`xxx`というファイルを読み込み、`df_sample`というオブジェクトにするコードを紹介します。
+
+### csvファイル
+
+ここでは、代表的なデータの形式と読み込み方法を紹介します。表形式のデータと言われると、エクセルファイルを思い浮かべると思いますが、研究の世界では`csv`ファイルや`tsv`ファイルが多いように思います。
+
+`csv`とは"comma-separated values"の略で、その名の通り「コンマ`,`」で区切られたファイルです。
+
+```{r filename="R (base)"}
+#| eval: false
+
+df_sample <- read.csv("data/xxx.csv")
+```
+
+```{r filename="R (tidyverse)"}
+#| eval: false
+
+df_sample <- read_csv("data/xxx.csv")
+```
+
+```{python filename="Python (pandas)"}
+#| eval: false
+
+df_sample = pd.read_csv("data/xxx.csv")
+```
+
+```{python filename="Python (polars)"}
+#| eval: false
+
+df_sample = pl.read_csv("data/xxx.csv")
+```
+
+#### Qualtrics
+
+政治学ではサーベイ（実験）を行う際には[Qualtrics](https://www.qualtrics.com/)というサービスを使うことが多いです。Rでは[`qualtRics`](https://cran.r-project.org/web/packages/qualtRics/vignettes/qualtRics.html)というパッケージを使うことで、サーベイ結果の`csv`ファイルを読み込めます。
+
+```{r filename="R (qualtRics)"}
+#| eval: false
+library(qualtRics)
+
+df_sample <- read_survey("data/xxx.csv")
+```
+
+### tsvファイル
+
+一方で、`tsv`は「タブ`  `」で区切られています。
+
+```{r filename="R (base)"}
+#| eval: false
+
+df_sample <- read.csv("data/xxx.csv", sep="\t")
+```
+
+```{r filename="R (tidyverse)"}
+#| eval: false
+
+df_sample <- read_tsv("data/xxx.tsv")
+```
+
+```{python filename="Python (pandas)"}
+#| eval: false
+
+df_sample = pd.read_csv("data/xxx.csv", sep="\t")
+```
+
+```{python filename="Python (polars)"}
+#| eval: false
+
+df_sample = pl.read_csv("data/xxx.csv", separator="\t")
+```
+
+`tidyverse`には専用の関数がありますが、それ以外ではタブ区切りであることを指定する必要があります。
+
+- `\t`はタブの正規表現 (regular expression) です。
+
+### xls[x]ファイル：Excel
+
+Excelファイルを読み込む場合、Rでは[`readr`](https://readxl.tidyverse.org/)というパッケージを使います。
+
+- Excelファイルの拡張子は`xls`または`xlsx`です。
+
+```{r filename="R (readxl)"}
+#| eval: false
+library(readxl)
+
+df_sample <- read_excel("data/xxx.xlsx")
+```
+
+```{python filename="Python (pandas)"}
+#| eval: false
+
+df_sample = pd.read_excel("data/xxx.xlsx")
+```
+
+- `openpyxl`と`xlrd`をインストールしておく必要があります。
+
+```{python filename="Python (polars)"}
+#| eval: false
+
+df_sample = pl.read_excel("data/xxx.xlsx")
+```
+
+- `fastexcel`と`xlsx2csv`をインストールしておく必要があります。
+
+### dtaファイル：Stata
+
+政治学や経済学などでは[Stata](https://www.stata.com/)という統計分析ソフトを使うこともあります。Stata専用のデータ形式は`dta`ファイルと呼びます。
+
+```{r filename="R (tidyverse)"}
+#| eval: false
+
+df_sample <- read_dta("data/xxx.dta")
+```
+
+```{python filename="Python (pandas)"}
+#| eval: false
+
+df_sample = pd.read_stata("data/xxx.dta")
+```
+
+政治学だとめったに遭遇しませんが、おそらく心理学や医学では[SAS](https://www.sas.com/ja_jp/home.html)という統計ソフトを使うことがあり、専用のファイルを読み込む関数もあります。
+
+## データの読み込み実践
+
+まずは、キレイなデータを読み込みたいと思います。政治学において民主主義は避けて通ることのできない概念であり、様々なデータセットがあります。その代表的なものとして[Polity](https://www.systemicpeace.org/inscrdata.html)というものがあります。
+
+- "Polity5 Annual Time-Series, 1946-2018"のエクセルデータを作業ディレクトリ内の`data`フォルダに保存します。
+
+それでは、エクセルデータを読み込みます。
+
+```{r filename="R (readxl)"}
+library(readxl)
+
+df_polity <- read_excel("data/p5v2018.xls")
+
+head(df_polity)
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_polity.head()
+```
+
+```{python filename="Python (polars)"}
+df_polity = pl.read_excel("data/p5v2018.xls")
+
+df_polity.head()
+```
+
+- Google Colaboratoryを使っている場合はパスの先頭に`drive/MyDrive/`を付けます。つまり、`"drive/MyDrive/data/p5v2018.xls"`とします。
+
+ところで、それぞれ`NA`や`NaN`、`null`とありますが、これらは**欠損値** (missing value) を意味しています。欠損値とは何かしらの理由で変数の値が測定されていないことを意味します。
+
+- 例えば、その年にその国が独立していない場合などは民主主義を測定できません。
+
+### 行のスキップ
+
+政治学で使用するデータの多くは上記のようなコードで読み込みが可能だと思います。しかし、実際には様々な理由から、単にデータを読み込むだけでは分析できないことがあります。以下では、実際のデータを用いつつ、どのような問題に遭遇しうるのか、その際にどのように対処すれば良いかを学びます。
+
+まずは、[World Bank Open Data](https://data.worldbank.org/)のデータを読み込んでみましょう。
+
+- 例えば、女性人口 (Population, female) で検索をし、右側にあるDownloadの`CSV`をクリックします。
+- `xip`ファイルがダウンロードされるので、それを適当なフォルダ（例えばダウンロードフォルダ）に保存し、解凍します。
+- その中に、長いファイル名のファイルが3つありますが、`API`から始まるファイルが目当てのファイルです。
+- このファイルを作業ディレクトリ内の`data`フォルダにコピーをします。
+- ファイル名が分かりにくいので、分かりやすい名前（例えば、`wb_pop_fem.csv`）に変えておきます。
+
+それでは、データを読み込んでみます。
+
+```{r filename="R (tidyverse)"}
+df_pop_fem <- read_csv("data/wb_pop_fem.csv")
+
+head(df_pop_fem)
+```
+
+```{python filename="Python (pandas)"}
+#| error: true
+
+df_pop_fem = pd.read_csv("data/wb_pop_fem.csv")
+```
+
+```{python filename="Python (polars)"}
+#| error: true
+
+df_pop_fem = pl.read_csv("data/wb_pop_fem.csv")
+```
+
+さて、Pythonではエラーが生じました。また、Rでも肝心の女性の人口データが含まれていません。
+
+なぜこのようなことになってしまったのか、元の`csv`ファイルをエクセルなどの表計算ソフトで見てみます。すると、最初の4行ほどはデータソースや更新日などが書かれており、目当てのデータは5行目以降にあることが分かります。
+
+R/Pythonは素直なので、上から順にデータを読み込みます。Rはおそらくこのデータは2,3列しかないだろうと思って読み込んだのでしょう。Pythonは2列しかないと思っていたら5行目でそれ以上のデータと遭遇してエラーを出してしまったのでしょう。
+
+したがって、このような場合は「5行目から読んでね（4行目までは無視してね）」とR/Pythonにお願いする必要があります。
+
+```{r filename="R (tidyverse)"}
+df_pop_fem <- read_csv("data/wb_pop_fem.csv", skip = 4)
+
+head(df_pop_fem)
+```
+
+```{python filename="Python (pandas)"}
+df_pop_fem = pd.read_csv("data/wb_pop_fem.csv", skiprows=4)
+
+df_pop_fem.head()
+```
+
+```{python filename="Python (polars)"}
+df_pop_fem = pl.read_csv("data/wb_pop_fem.csv", skip_rows=4)
+
+df_pop_fem.head()
+```
+
+無事にデータを読み込むことができました。ここから得られる教訓は、データを読み込む前に表計算ソフトでどのようなデータなのか確認すべしということでしょう。
+
+### シートの選択
+
+続いて、ストックホルム国際平和研究所の[SIPRI Military Expenditure Database](https://www.sipri.org/databases/milex)を扱います。
+
+- リンクをクリックしてデータを作業ディレクトリ内の`data`フォルダに保存します。
+
+先程の教訓を活かして、まずは表計算ソフトでこのファイルを開きます。すると、英語で説明が書かれたページが表示されます。
+
+エクセルファイルは一つのファイルに複数のシート（データフレーム）が含まれていることがあります。したがって、その場合はどのシートを読み込むかを指定する必要があります。試しに、実質USドルで計算された5つ目のシートを読み込みます。
+
+また、5つ目のシートを見てみると最初の5行は説明書きのようなので、スキップします。
+
+```{r filename="R (readxl)"}
+library(readxl)
+
+df_sipri <- read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet = 5, skip = 5)
+
+head(df_sipri)
+```
+
+```{python filename="Python (pandas)"}
+df_sipri = pd.read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet_name=5, skiprows=5)
+
+df_sipri.head()
+```
+
+```{python filename="Python (polars)"}
+df_sipri = pl.read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet_id=5, read_options={"skip_rows": 5})
+
+df_sipri.head()
+```
+
+- `pl.read_csv()`のときとスキップの仕方が異なる点に注意してください。
+
+ややツッコミどころはありますが、一応、それなりにデータが読み込みめているようです。
+
+### 欠損値の指定
+
+残念ながら、まだこれだけでは分析に耐えるデータではありません。１つ目の問題は、謎の`xxx`や`...`です。改めて元のデータを見てみると、4行目に"". ." = data unavailable. "xxx" = country did not exist or was not independent during all or part of the year in question."と書いてあります。すなわち、これらは欠損値を示していると考えられます。
+
+したがって、データを読み込む際にはこれらを欠損値であることをR/Pythonに教えてあげる必要があります。
+
+```{r filename="R (readxl)"}
+library(readxl)
+
+df_sipri <- read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet = 5, skip = 5, na = c("xxx", "..."))
+
+head(df_sipri)
+```
+
+```{python filename="Python (pandas)"}
+df_sipri = pd.read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet_name=5, skiprows=5, na_values=["xxx", "..."])
+
+df_sipri.head()
+```
+
+```{python filename="Python (polars)"}
+df_sipri = pl.read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet_id=5, read_options={"skip_rows": 5, "null_values": ["xxx", "..."]})
+
+df_sipri.head()
+```
+
+先程まで`xxx`や`...`であったところが欠損値になっていることが分かります。必ずしもエラーが出なかったとしても問題がないというわけではない、というのがもう一つの教訓でしょうか。
+
+これでもまだ直すべき点はあるのですが、それはデータの加工として扱いたいと思います。
+
+### 文字化けの対処
+
+最後に、日本語を含むデータを用いて文字化けに対処したいと思います。まずは、[東京大学谷口研究室・朝日新聞社共同調査](http://www.masaki.j.u-tokyo.ac.jp/utas/utasindex.html)の2017年衆院選の有権者調査のデータをダウンロードします。
+
+表計算ソフトで開くと、おそらくMac/Linuxユーザは都道府県などが文字化けしているのではないでしょうか。大雑把に言ってしまうとWindowsで作ったファイルはMac/Linuxで文字化けを起こし、その逆もまた然りです。
+
+その場合、文字データの処理方法（エンコード）を適切に設定することで、文字化けを回避することができます。Windowsで作成された日本語データはShift-JIS（あるいはCP932）という形式でエンコードされるので、そのように指定します。
+
+- ついでに`99`が無回答なので欠損値としておきます。
+
+```{r filename="R (tidyverse)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99")
+
+head(df_voter2017)
+```
+
+```{python filename="Python (pandas)"}
+df_voter2017 = pd.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", na_values="99")
+
+df_voter2017.head()
+```
+
+```{python filename="Python (polars)"}
+df_voter2017 = pl.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", null_values="99")
+
+df_voter2017.head()
+```
+
+逆に、Windowsで開いたファイルが文字化けする場合はMac/Linuxで作成された可能性が高いです。Mac/LinuxではUTF8というエンコーディングを使っているので、そのように指定すれば文字化けせずに読み込めるはずです。
+
+- ただし、最近のWindowsではUTF8が使われて、文字化けが起こらないことがあります。
+
+:::{.callout-note}
+## LibreOffice
+
+ところで、エクセルで読み込む際の文字化けを解決することはできません。その場合は無料のオフィスソフトである[LibreOffice](https://www.libreoffice.org/)を使うことをおすすめします。
+:::
+
+## データの在り処
+
+政治学や周辺領域で利用可能なデータが集まっているサイトを紹介します。
+
+- [World Bank Open Data](https://data.worldbank.org/)
+- [Varieties of Democracy](https://v-dem.net/)
+- [A dataset with political datasets](https://github.com/erikgahner/PolData)
+- [大阪大学大学院国際公共政策研究科EBPM研究センター](https://www.osipp.osaka-u.ac.jp/ja/cepo/data-for-ebpm/)
+- [Kaggle Datasets](https://www.kaggle.com/datasets)
+    - Kaggleとは世界最大規模のデータ分析コンペです。
+- [Harvard Dataverse](https://dataverse.harvard.edu/)
+    - 政治学でレプリケーションデータを公開するデファクトスタンダードになっています。
+- [GitHub](https://github.com/)
+    - GitHubはコードの公開・共有サイトですが、適当な単語で検索するとデータが引っかかるときがあります。
+
+## パッケージの付属データ
+
+RやPythonではパッケージにサンプルデータが付属していることが多いです。
+
+例えば、Rの場合は`data()`を実行することで、読み込んでるパッケージに付属するデータを確認できます。
+
+```{r filename="R"}
+data()
+```
+
+呼び出したいデータセットの名前を入れて`data(...)`と実行するとデータを呼び出すことができます。
+
+```{r filename="R"}
+data(USArrests)
+
+head(USArrests)
+```
+
+Pythonの場合、例えば`seaborn`では`sns.get_dataset_names()`でデータを確認できます。
+
+```{python filename="Python"}
+import seaborn as sns
+
+sns.get_dataset_names()
+```
+
+`sns.load_dataset(...)`でデータを呼び出します。
+
+```{python filename="Python"}
+sns.load_dataset("titanic")
+```
+
+また、データ分析で用いる`statsmodels`や`scikit-learn`などのパッケージでもデータを呼び出すことができます。

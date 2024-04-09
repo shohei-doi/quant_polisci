@@ -1,0 +1,271 @@
+# 記述統計表
+
+前章では、一つの変数の中心や散らばりを見てきましたが、多くの場合は複数の（分析に使う全ての）変数の中心と散らばりをひとまとめにしたくなるでしょう。そのような表を**記述統計表**と呼びます。
+
+この章では記述統計表の作成を学びます。加えて、データフレームの出力、スクリプト、メソッド、パイプ演算子といった基本的事項にも触れます。
+
+## 簡易な方法
+
+```{r filename="R"}
+library(gapminder)
+
+df_gap <- gapminder
+
+summary(df_gap)
+```
+
+```{python filename="Python"}
+import gapminder
+
+df_gap = gapminder.gapminder
+
+df_gap.describe()
+```
+
+- `e+04`のような謎の文字が登場しますが、これは文字化けやエラーなどではありません。`e+04`は$10^4 = 10000$を意味しています（浮動小数点数）。
+
+このようにして気軽に記述統計表を見ることはできますが、残念ながらこのまま論文に載せることができるクオリティではありません。以下では、よりきれいな記述統計表を作成する方法を紹介します。
+
+## データフレームの作成
+
+まず、[`summarytools`](https://cran.r-project.org/web/packages/summarytools/vignettes/introduction.html)というパッケージの`descr()`という関数で記述統計表を作ります。初めて使う場合はパッケージのインストールを忘れないでください。
+
+```{r filename="R"}
+#| output: asis
+
+library(summarytools)
+
+descr(df_gap)
+```
+
+このままでは項目が多いので、いくつかに絞ります。
+
+```{r filename="R"}
+#| output: asis
+
+library(summarytools)
+
+descr(df_gap, stats = c("n.valid", "mean", "sd", "min", "q1", "med", "q3", "max"))
+```
+
+表示されるのではデータフレームではないので、出力結果を`tb()`関数に入れてデータフレーム化します。
+
+```{r filename="R"}
+df_sum <- descr(df_gap, stats = c("n.valid", "mean", "sd", "min", "q1", "med", "q3", "max"))
+df_sum <- tb(df_sum)
+
+print(df_sum)
+```
+
+Pythonの場合は`pandas`の[`describe()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.describe.html)メソッドがデータフレームを出力します。
+
+```{python filename="Python"}
+df_sum = df_gap.describe()
+
+print(df_sum)
+```
+
+### 転置
+
+変数と要約統計量の位置を入れ替えたい場合は次のようにします（こちらのほうが政治学では一般的な印象を受けます）。
+
+`summarytools`ではオプション`transpose = TRUE`を追加します。
+
+```{r filename="R"}
+df_sum <- descr(df_gap, stats = c("n.valid", "mean", "sd", "min", "q1", "med", "q3", "max"), transpose = TRUE)
+df_sum <- tb(df_sum)
+
+print(df_sum)
+```
+
+Pythonの場合は`transpose()`メソッドがデータフレームを転置します。
+
+```{python filename="Python"}
+df_sum = df_gap.describe()
+df_sum = df_sum.transpose()
+
+print(df_sum)
+```
+
+## 表の出力
+
+データフレームを論文で掲載する表として保存します。R/Pythonの外に保存する場合は、保存先として**パス**を指定する必要があります。パスとはPC上の住所のようなものです。
+
+パスは表の出力だけでなく、画像の保存やデータの読み込みの際にも必要になる重要概念なので、しっかり説明しようと思います。
+
+### 作業ディレクトリ
+
+まず、現在RやPythonで作業している場所を**作業ディレクトリ** (working directory) と言います。
+
+- ディレクトリとはフォルダのことです。
+
+作業ディレクトリのパスを次のコードで確認します。
+
+```{r filename="R"}
+#| eval: false
+
+getwd()
+```
+
+```{python filename="Python"}
+#| eval: false
+
+import os
+
+os.getcwd()
+```
+
+おそらく、`AAA/BBB/CCC/DDD`のような文字列が表示されるはずです（Windowsの場合は`/`が`¥`かもしれません）。これが作業ディレクトリのパスです。
+
+すなわち、PCの`AAA`というフォルダの中の`BBB`の中の`CCC`の中の`DDD`で今は作業をしているという意味です。パスと住所と同じ構造をしていることが分かります。
+
+### 保存先フォルダの作成
+
+次に、表の出力先として`tables`というフォルダを作成します。まず、RStudio Cloudの場合、右下の`Files`タブの中の`Folder`ボタンをクリックして、`More`の中の`Go To Working Directory`をクリックすると作業ディレクトリが表示されます。その中で`New Folder`を選択し、`tables`とフォルダ名を入力して`OK`をします。
+
+Google Colaboratoryの場合、左のフォルダボタンを押すと、作業ディレクトリが開きます。しかし、Google Colaboratoryでは一定時間が経つと作業がリセットされてしまうので、Google Driveにデータを保存する方が便利です。
+
+Google Driveの中に`tables`というフォルダを作成します。次に、Colaboratoryのページの左側にフォルダのボタンがあるので、それをクリックし、上の方にあるGoogle Driveのボタンを押して、マウントします。すると、`drive`というフォルダが表示されます。この中の`MyDrive`が自身のGoogle Driveになります。先ほど作成した`tables`フォルダがあることを確認してください。
+
+自分のPC上で（ローカルの）R/Pythonを使っている場合は、まず作業ディレクトリを自分で作り、その中に`tables`フォルダを作成します。
+
+- RStudioを使っている場合は、[プロジェクトファイル](https://support.posit.co/hc/en-us/articles/200526207-Using-RStudio-Projects)を作成すると、作業ディレクトリが自動で設定されるので、おすすめします。
+- Pythonを使っている場合は、Jupyter NotebookやVScodeが自動で作業ディレクトリを設定します。
+
+### データフレームの保存
+
+一つのやり方はデータフレームを`.csv`ファイルに出力する方法です。
+
+```{r filename="R"}
+write.csv(df_sum, "tables/summary_gapminder_R.csv")
+```
+
+```{python filename="Python"}
+df_sum.to_csv("tables/summary_gapminder_py.csv")
+```
+
+ファイルを保存する場合は、保存先のパスを指定する必要があります。今回は、`tables`フォルダの中に`summary_gapminder_R[py].csv`というファイル名で保存しようと思います。
+
+- `tables/`は「`tables`というフォルダの中の」という意味です。
+- `summary_gapminder_R.csv`は保存するファイルの名前で、自由に決めることができます。
+    - ただし、半角英数字とアンダーバー`_`やハイフン`-`のみを使い、空白は入れないことを推奨します。
+- `.csv`は拡張子で、今回はcsvファイルとして保存します。
+- Google Colaboratoryの場合、`tables/...`の前に`drive/MyDrive/`を付け足します。
+
+このように、作業ディレクトリから見たパスを**相対パス**と呼びます。パスを全て書く場合を**絶対パス**と呼びますが、使用はおすすめしません。
+
+出力されたデータをWordなどに貼り付け、見た目をよしなにします。
+
+### LaTeX
+
+texファイルとして出力する場合は例えば次のようにします。
+
+```{r filename="R"}
+library(xtable)
+
+print(xtable(df_sum), file = "tables/summary_gapminder_R.tex", booktabs = TRUE)
+```
+
+```{python filename="Python"}
+df_sum.to_latex("tables/summary_gapminder_py.tex")
+```
+
+- パッケージ`jinja2`をインストールしておく必要があります。
+
+論文に載せる際は変数名を適切なものへと変更したり、キャプションなどをつけるといいでしょう。また、LaTeXのパッケージ`booktabs`を使うように設定しています。
+
+## スクリプト
+
+Rで記述統計表を作成するコードをまとめてみます。
+
+```{r filename="R"}
+library(gapminder)
+library(summarytools)
+
+df_gap <- gapminder
+
+df_sum <- descr(df_gap, stats = c("n.valid", "mean", "sd", "min", "q1", "med", "q3", "max"), transpose = TRUE)
+df_sum <- tb(df_sum)
+
+write.csv(df_sum, "tables/summary_gapminder_R.csv")
+```
+
+データ分析は試行錯誤なので、同じようなことを何度もすることがあります。例えば、記述統計表を作り直すということはあるでしょう。その都度、上記のようなコードをイチから書いていくのは面倒です。
+
+そこで、コードを**スクリプト**に保存をします。RStudioの左上で新しくファイルを作成するボタンをクリックし、`R Script`を選択します。すると、左上にまっさらなスクリプトが登場するので、そこにコードを書き込んでいき、適宜保存をします。
+
+実は、スクリプト上のコードは{{< kbd Ctrl-Enter >}}で実行することができます。なので、実際はスクリプト上にコードを書き、実行していくことになります。
+
+Google Colaboratoryはノートブックという形式で、コードと実行結果が一体化しています。ただ、ノートブックを使わない場合は同様にPythonスクリプトを作成します（例えば、[Visual Studio Code](https://code.visualstudio.com/)などを用います）。
+
+- ノートブックではセルごとにコードが実行されるので、適当な内容ごとにセルを区切ってコードを書くようにしましょう。
+
+## パイプ演算子
+
+Pythonで記述統計表を作成するコードをまとめます。
+
+```{python filename="Python"}
+import gapminder
+
+df_gap = gapminder.gapminder
+
+df_sum = df_gap.describe()
+df_sum = df_sum.transpose()
+
+df_sum.to_csv("tables/summary_gapminder_py.csv")
+```
+
+ところで、Pythonでは特定の種類のオブジェクトに限定した処理は**メソッド**として提供されています。そして、メソッドは連結して書くことができます。
+
+例えば上記のコードは以下のようになります。
+
+```{python filename="Python"}
+import gapminder
+
+df_gap = gapminder.gapminder
+
+df_gap.describe().transpose().to_csv("tables/summary_gapminder_py.csv")
+```
+
+Rでは**パイプ演算子**と呼ばれるものを使って、同様に書くことができます。パイプ演算子とは`%>%`もしくは`|>`のことで、左側の内容を右側の関数の最初の入力として渡します。
+
+- 例えば、`a |> f(...)`というのは`f(a, ...)`と等価です。
+
+パイプ演算子を使うと、次のようにまとめて書くことができます。
+
+```{r filename="R"}
+library(gapminder)
+library(summarytools)
+
+df_gap <- gapminder
+
+df_gap |> 
+    descr(stats = c("n.valid", "mean", "sd", "min", "q1", "med", "q3", "max"), transpose = TRUE) |> 
+    tb() |> 
+    write.csv("tables/summary_gapminder_R.csv")
+```
+
+メソッドやパイプ演算子で連結させて書くか、処理を一つずつ行ってオブジェクトに代入して書くかは見やすさや個人の好みに応じて決めればよいと思います。
+
+:::{.callout-note}
+## 2つのパイプ演算子
+
+Rにはパイプ演算子が2つあります。まず、`%>%`というのは`magrittr`（より一般的には`tidyverse`）のパイプ演算子で、先に登場しました。その後、Rでも標準のパイプ演算子として`|>`が導入されました。
+
+僕が理解する範囲ではどちらも機能は変わらないので、好きな方を使えば良いと思います（使わなくてもいいと思います）。ただ、他の人が書いたコードにこれらが登場しても混乱しないようにしましょう。
+:::
+
+Pythonでは`()`でくくって、コードを改行することができます。
+
+```{python filename="Python"}
+import gapminder
+
+df_gap = gapminder.gapminder
+
+(
+    df_gap
+    .describe()
+    .transpose()
+    .to_csv("tables/summary_gapminder_py.csv")
+)
+```

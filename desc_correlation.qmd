@@ -1,0 +1,228 @@
+# 二変数の要約
+
+多くの場合、変数それ自体ではなく2つ（あるいは複数）の変数の間の関係に関心があることが多いのではないでしょうか。例えば、一人あたりGDPが高いと平均寿命も長くなるのかどうか、など。続いては、このように2つの変数間の関係を要約する方法を学んでいきます。
+
+```{r filename="R"}
+#| include: false
+
+library(gapminder)
+
+df_gap <- gapminder
+```
+
+```{python filename="Python"}
+#| include: false
+
+import gapminder
+
+df_gap = gapminder.gapminder
+```
+
+## 連続変数同士の関係
+
+### 共分散
+
+**相関係数** (correlation coefficient) 、特に相関、という言葉は聞いたことがあるでしょう。相関係数とは2つの変数間の関係の強さを見る際に、よく使われる指標です。
+
+これから相関係数について説明しますが、ややこしいので、興味のない人はコードまで飛ばしてください。
+
+まずは、相関係数を理解するために、**共分散** (covariance) について学びます。一度、分散の定義に戻ります。
+
+$$
+\sigma^2 = \frac{\sum_{i=1}^N (x_i - \bar{x})^2}{N}
+$$
+
+$\bar{x}$は$x$の平均でした。したがって、$(x_i - \bar{x})$は変数の値が平均からどれだけ離れているかを表しており、それを二乗して面積に変換して、その平均を求めることで、変数の散らばり具合を表していました。
+
+共分散は分散の二変数バージョンであり、次のように定義されます。分散との違いは分母の総和の中身が$(x_i - \bar{x})^2$から$(x_i - \bar{x})(y_i - \bar{y})$に変わっていることです。
+
+$$
+\sigma_{xy}^2 = \frac{\sum_{i=1}^N (x_i - \bar{x})(y_i - \bar{y})}{N}
+$$
+
+それでは、$(x_i - \bar{x})(y_i - \bar{y})$について考えたいと思います。この前半は既に述べたように$x_i$と平均値との差です。よって、前半は$x_i$が平均値よりも大きければ正、小さければ負の値になります。後半については$x_i$が$y_i$に置き換わっただけで、意味は同様です。
+
+したがって、$(x_i - \bar{x})(y_i - \bar{y})$全体としては$x_i$と$y_i$が共に平均値より大きいもしくは小さければ正の値を取ります。一方が平均値より大きく、他方が小さければ負の値を取ります。
+
+より直感的に言えば、$\bar{x}$と$\bar{y}$を原点とする平面を考えると、$(x_i,y_i)$が第1（右上）もしくは第3象限（左下）にあるときに、$(x_i - \bar{x})(y_i - \bar{y})$は正の値を取ります。逆に、第2（左上）もしくは第4象限（右下）にあるときは負の値を取ります。
+
+![$(x_i - \bar{x})(y_i - \bar{y})$の符号](figures/covariance.drawio.png)
+
+共分散はそのような$(x_i - \bar{x})(y_i - \bar{y})$の平均値なので、正の値を取るということは$x$と$y$が正の比例関係にあり、負の値を取るということは負の比例関係にあるということを示唆しています。
+
+### 複数変数の選択
+
+それでは、共分散を求めたいと思います。平均値や分散を求めるときは1つの変数をデータフレームから取り出しましたが、共分散の場合は2つ（あるいはそれ以上）の変数を取り出す必要があります。RとPythonではそれぞれ、次のように書きます。
+
+```{r filename="R"}
+df_gap[,c("lifeExp", "gdpPercap")]
+```
+
+- まず、データフレームの後ろに"[,]`を付けます。
+- `,`の左側では横（観察）を選択しますが、今回は全ての観察を用いるので何も指定しません。
+- `,`の右側では縦（変数）を選択します。`c()`の中に変数名オブジェクトを入れることで、複数の変数名のオブジェクトを作成しています。
+
+なお、Rでは`tidyverse`というパッケージ群を使うことで、簡便にデータフレームの処理が可能になります。
+
+:::{.callout-note}
+# tidyverse
+
+`tidyverse`とは狭義には[特定のパッケージの集まり](https://www.tidyverse.org/)です。広義には既存のRを改善するためのプロジェクトや考え方と言ってもいいかもしれません。
+
+`tidyverse`は主観的には便利なのですが、Rの標準的な書き方とはやや異なるため、結果的にRを分断しかねない要素もあります。この資料では`tidyverse`を使って書こうと思います。
+:::
+
+具体的には`tidyverse`の中の`dplyr`というパッケージを使いますが、`tidyverse`を読み込むだけで関連パッケージが全て読み込まれます。
+
+```{r filename="R"}
+library(tidyverse)
+
+df_gap |> 
+    select(lifeExp, gdpPercap)
+```
+
+- [`select()`](https://dplyr.tidyverse.org/reference/select.html)を使います。
+
+`pandas`では[`.loc[,]`(https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.loc.html)]メソッドを使います。
+
+```{python filename="Python"}
+df_gap.loc[:,["lifeExp", "gdpPercap"]]
+```
+
+- `,`の左側では横（観察）を選択しますが、今回は全ての観察を用いるので`:`を入れます。
+- `,`の右側では縦（変数）を選択します。`[]`の中に変数名オブジェクトを入れることで、複数の変数名のオブジェクトを作成しています。
+
+なお、次のように省略して書くこともできます。
+
+```{python filename="Python"}
+#| eval: false
+
+df_gap[["lifeExp", "gdpPercap"]]
+```
+
+### 共分散（再訪）
+
+共分散を求めます。なお、対角成分（左上や右下など）は分散を示しています。
+
+```{r filename="R"}
+cov(df_gap[,c("lifeExp", "gdpPercap")])
+```
+
+```{python filename="Python"}
+df_gap.loc[:,["lifeExp", "gdpPercap"]].cov()
+```
+
+ところで、`7.432320e+04`とはなんぞやと思うかもしれません。これは浮動小数点と呼ばれるもので、$7.432320...\times10^4 = 74323.20...$を意味しています。
+
+### 相関係数
+
+共分散は2つの変数の比例関係を示していますが、一つの問題があります。それは、変数の散らばり具合も含んでいるため、その値の解釈が難しいということです。試しに、人口も含めて共分散を求めてみます。
+
+```{r filename="R"}
+cov(df_gap[,c("lifeExp", "pop", "gdpPercap")])
+```
+
+例えば、平均寿命と人口の共分散は$89070240$で、平均寿命と一人あたりGDPの共分散は$74323$です。では、前者の方が大きな値を取っているので、人口のほうが一人あたりGDPよりも平均寿命と強い関係にあると言っていいでしょうか。もしかすると人口のほうが大きな値を取りやすいので、平均値よりも離れやすく、その結果として共分散も大きくなっているのかもしれません。
+
+そこで、変数の値の大きさに左右されずに関係性を示すものとして相関係数を使いたいと思います。相関係数は共分散を$x_i$の分散と$y_i$の分散の積で割ったものになります。
+
+$$
+\rho_{xy} = {\sigma^2_{xy} \over \sigma_x \sigma_y}
+$$
+
+直感的に言えば、$x_i$の分散と$y_i$の分散で割ることによって、$x_i$と$y_i$の散らばり具合を相殺（調整）しています。結果として、相関係数は$-1$から$1$の間に収まります。
+
+それでは、相関係数を求めます。人口よりも一人あたりGDPの方が平均寿命と高い相関係数を持っている、すなわち強い関係にあることが分かります。
+
+```{r filename="R"}
+cor(df_gap[,c("lifeExp", "pop", "gdpPercap")])
+```
+
+```{python filename="Python"}
+df_gap.loc[:,["lifeExp", "pop", "gdpPercap"]].corr()
+```
+
+## 可視化の重要性
+
+ところで、これまで「強い関係」という言葉を定義せずに用いていました。重要なことは、相関係数で分かることは「どれくらい2つの変数が直線的な関係にあるか」ということ（だけ）です。
+
+ここで、Wikipediaから画像を拝借して、この点を考えたいと思います。いわゆる**散布図** (scatter plot) と呼ばれるもので、横軸が$x_i$、縦軸が$y_i$を表していると考えてください。
+
+![相関係数](https://upload.wikimedia.org/wikipedia/commons/d/d4/Correlation_examples2.svg)
+
+1. まず、1段目を見ると分かるように相関係数は高い（低い）値を取れば取るほど2つの変数は直線に近づいていきます。また、相関係数が正であれば正の比例関係、負であれば負の比例関係にあることも分かります。
+    - なお、「どれくらい相関係数が高ければいいのか」というのは意味のない疑問だと思っています。例えば、$0.8$でも関係は弱いと思う人もいれば、$0.4$でも強いと思う人もいるでしょう。
+2. 続いて、2段目では全ての図において相関係数は$1$（もしくは$-1$）になっています。ここで異なるのはそれぞれの直線の傾きです。「強い関係」と聞くと傾きが大きいと想像するかもしれませんが、相関係数はそこまで意味しません。
+3. 最後に、3段目では全ての図において相関係数は$0$となっています。それぞれ2つの変数は何かしらの関係性を持っていそうですが、相関係数では直線以外の関係性を捉えることはできません。
+
+以上のことをまとめると、相関係数だけで分かることは少ないということではないでしょうか。そして教訓は相関係数という数値だけでなく、実際にグラフを作るということでしょう。
+
+この点をより実感できるものとしてAnscombe"s quartetやDatasaurus Dozenというデータ（およびグラフ）があります。これらのデータは全て同じ平均値や分散、相関係数を持っていますが、それぞれ異なる印象を与えます。
+
+![Anscombe"s quartet](https://upload.wikimedia.org/wikipedia/commons/e/ec/Anscombe%27s_quartet_3.svg)
+
+![Datasaurus Dozen](https://damassets.autodesk.net/content/dam/autodesk/research/publications-assets/gifs/same-stats-different-graphs/DinoSequentialSmaller.gif)
+
+したがって、相関係数だけでなく平均値や分散についても数値だけを見るのではなく、グラフを作って確認するのがよいでしょう。グラフの作成は次章からのテーマです。
+
+## 連続変数と離散変数の関係
+
+### グループごとの平均値
+
+グループごとに平均値を求めることで、離散変数と連続変数の関係を見ることができます。Rではすでに触れた`tidyverse`によって簡単に処理できます。
+
+```{r filename="R"}
+df_gap |> 
+    group_by(continent) |> 
+    summarise(mean_lifeExp = mean(lifeExp), 
+              mean_pop = mean(pop), 
+              mean_gdpPercap = mean(gdpPercap))
+```
+
+- まず、[`group_by()`](https://dplyr.tidyverse.org/reference/group_by.html)でどの変数がグループを表しているかを指定します。
+- 次に、`summarise()`の中で平均値を計算し、新しい変数として定義します。
+    - ここでは`<-`やないんかいと突っ込みたくなりますが、`=`なので気をつけてください。
+
+`pandas`ではこのように書きます。
+
+```{python filename="Python"}
+df_gap.groupby("continent")[["lifeExp", "pop", "gdpPercap"]].mean()
+```
+
+- まず、[`groupby()`](https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.groupby.html)でどの変数がグループを表しているかを指定します。
+- 次に`[[...]]`で平均値を計算したい変数を指定します。
+- 最後に、`.mean()`で平均値を求めます。
+
+`pandas`での集計には注意が必要です。グループとして使った変数`continent`は集計後のデータフレームでは変数ではなく`index`になっています。
+
+- `index`とは各観察（行）を表す目印のようなものです。
+
+グループ化に使った変数を`index`とせずに、変数のままにする場合は、次のように`as_index=False`を付けます。
+
+```{python filename="Python"}
+df_gap.groupby("continent", as_index=False)[["lifeExp", "pop", "gdpPercap"]].mean()
+```
+
+平均値だけでなく、その他の要約統計量も同様に計算できます。
+
+### グループのネスト
+
+グループを表す変数は1つに限る必要はありません。例えば、各年の各大陸の平均値を求めることも可能です。
+
+```{r filename="R"}
+library(tidyverse)
+
+df_gap |> 
+    group_by(continent, year) |> 
+    summarise(mean_lifeExp = mean(lifeExp), 
+              mean_pop = mean(pop), 
+              mean_gdpPercap = mean(gdpPercap))
+```
+
+```{python filename="Python"}
+df_gap.groupby(["continent", "year"])[["lifeExp", "pop", "gdpPercap"]].mean()
+```
+
+しかし、ここまで多いとよく分からないので、やはりグラフにするのが人類には優しいのでしょう。
+
+## 平均値や分散、共分散の性質 (optional)

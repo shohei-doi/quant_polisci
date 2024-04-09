@@ -1,0 +1,345 @@
+# データの選択
+
+データフレームに含まれるデータのうちで実際に分析に使うのは一部ということはよくあります。その場合は不要なデータを削除していたほうが見やすいですし、PCへの負担も少なくなると思います。
+
+なお、以下ではRの標準関数を使う場合、`tidyverse`の`dplyr`を使う場合、Pythonの`padans`を使う場合、`polars`を使う場合を紹介します。
+
+```{r filename="R"}
+library(tidyverse)
+library(readxl)
+```
+
+```{python filename="Python"}
+import pandas as pd
+import polars as pl
+```
+
+## 変数の選択
+
+### 変数名による選択
+
+まずは、特定の変数だけを使う場合を考えます。例えば、以前読み込んだPolityのデータから特定の変数だけを取り出します。具体的には、`ccode`と`country`、`year`、`polity2`だけを取り出します。
+
+```{r filename="R (base)"}
+df_polity <- read_excel("data/p5v2018.xls")
+
+df_polity <- df_polity[,c("ccode", "country", "year", "polity2")]
+
+head(df_polity)
+```
+
+```{r filename="R (tidyverse)"}
+df_polity <- read_excel("data/p5v2018.xls") |> 
+    select(ccode, country, year, polity2)
+
+head(df_polity)
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_polity = df_polity.loc[:,["ccode", "country", "year", "polity2"]]
+# df_polity = df_polity[["ccode", "country", "year", "polity2"]]でも可
+
+df_polity.head()
+```
+
+```{python filename="Python (polars)"}
+df_polity = (
+    pl.read_excel("data/p5v2018.xls")
+    .select(["ccode", "country", "year", "polity2"])
+)
+
+df_polity.head()
+```
+
+いずれも期待通りの結果が出ています。ところで、上の4つのコードを見比べていると共通性があることが分かります。
+
+- Rの標準関数およびPythonの`pandas`では`,`の右側で変数名を入力することで変数を選択しています。
+    - `pandas`の場合は`loc`属性を使っていること、`,`の左に「全て」を意味する`:`が入っている点に注意。
+- 一方、Rの`tidyverse`とPythonの`polars`では`select()`を使って変数名を選択しています。
+
+### 番号による選択
+
+あまり使う機会はありませんが、変数の番号を指定して選択することもできます。それぞれ、3, 5, 6, 12番目の変数です。
+
+```{r filename="R (base)"}
+df_polity <- read_excel("data/p5v2018.xls")
+
+df_polity <- df_polity[,c(3, 5, 6, 12)]
+
+head(df_polity)
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_polity = df_polity.iloc[:,[2, 4, 5, 11]]
+
+df_polity.head()
+```
+
+- `loc`の代わりに`iloc`を使います。
+
+Rは1から始まるので番号をそのまま入力すればいいですが、Pythonは0から始まるので1引いた数を入力します。
+
+- 直観的にはRの方が自然ですが、プログラミングでは0から始まるのが標準的です。
+
+## 変数名の変更
+
+変数の選択ではないですが、ついでに変数名を変更する方法を説明します。例えば、世銀のデータでは`Country Name`のように空白が変数名に入っていましたが、変数名に空白が入ることは（特に`tidyverse`を使う上で）不都合があります。変数名を変更したいと思います。
+
+```{r filename="R (tidyverse)"}
+df_pop_fem <- read_csv("data/wb_pop_fem.csv", skip = 4) |> 
+    rename(country_name = "Country Name", coutnry_code = "Country Code", indicator_name = "Indicator Name", indicator_code = "Indicator Code")
+
+head(df_pop_fem)
+```
+
+```{python filename="Python (pandas)"}
+df_pop_fem = (
+    pd.read_csv("data/wb_pop_fem.csv", skiprows=4)
+    .rename(columns={"Country Name": "country_name", "Country Code": "coutnry_code", "Indicator Name": "indicator_name", "Indicator Code": "indicator_code"})
+)
+
+df_pop_fem.head()
+```
+
+```{python filename="Python (polars)"}
+df_pop_fem = (
+    pl.read_csv("data/wb_pop_fem.csv", skip_rows=4)
+    .rename({"Country Name": "country_name", "Country Code": "coutnry_code", "Indicator Name": "indicator_name", "Indicator Code": "indicator_code"})
+)
+
+df_pop_fem.head()
+```
+
+いずれも`rename()`を使って元の変数名と新しい変数名の対応関係を入力します。
+
+- `tidyverse`の場合は`新変数名 = 旧変数名`ですが、`pandas/polars`の場合は`旧変数名: 新変数名`です。
+- `tidyverse`の`select()`の中でも変数名を変更することができます。
+
+## 変数の除外
+
+特定の変数を選択するのではなく、除外したいときがあるかもしれません。例えば、SIPRIの軍事費データの`Notes`は不要な気がします。
+
+`tidyverse`では`select()`の際に`!`を付けると変数を除外します。
+
+```{r filename="R (readxl)"}
+library(readxl)
+
+df_sipri <- read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet = 5, skip = 5, na = c("xxx", "...")) |> 
+    select(!Notes)
+
+head(df_sipri)
+```
+
+`pandas`と`polars`は`drop()`メソッドで変数を除外します。
+
+```{python filename="Python (pandas)"}
+df_sipri = (
+    pd.read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet_name=5, skiprows=5, na_values=["xxx", "..."])
+    .drop(columns=["Notes"])
+)
+
+df_sipri.head()
+```
+
+```{python filename="Python (polars)"}
+df_sipri = (
+    pl.read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet_id=5, read_options={"skip_rows": 5, "null_values": ["xxx", "..."]})
+    .drop(["Notes"])
+)
+
+df_sipri.head()
+```
+
+## 観察の選択
+
+これまでは変数の操作について見てきましたが、次は観察の選択を学びます。つまり、データに含まれる観察の一部だけを取り出して分析する状況を考えます。
+
+### 不等号による選択
+
+例えば、Polityのデータのうち、第2次世界大戦後のデータを取り出したいとします。
+
+```{r filename="R (base)"}
+df_polity <- read_excel("data/p5v2018.xls")
+
+df_polity[df_polity$year > 1945,]
+
+head(df_polity)
+```
+
+```{r filename="R (tidyverse)"}
+df_polity <- read_excel("data/p5v2018.xls") |> 
+    filter(year > 1945)
+
+head(df_polity)
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_polity = df_polity.loc[df_polity["year"] > 1945,:]
+# df_polity = df_polity[df_polity["year"] > 1945]でも可
+
+df_polity.head()
+```
+
+```{python filename="Python (polars)"}
+df_polity = (
+    pl.read_excel("data/p5v2018.xls")
+    .filter(pl.col("year") > 1945)
+)
+
+df_polity.head()
+```
+
+ここでも共通点が見えてきます。`tidyverse`と`polars`では`filter()`の中に条件式を入れます。一方、Rの標準関数と`pandas`では`,`の左側に条件式を入れます。
+
+- `<`や`>`は通常の意味通り、使うことができます。
+- 等号も含む場合は`<=`や`>=`とします。
+
+### 等号による選択
+
+次に、日本だけのデータを取り出したいと思います。`=`ではなく`==`（`=`が2つ）である点に注意してください。
+
+```{r filename="R (base)"}
+df_polity <- read_excel("data/p5v2018.xls")
+
+df_polity[df_polity$country == "Japan",]
+
+head(df_polity)
+```
+
+```{r filename="R (tidyverse)"}
+df_polity <- read_excel("data/p5v2018.xls") |> 
+    filter(country == "Japan")
+
+head(df_polity)
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_polity = df_polity.loc[df_polity["country"] == "Japan",:]
+
+df_polity.head()
+```
+
+```{python filename="Python (polars)"}
+df_polity = (
+    pl.read_excel("data/p5v2018.xls")
+    .filter(pl.col("country") == "Japan")
+)
+
+df_polity.head()
+```
+
+### 部分集合による選択
+
+第2次世界大戦後から冷戦終結までのデータを取り出したい場合は、「かつ (and)」を意味する`&`を使います。
+
+```{r filename="R (base)"}
+df_polity <- read_excel("data/p5v2018.xls")
+
+df_polity <- df_polity[df_polity$year > 1945 & df_polity$year <= 1991,]
+```
+
+```{r filename="R (tidyverse)"}
+df_polity <- read_excel("data/p5v2018.xls") |> 
+    filter(year > 1945 & year <= 1991)
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_polity = df_polity.loc[(df_polity["year"] > 1945) & (df_polity["year"] <= 1991),:]
+```
+
+```{python filename="Python (polars)"}
+df_polity = (
+    pl.read_excel("data/p5v2018.xls")
+    .filter((pl.col("year") > 1945) & (pl.col("year") < 1991))
+)
+```
+
+- Pythonではそれぞれの条件部分を`()`でくくる必要があります。
+
+なお、次のように範囲を指定することもできます。
+
+```{r filename="R (tidyverse)"}
+df_polity <- read_excel("data/p5v2018.xls") |> 
+    filter(between(year, 1946, 1991))
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_polity = df_polity.loc[df_polity["year"].between(1946, 1991),:]
+```
+
+```{python filename="Python (polars)"}
+df_polity = (
+    pl.read_excel("data/p5v2018.xls")
+    .filter(pl.col("year").is_between(1946, 1991))
+)
+```
+
+### 和集合による選択
+
+日本と中国のデータを取り出す場合は、「または (or)」を意味する`|`を使います。
+
+```{r filename="R (base)"}
+df_polity <- read_excel("data/p5v2018.xls")
+
+df_polity <- df_polity[df_polity$country == "Japan" | df_polity$country == "China",]
+```
+
+```{r filename="R (tidyverse)"}
+df_polity <- read_excel("data/p5v2018.xls") |> 
+    filter(country == "Japan" | country == "China")
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_polity = df_polity.loc[(df_polity["country"] == "Japan") | (df_polity["country"] == "China"),:]
+```
+
+```{python filename="Python (polars)"}
+df_polity = (
+    pl.read_excel("data/p5v2018.xls")
+    .filter((pl.col("country") == "Japan") | (pl.col("country") == "China"))
+)
+```
+
+次のように簡単に書くこともできます。
+
+```{r filename="R (base)"}
+df_polity <- read_excel("data/p5v2018.xls")
+
+df_polity <- df_polity[df_polity$country %in% c("Japan", "China"),]
+```
+
+```{r filename="R (tidyverse)"}
+df_polity <- read_excel("data/p5v2018.xls") |> 
+    filter(country %in% c("Japan", "China"))
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_polity = df_polity.loc[df_polity["country"].isin(["Japan", "China"]),:]
+```
+
+```{python filename="Python (polars)"}
+df_polity = (
+    pl.read_excel("data/p5v2018.xls")
+    .filter(pl.col("country").is_in(["Japan", "China"]))
+)
+```
+
+なお、否定を表す場合はRの場合は`!`を、Pythonの場合は`~`を条件式の冒頭に付けます。
+
+- RでもPythonでも`==`の否定は`!=`でも構いません。

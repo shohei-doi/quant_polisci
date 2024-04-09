@@ -1,0 +1,935 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第13章 地図のグラフ | Rで計量政治学入門</title>
+  <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第13章 地図のグラフ | Rで計量政治学入門" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  <meta name="github-repo" content="shohei-doi/quant_polisci" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第13章 地図のグラフ | Rで計量政治学入門" />
+  
+  <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  
+
+<meta name="author" content="土井　翔平" />
+
+
+<meta name="date" content="2023-08-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="visual-ts.html"/>
+<link rel="next" href="ggplot2.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LLFB8XFPX5');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet"> 
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html">Rで計量政治学入門</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#想定する読者"><i class="fa fa-check"></i>想定する読者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tidyverseについて"><i class="fa fa-check"></i>Tidyverseについて</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ウェブサイトの操作"><i class="fa fa-check"></i>ウェブサイトの操作</a></li>
+</ul></li>
+<li class="part"><span><b>I データの操作</b></span></li>
+<li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#パッケージ付属のデータ"><i class="fa fa-check"></i><b>1.1</b> パッケージ付属のデータ</a></li>
+<li class="chapter" data-level="1.2" data-path="data-import.html"><a href="data-import.html#主なデータ形式"><i class="fa fa-check"></i><b>1.2</b> 主なデータ形式*</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="data-import.html"><a href="data-import.html#テキストデータ"><i class="fa fa-check"></i><b>1.2.1</b> テキストデータ</a></li>
+<li class="chapter" data-level="1.2.2" data-path="data-import.html"><a href="data-import.html#バイナリデータ"><i class="fa fa-check"></i><b>1.2.2</b> バイナリデータ</a></li>
+<li class="chapter" data-level="1.2.3" data-path="data-import.html"><a href="data-import.html#good-bye-excel"><i class="fa fa-check"></i><b>1.2.3</b> Good bye, Excel!</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="data-import.html"><a href="data-import.html#パスと作業ディレクトリ"><i class="fa fa-check"></i><b>1.3</b> パスと作業ディレクトリ</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="data-import.html"><a href="data-import.html#パス"><i class="fa fa-check"></i><b>1.3.1</b> パス</a></li>
+<li class="chapter" data-level="1.3.2" data-path="data-import.html"><a href="data-import.html#作業ディレクトリ"><i class="fa fa-check"></i><b>1.3.2</b> 作業ディレクトリ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="data-import.html"><a href="data-import.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.4</b> .csvファイルの読み込み</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="data-import.html"><a href="data-import.html#変数名の適切な読み込み"><i class="fa fa-check"></i><b>1.4.1</b> 変数名の適切な読み込み</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="data-import.html"><a href="data-import.html#xlsxファイルの読み込み"><i class="fa fa-check"></i><b>1.5</b> .xls[x]ファイルの読み込み</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="data-import.html"><a href="data-import.html#シートの選択"><i class="fa fa-check"></i><b>1.5.1</b> シートの選択</a></li>
+<li class="chapter" data-level="1.5.2" data-path="data-import.html"><a href="data-import.html#変数名の適切な読み込み-again"><i class="fa fa-check"></i><b>1.5.2</b> 変数名の適切な読み込み (again)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="data-import.html"><a href="data-import.html#欠損値の処理"><i class="fa fa-check"></i><b>1.5.3</b> 欠損値の処理</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="data-import.html"><a href="data-import.html#dtaファイルの読み込み"><i class="fa fa-check"></i><b>1.6</b> .dtaファイルの読み込み</a></li>
+<li class="chapter" data-level="1.7" data-path="data-import.html"><a href="data-import.html#rdsファイルの読み込み"><i class="fa fa-check"></i><b>1.7</b> .rdsファイルの読み込み</a></li>
+<li class="chapter" data-level="1.8" data-path="data-import.html"><a href="data-import.html#パス入力の省略"><i class="fa fa-check"></i><b>1.8</b> パス入力の省略*</a></li>
+<li class="chapter" data-level="1.9" data-path="data-import.html"><a href="data-import.html#データの書き出し"><i class="fa fa-check"></i><b>1.9</b> データの書き出し</a></li>
+<li class="chapter" data-level="1.10" data-path="data-import.html"><a href="data-import.html#データフレームの作成"><i class="fa fa-check"></i><b>1.10</b> データフレームの作成</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の選択</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="select-vars.html"><a href="select-vars.html#変数名による選択"><i class="fa fa-check"></i><b>2.1</b> 変数名による選択</a></li>
+<li class="chapter" data-level="2.2" data-path="select-vars.html"><a href="select-vars.html#番号による選択"><i class="fa fa-check"></i><b>2.2</b> 番号による選択</a></li>
+<li class="chapter" data-level="2.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更"><i class="fa fa-check"></i><b>2.3</b> 変数名の変更</a></li>
+<li class="chapter" data-level="2.4" data-path="select-vars.html"><a href="select-vars.html#高度な変数の選択方法"><i class="fa fa-check"></i><b>2.4</b> 高度な変数の選択方法*</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>3</b> 変数の作成</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="create-vars.html"><a href="create-vars.html#四則演算"><i class="fa fa-check"></i><b>3.1</b> 四則演算</a></li>
+<li class="chapter" data-level="3.2" data-path="create-vars.html"><a href="create-vars.html#条件に基づく変数"><i class="fa fa-check"></i><b>3.2</b> 条件に基づく変数</a></li>
+<li class="chapter" data-level="3.3" data-path="create-vars.html"><a href="create-vars.html#ラグ変数"><i class="fa fa-check"></i><b>3.3</b> ラグ変数*</a></li>
+<li class="chapter" data-level="3.4" data-path="create-vars.html"><a href="create-vars.html#日付変数"><i class="fa fa-check"></i><b>3.4</b> 日付変数*</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>4</b> 観察の選択</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="select-obs.html"><a href="select-obs.html#数値の大小による選択"><i class="fa fa-check"></i><b>4.1</b> 数値の大小による選択</a></li>
+<li class="chapter" data-level="4.2" data-path="select-obs.html"><a href="select-obs.html#一致不一致による選択"><i class="fa fa-check"></i><b>4.2</b> 一致・不一致による選択</a></li>
+<li class="chapter" data-level="4.3" data-path="select-obs.html"><a href="select-obs.html#または"><i class="fa fa-check"></i><b>4.3</b> 「または」</a></li>
+<li class="chapter" data-level="4.4" data-path="select-obs.html"><a href="select-obs.html#かつ"><i class="fa fa-check"></i><b>4.4</b> 「かつ」</a></li>
+<li class="chapter" data-level="4.5" data-path="select-obs.html"><a href="select-obs.html#部分集合"><i class="fa fa-check"></i><b>4.5</b> 部分集合</a></li>
+<li class="chapter" data-level="4.6" data-path="select-obs.html"><a href="select-obs.html#番号による選択-1"><i class="fa fa-check"></i><b>4.6</b> 番号による選択</a></li>
+<li class="chapter" data-level="4.7" data-path="select-obs.html"><a href="select-obs.html#観察の並び替え"><i class="fa fa-check"></i><b>4.7</b> 観察の並び替え</a></li>
+<li class="chapter" data-level="4.8" data-path="select-obs.html"><a href="select-obs.html#ベクトルの選択"><i class="fa fa-check"></i><b>4.8</b> ベクトルの選択*</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-combine.html"><a href="data-combine.html#行方向の結合"><i class="fa fa-check"></i><b>5.1</b> 行方向の結合</a></li>
+<li class="chapter" data-level="5.2" data-path="data-combine.html"><a href="data-combine.html#列方向の結合"><i class="fa fa-check"></i><b>5.2</b> 列方向の結合</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-combine.html"><a href="data-combine.html#観察の選択"><i class="fa fa-check"></i><b>5.2.1</b> 観察の選択*＊</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
+<li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
+<li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
+<li class="chapter" data-level="6.4" data-path="missing-values.html"><a href="missing-values.html#欠損値がある場合の分析"><i class="fa fa-check"></i><b>6.4</b> 欠損値がある場合の分析*</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="missing-values.html"><a href="missing-values.html#一変数の記述統計"><i class="fa fa-check"></i><b>6.4.1</b> 一変数の記述統計</a></li>
+<li class="chapter" data-level="6.4.2" data-path="missing-values.html"><a href="missing-values.html#二変数の記述統計"><i class="fa fa-check"></i><b>6.4.2</b> 二変数の記述統計</a></li>
+<li class="chapter" data-level="6.4.3" data-path="missing-values.html"><a href="missing-values.html#回帰分析"><i class="fa fa-check"></i><b>6.4.3</b> 回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="missing-values.html"><a href="missing-values.html#欠損値のクラス"><i class="fa fa-check"></i><b>6.5</b> 欠損値のクラス*</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>7</b> ロング・ワイドの変換</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="reshape.html"><a href="reshape.html#パネルデータ"><i class="fa fa-check"></i><b>7.1</b> パネルデータ</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="reshape.html"><a href="reshape.html#ワイド形式"><i class="fa fa-check"></i><b>7.1.1</b> ワイド形式</a></li>
+<li class="chapter" data-level="7.1.2" data-path="reshape.html"><a href="reshape.html#ロング形式"><i class="fa fa-check"></i><b>7.1.2</b> ロング形式</a></li>
+<li class="chapter" data-level="7.1.3" data-path="reshape.html"><a href="reshape.html#前処理"><i class="fa fa-check"></i><b>7.1.3</b> 前処理</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="reshape.html"><a href="reshape.html#ループによる方法"><i class="fa fa-check"></i><b>7.2</b> ループによる方法</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="reshape.html"><a href="reshape.html#for文"><i class="fa fa-check"></i><b>7.2.1</b> for文</a></li>
+<li class="chapter" data-level="7.2.2" data-path="reshape.html"><a href="reshape.html#時点の選択による方法"><i class="fa fa-check"></i><b>7.2.2</b> 時点の選択による方法</a></li>
+<li class="chapter" data-level="7.2.3" data-path="reshape.html"><a href="reshape.html#ユニットの選択による方法"><i class="fa fa-check"></i><b>7.2.3</b> ユニットの選択による方法</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="reshape.html"><a href="reshape.html#tidyverseな方法"><i class="fa fa-check"></i><b>7.3</b> tidyverseな方法</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="reshape.html"><a href="reshape.html#ワイドからロングへ"><i class="fa fa-check"></i><b>7.3.1</b> ワイドからロングへ</a></li>
+<li class="chapter" data-level="7.3.2" data-path="reshape.html"><a href="reshape.html#パイプ"><i class="fa fa-check"></i><b>7.3.2</b> パイプ</a></li>
+<li class="chapter" data-level="7.3.3" data-path="reshape.html"><a href="reshape.html#tidyverseの利点"><i class="fa fa-check"></i><b>7.3.3</b> tidyverseの利点</a></li>
+<li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
+<li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
+<li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
+<li class="chapter" data-level="8.4" data-path="qualtrics.html"><a href="qualtrics.html#tidyverseな方法-1"><i class="fa fa-check"></i><b>8.4</b> tidyverseな方法</a></li>
+<li class="chapter" data-level="8.5" data-path="qualtrics.html"><a href="qualtrics.html#おまけ"><i class="fa fa-check"></i><b>8.5</b> おまけ</a></li>
+</ul></li>
+<li class="part"><span><b>II データの可視化</b></span></li>
+<li class="chapter" data-level="9" data-path="desc-stats.html"><a href="desc-stats.html"><i class="fa fa-check"></i><b>9</b> データの要約</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="desc-stats.html"><a href="desc-stats.html#データを見る"><i class="fa fa-check"></i><b>9.1</b> データを見る</a></li>
+<li class="chapter" data-level="9.2" data-path="desc-stats.html"><a href="desc-stats.html#記述統計"><i class="fa fa-check"></i><b>9.2</b> 記述統計</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="desc-stats.html"><a href="desc-stats.html#平均"><i class="fa fa-check"></i><b>9.2.1</b> 平均</a></li>
+<li class="chapter" data-level="9.2.2" data-path="desc-stats.html"><a href="desc-stats.html#分散と標準偏差"><i class="fa fa-check"></i><b>9.2.2</b> 分散と標準偏差</a></li>
+<li class="chapter" data-level="9.2.3" data-path="desc-stats.html"><a href="desc-stats.html#分位点"><i class="fa fa-check"></i><b>9.2.3</b> 分位点</a></li>
+<li class="chapter" data-level="9.2.4" data-path="desc-stats.html"><a href="desc-stats.html#記述統計表"><i class="fa fa-check"></i><b>9.2.4</b> 記述統計表</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="desc-stats.html"><a href="desc-stats.html#データのカウント"><i class="fa fa-check"></i><b>9.3</b> データのカウント</a></li>
+<li class="chapter" data-level="9.4" data-path="desc-stats.html"><a href="desc-stats.html#グループごとの要約"><i class="fa fa-check"></i><b>9.4</b> グループごとの要約</a></li>
+<li class="chapter" data-level="9.5" data-path="desc-stats.html"><a href="desc-stats.html#ユニークなデータ"><i class="fa fa-check"></i><b>9.5</b> ユニークなデータ*</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="visual-dist.html"><a href="visual-dist.html"><i class="fa fa-check"></i><b>10</b> 分布のグラフ</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="visual-dist.html"><a href="visual-dist.html#ヒストグラム"><i class="fa fa-check"></i><b>10.1</b> ヒストグラム</a></li>
+<li class="chapter" data-level="10.2" data-path="visual-dist.html"><a href="visual-dist.html#カーネル密度"><i class="fa fa-check"></i><b>10.2</b> カーネル密度</a></li>
+<li class="chapter" data-level="10.3" data-path="visual-dist.html"><a href="visual-dist.html#棒グラフ"><i class="fa fa-check"></i><b>10.3</b> 棒グラフ</a></li>
+<li class="chapter" data-level="10.4" data-path="visual-dist.html"><a href="visual-dist.html#グループごとの分布"><i class="fa fa-check"></i><b>10.4</b> グループごとの分布</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="visual-cor.html"><a href="visual-cor.html"><i class="fa fa-check"></i><b>11</b> 相関のグラフ</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="visual-cor.html"><a href="visual-cor.html#散布図"><i class="fa fa-check"></i><b>11.1</b> 散布図</a></li>
+<li class="chapter" data-level="11.2" data-path="visual-cor.html"><a href="visual-cor.html#カーネル密度-1"><i class="fa fa-check"></i><b>11.2</b> カーネル密度</a></li>
+<li class="chapter" data-level="11.3" data-path="visual-cor.html"><a href="visual-cor.html#ジッター"><i class="fa fa-check"></i><b>11.3</b> ジッター</a></li>
+<li class="chapter" data-level="11.4" data-path="visual-cor.html"><a href="visual-cor.html#箱ひげ図"><i class="fa fa-check"></i><b>11.4</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="11.5" data-path="visual-cor.html"><a href="visual-cor.html#バイオリンプロット"><i class="fa fa-check"></i><b>11.5</b> バイオリンプロット</a></li>
+<li class="chapter" data-level="11.6" data-path="visual-cor.html"><a href="visual-cor.html#グループごとの相関"><i class="fa fa-check"></i><b>11.6</b> グループごとの相関</a></li>
+<li class="chapter" data-level="11.7" data-path="visual-cor.html"><a href="visual-cor.html#単回帰"><i class="fa fa-check"></i><b>11.7</b> 単回帰</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="visual-ts.html"><a href="visual-ts.html"><i class="fa fa-check"></i><b>12</b> 時系列のグラフ</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="visual-ts.html"><a href="visual-ts.html#折れ線グラフ"><i class="fa fa-check"></i><b>12.1</b> 折れ線グラフ</a></li>
+<li class="chapter" data-level="12.2" data-path="visual-ts.html"><a href="visual-ts.html#エラーバー"><i class="fa fa-check"></i><b>12.2</b> エラーバー</a></li>
+<li class="chapter" data-level="12.3" data-path="visual-ts.html"><a href="visual-ts.html#グループごとの時系列"><i class="fa fa-check"></i><b>12.3</b> グループごとの時系列</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="visual-map.html"><a href="visual-map.html"><i class="fa fa-check"></i><b>13</b> 地図のグラフ</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="visual-map.html"><a href="visual-map.html#地図"><i class="fa fa-check"></i><b>13.1</b> 地図</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="visual-map.html"><a href="visual-map.html#世界地図"><i class="fa fa-check"></i><b>13.1.1</b> 世界地図</a></li>
+<li class="chapter" data-level="13.1.2" data-path="visual-map.html"><a href="visual-map.html#日本地図"><i class="fa fa-check"></i><b>13.1.2</b> 日本地図</a></li>
+<li class="chapter" data-level="13.1.3" data-path="visual-map.html"><a href="visual-map.html#都道府県地図"><i class="fa fa-check"></i><b>13.1.3</b> 都道府県地図</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="visual-map.html"><a href="visual-map.html#地域の違い"><i class="fa fa-check"></i><b>13.2</b> 地域の違い</a></li>
+<li class="chapter" data-level="13.3" data-path="visual-map.html"><a href="visual-map.html#空間の分布"><i class="fa fa-check"></i><b>13.3</b> 空間の分布</a></li>
+<li class="chapter" data-level="13.4" data-path="visual-map.html"><a href="visual-map.html#データの繋がり"><i class="fa fa-check"></i><b>13.4</b> データの繋がり</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="visual-map.html"><a href="visual-map.html#二点間の繋がりを見る"><i class="fa fa-check"></i><b>13.4.1</b> 二点間の繋がりを見る</a></li>
+<li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
+<li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
+<li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="ggplot2.html"><a href="ggplot2.html#記述統計のグラフ"><i class="fa fa-check"></i><b>14.3.1</b> 記述統計のグラフ</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="ggplot2.html"><a href="ggplot2.html#ラベル"><i class="fa fa-check"></i><b>14.4</b> ラベル</a></li>
+<li class="chapter" data-level="14.5" data-path="ggplot2.html"><a href="ggplot2.html#凡例"><i class="fa fa-check"></i><b>14.5</b> 凡例</a></li>
+<li class="chapter" data-level="14.6" data-path="ggplot2.html"><a href="ggplot2.html#強調"><i class="fa fa-check"></i><b>14.6</b> 強調</a></li>
+<li class="chapter" data-level="14.7" data-path="ggplot2.html"><a href="ggplot2.html#テキスト"><i class="fa fa-check"></i><b>14.7</b> テキスト</a></li>
+</ul></li>
+<li class="part"><span><b>III データの収集</b></span></li>
+<li class="chapter" data-level="15" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>15</b> Googleデータ</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="google-data.html"><a href="google-data.html#はじめに"><i class="fa fa-check"></i><b>15.1</b> はじめに</a></li>
+<li class="chapter" data-level="15.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>15.2</b> 時系列トレンド</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="google-data.html"><a href="google-data.html#一つの単語"><i class="fa fa-check"></i><b>15.2.1</b> 一つの単語</a></li>
+<li class="chapter" data-level="15.2.2" data-path="google-data.html"><a href="google-data.html#複数の単語"><i class="fa fa-check"></i><b>15.2.2</b> 複数の単語</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="google-data.html"><a href="google-data.html#地域別のトレンド"><i class="fa fa-check"></i><b>15.3</b> 地域別のトレンド</a></li>
+<li class="chapter" data-level="15.4" data-path="google-data.html"><a href="google-data.html#関連単語"><i class="fa fa-check"></i><b>15.4</b> 関連単語</a></li>
+<li class="chapter" data-level="15.5" data-path="google-data.html"><a href="google-data.html#検索ヒット数"><i class="fa fa-check"></i><b>15.5</b> 検索ヒット数*</a></li>
+<li class="chapter" data-level="15.6" data-path="google-data.html"><a href="google-data.html#nグラム"><i class="fa fa-check"></i><b>15.6</b> Nグラム</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>16</b> Wikipediaデータ</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="wikipedia-data.html"><a href="wikipedia-data.html#Trend"><i class="fa fa-check"></i><b>16.1</b> Wikipediaのトレンド</a></li>
+<li class="chapter" data-level="16.2" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の情報"><i class="fa fa-check"></i><b>16.2</b> Wikipediaの記事の情報</a></li>
+<li class="chapter" data-level="16.3" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事"><i class="fa fa-check"></i><b>16.3</b> Wikipediaの記事</a></li>
+<li class="chapter" data-level="16.4" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事のリンク"><i class="fa fa-check"></i><b>16.4</b> Wikipediaの記事のリンク</a></li>
+<li class="chapter" data-level="16.5" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の作成日の取得"><i class="fa fa-check"></i><b>16.5</b> Wikipediaの記事の作成日の取得*</a></li>
+</ul></li>
+<li class="part"><span><b>IV Appendix</b></span></li>
+<li class="chapter" data-level="17" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>17</b> Rの分析環境</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>17.1</b> Rのインストール</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>17.1.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="17.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>17.1.2</b> インストール</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>17.2</b> RStudioのインストール</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>17.2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="17.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>17.2.2</b> インストール</a></li>
+<li class="chapter" data-level="17.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>17.2.3</b> RStudioの起動</a></li>
+<li class="chapter" data-level="17.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>17.2.4</b> RStudio Cloud*</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>17.3</b> 再現可能な分析のために</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>17.3.1</b> Rスクリプト</a></li>
+<li class="chapter" data-level="17.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>17.3.2</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="17.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>17.3.3</b> RStudioの設定*</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>18</b> Rプログラミング入門</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>18.1</b> 関数</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>18.1.1</b> 総称関数*</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>18.2</b> オブジェクト</a></li>
+<li class="chapter" data-level="18.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>18.3</b> パッケージ</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>18.3.1</b> CRANからのインストール</a></li>
+<li class="chapter" data-level="18.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>18.3.2</b> GitHubからのインストール*</a></li>
+<li class="chapter" data-level="18.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>18.3.3</b> パッケージの読み込み</a></li>
+<li class="chapter" data-level="18.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>18.3.4</b> <code>tidyverse</code>とは*</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング応用</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>19.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="19.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>19.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="19.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>19.3</b> ループ</a></li>
+<li class="chapter" data-level="19.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>19.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="19.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>19.5</b> 練習問題</a>
+<ul>
+<li class="chapter" data-level="19.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>19.5.1</b> フィボナッチ数列</a></li>
+<li class="chapter" data-level="19.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>19.5.2</b> モンテカルロ・シミュレーション</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>20</b> R Markdown: html</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>20.1</b> R Markdownファイルの作成</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>20.1.1</b> 参考になるサイト</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>20.2</b> Markdown記法</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdownとは"><i class="fa fa-check"></i><b>20.2.1</b> Markdownとは*</a></li>
+<li class="chapter" data-level="20.2.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#セクション"><i class="fa fa-check"></i><b>20.2.2</b> セクション</a></li>
+<li class="chapter" data-level="20.2.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>20.2.3</b> パラグラフ</a></li>
+<li class="chapter" data-level="20.2.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#箇条書き"><i class="fa fa-check"></i><b>20.2.4</b> 箇条書き</a></li>
+<li class="chapter" data-level="20.2.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#文字の強調"><i class="fa fa-check"></i><b>20.2.5</b> 文字の強調</a></li>
+<li class="chapter" data-level="20.2.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#引用"><i class="fa fa-check"></i><b>20.2.6</b> 引用</a></li>
+<li class="chapter" data-level="20.2.7" data-path="r-markdown-html.html"><a href="r-markdown-html.html#リンク"><i class="fa fa-check"></i><b>20.2.7</b> リンク</a></li>
+<li class="chapter" data-level="20.2.8" data-path="r-markdown-html.html"><a href="r-markdown-html.html#画像表"><i class="fa fa-check"></i><b>20.2.8</b> 画像、表</a></li>
+<li class="chapter" data-level="20.2.9" data-path="r-markdown-html.html"><a href="r-markdown-html.html#数式"><i class="fa fa-check"></i><b>20.2.9</b> 数式</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>20.3</b> Rチャンク</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>20.3.1</b> チャンクオプション</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>20.4</b> yamlヘッダー</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#output"><i class="fa fa-check"></i><b>20.4.1</b> output</a></li>
+<li class="chapter" data-level="20.4.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#目次"><i class="fa fa-check"></i><b>20.4.2</b> 目次</a></li>
+<li class="chapter" data-level="20.4.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#テーマ-1"><i class="fa fa-check"></i><b>20.4.3</b> テーマ</a></li>
+<li class="chapter" data-level="20.4.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>20.4.4</b> htmlとcss</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>20.5</b> その他のテンプレート</a>
+<ul>
+<li class="chapter" data-level="20.5.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#distill"><i class="fa fa-check"></i><b>20.5.1</b> Distill</a></li>
+<li class="chapter" data-level="20.5.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>20.5.2</b> Tufte Handout</a></li>
+<li class="chapter" data-level="20.5.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rmdformats"><i class="fa fa-check"></i><b>20.5.3</b> rmdformats</a></li>
+<li class="chapter" data-level="20.5.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#スライド"><i class="fa fa-check"></i><b>20.5.4</b> スライド</a></li>
+<li class="chapter" data-level="20.5.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#ダッシュボード"><i class="fa fa-check"></i><b>20.5.5</b> ダッシュボード</a></li>
+<li class="chapter" data-level="20.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>20.5.6</b> Microsoft Office</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>21</b> R Markdown: pdf</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>21.1</b> LaTeXの導入</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>21.1.1</b> tinytexのインストール</a></li>
+<li class="chapter" data-level="21.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>21.1.2</b> タイプセット</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>21.2</b> 日本語環境の構築</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>21.2.1</b> LaTeXエンジンのあれこれ*</a></li>
+<li class="chapter" data-level="21.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>21.2.2</b> yamlヘッダー</a></li>
+<li class="chapter" data-level="21.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>21.2.3</b> フォントのインストール</a></li>
+<li class="chapter" data-level="21.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>21.2.4</b> その他のテンプレート</a></li>
+<li class="chapter" data-level="21.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>21.2.5</b> Sumatra PDF</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>21.3</b> スライドの作成</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-2"><i class="fa fa-check"></i><b>21.3.1</b> テーマ</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>21.4</b> LaTeX記法</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>21.4.1</b> 定理環境</a></li>
+<li class="chapter" data-level="21.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>21.4.2</b> 数式</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>21.5</b> 参考文献と引用</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>21.5.1</b> .bibファイル</a></li>
+<li class="chapter" data-level="21.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>21.5.2</b> 文献の引用</a></li>
+<li class="chapter" data-level="21.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>21.5.3</b> 日本語文献の引用</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>22</b> Rのエンコーディング問題</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>22.1</b> なぜ文字化けが起こるのか</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>22.1.1</b> エンコーディング</a></li>
+<li class="chapter" data-level="22.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>22.1.2</b> RとRStudioにおける問題</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>22.2</b> Rスクリプトの文字化け</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>22.2.1</b> ファイルを開く</a></li>
+<li class="chapter" data-level="22.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>22.2.2</b> ファイルを保存する</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>22.3</b> データの文字化け</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>22.3.1</b> 標準関数の場合</a></li>
+<li class="chapter" data-level="22.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>22.3.2</b> tidyverseの場合</a></li>
+<li class="chapter" data-level="22.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>22.3.3</b> エンコーディングを確認する方法</a></li>
+<li class="chapter" data-level="22.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>22.3.4</b> もとのデータを見たい場合</a></li>
+<li class="chapter" data-level="22.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>22.3.5</b> データを保存する場合</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>22.4</b> その他の問題</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>22.4.1</b> アカウント名が日本語の場合</a></li>
+<li class="chapter" data-level="22.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>22.4.2</b> 画像で日本語が文字化けする場合</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>23</b> パイプ演算子<code>%&gt;%</code>について</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>23.1</b> 基本的な使い方</a></li>
+<li class="chapter" data-level="23.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>23.2</b> データの代入</a></li>
+<li class="chapter" data-level="23.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>23.3</b> 左辺の参照</a></li>
+<li class="chapter" data-level="23.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>23.4</b> 複数の出力</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>24</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>24.1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>24.1.1</b> 問題</a></li>
+<li class="chapter" data-level="24.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>24.1.2</b> Linux上のR/RStudioを使う</a></li>
+<li class="chapter" data-level="24.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>24.1.3</b> 概要</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>24.2</b> WSL2のインストール</a></li>
+<li class="chapter" data-level="24.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>24.3</b> Rのインストール</a></li>
+<li class="chapter" data-level="24.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>24.4</b> RStusio Serverのインストール</a></li>
+<li class="chapter" data-level="24.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>24.5</b> RStudio Server on WSL2の注意点</a>
+<ul>
+<li class="chapter" data-level="24.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>24.5.1</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="24.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>24.5.2</b> 警告メッセージ</a></li>
+<li class="chapter" data-level="24.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>24.5.3</b> 日本語フォント</a></li>
+<li class="chapter" data-level="24.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>24.5.4</b> Windows側のファイルへのアクセス</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="../index.html">&copy; 2020 Shohei Doi</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rで計量政治学入門</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="visual-map" class="section level1 hasAnchor" number="13">
+<h1><span class="header-section-number">第13章</span> 地図のグラフ<a href="visual-map.html#visual-map" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<div class="sourceCode" id="cb358"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb358-1"><a href="visual-map.html#cb358-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb358-2"><a href="visual-map.html#cb358-2" tabindex="-1"></a><span class="fu">library</span>(maps)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;maps&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     map</code></pre>
+<div class="sourceCode" id="cb361"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb361-1"><a href="visual-map.html#cb361-1" tabindex="-1"></a><span class="fu">library</span>(jpndistrict)</span></code></pre></div>
+<pre><code>## This package provide map data is based on the Digital Map 25000 (Map
+## Image) published by Geospatial Information Authority of Japan (Approval
+## No.603FY2017 information usage &lt;https://www.gsi.go.jp&gt;)</code></pre>
+<div class="sourceCode" id="cb363"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb363-1"><a href="visual-map.html#cb363-1" tabindex="-1"></a><span class="fu">library</span>(countrycode)</span></code></pre></div>
+<ul>
+<li><code>maps</code>は世界地図情報のパッケージです。
+<ul>
+<li>読み込むとコンフリクトを起こして<code>purrr::map()</code>が使えなくなるので気をつけて下さいー</li>
+</ul></li>
+<li><code>jpndistrict</code>は都道府県地図情報のパッケージです。</li>
+<li><code>countrycode</code>は国名を統一するパッケージです。</li>
+</ul>
+<p>なお、（2021年1月25日現在）<code>jpndistrict</code>はCRANから外されていますので、どうしてもインストールしたい方はgithubのリポジトリより直接インストールして下さい。</p>
+<div class="sourceCode" id="cb364"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb364-1"><a href="visual-map.html#cb364-1" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">&quot;uribo/jpndistrict&quot;</span>)</span></code></pre></div>
+<div id="地図" class="section level2 hasAnchor" number="13.1">
+<h2><span class="header-section-number">13.1</span> 地図<a href="visual-map.html#地図" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="世界地図" class="section level3 hasAnchor" number="13.1.1">
+<h3><span class="header-section-number">13.1.1</span> 世界地図<a href="visual-map.html#世界地図" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>まず、世界地図のデータを呼び出します。</p>
+<div class="sourceCode" id="cb365"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb365-1"><a href="visual-map.html#cb365-1" tabindex="-1"></a>world <span class="ot">&lt;-</span> <span class="fu">map_data</span>(<span class="st">&quot;world&quot;</span>)</span></code></pre></div>
+<ul>
+<li><code>map</code>パッケージには世界、アメリカ、フランス、イタリア、ニュージーランドのデータが入っています。</li>
+</ul>
+<p>こんな感じで緯度、軽度、グループ、地域などの情報が入っています。</p>
+<div class="sourceCode" id="cb366"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb366-1"><a href="visual-map.html#cb366-1" tabindex="-1"></a><span class="fu">head</span>(world)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":[""],"name":["_rn_"],"type":[""],"align":["left"]},{"label":["long"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["lat"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["group"],"name":[3],"type":["dbl"],"align":["right"]},{"label":["order"],"name":[4],"type":["int"],"align":["right"]},{"label":["region"],"name":[5],"type":["chr"],"align":["left"]},{"label":["subregion"],"name":[6],"type":["chr"],"align":["left"]}],"data":[{"1":"-69.89912","2":"12.45200","3":"1","4":"1","5":"Aruba","6":"NA","_rn_":"1"},{"1":"-69.89571","2":"12.42300","3":"1","4":"2","5":"Aruba","6":"NA","_rn_":"2"},{"1":"-69.94219","2":"12.43853","3":"1","4":"3","5":"Aruba","6":"NA","_rn_":"3"},{"1":"-70.00415","2":"12.50049","3":"1","4":"4","5":"Aruba","6":"NA","_rn_":"4"},{"1":"-70.06612","2":"12.54697","3":"1","4":"5","5":"Aruba","6":"NA","_rn_":"5"},{"1":"-70.05088","2":"12.59707","3":"1","4":"6","5":"Aruba","6":"NA","_rn_":"6"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>境界線が緯度経度で<code>geom_polygon()</code>で描くことができます。</p>
+<div class="sourceCode" id="cb367"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb367-1"><a href="visual-map.html#cb367-1" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb367-2"><a href="visual-map.html#cb367-2" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group)) <span class="sc">+</span></span>
+<span id="cb367-3"><a href="visual-map.html#cb367-3" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<pre><code>## Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+## ℹ Please use `linewidth` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-239-1.png" width="672" /></p>
+<ul>
+<li>国境を描くために、<code>group</code>で指定しています。</li>
+</ul>
+</div>
+<div id="日本地図" class="section level3 hasAnchor" number="13.1.2">
+<h3><span class="header-section-number">13.1.2</span> 日本地図<a href="visual-map.html#日本地図" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>もちろん、<code>filter()</code>でデータを限定すれば、一部の国の地図を描くこともできます。</p>
+<div class="sourceCode" id="cb369"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb369-1"><a href="visual-map.html#cb369-1" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb369-2"><a href="visual-map.html#cb369-2" tabindex="-1"></a>  <span class="fu">filter</span>(region <span class="sc">==</span> <span class="st">&quot;Japan&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb369-3"><a href="visual-map.html#cb369-3" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group)) <span class="sc">+</span></span>
+<span id="cb369-4"><a href="visual-map.html#cb369-4" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="at">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.1</span>)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-240-1.png" width="480" /></p>
+</div>
+<div id="都道府県地図" class="section level3 hasAnchor" number="13.1.3">
+<h3><span class="header-section-number">13.1.3</span> 都道府県地図<a href="visual-map.html#都道府県地図" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>残念ながら、<code>map</code>パッケージには国レベルの情報しかありません。</p>
+<div class="sourceCode" id="cb370"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb370-1"><a href="visual-map.html#cb370-1" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb370-2"><a href="visual-map.html#cb370-2" tabindex="-1"></a>  <span class="fu">arrange</span>(region) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-3"><a href="visual-map.html#cb370-3" tabindex="-1"></a>  <span class="fu">pull</span>(region) <span class="sc">%&gt;%</span> </span>
+<span id="cb370-4"><a href="visual-map.html#cb370-4" tabindex="-1"></a>  <span class="fu">unique</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb370-5"><a href="visual-map.html#cb370-5" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div>
+<pre><code>## [1] &quot;Afghanistan&quot;    &quot;Albania&quot;        &quot;Algeria&quot;        &quot;American Samoa&quot;
+## [5] &quot;Andorra&quot;        &quot;Angola&quot;</code></pre>
+<p>都道府県の地図を描きたい場合は<code>jpndistrict</code>というパッケージを使用します。
+パッケージ付属の<code>jpnprefs</code>に都道府県一覧が存在します。</p>
+<div class="sourceCode" id="cb372"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb372-1"><a href="visual-map.html#cb372-1" tabindex="-1"></a><span class="fu">head</span>(jpnprefs)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["jis_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["prefecture"],"name":[2],"type":["fct"],"align":["left"]},{"label":["capital"],"name":[3],"type":["chr"],"align":["left"]},{"label":["region"],"name":[4],"type":["chr"],"align":["left"]},{"label":["major_island"],"name":[5],"type":["chr"],"align":["left"]},{"label":["prefecture_en"],"name":[6],"type":["chr"],"align":["left"]},{"label":["capital_en"],"name":[7],"type":["chr"],"align":["left"]},{"label":["region_en"],"name":[8],"type":["chr"],"align":["left"]},{"label":["major_island_en"],"name":[9],"type":["chr"],"align":["left"]},{"label":["capital_latitude"],"name":[10],"type":["dbl"],"align":["right"]},{"label":["capital_longitude"],"name":[11],"type":["dbl"],"align":["right"]}],"data":[{"1":"01","2":"北海道","3":"札幌市","4":"北海道","5":"北海道","6":"Hokkaido","7":"Sapporo-shi","8":"Hokkaido","9":"Hokkaido","10":"43.06208","11":"141.3544"},{"1":"02","2":"青森県","3":"青森市","4":"東北","5":"本州","6":"Aomori-ken","7":"Aomori-shi","8":"Tohoku","9":"Honshu","10":"40.82200","11":"140.7472"},{"1":"03","2":"岩手県","3":"盛岡市","4":"東北","5":"本州","6":"Iwate-ken","7":"Morioka-shi","8":"Tohoku","9":"Honshu","10":"39.70197","11":"141.1544"},{"1":"04","2":"宮城県","3":"仙台市","4":"東北","5":"本州","6":"Miyagi-ken","7":"Sendai-shi","8":"Tohoku","9":"Honshu","10":"38.26811","11":"140.8693"},{"1":"05","2":"秋田県","3":"秋田市","4":"東北","5":"本州","6":"Akita-ken","7":"Akita-shi","8":"Tohoku","9":"Honshu","10":"39.71975","11":"140.1022"},{"1":"06","2":"山形県","3":"山形市","4":"東北","5":"本州","6":"Yamagata-ken","7":"Yamagata-shi","8":"Tohoku","9":"Honshu","10":"38.25539","11":"140.3395"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>都道府県データを引っ張るには<code>jpn_pref()</code>に該当する都道府県の数字を入力します。</p>
+<div class="sourceCode" id="cb373"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb373-1"><a href="visual-map.html#cb373-1" tabindex="-1"></a>kyoto <span class="ot">&lt;-</span> <span class="fu">jpn_pref</span>(<span class="dv">26</span>)</span>
+<span id="cb373-2"><a href="visual-map.html#cb373-2" tabindex="-1"></a><span class="fu">head</span>(kyoto)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["pref_code"],"name":[1],"type":["chr"],"align":["left"]},{"label":["prefecture"],"name":[2],"type":["chr"],"align":["left"]},{"label":["city_code"],"name":[3],"type":["chr"],"align":["left"]},{"label":["city"],"name":[4],"type":["chr"],"align":["left"]},{"label":["geometry"],"name":[5],"type":["s_MULTIP"],"align":["right"]}],"data":[{"1":"26","2":"京都府","3":"26101","4":"京都市 北区","5":"<s_MULTIP>"},{"1":"26","2":"京都府","3":"26102","4":"京都市 上京区","5":"<s_MULTIP>"},{"1":"26","2":"京都府","3":"26103","4":"京都市 左京区","5":"<s_MULTIP>"},{"1":"26","2":"京都府","3":"26104","4":"京都市 中京区","5":"<s_MULTIP>"},{"1":"26","2":"京都府","3":"26105","4":"京都市 東山区","5":"<s_MULTIP>"},{"1":"26","2":"京都府","3":"26106","4":"京都市 下京区","5":"<s_MULTIP>"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>今回は市区町村の境界線がsimple features (sf)と呼ばれる規格なので、<code>geom_sf()</code>を使います。</p>
+<div class="sourceCode" id="cb374"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb374-1"><a href="visual-map.html#cb374-1" tabindex="-1"></a>kyoto <span class="sc">%&gt;%</span> </span>
+<span id="cb374-2"><a href="visual-map.html#cb374-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb374-3"><a href="visual-map.html#cb374-3" tabindex="-1"></a>  <span class="fu">geom_sf</span>()</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-244-1.png" width="672" /></p>
+</div>
+</div>
+<div id="地域の違い" class="section level2 hasAnchor" number="13.2">
+<h2><span class="header-section-number">13.2</span> 地域の違い<a href="visual-map.html#地域の違い" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>地域ごとの違いを見るために、色を塗り分けたいともいます。
+<code>tidyr</code>の中に<code>population</code>というWHOの人口データがあります。</p>
+<div class="sourceCode" id="cb375"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb375-1"><a href="visual-map.html#cb375-1" tabindex="-1"></a><span class="fu">head</span>(population)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["country"],"name":[1],"type":["chr"],"align":["left"]},{"label":["year"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["population"],"name":[3],"type":["dbl"],"align":["right"]}],"data":[{"1":"Afghanistan","2":"1995","3":"17586073"},{"1":"Afghanistan","2":"1996","3":"18415307"},{"1":"Afghanistan","2":"1997","3":"19021226"},{"1":"Afghanistan","2":"1998","3":"19496836"},{"1":"Afghanistan","2":"1999","3":"19987071"},{"1":"Afghanistan","2":"2000","3":"20595360"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>2013年時点の人口データを取り出します。</p>
+<div class="sourceCode" id="cb376"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb376-1"><a href="visual-map.html#cb376-1" tabindex="-1"></a>pop2013 <span class="ot">&lt;-</span> population <span class="sc">%&gt;%</span> </span>
+<span id="cb376-2"><a href="visual-map.html#cb376-2" tabindex="-1"></a>  <span class="fu">filter</span>(year <span class="sc">==</span> <span class="dv">2013</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb376-3"><a href="visual-map.html#cb376-3" tabindex="-1"></a>  <span class="fu">rename</span>(<span class="at">region =</span> country)</span></code></pre></div>
+<ul>
+<li><code>population</code>では国名が<code>country</code>ですが、<code>world</code>では<code>region</code>なので、<code>rename()</code>で後者に合わせます。</li>
+</ul>
+<p>先程のデータと<code>world</code>をマージして、<code>aes()</code>の中の<code>fill</code>で塗り分けする変数を指定します。
+それぞれのデータセットで国名が異なっているので、<code>coutnrycode</code>というパッケージでISOコードに合わせます。</p>
+<ul>
+<li><a href="https://dainachiba.github.io/">千葉大奈先生</a>にご指摘いただきました。</li>
+</ul>
+<div class="sourceCode" id="cb377"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb377-1"><a href="visual-map.html#cb377-1" tabindex="-1"></a>pop2013 <span class="ot">&lt;-</span> pop2013 <span class="sc">%&gt;%</span> </span>
+<span id="cb377-2"><a href="visual-map.html#cb377-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">iso3c =</span> <span class="fu">countrycode</span>(<span class="at">sourcevar =</span> region, <span class="at">origin =</span> <span class="st">&quot;country.name&quot;</span>, <span class="at">destination =</span> <span class="st">&quot;iso3c&quot;</span>))</span>
+<span id="cb377-3"><a href="visual-map.html#cb377-3" tabindex="-1"></a></span>
+<span id="cb377-4"><a href="visual-map.html#cb377-4" tabindex="-1"></a>world <span class="ot">&lt;-</span> world <span class="sc">%&gt;%</span> </span>
+<span id="cb377-5"><a href="visual-map.html#cb377-5" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">iso3c =</span> <span class="fu">countrycode</span>(<span class="at">sourcevar =</span> region, <span class="at">origin =</span> <span class="st">&quot;country.name&quot;</span>, <span class="at">destination =</span> <span class="st">&quot;iso3c&quot;</span>))</span></code></pre></div>
+<pre><code>## Warning: There was 1 warning in `mutate()`.
+## ℹ In argument: `iso3c = countrycode(sourcevar = region, origin = &quot;country.name&quot;, destination =
+##   &quot;iso3c&quot;)`.
+## Caused by warning:
+## ! Some values were not matched unambiguously: Ascension Island, Azores, Barbuda, Bonaire, Canary Islands, Chagos Archipelago, Grenadines, Heard Island, Kosovo, Madeira Islands, Micronesia, Saba, Saint Martin, Siachen Glacier, Sint Eustatius, Virgin Islands</code></pre>
+<div class="sourceCode" id="cb379"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb379-1"><a href="visual-map.html#cb379-1" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb379-2"><a href="visual-map.html#cb379-2" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(iso3c) <span class="sc">==</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb379-3"><a href="visual-map.html#cb379-3" tabindex="-1"></a>  <span class="fu">select</span>(region) <span class="sc">%&gt;%</span> </span>
+<span id="cb379-4"><a href="visual-map.html#cb379-4" tabindex="-1"></a>  <span class="fu">distinct</span>()</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["region"],"name":[1],"type":["chr"],"align":["left"]}],"data":[{"1":"Barbuda"},{"1":"Canary Islands"},{"1":"Micronesia"},{"1":"Heard Island"},{"1":"Chagos Archipelago"},{"1":"Siachen Glacier"},{"1":"Kosovo"},{"1":"Saint Martin"},{"1":"Bonaire"},{"1":"Sint Eustatius"},{"1":"Saba"},{"1":"Madeira Islands"},{"1":"Azores"},{"1":"Ascension Island"},{"1":"Grenadines"},{"1":"Virgin Islands"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<div class="sourceCode" id="cb380"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb380-1"><a href="visual-map.html#cb380-1" tabindex="-1"></a><span class="fu">left_join</span>(world, pop2013, <span class="at">by =</span> <span class="st">&quot;iso3c&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb380-2"><a href="visual-map.html#cb380-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb380-3"><a href="visual-map.html#cb380-3" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group, <span class="at">fill =</span> <span class="fu">log</span>(population)),</span>
+<span id="cb380-4"><a href="visual-map.html#cb380-4" tabindex="-1"></a>               <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb380-5"><a href="visual-map.html#cb380-5" tabindex="-1"></a>  <span class="fu">scale_fill_continuous</span>(<span class="at">name =</span> <span class="st">&quot;Population (log)&quot;</span>, <span class="at">low =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">high =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-247-1.png" width="672" /></p>
+<p><code>geom_sf()</code>でも同じです。</p>
+<div class="sourceCode" id="cb381"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb381-1"><a href="visual-map.html#cb381-1" tabindex="-1"></a>kyoto <span class="sc">%&gt;%</span> </span>
+<span id="cb381-2"><a href="visual-map.html#cb381-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb381-3"><a href="visual-map.html#cb381-3" tabindex="-1"></a>  <span class="fu">geom_sf</span>(<span class="fu">aes</span>(<span class="at">fill =</span> city), <span class="at">show.legend =</span> <span class="cn">FALSE</span>)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-248-1.png" width="672" /></p>
+</div>
+<div id="空間の分布" class="section level2 hasAnchor" number="13.3">
+<h2><span class="header-section-number">13.3</span> 空間の分布<a href="visual-map.html#空間の分布" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>地図上に点を打つ場合は<code>geom_point()</code>を使うだけです。
+<code>maps</code>パッケージの中に<code>world.cities</code>というデータセットがあるので、各国の都市を表示します。</p>
+<div class="sourceCode" id="cb382"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb382-1"><a href="visual-map.html#cb382-1" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb382-2"><a href="visual-map.html#cb382-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb382-3"><a href="visual-map.html#cb382-3" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group),</span>
+<span id="cb382-4"><a href="visual-map.html#cb382-4" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb382-5"><a href="visual-map.html#cb382-5" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">alpha =</span> pop<span class="sc">/</span><span class="dv">10000</span>),</span>
+<span id="cb382-6"><a href="visual-map.html#cb382-6" tabindex="-1"></a>             <span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">data =</span> world.cities)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-249-1.png" width="672" /></p>
+<ul>
+<li>ただし、地図データとは別のデータセットのはずなので、別途指定する必要があります。</li>
+</ul>
+<p><code>geom_sf()</code>の場合も同様にできます。</p>
+<div class="sourceCode" id="cb383"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb383-1"><a href="visual-map.html#cb383-1" tabindex="-1"></a>kyoto <span class="sc">%&gt;%</span> </span>
+<span id="cb383-2"><a href="visual-map.html#cb383-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb383-3"><a href="visual-map.html#cb383-3" tabindex="-1"></a>  <span class="fu">geom_sf</span>() <span class="sc">+</span> </span>
+<span id="cb383-4"><a href="visual-map.html#cb383-4" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">x =</span> capital_longitude, <span class="at">y =</span> capital_latitude),</span>
+<span id="cb383-5"><a href="visual-map.html#cb383-5" tabindex="-1"></a>             <span class="at">colour =</span> <span class="st">&quot;red&quot;</span>, <span class="at">data =</span> jpnprefs <span class="sc">%&gt;%</span> <span class="fu">filter</span>(prefecture <span class="sc">==</span> <span class="st">&quot;京都府&quot;</span>))</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-250-1.png" width="672" /></p>
+<p>また、<code>geom_density_2d()</code>で2次元の分布を描くこともできます。
+試しに、都市の分布を示します。</p>
+<div class="sourceCode" id="cb384"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb384-1"><a href="visual-map.html#cb384-1" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb384-2"><a href="visual-map.html#cb384-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb384-3"><a href="visual-map.html#cb384-3" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group),</span>
+<span id="cb384-4"><a href="visual-map.html#cb384-4" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb384-5"><a href="visual-map.html#cb384-5" tabindex="-1"></a>  <span class="fu">geom_density_2d</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat),</span>
+<span id="cb384-6"><a href="visual-map.html#cb384-6" tabindex="-1"></a>                  <span class="at">data =</span> world.cities)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-251-1.png" width="672" /></p>
+<ul>
+<li>一般的には、<code>geom_contour()</code>で等高線を描くことができます。</li>
+</ul>
+<p>色をつけることもできます。</p>
+<div class="sourceCode" id="cb385"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb385-1"><a href="visual-map.html#cb385-1" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb385-2"><a href="visual-map.html#cb385-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span> </span>
+<span id="cb385-3"><a href="visual-map.html#cb385-3" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group),</span>
+<span id="cb385-4"><a href="visual-map.html#cb385-4" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb385-5"><a href="visual-map.html#cb385-5" tabindex="-1"></a>  <span class="fu">stat_density2d</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">fill =</span> <span class="fu">stat</span>(level)), </span>
+<span id="cb385-6"><a href="visual-map.html#cb385-6" tabindex="-1"></a>                 <span class="at">geom =</span> <span class="st">&quot;polygon&quot;</span>, <span class="at">alpha =</span> <span class="fl">0.5</span>) </span></code></pre></div>
+<pre><code>## Warning: `stat(level)` was deprecated in ggplot2 3.4.0.
+## ℹ Please use `after_stat(level)` instead.
+## This warning is displayed once every 8 hours.
+## Call `lifecycle::last_lifecycle_warnings()` to see where this warning was generated.</code></pre>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-252-1.png" width="672" /></p>
+</div>
+<div id="データの繋がり" class="section level2 hasAnchor" number="13.4">
+<h2><span class="header-section-number">13.4</span> データの繋がり<a href="visual-map.html#データの繋がり" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<div id="二点間の繋がりを見る" class="section level3 hasAnchor" number="13.4.1">
+<h3><span class="header-section-number">13.4.1</span> 二点間の繋がりを見る<a href="visual-map.html#二点間の繋がりを見る" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>データポイントを打った後は、それぞれを線で繋ぎたいのが人情だと思います。
+<code>geom_segment()</code>を使うと、始点と終点のx軸とy軸の値を決めると線を引いてくれます。</p>
+<p>まず、準備として<a href="https://openflights.org/data.html">OpenFlights</a>から世界の空港と航路のデータを取得し、結合させます。</p>
+<div class="sourceCode" id="cb387"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb387-1"><a href="visual-map.html#cb387-1" tabindex="-1"></a>airports <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/airports.dat&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb387-2"><a href="visual-map.html#cb387-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">id =</span> X1, <span class="at">lat =</span> X7, <span class="at">long =</span> X8)</span></code></pre></div>
+<pre><code>## Rows: 7698 Columns: 14
+## ── Column specification ─────────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (10): X2, X3, X4, X5, X6, X10, X11, X12, X13, X14
+## dbl  (4): X1, X7, X8, X9
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<div class="sourceCode" id="cb389"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb389-1"><a href="visual-map.html#cb389-1" tabindex="-1"></a>route <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">&quot;data/routes.dat&quot;</span>, <span class="at">col_names =</span> <span class="cn">FALSE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-2"><a href="visual-map.html#cb389-2" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">source_id =</span> X4, <span class="at">dest_id =</span> X6) <span class="sc">%&gt;%</span> </span>
+<span id="cb389-3"><a href="visual-map.html#cb389-3" tabindex="-1"></a>  <span class="fu">mutate_all</span>(as.numeric)</span></code></pre></div>
+<pre><code>## Rows: 67663 Columns: 9
+## ── Column specification ─────────────────────────────────────────────────────────────────────────────────
+## Delimiter: &quot;,&quot;
+## chr (8): X1, X2, X3, X4, X5, X6, X7, X9
+## dbl (1): X8
+## 
+## ℹ Use `spec()` to retrieve the full column specification for this data.
+## ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+<pre><code>## Warning: There were 2 warnings in `mutate()`.
+## The first warning was:
+## ℹ In argument: `source_id = .Primitive(&quot;as.double&quot;)(source_id)`.
+## Caused by warning:
+## ! NAs introduced by coercion
+## ℹ Run `dplyr::last_dplyr_warnings()` to see the 1 remaining warning.</code></pre>
+<div class="sourceCode" id="cb392"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb392-1"><a href="visual-map.html#cb392-1" tabindex="-1"></a>df_flight <span class="ot">&lt;-</span> route <span class="sc">%&gt;%</span> </span>
+<span id="cb392-2"><a href="visual-map.html#cb392-2" tabindex="-1"></a>  <span class="fu">left_join</span>(airports <span class="sc">%&gt;%</span> </span>
+<span id="cb392-3"><a href="visual-map.html#cb392-3" tabindex="-1"></a>              <span class="fu">rename</span>(<span class="at">source_id =</span> id, <span class="at">source_lat =</span> lat, <span class="at">source_long =</span> long),</span>
+<span id="cb392-4"><a href="visual-map.html#cb392-4" tabindex="-1"></a>            <span class="at">by =</span> <span class="st">&quot;source_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb392-5"><a href="visual-map.html#cb392-5" tabindex="-1"></a>  <span class="fu">left_join</span>(airports <span class="sc">%&gt;%</span> </span>
+<span id="cb392-6"><a href="visual-map.html#cb392-6" tabindex="-1"></a>              <span class="fu">rename</span>(<span class="at">dest_id =</span> id,<span class="at">dest_lat =</span> lat, <span class="at">dest_long =</span> long),</span>
+<span id="cb392-7"><a href="visual-map.html#cb392-7" tabindex="-1"></a>            <span class="at">by =</span> <span class="st">&quot;dest_id&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb392-8"><a href="visual-map.html#cb392-8" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span>(source_long <span class="sc">==</span> dest_long <span class="sc">&amp;</span> source_lat <span class="sc">==</span> dest_lat))</span></code></pre></div>
+<ul>
+<li><code>source_long</code>と<code>source_lat</code>が出発地の緯度経度、<code>dest_long</code>と<code>dest_lat</code>が到着地の緯度経度を示しています。</li>
+</ul>
+<p>それを世界地図の上に重ねてプロットします。</p>
+<div class="sourceCode" id="cb393"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb393-1"><a href="visual-map.html#cb393-1" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb393-2"><a href="visual-map.html#cb393-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb393-3"><a href="visual-map.html#cb393-3" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), </span>
+<span id="cb393-4"><a href="visual-map.html#cb393-4" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb393-5"><a href="visual-map.html#cb393-5" tabindex="-1"></a>  <span class="fu">geom_segment</span>(<span class="fu">aes</span>(<span class="at">x =</span> source_long, <span class="at">y =</span> source_lat, <span class="at">xend =</span> dest_long, <span class="at">yend =</span> dest_lat),</span>
+<span id="cb393-6"><a href="visual-map.html#cb393-6" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>, </span>
+<span id="cb393-7"><a href="visual-map.html#cb393-7" tabindex="-1"></a>               <span class="at">data =</span> df_flight)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-254-1.png" width="672" /></p>
+<ul>
+<li>太平洋を横断する路線も西回りになってしまうのは課題です……</li>
+</ul>
+<p><code>geom_curve()</code>で曲線になります。</p>
+<div class="sourceCode" id="cb394"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb394-1"><a href="visual-map.html#cb394-1" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb394-2"><a href="visual-map.html#cb394-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb394-3"><a href="visual-map.html#cb394-3" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), </span>
+<span id="cb394-4"><a href="visual-map.html#cb394-4" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb394-5"><a href="visual-map.html#cb394-5" tabindex="-1"></a>  <span class="fu">geom_curve</span>(<span class="fu">aes</span>(<span class="at">x =</span> source_long, <span class="at">y =</span> source_lat, <span class="at">xend =</span> dest_long, <span class="at">yend =</span> dest_lat),</span>
+<span id="cb394-6"><a href="visual-map.html#cb394-6" tabindex="-1"></a>               <span class="at">size =</span> <span class="fl">0.1</span>, <span class="at">alpha =</span> <span class="fl">0.1</span>, </span>
+<span id="cb394-7"><a href="visual-map.html#cb394-7" tabindex="-1"></a>               <span class="at">data =</span> df_flight)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-255-1.png" width="672" /></p>
+</div>
+<div id="経路を見る" class="section level3 hasAnchor" number="13.4.2">
+<h3><span class="header-section-number">13.4.2</span> 経路を見る<a href="visual-map.html#経路を見る" class="anchor-section" aria-label="Anchor link to header"></a></h3>
+<p>二点間を繋ぐのではなく、一連の経路を描きたい場合は、この方法では非効率的です。
+例として、2019年の台風の経路をプロットするために、デジタル台風のサイト（<a href="http://agora.ex.nii.ac.jp/digital-typhoon/summary/wnp/l/201928.html.ja">例</a>）からデータを収集します。</p>
+<div class="sourceCode" id="cb395"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb395-1"><a href="visual-map.html#cb395-1" tabindex="-1"></a><span class="fu">library</span>(rvest)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;rvest&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:readr&#39;:
+## 
+##     guess_encoding</code></pre>
+<div class="sourceCode" id="cb398"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb398-1"><a href="visual-map.html#cb398-1" tabindex="-1"></a>df_typhoon <span class="ot">&lt;-</span> <span class="fu">tibble</span>()</span>
+<span id="cb398-2"><a href="visual-map.html#cb398-2" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="fu">formatC</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">28</span>, <span class="at">width =</span> <span class="dv">2</span>, <span class="at">flag =</span> <span class="st">&quot;0&quot;</span>)) {</span>
+<span id="cb398-3"><a href="visual-map.html#cb398-3" tabindex="-1"></a>  url <span class="ot">&lt;-</span> <span class="fu">str_glue</span>(<span class="st">&quot;http://agora.ex.nii.ac.jp/digital-typhoon/summary/wnp/l/2019{i}.html.ja&quot;</span>)</span>
+<span id="cb398-4"><a href="visual-map.html#cb398-4" tabindex="-1"></a>  df_typhoon <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_typhoon,</span>
+<span id="cb398-5"><a href="visual-map.html#cb398-5" tabindex="-1"></a>                          url <span class="sc">%&gt;%</span> </span>
+<span id="cb398-6"><a href="visual-map.html#cb398-6" tabindex="-1"></a>                            <span class="fu">read_html</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb398-7"><a href="visual-map.html#cb398-7" tabindex="-1"></a>                            <span class="fu">html_node</span>(<span class="st">&quot;table.TRACKINFO&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb398-8"><a href="visual-map.html#cb398-8" tabindex="-1"></a>                            <span class="fu">html_table</span>(<span class="at">fill =</span> <span class="cn">TRUE</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb398-9"><a href="visual-map.html#cb398-9" tabindex="-1"></a>                            <span class="fu">select</span>(<span class="at">long =</span> <span class="st">&quot;経度&quot;</span>, <span class="at">lat =</span> <span class="st">&quot;緯度&quot;</span>, <span class="at">hpa =</span> <span class="st">&quot;中心気圧 (hPa)&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb398-10"><a href="visual-map.html#cb398-10" tabindex="-1"></a>                            <span class="fu">mutate</span>(<span class="at">id =</span> i))</span>
+<span id="cb398-11"><a href="visual-map.html#cb398-11" tabindex="-1"></a>}</span></code></pre></div>
+<p>このように時系列に緯度経度が並んでいます。</p>
+<div class="sourceCode" id="cb399"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb399-1"><a href="visual-map.html#cb399-1" tabindex="-1"></a><span class="fu">head</span>(df_typhoon)</span></code></pre></div>
+<div data-pagedtable="false">
+<script data-pagedtable-source type="application/json">
+{"columns":[{"label":["long"],"name":[1],"type":["dbl"],"align":["right"]},{"label":["lat"],"name":[2],"type":["dbl"],"align":["right"]},{"label":["hpa"],"name":[3],"type":["int"],"align":["right"]},{"label":["id"],"name":[4],"type":["chr"],"align":["left"]}],"data":[{"1":"111.9","2":"7.6","3":"1004","4":"01"},{"1":"111.3","2":"7.3","3":"1004","4":"01"},{"1":"111.1","2":"7.0","3":"1004","4":"01"},{"1":"110.7","2":"6.6","3":"1004","4":"01"},{"1":"110.2","2":"6.3","3":"1000","4":"01"},{"1":"109.9","2":"6.0","3":"1000","4":"01"}],"options":{"columns":{"min":{},"max":[10]},"rows":{"min":[10],"max":[10]},"pages":{}}}
+  </script>
+</div>
+<p>経路の場合は<code>geom_path()</code>を使います。</p>
+<div class="sourceCode" id="cb400"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb400-1"><a href="visual-map.html#cb400-1" tabindex="-1"></a>world <span class="sc">%&gt;%</span> </span>
+<span id="cb400-2"><a href="visual-map.html#cb400-2" tabindex="-1"></a>  <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb400-3"><a href="visual-map.html#cb400-3" tabindex="-1"></a>  <span class="fu">geom_polygon</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">group =</span> group), </span>
+<span id="cb400-4"><a href="visual-map.html#cb400-4" tabindex="-1"></a>               <span class="at">fill =</span> <span class="st">&quot;lightgray&quot;</span>, <span class="at">colour =</span> <span class="st">&quot;black&quot;</span>, <span class="at">size =</span> <span class="fl">0.1</span>) <span class="sc">+</span> </span>
+<span id="cb400-5"><a href="visual-map.html#cb400-5" tabindex="-1"></a>  <span class="fu">geom_path</span>(<span class="fu">aes</span>(<span class="at">x =</span> long, <span class="at">y =</span> lat, <span class="at">colour =</span> hpa, <span class="at">group =</span> id),</span>
+<span id="cb400-6"><a href="visual-map.html#cb400-6" tabindex="-1"></a>            <span class="at">data =</span> df_typhoon) <span class="sc">+</span> </span>
+<span id="cb400-7"><a href="visual-map.html#cb400-7" tabindex="-1"></a>  <span class="fu">scale_colour_continuous</span>(<span class="at">low =</span> <span class="st">&quot;lightblue&quot;</span>, <span class="at">high =</span> <span class="st">&quot;darkblue&quot;</span>)</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-258-1.png" width="672" /></p>
+<ul>
+<li>複数の経路がある場合は<code>group</code>で指定するのを忘れずに。</li>
+</ul>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="visual-ts.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="ggplot2.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

@@ -1,0 +1,3852 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.290">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>R/Pythonで計量政治学入門 - 11&nbsp; データの読み込み</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./data_select.html" rel="next">
+<link href="./plot_advanced.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "一致なし",
+    "search-matching-documents-text": "一致した文書",
+    "search-copy-link-title": "検索へのリンクをコピー",
+    "search-hide-matches-text": "追加の検索結果を非表示",
+    "search-more-match-text": "追加の検索結果",
+    "search-more-matches-text": "追加の検索結果",
+    "search-clear-button-title": "消去",
+    "search-detached-cancel-button-title": "取消",
+    "search-submit-button-title": "検索"
+  }
+}</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet">
+
+
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_import.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_import.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">R/Pythonで<br>計量政治学入門</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="サーチ"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">はじめに</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">導入</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./quick_start.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">R/Pythonの基本操作</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_frame.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">データフレーム</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">データの要約</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./desc_distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">一変数の要約</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./desc_summary.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">記述統計表</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./desc_correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">二変数の要約</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">データの可視化</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_distribution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">分布のグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_correlation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">相関のグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_line.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">時系列のグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_professional.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">プロっぽいグラフ</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./plot_advanced.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">発展的なグラフ</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">データの処理</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_import.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_select.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_create.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_pivot.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">ロングとワイドの変換</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./data_missing_values.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">欠損値の対応</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">付録</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="セクションを切り替え">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./encoding.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">エンコーディングの問題</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./session_info.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">動作環境</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#使用するパッケージ" id="toc-使用するパッケージ" class="nav-link active" data-scroll-target="#使用するパッケージ"><span class="header-section-number">11.1</span> 使用するパッケージ</a></li>
+  <li><a href="#データの形式と読み込み" id="toc-データの形式と読み込み" class="nav-link" data-scroll-target="#データの形式と読み込み"><span class="header-section-number">11.2</span> データの形式と読み込み</a>
+  <ul class="collapse">
+  <li><a href="#csvファイル" id="toc-csvファイル" class="nav-link" data-scroll-target="#csvファイル"><span class="header-section-number">11.2.1</span> csvファイル</a></li>
+  <li><a href="#tsvファイル" id="toc-tsvファイル" class="nav-link" data-scroll-target="#tsvファイル"><span class="header-section-number">11.2.2</span> tsvファイル</a></li>
+  <li><a href="#xlsxファイルexcel" id="toc-xlsxファイルexcel" class="nav-link" data-scroll-target="#xlsxファイルexcel"><span class="header-section-number">11.2.3</span> xls[x]ファイル：Excel</a></li>
+  <li><a href="#dtaファイルstata" id="toc-dtaファイルstata" class="nav-link" data-scroll-target="#dtaファイルstata"><span class="header-section-number">11.2.4</span> dtaファイル：Stata</a></li>
+  </ul></li>
+  <li><a href="#データの読み込み実践" id="toc-データの読み込み実践" class="nav-link" data-scroll-target="#データの読み込み実践"><span class="header-section-number">11.3</span> データの読み込み実践</a>
+  <ul class="collapse">
+  <li><a href="#行のスキップ" id="toc-行のスキップ" class="nav-link" data-scroll-target="#行のスキップ"><span class="header-section-number">11.3.1</span> 行のスキップ</a></li>
+  <li><a href="#シートの選択" id="toc-シートの選択" class="nav-link" data-scroll-target="#シートの選択"><span class="header-section-number">11.3.2</span> シートの選択</a></li>
+  <li><a href="#欠損値の指定" id="toc-欠損値の指定" class="nav-link" data-scroll-target="#欠損値の指定"><span class="header-section-number">11.3.3</span> 欠損値の指定</a></li>
+  <li><a href="#文字化けの対処" id="toc-文字化けの対処" class="nav-link" data-scroll-target="#文字化けの対処"><span class="header-section-number">11.3.4</span> 文字化けの対処</a></li>
+  </ul></li>
+  <li><a href="#データの在り処" id="toc-データの在り処" class="nav-link" data-scroll-target="#データの在り処"><span class="header-section-number">11.4</span> データの在り処</a></li>
+  <li><a href="#パッケージの付属データ" id="toc-パッケージの付属データ" class="nav-link" data-scroll-target="#パッケージの付属データ"><span class="header-section-number">11.5</span> パッケージの付属データ</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>政治学で用いるデータの多くは、ウェブサイト上に公開されているデータです。今回は公開されているデータを読み込む方法を紹介します。</p>
+<section id="使用するパッケージ" class="level2" data-number="11.1">
+<h2 data-number="11.1" class="anchored" data-anchor-id="使用するパッケージ"><span class="header-section-number">11.1</span> 使用するパッケージ</h2>
+<p>Rでデータを読み込む場合、標準関数を用いるか、<code>tidyverse</code>に含まれるパッケージ<a href="https://readr.tidyverse.org/"><code>readr</code></a>を使うことが多いです。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.0     ✔ tibble    3.2.1
+✔ lubridate 1.9.3     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
+<p>Pythonの場合、<a href="https://pandas.pydata.org/"><code>pandas</code></a>がデファクト・スタンダードですが、最近は<a href="https://pola.rs/"><code>polars</code></a>も人気ではないかと思います。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> polars <span class="im">as</span> pl</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="データの形式と読み込み" class="level2" data-number="11.2">
+<h2 data-number="11.2" class="anchored" data-anchor-id="データの形式と読み込み"><span class="header-section-number">11.2</span> データの形式と読み込み</h2>
+<p>しかし、本命はネット上で公開されているデータなどを読み込むことではないかと思います。データには形式があり、それに応じてデータを読み込む必要があります。データの形式はファイルの<strong>拡張子</strong>を見れば分かります。</p>
+<ul>
+<li>例えば、<code>sample.csv</code>というファイルであれば、<code>sample</code>がファイル名で、<code>.</code>以降の<code>csv</code>が拡張子です。このファイルは<code>csv</code>ファイルであることが分かります。</li>
+<li>もしPCで拡張子が表示されていない設定であれば、表示するように設定することを勧めます。</li>
+</ul>
+<p>以下では、<code>data</code>フォルダに入っている<code>xxx</code>というファイルを読み込み、<code>df_sample</code>というオブジェクトにするコードを紹介します。</p>
+<section id="csvファイル" class="level3" data-number="11.2.1">
+<h3 data-number="11.2.1" class="anchored" data-anchor-id="csvファイル"><span class="header-section-number">11.2.1</span> csvファイル</h3>
+<p>ここでは、代表的なデータの形式と読み込み方法を紹介します。表形式のデータと言われると、エクセルファイルを思い浮かべると思いますが、研究の世界では<code>csv</code>ファイルや<code>tsv</code>ファイルが多いように思います。</p>
+<p><code>csv</code>とは”comma-separated values”の略で、その名の通り「コンマ<code>,</code>」で区切られたファイルです。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (base)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df_sample <span class="op">=</span> pd.read_csv(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df_sample <span class="op">=</span> pl.read_csv(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<section id="qualtrics" class="level4" data-number="11.2.1.1">
+<h4 data-number="11.2.1.1" class="anchored" data-anchor-id="qualtrics"><span class="header-section-number">11.2.1.1</span> Qualtrics</h4>
+<p>政治学ではサーベイ（実験）を行う際には<a href="https://www.qualtrics.com/">Qualtrics</a>というサービスを使うことが多いです。Rでは<a href="https://cran.r-project.org/web/packages/qualtRics/vignettes/qualtRics.html"><code>qualtRics</code></a>というパッケージを使うことで、サーベイ結果の<code>csv</code>ファイルを読み込めます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (qualtRics)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">library</span>(qualtRics)</span>
+<span id="cb8-2"><a href="#cb8-2"></a></span>
+<span id="cb8-3"><a href="#cb8-3"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_survey</span>(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+</section>
+<section id="tsvファイル" class="level3" data-number="11.2.2">
+<h3 data-number="11.2.2" class="anchored" data-anchor-id="tsvファイル"><span class="header-section-number">11.2.2</span> tsvファイル</h3>
+<p>一方で、<code>tsv</code>は「タブ<code></code>」で区切られています。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (base)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/xxx.csv"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/xxx.tsv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>df_sample <span class="op">=</span> pd.read_csv(<span class="st">"data/xxx.csv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df_sample <span class="op">=</span> pl.read_csv(<span class="st">"data/xxx.csv"</span>, separator<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p><code>tidyverse</code>には専用の関数がありますが、それ以外ではタブ区切りであることを指定する必要があります。</p>
+<ul>
+<li><code>\t</code>はタブの正規表現 (regular expression) です。</li>
+</ul>
+</section>
+<section id="xlsxファイルexcel" class="level3" data-number="11.2.3">
+<h3 data-number="11.2.3" class="anchored" data-anchor-id="xlsxファイルexcel"><span class="header-section-number">11.2.3</span> xls[x]ファイル：Excel</h3>
+<p>Excelファイルを読み込む場合、Rでは<a href="https://readxl.tidyverse.org/"><code>readr</code></a>というパッケージを使います。</p>
+<ul>
+<li>Excelファイルの拡張子は<code>xls</code>または<code>xlsx</code>です。</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (readxl)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/xxx.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df_sample <span class="op">=</span> pd.read_excel(<span class="st">"data/xxx.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
+<li><code>openpyxl</code>と<code>xlrd</code>をインストールしておく必要があります。</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df_sample <span class="op">=</span> pl.read_excel(<span class="st">"data/xxx.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
+<li><code>fastexcel</code>と<code>xlsx2csv</code>をインストールしておく必要があります。</li>
+</ul>
+</section>
+<section id="dtaファイルstata" class="level3" data-number="11.2.4">
+<h3 data-number="11.2.4" class="anchored" data-anchor-id="dtaファイルstata"><span class="header-section-number">11.2.4</span> dtaファイル：Stata</h3>
+<p>政治学や経済学などでは<a href="https://www.stata.com/">Stata</a>という統計分析ソフトを使うこともあります。Stata専用のデータ形式は<code>dta</code>ファイルと呼びます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/xxx.dta"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>df_sample <span class="op">=</span> pd.read_stata(<span class="st">"data/xxx.dta"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>政治学だとめったに遭遇しませんが、おそらく心理学や医学では<a href="https://www.sas.com/ja_jp/home.html">SAS</a>という統計ソフトを使うことがあり、専用のファイルを読み込む関数もあります。</p>
+</section>
+</section>
+<section id="データの読み込み実践" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="データの読み込み実践"><span class="header-section-number">11.3</span> データの読み込み実践</h2>
+<p>まずは、キレイなデータを読み込みたいと思います。政治学において民主主義は避けて通ることのできない概念であり、様々なデータセットがあります。その代表的なものとして<a href="https://www.systemicpeace.org/inscrdata.html">Polity</a>というものがあります。</p>
+<ul>
+<li>“Polity5 Annual Time-Series, 1946-2018”のエクセルデータを作業ディレクトリ内の<code>data</code>フォルダに保存します。</li>
+</ul>
+<p>それでは、エクセルデータを読み込みます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (readxl)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>df_polity <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb18-4"><a href="#cb18-4"></a></span>
+<span id="cb18-5"><a href="#cb18-5"></a><span class="fu">head</span>(df_polity)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 37
+     p5   cyear ccode scode country      year  flag fragment democ autoc polity
+  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1     0 7001800   700 AFG   Afghanistan  1800     0       NA     1     7     -6
+2     0 7001801   700 AFG   Afghanistan  1801     0       NA     1     7     -6
+3     0 7001802   700 AFG   Afghanistan  1802     0       NA     1     7     -6
+4     0 7001803   700 AFG   Afghanistan  1803     0       NA     1     7     -6
+5     0 7001804   700 AFG   Afghanistan  1804     0       NA     1     7     -6
+6     0 7001805   700 AFG   Afghanistan  1805     0       NA     1     7     -6
+# ℹ 26 more variables: polity2 &lt;dbl&gt;, durable &lt;dbl&gt;, xrreg &lt;dbl&gt;, xrcomp &lt;dbl&gt;,
+#   xropen &lt;dbl&gt;, xconst &lt;dbl&gt;, parreg &lt;dbl&gt;, parcomp &lt;dbl&gt;, exrec &lt;dbl&gt;,
+#   exconst &lt;dbl&gt;, polcomp &lt;dbl&gt;, prior &lt;dbl&gt;, emonth &lt;dbl&gt;, eday &lt;dbl&gt;,
+#   eyear &lt;dbl&gt;, eprec &lt;dbl&gt;, interim &lt;dbl&gt;, bmonth &lt;dbl&gt;, bday &lt;dbl&gt;,
+#   byear &lt;dbl&gt;, bprec &lt;dbl&gt;, post &lt;dbl&gt;, change &lt;dbl&gt;, d5 &lt;dbl&gt;, sf &lt;dbl&gt;,
+#   regtrans &lt;dbl&gt;</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>df_polity <span class="op">=</span> pd.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   p5    cyear  ccode scode      country  ...  post  change   d5  sf  regtrans
+0   0  7001800    700   AFG  Afghanistan  ...  -6.0    88.0  1.0 NaN       NaN
+1   0  7001801    700   AFG  Afghanistan  ...   NaN     NaN  NaN NaN       NaN
+2   0  7001802    700   AFG  Afghanistan  ...   NaN     NaN  NaN NaN       NaN
+3   0  7001803    700   AFG  Afghanistan  ...   NaN     NaN  NaN NaN       NaN
+4   0  7001804    700   AFG  Afghanistan  ...   NaN     NaN  NaN NaN       NaN
+
+[5 rows x 37 columns]</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>df_polity <span class="op">=</span> pl.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 37)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">p5</th>
+<th data-quarto-table-cell-role="th">cyear</th>
+<th data-quarto-table-cell-role="th">ccode</th>
+<th data-quarto-table-cell-role="th">scode</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">flag</th>
+<th data-quarto-table-cell-role="th">fragment</th>
+<th data-quarto-table-cell-role="th">democ</th>
+<th data-quarto-table-cell-role="th">autoc</th>
+<th data-quarto-table-cell-role="th">polity</th>
+<th data-quarto-table-cell-role="th">polity2</th>
+<th data-quarto-table-cell-role="th">durable</th>
+<th data-quarto-table-cell-role="th">xrreg</th>
+<th data-quarto-table-cell-role="th">xrcomp</th>
+<th data-quarto-table-cell-role="th">xropen</th>
+<th data-quarto-table-cell-role="th">xconst</th>
+<th data-quarto-table-cell-role="th">parreg</th>
+<th data-quarto-table-cell-role="th">parcomp</th>
+<th data-quarto-table-cell-role="th">exrec</th>
+<th data-quarto-table-cell-role="th">exconst</th>
+<th data-quarto-table-cell-role="th">polcomp</th>
+<th data-quarto-table-cell-role="th">prior</th>
+<th data-quarto-table-cell-role="th">emonth</th>
+<th data-quarto-table-cell-role="th">eday</th>
+<th data-quarto-table-cell-role="th">eyear</th>
+<th data-quarto-table-cell-role="th">eprec</th>
+<th data-quarto-table-cell-role="th">interim</th>
+<th data-quarto-table-cell-role="th">bmonth</th>
+<th data-quarto-table-cell-role="th">bday</th>
+<th data-quarto-table-cell-role="th">byear</th>
+<th data-quarto-table-cell-role="th">bprec</th>
+<th data-quarto-table-cell-role="th">post</th>
+<th data-quarto-table-cell-role="th">change</th>
+<th data-quarto-table-cell-role="th">d5</th>
+<th data-quarto-table-cell-role="th">sf</th>
+<th data-quarto-table-cell-role="th">regtrans</th>
+</tr>
+<tr class="odd">
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>0</td>
+<td>7001800</td>
+<td>700</td>
+<td>"AFG"</td>
+<td>"Afghanistan"</td>
+<td>1800</td>
+<td>0</td>
+<td>null</td>
+<td>1</td>
+<td>7</td>
+<td>-6</td>
+<td>-6</td>
+<td>null</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>6</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>1</td>
+<td>1</td>
+<td>1800</td>
+<td>1</td>
+<td>-6</td>
+<td>88</td>
+<td>1</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>7001801</td>
+<td>700</td>
+<td>"AFG"</td>
+<td>"Afghanistan"</td>
+<td>1801</td>
+<td>0</td>
+<td>null</td>
+<td>1</td>
+<td>7</td>
+<td>-6</td>
+<td>-6</td>
+<td>null</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>6</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>7001802</td>
+<td>700</td>
+<td>"AFG"</td>
+<td>"Afghanistan"</td>
+<td>1802</td>
+<td>0</td>
+<td>null</td>
+<td>1</td>
+<td>7</td>
+<td>-6</td>
+<td>-6</td>
+<td>null</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>6</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>0</td>
+<td>7001803</td>
+<td>700</td>
+<td>"AFG"</td>
+<td>"Afghanistan"</td>
+<td>1803</td>
+<td>0</td>
+<td>null</td>
+<td>1</td>
+<td>7</td>
+<td>-6</td>
+<td>-6</td>
+<td>null</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>6</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>0</td>
+<td>7001804</td>
+<td>700</td>
+<td>"AFG"</td>
+<td>"Afghanistan"</td>
+<td>1804</td>
+<td>0</td>
+<td>null</td>
+<td>1</td>
+<td>7</td>
+<td>-6</td>
+<td>-6</td>
+<td>null</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>6</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<ul>
+<li>Google Colaboratoryを使っている場合はパスの先頭に<code>drive/MyDrive/</code>を付けます。つまり、<code>"drive/MyDrive/data/p5v2018.xls"</code>とします。</li>
+</ul>
+<p>ところで、それぞれ<code>NA</code>や<code>NaN</code>、<code>null</code>とありますが、これらは<strong>欠損値</strong> (missing value) を意味しています。欠損値とは何かしらの理由で変数の値が測定されていないことを意味します。</p>
+<ul>
+<li>例えば、その年にその国が独立していない場合などは民主主義を測定できません。</li>
+</ul>
+<section id="行のスキップ" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="行のスキップ"><span class="header-section-number">11.3.1</span> 行のスキップ</h3>
+<p>政治学で使用するデータの多くは上記のようなコードで読み込みが可能だと思います。しかし、実際には様々な理由から、単にデータを読み込むだけでは分析できないことがあります。以下では、実際のデータを用いつつ、どのような問題に遭遇しうるのか、その際にどのように対処すれば良いかを学びます。</p>
+<p>まずは、<a href="https://data.worldbank.org/">World Bank Open Data</a>のデータを読み込んでみましょう。</p>
+<ul>
+<li>例えば、女性人口 (Population, female) で検索をし、右側にあるDownloadの<code>CSV</code>をクリックします。</li>
+<li><code>xip</code>ファイルがダウンロードされるので、それを適当なフォルダ（例えばダウンロードフォルダ）に保存し、解凍します。</li>
+<li>その中に、長いファイル名のファイルが3つありますが、<code>API</code>から始まるファイルが目当てのファイルです。</li>
+<li>このファイルを作業ディレクトリ内の<code>data</code>フォルダにコピーをします。</li>
+<li>ファイル名が分かりにくいので、分かりやすい名前（例えば、<code>wb_pop_fem.csv</code>）に変えておきます。</li>
+</ul>
+<p>それでは、データを読み込んでみます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>df_pop_fem <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/wb_pop_fem.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+• `` -&gt; `...3`</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
+e.g.:
+  dat &lt;- vroom(...)
+  problems(dat)</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 268 Columns: 3
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (3): Data Source, World Development Indicators, ...3
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">head</span>(df_pop_fem)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  `Data Source`               `World Development Indicators` ...3               
+  &lt;chr&gt;                       &lt;chr&gt;                          &lt;chr&gt;              
+1 Last Updated Date           2024-03-28                      &lt;NA&gt;              
+2 Country Name                Country Code                   "Indicator Name,In…
+3 Aruba                       ABW                            "Population, femal…
+4 Africa Eastern and Southern AFE                            "Population, femal…
+5 Afghanistan                 AFG                            "Population, femal…
+6 Africa Western and Central  AFW                            "Population, femal…</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df_pop_fem <span class="op">=</span> pd.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>pandas.errors.ParserError: Error tokenizing data. C error: Expected 3 fields in line 5, saw 69</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>df_pop_fem <span class="op">=</span> pl.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>polars.exceptions.ComputeError: found more fields than defined in 'Schema'
+
+Consider setting 'truncate_ragged_lines=True'.</code></pre>
+</div>
+</div>
+<p>さて、Pythonではエラーが生じました。また、Rでも肝心の女性の人口データが含まれていません。</p>
+<p>なぜこのようなことになってしまったのか、元の<code>csv</code>ファイルをエクセルなどの表計算ソフトで見てみます。すると、最初の4行ほどはデータソースや更新日などが書かれており、目当てのデータは5行目以降にあることが分かります。</p>
+<p>R/Pythonは素直なので、上から順にデータを読み込みます。Rはおそらくこのデータは2,3列しかないだろうと思って読み込んだのでしょう。Pythonは2列しかないと思っていたら5行目でそれ以上のデータと遭遇してエラーを出してしまったのでしょう。</p>
+<p>したがって、このような場合は「5行目から読んでね（4行目までは無視してね）」とR/Pythonにお願いする必要があります。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>df_pop_fem <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/wb_pop_fem.csv"</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+Rows: 266 Columns: 69
+── Column specification
+──────────────────────────────────────────────────────── Delimiter: "," chr
+(4): Country Name, Country Code, Indicator Name, Indicator Code dbl (63): 1960,
+1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, ... lgl (2): 2023,
+...69
+ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
+Specify the column types or set `show_col_types = FALSE` to quiet this message.
+• `` -&gt; `...69`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">head</span>(df_pop_fem)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 69
+  `Country Name`  `Country Code` `Indicator Name` `Indicator Code` `1960` `1961`
+  &lt;chr&gt;           &lt;chr&gt;          &lt;chr&gt;            &lt;chr&gt;             &lt;dbl&gt;  &lt;dbl&gt;
+1 Aruba           ABW            Population, fem… SP.POP.TOTL.FE.… 2.78e4 2.84e4
+2 Africa Eastern… AFE            Population, fem… SP.POP.TOTL.FE.… 6.59e7 6.76e7
+3 Afghanistan     AFG            Population, fem… SP.POP.TOTL.FE.… 4.15e6 4.23e6
+4 Africa Western… AFW            Population, fem… SP.POP.TOTL.FE.… 4.88e7 4.99e7
+5 Angola          AGO            Population, fem… SP.POP.TOTL.FE.… 2.67e6 2.70e6
+6 Albania         ALB            Population, fem… SP.POP.TOTL.FE.… 7.85e5 8.09e5
+# ℹ 63 more variables: `1962` &lt;dbl&gt;, `1963` &lt;dbl&gt;, `1964` &lt;dbl&gt;, `1965` &lt;dbl&gt;,
+#   `1966` &lt;dbl&gt;, `1967` &lt;dbl&gt;, `1968` &lt;dbl&gt;, `1969` &lt;dbl&gt;, `1970` &lt;dbl&gt;,
+#   `1971` &lt;dbl&gt;, `1972` &lt;dbl&gt;, `1973` &lt;dbl&gt;, `1974` &lt;dbl&gt;, `1975` &lt;dbl&gt;,
+#   `1976` &lt;dbl&gt;, `1977` &lt;dbl&gt;, `1978` &lt;dbl&gt;, `1979` &lt;dbl&gt;, `1980` &lt;dbl&gt;,
+#   `1981` &lt;dbl&gt;, `1982` &lt;dbl&gt;, `1983` &lt;dbl&gt;, `1984` &lt;dbl&gt;, `1985` &lt;dbl&gt;,
+#   `1986` &lt;dbl&gt;, `1987` &lt;dbl&gt;, `1988` &lt;dbl&gt;, `1989` &lt;dbl&gt;, `1990` &lt;dbl&gt;,
+#   `1991` &lt;dbl&gt;, `1992` &lt;dbl&gt;, `1993` &lt;dbl&gt;, `1994` &lt;dbl&gt;, `1995` &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>df_pop_fem <span class="op">=</span> pd.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>, skiprows<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb37-2"><a href="#cb37-2"></a></span>
+<span id="cb37-3"><a href="#cb37-3"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                  Country Name Country Code  ... 2023 Unnamed: 68
+0                        Aruba          ABW  ...  NaN         NaN
+1  Africa Eastern and Southern          AFE  ...  NaN         NaN
+2                  Afghanistan          AFG  ...  NaN         NaN
+3   Africa Western and Central          AFW  ...  NaN         NaN
+4                       Angola          AGO  ...  NaN         NaN
+
+[5 rows x 69 columns]</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>df_pop_fem <span class="op">=</span> pl.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>, skip_rows<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb39-2"><a href="#cb39-2"></a></span>
+<span id="cb39-3"><a href="#cb39-3"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 69)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Country Name</th>
+<th data-quarto-table-cell-role="th">Country Code</th>
+<th data-quarto-table-cell-role="th">Indicator Name</th>
+<th data-quarto-table-cell-role="th">Indicator Code</th>
+<th data-quarto-table-cell-role="th">1960</th>
+<th data-quarto-table-cell-role="th">1961</th>
+<th data-quarto-table-cell-role="th">1962</th>
+<th data-quarto-table-cell-role="th">1963</th>
+<th data-quarto-table-cell-role="th">1964</th>
+<th data-quarto-table-cell-role="th">1965</th>
+<th data-quarto-table-cell-role="th">1966</th>
+<th data-quarto-table-cell-role="th">1967</th>
+<th data-quarto-table-cell-role="th">1968</th>
+<th data-quarto-table-cell-role="th">1969</th>
+<th data-quarto-table-cell-role="th">1970</th>
+<th data-quarto-table-cell-role="th">1971</th>
+<th data-quarto-table-cell-role="th">1972</th>
+<th data-quarto-table-cell-role="th">1973</th>
+<th data-quarto-table-cell-role="th">1974</th>
+<th data-quarto-table-cell-role="th">1975</th>
+<th data-quarto-table-cell-role="th">1976</th>
+<th data-quarto-table-cell-role="th">1977</th>
+<th data-quarto-table-cell-role="th">1978</th>
+<th data-quarto-table-cell-role="th">1979</th>
+<th data-quarto-table-cell-role="th">1980</th>
+<th data-quarto-table-cell-role="th">1981</th>
+<th data-quarto-table-cell-role="th">1982</th>
+<th data-quarto-table-cell-role="th">1983</th>
+<th data-quarto-table-cell-role="th">1984</th>
+<th data-quarto-table-cell-role="th">1985</th>
+<th data-quarto-table-cell-role="th">1986</th>
+<th data-quarto-table-cell-role="th">1987</th>
+<th data-quarto-table-cell-role="th">1988</th>
+<th data-quarto-table-cell-role="th">1989</th>
+<th data-quarto-table-cell-role="th">1990</th>
+<th data-quarto-table-cell-role="th">1991</th>
+<th data-quarto-table-cell-role="th">1992</th>
+<th data-quarto-table-cell-role="th">1993</th>
+<th data-quarto-table-cell-role="th">1994</th>
+<th data-quarto-table-cell-role="th">1995</th>
+<th data-quarto-table-cell-role="th">1996</th>
+<th data-quarto-table-cell-role="th">1997</th>
+<th data-quarto-table-cell-role="th">1998</th>
+<th data-quarto-table-cell-role="th">1999</th>
+<th data-quarto-table-cell-role="th">2000</th>
+<th data-quarto-table-cell-role="th">2001</th>
+<th data-quarto-table-cell-role="th">2002</th>
+<th data-quarto-table-cell-role="th">2003</th>
+<th data-quarto-table-cell-role="th">2004</th>
+<th data-quarto-table-cell-role="th">2005</th>
+<th data-quarto-table-cell-role="th">2006</th>
+<th data-quarto-table-cell-role="th">2007</th>
+<th data-quarto-table-cell-role="th">2008</th>
+<th data-quarto-table-cell-role="th">2009</th>
+<th data-quarto-table-cell-role="th">2010</th>
+<th data-quarto-table-cell-role="th">2011</th>
+<th data-quarto-table-cell-role="th">2012</th>
+<th data-quarto-table-cell-role="th">2013</th>
+<th data-quarto-table-cell-role="th">2014</th>
+<th data-quarto-table-cell-role="th">2015</th>
+<th data-quarto-table-cell-role="th">2016</th>
+<th data-quarto-table-cell-role="th">2017</th>
+<th data-quarto-table-cell-role="th">2018</th>
+<th data-quarto-table-cell-role="th">2019</th>
+<th data-quarto-table-cell-role="th">2020</th>
+<th data-quarto-table-cell-role="th">2021</th>
+<th data-quarto-table-cell-role="th">2022</th>
+<th data-quarto-table-cell-role="th">2023</th>
+<th data-quarto-table-cell-role="th"></th>
+</tr>
+<tr class="odd">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Aruba"</td>
+<td>"ABW"</td>
+<td>"Population, fe…</td>
+<td>"SP.POP.TOTL.FE…</td>
+<td>27773</td>
+<td>28380</td>
+<td>28820</td>
+<td>29218</td>
+<td>29570</td>
+<td>29875</td>
+<td>30135</td>
+<td>30253</td>
+<td>30232</td>
+<td>30166</td>
+<td>30063</td>
+<td>29927</td>
+<td>29953</td>
+<td>30229</td>
+<td>30595</td>
+<td>30972</td>
+<td>31245</td>
+<td>31416</td>
+<td>31584</td>
+<td>31749</td>
+<td>31909</td>
+<td>32121</td>
+<td>32389</td>
+<td>32659</td>
+<td>32886</td>
+<td>33008</td>
+<td>33007</td>
+<td>32904</td>
+<td>32788</td>
+<td>32892</td>
+<td>33480</td>
+<td>34657</td>
+<td>35941</td>
+<td>37137</td>
+<td>38437</td>
+<td>39724</td>
+<td>41014</td>
+<td>42336</td>
+<td>43688</td>
+<td>45050</td>
+<td>46269</td>
+<td>47178</td>
+<td>47831</td>
+<td>48374</td>
+<td>48877</td>
+<td>49414</td>
+<td>50016</td>
+<td>50636</td>
+<td>51272</td>
+<td>51919</td>
+<td>52484</td>
+<td>52980</td>
+<td>53480</td>
+<td>53953</td>
+<td>54403</td>
+<td>54828</td>
+<td>55224</td>
+<td>55591</td>
+<td>55935</td>
+<td>56254</td>
+<td>56373</td>
+<td>56330</td>
+<td>56272</td>
+<td>""</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"Africa Eastern…</td>
+<td>"AFE"</td>
+<td>"Population, fe…</td>
+<td>"SP.POP.TOTL.FE…</td>
+<td>65853220</td>
+<td>67606287</td>
+<td>69457112</td>
+<td>71375643</td>
+<td>73386167</td>
+<td>75478396</td>
+<td>77610073</td>
+<td>79810945</td>
+<td>82111287</td>
+<td>84493601</td>
+<td>86968714</td>
+<td>89504801</td>
+<td>92051419</td>
+<td>94694181</td>
+<td>97478670</td>
+<td>100339888</td>
+<td>103289004</td>
+<td>106237590</td>
+<td>109415983</td>
+<td>112834021</td>
+<td>116060576</td>
+<td>119525759</td>
+<td>123410049</td>
+<td>127333314</td>
+<td>131344567</td>
+<td>135563206</td>
+<td>139816011</td>
+<td>144066893</td>
+<td>148288335</td>
+<td>152522362</td>
+<td>156942214</td>
+<td>161298074</td>
+<td>165609524</td>
+<td>170167926</td>
+<td>174762745</td>
+<td>179486372</td>
+<td>184468529</td>
+<td>189280003</td>
+<td>194009070</td>
+<td>198959676</td>
+<td>204048614</td>
+<td>209257664</td>
+<td>214635664</td>
+<td>220167814</td>
+<td>225898442</td>
+<td>231830259</td>
+<td>237997868</td>
+<td>244435307</td>
+<td>251105628</td>
+<td>257956460</td>
+<td>265000967</td>
+<td>272174714</td>
+<td>279546577</td>
+<td>287224924</td>
+<td>295089133</td>
+<td>303195897</td>
+<td>311387401</td>
+<td>319637365</td>
+<td>328159112</td>
+<td>336930970</td>
+<td>345889868</td>
+<td>354855221</td>
+<td>363834524</td>
+<td>""</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Afghanistan"</td>
+<td>"AFG"</td>
+<td>"Population, fe…</td>
+<td>"SP.POP.TOTL.FE…</td>
+<td>4145945</td>
+<td>4233771</td>
+<td>4326881</td>
+<td>4424511</td>
+<td>4526691</td>
+<td>4634341</td>
+<td>4745981</td>
+<td>4861918</td>
+<td>4983086</td>
+<td>5108507</td>
+<td>5239568</td>
+<td>5372747</td>
+<td>5509781</td>
+<td>5655304</td>
+<td>5803603</td>
+<td>5948268</td>
+<td>6083166</td>
+<td>6214979</td>
+<td>6342838</td>
+<td>6373547</td>
+<td>6136856</td>
+<td>5490160</td>
+<td>4973968</td>
+<td>4916351</td>
+<td>5074600</td>
+<td>5225679</td>
+<td>5207273</td>
+<td>5152650</td>
+<td>5188060</td>
+<td>5334609</td>
+<td>5346409</td>
+<td>5372208</td>
+<td>6028939</td>
+<td>7000119</td>
+<td>7722096</td>
+<td>8199445</td>
+<td>8537421</td>
+<td>8871958</td>
+<td>9217591</td>
+<td>9595036</td>
+<td>9727541</td>
+<td>9793166</td>
+<td>10438055</td>
+<td>11247647</td>
+<td>11690825</td>
+<td>12109086</td>
+<td>12614497</td>
+<td>12835340</td>
+<td>13088192</td>
+<td>13557331</td>
+<td>13949295</td>
+<td>14468875</td>
+<td>15067373</td>
+<td>15594637</td>
+<td>16172321</td>
+<td>16682054</td>
+<td>17115346</td>
+<td>17614722</td>
+<td>18136922</td>
+<td>18679089</td>
+<td>19279930</td>
+<td>19844584</td>
+<td>20362329</td>
+<td>""</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"Africa Western…</td>
+<td>"AFW"</td>
+<td>"Population, fe…</td>
+<td>"SP.POP.TOTL.FE…</td>
+<td>48802898</td>
+<td>49850088</td>
+<td>50928609</td>
+<td>52044907</td>
+<td>53196730</td>
+<td>54389295</td>
+<td>55621877</td>
+<td>56890201</td>
+<td>58204276</td>
+<td>59560501</td>
+<td>60963620</td>
+<td>62404746</td>
+<td>63900687</td>
+<td>65482730</td>
+<td>67160750</td>
+<td>68943269</td>
+<td>70786681</td>
+<td>72718234</td>
+<td>74770813</td>
+<td>76909670</td>
+<td>79104037</td>
+<td>81359426</td>
+<td>83714354</td>
+<td>85996392</td>
+<td>88238093</td>
+<td>90605997</td>
+<td>93047700</td>
+<td>95556172</td>
+<td>98139171</td>
+<td>100824162</td>
+<td>103478502</td>
+<td>106184462</td>
+<td>109071980</td>
+<td>111968903</td>
+<td>114896750</td>
+<td>117979287</td>
+<td>121143186</td>
+<td>124399328</td>
+<td>127775360</td>
+<td>131211380</td>
+<td>134795501</td>
+<td>138546839</td>
+<td>142408066</td>
+<td>146370538</td>
+<td>150463219</td>
+<td>154696476</td>
+<td>159035017</td>
+<td>163481052</td>
+<td>168058833</td>
+<td>172782717</td>
+<td>177645233</td>
+<td>182657978</td>
+<td>187755307</td>
+<td>192900081</td>
+<td>198163527</td>
+<td>203513873</td>
+<td>208980433</td>
+<td>214578994</td>
+<td>220253839</td>
+<td>226004857</td>
+<td>231877590</td>
+<td>237813580</td>
+<td>243821774</td>
+<td>""</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Angola"</td>
+<td>"AGO"</td>
+<td>"Population, fe…</td>
+<td>"SP.POP.TOTL.FE…</td>
+<td>2670229</td>
+<td>2704394</td>
+<td>2742689</td>
+<td>2779473</td>
+<td>2812590</td>
+<td>2838939</td>
+<td>2856740</td>
+<td>2867926</td>
+<td>2879001</td>
+<td>2902120</td>
+<td>2953347</td>
+<td>3032948</td>
+<td>3132441</td>
+<td>3244749</td>
+<td>3362438</td>
+<td>3483416</td>
+<td>3606782</td>
+<td>3735823</td>
+<td>3872130</td>
+<td>4014347</td>
+<td>4164145</td>
+<td>4321167</td>
+<td>4485276</td>
+<td>4656894</td>
+<td>4834820</td>
+<td>5018620</td>
+<td>5206761</td>
+<td>5396035</td>
+<td>5588733</td>
+<td>5787505</td>
+<td>5991207</td>
+<td>6199060</td>
+<td>6408303</td>
+<td>6621767</td>
+<td>6845622</td>
+<td>7077381</td>
+<td>7315200</td>
+<td>7561436</td>
+<td>7813123</td>
+<td>8071413</td>
+<td>8339311</td>
+<td>8619083</td>
+<td>8912191</td>
+<td>9219638</td>
+<td>9545020</td>
+<td>9886765</td>
+<td>10244381</td>
+<td>10620174</td>
+<td>11013001</td>
+<td>11422969</td>
+<td>11853530</td>
+<td>12303450</td>
+<td>12770743</td>
+<td>13252938</td>
+<td>13746371</td>
+<td>14248799</td>
+<td>14764575</td>
+<td>15293335</td>
+<td>15828040</td>
+<td>16370553</td>
+<td>16910989</td>
+<td>17452283</td>
+<td>17998220</td>
+<td>""</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>無事にデータを読み込むことができました。ここから得られる教訓は、データを読み込む前に表計算ソフトでどのようなデータなのか確認すべしということでしょう。</p>
+</section>
+<section id="シートの選択" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="シートの選択"><span class="header-section-number">11.3.2</span> シートの選択</h3>
+<p>続いて、ストックホルム国際平和研究所の<a href="https://www.sipri.org/databases/milex">SIPRI Military Expenditure Database</a>を扱います。</p>
+<ul>
+<li>リンクをクリックしてデータを作業ディレクトリ内の<code>data</code>フォルダに保存します。</li>
+</ul>
+<p>先程の教訓を活かして、まずは表計算ソフトでこのファイルを開きます。すると、英語で説明が書かれたページが表示されます。</p>
+<p>エクセルファイルは一つのファイルに複数のシート（データフレーム）が含まれていることがあります。したがって、その場合はどのシートを読み込むかを指定する必要があります。試しに、実質USドルで計算された5つ目のシートを読み込みます。</p>
+<p>また、5つ目のシートを見てみると最初の5行は説明書きのようなので、スキップします。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (readxl)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb40-2"><a href="#cb40-2"></a></span>
+<span id="cb40-3"><a href="#cb40-3"></a>df_sipri <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">5</span>, <span class="at">skip =</span> <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+• `` -&gt; `...2`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">head</span>(df_sipri)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 77
+  Country      ...2  Notes `1949.0` `1950.0` `1951.0` `1952.0` `1953.0` `1954.0`
+  &lt;chr&gt;        &lt;lgl&gt; &lt;chr&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;   
+1 &lt;NA&gt;         NA    &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+2 Africa       NA    &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+3 North Africa NA    &lt;NA&gt;  &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;     &lt;NA&gt;    
+4 Algeria      NA    §4    xxx      xxx      xxx      xxx      xxx      xxx     
+5 Libya        NA    ‡§¶16 xxx      xxx      ...      ...      ...      ...     
+6 Morocco      NA    §17   xxx      xxx      xxx      xxx      xxx      xxx     
+# ℹ 68 more variables: `1955.0` &lt;chr&gt;, `1956.0` &lt;chr&gt;, `1957.0` &lt;chr&gt;,
+#   `1958.0` &lt;chr&gt;, `1959.0` &lt;chr&gt;, `1960.0` &lt;chr&gt;, `1961.0` &lt;chr&gt;,
+#   `1962.0` &lt;chr&gt;, `1963.0` &lt;chr&gt;, `1964.0` &lt;chr&gt;, `1965.0` &lt;chr&gt;,
+#   `1966.0` &lt;chr&gt;, `1967.0` &lt;chr&gt;, `1968.0` &lt;chr&gt;, `1969.0` &lt;chr&gt;,
+#   `1970.0` &lt;chr&gt;, `1971.0` &lt;chr&gt;, `1972.0` &lt;chr&gt;, `1973.0` &lt;chr&gt;,
+#   `1974.0` &lt;chr&gt;, `1975.0` &lt;chr&gt;, `1976.0` &lt;chr&gt;, `1977.0` &lt;chr&gt;,
+#   `1978.0` &lt;chr&gt;, `1979.0` &lt;chr&gt;, `1980.0` &lt;chr&gt;, `1981.0` &lt;chr&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>df_sipri <span class="op">=</span> pd.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_name<span class="op">=</span><span class="dv">5</span>, skiprows<span class="op">=</span><span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/home/shohei/Dropbox/teaching/0_textbook/quant_polisci/.venv/lib/python3.11/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Country  Notes 1949  ...        2020         2021         2022
+0           NaN    NaN  NaN  ...         NaN          NaN          NaN
+1        Africa    NaN  NaN  ...         NaN          NaN          NaN
+2  North Africa    NaN  NaN  ...         NaN          NaN          NaN
+3       Algeria     §4  xxx  ...  9708.27744  9112.461105  9145.810174
+4         Libya  ‡§¶16  xxx  ...         ...          ...          ...
+
+[5 rows x 76 columns]</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>df_sipri <span class="op">=</span> pl.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_id<span class="op">=</span><span class="dv">5</span>, read_options<span class="op">=</span>{<span class="st">"skip_rows"</span>: <span class="dv">5</span>})</span>
+<span id="cb48-2"><a href="#cb48-2"></a></span>
+<span id="cb48-3"><a href="#cb48-3"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 76)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Notes</th>
+<th data-quarto-table-cell-role="th">1949</th>
+<th data-quarto-table-cell-role="th">1950</th>
+<th data-quarto-table-cell-role="th">1951</th>
+<th data-quarto-table-cell-role="th">1952</th>
+<th data-quarto-table-cell-role="th">1953</th>
+<th data-quarto-table-cell-role="th">1954</th>
+<th data-quarto-table-cell-role="th">1955</th>
+<th data-quarto-table-cell-role="th">1956</th>
+<th data-quarto-table-cell-role="th">1957</th>
+<th data-quarto-table-cell-role="th">1958</th>
+<th data-quarto-table-cell-role="th">1959</th>
+<th data-quarto-table-cell-role="th">1960</th>
+<th data-quarto-table-cell-role="th">1961</th>
+<th data-quarto-table-cell-role="th">1962</th>
+<th data-quarto-table-cell-role="th">1963</th>
+<th data-quarto-table-cell-role="th">1964</th>
+<th data-quarto-table-cell-role="th">1965</th>
+<th data-quarto-table-cell-role="th">1966</th>
+<th data-quarto-table-cell-role="th">1967</th>
+<th data-quarto-table-cell-role="th">1968</th>
+<th data-quarto-table-cell-role="th">1969</th>
+<th data-quarto-table-cell-role="th">1970</th>
+<th data-quarto-table-cell-role="th">1971</th>
+<th data-quarto-table-cell-role="th">1972</th>
+<th data-quarto-table-cell-role="th">1973</th>
+<th data-quarto-table-cell-role="th">1974</th>
+<th data-quarto-table-cell-role="th">1975</th>
+<th data-quarto-table-cell-role="th">1976</th>
+<th data-quarto-table-cell-role="th">1977</th>
+<th data-quarto-table-cell-role="th">1978</th>
+<th data-quarto-table-cell-role="th">1979</th>
+<th data-quarto-table-cell-role="th">1980</th>
+<th data-quarto-table-cell-role="th">1981</th>
+<th data-quarto-table-cell-role="th">1982</th>
+<th data-quarto-table-cell-role="th">1983</th>
+<th data-quarto-table-cell-role="th">…</th>
+<th data-quarto-table-cell-role="th">1986</th>
+<th data-quarto-table-cell-role="th">1987</th>
+<th data-quarto-table-cell-role="th">1988</th>
+<th data-quarto-table-cell-role="th">1989</th>
+<th data-quarto-table-cell-role="th">1990</th>
+<th data-quarto-table-cell-role="th">1991</th>
+<th data-quarto-table-cell-role="th">1992</th>
+<th data-quarto-table-cell-role="th">1993</th>
+<th data-quarto-table-cell-role="th">1994</th>
+<th data-quarto-table-cell-role="th">1995</th>
+<th data-quarto-table-cell-role="th">1996</th>
+<th data-quarto-table-cell-role="th">1997</th>
+<th data-quarto-table-cell-role="th">1998</th>
+<th data-quarto-table-cell-role="th">1999</th>
+<th data-quarto-table-cell-role="th">2000</th>
+<th data-quarto-table-cell-role="th">2001</th>
+<th data-quarto-table-cell-role="th">2002</th>
+<th data-quarto-table-cell-role="th">2003</th>
+<th data-quarto-table-cell-role="th">2004</th>
+<th data-quarto-table-cell-role="th">2005</th>
+<th data-quarto-table-cell-role="th">2006</th>
+<th data-quarto-table-cell-role="th">2007</th>
+<th data-quarto-table-cell-role="th">2008</th>
+<th data-quarto-table-cell-role="th">2009</th>
+<th data-quarto-table-cell-role="th">2010</th>
+<th data-quarto-table-cell-role="th">2011</th>
+<th data-quarto-table-cell-role="th">2012</th>
+<th data-quarto-table-cell-role="th">2013</th>
+<th data-quarto-table-cell-role="th">2014</th>
+<th data-quarto-table-cell-role="th">2015</th>
+<th data-quarto-table-cell-role="th">2016</th>
+<th data-quarto-table-cell-role="th">2017</th>
+<th data-quarto-table-cell-role="th">2018</th>
+<th data-quarto-table-cell-role="th">2019</th>
+<th data-quarto-table-cell-role="th">2020</th>
+<th data-quarto-table-cell-role="th">2021</th>
+<th data-quarto-table-cell-role="th">2022</th>
+</tr>
+<tr class="odd">
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>…</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Africa"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>…</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"North Africa"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>…</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Algeria"</td>
+<td>"§4"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"234.875985"</td>
+<td>"219.434678"</td>
+<td>"215.133118"</td>
+<td>"208.220940"</td>
+<td>"215.742463"</td>
+<td>"413.599801"</td>
+<td>"461.022683"</td>
+<td>"642.532765"</td>
+<td>"560.729351"</td>
+<td>"607.406682"</td>
+<td>"600.773471"</td>
+<td>"683.327939"</td>
+<td>"607.328128"</td>
+<td>"701.198007"</td>
+<td>"704.831389"</td>
+<td>…</td>
+<td>"610.182410"</td>
+<td>"622.034094"</td>
+<td>"615.542127"</td>
+<td>"601.651385"</td>
+<td>"642.721150"</td>
+<td>"657.986141"</td>
+<td>"1101.032432"</td>
+<td>"1183.864801"</td>
+<td>"1440.243493"</td>
+<td>"1395.429481"</td>
+<td>"1588.840569"</td>
+<td>"1910.994943"</td>
+<td>"2021.120506"</td>
+<td>"2133.027701"</td>
+<td>"2475.100274"</td>
+<td>"2709.025608"</td>
+<td>"2768.307740"</td>
+<td>"2708.645105"</td>
+<td>"3080.937162"</td>
+<td>"3225.387723"</td>
+<td>"3306.186349"</td>
+<td>"3879.058547"</td>
+<td>"4519.638056"</td>
+<td>"4908.797561"</td>
+<td>"5194.999271"</td>
+<td>"7434.910242"</td>
+<td>"7823.704814"</td>
+<td>"8450.873651"</td>
+<td>"9732.621963"</td>
+<td>"10182.147187"</td>
+<td>"10212.538248"</td>
+<td>"9671.777933"</td>
+<td>"9275.706188"</td>
+<td>"10006.914126"</td>
+<td>"9773.554762"</td>
+<td>"9112.461105"</td>
+<td>"8776.364725"</td>
+</tr>
+<tr class="even">
+<td>"Libya"</td>
+<td>"‡§¶16"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"62.239411"</td>
+<td>"75.739505"</td>
+<td>"135.605176"</td>
+<td>"171.736926"</td>
+<td>"205.401564"</td>
+<td>"280.364831"</td>
+<td>"501.713486"</td>
+<td>"517.782969"</td>
+<td>"399.804189"</td>
+<td>"496.864250"</td>
+<td>"660.244648"</td>
+<td>"403.379454"</td>
+<td>"433.595285"</td>
+<td>"599.712512"</td>
+<td>"705.411019"</td>
+<td>"877.901730"</td>
+<td>"1006.758017"</td>
+<td>"469.762633"</td>
+<td>"542.251381"</td>
+<td>"..."</td>
+<td>…</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"528.148467"</td>
+<td>"595.753213"</td>
+<td>"460.005767"</td>
+<td>"492.339926"</td>
+<td>"481.663213"</td>
+<td>"619.030119"</td>
+<td>"770.484367"</td>
+<td>"1006.128971"</td>
+<td>"991.116581"</td>
+<td>"872.043438"</td>
+<td>"820.739134"</td>
+<td>"1240.400997"</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"2691.266837"</td>
+<td>"3509.174752"</td>
+<td>"3246.886855"</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+<td>"..."</td>
+</tr>
+<tr class="odd">
+<td>"Morocco"</td>
+<td>"§17"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"xxx"</td>
+<td>"119.561947"</td>
+<td>"174.296160"</td>
+<td>"231.988959"</td>
+<td>"270.419973"</td>
+<td>"269.797363"</td>
+<td>"307.693292"</td>
+<td>"326.567713"</td>
+<td>"429.706446"</td>
+<td>"386.061343"</td>
+<td>"336.729958"</td>
+<td>"365.821285"</td>
+<td>"381.660589"</td>
+<td>"491.011780"</td>
+<td>"445.838272"</td>
+<td>"460.681190"</td>
+<td>"552.386269"</td>
+<td>"610.999174"</td>
+<td>"694.413605"</td>
+<td>"818.316780"</td>
+<td>"1201.617167"</td>
+<td>"1686.646799"</td>
+<td>"1934.233958"</td>
+<td>"1722.805411"</td>
+<td>"1726.670724"</td>
+<td>"1987.294925"</td>
+<td>"2025.512311"</td>
+<td>"2098.786842"</td>
+<td>"1527.477606"</td>
+<td>…</td>
+<td>"1721.964873"</td>
+<td>"1722.974496"</td>
+<td>"1859.410193"</td>
+<td>"2010.669934"</td>
+<td>"1974.552450"</td>
+<td>"2073.654577"</td>
+<td>"2057.185887"</td>
+<td>"2170.432946"</td>
+<td>"2228.159258"</td>
+<td>"2052.130321"</td>
+<td>"2046.648979"</td>
+<td>"2143.497749"</td>
+<td>"2169.058500"</td>
+<td>"1837.788653"</td>
+<td>"1390.760784"</td>
+<td>"2516.231872"</td>
+<td>"2394.040085"</td>
+<td>"2535.872578"</td>
+<td>"2464.704546"</td>
+<td>"2557.771063"</td>
+<td>"2582.189542"</td>
+<td>"2659.230192"</td>
+<td>"2966.110340"</td>
+<td>"3168.016273"</td>
+<td>"3390.448538"</td>
+<td>"3415.165311"</td>
+<td>"3660.789360"</td>
+<td>"4182.250761"</td>
+<td>"4146.897151"</td>
+<td>"3828.729050"</td>
+<td>"3852.059058"</td>
+<td>"3965.368975"</td>
+<td>"3993.067756"</td>
+<td>"4076.773137"</td>
+<td>"5225.571603"</td>
+<td>"5378.366535"</td>
+<td>"5368.334058"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<ul>
+<li><code>pl.read_csv()</code>のときとスキップの仕方が異なる点に注意してください。</li>
+</ul>
+<p>ややツッコミどころはありますが、一応、それなりにデータが読み込みめているようです。</p>
+</section>
+<section id="欠損値の指定" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="欠損値の指定"><span class="header-section-number">11.3.3</span> 欠損値の指定</h3>
+<p>残念ながら、まだこれだけでは分析に耐えるデータではありません。１つ目の問題は、謎の<code>xxx</code>や<code>...</code>です。改めて元のデータを見てみると、4行目に”“. .” = data unavailable. “xxx” = country did not exist or was not independent during all or part of the year in question.”と書いてあります。すなわち、これらは欠損値を示していると考えられます。</p>
+<p>したがって、データを読み込む際にはこれらを欠損値であることをR/Pythonに教えてあげる必要があります。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (readxl)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb49-2"><a href="#cb49-2"></a></span>
+<span id="cb49-3"><a href="#cb49-3"></a>df_sipri <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">5</span>, <span class="at">skip =</span> <span class="dv">5</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"xxx"</span>, <span class="st">"..."</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>New names:
+• `` -&gt; `...2`</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">head</span>(df_sipri)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 77
+  Country      ...2  Notes `1949.0` `1950.0` `1951.0` `1952.0` `1953.0` `1954.0`
+  &lt;chr&gt;        &lt;lgl&gt; &lt;chr&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
+1 &lt;NA&gt;         NA    &lt;NA&gt;        NA       NA       NA       NA       NA       NA
+2 Africa       NA    &lt;NA&gt;        NA       NA       NA       NA       NA       NA
+3 North Africa NA    &lt;NA&gt;        NA       NA       NA       NA       NA       NA
+4 Algeria      NA    §4          NA       NA       NA       NA       NA       NA
+5 Libya        NA    ‡§¶16       NA       NA       NA       NA       NA       NA
+6 Morocco      NA    §17         NA       NA       NA       NA       NA       NA
+# ℹ 68 more variables: `1955.0` &lt;dbl&gt;, `1956.0` &lt;dbl&gt;, `1957.0` &lt;dbl&gt;,
+#   `1958.0` &lt;dbl&gt;, `1959.0` &lt;dbl&gt;, `1960.0` &lt;dbl&gt;, `1961.0` &lt;dbl&gt;,
+#   `1962.0` &lt;dbl&gt;, `1963.0` &lt;dbl&gt;, `1964.0` &lt;dbl&gt;, `1965.0` &lt;dbl&gt;,
+#   `1966.0` &lt;dbl&gt;, `1967.0` &lt;dbl&gt;, `1968.0` &lt;dbl&gt;, `1969.0` &lt;dbl&gt;,
+#   `1970.0` &lt;dbl&gt;, `1971.0` &lt;dbl&gt;, `1972.0` &lt;dbl&gt;, `1973.0` &lt;dbl&gt;,
+#   `1974.0` &lt;dbl&gt;, `1975.0` &lt;dbl&gt;, `1976.0` &lt;dbl&gt;, `1977.0` &lt;dbl&gt;,
+#   `1978.0` &lt;dbl&gt;, `1979.0` &lt;dbl&gt;, `1980.0` &lt;dbl&gt;, `1981.0` &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>df_sipri <span class="op">=</span> pd.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_name<span class="op">=</span><span class="dv">5</span>, skiprows<span class="op">=</span><span class="dv">5</span>, na_values<span class="op">=</span>[<span class="st">"xxx"</span>, <span class="st">"..."</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>/home/shohei/Dropbox/teaching/0_textbook/quant_polisci/.venv/lib/python3.11/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
+  warn("Workbook contains no default style, apply openpyxl's default")</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>        Country  Notes  1949  ...        2020         2021         2022
+0           NaN    NaN   NaN  ...         NaN          NaN          NaN
+1        Africa    NaN   NaN  ...         NaN          NaN          NaN
+2  North Africa    NaN   NaN  ...         NaN          NaN          NaN
+3       Algeria     §4   NaN  ...  9708.27744  9112.461105  9145.810174
+4         Libya  ‡§¶16   NaN  ...         NaN          NaN          NaN
+
+[5 rows x 76 columns]</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>df_sipri <span class="op">=</span> pl.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_id<span class="op">=</span><span class="dv">5</span>, read_options<span class="op">=</span>{<span class="st">"skip_rows"</span>: <span class="dv">5</span>, <span class="st">"null_values"</span>: [<span class="st">"xxx"</span>, <span class="st">"..."</span>]})</span>
+<span id="cb57-2"><a href="#cb57-2"></a></span>
+<span id="cb57-3"><a href="#cb57-3"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 76)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">Country</th>
+<th data-quarto-table-cell-role="th">Notes</th>
+<th data-quarto-table-cell-role="th">1949</th>
+<th data-quarto-table-cell-role="th">1950</th>
+<th data-quarto-table-cell-role="th">1951</th>
+<th data-quarto-table-cell-role="th">1952</th>
+<th data-quarto-table-cell-role="th">1953</th>
+<th data-quarto-table-cell-role="th">1954</th>
+<th data-quarto-table-cell-role="th">1955</th>
+<th data-quarto-table-cell-role="th">1956</th>
+<th data-quarto-table-cell-role="th">1957</th>
+<th data-quarto-table-cell-role="th">1958</th>
+<th data-quarto-table-cell-role="th">1959</th>
+<th data-quarto-table-cell-role="th">1960</th>
+<th data-quarto-table-cell-role="th">1961</th>
+<th data-quarto-table-cell-role="th">1962</th>
+<th data-quarto-table-cell-role="th">1963</th>
+<th data-quarto-table-cell-role="th">1964</th>
+<th data-quarto-table-cell-role="th">1965</th>
+<th data-quarto-table-cell-role="th">1966</th>
+<th data-quarto-table-cell-role="th">1967</th>
+<th data-quarto-table-cell-role="th">1968</th>
+<th data-quarto-table-cell-role="th">1969</th>
+<th data-quarto-table-cell-role="th">1970</th>
+<th data-quarto-table-cell-role="th">1971</th>
+<th data-quarto-table-cell-role="th">1972</th>
+<th data-quarto-table-cell-role="th">1973</th>
+<th data-quarto-table-cell-role="th">1974</th>
+<th data-quarto-table-cell-role="th">1975</th>
+<th data-quarto-table-cell-role="th">1976</th>
+<th data-quarto-table-cell-role="th">1977</th>
+<th data-quarto-table-cell-role="th">1978</th>
+<th data-quarto-table-cell-role="th">1979</th>
+<th data-quarto-table-cell-role="th">1980</th>
+<th data-quarto-table-cell-role="th">1981</th>
+<th data-quarto-table-cell-role="th">1982</th>
+<th data-quarto-table-cell-role="th">1983</th>
+<th data-quarto-table-cell-role="th">…</th>
+<th data-quarto-table-cell-role="th">1986</th>
+<th data-quarto-table-cell-role="th">1987</th>
+<th data-quarto-table-cell-role="th">1988</th>
+<th data-quarto-table-cell-role="th">1989</th>
+<th data-quarto-table-cell-role="th">1990</th>
+<th data-quarto-table-cell-role="th">1991</th>
+<th data-quarto-table-cell-role="th">1992</th>
+<th data-quarto-table-cell-role="th">1993</th>
+<th data-quarto-table-cell-role="th">1994</th>
+<th data-quarto-table-cell-role="th">1995</th>
+<th data-quarto-table-cell-role="th">1996</th>
+<th data-quarto-table-cell-role="th">1997</th>
+<th data-quarto-table-cell-role="th">1998</th>
+<th data-quarto-table-cell-role="th">1999</th>
+<th data-quarto-table-cell-role="th">2000</th>
+<th data-quarto-table-cell-role="th">2001</th>
+<th data-quarto-table-cell-role="th">2002</th>
+<th data-quarto-table-cell-role="th">2003</th>
+<th data-quarto-table-cell-role="th">2004</th>
+<th data-quarto-table-cell-role="th">2005</th>
+<th data-quarto-table-cell-role="th">2006</th>
+<th data-quarto-table-cell-role="th">2007</th>
+<th data-quarto-table-cell-role="th">2008</th>
+<th data-quarto-table-cell-role="th">2009</th>
+<th data-quarto-table-cell-role="th">2010</th>
+<th data-quarto-table-cell-role="th">2011</th>
+<th data-quarto-table-cell-role="th">2012</th>
+<th data-quarto-table-cell-role="th">2013</th>
+<th data-quarto-table-cell-role="th">2014</th>
+<th data-quarto-table-cell-role="th">2015</th>
+<th data-quarto-table-cell-role="th">2016</th>
+<th data-quarto-table-cell-role="th">2017</th>
+<th data-quarto-table-cell-role="th">2018</th>
+<th data-quarto-table-cell-role="th">2019</th>
+<th data-quarto-table-cell-role="th">2020</th>
+<th data-quarto-table-cell-role="th">2021</th>
+<th data-quarto-table-cell-role="th">2022</th>
+</tr>
+<tr class="odd">
+<th>str</th>
+<th>str</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>…</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Africa"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>…</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="even">
+<td>"North Africa"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>…</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Algeria"</td>
+<td>"§4"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>234.875985</td>
+<td>219.434678</td>
+<td>215.133118</td>
+<td>208.22094</td>
+<td>215.742463</td>
+<td>413.599801</td>
+<td>461.022683</td>
+<td>642.532765</td>
+<td>560.729351</td>
+<td>607.406682</td>
+<td>600.773471</td>
+<td>683.327939</td>
+<td>607.328128</td>
+<td>701.198007</td>
+<td>704.831389</td>
+<td>…</td>
+<td>610.18241</td>
+<td>622.034094</td>
+<td>615.542127</td>
+<td>601.651385</td>
+<td>642.72115</td>
+<td>657.986141</td>
+<td>1101.032432</td>
+<td>1183.864801</td>
+<td>1440.243493</td>
+<td>1395.429481</td>
+<td>1588.840569</td>
+<td>1910.994943</td>
+<td>2021.120506</td>
+<td>2133.027701</td>
+<td>2475.100274</td>
+<td>2709.025608</td>
+<td>2768.30774</td>
+<td>2708.645105</td>
+<td>3080.937162</td>
+<td>3225.387723</td>
+<td>3306.186349</td>
+<td>3879.058547</td>
+<td>4519.638056</td>
+<td>4908.797561</td>
+<td>5194.999271</td>
+<td>7434.910242</td>
+<td>7823.704814</td>
+<td>8450.873651</td>
+<td>9732.621963</td>
+<td>10182.147187</td>
+<td>10212.538248</td>
+<td>9671.777933</td>
+<td>9275.706188</td>
+<td>10006.914126</td>
+<td>9773.554762</td>
+<td>9112.461105</td>
+<td>8776.364725</td>
+</tr>
+<tr class="even">
+<td>"Libya"</td>
+<td>"‡§¶16"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>62.239411</td>
+<td>75.739505</td>
+<td>135.605176</td>
+<td>171.736926</td>
+<td>205.401564</td>
+<td>280.364831</td>
+<td>501.713486</td>
+<td>517.782969</td>
+<td>399.804189</td>
+<td>496.86425</td>
+<td>660.244648</td>
+<td>403.379454</td>
+<td>433.595285</td>
+<td>599.712512</td>
+<td>705.411019</td>
+<td>877.90173</td>
+<td>1006.758017</td>
+<td>469.762633</td>
+<td>542.251381</td>
+<td>null</td>
+<td>…</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>528.148467</td>
+<td>595.753213</td>
+<td>460.005767</td>
+<td>492.339926</td>
+<td>481.663213</td>
+<td>619.030119</td>
+<td>770.484367</td>
+<td>1006.128971</td>
+<td>991.116581</td>
+<td>872.043438</td>
+<td>820.739134</td>
+<td>1240.400997</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2691.266837</td>
+<td>3509.174752</td>
+<td>3246.886855</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+</tr>
+<tr class="odd">
+<td>"Morocco"</td>
+<td>"§17"</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>119.561947</td>
+<td>174.29616</td>
+<td>231.988959</td>
+<td>270.419973</td>
+<td>269.797363</td>
+<td>307.693292</td>
+<td>326.567713</td>
+<td>429.706446</td>
+<td>386.061343</td>
+<td>336.729958</td>
+<td>365.821285</td>
+<td>381.660589</td>
+<td>491.01178</td>
+<td>445.838272</td>
+<td>460.68119</td>
+<td>552.386269</td>
+<td>610.999174</td>
+<td>694.413605</td>
+<td>818.31678</td>
+<td>1201.617167</td>
+<td>1686.646799</td>
+<td>1934.233958</td>
+<td>1722.805411</td>
+<td>1726.670724</td>
+<td>1987.294925</td>
+<td>2025.512311</td>
+<td>2098.786842</td>
+<td>1527.477606</td>
+<td>…</td>
+<td>1721.964873</td>
+<td>1722.974496</td>
+<td>1859.410193</td>
+<td>2010.669934</td>
+<td>1974.55245</td>
+<td>2073.654577</td>
+<td>2057.185887</td>
+<td>2170.432946</td>
+<td>2228.159258</td>
+<td>2052.130321</td>
+<td>2046.648979</td>
+<td>2143.497749</td>
+<td>2169.0585</td>
+<td>1837.788653</td>
+<td>1390.760784</td>
+<td>2516.231872</td>
+<td>2394.040085</td>
+<td>2535.872578</td>
+<td>2464.704546</td>
+<td>2557.771063</td>
+<td>2582.189542</td>
+<td>2659.230192</td>
+<td>2966.11034</td>
+<td>3168.016273</td>
+<td>3390.448538</td>
+<td>3415.165311</td>
+<td>3660.78936</td>
+<td>4182.250761</td>
+<td>4146.897151</td>
+<td>3828.72905</td>
+<td>3852.059058</td>
+<td>3965.368975</td>
+<td>3993.067756</td>
+<td>4076.773137</td>
+<td>5225.571603</td>
+<td>5378.366535</td>
+<td>5368.334058</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>先程まで<code>xxx</code>や<code>...</code>であったところが欠損値になっていることが分かります。必ずしもエラーが出なかったとしても問題がないというわけではない、というのがもう一つの教訓でしょうか。</p>
+<p>これでもまだ直すべき点はあるのですが、それはデータの加工として扱いたいと思います。</p>
+</section>
+<section id="文字化けの対処" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="文字化けの対処"><span class="header-section-number">11.3.4</span> 文字化けの対処</h3>
+<p>最後に、日本語を含むデータを用いて文字化けに対処したいと思います。まずは、<a href="http://www.masaki.j.u-tokyo.ac.jp/utas/utasindex.html">東京大学谷口研究室・朝日新聞社共同調査</a>の2017年衆院選の有権者調査のデータをダウンロードします。</p>
+<p>表計算ソフトで開くと、おそらくMac/Linuxユーザは都道府県などが文字化けしているのではないでしょうか。大雑把に言ってしまうとWindowsで作ったファイルはMac/Linuxで文字化けを起こし、その逆もまた然りです。</p>
+<p>その場合、文字データの処理方法（エンコード）を適切に設定することで、文字化けを回避することができます。Windowsで作成された日本語データはShift-JIS（あるいはCP932）という形式でエンコードされるので、そのように指定します。</p>
+<ul>
+<li>ついでに<code>99</code>が無回答なので欠損値としておきます。</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Rows: 1778 Columns: 137
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr  (14): PREFNAME, CITY, Q2FA, Q4FA, Q5FA, Q6FA, Q8FA, Q13FA, Q18FA, Q19FA...
+dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 137
+     ID PREFNAME CITY    PREFEC HRDIST    Q1    Q2    Q3    Q4  Q5_1  Q5_2  Q5_3
+  &lt;dbl&gt; &lt;chr&gt;    &lt;chr&gt;    &lt;dbl&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1     4 北海道   札幌市…      1      1     2     1     4     1     6     2     5
+2     6 北海道   札幌市…      1      1     2     4     1     4     6     2     7
+3     7 北海道   札幌市…      1      1     1    66    66    66    66    66    66
+4    10 北海道   札幌市…      1      1     1    66    66    66    66    66    66
+5    11 北海道   札幌市…      1      3     2     1     2     1     6     5     1
+6    12 北海道   札幌市…      1      3     2     6     2     6    10     5    11
+# ℹ 125 more variables: Q6_1 &lt;dbl&gt;, Q6_2 &lt;dbl&gt;, Q6_3 &lt;dbl&gt;, Q7_1 &lt;dbl&gt;,
+#   Q7_2 &lt;dbl&gt;, Q7_3 &lt;dbl&gt;, Q7_4 &lt;dbl&gt;, Q7_5 &lt;dbl&gt;, Q7_6 &lt;dbl&gt;, Q8 &lt;dbl&gt;,
+#   Q9_1 &lt;dbl&gt;, Q9_2 &lt;dbl&gt;, Q9_3 &lt;dbl&gt;, Q9_4 &lt;dbl&gt;, Q9_5 &lt;dbl&gt;, Q9_6 &lt;dbl&gt;,
+#   Q9_7 &lt;dbl&gt;, Q9_8 &lt;dbl&gt;, Q9_9 &lt;dbl&gt;, Q10 &lt;dbl&gt;, Q11_1 &lt;dbl&gt;, Q11_2 &lt;dbl&gt;,
+#   Q12 &lt;dbl&gt;, Q13_1 &lt;dbl&gt;, Q13_2 &lt;dbl&gt;, Q13_3 &lt;dbl&gt;, Q13_4 &lt;dbl&gt;, Q13_5 &lt;dbl&gt;,
+#   Q13_6 &lt;dbl&gt;, Q13_7 &lt;dbl&gt;, Q13_8 &lt;dbl&gt;, Q13_9 &lt;dbl&gt;, Q13_10 &lt;dbl&gt;,
+#   Q14 &lt;dbl&gt;, Q15_1 &lt;dbl&gt;, Q15_2 &lt;dbl&gt;, Q16 &lt;dbl&gt;, Q17_1 &lt;dbl&gt;, Q17_2 &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a>df_voter2017 <span class="op">=</span> pd.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb62-2"><a href="#cb62-2"></a></span>
+<span id="cb62-3"><a href="#cb62-3"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   ID PREFNAME    CITY  PREFEC  HRDIST  ...  Q19FA  Q26_2FA  Q26_3FA  F3FA  F4FA
+0   4      北海道  札幌市中央区       1       1  ...    NaN      NaN      NaN   NaN   NaN
+1   6      北海道  札幌市中央区       1       1  ...    NaN      NaN      NaN   NaN   NaN
+2   7      北海道  札幌市中央区       1       1  ...    NaN      NaN      NaN   NaN   NaN
+3  10      北海道  札幌市中央区       1       1  ...    NaN      NaN      NaN   NaN   NaN
+4  11      北海道  札幌市豊平区       1       3  ...    NaN      NaN      NaN  大学中退   NaN
+
+[5 rows x 137 columns]</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a>df_voter2017 <span class="op">=</span> pl.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb64-2"><a href="#cb64-2"></a></span>
+<span id="cb64-3"><a href="#cb64-3"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 137)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">PREFNAME</th>
+<th data-quarto-table-cell-role="th">CITY</th>
+<th data-quarto-table-cell-role="th">PREFEC</th>
+<th data-quarto-table-cell-role="th">HRDIST</th>
+<th data-quarto-table-cell-role="th">Q1</th>
+<th data-quarto-table-cell-role="th">Q2</th>
+<th data-quarto-table-cell-role="th">Q3</th>
+<th data-quarto-table-cell-role="th">Q4</th>
+<th data-quarto-table-cell-role="th">Q5_1</th>
+<th data-quarto-table-cell-role="th">Q5_2</th>
+<th data-quarto-table-cell-role="th">Q5_3</th>
+<th data-quarto-table-cell-role="th">Q6_1</th>
+<th data-quarto-table-cell-role="th">Q6_2</th>
+<th data-quarto-table-cell-role="th">Q6_3</th>
+<th data-quarto-table-cell-role="th">Q7_1</th>
+<th data-quarto-table-cell-role="th">Q7_2</th>
+<th data-quarto-table-cell-role="th">Q7_3</th>
+<th data-quarto-table-cell-role="th">Q7_4</th>
+<th data-quarto-table-cell-role="th">Q7_5</th>
+<th data-quarto-table-cell-role="th">Q7_6</th>
+<th data-quarto-table-cell-role="th">Q8</th>
+<th data-quarto-table-cell-role="th">Q9_1</th>
+<th data-quarto-table-cell-role="th">Q9_2</th>
+<th data-quarto-table-cell-role="th">Q9_3</th>
+<th data-quarto-table-cell-role="th">Q9_4</th>
+<th data-quarto-table-cell-role="th">Q9_5</th>
+<th data-quarto-table-cell-role="th">Q9_6</th>
+<th data-quarto-table-cell-role="th">Q9_7</th>
+<th data-quarto-table-cell-role="th">Q9_8</th>
+<th data-quarto-table-cell-role="th">Q9_9</th>
+<th data-quarto-table-cell-role="th">Q10</th>
+<th data-quarto-table-cell-role="th">Q11_1</th>
+<th data-quarto-table-cell-role="th">Q11_2</th>
+<th data-quarto-table-cell-role="th">Q12</th>
+<th data-quarto-table-cell-role="th">Q13_1</th>
+<th data-quarto-table-cell-role="th">Q13_2</th>
+<th data-quarto-table-cell-role="th">…</th>
+<th data-quarto-table-cell-role="th">Q23_17</th>
+<th data-quarto-table-cell-role="th">Q24_1</th>
+<th data-quarto-table-cell-role="th">Q24_2</th>
+<th data-quarto-table-cell-role="th">Q24_3</th>
+<th data-quarto-table-cell-role="th">Q24_4</th>
+<th data-quarto-table-cell-role="th">Q24_5</th>
+<th data-quarto-table-cell-role="th">Q24_6</th>
+<th data-quarto-table-cell-role="th">Q24_7</th>
+<th data-quarto-table-cell-role="th">Q25_1</th>
+<th data-quarto-table-cell-role="th">Q25_2</th>
+<th data-quarto-table-cell-role="th">Q25_3</th>
+<th data-quarto-table-cell-role="th">Q25_4</th>
+<th data-quarto-table-cell-role="th">Q25_5</th>
+<th data-quarto-table-cell-role="th">Q26_1</th>
+<th data-quarto-table-cell-role="th">Q26_2_1</th>
+<th data-quarto-table-cell-role="th">Q26_2_2</th>
+<th data-quarto-table-cell-role="th">Q26_2_3</th>
+<th data-quarto-table-cell-role="th">Q26_3_1</th>
+<th data-quarto-table-cell-role="th">Q26_3_2</th>
+<th data-quarto-table-cell-role="th">Q26_3_3</th>
+<th data-quarto-table-cell-role="th">Q27</th>
+<th data-quarto-table-cell-role="th">F1</th>
+<th data-quarto-table-cell-role="th">F2</th>
+<th data-quarto-table-cell-role="th">F3</th>
+<th data-quarto-table-cell-role="th">F4</th>
+<th data-quarto-table-cell-role="th">Q2FA</th>
+<th data-quarto-table-cell-role="th">Q4FA</th>
+<th data-quarto-table-cell-role="th">Q5FA</th>
+<th data-quarto-table-cell-role="th">Q6FA</th>
+<th data-quarto-table-cell-role="th">Q8FA</th>
+<th data-quarto-table-cell-role="th">Q13FA</th>
+<th data-quarto-table-cell-role="th">Q18FA</th>
+<th data-quarto-table-cell-role="th">Q19FA</th>
+<th data-quarto-table-cell-role="th">Q26_2FA</th>
+<th data-quarto-table-cell-role="th">Q26_3FA</th>
+<th data-quarto-table-cell-role="th">F3FA</th>
+<th data-quarto-table-cell-role="th">F4FA</th>
+</tr>
+<tr class="odd">
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>…</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4</td>
+<td>"北海道"</td>
+<td>"札幌市中央区"</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>4</td>
+<td>1</td>
+<td>6</td>
+<td>2</td>
+<td>5</td>
+<td>1</td>
+<td>6</td>
+<td>4</td>
+<td>1</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>…</td>
+<td>4</td>
+<td>2</td>
+<td>5</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>2</td>
+<td>6</td>
+<td>7</td>
+<td>3</td>
+<td>2</td>
+<td>4</td>
+<td>3</td>
+<td>1</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>"北海道"</td>
+<td>"札幌市中央区"</td>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+<td>4</td>
+<td>1</td>
+<td>4</td>
+<td>6</td>
+<td>2</td>
+<td>7</td>
+<td>1</td>
+<td>6</td>
+<td>5</td>
+<td>5</td>
+<td>2</td>
+<td>2</td>
+<td>5</td>
+<td>5</td>
+<td>5</td>
+<td>4</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>0</td>
+<td>0</td>
+<td>…</td>
+<td>4</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>9</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>2</td>
+<td>1</td>
+<td>5</td>
+<td>2</td>
+<td>2</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>"北海道"</td>
+<td>"札幌市中央区"</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>3</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>…</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>6</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>"北海道"</td>
+<td>"札幌市中央区"</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+<td>0</td>
+<td>0</td>
+<td>…</td>
+<td>3</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>5</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>null</td>
+<td>2</td>
+<td>7</td>
+<td>2</td>
+<td>6</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>"北海道"</td>
+<td>"札幌市豊平区"</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>1</td>
+<td>2</td>
+<td>1</td>
+<td>6</td>
+<td>5</td>
+<td>1</td>
+<td>1</td>
+<td>3</td>
+<td>2</td>
+<td>null</td>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>2</td>
+<td>0</td>
+<td>1</td>
+<td>…</td>
+<td>3</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+<td>4</td>
+<td>4</td>
+<td>3</td>
+<td>3</td>
+<td>3</td>
+<td>66</td>
+<td>66</td>
+<td>66</td>
+<td>1</td>
+<td>2</td>
+<td>null</td>
+<td>3</td>
+<td>2</td>
+<td>7</td>
+<td>7</td>
+<td>6</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"NA"</td>
+<td>"大学中退"</td>
+<td>"NA"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p>逆に、Windowsで開いたファイルが文字化けする場合はMac/Linuxで作成された可能性が高いです。Mac/LinuxではUTF8というエンコーディングを使っているので、そのように指定すれば文字化けせずに読み込めるはずです。</p>
+<ul>
+<li>ただし、最近のWindowsではUTF8が使われて、文字化けが起こらないことがあります。</li>
+</ul>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+LibreOffice
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>ところで、エクセルで読み込む際の文字化けを解決することはできません。その場合は無料のオフィスソフトである<a href="https://www.libreoffice.org/">LibreOffice</a>を使うことをおすすめします。</p>
+</div>
+</div>
+</section>
+</section>
+<section id="データの在り処" class="level2" data-number="11.4">
+<h2 data-number="11.4" class="anchored" data-anchor-id="データの在り処"><span class="header-section-number">11.4</span> データの在り処</h2>
+<p>政治学や周辺領域で利用可能なデータが集まっているサイトを紹介します。</p>
+<ul>
+<li><a href="https://data.worldbank.org/">World Bank Open Data</a></li>
+<li><a href="https://v-dem.net/">Varieties of Democracy</a></li>
+<li><a href="https://github.com/erikgahner/PolData">A dataset with political datasets</a></li>
+<li><a href="https://www.osipp.osaka-u.ac.jp/ja/cepo/data-for-ebpm/">大阪大学大学院国際公共政策研究科EBPM研究センター</a></li>
+<li><a href="https://www.kaggle.com/datasets">Kaggle Datasets</a>
+<ul>
+<li>Kaggleとは世界最大規模のデータ分析コンペです。</li>
+</ul></li>
+<li><a href="https://dataverse.harvard.edu/">Harvard Dataverse</a>
+<ul>
+<li>政治学でレプリケーションデータを公開するデファクトスタンダードになっています。</li>
+</ul></li>
+<li><a href="https://github.com/">GitHub</a>
+<ul>
+<li>GitHubはコードの公開・共有サイトですが、適当な単語で検索するとデータが引っかかるときがあります。</li>
+</ul></li>
+</ul>
+</section>
+<section id="パッケージの付属データ" class="level2" data-number="11.5">
+<h2 data-number="11.5" class="anchored" data-anchor-id="パッケージの付属データ"><span class="header-section-number">11.5</span> パッケージの付属データ</h2>
+<p>RやPythonではパッケージにサンプルデータが付属していることが多いです。</p>
+<p>例えば、Rの場合は<code>data()</code>を実行することで、読み込んでるパッケージに付属するデータを確認できます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">data</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>呼び出したいデータセットの名前を入れて<code>data(...)</code>と実行するとデータを呼び出すことができます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">data</span>(USArrests)</span>
+<span id="cb66-2"><a href="#cb66-2"></a></span>
+<span id="cb66-3"><a href="#cb66-3"></a><span class="fu">head</span>(USArrests)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>           Murder Assault UrbanPop Rape
+Alabama      13.2     236       58 21.2
+Alaska       10.0     263       48 44.5
+Arizona       8.1     294       80 31.0
+Arkansas      8.8     190       50 19.5
+California    9.0     276       91 40.6
+Colorado      7.9     204       78 38.7</code></pre>
+</div>
+</div>
+<p>Pythonの場合、例えば<code>seaborn</code>では<code>sns.get_dataset_names()</code>でデータを確認できます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb68-2"><a href="#cb68-2"></a></span>
+<span id="cb68-3"><a href="#cb68-3"></a>sns.get_dataset_names()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>['anagrams', 'anscombe', 'attention', 'brain_networks', 'car_crashes', 'diamonds', 'dots', 'dowjones', 'exercise', 'flights', 'fmri', 'geyser', 'glue', 'healthexp', 'iris', 'mpg', 'penguins', 'planets', 'seaice', 'taxis', 'tips', 'titanic']</code></pre>
+</div>
+</div>
+<p><code>sns.load_dataset(...)</code>でデータを呼び出します。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a>sns.load_dataset(<span class="st">"titanic"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     survived  pclass     sex   age  ...  deck  embark_town  alive  alone
+0           0       3    male  22.0  ...   NaN  Southampton     no  False
+1           1       1  female  38.0  ...     C    Cherbourg    yes  False
+2           1       3  female  26.0  ...   NaN  Southampton    yes   True
+3           1       1  female  35.0  ...     C  Southampton    yes  False
+4           0       3    male  35.0  ...   NaN  Southampton     no   True
+..        ...     ...     ...   ...  ...   ...          ...    ...    ...
+886         0       2    male  27.0  ...   NaN  Southampton     no   True
+887         1       1  female  19.0  ...     B  Southampton    yes   True
+888         0       3  female   NaN  ...   NaN  Southampton     no  False
+889         1       1    male  26.0  ...     C    Cherbourg    yes   True
+890         0       3    male  32.0  ...   NaN   Queenstown     no   True
+
+[891 rows x 15 columns]</code></pre>
+</div>
+</div>
+<p>また、データ分析で用いる<code>statsmodels</code>や<code>scikit-learn</code>などのパッケージでもデータを呼び出すことができます。</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "コピーしました");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "コピーしました");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
+});
+</script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./plot_advanced.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">発展的なグラフ</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./data_select.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+</body></html>

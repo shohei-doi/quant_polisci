@@ -1,0 +1,1169 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>第23章 パイプ演算子%&gt;%について | Rで計量政治学入門</title>
+  <meta name="description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  <meta name="generator" content="bookdown 0.35 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="第23章 パイプ演算子%&gt;%について | Rで計量政治学入門" />
+  <meta property="og:type" content="book" />
+  
+  <meta property="og:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  <meta name="github-repo" content="shohei-doi/quant_polisci" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="第23章 パイプ演算子%&gt;%について | Rで計量政治学入門" />
+  
+  <meta name="twitter:description" content="Rによる計量政治学の入門レベルの講義資料です。" />
+  
+
+<meta name="author" content="土井　翔平" />
+
+
+<meta name="date" content="2023-08-30" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="encoding-r.html"/>
+<link rel="next" href="wsl-rstudio.html"/>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+<link href="libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet" />
+<script src="libs/pagedtable-1.1/js/pagedtable.js"></script>
+<link href="libs/anchor-sections-1.1.0/anchor-sections.css" rel="stylesheet" />
+<link href="libs/anchor-sections-1.1.0/anchor-sections-hash.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.1.0/anchor-sections.js"></script>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-LLFB8XFPX5');
+</script>
+
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;500&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;500&display=swap" rel="stylesheet"> 
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<style type="text/css">
+  
+  div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="index.html">Rで計量政治学入門</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>はじめに</a>
+<ul>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#想定する読者"><i class="fa fa-check"></i>想定する読者</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#tidyverseについて"><i class="fa fa-check"></i>Tidyverseについて</a></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html#ウェブサイトの操作"><i class="fa fa-check"></i>ウェブサイトの操作</a></li>
+</ul></li>
+<li class="part"><span><b>I データの操作</b></span></li>
+<li class="chapter" data-level="1" data-path="data-import.html"><a href="data-import.html"><i class="fa fa-check"></i><b>1</b> データの読み込み</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="data-import.html"><a href="data-import.html#パッケージ付属のデータ"><i class="fa fa-check"></i><b>1.1</b> パッケージ付属のデータ</a></li>
+<li class="chapter" data-level="1.2" data-path="data-import.html"><a href="data-import.html#主なデータ形式"><i class="fa fa-check"></i><b>1.2</b> 主なデータ形式*</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="data-import.html"><a href="data-import.html#テキストデータ"><i class="fa fa-check"></i><b>1.2.1</b> テキストデータ</a></li>
+<li class="chapter" data-level="1.2.2" data-path="data-import.html"><a href="data-import.html#バイナリデータ"><i class="fa fa-check"></i><b>1.2.2</b> バイナリデータ</a></li>
+<li class="chapter" data-level="1.2.3" data-path="data-import.html"><a href="data-import.html#good-bye-excel"><i class="fa fa-check"></i><b>1.2.3</b> Good bye, Excel!</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="data-import.html"><a href="data-import.html#パスと作業ディレクトリ"><i class="fa fa-check"></i><b>1.3</b> パスと作業ディレクトリ</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="data-import.html"><a href="data-import.html#パス"><i class="fa fa-check"></i><b>1.3.1</b> パス</a></li>
+<li class="chapter" data-level="1.3.2" data-path="data-import.html"><a href="data-import.html#作業ディレクトリ"><i class="fa fa-check"></i><b>1.3.2</b> 作業ディレクトリ</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="data-import.html"><a href="data-import.html#csvファイルの読み込み"><i class="fa fa-check"></i><b>1.4</b> .csvファイルの読み込み</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="data-import.html"><a href="data-import.html#変数名の適切な読み込み"><i class="fa fa-check"></i><b>1.4.1</b> 変数名の適切な読み込み</a></li>
+</ul></li>
+<li class="chapter" data-level="1.5" data-path="data-import.html"><a href="data-import.html#xlsxファイルの読み込み"><i class="fa fa-check"></i><b>1.5</b> .xls[x]ファイルの読み込み</a>
+<ul>
+<li class="chapter" data-level="1.5.1" data-path="data-import.html"><a href="data-import.html#シートの選択"><i class="fa fa-check"></i><b>1.5.1</b> シートの選択</a></li>
+<li class="chapter" data-level="1.5.2" data-path="data-import.html"><a href="data-import.html#変数名の適切な読み込み-again"><i class="fa fa-check"></i><b>1.5.2</b> 変数名の適切な読み込み (again)</a></li>
+<li class="chapter" data-level="1.5.3" data-path="data-import.html"><a href="data-import.html#欠損値の処理"><i class="fa fa-check"></i><b>1.5.3</b> 欠損値の処理</a></li>
+</ul></li>
+<li class="chapter" data-level="1.6" data-path="data-import.html"><a href="data-import.html#dtaファイルの読み込み"><i class="fa fa-check"></i><b>1.6</b> .dtaファイルの読み込み</a></li>
+<li class="chapter" data-level="1.7" data-path="data-import.html"><a href="data-import.html#rdsファイルの読み込み"><i class="fa fa-check"></i><b>1.7</b> .rdsファイルの読み込み</a></li>
+<li class="chapter" data-level="1.8" data-path="data-import.html"><a href="data-import.html#パス入力の省略"><i class="fa fa-check"></i><b>1.8</b> パス入力の省略*</a></li>
+<li class="chapter" data-level="1.9" data-path="data-import.html"><a href="data-import.html#データの書き出し"><i class="fa fa-check"></i><b>1.9</b> データの書き出し</a></li>
+<li class="chapter" data-level="1.10" data-path="data-import.html"><a href="data-import.html#データフレームの作成"><i class="fa fa-check"></i><b>1.10</b> データフレームの作成</a></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="select-vars.html"><a href="select-vars.html"><i class="fa fa-check"></i><b>2</b> 変数の選択</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="select-vars.html"><a href="select-vars.html#変数名による選択"><i class="fa fa-check"></i><b>2.1</b> 変数名による選択</a></li>
+<li class="chapter" data-level="2.2" data-path="select-vars.html"><a href="select-vars.html#番号による選択"><i class="fa fa-check"></i><b>2.2</b> 番号による選択</a></li>
+<li class="chapter" data-level="2.3" data-path="select-vars.html"><a href="select-vars.html#変数名の変更"><i class="fa fa-check"></i><b>2.3</b> 変数名の変更</a></li>
+<li class="chapter" data-level="2.4" data-path="select-vars.html"><a href="select-vars.html#高度な変数の選択方法"><i class="fa fa-check"></i><b>2.4</b> 高度な変数の選択方法*</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="create-vars.html"><a href="create-vars.html"><i class="fa fa-check"></i><b>3</b> 変数の作成</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="create-vars.html"><a href="create-vars.html#四則演算"><i class="fa fa-check"></i><b>3.1</b> 四則演算</a></li>
+<li class="chapter" data-level="3.2" data-path="create-vars.html"><a href="create-vars.html#条件に基づく変数"><i class="fa fa-check"></i><b>3.2</b> 条件に基づく変数</a></li>
+<li class="chapter" data-level="3.3" data-path="create-vars.html"><a href="create-vars.html#ラグ変数"><i class="fa fa-check"></i><b>3.3</b> ラグ変数*</a></li>
+<li class="chapter" data-level="3.4" data-path="create-vars.html"><a href="create-vars.html#日付変数"><i class="fa fa-check"></i><b>3.4</b> 日付変数*</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="select-obs.html"><a href="select-obs.html"><i class="fa fa-check"></i><b>4</b> 観察の選択</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="select-obs.html"><a href="select-obs.html#数値の大小による選択"><i class="fa fa-check"></i><b>4.1</b> 数値の大小による選択</a></li>
+<li class="chapter" data-level="4.2" data-path="select-obs.html"><a href="select-obs.html#一致不一致による選択"><i class="fa fa-check"></i><b>4.2</b> 一致・不一致による選択</a></li>
+<li class="chapter" data-level="4.3" data-path="select-obs.html"><a href="select-obs.html#または"><i class="fa fa-check"></i><b>4.3</b> 「または」</a></li>
+<li class="chapter" data-level="4.4" data-path="select-obs.html"><a href="select-obs.html#かつ"><i class="fa fa-check"></i><b>4.4</b> 「かつ」</a></li>
+<li class="chapter" data-level="4.5" data-path="select-obs.html"><a href="select-obs.html#部分集合"><i class="fa fa-check"></i><b>4.5</b> 部分集合</a></li>
+<li class="chapter" data-level="4.6" data-path="select-obs.html"><a href="select-obs.html#番号による選択-1"><i class="fa fa-check"></i><b>4.6</b> 番号による選択</a></li>
+<li class="chapter" data-level="4.7" data-path="select-obs.html"><a href="select-obs.html#観察の並び替え"><i class="fa fa-check"></i><b>4.7</b> 観察の並び替え</a></li>
+<li class="chapter" data-level="4.8" data-path="select-obs.html"><a href="select-obs.html#ベクトルの選択"><i class="fa fa-check"></i><b>4.8</b> ベクトルの選択*</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="data-combine.html"><a href="data-combine.html"><i class="fa fa-check"></i><b>5</b> データの結合</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="data-combine.html"><a href="data-combine.html#行方向の結合"><i class="fa fa-check"></i><b>5.1</b> 行方向の結合</a></li>
+<li class="chapter" data-level="5.2" data-path="data-combine.html"><a href="data-combine.html#列方向の結合"><i class="fa fa-check"></i><b>5.2</b> 列方向の結合</a>
+<ul>
+<li class="chapter" data-level="5.2.1" data-path="data-combine.html"><a href="data-combine.html#観察の選択"><i class="fa fa-check"></i><b>5.2.1</b> 観察の選択*＊</a></li>
+<li class="chapter" data-level="5.2.2" data-path="data-combine.html"><a href="data-combine.html#データフレームの作成-1"><i class="fa fa-check"></i><b>5.2.2</b> データフレームの作成</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>6</b> 欠損値の扱い</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="missing-values.html"><a href="missing-values.html#欠損値を読み込む"><i class="fa fa-check"></i><b>6.1</b> 欠損値を読み込む</a></li>
+<li class="chapter" data-level="6.2" data-path="missing-values.html"><a href="missing-values.html#欠損値を含む観察を除外する"><i class="fa fa-check"></i><b>6.2</b> 欠損値を含む観察を除外する</a></li>
+<li class="chapter" data-level="6.3" data-path="missing-values.html"><a href="missing-values.html#欠損値を置き換える"><i class="fa fa-check"></i><b>6.3</b> 欠損値を置き換える</a></li>
+<li class="chapter" data-level="6.4" data-path="missing-values.html"><a href="missing-values.html#欠損値がある場合の分析"><i class="fa fa-check"></i><b>6.4</b> 欠損値がある場合の分析*</a>
+<ul>
+<li class="chapter" data-level="6.4.1" data-path="missing-values.html"><a href="missing-values.html#一変数の記述統計"><i class="fa fa-check"></i><b>6.4.1</b> 一変数の記述統計</a></li>
+<li class="chapter" data-level="6.4.2" data-path="missing-values.html"><a href="missing-values.html#二変数の記述統計"><i class="fa fa-check"></i><b>6.4.2</b> 二変数の記述統計</a></li>
+<li class="chapter" data-level="6.4.3" data-path="missing-values.html"><a href="missing-values.html#回帰分析"><i class="fa fa-check"></i><b>6.4.3</b> 回帰分析</a></li>
+</ul></li>
+<li class="chapter" data-level="6.5" data-path="missing-values.html"><a href="missing-values.html#欠損値のクラス"><i class="fa fa-check"></i><b>6.5</b> 欠損値のクラス*</a></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="reshape.html"><a href="reshape.html"><i class="fa fa-check"></i><b>7</b> ロング・ワイドの変換</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="reshape.html"><a href="reshape.html#パネルデータ"><i class="fa fa-check"></i><b>7.1</b> パネルデータ</a>
+<ul>
+<li class="chapter" data-level="7.1.1" data-path="reshape.html"><a href="reshape.html#ワイド形式"><i class="fa fa-check"></i><b>7.1.1</b> ワイド形式</a></li>
+<li class="chapter" data-level="7.1.2" data-path="reshape.html"><a href="reshape.html#ロング形式"><i class="fa fa-check"></i><b>7.1.2</b> ロング形式</a></li>
+<li class="chapter" data-level="7.1.3" data-path="reshape.html"><a href="reshape.html#前処理"><i class="fa fa-check"></i><b>7.1.3</b> 前処理</a></li>
+</ul></li>
+<li class="chapter" data-level="7.2" data-path="reshape.html"><a href="reshape.html#ループによる方法"><i class="fa fa-check"></i><b>7.2</b> ループによる方法</a>
+<ul>
+<li class="chapter" data-level="7.2.1" data-path="reshape.html"><a href="reshape.html#for文"><i class="fa fa-check"></i><b>7.2.1</b> for文</a></li>
+<li class="chapter" data-level="7.2.2" data-path="reshape.html"><a href="reshape.html#時点の選択による方法"><i class="fa fa-check"></i><b>7.2.2</b> 時点の選択による方法</a></li>
+<li class="chapter" data-level="7.2.3" data-path="reshape.html"><a href="reshape.html#ユニットの選択による方法"><i class="fa fa-check"></i><b>7.2.3</b> ユニットの選択による方法</a></li>
+</ul></li>
+<li class="chapter" data-level="7.3" data-path="reshape.html"><a href="reshape.html#tidyverseな方法"><i class="fa fa-check"></i><b>7.3</b> tidyverseな方法</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="reshape.html"><a href="reshape.html#ワイドからロングへ"><i class="fa fa-check"></i><b>7.3.1</b> ワイドからロングへ</a></li>
+<li class="chapter" data-level="7.3.2" data-path="reshape.html"><a href="reshape.html#パイプ"><i class="fa fa-check"></i><b>7.3.2</b> パイプ</a></li>
+<li class="chapter" data-level="7.3.3" data-path="reshape.html"><a href="reshape.html#tidyverseの利点"><i class="fa fa-check"></i><b>7.3.3</b> tidyverseの利点</a></li>
+<li class="chapter" data-level="7.3.4" data-path="reshape.html"><a href="reshape.html#ロングからワイドへ"><i class="fa fa-check"></i><b>7.3.4</b> ロングからワイドへ</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="qualtrics.html"><a href="qualtrics.html"><i class="fa fa-check"></i><b>8</b> Qualtricsデータの処理</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="qualtrics.html"><a href="qualtrics.html#qualtricsのデータ"><i class="fa fa-check"></i><b>8.1</b> Qualtricsのデータ</a></li>
+<li class="chapter" data-level="8.2" data-path="qualtrics.html"><a href="qualtrics.html#気合による方法"><i class="fa fa-check"></i><b>8.2</b> 気合による方法</a></li>
+<li class="chapter" data-level="8.3" data-path="qualtrics.html"><a href="qualtrics.html#ループによる方法-1"><i class="fa fa-check"></i><b>8.3</b> ループによる方法</a></li>
+<li class="chapter" data-level="8.4" data-path="qualtrics.html"><a href="qualtrics.html#tidyverseな方法-1"><i class="fa fa-check"></i><b>8.4</b> tidyverseな方法</a></li>
+<li class="chapter" data-level="8.5" data-path="qualtrics.html"><a href="qualtrics.html#おまけ"><i class="fa fa-check"></i><b>8.5</b> おまけ</a></li>
+</ul></li>
+<li class="part"><span><b>II データの可視化</b></span></li>
+<li class="chapter" data-level="9" data-path="desc-stats.html"><a href="desc-stats.html"><i class="fa fa-check"></i><b>9</b> データの要約</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="desc-stats.html"><a href="desc-stats.html#データを見る"><i class="fa fa-check"></i><b>9.1</b> データを見る</a></li>
+<li class="chapter" data-level="9.2" data-path="desc-stats.html"><a href="desc-stats.html#記述統計"><i class="fa fa-check"></i><b>9.2</b> 記述統計</a>
+<ul>
+<li class="chapter" data-level="9.2.1" data-path="desc-stats.html"><a href="desc-stats.html#平均"><i class="fa fa-check"></i><b>9.2.1</b> 平均</a></li>
+<li class="chapter" data-level="9.2.2" data-path="desc-stats.html"><a href="desc-stats.html#分散と標準偏差"><i class="fa fa-check"></i><b>9.2.2</b> 分散と標準偏差</a></li>
+<li class="chapter" data-level="9.2.3" data-path="desc-stats.html"><a href="desc-stats.html#分位点"><i class="fa fa-check"></i><b>9.2.3</b> 分位点</a></li>
+<li class="chapter" data-level="9.2.4" data-path="desc-stats.html"><a href="desc-stats.html#記述統計表"><i class="fa fa-check"></i><b>9.2.4</b> 記述統計表</a></li>
+</ul></li>
+<li class="chapter" data-level="9.3" data-path="desc-stats.html"><a href="desc-stats.html#データのカウント"><i class="fa fa-check"></i><b>9.3</b> データのカウント</a></li>
+<li class="chapter" data-level="9.4" data-path="desc-stats.html"><a href="desc-stats.html#グループごとの要約"><i class="fa fa-check"></i><b>9.4</b> グループごとの要約</a></li>
+<li class="chapter" data-level="9.5" data-path="desc-stats.html"><a href="desc-stats.html#ユニークなデータ"><i class="fa fa-check"></i><b>9.5</b> ユニークなデータ*</a></li>
+</ul></li>
+<li class="chapter" data-level="10" data-path="visual-dist.html"><a href="visual-dist.html"><i class="fa fa-check"></i><b>10</b> 分布のグラフ</a>
+<ul>
+<li class="chapter" data-level="10.1" data-path="visual-dist.html"><a href="visual-dist.html#ヒストグラム"><i class="fa fa-check"></i><b>10.1</b> ヒストグラム</a></li>
+<li class="chapter" data-level="10.2" data-path="visual-dist.html"><a href="visual-dist.html#カーネル密度"><i class="fa fa-check"></i><b>10.2</b> カーネル密度</a></li>
+<li class="chapter" data-level="10.3" data-path="visual-dist.html"><a href="visual-dist.html#棒グラフ"><i class="fa fa-check"></i><b>10.3</b> 棒グラフ</a></li>
+<li class="chapter" data-level="10.4" data-path="visual-dist.html"><a href="visual-dist.html#グループごとの分布"><i class="fa fa-check"></i><b>10.4</b> グループごとの分布</a></li>
+</ul></li>
+<li class="chapter" data-level="11" data-path="visual-cor.html"><a href="visual-cor.html"><i class="fa fa-check"></i><b>11</b> 相関のグラフ</a>
+<ul>
+<li class="chapter" data-level="11.1" data-path="visual-cor.html"><a href="visual-cor.html#散布図"><i class="fa fa-check"></i><b>11.1</b> 散布図</a></li>
+<li class="chapter" data-level="11.2" data-path="visual-cor.html"><a href="visual-cor.html#カーネル密度-1"><i class="fa fa-check"></i><b>11.2</b> カーネル密度</a></li>
+<li class="chapter" data-level="11.3" data-path="visual-cor.html"><a href="visual-cor.html#ジッター"><i class="fa fa-check"></i><b>11.3</b> ジッター</a></li>
+<li class="chapter" data-level="11.4" data-path="visual-cor.html"><a href="visual-cor.html#箱ひげ図"><i class="fa fa-check"></i><b>11.4</b> 箱ひげ図</a></li>
+<li class="chapter" data-level="11.5" data-path="visual-cor.html"><a href="visual-cor.html#バイオリンプロット"><i class="fa fa-check"></i><b>11.5</b> バイオリンプロット</a></li>
+<li class="chapter" data-level="11.6" data-path="visual-cor.html"><a href="visual-cor.html#グループごとの相関"><i class="fa fa-check"></i><b>11.6</b> グループごとの相関</a></li>
+<li class="chapter" data-level="11.7" data-path="visual-cor.html"><a href="visual-cor.html#単回帰"><i class="fa fa-check"></i><b>11.7</b> 単回帰</a></li>
+</ul></li>
+<li class="chapter" data-level="12" data-path="visual-ts.html"><a href="visual-ts.html"><i class="fa fa-check"></i><b>12</b> 時系列のグラフ</a>
+<ul>
+<li class="chapter" data-level="12.1" data-path="visual-ts.html"><a href="visual-ts.html#折れ線グラフ"><i class="fa fa-check"></i><b>12.1</b> 折れ線グラフ</a></li>
+<li class="chapter" data-level="12.2" data-path="visual-ts.html"><a href="visual-ts.html#エラーバー"><i class="fa fa-check"></i><b>12.2</b> エラーバー</a></li>
+<li class="chapter" data-level="12.3" data-path="visual-ts.html"><a href="visual-ts.html#グループごとの時系列"><i class="fa fa-check"></i><b>12.3</b> グループごとの時系列</a></li>
+</ul></li>
+<li class="chapter" data-level="13" data-path="visual-map.html"><a href="visual-map.html"><i class="fa fa-check"></i><b>13</b> 地図のグラフ</a>
+<ul>
+<li class="chapter" data-level="13.1" data-path="visual-map.html"><a href="visual-map.html#地図"><i class="fa fa-check"></i><b>13.1</b> 地図</a>
+<ul>
+<li class="chapter" data-level="13.1.1" data-path="visual-map.html"><a href="visual-map.html#世界地図"><i class="fa fa-check"></i><b>13.1.1</b> 世界地図</a></li>
+<li class="chapter" data-level="13.1.2" data-path="visual-map.html"><a href="visual-map.html#日本地図"><i class="fa fa-check"></i><b>13.1.2</b> 日本地図</a></li>
+<li class="chapter" data-level="13.1.3" data-path="visual-map.html"><a href="visual-map.html#都道府県地図"><i class="fa fa-check"></i><b>13.1.3</b> 都道府県地図</a></li>
+</ul></li>
+<li class="chapter" data-level="13.2" data-path="visual-map.html"><a href="visual-map.html#地域の違い"><i class="fa fa-check"></i><b>13.2</b> 地域の違い</a></li>
+<li class="chapter" data-level="13.3" data-path="visual-map.html"><a href="visual-map.html#空間の分布"><i class="fa fa-check"></i><b>13.3</b> 空間の分布</a></li>
+<li class="chapter" data-level="13.4" data-path="visual-map.html"><a href="visual-map.html#データの繋がり"><i class="fa fa-check"></i><b>13.4</b> データの繋がり</a>
+<ul>
+<li class="chapter" data-level="13.4.1" data-path="visual-map.html"><a href="visual-map.html#二点間の繋がりを見る"><i class="fa fa-check"></i><b>13.4.1</b> 二点間の繋がりを見る</a></li>
+<li class="chapter" data-level="13.4.2" data-path="visual-map.html"><a href="visual-map.html#経路を見る"><i class="fa fa-check"></i><b>13.4.2</b> 経路を見る</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="14" data-path="ggplot2.html"><a href="ggplot2.html"><i class="fa fa-check"></i><b>14</b> ggplot2いろいろ</a>
+<ul>
+<li class="chapter" data-level="14.1" data-path="ggplot2.html"><a href="ggplot2.html#テーマ"><i class="fa fa-check"></i><b>14.1</b> テーマ</a></li>
+<li class="chapter" data-level="14.2" data-path="ggplot2.html"><a href="ggplot2.html#色"><i class="fa fa-check"></i><b>14.2</b> 色</a></li>
+<li class="chapter" data-level="14.3" data-path="ggplot2.html"><a href="ggplot2.html#パネルの分割"><i class="fa fa-check"></i><b>14.3</b> パネルの分割</a>
+<ul>
+<li class="chapter" data-level="14.3.1" data-path="ggplot2.html"><a href="ggplot2.html#記述統計のグラフ"><i class="fa fa-check"></i><b>14.3.1</b> 記述統計のグラフ</a></li>
+</ul></li>
+<li class="chapter" data-level="14.4" data-path="ggplot2.html"><a href="ggplot2.html#ラベル"><i class="fa fa-check"></i><b>14.4</b> ラベル</a></li>
+<li class="chapter" data-level="14.5" data-path="ggplot2.html"><a href="ggplot2.html#凡例"><i class="fa fa-check"></i><b>14.5</b> 凡例</a></li>
+<li class="chapter" data-level="14.6" data-path="ggplot2.html"><a href="ggplot2.html#強調"><i class="fa fa-check"></i><b>14.6</b> 強調</a></li>
+<li class="chapter" data-level="14.7" data-path="ggplot2.html"><a href="ggplot2.html#テキスト"><i class="fa fa-check"></i><b>14.7</b> テキスト</a></li>
+</ul></li>
+<li class="part"><span><b>III データの収集</b></span></li>
+<li class="chapter" data-level="15" data-path="google-data.html"><a href="google-data.html"><i class="fa fa-check"></i><b>15</b> Googleデータ</a>
+<ul>
+<li class="chapter" data-level="15.1" data-path="google-data.html"><a href="google-data.html#はじめに"><i class="fa fa-check"></i><b>15.1</b> はじめに</a></li>
+<li class="chapter" data-level="15.2" data-path="google-data.html"><a href="google-data.html#時系列トレンド"><i class="fa fa-check"></i><b>15.2</b> 時系列トレンド</a>
+<ul>
+<li class="chapter" data-level="15.2.1" data-path="google-data.html"><a href="google-data.html#一つの単語"><i class="fa fa-check"></i><b>15.2.1</b> 一つの単語</a></li>
+<li class="chapter" data-level="15.2.2" data-path="google-data.html"><a href="google-data.html#複数の単語"><i class="fa fa-check"></i><b>15.2.2</b> 複数の単語</a></li>
+</ul></li>
+<li class="chapter" data-level="15.3" data-path="google-data.html"><a href="google-data.html#地域別のトレンド"><i class="fa fa-check"></i><b>15.3</b> 地域別のトレンド</a></li>
+<li class="chapter" data-level="15.4" data-path="google-data.html"><a href="google-data.html#関連単語"><i class="fa fa-check"></i><b>15.4</b> 関連単語</a></li>
+<li class="chapter" data-level="15.5" data-path="google-data.html"><a href="google-data.html#検索ヒット数"><i class="fa fa-check"></i><b>15.5</b> 検索ヒット数*</a></li>
+<li class="chapter" data-level="15.6" data-path="google-data.html"><a href="google-data.html#nグラム"><i class="fa fa-check"></i><b>15.6</b> Nグラム</a></li>
+</ul></li>
+<li class="chapter" data-level="16" data-path="wikipedia-data.html"><a href="wikipedia-data.html"><i class="fa fa-check"></i><b>16</b> Wikipediaデータ</a>
+<ul>
+<li class="chapter" data-level="16.1" data-path="wikipedia-data.html"><a href="wikipedia-data.html#Trend"><i class="fa fa-check"></i><b>16.1</b> Wikipediaのトレンド</a></li>
+<li class="chapter" data-level="16.2" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の情報"><i class="fa fa-check"></i><b>16.2</b> Wikipediaの記事の情報</a></li>
+<li class="chapter" data-level="16.3" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事"><i class="fa fa-check"></i><b>16.3</b> Wikipediaの記事</a></li>
+<li class="chapter" data-level="16.4" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事のリンク"><i class="fa fa-check"></i><b>16.4</b> Wikipediaの記事のリンク</a></li>
+<li class="chapter" data-level="16.5" data-path="wikipedia-data.html"><a href="wikipedia-data.html#wikipediaの記事の作成日の取得"><i class="fa fa-check"></i><b>16.5</b> Wikipediaの記事の作成日の取得*</a></li>
+</ul></li>
+<li class="part"><span><b>IV Appendix</b></span></li>
+<li class="chapter" data-level="17" data-path="r-envir.html"><a href="r-envir.html"><i class="fa fa-check"></i><b>17</b> Rの分析環境</a>
+<ul>
+<li class="chapter" data-level="17.1" data-path="r-envir.html"><a href="r-envir.html#rのインストール"><i class="fa fa-check"></i><b>17.1</b> Rのインストール</a>
+<ul>
+<li class="chapter" data-level="17.1.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード"><i class="fa fa-check"></i><b>17.1.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="17.1.2" data-path="r-envir.html"><a href="r-envir.html#インストール"><i class="fa fa-check"></i><b>17.1.2</b> インストール</a></li>
+</ul></li>
+<li class="chapter" data-level="17.2" data-path="r-envir.html"><a href="r-envir.html#rstudioのインストール"><i class="fa fa-check"></i><b>17.2</b> RStudioのインストール</a>
+<ul>
+<li class="chapter" data-level="17.2.1" data-path="r-envir.html"><a href="r-envir.html#ダウンロード-1"><i class="fa fa-check"></i><b>17.2.1</b> ダウンロード</a></li>
+<li class="chapter" data-level="17.2.2" data-path="r-envir.html"><a href="r-envir.html#インストール-1"><i class="fa fa-check"></i><b>17.2.2</b> インストール</a></li>
+<li class="chapter" data-level="17.2.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの起動"><i class="fa fa-check"></i><b>17.2.3</b> RStudioの起動</a></li>
+<li class="chapter" data-level="17.2.4" data-path="r-envir.html"><a href="r-envir.html#rstudio-cloud"><i class="fa fa-check"></i><b>17.2.4</b> RStudio Cloud*</a></li>
+</ul></li>
+<li class="chapter" data-level="17.3" data-path="r-envir.html"><a href="r-envir.html#再現可能な分析のために"><i class="fa fa-check"></i><b>17.3</b> 再現可能な分析のために</a>
+<ul>
+<li class="chapter" data-level="17.3.1" data-path="r-envir.html"><a href="r-envir.html#rスクリプト"><i class="fa fa-check"></i><b>17.3.1</b> Rスクリプト</a></li>
+<li class="chapter" data-level="17.3.2" data-path="r-envir.html"><a href="r-envir.html#rプロジェクト"><i class="fa fa-check"></i><b>17.3.2</b> Rプロジェクト</a></li>
+<li class="chapter" data-level="17.3.3" data-path="r-envir.html"><a href="r-envir.html#rstudioの設定"><i class="fa fa-check"></i><b>17.3.3</b> RStudioの設定*</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="18" data-path="intro-r.html"><a href="intro-r.html"><i class="fa fa-check"></i><b>18</b> Rプログラミング入門</a>
+<ul>
+<li class="chapter" data-level="18.1" data-path="intro-r.html"><a href="intro-r.html#関数"><i class="fa fa-check"></i><b>18.1</b> 関数</a>
+<ul>
+<li class="chapter" data-level="18.1.1" data-path="intro-r.html"><a href="intro-r.html#総称関数"><i class="fa fa-check"></i><b>18.1.1</b> 総称関数*</a></li>
+</ul></li>
+<li class="chapter" data-level="18.2" data-path="intro-r.html"><a href="intro-r.html#オブジェクト"><i class="fa fa-check"></i><b>18.2</b> オブジェクト</a></li>
+<li class="chapter" data-level="18.3" data-path="intro-r.html"><a href="intro-r.html#パッケージ"><i class="fa fa-check"></i><b>18.3</b> パッケージ</a>
+<ul>
+<li class="chapter" data-level="18.3.1" data-path="intro-r.html"><a href="intro-r.html#cranからのインストール"><i class="fa fa-check"></i><b>18.3.1</b> CRANからのインストール</a></li>
+<li class="chapter" data-level="18.3.2" data-path="intro-r.html"><a href="intro-r.html#githubからのインストール"><i class="fa fa-check"></i><b>18.3.2</b> GitHubからのインストール*</a></li>
+<li class="chapter" data-level="18.3.3" data-path="intro-r.html"><a href="intro-r.html#パッケージの読み込み"><i class="fa fa-check"></i><b>18.3.3</b> パッケージの読み込み</a></li>
+<li class="chapter" data-level="18.3.4" data-path="intro-r.html"><a href="intro-r.html#tidyverseとは"><i class="fa fa-check"></i><b>18.3.4</b> <code>tidyverse</code>とは*</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="19" data-path="inter-r.html"><a href="inter-r.html"><i class="fa fa-check"></i><b>19</b> Rプログラミング応用</a>
+<ul>
+<li class="chapter" data-level="19.1" data-path="inter-r.html"><a href="inter-r.html#オブジェクトのクラス"><i class="fa fa-check"></i><b>19.1</b> オブジェクトのクラス</a></li>
+<li class="chapter" data-level="19.2" data-path="inter-r.html"><a href="inter-r.html#関数の作成"><i class="fa fa-check"></i><b>19.2</b> 関数の作成</a></li>
+<li class="chapter" data-level="19.3" data-path="inter-r.html"><a href="inter-r.html#ループ"><i class="fa fa-check"></i><b>19.3</b> ループ</a></li>
+<li class="chapter" data-level="19.4" data-path="inter-r.html"><a href="inter-r.html#条件分岐"><i class="fa fa-check"></i><b>19.4</b> 条件分岐</a></li>
+<li class="chapter" data-level="19.5" data-path="inter-r.html"><a href="inter-r.html#練習問題"><i class="fa fa-check"></i><b>19.5</b> 練習問題</a>
+<ul>
+<li class="chapter" data-level="19.5.1" data-path="inter-r.html"><a href="inter-r.html#フィボナッチ数列"><i class="fa fa-check"></i><b>19.5.1</b> フィボナッチ数列</a></li>
+<li class="chapter" data-level="19.5.2" data-path="inter-r.html"><a href="inter-r.html#モンテカルロシミュレーション"><i class="fa fa-check"></i><b>19.5.2</b> モンテカルロ・シミュレーション</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="20" data-path="r-markdown-html.html"><a href="r-markdown-html.html"><i class="fa fa-check"></i><b>20</b> R Markdown: html</a>
+<ul>
+<li class="chapter" data-level="20.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#r-markdownファイルの作成"><i class="fa fa-check"></i><b>20.1</b> R Markdownファイルの作成</a>
+<ul>
+<li class="chapter" data-level="20.1.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#参考になるサイト"><i class="fa fa-check"></i><b>20.1.1</b> 参考になるサイト</a></li>
+</ul></li>
+<li class="chapter" data-level="20.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdown記法"><i class="fa fa-check"></i><b>20.2</b> Markdown記法</a>
+<ul>
+<li class="chapter" data-level="20.2.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#markdownとは"><i class="fa fa-check"></i><b>20.2.1</b> Markdownとは*</a></li>
+<li class="chapter" data-level="20.2.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#セクション"><i class="fa fa-check"></i><b>20.2.2</b> セクション</a></li>
+<li class="chapter" data-level="20.2.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#パラグラフ"><i class="fa fa-check"></i><b>20.2.3</b> パラグラフ</a></li>
+<li class="chapter" data-level="20.2.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#箇条書き"><i class="fa fa-check"></i><b>20.2.4</b> 箇条書き</a></li>
+<li class="chapter" data-level="20.2.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#文字の強調"><i class="fa fa-check"></i><b>20.2.5</b> 文字の強調</a></li>
+<li class="chapter" data-level="20.2.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#引用"><i class="fa fa-check"></i><b>20.2.6</b> 引用</a></li>
+<li class="chapter" data-level="20.2.7" data-path="r-markdown-html.html"><a href="r-markdown-html.html#リンク"><i class="fa fa-check"></i><b>20.2.7</b> リンク</a></li>
+<li class="chapter" data-level="20.2.8" data-path="r-markdown-html.html"><a href="r-markdown-html.html#画像表"><i class="fa fa-check"></i><b>20.2.8</b> 画像、表</a></li>
+<li class="chapter" data-level="20.2.9" data-path="r-markdown-html.html"><a href="r-markdown-html.html#数式"><i class="fa fa-check"></i><b>20.2.9</b> 数式</a></li>
+</ul></li>
+<li class="chapter" data-level="20.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rチャンク"><i class="fa fa-check"></i><b>20.3</b> Rチャンク</a>
+<ul>
+<li class="chapter" data-level="20.3.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#チャンクオプション"><i class="fa fa-check"></i><b>20.3.1</b> チャンクオプション</a></li>
+</ul></li>
+<li class="chapter" data-level="20.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#yamlヘッダー"><i class="fa fa-check"></i><b>20.4</b> yamlヘッダー</a>
+<ul>
+<li class="chapter" data-level="20.4.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#output"><i class="fa fa-check"></i><b>20.4.1</b> output</a></li>
+<li class="chapter" data-level="20.4.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#目次"><i class="fa fa-check"></i><b>20.4.2</b> 目次</a></li>
+<li class="chapter" data-level="20.4.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#テーマ-1"><i class="fa fa-check"></i><b>20.4.3</b> テーマ</a></li>
+<li class="chapter" data-level="20.4.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#htmlとcss"><i class="fa fa-check"></i><b>20.4.4</b> htmlとcss</a></li>
+</ul></li>
+<li class="chapter" data-level="20.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#その他のテンプレート"><i class="fa fa-check"></i><b>20.5</b> その他のテンプレート</a>
+<ul>
+<li class="chapter" data-level="20.5.1" data-path="r-markdown-html.html"><a href="r-markdown-html.html#distill"><i class="fa fa-check"></i><b>20.5.1</b> Distill</a></li>
+<li class="chapter" data-level="20.5.2" data-path="r-markdown-html.html"><a href="r-markdown-html.html#tufte-handout"><i class="fa fa-check"></i><b>20.5.2</b> Tufte Handout</a></li>
+<li class="chapter" data-level="20.5.3" data-path="r-markdown-html.html"><a href="r-markdown-html.html#rmdformats"><i class="fa fa-check"></i><b>20.5.3</b> rmdformats</a></li>
+<li class="chapter" data-level="20.5.4" data-path="r-markdown-html.html"><a href="r-markdown-html.html#スライド"><i class="fa fa-check"></i><b>20.5.4</b> スライド</a></li>
+<li class="chapter" data-level="20.5.5" data-path="r-markdown-html.html"><a href="r-markdown-html.html#ダッシュボード"><i class="fa fa-check"></i><b>20.5.5</b> ダッシュボード</a></li>
+<li class="chapter" data-level="20.5.6" data-path="r-markdown-html.html"><a href="r-markdown-html.html#microsoft-office"><i class="fa fa-check"></i><b>20.5.6</b> Microsoft Office</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="21" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html"><i class="fa fa-check"></i><b>21</b> R Markdown: pdf</a>
+<ul>
+<li class="chapter" data-level="21.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexの導入"><i class="fa fa-check"></i><b>21.1</b> LaTeXの導入</a>
+<ul>
+<li class="chapter" data-level="21.1.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#tinytexのインストール"><i class="fa fa-check"></i><b>21.1.1</b> tinytexのインストール</a></li>
+<li class="chapter" data-level="21.1.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#タイプセット"><i class="fa fa-check"></i><b>21.1.2</b> タイプセット</a></li>
+</ul></li>
+<li class="chapter" data-level="21.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語環境の構築"><i class="fa fa-check"></i><b>21.2</b> 日本語環境の構築</a>
+<ul>
+<li class="chapter" data-level="21.2.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latexエンジンのあれこれ"><i class="fa fa-check"></i><b>21.2.1</b> LaTeXエンジンのあれこれ*</a></li>
+<li class="chapter" data-level="21.2.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#yamlヘッダー-1"><i class="fa fa-check"></i><b>21.2.2</b> yamlヘッダー</a></li>
+<li class="chapter" data-level="21.2.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#フォントのインストール"><i class="fa fa-check"></i><b>21.2.3</b> フォントのインストール</a></li>
+<li class="chapter" data-level="21.2.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#その他のテンプレート-1"><i class="fa fa-check"></i><b>21.2.4</b> その他のテンプレート</a></li>
+<li class="chapter" data-level="21.2.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#sumatra-pdf"><i class="fa fa-check"></i><b>21.2.5</b> Sumatra PDF</a></li>
+</ul></li>
+<li class="chapter" data-level="21.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#スライドの作成"><i class="fa fa-check"></i><b>21.3</b> スライドの作成</a>
+<ul>
+<li class="chapter" data-level="21.3.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#テーマ-2"><i class="fa fa-check"></i><b>21.3.1</b> テーマ</a></li>
+</ul></li>
+<li class="chapter" data-level="21.4" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#latex記法"><i class="fa fa-check"></i><b>21.4</b> LaTeX記法</a>
+<ul>
+<li class="chapter" data-level="21.4.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#定理環境"><i class="fa fa-check"></i><b>21.4.1</b> 定理環境</a></li>
+<li class="chapter" data-level="21.4.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#数式-1"><i class="fa fa-check"></i><b>21.4.2</b> 数式</a></li>
+</ul></li>
+<li class="chapter" data-level="21.5" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#参考文献と引用"><i class="fa fa-check"></i><b>21.5</b> 参考文献と引用</a>
+<ul>
+<li class="chapter" data-level="21.5.1" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#bibファイル"><i class="fa fa-check"></i><b>21.5.1</b> .bibファイル</a></li>
+<li class="chapter" data-level="21.5.2" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#文献の引用"><i class="fa fa-check"></i><b>21.5.2</b> 文献の引用</a></li>
+<li class="chapter" data-level="21.5.3" data-path="r-markdown-pdf.html"><a href="r-markdown-pdf.html#日本語文献の引用"><i class="fa fa-check"></i><b>21.5.3</b> 日本語文献の引用</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="22" data-path="encoding-r.html"><a href="encoding-r.html"><i class="fa fa-check"></i><b>22</b> Rのエンコーディング問題</a>
+<ul>
+<li class="chapter" data-level="22.1" data-path="encoding-r.html"><a href="encoding-r.html#なぜ文字化けが起こるのか"><i class="fa fa-check"></i><b>22.1</b> なぜ文字化けが起こるのか</a>
+<ul>
+<li class="chapter" data-level="22.1.1" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディング"><i class="fa fa-check"></i><b>22.1.1</b> エンコーディング</a></li>
+<li class="chapter" data-level="22.1.2" data-path="encoding-r.html"><a href="encoding-r.html#rとrstudioにおける問題"><i class="fa fa-check"></i><b>22.1.2</b> RとRStudioにおける問題</a></li>
+</ul></li>
+<li class="chapter" data-level="22.2" data-path="encoding-r.html"><a href="encoding-r.html#rスクリプトの文字化け"><i class="fa fa-check"></i><b>22.2</b> Rスクリプトの文字化け</a>
+<ul>
+<li class="chapter" data-level="22.2.1" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを開く"><i class="fa fa-check"></i><b>22.2.1</b> ファイルを開く</a></li>
+<li class="chapter" data-level="22.2.2" data-path="encoding-r.html"><a href="encoding-r.html#ファイルを保存する"><i class="fa fa-check"></i><b>22.2.2</b> ファイルを保存する</a></li>
+</ul></li>
+<li class="chapter" data-level="22.3" data-path="encoding-r.html"><a href="encoding-r.html#データの文字化け"><i class="fa fa-check"></i><b>22.3</b> データの文字化け</a>
+<ul>
+<li class="chapter" data-level="22.3.1" data-path="encoding-r.html"><a href="encoding-r.html#標準関数の場合"><i class="fa fa-check"></i><b>22.3.1</b> 標準関数の場合</a></li>
+<li class="chapter" data-level="22.3.2" data-path="encoding-r.html"><a href="encoding-r.html#tidyverseの場合"><i class="fa fa-check"></i><b>22.3.2</b> tidyverseの場合</a></li>
+<li class="chapter" data-level="22.3.3" data-path="encoding-r.html"><a href="encoding-r.html#エンコーディングを確認する方法"><i class="fa fa-check"></i><b>22.3.3</b> エンコーディングを確認する方法</a></li>
+<li class="chapter" data-level="22.3.4" data-path="encoding-r.html"><a href="encoding-r.html#もとのデータを見たい場合"><i class="fa fa-check"></i><b>22.3.4</b> もとのデータを見たい場合</a></li>
+<li class="chapter" data-level="22.3.5" data-path="encoding-r.html"><a href="encoding-r.html#データを保存する場合"><i class="fa fa-check"></i><b>22.3.5</b> データを保存する場合</a></li>
+</ul></li>
+<li class="chapter" data-level="22.4" data-path="encoding-r.html"><a href="encoding-r.html#Others"><i class="fa fa-check"></i><b>22.4</b> その他の問題</a>
+<ul>
+<li class="chapter" data-level="22.4.1" data-path="encoding-r.html"><a href="encoding-r.html#アカウント名が日本語の場合"><i class="fa fa-check"></i><b>22.4.1</b> アカウント名が日本語の場合</a></li>
+<li class="chapter" data-level="22.4.2" data-path="encoding-r.html"><a href="encoding-r.html#画像で日本語が文字化けする場合"><i class="fa fa-check"></i><b>22.4.2</b> 画像で日本語が文字化けする場合</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="23" data-path="pipe.html"><a href="pipe.html"><i class="fa fa-check"></i><b>23</b> パイプ演算子<code>%&gt;%</code>について</a>
+<ul>
+<li class="chapter" data-level="23.1" data-path="pipe.html"><a href="pipe.html#基本的な使い方"><i class="fa fa-check"></i><b>23.1</b> 基本的な使い方</a></li>
+<li class="chapter" data-level="23.2" data-path="pipe.html"><a href="pipe.html#データの代入"><i class="fa fa-check"></i><b>23.2</b> データの代入</a></li>
+<li class="chapter" data-level="23.3" data-path="pipe.html"><a href="pipe.html#左辺の参照"><i class="fa fa-check"></i><b>23.3</b> 左辺の参照</a></li>
+<li class="chapter" data-level="23.4" data-path="pipe.html"><a href="pipe.html#複数の出力"><i class="fa fa-check"></i><b>23.4</b> 複数の出力</a></li>
+</ul></li>
+<li class="chapter" data-level="24" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html"><i class="fa fa-check"></i><b>24</b> WindowsでR/RStudioをちゃんと使う方法</a>
+<ul>
+<li class="chapter" data-level="24.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#はじめに-1"><i class="fa fa-check"></i><b>24.1</b> はじめに</a>
+<ul>
+<li class="chapter" data-level="24.1.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#問題"><i class="fa fa-check"></i><b>24.1.1</b> 問題</a></li>
+<li class="chapter" data-level="24.1.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#linux上のrrstudioを使う"><i class="fa fa-check"></i><b>24.1.2</b> Linux上のR/RStudioを使う</a></li>
+<li class="chapter" data-level="24.1.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#概要"><i class="fa fa-check"></i><b>24.1.3</b> 概要</a></li>
+</ul></li>
+<li class="chapter" data-level="24.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#wsl2のインストール"><i class="fa fa-check"></i><b>24.2</b> WSL2のインストール</a></li>
+<li class="chapter" data-level="24.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rのインストール-1"><i class="fa fa-check"></i><b>24.3</b> Rのインストール</a></li>
+<li class="chapter" data-level="24.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstusio-serverのインストール"><i class="fa fa-check"></i><b>24.4</b> RStusio Serverのインストール</a></li>
+<li class="chapter" data-level="24.5" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#rstudio-server-on-wsl2の注意点"><i class="fa fa-check"></i><b>24.5</b> RStudio Server on WSL2の注意点</a>
+<ul>
+<li class="chapter" data-level="24.5.1" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#パッケージのインストール"><i class="fa fa-check"></i><b>24.5.1</b> パッケージのインストール</a></li>
+<li class="chapter" data-level="24.5.2" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#警告メッセージ"><i class="fa fa-check"></i><b>24.5.2</b> 警告メッセージ</a></li>
+<li class="chapter" data-level="24.5.3" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#日本語フォント"><i class="fa fa-check"></i><b>24.5.3</b> 日本語フォント</a></li>
+<li class="chapter" data-level="24.5.4" data-path="wsl-rstudio.html"><a href="wsl-rstudio.html#windows側のファイルへのアクセス"><i class="fa fa-check"></i><b>24.5.4</b> Windows側のファイルへのアクセス</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="" data-path="environment.html"><a href="environment.html"><i class="fa fa-check"></i>動作環境</a></li>
+<li class="chapter" data-level="" data-path="references.html"><a href="references.html"><i class="fa fa-check"></i>参考文献</a></li>
+<li class="divider"></li>
+<li><a href="../index.html">&copy; 2020 Shohei Doi</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">Rで計量政治学入門</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="pipe" class="section level1 hasAnchor" number="23">
+<h1><span class="header-section-number">第23章</span> パイプ演算子<code>%&gt;%</code>について<a href="pipe.html#pipe" class="anchor-section" aria-label="Anchor link to header"></a></h1>
+<p>こいつは<code>tidyverse</code>内の<code>magrittr</code>というパッケージの機能で、パイプ演算子あるいは単にパイプと呼ばれたりします。</p>
+<p>以下のサイトが参考になりました。</p>
+<ul>
+<li>R for Data Scienceの<a href="https://r4ds.had.co.nz/pipes.html">Pipes</a></li>
+<li><a href="https://qiita.com/nozma/items/9e52b446c813d7e92c8a">magrittrのvignetteの訳</a></li>
+</ul>
+<div class="sourceCode" id="cb621"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb621-1"><a href="pipe.html#cb621-1" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb621-2"><a href="pipe.html#cb621-2" tabindex="-1"></a><span class="fu">library</span>(magrittr)</span></code></pre></div>
+<pre><code>## 
+## Attaching package: &#39;magrittr&#39;</code></pre>
+<pre><code>## The following object is masked from &#39;package:purrr&#39;:
+## 
+##     set_names</code></pre>
+<pre><code>## The following object is masked from &#39;package:tidyr&#39;:
+## 
+##     extract</code></pre>
+<div id="基本的な使い方" class="section level2 hasAnchor" number="23.1">
+<h2><span class="header-section-number">23.1</span> 基本的な使い方<a href="pipe.html#基本的な使い方" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>基本的に<code>%&gt;%</code>は左辺の出力を右辺の関数の第1引数にします。
+つまり、<code>f %&gt;% g</code>は<code>g(f)</code>と同値です。
+ちなみに、RStudioでは<code>Shift + Ctrl + M</code>で入力します。</p>
+<div class="sourceCode" id="cb625"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb625-1"><a href="pipe.html#cb625-1" tabindex="-1"></a><span class="fu">summary</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<div class="sourceCode" id="cb627"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb627-1"><a href="pipe.html#cb627-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species  
+##  setosa    :50  
+##  versicolor:50  
+##  virginica :50  
+##                 
+##                 
+## </code></pre>
+<p>これだけだとパイプ演算子のご利益は分かりにくいですが、コードが長くなるにつれてその力を発揮します。
+例えば、<code>iris</code>の各品種について各変数の平均と中央値を求めてみます。</p>
+<p>パイプ演算子を使うと次のように一行のコードで書くことができます。</p>
+<div class="sourceCode" id="cb629"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb629-1"><a href="pipe.html#cb629-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb629-2"><a href="pipe.html#cb629-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>Species, <span class="at">names_to =</span> <span class="st">&quot;var&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb629-3"><a href="pipe.html#cb629-3" tabindex="-1"></a>  <span class="fu">group_by</span>(var, Species) <span class="sc">%&gt;%</span> </span>
+<span id="cb629-4"><a href="pipe.html#cb629-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(val),</span>
+<span id="cb629-5"><a href="pipe.html#cb629-5" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(val))</span></code></pre></div>
+<div class="sourceCode" id="cb630"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb630-1"><a href="pipe.html#cb630-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb630-2"><a href="pipe.html#cb630-2" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="sc">-</span>Species, <span class="at">names_to =</span> <span class="st">&quot;var&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb630-3"><a href="pipe.html#cb630-3" tabindex="-1"></a>  <span class="fu">group_by</span>(var, Species) <span class="sc">%&gt;%</span> </span>
+<span id="cb630-4"><a href="pipe.html#cb630-4" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean =</span> <span class="fu">mean</span>(val),</span>
+<span id="cb630-5"><a href="pipe.html#cb630-5" tabindex="-1"></a>            <span class="at">median =</span> <span class="fu">median</span>(val)) <span class="sc">%&gt;%</span> </span>
+<span id="cb630-6"><a href="pipe.html#cb630-6" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;var&#39;. You can override using the `.groups`
+## argument.</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">var</th>
+<th align="left">Species</th>
+<th align="right">mean</th>
+<th align="right">median</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Petal.Length</td>
+<td align="left">setosa</td>
+<td align="right">1.462</td>
+<td align="right">1.50</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Length</td>
+<td align="left">versicolor</td>
+<td align="right">4.260</td>
+<td align="right">4.35</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Length</td>
+<td align="left">virginica</td>
+<td align="right">5.552</td>
+<td align="right">5.55</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Width</td>
+<td align="left">setosa</td>
+<td align="right">0.246</td>
+<td align="right">0.20</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Width</td>
+<td align="left">versicolor</td>
+<td align="right">1.326</td>
+<td align="right">1.30</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Width</td>
+<td align="left">virginica</td>
+<td align="right">2.026</td>
+<td align="right">2.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Length</td>
+<td align="left">setosa</td>
+<td align="right">5.006</td>
+<td align="right">5.00</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Length</td>
+<td align="left">versicolor</td>
+<td align="right">5.936</td>
+<td align="right">5.90</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Length</td>
+<td align="left">virginica</td>
+<td align="right">6.588</td>
+<td align="right">6.50</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Width</td>
+<td align="left">setosa</td>
+<td align="right">3.428</td>
+<td align="right">3.40</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Width</td>
+<td align="left">versicolor</td>
+<td align="right">2.770</td>
+<td align="right">2.80</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Width</td>
+<td align="left">virginica</td>
+<td align="right">2.974</td>
+<td align="right">3.00</td>
+</tr>
+</tbody>
+</table>
+<p>これをパイプ演算子を使わないと、次のようになります。</p>
+<div class="sourceCode" id="cb632"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb632-1"><a href="pipe.html#cb632-1" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">pivot_longer</span>(iris, <span class="sc">-</span>Species, <span class="at">names_to =</span> <span class="st">&quot;var&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>), var, Species), <span class="at">mean =</span> <span class="fu">mean</span>(val), <span class="at">median =</span> <span class="fu">median</span>(val))</span></code></pre></div>
+<div class="sourceCode" id="cb633"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb633-1"><a href="pipe.html#cb633-1" tabindex="-1"></a><span class="fu">summarise</span>(<span class="fu">group_by</span>(<span class="fu">pivot_longer</span>(iris, <span class="sc">-</span>Species, <span class="at">names_to =</span> <span class="st">&quot;var&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>), var, Species), <span class="at">mean =</span> <span class="fu">mean</span>(val), <span class="at">median =</span> <span class="fu">median</span>(val)) <span class="sc">%&gt;%</span> </span>
+<span id="cb633-2"><a href="pipe.html#cb633-2" tabindex="-1"></a>  knitr<span class="sc">::</span><span class="fu">kable</span>()</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;var&#39;. You can override using the `.groups`
+## argument.</code></pre>
+<table>
+<thead>
+<tr class="header">
+<th align="left">var</th>
+<th align="left">Species</th>
+<th align="right">mean</th>
+<th align="right">median</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Petal.Length</td>
+<td align="left">setosa</td>
+<td align="right">1.462</td>
+<td align="right">1.50</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Length</td>
+<td align="left">versicolor</td>
+<td align="right">4.260</td>
+<td align="right">4.35</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Length</td>
+<td align="left">virginica</td>
+<td align="right">5.552</td>
+<td align="right">5.55</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Width</td>
+<td align="left">setosa</td>
+<td align="right">0.246</td>
+<td align="right">0.20</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Width</td>
+<td align="left">versicolor</td>
+<td align="right">1.326</td>
+<td align="right">1.30</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Width</td>
+<td align="left">virginica</td>
+<td align="right">2.026</td>
+<td align="right">2.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Length</td>
+<td align="left">setosa</td>
+<td align="right">5.006</td>
+<td align="right">5.00</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Length</td>
+<td align="left">versicolor</td>
+<td align="right">5.936</td>
+<td align="right">5.90</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Length</td>
+<td align="left">virginica</td>
+<td align="right">6.588</td>
+<td align="right">6.50</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Width</td>
+<td align="left">setosa</td>
+<td align="right">3.428</td>
+<td align="right">3.40</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Width</td>
+<td align="left">versicolor</td>
+<td align="right">2.770</td>
+<td align="right">2.80</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Width</td>
+<td align="left">virginica</td>
+<td align="right">2.974</td>
+<td align="right">3.00</td>
+</tr>
+</tbody>
+</table>
+<p>あるいは適当なオブジェクトを作成して次のようにします。</p>
+<div class="sourceCode" id="cb635"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb635-1"><a href="pipe.html#cb635-1" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(iris, <span class="sc">-</span>Species, <span class="at">names_to =</span> <span class="st">&quot;var&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>)</span>
+<span id="cb635-2"><a href="pipe.html#cb635-2" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">group_by</span>(temp, var, Species)</span>
+<span id="cb635-3"><a href="pipe.html#cb635-3" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">summarise</span>(temp, <span class="at">mean =</span> <span class="fu">mean</span>(val), <span class="at">median =</span> <span class="fu">median</span>(val))</span>
+<span id="cb635-4"><a href="pipe.html#cb635-4" tabindex="-1"></a>temp</span></code></pre></div>
+<div class="sourceCode" id="cb636"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb636-1"><a href="pipe.html#cb636-1" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">pivot_longer</span>(iris, <span class="sc">-</span>Species, <span class="at">names_to =</span> <span class="st">&quot;var&quot;</span>, <span class="at">values_to =</span> <span class="st">&quot;val&quot;</span>)</span>
+<span id="cb636-2"><a href="pipe.html#cb636-2" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">group_by</span>(temp, var, Species)</span>
+<span id="cb636-3"><a href="pipe.html#cb636-3" tabindex="-1"></a>temp <span class="ot">&lt;-</span> <span class="fu">summarise</span>(temp, <span class="at">mean =</span> <span class="fu">mean</span>(val), <span class="at">median =</span> <span class="fu">median</span>(val))</span></code></pre></div>
+<pre><code>## `summarise()` has grouped output by &#39;var&#39;. You can override using the `.groups`
+## argument.</code></pre>
+<div class="sourceCode" id="cb638"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb638-1"><a href="pipe.html#cb638-1" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(temp)</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">var</th>
+<th align="left">Species</th>
+<th align="right">mean</th>
+<th align="right">median</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Petal.Length</td>
+<td align="left">setosa</td>
+<td align="right">1.462</td>
+<td align="right">1.50</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Length</td>
+<td align="left">versicolor</td>
+<td align="right">4.260</td>
+<td align="right">4.35</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Length</td>
+<td align="left">virginica</td>
+<td align="right">5.552</td>
+<td align="right">5.55</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Width</td>
+<td align="left">setosa</td>
+<td align="right">0.246</td>
+<td align="right">0.20</td>
+</tr>
+<tr class="odd">
+<td align="left">Petal.Width</td>
+<td align="left">versicolor</td>
+<td align="right">1.326</td>
+<td align="right">1.30</td>
+</tr>
+<tr class="even">
+<td align="left">Petal.Width</td>
+<td align="left">virginica</td>
+<td align="right">2.026</td>
+<td align="right">2.00</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Length</td>
+<td align="left">setosa</td>
+<td align="right">5.006</td>
+<td align="right">5.00</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Length</td>
+<td align="left">versicolor</td>
+<td align="right">5.936</td>
+<td align="right">5.90</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Length</td>
+<td align="left">virginica</td>
+<td align="right">6.588</td>
+<td align="right">6.50</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Width</td>
+<td align="left">setosa</td>
+<td align="right">3.428</td>
+<td align="right">3.40</td>
+</tr>
+<tr class="odd">
+<td align="left">Sepal.Width</td>
+<td align="left">versicolor</td>
+<td align="right">2.770</td>
+<td align="right">2.80</td>
+</tr>
+<tr class="even">
+<td align="left">Sepal.Width</td>
+<td align="left">virginica</td>
+<td align="right">2.974</td>
+<td align="right">3.00</td>
+</tr>
+</tbody>
+</table>
+<p>このように考えるとパイプ演算子のご利益は次のようにまとめられます。</p>
+<ol style="list-style-type: decimal">
+<li>処理をする順番に関数が登場するので可読性を高めることができる。</li>
+<li>一行でコードを書くことができるので無駄なオブジェクトを作らなくてよい。</li>
+</ol>
+</div>
+<div id="データの代入" class="section level2 hasAnchor" number="23.2">
+<h2><span class="header-section-number">23.2</span> データの代入<a href="pipe.html#データの代入" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>データを加工する際、パイプを使うと基本的にはこのようになります。</p>
+<div class="sourceCode" id="cb639"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb639-1"><a href="pipe.html#cb639-1" tabindex="-1"></a>iris <span class="ot">&lt;-</span> iris <span class="sc">%&gt;%</span> </span>
+<span id="cb639-2"><a href="pipe.html#cb639-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">case_when</span>(Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb639-3"><a href="pipe.html#cb639-3" tabindex="-1"></a>                             Species <span class="sc">==</span> <span class="st">&quot;versicolor&quot;</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb639-4"><a href="pipe.html#cb639-4" tabindex="-1"></a>                             Species <span class="sc">==</span> <span class="st">&quot;virginica&quot;</span> <span class="sc">~</span> <span class="dv">2</span>))</span>
+<span id="cb639-5"><a href="pipe.html#cb639-5" tabindex="-1"></a><span class="fu">summary</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species      species 
+##  setosa    :50   Min.   :0  
+##  versicolor:50   1st Qu.:0  
+##  virginica :50   Median :1  
+##                  Mean   :1  
+##                  3rd Qu.:2  
+##                  Max.   :2</code></pre>
+<p>しかし、左から右に流れるべきと思う場合は次のように書くこともできます。</p>
+<div class="sourceCode" id="cb641"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb641-1"><a href="pipe.html#cb641-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb641-2"><a href="pipe.html#cb641-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">case_when</span>(Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb641-3"><a href="pipe.html#cb641-3" tabindex="-1"></a>                             Species <span class="sc">==</span> <span class="st">&quot;versicolor&quot;</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb641-4"><a href="pipe.html#cb641-4" tabindex="-1"></a>                             Species <span class="sc">==</span> <span class="st">&quot;virginica&quot;</span> <span class="sc">~</span> <span class="dv">2</span>)) <span class="ot">-&gt;</span> iris</span>
+<span id="cb641-5"><a href="pipe.html#cb641-5" tabindex="-1"></a><span class="fu">summary</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species      species 
+##  setosa    :50   Min.   :0  
+##  versicolor:50   1st Qu.:0  
+##  virginica :50   Median :1  
+##                  Mean   :1  
+##                  3rd Qu.:2  
+##                  Max.   :2</code></pre>
+<p>あるいは<code>%&lt;&gt;%</code>という演算子を使うこともできます。</p>
+<div class="sourceCode" id="cb643"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb643-1"><a href="pipe.html#cb643-1" tabindex="-1"></a>iris <span class="sc">%&lt;&gt;%</span> </span>
+<span id="cb643-2"><a href="pipe.html#cb643-2" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">species =</span> <span class="fu">case_when</span>(Species <span class="sc">==</span> <span class="st">&quot;setosa&quot;</span> <span class="sc">~</span> <span class="dv">0</span>,</span>
+<span id="cb643-3"><a href="pipe.html#cb643-3" tabindex="-1"></a>                             Species <span class="sc">==</span> <span class="st">&quot;versicolor&quot;</span> <span class="sc">~</span> <span class="dv">1</span>,</span>
+<span id="cb643-4"><a href="pipe.html#cb643-4" tabindex="-1"></a>                             Species <span class="sc">==</span> <span class="st">&quot;virginica&quot;</span> <span class="sc">~</span> <span class="dv">2</span>))</span>
+<span id="cb643-5"><a href="pipe.html#cb643-5" tabindex="-1"></a><span class="fu">summary</span>(iris)</span></code></pre></div>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species      species 
+##  setosa    :50   Min.   :0  
+##  versicolor:50   1st Qu.:0  
+##  virginica :50   Median :1  
+##                  Mean   :1  
+##                  3rd Qu.:2  
+##                  Max.   :2</code></pre>
+</div>
+<div id="左辺の参照" class="section level2 hasAnchor" number="23.3">
+<h2><span class="header-section-number">23.3</span> 左辺の参照<a href="pipe.html#左辺の参照" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p>基本的にはパイプ演算子の左辺を右辺の第1引数にしますが、<code>.</code>を使うことで任意の引数にすることができます。
+例えば、<code>iris</code>で<code>setosa</code>を除外して回帰分析をしたい場合、第1引数は<code>formula</code>なので普通はパイプで繋げることはできないが、以下のように書くことができます。</p>
+<div class="sourceCode" id="cb645"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb645-1"><a href="pipe.html#cb645-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb645-2"><a href="pipe.html#cb645-2" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">!=</span> <span class="st">&quot;setosa&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb645-3"><a href="pipe.html#cb645-3" tabindex="-1"></a>  <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Sepal.Width, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> </span>
+<span id="cb645-4"><a href="pipe.html#cb645-4" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Sepal.Length ~ Sepal.Width, data = .)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0032 -0.3877 -0.0774  0.3200  1.7381 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   3.0934     0.4844   6.387 5.70e-09 ***
+## Sepal.Width   1.1033     0.1675   6.585 2.27e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5547 on 98 degrees of freedom
+## Multiple R-squared:  0.3068, Adjusted R-squared:  0.2997 
+## F-statistic: 43.36 on 1 and 98 DF,  p-value: 2.27e-09</code></pre>
+<p>また、<code>%$%</code>という演算子は右辺において左辺のデータを参照せずに変数名を指定することができます。
+したがって、次のように書くこともできます。</p>
+<div class="sourceCode" id="cb647"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb647-1"><a href="pipe.html#cb647-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb647-2"><a href="pipe.html#cb647-2" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">!=</span> <span class="st">&quot;setosa&quot;</span>) <span class="sc">%$%</span> </span>
+<span id="cb647-3"><a href="pipe.html#cb647-3" tabindex="-1"></a>  <span class="fu">lm</span>(Sepal.Length <span class="sc">~</span> Sepal.Width) <span class="sc">%&gt;%</span> </span>
+<span id="cb647-4"><a href="pipe.html#cb647-4" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = Sepal.Length ~ Sepal.Width)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0032 -0.3877 -0.0774  0.3200  1.7381 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)   3.0934     0.4844   6.387 5.70e-09 ***
+## Sepal.Width   1.1033     0.1675   6.585 2.27e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5547 on 98 degrees of freedom
+## Multiple R-squared:  0.3068, Adjusted R-squared:  0.2997 
+## F-statistic: 43.36 on 1 and 98 DF,  p-value: 2.27e-09</code></pre>
+<p>これは、次のコードと同値です。</p>
+<div class="sourceCode" id="cb649"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb649-1"><a href="pipe.html#cb649-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb649-2"><a href="pipe.html#cb649-2" tabindex="-1"></a>  <span class="fu">filter</span>(Species <span class="sc">!=</span> <span class="st">&quot;setosa&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb649-3"><a href="pipe.html#cb649-3" tabindex="-1"></a>  {</span>
+<span id="cb649-4"><a href="pipe.html#cb649-4" tabindex="-1"></a>    <span class="fu">lm</span>(.<span class="sc">$</span>Sepal.Length <span class="sc">~</span> .<span class="sc">$</span>Sepal.Width)</span>
+<span id="cb649-5"><a href="pipe.html#cb649-5" tabindex="-1"></a>  } <span class="sc">%&gt;%</span> </span>
+<span id="cb649-6"><a href="pipe.html#cb649-6" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<pre><code>## 
+## Call:
+## lm(formula = .$Sepal.Length ~ .$Sepal.Width)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -1.0032 -0.3877 -0.0774  0.3200  1.7381 
+## 
+## Coefficients:
+##               Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)     3.0934     0.4844   6.387 5.70e-09 ***
+## .$Sepal.Width   1.1033     0.1675   6.585 2.27e-09 ***
+## ---
+## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
+## 
+## Residual standard error: 0.5547 on 98 degrees of freedom
+## Multiple R-squared:  0.3068, Adjusted R-squared:  0.2997 
+## F-statistic: 43.36 on 1 and 98 DF,  p-value: 2.27e-09</code></pre>
+</div>
+<div id="複数の出力" class="section level2 hasAnchor" number="23.4">
+<h2><span class="header-section-number">23.4</span> 複数の出力<a href="pipe.html#複数の出力" class="anchor-section" aria-label="Anchor link to header"></a></h2>
+<p><code>.</code>を使うことで複数の出力を行うことも可能です。</p>
+<div class="sourceCode" id="cb651"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb651-1"><a href="pipe.html#cb651-1" tabindex="-1"></a>iris<span class="sc">$</span>Sepal.Length <span class="sc">%&gt;%</span> </span>
+<span id="cb651-2"><a href="pipe.html#cb651-2" tabindex="-1"></a>  {</span>
+<span id="cb651-3"><a href="pipe.html#cb651-3" tabindex="-1"></a>    <span class="fu">mean</span>(.) <span class="sc">%&gt;%</span> <span class="fu">print</span>()</span>
+<span id="cb651-4"><a href="pipe.html#cb651-4" tabindex="-1"></a>    <span class="fu">median</span>(.) <span class="sc">%&gt;%</span> <span class="fu">print</span>()</span>
+<span id="cb651-5"><a href="pipe.html#cb651-5" tabindex="-1"></a>    <span class="fu">var</span>(.) <span class="sc">%&gt;%</span> <span class="fu">print</span>()</span>
+<span id="cb651-6"><a href="pipe.html#cb651-6" tabindex="-1"></a>  }</span></code></pre></div>
+<pre><code>## [1] 5.843333
+## [1] 5.8
+## [1] 0.6856935</code></pre>
+<p><code>$T&gt;$</code>という演算子を使うと右辺は評価されるが、返り値は左辺のままになります。
+例えば、<code>plot()</code>に流すことで図を出力しつつ、<code>iris</code>を<code>summary()</code>にも流すことができます。</p>
+<div class="sourceCode" id="cb653"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb653-1"><a href="pipe.html#cb653-1" tabindex="-1"></a>iris <span class="sc">%T&gt;%</span></span>
+<span id="cb653-2"><a href="pipe.html#cb653-2" tabindex="-1"></a>  <span class="fu">plot</span>() <span class="sc">%&gt;%</span> </span>
+<span id="cb653-3"><a href="pipe.html#cb653-3" tabindex="-1"></a>  <span class="fu">summary</span>()</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-409-1.png" width="672" /></p>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species      species 
+##  setosa    :50   Min.   :0  
+##  versicolor:50   1st Qu.:0  
+##  virginica :50   Median :1  
+##                  Mean   :1  
+##                  3rd Qu.:2  
+##                  Max.   :2</code></pre>
+<p>これは、以下のコードと同値です。</p>
+<div class="sourceCode" id="cb655"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb655-1"><a href="pipe.html#cb655-1" tabindex="-1"></a>iris <span class="sc">%&gt;%</span> </span>
+<span id="cb655-2"><a href="pipe.html#cb655-2" tabindex="-1"></a>  {</span>
+<span id="cb655-3"><a href="pipe.html#cb655-3" tabindex="-1"></a>    <span class="fu">plot</span>(.)</span>
+<span id="cb655-4"><a href="pipe.html#cb655-4" tabindex="-1"></a>    <span class="fu">summary</span>(.)</span>
+<span id="cb655-5"><a href="pipe.html#cb655-5" tabindex="-1"></a>  }</span></code></pre></div>
+<p><img src="quant_polisci_files/figure-html/unnamed-chunk-410-1.png" width="672" /></p>
+<pre><code>##   Sepal.Length    Sepal.Width     Petal.Length    Petal.Width   
+##  Min.   :4.300   Min.   :2.000   Min.   :1.000   Min.   :0.100  
+##  1st Qu.:5.100   1st Qu.:2.800   1st Qu.:1.600   1st Qu.:0.300  
+##  Median :5.800   Median :3.000   Median :4.350   Median :1.300  
+##  Mean   :5.843   Mean   :3.057   Mean   :3.758   Mean   :1.199  
+##  3rd Qu.:6.400   3rd Qu.:3.300   3rd Qu.:5.100   3rd Qu.:1.800  
+##  Max.   :7.900   Max.   :4.400   Max.   :6.900   Max.   :2.500  
+##        Species      species 
+##  setosa    :50   Min.   :0  
+##  versicolor:50   1st Qu.:0  
+##  virginica :50   Median :1  
+##                  Mean   :1  
+##                  3rd Qu.:2  
+##                  Max.   :2</code></pre>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="encoding-r.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="wsl-rstudio.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"whatsapp": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
+"toc": {
+"collapse": "section",
+"scroll_highlight": true
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.9/latest.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

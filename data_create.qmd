@@ -1,0 +1,245 @@
+# データの追加
+
+前回は変数を選択したり、観察を選択したりと、データから一部を取り出す作業を学びました。今回は逆にデータを増やす作業を学びます。
+
+```{r filename="R"}
+library(tidyverse)
+library(readxl)
+```
+
+```{python filename="Python"}
+import pandas as pd
+import polars as pl
+```
+
+## 変数の作成
+
+データフレームを拡張する方法の一つは変数を増やすことです。変数を増やすためには、
+
+1. 既存のデータフレームの変数を用いて新しい変数を作成するか、
+1. 別のデータフレームと結合する
+
+の2通りの方法があります。まずは、前者について学びます。
+
+### 四則演算
+
+一般的な四則演算が実行可能です。例えば、東大朝日の2017年衆議院選挙の有権者調査のコードブックを見てみると、問23で政策に対する賛否を聞いています（質問文は間違っていますが）。特に、(1)から(4)は外交政策についてタカ派かハト派かを表しています。
+
+そこで、これらの変数を足し合わせることでハト派度合いを表す変数を作りたいと思います。
+
+- ただし、(4)については点数が高いほうがタカ派を意味するので、引き算します。
+- ついでに不要な変数も除去しておきます。
+
+```{r filename="R (base)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99")
+
+df_voter2017 <- df_voter2017[,c("Q23_1", "Q23_2", "Q23_3", "Q23_4")]
+df_voter2017$dovish <- df_voter2017$Q23_1 + df_voter2017$Q23_2 + df_voter2017$Q23_3 - df_voter2017$Q23_4
+
+head(df_voter2017)
+```
+
+```{r filename="R (tidyverse)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99") |> 
+    select(Q23_1, Q23_2, Q23_3, Q23_4) |> 
+    mutate(dovish = Q23_1 + Q23_2 + Q23_3 - Q23_4)
+
+head(df_voter2017)
+```
+
+```{python filename="Python (pandas)"}
+df_voter2017 = pd.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", na_values="99")
+
+df_voter2017 = df_voter2017.loc[:,["Q23_1", "Q23_2", "Q23_3", "Q23_4"]]
+df_voter2017["dovish"] = df_voter2017["Q23_1"] + df_voter2017["Q23_2"] + df_voter2017["Q23_3"] - df_voter2017["Q23_4"]
+
+df_voter2017.head()
+```
+
+```{python filename="Python (polars)"}
+df_voter2017 = (
+    pl.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", null_values="99")
+    .select(["Q23_1", "Q23_2", "Q23_3", "Q23_4"])
+    .with_columns(dovish = pl.col("Q23_1") + pl.col("Q23_2") + pl.col("Q23_3") - pl.col("Q23_4"))
+)
+
+df_voter2017.head()
+```
+
+ここでも`tidyverse`と`polars`、R標準関数と`pandas`の共通性が見て取れます。つまり、前者では[`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)ないし[`with_columns()`](https://docs.pola.rs/py-polars/html/reference/dataframe/api/polars.DataFrame.with_columns.html)内で新しい変数を定義しています。一方で後者は存在しない変数を参照して、そこに代入することで新しい変数を作成しています。
+
+なお、`+`や`-`以外にも四則演算は可能です。
+
+|計算|R|Python|
+|:---:|:---:|:---:|
+|足し算|`+`|`+`|
+|引き算|`-`|`-`|
+|掛け算|`*`|`*`|
+|割り算|`/`|`/`|
+|累乗|`^`|`**`|
+|割り算の余り|`%%`|`%`|
+|割り算の商|`%/%`|`//`|
+
+### 尺度の反転
+
+ところで、先程の4つの設問では賛成が1、反対が5となる変数でした。そして、(1)から(3)は賛成のほうがタカ派であり、(4)は反対の方がタカ派と言えそうでした。
+
+そうすると、(4)でも反対が1、賛成が5となるように尺度を反転させたくなるのが人情です。このような場合、「最大値から元の変数を引いて最小値を足す」ことで反転させることができます。そのような反転させた(4)の回答を`Q23_4new`として作ってみます。
+
+```{r filename="R (base)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99")
+
+df_voter2017 <- df_voter2017[,c("Q23_1", "Q23_2", "Q23_3", "Q23_4")]
+df_voter2017$Q23_4new <- max(df_voter2017$Q23_4) - df_voter2017$Q23_4 + min(df_voter2017$Q23_4)
+df_voter2017$dovish <- df_voter2017$Q23_1 + df_voter2017$Q23_2 + df_voter2017$Q23_3 + df_voter2017$Q23_4new
+
+head(df_voter2017)
+```
+
+`Q23_4new`が全て`NA`となっています。なぜなら、`Q23_4`に欠損値が含まれており、この場合は最大値も最小値も欠損値になってしまうからです。したがって、`na.rm = TRUE`とすることで欠損値を除外して最大値と最小値を求めます。
+
+```{r filename="R (base)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99")
+
+df_voter2017 <- df_voter2017[,c("Q23_1", "Q23_2", "Q23_3", "Q23_4")]
+df_voter2017$Q23_4new <- max(df_voter2017$Q23_4, na.rm = TRUE) - df_voter2017$Q23_4 + min(df_voter2017$Q23_4, na.rm = TRUE)
+df_voter2017$dovish <- df_voter2017$Q23_1 + df_voter2017$Q23_2 + df_voter2017$Q23_3 + df_voter2017$Q23_4new
+
+head(df_voter2017)
+```
+
+```{r filename="R (tidyverse)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99") |> 
+    select(Q23_1, Q23_2, Q23_3, Q23_4) |> 
+    mutate(Q23_4new = max(Q23_4, na.rm = TRUE) - Q23_4 + min(Q23_4, na.rm = TRUE), 
+           dovish = Q23_1 + Q23_2 + Q23_3 + Q23_4new)
+
+head(df_voter2017)
+```
+
+```{python filename="Python (pandas)"}
+df_voter2017 = pd.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", na_values="99")
+
+df_voter2017 = df_voter2017.loc[:,["Q23_1", "Q23_2", "Q23_3", "Q23_4"]]
+df_voter2017["Q23_4new"] = df_voter2017["Q23_4"].max() - df_voter2017["Q23_4"] + df_voter2017["Q23_4"].min()
+df_voter2017["dovish"] = df_voter2017["Q23_1"] + df_voter2017["Q23_2"] + df_voter2017["Q23_3"] + df_voter2017["Q23_4new"]
+
+df_voter2017.head()
+```
+
+```{python filename="Python (polars)"}
+df_voter2017 = (
+    pl.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", null_values="99")
+    .select(["Q23_1", "Q23_2", "Q23_3", "Q23_4"])
+    .with_columns(Q23_4new = pl.col("Q23_4").max() - pl.col("Q23_4") + pl.col("Q23_4").min())
+    .with_columns(dovish = pl.col("Q23_1") + pl.col("Q23_2") + pl.col("Q23_3") + pl.col("Q23_4new"))
+)
+
+df_voter2017.head()
+```
+
+### 条件に基づく変数
+
+#### 条件が一つの場合
+
+四則演算以外にも条件に基づいて新しい変数を作成することもできます。例えば、先ほど作ったハト派変数について、「平均値よりも大きければハト派、そうでなければタカ派」とする変数を作ってみます。
+
+```{r filename="R (base)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99")
+
+df_voter2017 <- df_voter2017[,c("Q23_1", "Q23_2", "Q23_3", "Q23_4")]
+df_voter2017$Q23_4new <- max(df_voter2017$Q23_4, na.rm = TRUE) - df_voter2017$Q23_4 + min(df_voter2017$Q23_4, na.rm = TRUE)
+df_voter2017$dovish <- df_voter2017$Q23_1 + df_voter2017$Q23_2 + df_voter2017$Q23_3 + df_voter2017$Q23_4new
+df_voter2017$dov_bin <- ifelse(df_voter2017$dovish > mean(df_voter2017$dovish, na.rm = TRUE), "dove", "hawk")
+
+head(df_voter2017)
+```
+
+```{r filename="R (tidyverse)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99") |> 
+    select(Q23_1, Q23_2, Q23_3, Q23_4) |> 
+    mutate(Q23_4new = max(Q23_4, na.rm = TRUE) - Q23_4 + min(Q23_4, na.rm = TRUE), 
+           dovish = Q23_1 + Q23_2 + Q23_3 + Q23_4new, 
+           dov_bin = if_else(dovish > mean(dovish, na.rm = TRUE), "dove", "hawk"))
+
+head(df_voter2017)
+```
+
+```{python filename="Python (pandas)"}
+import numpy as np
+
+df_voter2017 = pd.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", na_values="99")
+
+df_voter2017 = df_voter2017.loc[:,["Q23_1", "Q23_2", "Q23_3", "Q23_4"]]
+df_voter2017["Q23_4new"] = df_voter2017["Q23_4"].max() - df_voter2017["Q23_4"] + df_voter2017["Q23_4"].min()
+df_voter2017["dovish"] = df_voter2017["Q23_1"] + df_voter2017["Q23_2"] + df_voter2017["Q23_3"] + df_voter2017["Q23_4new"]
+df_voter2017["dov_bin"] = np.where(df_voter2017["dovish"] > df_voter2017["dovish"].mean(), "dove", "hawk")
+
+df_voter2017.head()
+```
+
+- `numpy`というパッケージを使います。
+
+```{python filename="Python (polars)"}
+df_voter2017 = (
+    pl.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", null_values="99")
+    .select(["Q23_1", "Q23_2", "Q23_3", "Q23_4"])
+    .with_columns(Q23_4new = pl.col("Q23_4").max() - pl.col("Q23_4") + pl.col("Q23_4").min())
+    .with_columns(dovish = pl.col("Q23_1") + pl.col("Q23_2") + pl.col("Q23_3") + pl.col("Q23_4new"))
+    .with_columns(dov_bin = pl.when(pl.col("dovish") > pl.col("dovish").mean()).then(pl.lit("dove")).otherwise(pl.lit("hawk")))
+)
+
+df_voter2017.head()
+```
+
+- 変数に文字列を代入するためには`pl.lit()`を使います。
+
+長くて分かりにくいですが、基本的な構造はいずれも同じです。Rの標準関数の場合は`ifelse()`、`tidyverse`の場合は[`if_else()`](https://dplyr.tidyverse.org/reference/if_else.html)、`pandas`では`numpy`の[`np.where()`](https://numpy.org/doc/stable/reference/generated/numpy.where.html)、`polars`では[`when().then().otherwise()`](https://docs.pola.rs/py-polars/html/reference/expressions/api/polars.when.html)を使います。
+
+まず最初に条件式を入力し（ハト派度合いが平均値以上）、それに合致する場合は最初の値`dove`を代入し、合致しない場合は次の値`hawk`を代入しています。
+
+#### 条件が複数の場合
+
+条件が複数ある場合、つまり条件1に当てはまる場合はA、条件2に当てはまる場合はB、条件3に当てはまる場合はC……というような変数を作る場合は、次のように書くのが便利です。例えば、`F2`という変数は年代を表していますが、10代・20代を若者、30代から50代を中高年、60代以上を高齢者とするような変数を作ってみます。
+
+`tidyverse`では[`case_when()`](https://dplyr.tidyverse.org/reference/case_when.html)を使います。`条件式 ~ 変数の値`とします。条件に合致しないものに対しては条件式を`TRUE`とします。
+
+```{r filename="R (tidyverse)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99") |> 
+    select(F2) |> 
+    mutate(generation = case_when(F2 <= 2 ~ "youth", 
+                                  3 <= F2 & F2 <= 5 ~ "middle", 
+                                  TRUE ~ "senior"))
+
+head(df_voter2017)
+```
+
+`polars`では`when().then()`を繰り返し、最後に`otherwise()`で条件に合致しないものの値を決めます。
+
+```{python filename="Python (polars)"}
+df_voter2017 = (
+    pl.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", null_values="99")
+    .select(["F2"])
+    .with_columns(generation = pl.when(pl.col("F2") <= 2)
+                               .then(pl.lit("youth"))
+                               .when((3 <= pl.col("F2")) & (pl.col("F2") <= 5))
+                               .then(pl.lit("middle"))
+                               .otherwise(pl.lit("senior")))
+)
+
+df_voter2017.head()
+```
+
+### ラグ変数
+
+### 日付
+
+## データの結合（変数の追加）
+
+### 左結合・右結合
+
+### 全結合・共通部分結合
+
+### countrycode
+
+## データの結合（観察の追加）
