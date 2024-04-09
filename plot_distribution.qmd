@@ -1,0 +1,260 @@
+# 分布のグラフ
+
+ここまで、変数の特徴を数値で表す要約について見てきました。しかし、そのような要約ではデータの特徴を正確に把握することは難しいことが分かりました。
+
+本章以降では、数値ではなくグラフによってデータの特徴を把握する**可視化** (visualization) について学びます。
+
+```{r filename="R"}
+#| include: false
+
+library(gapminder)
+
+df_gap <- gapminder
+```
+
+```{python filename="Python"}
+#| include: false
+
+import gapminder
+
+df_gap = gapminder.gapminder
+```
+
+## 使用するパッケージ
+
+### ggplot2
+
+Rでグラフを作る場合、デフォルトの関数を使うこともできますが、[`ggplot2`](https://ggplot2.tidyverse.org/)と呼ばれるパッケージを使うことも多いです。この資料では`ggplot2`を使う方法を紹介します。なお、`ggplot2`は`tigyverse`に含まれています。
+
+```{r filename="R"}
+library(tidyverse)
+```
+
+### matplotlib/seaborn
+
+Pythonの場合、[`matplotlib`](https://matplotlib.org/)というパッケージを使って作図することがデファクト・スタンダードとなっています。また、しばしば、[`seaborn`](https://seaborn.pydata.org/)というパッケージを併用して、より柔軟な作図を行うことがあります。
+
+```{python filename="Python"}
+from matplotlib import pyplot as plt
+```
+
+これまでと、やや書き方が異なっています。まず、`from`について説明します。Pythonのパッケージは入れ子構造になっています。つまり、`matplotlib`というパッケージの中に`pyplot`というパッケージが含まれています。すなわち、`matplotlib`の中の`pyplot`だけを呼び出すという意味です。なお、以下のコードは同じ意味です。
+
+```{python filename="Python"}
+import matplotlib.pyplot as plt
+```
+
+次に`as`について説明します。`as`以下がない場合、`pyplot`の中の関数などを使う際には`pyplot.`と書く必要がありますが、それは面倒な気もします。`as`で仮名を与えることで、`plt.`と短縮して書くことができます。別に`plt`である必要はないのですが、デファクト・スタンダードとして使われています。
+
+```{python filename="Python"}
+import seaborn as sns
+```
+
+### お手本を探す
+
+自分でこのようなグラフを作りたいと頭の中にあったとしても、それを作るためのコードを探すのは一苦労です。まずは、「お手本」を見つけて、そのコードを参考にするのがよいでしょう。例えば、以下のようなサイトは「お手本」を探す際に有用です。
+
+- [The R Graph Gallery](https://r-graph-gallery.com/)
+- [ggplot2 extensions - gallery](https://exts.ggplot2.tidyverse.org/gallery/)
+- [matplotlib - Examples](https://matplotlib.org/stable/gallery/index.html)
+- [seaborn - Example gallery](https://seaborn.pydata.org/examples/index.html)
+
+その上で分からないことがあれば、公式サイトのreferenceを参照したり、ググります。
+
+## ヒストグラム
+
+ある1つの変数がどのように散らばっているかを**分布** (distribution) と言いますが、これを可視化するものとして**ヒストグラム** (histogram) があります。
+
+まず、Rで`ggplot2`を使ってヒストグラムを作ります。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_histogram(aes(x = lifeExp))
+```
+
+1. まず、`ggplot()`の中に、作図に使用するデータフレームを入れます。そして、`+`をつけます。イメージとしては`ggplot()`でキャンバスを作り、そこに絵を`+`で重ねていきます。
+2. [`geom_histogram()`](https://ggplot2.tidyverse.org/reference/geom_histogram.html)でヒストグラムを作図します（`geom`はgeometoryの略です）。その中で`aes()`によってどの変数を作図に使うかを示します（`aes`はaestheticsの略です）。今回はヒストグラムの横軸（x軸）に平均寿命を使うことを支持しています。
+
+次に、Pythonで`matplotlib`を使ってヒストグラムを作ります。
+
+```{python filename="Python (matplotlib)"}
+plt.hist(x=df_gap["lifeExp"])
+```
+
+- [`plt.hist()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.hist.html)でヒストグラムを作図することを宣言し、その中に平均寿命の変数を入れます。
+
+`seaborn`の場合は[`histplot()`](https://seaborn.pydata.org/generated/seaborn.histplot.html)を使って書きます。少し`ggplot2`に近い書き方です。
+
+```{python filename="Python (seaborn)"}
+sns.histplot(df_gap, x="lifeExp")
+```
+
+### pandasのメソッド
+
+なお、`pandas`のデータフレームには作図属性[`plot()`](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html)があります。その中のメソッドでヒストグラムを作成できます。
+
+```{python filename="Python (pandas)"}
+df_gap.plot.hist(column="lifeExp")
+```
+
+### ビンの幅
+
+ところで、この3つのグラフを見ると、少しずつ異なることが分かります。そもそもヒストグラムとはどのようなグラフなのでしょうか。ヒストグラムでは、まず変数を等間隔のグループに分けていきます。そして、各グループ内で観察の数を数えて、それをy軸に取ります。そうすることで、どのような値を取る観察が多いのかを可視化します。
+
+ヒストグラムではグループを決める幅のことを**ビン**と呼びます。例えば、`ggplot2`で作図した時に出てくるメッセージを見ると、30個のビンを作っていることが分かります。つまり、平均寿命の値を30等分して、ビンを作っています。
+
+それでは、Pythonでもビンを30個にするとどうなるでしょうか。それぞれのパッケージのreferenceなどを読んでみましょう。
+
+```{python filename="Python (matplotlib)"}
+plt.hist(x=df_gap["lifeExp"], bins=30)
+```
+
+```{python filename="Python (seaborn)"}
+sns.histplot(df_gap, x="lifeExp", bins=30)
+```
+
+仕様のため、厳密には異なりますが、近いグラフが出力されました。
+
+## カーネル密度プロット
+
+ヒストグラムと同じ目的のグラフとして**カーネル密度** (kernel density) プロットというものがあります。直観的に言って、ヒストグラムを「なめらかに」したものです。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_density(aes(x = lifeExp))
+```
+
+```{python filename="Python (seaborn)"}
+sns.kdeplot(df_gap, x="lifeExp")
+```
+
+- `ggplot2`の[`geom_density()`](https://ggplot2.tidyverse.org/reference/geom_density.html)や`seaborn`の[`displot()`](https://seaborn.pydata.org/generated/seaborn.displot.html)を使います。
+- `seaborn`では[`kdeplot()`](https://seaborn.pydata.org/generated/seaborn.kdeplot.html#seaborn.kdeplot)を使います。
+
+`mtplotlib`では簡単にカーネル密度を作図することはできませんが、`pandas`のメソッドでは可能です。
+
+- あらかじめ`scipy`というパッケージをインストールしておきます。
+
+```{python filename="Python (pandas)"}
+df_gap["lifeExp"].plot.kde()
+```
+
+## 可視化と要約統計
+
+平均寿命のヒストグラムやカーネル密度プロットを見ていると、要約統計では不十分であることが分かるかと思います。例えば、45歳付近と75歳付近に2つのピークがありますが、平均値や中央値を使っても、このことは分かりません。
+
+ついでに、平均値と中央値の関係について言及しておきます。以下のグラフは各国の一人あたりGDPの分布のグラフに平均値（実線）と中央値（破線）を縦線で表したものです。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_histogram(aes(x = gdpPercap)) + 
+    geom_vline(aes(xintercept = mean(gdpPercap))) + 
+    geom_vline(aes(xintercept = median(gdpPercap)), linetype = "dashed")
+```
+
+- [`geom_vline()`](https://ggplot2.tidyverse.org/reference/geom_abline.html)で垂直な線を作図します。`aes()`内では`x`ではなく、`xintercept`である点に注意してください。
+- `linetype`で線の種類を指定します。
+
+```{python filename="Python (matplotlib)"}
+plt.hist(df_gap["gdpPercap"])
+plt.axvline(x = df_gap["gdpPercap"].mean(), color="black")
+plt.axvline(x = df_gap["gdpPercap"].median(), color="black", linestyle="dashed")
+```
+
+```{python filename="Python (seaborn)"}
+sns.histplot(df_gap, x="gdpPercap")
+plt.axvline(x = df_gap["gdpPercap"].mean(), color="black")
+plt.axvline(x = df_gap["gdpPercap"].median(), color="black", linestyle="dashed")
+```
+
+- `matplotlib`では[`plt.axvline()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.axvline.html)で垂線を描きます（`seaborn`も`matplotlib`の一種なので併用できます）。
+- `linestyle`で線の種類を指定します。
+
+ところで、一人あたりGDPのように極端に大きな（あるいは小さな）値をとる観察がある分布をロングテールと呼んだりします。また、「右（左）裾が長い」とか「右（左）に歪んだ」(right[left]-skewed) 分布と呼ぶこともあります。
+
+このように歪んだ分布の場合、平均値と中央値は一致しません。平均値は大きな（あるいは小さな）値に左右されるので、例えば億万長者がいれば、平均値は大きくなります。一方で、中央値はあくまで50%という位置を表しているので、億万長者がいくら稼いでいても中央値は変わりません。分布が歪んでいる場合（すなわち平均値と中央値が乖離している場合）、どちらに関心があるのかを明確にする必要があるでしょう。
+
+## 棒グラフ
+
+ヒストグラムもカーネル密度プロットも連続変数の分布を見るグラフでした。それでは、離散変数の分布も見てみたいと思います（それを分布と呼んでいいのかは分かりませんが）。その場合は**棒グラフ** (bar chart) を使います。
+
+試しに、大陸ごとの観察数を可視化したいと思います。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_bar(aes(x = continent))
+```
+
+```{python filename="Python (seaborn)"}
+sns.countplot(df_gap, x="continent")
+```
+
+- `ggplot2`の[`geom_bar()`](https://ggplot2.tidyverse.org/reference/geom_bar.html)や`seaborn`の[`countplot()`](https://seaborn.pydata.org/generated/seaborn.countplot.html)を使います。
+
+`matplotlib`では、まず集計してから、[`bar()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.bar.html)で作図します。
+
+```{python filename="Python (matplotlib)"}
+df_continent=df_gap.value_counts("continent")
+
+plt.bar(df_continent.index, df_continent.values)
+```
+
+ただ、集計したデータフレームのメソッドで作図もできます。
+
+```{python filename="Python (pandas)"}
+df_continent=df_gap.value_counts("continent")
+
+df_continent.plot.bar()
+```
+
+## グループごとの分布
+
+ところで、なぜ平均寿命の分布はフタコブラクダのようになっているのでしょうか。ここでは、地域ごとに異なるという仮説を検討したいと思います。そのために、地域ごとに平均寿命の分布を可視化します。
+
+一つのやり方は地域ごとに色を塗り分けるというものです。もう一つのやり方は地域ごとにグラフを作成するというものですが、これはいずれ扱います。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_histogram(aes(x = lifeExp, fill = continent))
+```
+
+- `fill`で色分けに使う変数を指定します。
+
+```{python filename="Python (seaborn)"}
+sns.histplot(df_gap, x="lifeExp", hue="continent")
+```
+
+- `hue`で色分けに使う変数を指定します。
+
+ここから分かることはアフリカの国が左側のコブを作っていて、ヨーロッパやアメリカの国が右側のコブを作っているということでしょう。
+
+ところで、上と下のグラフは少し異なります。上の`ggplot2`のグラフではそれぞれの大陸のデータが積み重なっています。一方で、下の`seaborn`のグラフではそれぞれの大陸のデータが別個に重ねて描かれています。
+
+`ggplot2`で下のように描くには次のようにします。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_histogram(aes(x = lifeExp, fill = continent), position = "identity", alpha = 0.5)
+```
+
+- `position = "identity"`によって、そのままの値で作図します。
+- 重ね塗りされるので、`alpha = 0.5`で少し透過させます。
+
+逆に、`seaborn`で上のように描くには次のようにします。
+
+```{python filename="Python (seaborn)"}
+sns.histplot(df_gap, x="lifeExp", hue="continent", multiple="stack")
+```
+
+- `stacked=True`あるいは`multiple="stack"`で積み重ねて作図します。
+
+あるいは、`ggplot2`でも`seaborn`でも次のようなグラフを描くこともできます。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_histogram(aes(x = lifeExp, fill = continent), position = "dodge")
+```
+
+```{python filename="Python (seaborn)"}
+sns.histplot(df_gap, x="lifeExp", hue="continent", multiple="dodge")
+```

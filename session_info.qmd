@@ -1,0 +1,12 @@
+## 動作環境 {.unnumbered}
+
+本書はRとPythonについて、それぞれ以下のような動作環境で作成しています。
+
+```{r filename="R"}
+sessionInfo()
+```
+
+```{python filename="Python"}
+import session_info
+session_info.show()
+```

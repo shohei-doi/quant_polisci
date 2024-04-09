@@ -1,0 +1,165 @@
+# 発展的なグラフ
+
+より発展敵がグラフの書き方を見つけ次第、追加していきます。
+
+```{r filename="R"}
+#| include: false
+
+library(tidyverse)
+theme_set(theme_light(base_family = "Noto Sans CJK JP"))
+library(gapminder)
+
+df_gap <- gapminder
+```
+
+```{python filename="Python"}
+#| include: false
+
+from matplotlib import pyplot as plt
+import seaborn as sns
+sns.set_theme(font="Noto Sans CJK JP")
+import gapminder
+
+df_gap = gapminder.gapminder
+```
+
+## グループごとの複数のグラフ
+
+グループごとに色分けをすることで、グループごとの分布や散布図を可視化する方法は確認してきました。しかし、それぞれ別のグラフとして作図するほうが見やすい場合もあるかもしれません。
+
+```{r filename="R"}
+ggplot(df_gap) + 
+    geom_histogram(aes(x = lifeExp)) + 
+    facet_wrap(~ continent) + 
+    labs(x = "平均寿命", y = "頻度")
+```
+
+- [`facet_wrap(~ ...)`](https://ggplot2.tidyverse.org/reference/facet_wrap.html)でグループの変数を指定して、グループごとにグラフを作ります。
+- ラベル名の変更は面倒なので、後ほど触れます。
+
+```{python filename="Python"}
+grid = sns.FacetGrid(df_gap, col="continent", col_wrap=3)
+p = grid.map(sns.histplot, "lifeExp")
+p.set(xlabel="平均寿命", ylabel="頻度");
+```
+
+- [`sns.FacetGrid()`](https://seaborn.pydata.org/tutorial/axis_grids.html)でグリッド`grid`を作成します。
+    - 使用するデータフレームとグループの変数を指定します。
+    - また、`col_warp=`で何枚のグラフごとに改行するかを決めます。
+- `map()`メソッドでグラフ`p`を作成します。
+    - 最初に、グラフを作る関数を指定します（`()`を付けないことに注意）。
+    - 次に、作図に使う変数名を指定します。
+- `set()`メソッドで軸ラベルを指定します。
+
+なお、`seaborn`では次のような関数を使うことで、簡便にグリッドを作成し、グラフを作図できます。
+
+:::{.callout-note}
+## `seaborn`の2通りの書き方
+
+`seaborn`では異なるグラフを同じ関数で作図していたところがあります。この図のように、いくつかの関数をまとめた関数があり、それを使っていました。
+
+![](https://seaborn.pydata.org/_images/function_overview_8_0.png)
+:::
+
+```{python filename="Python"}
+p = sns.displot(df_gap, x="lifeExp", col="continent", col_wrap=3)
+p.set(xlabel="平均寿命", ylabel="頻度");
+```
+
+## 異なる種類のグラフ
+
+そもそも異なる種類のグラフを一つにまとめたいこともあります。例えば、平均寿命、人口、一人あたりGDPの分布のグラフを一つにまとめます。
+
+`ggplot2`の場合、[`gridExtra`](https://cran.r-project.org/web/packages/gridExtra/vignettes/arrangeGrob.html)を使う方法と[`patchwork`](https://patchwork.data-imaginist.com/)を使う方法を紹介しますが、いずれの場合も複数のグラフを作成して、最後に一つにまとめます。
+
+```{r filename="R"}
+p1 <- ggplot(df_gap) + 
+    geom_histogram(aes(x = lifeExp)) + 
+    labs(x = "平均寿命", y = "頻度")
+
+p2 <- ggplot(df_gap) + 
+    geom_histogram(aes(x = pop)) + 
+    labs(x = "人口", y = "頻度")
+
+p3 <- ggplot(df_gap) + 
+    geom_histogram(aes(x = gdpPercap)) + 
+    labs(x = "一人あたりGDP", y = "頻度")
+
+library(gridExtra)
+
+grid.arrange(p1, p2, p3, ncol = 2) 
+```
+
+```{r filename="R"}
+library(patchwork)
+
+p1 + p2 + p3 + plot_layout(ncol = 2)
+```
+
+`patchwork`の方が、より簡単に柔軟なレイアウトができるように思います。
+
+```{r filename="R"}
+library(patchwork)
+
+p1 / (p2 + p3)
+```
+
+`seaborn`の場合は`maplotlib`の[`subplots()`](https://matplotlib.org/stable/gallery/subplots_axes_and_figures/subplots_demo.html)を使います。
+
+```{python filename="Python"}
+fig, axs = plt.subplots(2, 2)
+plt.subplots_adjust(wspace=0.3, hspace=0.4)
+
+sns.histplot(df_gap, x ="lifeExp", ax=axs[0,0])
+axs[0,0].set_xlabel("平均寿命")
+axs[0,0].set_ylabel("頻度")
+
+sns.histplot(df_gap, x ="pop", ax=axs[0,1])
+axs[0,1].set_xlabel("人口")
+axs[0,1].set_ylabel("頻度")
+
+sns.histplot(df_gap, x ="gdpPercap", ax=axs[1,0])
+axs[1,0].set_xlabel("一人あたりGDP")
+axs[1,0].set_ylabel("頻度")
+
+axs[1,1].remove()
+```
+
+- `plt.subplots(n, m)`でグリッドを作ります。
+    - `n`が行の数、`m`が列の数になります。つまり、`m`個ごとに改行し、`n`段のグリッドを作ります。
+- `axs[i,j]`は`i+1`行`j+1`列のグリッドになり、これを作図する関数の中で`ax=`と指定することで、そのグリッドにグラフを作成します。
+    - プログラミングでは`0`から始まるので`axs[0,0]`は1行1列目（左上）のグリッドを意味しています。
+- 右下のグリッド（2行2列目）はいらないので`remove()`メソッドで削除します。
+
+![サブプロットのイメージ](figures/subplots.drawio.png)
+
+## 対数目盛り
+
+ところで、以前、一人あたりGDPの分布が歪んでいるという話をしました。つまり、多くの観察では小さい値を取り、ごく一部の観察は異様に大きな値を取るような変数でした。
+
+この場合、**対数化**することで見やすいグラフになることがあります。
+
+```{r filename="R"}
+ggplot(df_gap) + 
+    geom_histogram(aes(x = gdpPercap)) + 
+    scale_x_log10()
+```
+
+```{python filename="Python"}
+sns.histplot(df_gap, x="gdpPercap", log_scale=True)
+```
+
+また、散布図で対数化することで直線的関係が見えることもあります（すなわち、実際の数において対数の関係にあったということ）。
+
+```{r filename="R"}
+ggplot(df_gap) + 
+    geom_point(aes(x = gdpPercap, y = lifeExp)) + 
+    scale_x_log10()
+```
+
+```{python filename="Python"}
+fig, ax = plt.subplots()
+
+sns.scatterplot(df_gap, x="gdpPercap", y="lifeExp")
+ax.set_xscale("log")
+```

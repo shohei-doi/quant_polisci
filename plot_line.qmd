@@ -1,0 +1,152 @@
+# 時系列のグラフ
+
+今回は2つの変数の間の相関の特殊ケースとして**時系列** (time-series) 変化を見るグラフを作りたいと思います。つまり、時間が経過するにつれて、ある変数がどのように変化するのかを可視化します。
+
+```{r filename="R"}
+#| include: false
+
+library(tidyverse)
+library(gapminder)
+
+df_gap <- gapminder
+```
+
+```{python filename="Python"}
+#| include: false
+
+from matplotlib import pyplot as plt
+import seaborn as sns
+import gapminder
+
+df_gap = gapminder.gapminder
+```
+
+## 折れ線グラフ
+
+### 単体の折れ線グラフ
+
+例えば、前章で見た棒グラフや箱ひげ図を使っても構いませんが、**折れ線グラフ** (line plot) を使うことが多いと思います。ここでは、各年の平均寿命の平均値の折れ線グラフを描きたいと思います。
+
+```{r filename="R (ggplot2)"}
+df_year_life <- df_gap |> 
+    group_by(year) |> 
+    summarise(mean_lifeExp = mean(lifeExp))
+
+ggplot(df_year_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp))
+```
+
+- [`geom_line()`](https://ggplot2.tidyverse.org/reference/geom_path.html)
+
+```{python filename="Python (matplotlib)"}
+df_year_life = df_gap.groupby("year", as_index=False)["lifeExp"].mean()
+
+plt.plot(df_year_life["year"], df_year_life["lifeExp"])
+```
+
+- [`plot()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.plot.html)
+
+```{python filename="Python (pandas)"}
+df_year_life.plot(x="year", y="lifeExp")
+```
+
+```{python filename="Python (seaborn)"}
+sns.lineplot(df_gap, x="year", y="lifeExp", errorbar=None)
+```
+
+- [`lineplot()`](https://seaborn.pydata.org/generated/seaborn.lineplot.html)
+- `errorbar=None`はおまじないです。
+
+### 複数の折れ線グラフ
+
+折れ線グラフは必ずしも一本である必要はありません。例えば全ての国の平均寿命の変化を折れ線グラフにすることも可能です。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_line(aes(x = year, y = lifeExp))
+```
+
+ただ、素朴にデータからそのまま折れ線グラフを作図すると、不可思議なグラフが出来上がります。なぜなら、R/Pythonは全てのデータを「一筆書き」で繋げようとしているからです。したがって、ここでは国ごとに折れ線グラフを描くように指示する必要があります。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_line(aes(x = year, y = lifeExp, group = country))
+```
+
+```{python filename="Python (seaborn)"}
+sns.lineplot(df_gap, x="year", y="lifeExp", units="country", estimator=None)
+```
+
+- それぞれ`group`や`units`によって、どの変数ごとに折れ線グラフを描くかを指定します。
+- `seaborn`の場合、おまじないとして`estimator=None`も追記します。
+- `matplotlib`での作図は面倒なので割愛します。
+
+全ての国の折れ線グラフを作図することで散らばりや、逸脱例などが分かります。
+
+### 線の太さ・透過度
+
+一方で、線が多いと見にくい気もします。この場合、線を少し細くしたり、透明にすると見やすくなるかもしれません。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_line(aes(x = year, y = lifeExp, group = country), linewidth = 0.25, alpha = 0.5)
+```
+
+- `linewidth`で線の太さ、`alpha`で透過度を指定します。
+- ところで、`aes()`の中と外のどっちで指定するんや、と疑問に思うかもしれません。データの変数を使う場合は`aes()`の中、特定の値を指定する場合は外になります。
+- `seaborn`でのやり方は分かりませんでした。
+
+### グループごとの折れ線グラフ
+
+これまでと同様に、折れ線グラフもグループごとに作図できます。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_line(aes(x = year, y = lifeExp, group = country, color = continent))
+```
+
+```{python filename="Python (seaborn)"}
+sns.lineplot(df_gap, x="year", y="lifeExp", units="country", hue="continent", estimator=None)
+```
+
+## ヒートマップ（再訪）
+
+前章で触れたヒートマップを使って時系列の変化を見ることもできます。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_tile(aes(x = year, y = country, fill = lifeExp))
+```
+
+## 二変数の折れ線グラフ
+
+これまで、ある1つの変数が時系列でどのように変化するかを可視化してきました。次は、ある2つの変数の時系列変化を可視化したいと思います。試しに、各年の平均寿命の平均値と一人あたりGDPの平均値の変動を見たいと思います。
+
+```{r filename="R (ggplot2)"}
+df_gap_sum <- df_gap |> 
+    group_by(year) |> 
+    summarise(mean_lifeExp = mean(lifeExp), 
+              mean_gdpPercap = mean(gdpPercap))
+
+ggplot(df_gap_sum) + 
+    geom_path(aes(x = mean_gdpPercap, y = mean_lifeExp))
+```
+
+- [`geom_path()`](https://ggplot2.tidyverse.org/reference/geom_path.html)によって、データの上から順に線を繋げます。
+
+```{python filename="Python (seaborn)"}
+df_gap_sum = df_gap.groupby("year")[["lifeExp", "gdpPercap"]].mean()
+
+sns.lineplot(df_gap_sum, x="gdpPercap", y="lifeExp", sort=False)
+```
+
+- `sort=False`とすることで、データの上から順に線を繋げます。
+
+ただし、このままでは時間の順序が分かりにくいので、年で色分けします。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap_sum) + 
+    geom_line(aes(x = mean_gdpPercap, y = mean_lifeExp, color = year))
+```
+
+- `seaborn`ではやり方が分からなかったです。

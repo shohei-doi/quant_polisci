@@ -1,0 +1,306 @@
+# プロっぽいグラフ
+
+ここまで一通り、政治学でよく見るグラフの作成方法を学んできました。しかし、残念ながら、このままでは論文に載せられるものではありません。
+
+この章では論文に載せても恥ずかしくないクオリティのグラフを作成し、保存する方法を学びます。
+
+```{r filename="R"}
+#| include: false
+
+library(tidyverse)
+library(gapminder)
+
+df_gap <- gapminder
+```
+
+```{python filename="Python"}
+#| include: false
+
+from matplotlib import pyplot as plt
+import seaborn as sns
+import gapminder
+
+df_gap = gapminder.gapminder
+```
+
+ベースとなるのは次のような大陸ごとの各年の平均寿命の平均値の折れ線グラフです。このグラフをもう少しキレイにしていきたいと思います。
+
+```{r filename="R"}
+df_year_cont_life <- df_gap |> 
+    group_by(year, continent) |> 
+    summarise(mean_lifeExp = mean(lifeExp))
+
+ggplot(df_year_cont_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp, color = continent))
+```
+
+```{python filename="Python"}
+df_year_cont_life = df_gap.groupby(["year", "continent"], as_index=False)["lifeExp"].mean()
+
+sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", errorbar=None)
+```
+
+## テーマ
+
+キレイな見た目のグラフを見るとテンションが上がる気がします。`ggplot2`ではいくつかの[テーマ](https://ggplot2.tidyverse.org/reference/ggtheme.html)があります。次のようにしてテーマを変更することができます。
+
+```{r filename="R"}
+theme_set(theme_light())
+
+ggplot(df_year_cont_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp, color = continent))
+```
+
+`matplotlib`でも[テーマ](https://matplotlib.org/stable/gallery/style_sheets/style_sheets_reference.html)を変更することができます。
+
+```{python filename="Python"}
+plt.style.use("ggplot")
+
+sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", errorbar=None)
+```
+
+`seaborn`でも[テーマ](https://seaborn.pydata.org/generated/seaborn.set_theme.html)を設定できます。
+
+```{python filename="Python"}
+sns.set_theme()
+
+sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", errorbar=None)
+```
+
+## 色
+
+テーマと同様に色もいい感じにしたいと思います。`ggplot2`では[`scale_color_...()`](https://ggplot2.tidyverse.org/reference/index.html#scales)（あるいは[`scale_fill_...()`](https://ggplot2.tidyverse.org/reference/index.html#scales)）を使って色を指定します。
+
+- [こちらのサイト](https://r-graph-gallery.com/ggplot2-color.html#oneCol)が直観的で分かりやすいと思います。
+
+```{r filename="R"}
+ggplot(df_year_cont_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp, color = continent)) + 
+    scale_color_brewer(palette = "Set2")
+```
+
+`seaborn`では[`color_palette()`](https://seaborn.pydata.org/generated/seaborn.color_palette.html)で色を指定します。
+
+```{python filename="Python"}
+sns.set_palette("Set2")
+sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", errorbar=None)
+```
+
+## 線や点のスタイル
+
+色が付いているグラフはキレイですが、色を正確に区別できない人には不親切でしょう。できる限り、color blind friendlyな、あるいはカラーユニバーサルデザインに準拠したカラーパレットを使用するか、色以外で区別するようにしましょう。
+
+例えば、折れ線グラフにおいて線の種類で区別する場合は、次のようにします。
+
+```{r filename="R"}
+ggplot(df_year_cont_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp, color = continent, linetype = continent)) + 
+    scale_color_brewer(palette = "Set2")
+```
+
+- [`linetype`](https://ggplot2.tidyverse.org/reference/aes_linetype_size_shape.html)を使います。
+
+```{python filename="Python"}
+sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", style="continent", errorbar=None)
+```
+
+- [`style`](https://seaborn.pydata.org/generated/seaborn.lineplot.html)を使います。
+
+点線は見にくいこともあるので、線を太くすると、より効果的かもしれません。
+
+```{r filename="R"}
+ggplot(df_year_cont_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp, color = continent, linetype = continent), linewidth = 1) + 
+    scale_color_brewer(palette = "Set2")
+```
+
+散布図の場合も同様に点の外見を変えることが重要です。
+
+## ラベル
+
+論文に載せるときは、x軸やy軸のラベル、凡例の内容などをキレイに整えたいと思います。まずは軸のラベルから取り掛かります。
+
+```{r filename="R"}
+ggplot(df_year_cont_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp, color = continent, linetype = continent), linewidth = 1) + 
+    scale_color_brewer(palette = "Set2") + 
+    labs(x = "年", y = "平均寿命の平均値")
+```
+
+- `labs()`の中でラベルを上書きします。
+
+`matplotlib/seaborn`の場合、まず`fig, ax = plt.subplots()`とおまじないを書きます。
+
+- `plt.subplots()`は2つのオブジェクトを作成するので、`fig, ax =`とします。
+
+```{python filename="Python"}
+fig, ax = plt.subplots()
+
+sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", errorbar=None)
+ax.set_xlabel("年")
+ax.set_ylabel("平均寿命の平均値")
+```
+
+- `ax.set_xlabel/ylabel(...)`で軸ラベルを調整します。
+
+ただし、そのままだと文字化けする場合があります。その場合はフォントを指定する必要があります。
+
+```{python filename="Python"}
+sns.set(font="Noto Sans CJK JP")
+
+fig, ax = plt.subplots()
+
+sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", errorbar=None)
+ax.set_xlabel("年")
+ax.set_ylabel("平均寿命の平均値")
+```
+
+- `sns.set(font="Noto Sans CJK JP")`とフォントを指定します。
+    - Macユーザーであれば`HiraKakuProN-W3`などでしょうか。
+
+なお、`ggplot2`でフォントを指定する場合は、次のようにします。
+
+```{r filename="R"}
+theme_set(theme_light(base_family = "Noto Sans CJK JP"))
+
+ggplot(df_year_cont_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp, color = continent, linetype = continent), linewidth = 1) + 
+    scale_color_brewer(palette = "Set2") + 
+    labs(x = "年", y = "平均寿命の平均値")
+```
+
+- `ggplot2`も`seaborn`も一度フォントを設定すると、全ての画像に反映されるので、スクリプトの冒頭で設定しておきましょう。
+
+## 凡例
+
+### 内容
+
+次に凡例 (legend) も日本語にしようと思います。
+
+```{r filename="R"}
+name_continent <- c("アフリカ", "アメリカ", "アジア", "ヨーロッパ", "オセアニア")
+
+ggplot(df_year_cont_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp, color = continent, linetype = continent), linewidth = 1) + 
+    scale_color_brewer(palette = "Set2", labels = name_continent) + 
+    scale_linetype(labels = name_continent) + 
+    labs(x = "年", y = "平均寿命の平均値", color = "大陸", linetype = "大陸")
+```
+
+- まず、日本語の大陸名を`c()`でまとめたものをオブジェクト`name_continent`として保存します。
+- `scale_color_brewer/scale_linetype()`内の`labels`で日本語の大陸名で上書きします。
+- `labs()`内の`color/linetype`で凡例のタイトルを変更します。
+
+`seaborn`の場合は少々ややこしいです。おまじないだと思って鵜呑みにしてください。
+
+```{python filename="Python"}
+name_continent = ["アフリカ", "アメリカ", "アジア", "ヨーロッパ", "オセアニア"]
+
+fig, ax = plt.subplots()
+
+ax = sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", errorbar=None)
+ax.set_xlabel("年")
+ax.set_ylabel("平均寿命の平均値")
+handles, labels = ax.get_legend_handles_labels()
+ax.legend(handles, name_continent, title="大陸")
+```
+
+- まず、日本語の大陸名を`[]`でまとめたものをオブジェクト`name_continent`として保存します。
+- `ax.get_legend_handles_labels()`で凡例の位置情報とラベルを`handles, labels`として保存します。
+- 新しい凡例を`ax.legend()`として作り直します。
+    - 1つ目に位置情報`handles`を入れます。
+    - 2つ目に凡例のラベル（ここでは`name_continent`）を入れます。
+    - `title`で凡例のタイトルを変更します。
+
+### 位置
+
+`matplotlib/seaborn`では凡例がグラフ上に現れるので、（それが嫌な場合は）変更します。
+
+```{python}
+fig, ax = plt.subplots()
+
+ax = sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", errorbar=None)
+ax.set_xlabel("年")
+ax.set_ylabel("平均寿命の平均値")
+handles, labels = ax.get_legend_handles_labels()
+ax.legend(handles, name_continent, title="大陸", bbox_to_anchor=(1, 0.5), loc="center left", frameon=False)
+```
+
+- `ax.legend()`内の`bbox_to_anchor`で大まかな位置を設定します。
+    - 左下が`(0,0)`、右上が`(1,1)`となります。
+- `loc`で凡例のどの部分が、上記で指定した座標に対応するかを決めます。
+    - 今回の例では、凡例の真ん中の左が`(1,0.5)`に一致するようになります。
+- `frameon=False`で凡例の枠を消します。
+
+凡例が見切れていますが、保存する際には見きれないようにするので安心してください。
+
+個人的には凡例は下につけるのが好みです。
+
+```{python}
+fig, ax = plt.subplots()
+
+ax = sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", errorbar=None)
+ax.set_xlabel("年")
+ax.set_ylabel("平均寿命の平均値")
+handles, labels = ax.get_legend_handles_labels()
+ax.legend(handles, name_continent, title="大陸", bbox_to_anchor=(0.5, -0.15), loc="upper center", ncols=3, frameon=False)
+```
+
+`ggplot2`の場合は`theme()`の中で指定します。
+
+```{r filename="R"}
+ggplot(df_year_cont_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp, color = continent, linetype = continent), linewidth = 1) + 
+    scale_color_brewer(palette = "Set2", labels = name_continent) + 
+    scale_linetype(labels = name_continent) + 
+    labs(x = "年", y = "平均寿命の平均値", color = "大陸", linetype = "大陸") + 
+    theme(legend.position = "bottom")
+```
+
+ここまでのように、色やスタイル、軸のラベルと凡例を整えれば、論文などで載せられる（最低限の）クオリティのグラフになると思っています。
+
+## 保存
+
+最後に、作成したグラフを保存したいと思います。まずは、画像の保存先として作業ディレクトリ内に`figures`フォルダを作成します。
+
+- これまでの復習も兼ねてグラフの作成に必要なコードを全て書いておきます。
+
+`ggplot2`の場合、`ggsave()`という関数で、**最後に作成したグラフ**を保存します。
+
+```{r filename="R"}
+theme_set(theme_light(base_family = "Noto Sans CJK JP"))
+
+name_continent <- c("アフリカ", "アメリカ", "アジア", "ヨーロッパ", "オセアニア")
+
+ggplot(df_year_cont_life) + 
+    geom_line(aes(x = year, y = mean_lifeExp, color = continent, linetype = continent), linewidth = 1) + 
+    scale_color_brewer(palette = "Set2", labels = name_continent) + 
+    scale_linetype(labels = name_continent) + 
+    labs(x = "年", y = "平均寿命の平均値", color = "大陸", linetype = "大陸") + 
+    theme(legend.position = "bottom")
+ggsave("figures/lifeExp_year_cont_R.png", width = 6, height = 4)
+```
+
+- `height/width`でサイズを指定します。
+
+`matplotlib/seaborn`では、`fig.savefig()`で画像を保存します。
+
+```{python filename="Python"}
+sns.set_theme(font="Noto Sans CJK JP")
+sns.set_palette("Set2")
+
+name_continent = ["アフリカ", "アメリカ", "アジア", "ヨーロッパ", "オセアニア"]
+
+fig, ax = plt.subplots(figsize=(6,4))
+
+ax = sns.lineplot(df_year_cont_life, x="year", y="lifeExp", hue="continent", errorbar=None)
+ax.set_xlabel("年")
+ax.set_ylabel("平均寿命の平均値")
+handles, labels = ax.get_legend_handles_labels()
+ax.legend(handles, name_continent, title="大陸", bbox_to_anchor=(0.5, -0.15), loc="upper center", ncols=3, frameon=False)
+plt.savefig("figures/lifeExp_year_cont_py.png", bbox_inches="tight")
+```
+
+- `p.fig.set_size_inches((w, h))`でサイズを調整します。
+    - `w`が幅、`h`が高さです。
+- `bbox_inches="tight"`で凡例などが見きれないように保存します。

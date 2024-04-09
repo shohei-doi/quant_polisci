@@ -1,0 +1,258 @@
+# 相関のグラフ
+
+記述統計で見たように、多くの場合、我々が関心を持つのは1つの変数の分布（だけ）というより、複数の変数の間の関係ではないかと思います。今回はそのような関係を可視化する方法を学びます。
+
+```{r filename="R"}
+#| include: false
+
+library(tidyverse)
+library(gapminder)
+
+df_gap <- gapminder
+```
+
+```{python filename="Python"}
+#| include: false
+
+from matplotlib import pyplot as plt
+import seaborn as sns
+import gapminder
+
+df_gap = gapminder.gapminder
+```
+
+## 散布図
+
+連続変数同士の関係を可視化するグラフを**散布図** (scatter plot) と呼びます。ヒストグラムなどを作図するときとほとんど同じようにできることが分かるかと思います。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_point(aes(x = gdpPercap, y = lifeExp))
+```
+
+- [`geom_point()`](https://ggplot2.tidyverse.org/reference/geom_point.html)で散布図を作成し、`aes()`の中でx軸とy軸に使う変数を指定します。
+
+```{python filename="Python (matplotlib)"}
+plt.scatter(x=df_gap["gdpPercap"], y=df_gap["lifeExp"])
+```
+
+```{python filename="Python (pandas)"}
+df_gap.plot.scatter(x="gdpPercap", y="lifeExp")
+```
+
+```{python filename="Python (seaborn)"}
+sns.scatterplot(df_gap, x="gdpPercap", y="lifeExp")
+```
+
+- `matplotlib`の[`sctter()`](https://matplotlib.org/stable/api/_as_gen/matplotlib.pyplot.scatter.html)や`seaborn`の[`scatterplot()`](https://seaborn.pydata.org/generated/seaborn.scatterplot.html)を使います。
+- 同じように、適当な関数を使って、x軸とy軸を指定します。
+
+一人あたりGDPと平均寿命の関係が直線的ではないことが分かります。
+
+### 周辺密度付き散布図
+
+散布図と各変数の分布（周辺密度 [marginal density]）を同時に表示することもできます。`seanborn`の[`jointplot()`](https://seaborn.pydata.org/generated/seaborn.jointplot.html)を使ってみます。
+
+```{python filename="Python (seaborn)"}
+sns.jointplot(df_gap, x="gdpPercap", y="lifeExp")
+```
+
+`ggplot2`の場合は、拡張パッケージである[`ggExtra`](https://www.google.com/url?sa=t&rct=j&q=&esrc=s&source=web&cd=&ved=2ahUKEwjywsS7soWFAxWKia8BHTsMB0sQFnoECAYQAQ&url=https%3A%2F%2Fcran.r-project.org%2Fweb%2Fpackages%2FggExtra%2Fvignettes%2FggExtra.html&usg=AOvVaw31beU5HXKbGjds24O-Emyy&opi=89978449)を使います。
+
+```{r filename="R (ggplot2)"}
+library(ggExtra)
+
+p <- ggplot(df_gap) + 
+    geom_point(aes(x = gdpPercap, y = lifeExp))
+ggMarginal(p)
+```
+
+- 一度、画像をオブジェクトとして保存して、`ggMarginal()`に入れます。
+
+### グループごとの散布図
+
+分布のときと同様に、散布図でもグループごとに色分けすることができます。以下に見るグラフも同様です。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_point(aes(x = gdpPercap, y = lifeExp, color = continent))
+```
+
+```{python filename="Python (seaborn)"}
+sns.scatterplot(df_gap, x="gdpPercap", y="lifeExp", hue="continent")
+```
+
+## 同時分布
+
+カーネル密度プロットを二次元に拡張したグラフを作成することもできます。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_density_2d(aes(x = gdpPercap, y = lifeExp))
+```
+
+```{python filename="Python (seaborn)"}
+sns.kdeplot(df_gap, x="gdpPercap", y="lifeExp")
+```
+
+- `seaborn`だとなんかうまくいかないです。
+
+## ジッター
+
+連続変数と離散変数の関係を見るとき、散布図を作成するとよく分からないグラフができます。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_point(aes(x = continent, y = lifeExp))
+```
+
+- この例では、同じ大陸にある国の平均寿命は同じ直線上に描かれるので、どのような値が多いのかは分かりにくいです。
+
+このような場合、ジッター（ゆらぎ）を与えることで見えやすくなります。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_jitter(aes(x = continent, y = lifeExp))
+```
+
+```{python filename="Python (seaborn)"}
+sns.stripplot(df_gap, x="continent", y="lifeExp")
+```
+
+- [`geom_jitter()`](https://ggplot2.tidyverse.org/reference/geom_jitter.html)や[`stripplot()`](https://seaborn.pydata.org/generated/seaborn.stripplot.html)を使います。
+
+## 複数の変数の分布と散布図
+
+ここまで一変数の分布や二変数間の相関を可視化してきました。論文にする際には重要な変数のグラフを作成すればよいですが、データ分析を始める段階でひとまずデータの特徴を把握したい場合には、いちいちそれぞれのグラフを作るのは面倒です。
+
+ここではデータに含まれる変数の分布や相関をひと目で可視化したいと思います。`seaborn`の[`pairplot()`](https://seaborn.pydata.org/generated/seaborn.pairplot.html)を使います。
+
+```{python filename="Python (seaborn)"}
+sns.pairplot(df_gap.loc[:, ["lifeExp", "pop", "gdpPercap"]]);
+```
+
+`ggplot2`では[`GGally`](https://ggobi.github.io/ggally/index.html)というパッケージの`ggpairs()`を使います。
+
+```{r filename="R (ggplot2)"}
+library(GGally)
+
+df_gap |> 
+    select(lifeExp, pop, gdpPercap) |> 
+    ggpairs()
+```
+
+## 棒グラフ
+
+あるいはグループごとに平均値（や中央値）を計算し、その棒グラフを描くということも、よくやられます。
+
+```{r filename="R (ggplot2)"}
+df_cont_life <- df_gap |> 
+    group_by(continent) |> 
+    summarise(mean_lifeExp = mean(lifeExp))
+
+ggplot(df_cont_life) + 
+    geom_col(aes(x = continent, y = mean_lifeExp))
+```
+
+```{python filename="Python (matplotlib)"}
+df_cont_life = df_gap.groupby("continent", as_index=False)["lifeExp"].mean()
+
+plt.bar(x=df_cont_life["continent"], height=df_cont_life["lifeExp"])
+```
+
+```{python filename="Python (pandas)"}
+df_cont_life.plot.bar(x="continent", y="lifeExp")
+```
+
+- まずはグループごとの平均寿命の平均値を求めたデータフレームを作成し、それに基づいてグラフを描きます。
+
+`seaborn`の場合は[`barplot`](https://seaborn.pydata.org/generated/seaborn.barplot.html#seaborn.barplot)が自動で集計してくれます。
+
+```{python filename="Python (seaborn)"}
+sns.barplot(df_gap, x="continent", y="lifeExp", errorbar=None)
+```
+
+- エラーバー（後述）は表示しないように設定しておきます。
+
+## 箱ひげ図
+
+平均値の棒グラフはよく使われますが、平均値しか分からないという欠点があります。そこで、**箱ひげ図** (boxplot) を使うことで平均値以外の情報も可視化できます。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_boxplot(aes(x = continent, y = lifeExp))
+```
+
+```{python filename="Python (matplotlib)"}
+df_gap.boxplot(column="lifeExp", by="continent")
+```
+
+```{python filename="Python (pandas)"}
+df_gap.plot.box(column="lifeExp", by="continent")
+```
+
+```{python filename="Python (seaborn)"}
+sns.boxplot(df_gap, x="continent", y="lifeExp")
+```
+
+- 箱ひげ図の定義はパッケージ等によって異なるので、確認してください。例えば、wikipediaによると次のような定義となっています。
+
+![箱ひげ図の定義（一例）](https://upload.wikimedia.org/wikipedia/commons/1/1a/Boxplot_vs_PDF.svg)
+
+- [`geom_boxplot()`](https://ggplot2.tidyverse.org/reference/geom_boxplot.html)や[`boxplot()`](https://seaborn.pydata.org/generated/seaborn.boxplot.html)を使います。
+
+例えば、ヨーロッパとオセアニアは平均値は近いですが、散らばり具合は異なることが分かります。
+
+## バイオリンプロット
+
+グループごとにカーネル密度プロットを描くグラフを**バイオリンプロット**と呼びます。
+
+```{r filename="R (ggplot2)"}
+ggplot(df_gap) + 
+    geom_violin(aes(x = continent, y = lifeExp))
+```
+
+```{python filename="Python (seaborn)"}
+sns.violinplot(df_gap, x="continent", y="lifeExp")
+```
+
+- [`geom_violinplot()`](https://ggplot2.tidyverse.org/reference/geom_violin.html)や[`violinplot()`](https://seaborn.pydata.org/generated/seaborn.violinplot.html)を使います。
+
+## ヒートマップ
+
+離散変数同士の関係を見る場合は**ヒートマップ**を使います。gapminderには離散変数は大陸しか含まれていないので、無駄ではありますが、平均寿命を離散変数にしたいと思います。具体的には、平均寿命を四捨五入して10年ごとの変数を作成します（例えば58歳なら60歳）。
+
+### 変数の追加
+
+データフレームに変数を追加する場合は、新しい変数名を使って列を指定して、変数の内容を代入します。
+
+```{r filename="R (ggplot2)"}
+df_gap[,"lifeExp10"] <- round(df_gap[,"lifeExp"], digits=-1)
+
+head(df_gap)
+```
+
+```{python filename="Python"}
+df_gap["lifeExp10"] = df_gap["lifeExp"].round(decimals=-1)
+
+df_gap.head()
+```
+
+- `round()`という関数・メソッドで四捨五入をします。`digits/decimals`では小数点第何位で四捨五入をするのかを決めています。例えば、`digits/decimals=1`であれば、結果が小数点第1位になるように四捨五入をします。すなわち、小数点第2位に基づいて四捨五入をします。したがって、`digits/decimals=-1`であれば小数点第-1位（そんなものはありませんが）、すなわち1の位で四捨五入をします。
+
+### ヒートマップの作図
+
+それでは、ヒートマップを作図します。そのために、大陸ごとに10歳ごとの平均寿命が同じ国の数を計算します。
+
+```{r filename="R (ggplot2)"}
+df_cont_life10 <- df_gap |> 
+    count(continent, lifeExp10)
+
+ggplot(df_cont_life10) + 
+    geom_tile(aes(x = continent, y = lifeExp10, fill = n))
+```
+
+- `count()`によって変数の値（ここでは大陸及び四捨五入済み平均寿命）ごとに観察数を計算します。
+- [`geom_tile()`](https://ggplot2.tidyverse.org/reference/geom_tile.html)でヒートマップを作成しますが、`fill`によってどの変数によって色を塗るか決めます。ここでは観察数である`n`（`count()`によって作成された変数）を指定します。
+
+Pythonでヒートマップを作図するには、ひと手間かかります。いずれ改めて触れたいと思います。

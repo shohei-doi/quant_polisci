@@ -1,0 +1,229 @@
+# エンコーディングの問題
+
+エンコーディングの問題とは、いわゆる「文字化け」のことです。
+
+## 文字化けが起こる理由
+
+簡単に言うと、エンコーディングとは人間が理解可能な自然言語から機械が理解可能な記号への「翻訳方法」です。エンコードとデコードで異なる方式を用いると、適切な文字に翻訳できず、文字化けが起こります。
+
+エンコーディングの方法は以下のように、使用しているOSによって変わります。
+
+- Mac, Linux: UTF-8
+- Windows: Shift-JISやCP932
+
+つまり、Macなどで作成され、すなわちUTF-8でエンコードしたデータをWindowsでShift-JISなどでデコードしようとすると文字化けが起こります（その逆もしかり）。
+
+:::{.callout-important}
+## WindowsでもUTF-8となる場合
+
+Windows 10以上でR 4.2以上を使っている場合は[UTF-8がデフォルトのエンコーディング](https://developer.r-project.org/Blog/public/2021/12/07/upcoming-changes-in-r-4.2-on-windows/index.html)になります。この場合は、以下の説明のRに関する箇所においてはMax, Linuxとして読んでください。
+:::
+
+したがって、対処法は次の通りになります。
+
+- Mac, Linuxで文字化けが起こる$\leadsto$データはShift-JISなどでエンコードされているので、そのように指定する。
+- Windowsで文字化けが起こる$\leadsto$データはUTF-8などでエンコードされているので、そのように指定する。
+
+なお、UTF-8が様々な言語に対応しているものなので、データなどを保存する際はこちらを使うほうがベターです。
+
+## ロケールの確認
+
+**ロケール**とは、ざっくり言うと、PCにおける言語や国・地域の設定のことです。ロケールを確認すると、デフォルトのエンコーディングも分かります。
+
+```{r filename="R"}
+Sys.getlocale()
+```
+
+```{python filename="Python"}
+import sys
+
+sys.getdefaultencoding()
+```
+
+僕はLinuxを使っているので、UTF-8がデフォルトのエンコーディングです。
+
+## データの文字化け
+
+[UTF-8でエンコーディングされたデータ](./data/data_utf8.csv)と[Shift-JISでエンコーディングされたデータ](./data/data_sjis.csv)をダウンロードします。
+
+### 問題の確認
+
+まず、UTF-8のデータを読み込みます。MacやLinuxの場合は問題なく読み込めるはずです。一方で、Windowsの場合はエラーが表示されるはずです。
+
+```{r filename="R (base)"}
+read.csv("data/data_utf8.csv")
+```
+
+```{r filename="R (tidyverse)"}
+#| message: false
+
+library(tidyverse)
+
+read_csv("data/data_utf8.csv")
+```
+
+```{python filename="Python"}
+import pandas as pd
+
+pd.read_csv('data/data_utf8.csv')
+```
+
+逆に、Max, LinuxではShift-JISのデータは読み込めず、Windowsでは読み込めるはずです。
+
+```{r filename="R (base)"}
+#| error: true
+
+read.csv("data/data_sjis.csv")
+```
+
+```{r filename="R (tidyverse)"}
+#| error: true
+
+read_csv("data/data_sjis.csv")
+```
+
+```{python filename="Python"}
+#| error: true
+
+pd.read_csv('data/data_sjis.csv')
+```
+
+### 対処法
+
+データを読み込む時にエンコーディング方法を明示することで解決できます。
+
+```{r filename="R (base)"}
+read.csv("data/data_sjis.csv", fileEncoding = "Shift-JIS")
+```
+
+```{r filename="R (tidyverse)"}
+#| message: false
+
+read_csv("data/data_sjis.csv", locale = locale(encoding = "Shift-JIS"))
+```
+
+```{python filename="Python"}
+pd.read_csv('data/data_sjis.csv', encoding='Shift-JIS')
+```
+
+"Shift-JIS"を"UTF-8"に変更すれば、UTF-8のデータを読み込むことができます。
+
+```{r filename="R (base)"}
+read.csv("data/data_utf8.csv", fileEncoding = "UTF-8")
+```
+
+```{r filename="R (tidyverse)"}
+#| message: false
+
+read_csv("data/data_utf8.csv", locale = locale(encoding = "UTF-8"))
+```
+
+```{python filename="Python"}
+pd.read_csv('data/data_utf8.csv', encoding='UTF-8')
+```
+
+:::{.callout-note}
+# 表計算ソフトで見る場合
+
+例えば、UTF-8の`.csv`ファイルをWindowsのエクセルで開くと文字化けが起こります。[Libre Office](https://ja.libreoffice.org/)という無料のオフィスソフトではエンコーディングを指定してファイルを開くことができるので、こちらで開くことを勧めます。
+:::
+
+## スクリプトの文字化け
+
+[UTF-8でエンコーディングされたスクリプト](./data/script_utf8.R)と[Shift-JISでエンコーディングされたスクリプト](./data/script_sjis.R)をダウンロードします。
+
+### 問題の確認
+
+Mac. LinuxでUTF-8のスクリプトを開くと正しく表示されますが、Windowsでは表示されないはずです。
+
+同様に、Shift-JISの方はWindowsで正しく表示され、Mac, Linuxでは文字化けが起こるはずです。
+
+- Rスクリプトですが、原理はPythonスクリプトと同様です。VIsual Studio Codeなどで開いてみてください。
+
+### 対処法
+
+RStudioの場合、メニューの中の`File`に`Reopen with Encoding...`というのがあるので、`UTF-8`を選択します。さらに`Set as default encoding for source files`にチェックを入れることで今後は`UTF-8`で表示されます。
+
+今後、文字化けが起こる場合はShift-JISでエンコーディングしたファイルのはずなので、`Reopen with Encoding...`で`Shift-JIS`を選択してファイルを開きます。
+
+Visual Studio Codeの場合、右下にエンコーディングが書かれているので、それをクリックし、`Reopen with Encoding`をクリックし、適当なエンコーディングを選択します。
+
+## エンコーディングの確認
+
+ファイルのエンコーディングを確認することが可能です。どれくらい信頼していいのかは分かりません。
+
+```{r filename="R (tidyverse)"}
+#| message: false
+
+guess_encoding("data/data_sjis.csv")
+```
+
+```{python filename="Python"}
+import chardet
+
+with open('data/data_sjis.csv', 'rb') as f:
+  c = f.read()
+  chardet.detect(c)
+```
+
+## 文字化けしない保存
+
+### データの保存
+
+データを保存する際は（そもそもマルチバイト文字を避けるべきですが）UTF-8で保存するほうが良いでしょう。
+
+```{r filename="R (base)"}
+#| eval: false
+
+write.csv(..., "...", fileEncoding = "UTF-8")
+```
+
+```{r filename="R (tidyverse)"}
+#| eval: false
+
+write_excel_csv("...")
+```
+
+- `tidyverse`では`write_excel_csv()`を使うことで、エクセルでも文字化けしないようにできます。
+
+```{python filename="Python"}
+#| eval: false
+
+....to_csv('...', encoding='UTF-8_sig')
+```
+
+- `pandas`では`encoding='UTF-8_sig'`とすることで、エクセルでも文字化けしないようにできます。
+
+### スクリプトの保存
+
+RStudioの場合、`File`の中の`Save with Encoding...`で`UTF-8`を選択してください。ここでもUTF-8がデフォルトになるようにチェックを入れておきましょう。
+
+### 画像の保存
+
+Macで画像を保存する際に、日本語が文字化けするらしいです。対処法は以下の通りです。
+
+- フォント名`HiraKakuProN-W3`は例です。
+
+```{r filename="R (base)"}
+#| eval: false
+
+par(family = "HiraKakuProN-W3")
+```
+
+```{r filename="R (tidyverse)"}
+#| eval: false
+
+theme_set(theme_grey(base_family = "HiraKakuProN-W3"))
+```
+
+```{python filename="Python (matplotlib)"}
+#| eval: false
+
+plt.rcParams['font.family'] = 'HiraKakuProN-W3'
+```
+
+```{python filename="Python (seaborn)"}
+#| eval: false
+
+sns.set(font='HiraKakuProN-W3')
+```
