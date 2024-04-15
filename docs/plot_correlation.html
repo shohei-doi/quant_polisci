@@ -102,6 +102,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "サーチ"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet">
@@ -441,7 +450,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>sns.jointplot(df_gap, x<span class="op">=</span><span class="st">"gdpPercap"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x7fdf4499a210&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x7fd036af0590&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -632,16 +641,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (ggplot2)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(GGally)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a>df_gap <span class="sc">|&gt;</span> </span>
+<span id="cb16-4"><a href="#cb16-4"></a>    <span class="fu">select</span>(lifeExp, pop, gdpPercap) <span class="sc">|&gt;</span> </span>
+<span id="cb16-5"><a href="#cb16-5"></a>    <span class="fu">ggpairs</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Registered S3 method overwritten by 'GGally':
-  method from   
-  +.gg   ggplot2</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>df_gap <span class="sc">|&gt;</span> </span>
-<span id="cb18-2"><a href="#cb18-2"></a>    <span class="fu">select</span>(lifeExp, pop, gdpPercap) <span class="sc">|&gt;</span> </span>
-<span id="cb18-3"><a href="#cb18-3"></a>    <span class="fu">ggpairs</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -659,12 +664,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (ggplot2)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a>df_cont_life <span class="ot">&lt;-</span> df_gap <span class="sc">|&gt;</span> </span>
-<span id="cb19-2"><a href="#cb19-2"></a>    <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span> </span>
-<span id="cb19-3"><a href="#cb19-3"></a>    <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
-<span id="cb19-4"><a href="#cb19-4"></a></span>
-<span id="cb19-5"><a href="#cb19-5"></a><span class="fu">ggplot</span>(df_cont_life) <span class="sc">+</span> </span>
-<span id="cb19-6"><a href="#cb19-6"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> mean_lifeExp))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>df_cont_life <span class="ot">&lt;-</span> df_gap <span class="sc">|&gt;</span> </span>
+<span id="cb17-2"><a href="#cb17-2"></a>    <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span> </span>
+<span id="cb17-3"><a href="#cb17-3"></a>    <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
+<span id="cb17-4"><a href="#cb17-4"></a></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="fu">ggplot</span>(df_cont_life) <span class="sc">+</span> </span>
+<span id="cb17-6"><a href="#cb17-6"></a>    <span class="fu">geom_col</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> mean_lifeExp))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -679,9 +684,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (matplotlib)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>df_cont_life <span class="op">=</span> df_gap.groupby(<span class="st">"continent"</span>, as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">"lifeExp"</span>].mean()</span>
-<span id="cb20-2"><a href="#cb20-2"></a></span>
-<span id="cb20-3"><a href="#cb20-3"></a>plt.bar(x<span class="op">=</span>df_cont_life[<span class="st">"continent"</span>], height<span class="op">=</span>df_cont_life[<span class="st">"lifeExp"</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>df_cont_life <span class="op">=</span> df_gap.groupby(<span class="st">"continent"</span>, as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">"lifeExp"</span>].mean()</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>plt.bar(x<span class="op">=</span>df_cont_life[<span class="st">"continent"</span>], height<span class="op">=</span>df_cont_life[<span class="st">"lifeExp"</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -696,7 +701,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>df_cont_life.plot.bar(x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>df_cont_life.plot.bar(x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -715,7 +720,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (seaborn)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>sns.barplot(df_gap, x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>sns.barplot(df_gap, x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -737,8 +742,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (ggplot2)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggplot</span>(df_gap) <span class="sc">+</span> </span>
-<span id="cb23-2"><a href="#cb23-2"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(df_gap) <span class="sc">+</span> </span>
+<span id="cb21-2"><a href="#cb21-2"></a>    <span class="fu">geom_boxplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -753,7 +758,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (matplotlib)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>df_gap.boxplot(column<span class="op">=</span><span class="st">"lifeExp"</span>, by<span class="op">=</span><span class="st">"continent"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>df_gap.boxplot(column<span class="op">=</span><span class="st">"lifeExp"</span>, by<span class="op">=</span><span class="st">"continent"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -768,7 +773,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df_gap.plot.box(column<span class="op">=</span><span class="st">"lifeExp"</span>, by<span class="op">=</span><span class="st">"continent"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a>df_gap.plot.box(column<span class="op">=</span><span class="st">"lifeExp"</span>, by<span class="op">=</span><span class="st">"continent"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>lifeExp    Axes(0.125,0.11;0.775x0.77)
@@ -787,7 +792,7 @@ dtype: object</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python (seaborn)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>sns.boxplot(df_gap, x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>sns.boxplot(df_gap, x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -819,8 +824,8 @@ dtype: object</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R (ggplot2)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a><span class="fu">ggplot</span>(df_gap) <span class="sc">+</span> </span>
-<span id="cb28-2"><a href="#cb28-2"></a>    <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">ggplot</span>(df_gap) <span class="sc">+</span> </span>
+<span id="cb26-2"><a href="#cb26-2"></a>    <span class="fu">geom_violin</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -835,7 +840,7 @@ dtype: object</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python (seaborn)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>sns.violinplot(df_gap, x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a>sns.violinplot(df_gap, x<span class="op">=</span><span class="st">"continent"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -860,9 +865,9 @@ dtype: object</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R (ggplot2)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1"></a>df_gap[,<span class="st">"lifeExp10"</span>] <span class="ot">&lt;-</span> <span class="fu">round</span>(df_gap[,<span class="st">"lifeExp"</span>], <span class="at">digits=</span><span class="sc">-</span><span class="dv">1</span>)</span>
-<span id="cb30-2"><a href="#cb30-2"></a></span>
-<span id="cb30-3"><a href="#cb30-3"></a><span class="fu">head</span>(df_gap)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>df_gap[,<span class="st">"lifeExp10"</span>] <span class="ot">&lt;-</span> <span class="fu">round</span>(df_gap[,<span class="st">"lifeExp"</span>], <span class="at">digits=</span><span class="sc">-</span><span class="dv">1</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="fu">head</span>(df_gap)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 7
@@ -881,9 +886,9 @@ dtype: object</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>df_gap[<span class="st">"lifeExp10"</span>] <span class="op">=</span> df_gap[<span class="st">"lifeExp"</span>].<span class="bu">round</span>(decimals<span class="op">=-</span><span class="dv">1</span>)</span>
-<span id="cb32-2"><a href="#cb32-2"></a></span>
-<span id="cb32-3"><a href="#cb32-3"></a>df_gap.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df_gap[<span class="st">"lifeExp10"</span>] <span class="op">=</span> df_gap[<span class="st">"lifeExp"</span>].<span class="bu">round</span>(decimals<span class="op">=-</span><span class="dv">1</span>)</span>
+<span id="cb30-2"><a href="#cb30-2"></a></span>
+<span id="cb30-3"><a href="#cb30-3"></a>df_gap.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>       country continent  year  lifeExp       pop   gdpPercap  lifeExp10
@@ -906,11 +911,11 @@ dtype: object</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R (ggplot2)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a>df_cont_life10 <span class="ot">&lt;-</span> df_gap <span class="sc">|&gt;</span> </span>
-<span id="cb34-2"><a href="#cb34-2"></a>    <span class="fu">count</span>(continent, lifeExp10)</span>
-<span id="cb34-3"><a href="#cb34-3"></a></span>
-<span id="cb34-4"><a href="#cb34-4"></a><span class="fu">ggplot</span>(df_cont_life10) <span class="sc">+</span> </span>
-<span id="cb34-5"><a href="#cb34-5"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp10, <span class="at">fill =</span> n))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a>df_cont_life10 <span class="ot">&lt;-</span> df_gap <span class="sc">|&gt;</span> </span>
+<span id="cb32-2"><a href="#cb32-2"></a>    <span class="fu">count</span>(continent, lifeExp10)</span>
+<span id="cb32-3"><a href="#cb32-3"></a></span>
+<span id="cb32-4"><a href="#cb32-4"></a><span class="fu">ggplot</span>(df_cont_life10) <span class="sc">+</span> </span>
+<span id="cb32-5"><a href="#cb32-5"></a>    <span class="fu">geom_tile</span>(<span class="fu">aes</span>(<span class="at">x =</span> continent, <span class="at">y =</span> lifeExp10, <span class="at">fill =</span> n))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>

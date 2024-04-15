@@ -102,6 +102,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "サーチ"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet">
@@ -464,22 +473,11 @@ tidyverse
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a>df_gap <span class="sc">|&gt;</span> </span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="fu">select</span>(lifeExp, gdpPercap)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df_gap <span class="sc">|&gt;</span> </span>
-<span id="cb5-2"><a href="#cb5-2"></a>    <span class="fu">select</span>(lifeExp, gdpPercap)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 1,704 × 2
    lifeExp gdpPercap
@@ -506,7 +504,7 @@ tidyverse
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df_gap.loc[:,[<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df_gap.loc[:,[<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>      lifeExp   gdpPercap
@@ -535,7 +533,7 @@ tidyverse
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>df_gap[[<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df_gap[[<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>]]</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -547,7 +545,7 @@ tidyverse
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">cov</span>(df_gap[,<span class="fu">c</span>(<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>)])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">cov</span>(df_gap[,<span class="fu">c</span>(<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>)])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             lifeExp  gdpPercap
@@ -560,7 +558,7 @@ gdpPercap 74323.1957 97169410.1</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df_gap.loc[:,[<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>]].cov()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>df_gap.loc[:,[<span class="st">"lifeExp"</span>, <span class="st">"gdpPercap"</span>]].cov()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                lifeExp     gdpPercap
@@ -578,7 +576,7 @@ gdpPercap  74323.195748  9.716941e+07</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">cov</span>(df_gap[,<span class="fu">c</span>(<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>)])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">cov</span>(df_gap[,<span class="fu">c</span>(<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>)])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>               lifeExp           pop     gdpPercap
@@ -599,7 +597,7 @@ gdpPercap 7.432320e+04 -2.678859e+10  9.716941e+07</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">cor</span>(df_gap[,<span class="fu">c</span>(<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>)])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">cor</span>(df_gap[,<span class="fu">c</span>(<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>)])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             lifeExp         pop   gdpPercap
@@ -613,7 +611,7 @@ gdpPercap 0.58370622 -0.02559958  1.00000000</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>df_gap.loc[:,[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].corr()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>df_gap.loc[:,[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].corr()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            lifeExp       pop  gdpPercap
@@ -668,11 +666,11 @@ gdpPercap  0.583706 -0.025600   1.000000</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a>df_gap <span class="sc">|&gt;</span> </span>
-<span id="cb20-2"><a href="#cb20-2"></a>    <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span> </span>
-<span id="cb20-3"><a href="#cb20-3"></a>    <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp), </span>
-<span id="cb20-4"><a href="#cb20-4"></a>              <span class="at">mean_pop =</span> <span class="fu">mean</span>(pop), </span>
-<span id="cb20-5"><a href="#cb20-5"></a>              <span class="at">mean_gdpPercap =</span> <span class="fu">mean</span>(gdpPercap))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a>df_gap <span class="sc">|&gt;</span> </span>
+<span id="cb18-2"><a href="#cb18-2"></a>    <span class="fu">group_by</span>(continent) <span class="sc">|&gt;</span> </span>
+<span id="cb18-3"><a href="#cb18-3"></a>    <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp), </span>
+<span id="cb18-4"><a href="#cb18-4"></a>              <span class="at">mean_pop =</span> <span class="fu">mean</span>(pop), </span>
+<span id="cb18-5"><a href="#cb18-5"></a>              <span class="at">mean_gdpPercap =</span> <span class="fu">mean</span>(gdpPercap))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 5 × 4
@@ -698,7 +696,7 @@ gdpPercap  0.583706 -0.025600   1.000000</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>df_gap.groupby(<span class="st">"continent"</span>)[[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].mean()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>df_gap.groupby(<span class="st">"continent"</span>)[[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].mean()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             lifeExp           pop     gdpPercap
@@ -725,7 +723,7 @@ Oceania    74.326208  8.874672e+06  18621.609223</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>df_gap.groupby(<span class="st">"continent"</span>, as_index<span class="op">=</span><span class="va">False</span>)[[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].mean()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>df_gap.groupby(<span class="st">"continent"</span>, as_index<span class="op">=</span><span class="va">False</span>)[[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].mean()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>  continent    lifeExp           pop     gdpPercap
@@ -746,17 +744,13 @@ Oceania    74.326208  8.874672e+06  18621.609223</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb26-2"><a href="#cb26-2"></a></span>
-<span id="cb26-3"><a href="#cb26-3"></a>df_gap <span class="sc">|&gt;</span> </span>
-<span id="cb26-4"><a href="#cb26-4"></a>    <span class="fu">group_by</span>(continent, year) <span class="sc">|&gt;</span> </span>
-<span id="cb26-5"><a href="#cb26-5"></a>    <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp), </span>
-<span id="cb26-6"><a href="#cb26-6"></a>              <span class="at">mean_pop =</span> <span class="fu">mean</span>(pop), </span>
-<span id="cb26-7"><a href="#cb26-7"></a>              <span class="at">mean_gdpPercap =</span> <span class="fu">mean</span>(gdpPercap))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'continent'. You can override using the
-`.groups` argument.</code></pre>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb24-2"><a href="#cb24-2"></a></span>
+<span id="cb24-3"><a href="#cb24-3"></a>df_gap <span class="sc">|&gt;</span> </span>
+<span id="cb24-4"><a href="#cb24-4"></a>    <span class="fu">group_by</span>(continent, year) <span class="sc">|&gt;</span> </span>
+<span id="cb24-5"><a href="#cb24-5"></a>    <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp), </span>
+<span id="cb24-6"><a href="#cb24-6"></a>              <span class="at">mean_pop =</span> <span class="fu">mean</span>(pop), </span>
+<span id="cb24-7"><a href="#cb24-7"></a>              <span class="at">mean_gdpPercap =</span> <span class="fu">mean</span>(gdpPercap))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 60 × 5
@@ -781,7 +775,7 @@ Oceania    74.326208  8.874672e+06  18621.609223</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df_gap.groupby([<span class="st">"continent"</span>, <span class="st">"year"</span>])[[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].mean()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>df_gap.groupby([<span class="st">"continent"</span>, <span class="st">"year"</span>])[[<span class="st">"lifeExp"</span>, <span class="st">"pop"</span>, <span class="st">"gdpPercap"</span>]].mean()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  lifeExp           pop     gdpPercap

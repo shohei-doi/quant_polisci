@@ -359,7 +359,7 @@ df_voter2017.head()
 - [GitHub](https://github.com/)
     - GitHubはコードの公開・共有サイトですが、適当な単語で検索するとデータが引っかかるときがあります。
 
-## パッケージの付属データ
+<!-- ## パッケージの付属データ
 
 RやPythonではパッケージにサンプルデータが付属していることが多いです。
 
@@ -391,4 +391,4 @@ sns.get_dataset_names()
 sns.load_dataset("titanic")
 ```
 
-また、データ分析で用いる`statsmodels`や`scikit-learn`などのパッケージでもデータを呼び出すことができます。
+また、データ分析で用いる`statsmodels`や`scikit-learn`などのパッケージでもデータを呼び出すことができます。 -->

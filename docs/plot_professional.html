@@ -102,6 +102,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "サーチ"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet">
@@ -361,14 +370,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a>df_year_cont_life <span class="ot">&lt;-</span> df_gap <span class="sc">|&gt;</span> </span>
 <span id="cb1-2"><a href="#cb1-2"></a>    <span class="fu">group_by</span>(year, continent) <span class="sc">|&gt;</span> </span>
-<span id="cb1-3"><a href="#cb1-3"></a>    <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-3"><a href="#cb1-3"></a>    <span class="fu">summarise</span>(<span class="at">mean_lifeExp =</span> <span class="fu">mean</span>(lifeExp))</span>
+<span id="cb1-4"><a href="#cb1-4"></a></span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
+<span id="cb1-6"><a href="#cb1-6"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>`summarise()` has grouped output by 'year'. You can override using the
-`.groups` argument.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
-<span id="cb3-2"><a href="#cb3-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -382,9 +388,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>df_year_cont_life <span class="op">=</span> df_gap.groupby([<span class="st">"year"</span>, <span class="st">"continent"</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">"lifeExp"</span>].mean()</span>
-<span id="cb4-2"><a href="#cb4-2"></a></span>
-<span id="cb4-3"><a href="#cb4-3"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a>df_year_cont_life <span class="op">=</span> df_gap.groupby([<span class="st">"year"</span>, <span class="st">"continent"</span>], as_index<span class="op">=</span><span class="va">False</span>)[<span class="st">"lifeExp"</span>].mean()</span>
+<span id="cb2-2"><a href="#cb2-2"></a></span>
+<span id="cb2-3"><a href="#cb2-3"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -402,10 +408,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_light</span>())</span>
-<span id="cb5-2"><a href="#cb5-2"></a></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
-<span id="cb5-4"><a href="#cb5-4"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_light</span>())</span>
+<span id="cb3-2"><a href="#cb3-2"></a></span>
+<span id="cb3-3"><a href="#cb3-3"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
+<span id="cb3-4"><a href="#cb3-4"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -421,9 +427,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>plt.style.use(<span class="st">"ggplot"</span>)</span>
-<span id="cb6-2"><a href="#cb6-2"></a></span>
-<span id="cb6-3"><a href="#cb6-3"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1"></a>plt.style.use(<span class="st">"ggplot"</span>)</span>
+<span id="cb4-2"><a href="#cb4-2"></a></span>
+<span id="cb4-3"><a href="#cb4-3"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -439,9 +445,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>sns.set_theme()</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>sns.set_theme()</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -463,9 +469,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
-<span id="cb8-2"><a href="#cb8-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent)) <span class="sc">+</span> </span>
-<span id="cb8-3"><a href="#cb8-3"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
+<span id="cb6-2"><a href="#cb6-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent)) <span class="sc">+</span> </span>
+<span id="cb6-3"><a href="#cb6-3"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -481,8 +487,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>sns.set_palette(<span class="st">"Set2"</span>)</span>
-<span id="cb9-2"><a href="#cb9-2"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>sns.set_palette(<span class="st">"Set2"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -502,9 +508,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
-<span id="cb10-2"><a href="#cb10-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent)) <span class="sc">+</span> </span>
-<span id="cb10-3"><a href="#cb10-3"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
+<span id="cb8-2"><a href="#cb8-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent)) <span class="sc">+</span> </span>
+<span id="cb8-3"><a href="#cb8-3"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -522,7 +528,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, style<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, style<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -541,9 +547,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
-<span id="cb12-2"><a href="#cb12-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb12-3"><a href="#cb12-3"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
+<span id="cb10-2"><a href="#cb10-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb10-3"><a href="#cb10-3"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -563,10 +569,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
-<span id="cb13-2"><a href="#cb13-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb13-3"><a href="#cb13-3"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span> </span>
-<span id="cb13-4"><a href="#cb13-4"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"年"</span>, <span class="at">y =</span> <span class="st">"平均寿命の平均値"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span> </span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"年"</span>, <span class="at">y =</span> <span class="st">"平均寿命の平均値"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -588,11 +594,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb14-2"><a href="#cb14-2"></a></span>
-<span id="cb14-3"><a href="#cb14-3"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb14-4"><a href="#cb14-4"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
-<span id="cb14-5"><a href="#cb14-5"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb12-4"><a href="#cb12-4"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
+<span id="cb12-5"><a href="#cb12-5"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -611,13 +617,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>sns.<span class="bu">set</span>(font<span class="op">=</span><span class="st">"Noto Sans CJK JP"</span>)</span>
-<span id="cb15-2"><a href="#cb15-2"></a></span>
-<span id="cb15-3"><a href="#cb15-3"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb15-4"><a href="#cb15-4"></a></span>
-<span id="cb15-5"><a href="#cb15-5"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb15-6"><a href="#cb15-6"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
-<span id="cb15-7"><a href="#cb15-7"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>sns.<span class="bu">set</span>(font<span class="op">=</span><span class="st">"Noto Sans CJK JP"</span>)</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb13-4"><a href="#cb13-4"></a></span>
+<span id="cb13-5"><a href="#cb13-5"></a>sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb13-6"><a href="#cb13-6"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
+<span id="cb13-7"><a href="#cb13-7"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -639,12 +645,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_light</span>(<span class="at">base_family =</span> <span class="st">"Noto Sans CJK JP"</span>))</span>
-<span id="cb16-2"><a href="#cb16-2"></a></span>
-<span id="cb16-3"><a href="#cb16-3"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
-<span id="cb16-4"><a href="#cb16-4"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb16-5"><a href="#cb16-5"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span> </span>
-<span id="cb16-6"><a href="#cb16-6"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"年"</span>, <span class="at">y =</span> <span class="st">"平均寿命の平均値"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_light</span>(<span class="at">base_family =</span> <span class="st">"Noto Sans CJK JP"</span>))</span>
+<span id="cb14-2"><a href="#cb14-2"></a></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
+<span id="cb14-4"><a href="#cb14-4"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb14-5"><a href="#cb14-5"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>) <span class="sc">+</span> </span>
+<span id="cb14-6"><a href="#cb14-6"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"年"</span>, <span class="at">y =</span> <span class="st">"平均寿命の平均値"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -668,13 +674,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>name_continent <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"アフリカ"</span>, <span class="st">"アメリカ"</span>, <span class="st">"アジア"</span>, <span class="st">"ヨーロッパ"</span>, <span class="st">"オセアニア"</span>)</span>
-<span id="cb17-2"><a href="#cb17-2"></a></span>
-<span id="cb17-3"><a href="#cb17-3"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
-<span id="cb17-4"><a href="#cb17-4"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb17-5"><a href="#cb17-5"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>, <span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
-<span id="cb17-6"><a href="#cb17-6"></a>    <span class="fu">scale_linetype</span>(<span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
-<span id="cb17-7"><a href="#cb17-7"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"年"</span>, <span class="at">y =</span> <span class="st">"平均寿命の平均値"</span>, <span class="at">color =</span> <span class="st">"大陸"</span>, <span class="at">linetype =</span> <span class="st">"大陸"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>name_continent <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"アフリカ"</span>, <span class="st">"アメリカ"</span>, <span class="st">"アジア"</span>, <span class="st">"ヨーロッパ"</span>, <span class="st">"オセアニア"</span>)</span>
+<span id="cb15-2"><a href="#cb15-2"></a></span>
+<span id="cb15-3"><a href="#cb15-3"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb15-5"><a href="#cb15-5"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>, <span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
+<span id="cb15-6"><a href="#cb15-6"></a>    <span class="fu">scale_linetype</span>(<span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
+<span id="cb15-7"><a href="#cb15-7"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"年"</span>, <span class="at">y =</span> <span class="st">"平均寿命の平均値"</span>, <span class="at">color =</span> <span class="st">"大陸"</span>, <span class="at">linetype =</span> <span class="st">"大陸"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -695,15 +701,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>name_continent <span class="op">=</span> [<span class="st">"アフリカ"</span>, <span class="st">"アメリカ"</span>, <span class="st">"アジア"</span>, <span class="st">"ヨーロッパ"</span>, <span class="st">"オセアニア"</span>]</span>
-<span id="cb18-2"><a href="#cb18-2"></a></span>
-<span id="cb18-3"><a href="#cb18-3"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb18-4"><a href="#cb18-4"></a></span>
-<span id="cb18-5"><a href="#cb18-5"></a>ax <span class="op">=</span> sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb18-6"><a href="#cb18-6"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
-<span id="cb18-7"><a href="#cb18-7"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span>
-<span id="cb18-8"><a href="#cb18-8"></a>handles, labels <span class="op">=</span> ax.get_legend_handles_labels()</span>
-<span id="cb18-9"><a href="#cb18-9"></a>ax.legend(handles, name_continent, title<span class="op">=</span><span class="st">"大陸"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>name_continent <span class="op">=</span> [<span class="st">"アフリカ"</span>, <span class="st">"アメリカ"</span>, <span class="st">"アジア"</span>, <span class="st">"ヨーロッパ"</span>, <span class="st">"オセアニア"</span>]</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb16-4"><a href="#cb16-4"></a></span>
+<span id="cb16-5"><a href="#cb16-5"></a>ax <span class="op">=</span> sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb16-6"><a href="#cb16-6"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
+<span id="cb16-7"><a href="#cb16-7"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span>
+<span id="cb16-8"><a href="#cb16-8"></a>handles, labels <span class="op">=</span> ax.get_legend_handles_labels()</span>
+<span id="cb16-9"><a href="#cb16-9"></a>ax.legend(handles, name_continent, title<span class="op">=</span><span class="st">"大陸"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -728,13 +734,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="9.5.2" class="anchored" data-anchor-id="位置"><span class="header-section-number">9.5.2</span> 位置</h3>
 <p><code>matplotlib/seaborn</code>では凡例がグラフ上に現れるので、（それが嫌な場合は）変更します。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb19-2"><a href="#cb19-2"></a></span>
-<span id="cb19-3"><a href="#cb19-3"></a>ax <span class="op">=</span> sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb19-4"><a href="#cb19-4"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
-<span id="cb19-5"><a href="#cb19-5"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span>
-<span id="cb19-6"><a href="#cb19-6"></a>handles, labels <span class="op">=</span> ax.get_legend_handles_labels()</span>
-<span id="cb19-7"><a href="#cb19-7"></a>ax.legend(handles, name_continent, title<span class="op">=</span><span class="st">"大陸"</span>, bbox_to_anchor<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), loc<span class="op">=</span><span class="st">"center left"</span>, frameon<span class="op">=</span><span class="va">False</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>ax <span class="op">=</span> sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
+<span id="cb17-5"><a href="#cb17-5"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6"></a>handles, labels <span class="op">=</span> ax.get_legend_handles_labels()</span>
+<span id="cb17-7"><a href="#cb17-7"></a>ax.legend(handles, name_continent, title<span class="op">=</span><span class="st">"大陸"</span>, bbox_to_anchor<span class="op">=</span>(<span class="dv">1</span>, <span class="fl">0.5</span>), loc<span class="op">=</span><span class="st">"center left"</span>, frameon<span class="op">=</span><span class="va">False</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -757,13 +763,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>凡例が見切れていますが、保存する際には見きれないようにするので安心してください。</p>
 <p>個人的には凡例は下につけるのが好みです。</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
-<span id="cb20-2"><a href="#cb20-2"></a></span>
-<span id="cb20-3"><a href="#cb20-3"></a>ax <span class="op">=</span> sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb20-4"><a href="#cb20-4"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
-<span id="cb20-5"><a href="#cb20-5"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span>
-<span id="cb20-6"><a href="#cb20-6"></a>handles, labels <span class="op">=</span> ax.get_legend_handles_labels()</span>
-<span id="cb20-7"><a href="#cb20-7"></a>ax.legend(handles, name_continent, title<span class="op">=</span><span class="st">"大陸"</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.15</span>), loc<span class="op">=</span><span class="st">"upper center"</span>, ncols<span class="op">=</span><span class="dv">3</span>, frameon<span class="op">=</span><span class="va">False</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>fig, ax <span class="op">=</span> plt.subplots()</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>ax <span class="op">=</span> sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb18-4"><a href="#cb18-4"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
+<span id="cb18-5"><a href="#cb18-5"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span>
+<span id="cb18-6"><a href="#cb18-6"></a>handles, labels <span class="op">=</span> ax.get_legend_handles_labels()</span>
+<span id="cb18-7"><a href="#cb18-7"></a>ax.legend(handles, name_continent, title<span class="op">=</span><span class="st">"大陸"</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.15</span>), loc<span class="op">=</span><span class="st">"upper center"</span>, ncols<span class="op">=</span><span class="dv">3</span>, frameon<span class="op">=</span><span class="va">False</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -778,12 +784,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
-<span id="cb21-2"><a href="#cb21-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb21-3"><a href="#cb21-3"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>, <span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
-<span id="cb21-4"><a href="#cb21-4"></a>    <span class="fu">scale_linetype</span>(<span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
-<span id="cb21-5"><a href="#cb21-5"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"年"</span>, <span class="at">y =</span> <span class="st">"平均寿命の平均値"</span>, <span class="at">color =</span> <span class="st">"大陸"</span>, <span class="at">linetype =</span> <span class="st">"大陸"</span>) <span class="sc">+</span> </span>
-<span id="cb21-6"><a href="#cb21-6"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
+<span id="cb19-2"><a href="#cb19-2"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb19-3"><a href="#cb19-3"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>, <span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
+<span id="cb19-4"><a href="#cb19-4"></a>    <span class="fu">scale_linetype</span>(<span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
+<span id="cb19-5"><a href="#cb19-5"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"年"</span>, <span class="at">y =</span> <span class="st">"平均寿命の平均値"</span>, <span class="at">color =</span> <span class="st">"大陸"</span>, <span class="at">linetype =</span> <span class="st">"大陸"</span>) <span class="sc">+</span> </span>
+<span id="cb19-6"><a href="#cb19-6"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -808,16 +814,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_light</span>(<span class="at">base_family =</span> <span class="st">"Noto Sans CJK JP"</span>))</span>
-<span id="cb22-2"><a href="#cb22-2"></a></span>
-<span id="cb22-3"><a href="#cb22-3"></a>name_continent <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"アフリカ"</span>, <span class="st">"アメリカ"</span>, <span class="st">"アジア"</span>, <span class="st">"ヨーロッパ"</span>, <span class="st">"オセアニア"</span>)</span>
-<span id="cb22-4"><a href="#cb22-4"></a></span>
-<span id="cb22-5"><a href="#cb22-5"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
-<span id="cb22-6"><a href="#cb22-6"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
-<span id="cb22-7"><a href="#cb22-7"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>, <span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
-<span id="cb22-8"><a href="#cb22-8"></a>    <span class="fu">scale_linetype</span>(<span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
-<span id="cb22-9"><a href="#cb22-9"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"年"</span>, <span class="at">y =</span> <span class="st">"平均寿命の平均値"</span>, <span class="at">color =</span> <span class="st">"大陸"</span>, <span class="at">linetype =</span> <span class="st">"大陸"</span>) <span class="sc">+</span> </span>
-<span id="cb22-10"><a href="#cb22-10"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1"></a><span class="fu">theme_set</span>(<span class="fu">theme_light</span>(<span class="at">base_family =</span> <span class="st">"Noto Sans CJK JP"</span>))</span>
+<span id="cb20-2"><a href="#cb20-2"></a></span>
+<span id="cb20-3"><a href="#cb20-3"></a>name_continent <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"アフリカ"</span>, <span class="st">"アメリカ"</span>, <span class="st">"アジア"</span>, <span class="st">"ヨーロッパ"</span>, <span class="st">"オセアニア"</span>)</span>
+<span id="cb20-4"><a href="#cb20-4"></a></span>
+<span id="cb20-5"><a href="#cb20-5"></a><span class="fu">ggplot</span>(df_year_cont_life) <span class="sc">+</span> </span>
+<span id="cb20-6"><a href="#cb20-6"></a>    <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> year, <span class="at">y =</span> mean_lifeExp, <span class="at">color =</span> continent, <span class="at">linetype =</span> continent), <span class="at">linewidth =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb20-7"><a href="#cb20-7"></a>    <span class="fu">scale_color_brewer</span>(<span class="at">palette =</span> <span class="st">"Set2"</span>, <span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
+<span id="cb20-8"><a href="#cb20-8"></a>    <span class="fu">scale_linetype</span>(<span class="at">labels =</span> name_continent) <span class="sc">+</span> </span>
+<span id="cb20-9"><a href="#cb20-9"></a>    <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"年"</span>, <span class="at">y =</span> <span class="st">"平均寿命の平均値"</span>, <span class="at">color =</span> <span class="st">"大陸"</span>, <span class="at">linetype =</span> <span class="st">"大陸"</span>) <span class="sc">+</span> </span>
+<span id="cb20-10"><a href="#cb20-10"></a>    <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"bottom"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>
@@ -826,7 +832,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </figure>
 </div>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/lifeExp_year_cont_R.png"</span>, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">ggsave</span>(<span class="st">"figures/lifeExp_year_cont_R.png"</span>, <span class="at">width =</span> <span class="dv">6</span>, <span class="at">height =</span> <span class="dv">4</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><code>height/width</code>でサイズを指定します。</li>
@@ -837,19 +843,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>sns.set_theme(font<span class="op">=</span><span class="st">"Noto Sans CJK JP"</span>)</span>
-<span id="cb24-2"><a href="#cb24-2"></a>sns.set_palette(<span class="st">"Set2"</span>)</span>
-<span id="cb24-3"><a href="#cb24-3"></a></span>
-<span id="cb24-4"><a href="#cb24-4"></a>name_continent <span class="op">=</span> [<span class="st">"アフリカ"</span>, <span class="st">"アメリカ"</span>, <span class="st">"アジア"</span>, <span class="st">"ヨーロッパ"</span>, <span class="st">"オセアニア"</span>]</span>
-<span id="cb24-5"><a href="#cb24-5"></a></span>
-<span id="cb24-6"><a href="#cb24-6"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
-<span id="cb24-7"><a href="#cb24-7"></a></span>
-<span id="cb24-8"><a href="#cb24-8"></a>ax <span class="op">=</span> sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
-<span id="cb24-9"><a href="#cb24-9"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
-<span id="cb24-10"><a href="#cb24-10"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span>
-<span id="cb24-11"><a href="#cb24-11"></a>handles, labels <span class="op">=</span> ax.get_legend_handles_labels()</span>
-<span id="cb24-12"><a href="#cb24-12"></a>ax.legend(handles, name_continent, title<span class="op">=</span><span class="st">"大陸"</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.15</span>), loc<span class="op">=</span><span class="st">"upper center"</span>, ncols<span class="op">=</span><span class="dv">3</span>, frameon<span class="op">=</span><span class="va">False</span>)</span>
-<span id="cb24-13"><a href="#cb24-13"></a>plt.savefig(<span class="st">"figures/lifeExp_year_cont_py.png"</span>, bbox_inches<span class="op">=</span><span class="st">"tight"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>sns.set_theme(font<span class="op">=</span><span class="st">"Noto Sans CJK JP"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a>sns.set_palette(<span class="st">"Set2"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3"></a></span>
+<span id="cb22-4"><a href="#cb22-4"></a>name_continent <span class="op">=</span> [<span class="st">"アフリカ"</span>, <span class="st">"アメリカ"</span>, <span class="st">"アジア"</span>, <span class="st">"ヨーロッパ"</span>, <span class="st">"オセアニア"</span>]</span>
+<span id="cb22-5"><a href="#cb22-5"></a></span>
+<span id="cb22-6"><a href="#cb22-6"></a>fig, ax <span class="op">=</span> plt.subplots(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb22-7"><a href="#cb22-7"></a></span>
+<span id="cb22-8"><a href="#cb22-8"></a>ax <span class="op">=</span> sns.lineplot(df_year_cont_life, x<span class="op">=</span><span class="st">"year"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>, hue<span class="op">=</span><span class="st">"continent"</span>, errorbar<span class="op">=</span><span class="va">None</span>)</span>
+<span id="cb22-9"><a href="#cb22-9"></a>ax.set_xlabel(<span class="st">"年"</span>)</span>
+<span id="cb22-10"><a href="#cb22-10"></a>ax.set_ylabel(<span class="st">"平均寿命の平均値"</span>)</span>
+<span id="cb22-11"><a href="#cb22-11"></a>handles, labels <span class="op">=</span> ax.get_legend_handles_labels()</span>
+<span id="cb22-12"><a href="#cb22-12"></a>ax.legend(handles, name_continent, title<span class="op">=</span><span class="st">"大陸"</span>, bbox_to_anchor<span class="op">=</span>(<span class="fl">0.5</span>, <span class="op">-</span><span class="fl">0.15</span>), loc<span class="op">=</span><span class="st">"upper center"</span>, ncols<span class="op">=</span><span class="dv">3</span>, frameon<span class="op">=</span><span class="va">False</span>)</span>
+<span id="cb22-13"><a href="#cb22-13"></a>plt.savefig(<span class="st">"figures/lifeExp_year_cont_py.png"</span>, bbox_inches<span class="op">=</span><span class="st">"tight"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
 <div>

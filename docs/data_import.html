@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.290">
+<meta name="generator" content="quarto-1.4.551">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,7 +81,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "一致なし",
     "search-matching-documents-text": "一致した文書",
@@ -90,10 +96,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "追加の検索結果",
     "search-more-matches-text": "追加の検索結果",
     "search-clear-button-title": "消去",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "取消",
-    "search-submit-button-title": "検索"
+    "search-submit-button-title": "検索",
+    "search-label": "サーチ"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet">
@@ -107,13 +124,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_import.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_import.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></a></li></ol></nav>
-      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-      </a>
-      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_import.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_import.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -122,7 +139,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R/Pythonで<br>計量政治学入門</a> 
@@ -301,7 +318,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -324,14 +341,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#文字化けの対処" id="toc-文字化けの対処" class="nav-link" data-scroll-target="#文字化けの対処"><span class="header-section-number">11.3.4</span> 文字化けの対処</a></li>
   </ul></li>
   <li><a href="#データの在り処" id="toc-データの在り処" class="nav-link" data-scroll-target="#データの在り処"><span class="header-section-number">11.4</span> データの在り処</a></li>
-  <li><a href="#パッケージの付属データ" id="toc-パッケージの付属データ" class="nav-link" data-scroll-target="#パッケージの付属データ"><span class="header-section-number">11.5</span> パッケージの付属データ</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_import.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_import.html"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></a></li></ol></nav>
 <div class="quarto-title">
 <h1 class="title"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></h1>
 </div>
@@ -346,7 +362,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </div>
   
 
+
 </header>
+
 
 <p>政治学で用いるデータの多くは、ウェブサイト上に公開されているデータです。今回は公開されているデータを読み込む方法を紹介します。</p>
 <section id="使用するパッケージ" class="level2" data-number="11.1">
@@ -359,18 +377,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
-✔ dplyr     1.1.4     ✔ readr     2.1.5
-✔ forcats   1.0.0     ✔ stringr   1.5.1
-✔ ggplot2   3.5.0     ✔ tibble    3.2.1
-✔ lubridate 1.9.3     ✔ tidyr     1.3.1
-✔ purrr     1.0.2     
-── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
-✖ dplyr::filter() masks stats::filter()
-✖ dplyr::lag()    masks stats::lag()
-ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
-</div>
 </div>
 <p>Pythonの場合、<a href="https://pandas.pydata.org/"><code>pandas</code></a>がデファクト・スタンダードですが、最近は<a href="https://pola.rs/"><code>polars</code></a>も人気ではないかと思います。</p>
 <div class="cell">
@@ -378,8 +384,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="im">import</span> polars <span class="im">as</span> pl</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> polars <span class="im">as</span> pl</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -400,7 +406,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (base)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -408,7 +414,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (tidyverse)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -416,7 +422,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df_sample <span class="op">=</span> pd.read_csv(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>df_sample <span class="op">=</span> pd.read_csv(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -424,7 +430,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (polars)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1"></a>df_sample <span class="op">=</span> pl.read_csv(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1"></a>df_sample <span class="op">=</span> pl.read_csv(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <section id="qualtrics" class="level4" data-number="11.2.1.1">
@@ -435,9 +441,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (qualtRics)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a><span class="fu">library</span>(qualtRics)</span>
-<span id="cb8-2"><a href="#cb8-2"></a></span>
-<span id="cb8-3"><a href="#cb8-3"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_survey</span>(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(qualtRics)</span>
+<span id="cb7-2"><a href="#cb7-2"></a></span>
+<span id="cb7-3"><a href="#cb7-3"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_survey</span>(<span class="st">"data/xxx.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -450,7 +456,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (base)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/xxx.csv"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/xxx.csv"</span>, <span class="at">sep=</span><span class="st">"</span><span class="sc">\t</span><span class="st">"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -458,7 +464,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (tidyverse)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/xxx.tsv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_tsv</span>(<span class="st">"data/xxx.tsv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -466,7 +472,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>df_sample <span class="op">=</span> pd.read_csv(<span class="st">"data/xxx.csv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1"></a>df_sample <span class="op">=</span> pd.read_csv(<span class="st">"data/xxx.csv"</span>, sep<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -474,7 +480,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (polars)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1"></a>df_sample <span class="op">=</span> pl.read_csv(<span class="st">"data/xxx.csv"</span>, separator<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>df_sample <span class="op">=</span> pl.read_csv(<span class="st">"data/xxx.csv"</span>, separator<span class="op">=</span><span class="st">"</span><span class="ch">\t</span><span class="st">"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p><code>tidyverse</code>には専用の関数がありますが、それ以外ではタブ区切りであることを指定する必要があります。</p>
@@ -493,9 +499,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (readxl)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb13-2"><a href="#cb13-2"></a></span>
-<span id="cb13-3"><a href="#cb13-3"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/xxx.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb12-2"><a href="#cb12-2"></a></span>
+<span id="cb12-3"><a href="#cb12-3"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/xxx.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -503,7 +509,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df_sample <span class="op">=</span> pd.read_excel(<span class="st">"data/xxx.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>df_sample <span class="op">=</span> pd.read_excel(<span class="st">"data/xxx.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <ul>
@@ -514,7 +520,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (polars)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df_sample <span class="op">=</span> pl.read_excel(<span class="st">"data/xxx.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1"></a>df_sample <span class="op">=</span> pl.read_excel(<span class="st">"data/xxx.xlsx"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <ul>
@@ -529,7 +535,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (tidyverse)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/xxx.dta"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>df_sample <span class="ot">&lt;-</span> <span class="fu">read_dta</span>(<span class="st">"data/xxx.dta"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -537,7 +543,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a>df_sample <span class="op">=</span> pd.read_stata(<span class="st">"data/xxx.dta"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>df_sample <span class="op">=</span> pd.read_stata(<span class="st">"data/xxx.dta"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>政治学だとめったに遭遇しませんが、おそらく心理学や医学では<a href="https://www.sas.com/ja_jp/home.html">SAS</a>という統計ソフトを使うことがあり、専用のファイルを読み込む関数もあります。</p>
@@ -555,11 +561,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (readxl)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb18-2"><a href="#cb18-2"></a></span>
-<span id="cb18-3"><a href="#cb18-3"></a>df_polity <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/p5v2018.xls"</span>)</span>
-<span id="cb18-4"><a href="#cb18-4"></a></span>
-<span id="cb18-5"><a href="#cb18-5"></a><span class="fu">head</span>(df_polity)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>df_polity <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a></span>
+<span id="cb17-5"><a href="#cb17-5"></a><span class="fu">head</span>(df_polity)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 37
@@ -584,9 +590,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>df_polity <span class="op">=</span> pd.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
-<span id="cb20-2"><a href="#cb20-2"></a></span>
-<span id="cb20-3"><a href="#cb20-3"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>df_polity <span class="op">=</span> pd.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   p5    cyear  ccode scode      country  ...  post  change   d5  sf  regtrans
@@ -604,11 +610,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>Python (polars)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a>df_polity <span class="op">=</span> pl.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
-<span id="cb22-2"><a href="#cb22-2"></a></span>
-<span id="cb22-3"><a href="#cb22-3"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>df_polity <span class="op">=</span> pl.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb21-2"><a href="#cb21-2"></a></span>
+<span id="cb21-3"><a href="#cb21-3"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
+<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -899,6 +906,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 </div>
 </div>
+</div>
 <ul>
 <li>Google Colaboratoryを使っている場合はパスの先頭に<code>drive/MyDrive/</code>を付けます。つまり、<code>"drive/MyDrive/data/p5v2018.xls"</code>とします。</li>
 </ul>
@@ -923,28 +931,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="code-with-filename-file">
 <pre><strong>R (tidyverse)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1"></a>df_pop_fem <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/wb_pop_fem.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1"></a>df_pop_fem <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/wb_pop_fem.csv"</span>)</span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a><span class="fu">head</span>(df_pop_fem)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-• `` -&gt; `...3`</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: One or more parsing issues, call `problems()` on your data frame for details,
-e.g.:
-  dat &lt;- vroom(...)
-  problems(dat)</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 268 Columns: 3
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr (3): Data Source, World Development Indicators, ...3
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1"></a><span class="fu">head</span>(df_pop_fem)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 3
   `Data Source`               `World Development Indicators` ...3               
@@ -962,7 +952,7 @@ chr (3): Data Source, World Development Indicators, ...3
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1"></a>df_pop_fem <span class="op">=</span> pd.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1"></a>df_pop_fem <span class="op">=</span> pd.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>pandas.errors.ParserError: Error tokenizing data. C error: Expected 3 fields in line 5, saw 69</code></pre>
@@ -973,7 +963,7 @@ chr (3): Data Source, World Development Indicators, ...3
 <div class="code-with-filename-file">
 <pre><strong>Python (polars)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>df_pop_fem <span class="op">=</span> pl.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1"></a>df_pop_fem <span class="op">=</span> pl.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>polars.exceptions.ComputeError: found more fields than defined in 'Schema'
@@ -990,21 +980,10 @@ Consider setting 'truncate_ragged_lines=True'.</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R (tidyverse)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a>df_pop_fem <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/wb_pop_fem.csv"</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1"></a>df_pop_fem <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/wb_pop_fem.csv"</span>, <span class="at">skip =</span> <span class="dv">4</span>)</span>
+<span id="cb28-2"><a href="#cb28-2"></a></span>
+<span id="cb28-3"><a href="#cb28-3"></a><span class="fu">head</span>(df_pop_fem)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-Rows: 266 Columns: 69
-── Column specification
-──────────────────────────────────────────────────────── Delimiter: "," chr
-(4): Country Name, Country Code, Indicator Name, Indicator Code dbl (63): 1960,
-1961, 1962, 1963, 1964, 1965, 1966, 1967, 1968, 1969, 1970, ... lgl (2): 2023,
-...69
-ℹ Use `spec()` to retrieve the full column specification for this data. ℹ
-Specify the column types or set `show_col_types = FALSE` to quiet this message.
-• `` -&gt; `...69`</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1"></a><span class="fu">head</span>(df_pop_fem)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 69
   `Country Name`  `Country Code` `Indicator Name` `Indicator Code` `1960` `1961`
@@ -1029,9 +1008,9 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>df_pop_fem <span class="op">=</span> pd.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>, skiprows<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb37-2"><a href="#cb37-2"></a></span>
-<span id="cb37-3"><a href="#cb37-3"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df_pop_fem <span class="op">=</span> pd.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>, skiprows<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb30-2"><a href="#cb30-2"></a></span>
+<span id="cb30-3"><a href="#cb30-3"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  Country Name Country Code  ... 2023 Unnamed: 68
@@ -1049,11 +1028,12 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="code-with-filename-file">
 <pre><strong>Python (polars)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1"></a>df_pop_fem <span class="op">=</span> pl.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>, skip_rows<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb39-2"><a href="#cb39-2"></a></span>
-<span id="cb39-3"><a href="#cb39-3"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1"></a>df_pop_fem <span class="op">=</span> pl.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>, skip_rows<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb32-2"><a href="#cb32-2"></a></span>
+<span id="cb32-3"><a href="#cb32-3"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
+<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1568,6 +1548,7 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 </div>
 </div>
 </div>
+</div>
 <p>無事にデータを読み込むことができました。ここから得られる教訓は、データを読み込む前に表計算ソフトでどのようなデータなのか確認すべしということでしょう。</p>
 </section>
 <section id="シートの選択" class="level3" data-number="11.3.2">
@@ -1584,15 +1565,12 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="code-with-filename-file">
 <pre><strong>R (readxl)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb40-2"><a href="#cb40-2"></a></span>
-<span id="cb40-3"><a href="#cb40-3"></a>df_sipri <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">5</span>, <span class="at">skip =</span> <span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb33-2"><a href="#cb33-2"></a></span>
+<span id="cb33-3"><a href="#cb33-3"></a>df_sipri <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">5</span>, <span class="at">skip =</span> <span class="dv">5</span>)</span>
+<span id="cb33-4"><a href="#cb33-4"></a></span>
+<span id="cb33-5"><a href="#cb33-5"></a><span class="fu">head</span>(df_sipri)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-• `` -&gt; `...2`</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1"></a><span class="fu">head</span>(df_sipri)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 77
   Country      ...2  Notes `1949.0` `1950.0` `1951.0` `1952.0` `1953.0` `1954.0`
@@ -1617,13 +1595,10 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1"></a>df_sipri <span class="op">=</span> pd.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_name<span class="op">=</span><span class="dv">5</span>, skiprows<span class="op">=</span><span class="dv">5</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1"></a>df_sipri <span class="op">=</span> pd.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_name<span class="op">=</span><span class="dv">5</span>, skiprows<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb35-2"><a href="#cb35-2"></a></span>
+<span id="cb35-3"><a href="#cb35-3"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>/home/shohei/Dropbox/teaching/0_textbook/quant_polisci/.venv/lib/python3.11/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb46-1"><a href="#cb46-1"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Country  Notes 1949  ...        2020         2021         2022
 0           NaN    NaN  NaN  ...         NaN          NaN          NaN
@@ -1640,11 +1615,12 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="code-with-filename-file">
 <pre><strong>Python (polars)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>df_sipri <span class="op">=</span> pl.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_id<span class="op">=</span><span class="dv">5</span>, read_options<span class="op">=</span>{<span class="st">"skip_rows"</span>: <span class="dv">5</span>})</span>
-<span id="cb48-2"><a href="#cb48-2"></a></span>
-<span id="cb48-3"><a href="#cb48-3"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>df_sipri <span class="op">=</span> pl.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_id<span class="op">=</span><span class="dv">5</span>, read_options<span class="op">=</span>{<span class="st">"skip_rows"</span>: <span class="dv">5</span>})</span>
+<span id="cb37-2"><a href="#cb37-2"></a></span>
+<span id="cb37-3"><a href="#cb37-3"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
+<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2201,6 +2177,7 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 </div>
 </div>
 </div>
+</div>
 <ul>
 <li><code>pl.read_csv()</code>のときとスキップの仕方が異なる点に注意してください。</li>
 </ul>
@@ -2215,15 +2192,12 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="code-with-filename-file">
 <pre><strong>R (readxl)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb49-2"><a href="#cb49-2"></a></span>
-<span id="cb49-3"><a href="#cb49-3"></a>df_sipri <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">5</span>, <span class="at">skip =</span> <span class="dv">5</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"xxx"</span>, <span class="st">"..."</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb38-2"><a href="#cb38-2"></a></span>
+<span id="cb38-3"><a href="#cb38-3"></a>df_sipri <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, <span class="at">sheet =</span> <span class="dv">5</span>, <span class="at">skip =</span> <span class="dv">5</span>, <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"xxx"</span>, <span class="st">"..."</span>))</span>
+<span id="cb38-4"><a href="#cb38-4"></a></span>
+<span id="cb38-5"><a href="#cb38-5"></a><span class="fu">head</span>(df_sipri)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>New names:
-• `` -&gt; `...2`</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1"></a><span class="fu">head</span>(df_sipri)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 77
   Country      ...2  Notes `1949.0` `1950.0` `1951.0` `1952.0` `1953.0` `1954.0`
@@ -2248,13 +2222,10 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1"></a>df_sipri <span class="op">=</span> pd.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_name<span class="op">=</span><span class="dv">5</span>, skiprows<span class="op">=</span><span class="dv">5</span>, na_values<span class="op">=</span>[<span class="st">"xxx"</span>, <span class="st">"..."</span>])</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1"></a>df_sipri <span class="op">=</span> pd.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_name<span class="op">=</span><span class="dv">5</span>, skiprows<span class="op">=</span><span class="dv">5</span>, na_values<span class="op">=</span>[<span class="st">"xxx"</span>, <span class="st">"..."</span>])</span>
+<span id="cb40-2"><a href="#cb40-2"></a></span>
+<span id="cb40-3"><a href="#cb40-3"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stdout">
-<pre><code>/home/shohei/Dropbox/teaching/0_textbook/quant_polisci/.venv/lib/python3.11/site-packages/openpyxl/styles/stylesheet.py:226: UserWarning: Workbook contains no default style, apply openpyxl's default
-  warn("Workbook contains no default style, apply openpyxl's default")</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Country  Notes  1949  ...        2020         2021         2022
 0           NaN    NaN   NaN  ...         NaN          NaN          NaN
@@ -2271,11 +2242,12 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="code-with-filename-file">
 <pre><strong>Python (polars)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1"></a>df_sipri <span class="op">=</span> pl.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_id<span class="op">=</span><span class="dv">5</span>, read_options<span class="op">=</span>{<span class="st">"skip_rows"</span>: <span class="dv">5</span>, <span class="st">"null_values"</span>: [<span class="st">"xxx"</span>, <span class="st">"..."</span>]})</span>
-<span id="cb57-2"><a href="#cb57-2"></a></span>
-<span id="cb57-3"><a href="#cb57-3"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb42-1"><a href="#cb42-1"></a>df_sipri <span class="op">=</span> pl.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_id<span class="op">=</span><span class="dv">5</span>, read_options<span class="op">=</span>{<span class="st">"skip_rows"</span>: <span class="dv">5</span>, <span class="st">"null_values"</span>: [<span class="st">"xxx"</span>, <span class="st">"..."</span>]})</span>
+<span id="cb42-2"><a href="#cb42-2"></a></span>
+<span id="cb42-3"><a href="#cb42-3"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
+<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2832,6 +2804,7 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 </div>
 </div>
 </div>
+</div>
 <p>先程まで<code>xxx</code>や<code>...</code>であったところが欠損値になっていることが分かります。必ずしもエラーが出なかったとしても問題がないというわけではない、というのがもう一つの教訓でしょうか。</p>
 <p>これでもまだ直すべき点はあるのですが、それはデータの加工として扱いたいと思います。</p>
 </section>
@@ -2848,19 +2821,10 @@ Specify the column types or set `show_col_types = FALSE` to quiet this message.
 <div class="code-with-filename-file">
 <pre><strong>R (tidyverse)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb58-1"><a href="#cb58-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2"></a></span>
+<span id="cb43-3"><a href="#cb43-3"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Rows: 1778 Columns: 137
-── Column specification ────────────────────────────────────────────────────────
-Delimiter: ","
-chr  (14): PREFNAME, CITY, Q2FA, Q4FA, Q5FA, Q6FA, Q8FA, Q13FA, Q18FA, Q19FA...
-dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
-
-ℹ Use `spec()` to retrieve the full column specification for this data.
-ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1"></a><span class="fu">head</span>(df_voter2017)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 6 × 137
      ID PREFNAME CITY    PREFEC HRDIST    Q1    Q2    Q3    Q4  Q5_1  Q5_2  Q5_3
@@ -2885,9 +2849,9 @@ dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1"></a>df_voter2017 <span class="op">=</span> pd.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
-<span id="cb62-2"><a href="#cb62-2"></a></span>
-<span id="cb62-3"><a href="#cb62-3"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1"></a>df_voter2017 <span class="op">=</span> pd.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb45-2"><a href="#cb45-2"></a></span>
+<span id="cb45-3"><a href="#cb45-3"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>   ID PREFNAME    CITY  PREFEC  HRDIST  ...  Q19FA  Q26_2FA  Q26_3FA  F3FA  F4FA
@@ -2905,11 +2869,12 @@ dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
 <div class="code-with-filename-file">
 <pre><strong>Python (polars)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1"></a>df_voter2017 <span class="op">=</span> pl.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
-<span id="cb64-2"><a href="#cb64-2"></a></span>
-<span id="cb64-3"><a href="#cb64-3"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>df_voter2017 <span class="op">=</span> pl.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb47-2"><a href="#cb47-2"></a></span>
+<span id="cb47-3"><a href="#cb47-3"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
+<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -3466,6 +3431,7 @@ dbl (123): ID, PREFEC, HRDIST, Q1, Q2, Q3, Q4, Q5_1, Q5_2, Q5_3, Q6_1, Q6_2,...
 </div>
 </div>
 </div>
+</div>
 <p>逆に、Windowsで開いたファイルが文字化けする場合はMac/Linuxで作成された可能性が高いです。Mac/LinuxではUTF8というエンコーディングを使っているので、そのように指定すれば文字化けせずに読み込めるはずです。</p>
 <ul>
 <li>ただし、最近のWindowsではUTF8が使われて、文字化けが起こらないことがあります。</li>
@@ -3506,63 +3472,84 @@ LibreOffice
 <li>GitHubはコードの公開・共有サイトですが、適当な単語で検索するとデータが引っかかるときがあります。</li>
 </ul></li>
 </ul>
-</section>
-<section id="パッケージの付属データ" class="level2" data-number="11.5">
-<h2 data-number="11.5" class="anchored" data-anchor-id="パッケージの付属データ"><span class="header-section-number">11.5</span> パッケージの付属データ</h2>
-<p>RやPythonではパッケージにサンプルデータが付属していることが多いです。</p>
-<p>例えば、Rの場合は<code>data()</code>を実行することで、読み込んでるパッケージに付属するデータを確認できます。</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb65"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb65-1"><a href="#cb65-1"></a><span class="fu">data</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</div>
-<p>呼び出したいデータセットの名前を入れて<code>data(...)</code>と実行するとデータを呼び出すことができます。</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>R</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1"></a><span class="fu">data</span>(USArrests)</span>
-<span id="cb66-2"><a href="#cb66-2"></a></span>
-<span id="cb66-3"><a href="#cb66-3"></a><span class="fu">head</span>(USArrests)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           Murder Assault UrbanPop Rape
+<!-- ## パッケージの付属データ
+
+RやPythonではパッケージにサンプルデータが付属していることが多いです。
+
+例えば、Rの場合は`data()`を実行することで、読み込んでるパッケージに付属するデータを確認できます。
+
+
+::: {.cell filename='R'}
+
+```{.r .cell-code}
+data()
+```
+:::
+
+
+呼び出したいデータセットの名前を入れて`data(...)`と実行するとデータを呼び出すことができます。
+
+
+::: {.cell filename='R'}
+
+```{.r .cell-code}
+data(USArrests)
+
+head(USArrests)
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+           Murder Assault UrbanPop Rape
 Alabama      13.2     236       58 21.2
 Alaska       10.0     263       48 44.5
 Arizona       8.1     294       80 31.0
 Arkansas      8.8     190       50 19.5
 California    9.0     276       91 40.6
-Colorado      7.9     204       78 38.7</code></pre>
-</div>
-</div>
-<p>Pythonの場合、例えば<code>seaborn</code>では<code>sns.get_dataset_names()</code>でデータを確認できます。</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Python</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb68"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb68-1"><a href="#cb68-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
-<span id="cb68-2"><a href="#cb68-2"></a></span>
-<span id="cb68-3"><a href="#cb68-3"></a>sns.get_dataset_names()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>['anagrams', 'anscombe', 'attention', 'brain_networks', 'car_crashes', 'diamonds', 'dots', 'dowjones', 'exercise', 'flights', 'fmri', 'geyser', 'glue', 'healthexp', 'iris', 'mpg', 'penguins', 'planets', 'seaice', 'taxis', 'tips', 'titanic']</code></pre>
-</div>
-</div>
-<p><code>sns.load_dataset(...)</code>でデータを呼び出します。</p>
-<div class="cell">
-<div class="code-with-filename">
-<div class="code-with-filename-file">
-<pre><strong>Python</strong></pre>
-</div>
-<div class="sourceCode cell-code" id="cb70"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1"></a>sns.load_dataset(<span class="st">"titanic"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>     survived  pclass     sex   age  ...  deck  embark_town  alive  alone
+Colorado      7.9     204       78 38.7
+```
+
+
+:::
+:::
+
+
+Pythonの場合、例えば`seaborn`では`sns.get_dataset_names()`でデータを確認できます。
+
+
+::: {.cell filename='Python'}
+
+```{.python .cell-code}
+import seaborn as sns
+
+sns.get_dataset_names()
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+['anagrams', 'anscombe', 'attention', 'brain_networks', 'car_crashes', 'diamonds', 'dots', 'dowjones', 'exercise', 'flights', 'fmri', 'geyser', 'glue', 'healthexp', 'iris', 'mpg', 'penguins', 'planets', 'seaice', 'taxis', 'tips', 'titanic']
+```
+
+
+:::
+:::
+
+
+`sns.load_dataset(...)`でデータを呼び出します。
+
+
+::: {.cell filename='Python'}
+
+```{.python .cell-code}
+sns.load_dataset("titanic")
+```
+
+::: {.cell-output .cell-output-stdout}
+
+```
+     survived  pclass     sex   age  ...  deck  embark_town  alive  alone
 0           0       3    male  22.0  ...   NaN  Southampton     no  False
 1           1       1  female  38.0  ...     C    Cherbourg    yes  False
 2           1       3  female  26.0  ...   NaN  Southampton    yes   True
@@ -3575,10 +3562,15 @@ Colorado      7.9     204       78 38.7</code></pre>
 889         1       1    male  26.0  ...     C    Cherbourg    yes   True
 890         0       3    male  32.0  ...   NaN   Queenstown     no   True
 
-[891 rows x 15 columns]</code></pre>
-</div>
-</div>
-<p>また、データ分析で用いる<code>statsmodels</code>や<code>scikit-learn</code>などのパッケージでもデータを呼び出すことができます。</p>
+[891 rows x 15 columns]
+```
+
+
+:::
+:::
+
+
+また、データ分析で用いる`statsmodels`や`scikit-learn`などのパッケージでもデータを呼び出すことができます。 -->
 
 
 </section>
@@ -3663,10 +3655,34 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp('/' + window.location.host + '/');
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+          // default icon
+          link.classList.add("external");
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -3676,8 +3692,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -3689,7 +3714,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -3733,6 +3881,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -3758,6 +3907,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -3815,37 +3990,22 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          // default icon
-          link.classList.add("external");
-      }
-    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./plot_advanced.html" class="pagination-link">
+      <a href="./plot_advanced.html" class="pagination-link" aria-label="発展的なグラフ">
         <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">発展的なグラフ</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data_select.html" class="pagination-link">
+      <a href="./data_select.html" class="pagination-link" aria-label="データの選択">
         <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
+
 
 
 

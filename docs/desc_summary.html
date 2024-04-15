@@ -104,6 +104,15 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "サーチ"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
+</script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&amp;display=swap" rel="stylesheet">
@@ -460,7 +469,6 @@ max    2007.00000    82.603000  1.318683e+09  113523.132900</code></pre>
 <span id="cb5-2"><a href="#cb5-2"></a></span>
 <span id="cb5-3"><a href="#cb5-3"></a><span class="fu">descr</span>(df_gap)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>Non-numerical variable(s) ignored: country, continent</code></pre>
 <p>Descriptive Statistics<br>
 df_gap<br>
 N: 1704</p>
@@ -589,11 +597,10 @@ N: 1704</p>
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a><span class="fu">library</span>(summarytools)</span>
-<span id="cb7-2"><a href="#cb7-2"></a></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">descr</span>(df_gap, <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"n.valid"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"q1"</span>, <span class="st">"med"</span>, <span class="st">"q3"</span>, <span class="st">"max"</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb6-2"><a href="#cb6-2"></a></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">descr</span>(df_gap, <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"n.valid"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"q1"</span>, <span class="st">"med"</span>, <span class="st">"q3"</span>, <span class="st">"max"</span>))</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<pre><code>Non-numerical variable(s) ignored: country, continent</code></pre>
 <p>Descriptive Statistics<br>
 df_gap<br>
 N: 1704</p>
@@ -673,10 +680,10 @@ N: 1704</p>
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">descr</span>(df_gap, <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"n.valid"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"q1"</span>, <span class="st">"med"</span>, <span class="st">"q3"</span>, <span class="st">"max"</span>))</span>
-<span id="cb9-2"><a href="#cb9-2"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">tb</span>(df_sum)</span>
-<span id="cb9-3"><a href="#cb9-3"></a></span>
-<span id="cb9-4"><a href="#cb9-4"></a><span class="fu">print</span>(df_sum)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">descr</span>(df_gap, <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"n.valid"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"q1"</span>, <span class="st">"med"</span>, <span class="st">"q3"</span>, <span class="st">"max"</span>))</span>
+<span id="cb7-2"><a href="#cb7-2"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">tb</span>(df_sum)</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">print</span>(df_sum)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 9
@@ -694,9 +701,9 @@ N: 1704</p>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>df_sum <span class="op">=</span> df_gap.describe()</span>
-<span id="cb11-2"><a href="#cb11-2"></a></span>
-<span id="cb11-3"><a href="#cb11-3"></a><span class="bu">print</span>(df_sum)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a>df_sum <span class="op">=</span> df_gap.describe()</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a><span class="bu">print</span>(df_sum)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>             year      lifeExp           pop      gdpPercap
@@ -719,10 +726,10 @@ max    2007.00000    82.603000  1.318683e+09  113523.132900</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">descr</span>(df_gap, <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"n.valid"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"q1"</span>, <span class="st">"med"</span>, <span class="st">"q3"</span>, <span class="st">"max"</span>), <span class="at">transpose =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb13-2"><a href="#cb13-2"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">tb</span>(df_sum)</span>
-<span id="cb13-3"><a href="#cb13-3"></a></span>
-<span id="cb13-4"><a href="#cb13-4"></a><span class="fu">print</span>(df_sum)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">descr</span>(df_gap, <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"n.valid"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"q1"</span>, <span class="st">"med"</span>, <span class="st">"q3"</span>, <span class="st">"max"</span>), <span class="at">transpose =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">tb</span>(df_sum)</span>
+<span id="cb11-3"><a href="#cb11-3"></a></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="fu">print</span>(df_sum)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 4 × 9
@@ -740,10 +747,10 @@ max    2007.00000    82.603000  1.318683e+09  113523.132900</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df_sum <span class="op">=</span> df_gap.describe()</span>
-<span id="cb15-2"><a href="#cb15-2"></a>df_sum <span class="op">=</span> df_sum.transpose()</span>
-<span id="cb15-3"><a href="#cb15-3"></a></span>
-<span id="cb15-4"><a href="#cb15-4"></a><span class="bu">print</span>(df_sum)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>df_sum <span class="op">=</span> df_gap.describe()</span>
+<span id="cb13-2"><a href="#cb13-2"></a>df_sum <span class="op">=</span> df_sum.transpose()</span>
+<span id="cb13-3"><a href="#cb13-3"></a></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="bu">print</span>(df_sum)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>            count          mean  ...           75%           max
@@ -773,7 +780,7 @@ gdpPercap  1704.0  7.215327e+03  ...  9.325462e+03  1.135231e+05
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">getwd</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a><span class="fu">getwd</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -781,9 +788,9 @@ gdpPercap  1704.0  7.215327e+03  ...  9.325462e+03  1.135231e+05
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a><span class="im">import</span> os</span>
-<span id="cb18-2"><a href="#cb18-2"></a></span>
-<span id="cb18-3"><a href="#cb18-3"></a>os.getcwd()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a><span class="im">import</span> os</span>
+<span id="cb16-2"><a href="#cb16-2"></a></span>
+<span id="cb16-3"><a href="#cb16-3"></a>os.getcwd()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>おそらく、<code>AAA/BBB/CCC/DDD</code>のような文字列が表示されるはずです（Windowsの場合は<code>/</code>が<code>¥</code>かもしれません）。これが作業ディレクトリのパスです。</p>
@@ -808,7 +815,7 @@ gdpPercap  1704.0  7.215327e+03  ...  9.325462e+03  1.135231e+05
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">write.csv</span>(df_sum, <span class="st">"tables/summary_gapminder_R.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a><span class="fu">write.csv</span>(df_sum, <span class="st">"tables/summary_gapminder_R.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div class="cell">
@@ -816,7 +823,7 @@ gdpPercap  1704.0  7.215327e+03  ...  9.325462e+03  1.135231e+05
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>df_sum.to_csv(<span class="st">"tables/summary_gapminder_py.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>df_sum.to_csv(<span class="st">"tables/summary_gapminder_py.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>ファイルを保存する場合は、保存先のパスを指定する必要があります。今回は、<code>tables</code>フォルダの中に<code>summary_gapminder_R[py].csv</code>というファイル名で保存しようと思います。</p>
@@ -840,25 +847,17 @@ gdpPercap  1704.0  7.215327e+03  ...  9.325462e+03  1.135231e+05
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">library</span>(xtable)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1"></a><span class="fu">library</span>(xtable)</span>
+<span id="cb19-2"><a href="#cb19-2"></a></span>
+<span id="cb19-3"><a href="#cb19-3"></a><span class="fu">print</span>(<span class="fu">xtable</span>(df_sum), <span class="at">file =</span> <span class="st">"tables/summary_gapminder_R.tex"</span>, <span class="at">booktabs =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell-output cell-output-stderr">
-<pre><code>
-Attaching package: 'xtable'</code></pre>
-</div>
-<div class="cell-output cell-output-stderr">
-<pre><code>The following objects are masked from 'package:summarytools':
-
-    label, label&lt;-</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">print</span>(<span class="fu">xtable</span>(df_sum), <span class="at">file =</span> <span class="st">"tables/summary_gapminder_R.tex"</span>, <span class="at">booktabs =</span> <span class="cn">TRUE</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell">
 <div class="code-with-filename">
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a>df_sum.to_latex(<span class="st">"tables/summary_gapminder_py.tex"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1"></a>df_sum.to_latex(<span class="st">"tables/summary_gapminder_py.tex"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <ul>
@@ -875,15 +874,15 @@ Attaching package: 'xtable'</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb26-2"><a href="#cb26-2"></a><span class="fu">library</span>(summarytools)</span>
-<span id="cb26-3"><a href="#cb26-3"></a></span>
-<span id="cb26-4"><a href="#cb26-4"></a>df_gap <span class="ot">&lt;-</span> gapminder</span>
-<span id="cb26-5"><a href="#cb26-5"></a></span>
-<span id="cb26-6"><a href="#cb26-6"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">descr</span>(df_gap, <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"n.valid"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"q1"</span>, <span class="st">"med"</span>, <span class="st">"q3"</span>, <span class="st">"max"</span>), <span class="at">transpose =</span> <span class="cn">TRUE</span>)</span>
-<span id="cb26-7"><a href="#cb26-7"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">tb</span>(df_sum)</span>
-<span id="cb26-8"><a href="#cb26-8"></a></span>
-<span id="cb26-9"><a href="#cb26-9"></a><span class="fu">write.csv</span>(df_sum, <span class="st">"tables/summary_gapminder_R.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb21-2"><a href="#cb21-2"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a>df_gap <span class="ot">&lt;-</span> gapminder</span>
+<span id="cb21-5"><a href="#cb21-5"></a></span>
+<span id="cb21-6"><a href="#cb21-6"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">descr</span>(df_gap, <span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"n.valid"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"q1"</span>, <span class="st">"med"</span>, <span class="st">"q3"</span>, <span class="st">"max"</span>), <span class="at">transpose =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb21-7"><a href="#cb21-7"></a>df_sum <span class="ot">&lt;-</span> <span class="fu">tb</span>(df_sum)</span>
+<span id="cb21-8"><a href="#cb21-8"></a></span>
+<span id="cb21-9"><a href="#cb21-9"></a><span class="fu">write.csv</span>(df_sum, <span class="st">"tables/summary_gapminder_R.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>データ分析は試行錯誤なので、同じようなことを何度もすることがあります。例えば、記述統計表を作り直すということはあるでしょう。その都度、上記のようなコードをイチから書いていくのは面倒です。</p>
@@ -902,14 +901,14 @@ Attaching package: 'xtable'</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1"></a><span class="im">import</span> gapminder</span>
-<span id="cb27-2"><a href="#cb27-2"></a></span>
-<span id="cb27-3"><a href="#cb27-3"></a>df_gap <span class="op">=</span> gapminder.gapminder</span>
-<span id="cb27-4"><a href="#cb27-4"></a></span>
-<span id="cb27-5"><a href="#cb27-5"></a>df_sum <span class="op">=</span> df_gap.describe()</span>
-<span id="cb27-6"><a href="#cb27-6"></a>df_sum <span class="op">=</span> df_sum.transpose()</span>
-<span id="cb27-7"><a href="#cb27-7"></a></span>
-<span id="cb27-8"><a href="#cb27-8"></a>df_sum.to_csv(<span class="st">"tables/summary_gapminder_py.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1"></a><span class="im">import</span> gapminder</span>
+<span id="cb22-2"><a href="#cb22-2"></a></span>
+<span id="cb22-3"><a href="#cb22-3"></a>df_gap <span class="op">=</span> gapminder.gapminder</span>
+<span id="cb22-4"><a href="#cb22-4"></a></span>
+<span id="cb22-5"><a href="#cb22-5"></a>df_sum <span class="op">=</span> df_gap.describe()</span>
+<span id="cb22-6"><a href="#cb22-6"></a>df_sum <span class="op">=</span> df_sum.transpose()</span>
+<span id="cb22-7"><a href="#cb22-7"></a></span>
+<span id="cb22-8"><a href="#cb22-8"></a>df_sum.to_csv(<span class="st">"tables/summary_gapminder_py.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>ところで、Pythonでは特定の種類のオブジェクトに限定した処理は<strong>メソッド</strong>として提供されています。そして、メソッドは連結して書くことができます。</p>
@@ -919,11 +918,11 @@ Attaching package: 'xtable'</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1"></a><span class="im">import</span> gapminder</span>
-<span id="cb28-2"><a href="#cb28-2"></a></span>
-<span id="cb28-3"><a href="#cb28-3"></a>df_gap <span class="op">=</span> gapminder.gapminder</span>
-<span id="cb28-4"><a href="#cb28-4"></a></span>
-<span id="cb28-5"><a href="#cb28-5"></a>df_gap.describe().transpose().to_csv(<span class="st">"tables/summary_gapminder_py.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1"></a><span class="im">import</span> gapminder</span>
+<span id="cb23-2"><a href="#cb23-2"></a></span>
+<span id="cb23-3"><a href="#cb23-3"></a>df_gap <span class="op">=</span> gapminder.gapminder</span>
+<span id="cb23-4"><a href="#cb23-4"></a></span>
+<span id="cb23-5"><a href="#cb23-5"></a>df_gap.describe().transpose().to_csv(<span class="st">"tables/summary_gapminder_py.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>Rでは<strong>パイプ演算子</strong>と呼ばれるものを使って、同様に書くことができます。パイプ演算子とは<code>%&gt;%</code>もしくは<code>|&gt;</code>のことで、左側の内容を右側の関数の最初の入力として渡します。</p>
@@ -936,15 +935,15 @@ Attaching package: 'xtable'</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>R</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">library</span>(gapminder)</span>
-<span id="cb29-2"><a href="#cb29-2"></a><span class="fu">library</span>(summarytools)</span>
-<span id="cb29-3"><a href="#cb29-3"></a></span>
-<span id="cb29-4"><a href="#cb29-4"></a>df_gap <span class="ot">&lt;-</span> gapminder</span>
-<span id="cb29-5"><a href="#cb29-5"></a></span>
-<span id="cb29-6"><a href="#cb29-6"></a>df_gap <span class="sc">|&gt;</span> </span>
-<span id="cb29-7"><a href="#cb29-7"></a>    <span class="fu">descr</span>(<span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"n.valid"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"q1"</span>, <span class="st">"med"</span>, <span class="st">"q3"</span>, <span class="st">"max"</span>), <span class="at">transpose =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb29-8"><a href="#cb29-8"></a>    <span class="fu">tb</span>() <span class="sc">|&gt;</span> </span>
-<span id="cb29-9"><a href="#cb29-9"></a>    <span class="fu">write.csv</span>(<span class="st">"tables/summary_gapminder_R.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb24-2"><a href="#cb24-2"></a><span class="fu">library</span>(summarytools)</span>
+<span id="cb24-3"><a href="#cb24-3"></a></span>
+<span id="cb24-4"><a href="#cb24-4"></a>df_gap <span class="ot">&lt;-</span> gapminder</span>
+<span id="cb24-5"><a href="#cb24-5"></a></span>
+<span id="cb24-6"><a href="#cb24-6"></a>df_gap <span class="sc">|&gt;</span> </span>
+<span id="cb24-7"><a href="#cb24-7"></a>    <span class="fu">descr</span>(<span class="at">stats =</span> <span class="fu">c</span>(<span class="st">"n.valid"</span>, <span class="st">"mean"</span>, <span class="st">"sd"</span>, <span class="st">"min"</span>, <span class="st">"q1"</span>, <span class="st">"med"</span>, <span class="st">"q3"</span>, <span class="st">"max"</span>), <span class="at">transpose =</span> <span class="cn">TRUE</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb24-8"><a href="#cb24-8"></a>    <span class="fu">tb</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb24-9"><a href="#cb24-9"></a>    <span class="fu">write.csv</span>(<span class="st">"tables/summary_gapminder_R.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <p>メソッドやパイプ演算子で連結させて書くか、処理を一つずつ行ってオブジェクトに代入して書くかは見やすさや個人の好みに応じて決めればよいと思います。</p>
@@ -968,16 +967,16 @@ Attaching package: 'xtable'</code></pre>
 <div class="code-with-filename-file">
 <pre><strong>Python</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a><span class="im">import</span> gapminder</span>
-<span id="cb30-2"><a href="#cb30-2"></a></span>
-<span id="cb30-3"><a href="#cb30-3"></a>df_gap <span class="op">=</span> gapminder.gapminder</span>
-<span id="cb30-4"><a href="#cb30-4"></a></span>
-<span id="cb30-5"><a href="#cb30-5"></a>(</span>
-<span id="cb30-6"><a href="#cb30-6"></a>    df_gap</span>
-<span id="cb30-7"><a href="#cb30-7"></a>    .describe()</span>
-<span id="cb30-8"><a href="#cb30-8"></a>    .transpose()</span>
-<span id="cb30-9"><a href="#cb30-9"></a>    .to_csv(<span class="st">"tables/summary_gapminder_py.csv"</span>)</span>
-<span id="cb30-10"><a href="#cb30-10"></a>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1"></a><span class="im">import</span> gapminder</span>
+<span id="cb25-2"><a href="#cb25-2"></a></span>
+<span id="cb25-3"><a href="#cb25-3"></a>df_gap <span class="op">=</span> gapminder.gapminder</span>
+<span id="cb25-4"><a href="#cb25-4"></a></span>
+<span id="cb25-5"><a href="#cb25-5"></a>(</span>
+<span id="cb25-6"><a href="#cb25-6"></a>    df_gap</span>
+<span id="cb25-7"><a href="#cb25-7"></a>    .describe()</span>
+<span id="cb25-8"><a href="#cb25-8"></a>    .transpose()</span>
+<span id="cb25-9"><a href="#cb25-9"></a>    .to_csv(<span class="st">"tables/summary_gapminder_py.csv"</span>)</span>
+<span id="cb25-10"><a href="#cb25-10"></a>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 
