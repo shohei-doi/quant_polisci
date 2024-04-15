@@ -3,6 +3,7 @@ project:
   output-dir: docs
 
 book:
+  google-analytics: "G-LLFB8XFPX5"
   title: "R/Pythonで計量政治学入門"
   author: "土井翔平"
   date: today
@@ -57,5 +58,12 @@ format:
     link-external-icon: true
     link-external-newwindow: true
     code-line-numbers: true
+
+execute: 
+  warning: false
+
+knitr: 
+  opts_chunk: 
+    message: false
 
 lang: ja
