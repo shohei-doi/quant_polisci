@@ -450,7 +450,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1"></a>sns.jointplot(df_gap, x<span class="op">=</span><span class="st">"gdpPercap"</span>, y<span class="op">=</span><span class="st">"lifeExp"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x7fd036af0590&gt;</code></pre>
+<pre><code>&lt;seaborn.axisgrid.JointGrid object at 0x7fd45c8a4f50&gt;</code></pre>
 </div>
 <div class="cell-output-display">
 <div>
@@ -1017,7 +1017,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp('/' + window.location.host + '/');
+      var filterRegex = new RegExp("https:\/\/shohei-doi\.github\.io\/quant_polisci\/");
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
