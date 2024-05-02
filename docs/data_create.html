@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.3.290">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R/Pythonで計量政治学入門 - 13&nbsp; データの追加</title>
+<title>R/Pythonで計量政治学入門 - 14&nbsp; データの追加</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,13 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "一致なし",
     "search-matching-documents-text": "一致した文書",
@@ -96,10 +90,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "追加の検索結果",
     "search-more-matches-text": "追加の検索結果",
     "search-clear-button-title": "消去",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "取消",
-    "search-submit-button-title": "検索",
-    "search-label": "サーチ"
+    "search-submit-button-title": "検索"
   }
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
@@ -124,13 +116,13 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_import.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_create.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_download.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_create.html"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">データの追加</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -139,7 +131,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R/Pythonで<br>計量政治学入門</a> 
@@ -262,32 +254,38 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./data_download.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データのダウンロード</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの読み込み</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_select.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの選択</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_create.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">データの追加</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_pivot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">ロングとワイドの変換</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ロングとワイドの変換</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_missing_values.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">欠損値の対応</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">欠損値の対応</span></span></a>
   </div>
 </li>
       </ul>
@@ -309,6 +307,12 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./pipe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./session_info.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">動作環境</span></a>
   </div>
@@ -318,37 +322,37 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#変数の作成" id="toc-変数の作成" class="nav-link active" data-scroll-target="#変数の作成"><span class="header-section-number">13.1</span> 変数の作成</a>
+  <li><a href="#変数の作成" id="toc-変数の作成" class="nav-link active" data-scroll-target="#変数の作成"><span class="header-section-number">14.1</span> 変数の作成</a>
   <ul class="collapse">
-  <li><a href="#四則演算" id="toc-四則演算" class="nav-link" data-scroll-target="#四則演算"><span class="header-section-number">13.1.1</span> 四則演算</a></li>
-  <li><a href="#尺度の反転" id="toc-尺度の反転" class="nav-link" data-scroll-target="#尺度の反転"><span class="header-section-number">13.1.2</span> 尺度の反転</a></li>
-  <li><a href="#条件に基づく変数" id="toc-条件に基づく変数" class="nav-link" data-scroll-target="#条件に基づく変数"><span class="header-section-number">13.1.3</span> 条件に基づく変数</a></li>
-  <li><a href="#ラグ変数" id="toc-ラグ変数" class="nav-link" data-scroll-target="#ラグ変数"><span class="header-section-number">13.1.4</span> ラグ変数</a></li>
-  <li><a href="#日付" id="toc-日付" class="nav-link" data-scroll-target="#日付"><span class="header-section-number">13.1.5</span> 日付</a></li>
+  <li><a href="#四則演算" id="toc-四則演算" class="nav-link" data-scroll-target="#四則演算"><span class="header-section-number">14.1.1</span> 四則演算</a></li>
+  <li><a href="#尺度の反転" id="toc-尺度の反転" class="nav-link" data-scroll-target="#尺度の反転"><span class="header-section-number">14.1.2</span> 尺度の反転</a></li>
+  <li><a href="#条件に基づく変数" id="toc-条件に基づく変数" class="nav-link" data-scroll-target="#条件に基づく変数"><span class="header-section-number">14.1.3</span> 条件に基づく変数</a></li>
+  <li><a href="#ラグ変数" id="toc-ラグ変数" class="nav-link" data-scroll-target="#ラグ変数"><span class="header-section-number">14.1.4</span> ラグ変数</a></li>
+  <li><a href="#日付" id="toc-日付" class="nav-link" data-scroll-target="#日付"><span class="header-section-number">14.1.5</span> 日付</a></li>
   </ul></li>
-  <li><a href="#データの結合変数の追加" id="toc-データの結合変数の追加" class="nav-link" data-scroll-target="#データの結合変数の追加"><span class="header-section-number">13.2</span> データの結合（変数の追加）</a>
+  <li><a href="#データの結合変数の追加" id="toc-データの結合変数の追加" class="nav-link" data-scroll-target="#データの結合変数の追加"><span class="header-section-number">14.2</span> データの結合（変数の追加）</a>
   <ul class="collapse">
-  <li><a href="#左結合右結合" id="toc-左結合右結合" class="nav-link" data-scroll-target="#左結合右結合"><span class="header-section-number">13.2.1</span> 左結合・右結合</a></li>
-  <li><a href="#全結合共通部分結合" id="toc-全結合共通部分結合" class="nav-link" data-scroll-target="#全結合共通部分結合"><span class="header-section-number">13.2.2</span> 全結合・共通部分結合</a></li>
-  <li><a href="#countrycode" id="toc-countrycode" class="nav-link" data-scroll-target="#countrycode"><span class="header-section-number">13.2.3</span> countrycode</a></li>
+  <li><a href="#左結合右結合" id="toc-左結合右結合" class="nav-link" data-scroll-target="#左結合右結合"><span class="header-section-number">14.2.1</span> 左結合・右結合</a></li>
+  <li><a href="#全結合共通部分結合" id="toc-全結合共通部分結合" class="nav-link" data-scroll-target="#全結合共通部分結合"><span class="header-section-number">14.2.2</span> 全結合・共通部分結合</a></li>
+  <li><a href="#countrycode" id="toc-countrycode" class="nav-link" data-scroll-target="#countrycode"><span class="header-section-number">14.2.3</span> countrycode</a></li>
   </ul></li>
-  <li><a href="#データの結合観察の追加" id="toc-データの結合観察の追加" class="nav-link" data-scroll-target="#データの結合観察の追加"><span class="header-section-number">13.3</span> データの結合（観察の追加）</a></li>
+  <li><a href="#データの結合観察の追加" id="toc-データの結合観察の追加" class="nav-link" data-scroll-target="#データの結合観察の追加"><span class="header-section-number">14.3</span> データの結合（観察の追加）</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_import.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_create.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></h1>
+<h1 class="title"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">データの追加</span></h1>
 </div>
 
 
@@ -361,9 +365,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
   </div>
   
 
-
 </header>
-
 
 <p>前回は変数を選択したり、観察を選択したりと、データから一部を取り出す作業を学びました。今回は逆にデータを増やす作業を学びます。</p>
 <div class="cell">
@@ -384,16 +386,16 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> polars <span class="im">as</span> pl</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<section id="変数の作成" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="変数の作成"><span class="header-section-number">13.1</span> 変数の作成</h2>
+<section id="変数の作成" class="level2" data-number="14.1">
+<h2 data-number="14.1" class="anchored" data-anchor-id="変数の作成"><span class="header-section-number">14.1</span> 変数の作成</h2>
 <p>データフレームを拡張する方法の一つは変数を増やすことです。変数を増やすためには、</p>
 <ol type="1">
 <li>既存のデータフレームの変数を用いて新しい変数を作成するか、</li>
 <li>別のデータフレームと結合する</li>
 </ol>
 <p>の2通りの方法があります。まずは、前者について学びます。</p>
-<section id="四則演算" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="四則演算"><span class="header-section-number">13.1.1</span> 四則演算</h3>
+<section id="四則演算" class="level3" data-number="14.1.1">
+<h3 data-number="14.1.1" class="anchored" data-anchor-id="四則演算"><span class="header-section-number">14.1.1</span> 四則演算</h3>
 <p>一般的な四則演算が実行可能です。例えば、東大朝日の2017年衆議院選挙の有権者調査のコードブックを見てみると、問23で政策に対する賛否を聞いています（質問文は間違っていますが）。特に、(1)から(4)は外交政策についてタカ派かハト派かを表しています。</p>
 <p>そこで、これらの変数を足し合わせることでハト派度合いを表す変数を作りたいと思います。</p>
 <ul>
@@ -482,7 +484,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb9-7"><a href="#cb9-7"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
-<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -549,7 +550,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</div>
 <p>ここでも<code>tidyverse</code>と<code>polars</code>、R標準関数と<code>pandas</code>の共通性が見て取れます。つまり、前者では<a href="https://dplyr.tidyverse.org/reference/mutate.html"><code>mutate()</code></a>ないし<a href="https://docs.pola.rs/py-polars/html/reference/dataframe/api/polars.DataFrame.with_columns.html"><code>with_columns()</code></a>内で新しい変数を定義しています。一方で後者は存在しない変数を参照して、そこに代入することで新しい変数を作成しています。</p>
 <p>なお、<code>+</code>や<code>-</code>以外にも四則演算は可能です。</p>
 <table class="table">
@@ -599,8 +599,8 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </tbody>
 </table>
 </section>
-<section id="尺度の反転" class="level3" data-number="13.1.2">
-<h3 data-number="13.1.2" class="anchored" data-anchor-id="尺度の反転"><span class="header-section-number">13.1.2</span> 尺度の反転</h3>
+<section id="尺度の反転" class="level3" data-number="14.1.2">
+<h3 data-number="14.1.2" class="anchored" data-anchor-id="尺度の反転"><span class="header-section-number">14.1.2</span> 尺度の反転</h3>
 <p>ところで、先程の4つの設問では賛成が1、反対が5となる変数でした。そして、(1)から(3)は賛成のほうがタカ派であり、(4)は反対の方がタカ派と言えそうでした。</p>
 <p>そうすると、(4)でも反対が1、賛成が5となるように尺度を反転させたくなるのが人情です。このような場合、「最大値から元の変数を引いて最小値を足す」ことで反転させることができます。そのような反転させた(4)の回答を<code>Q23_4new</code>として作ってみます。</p>
 <div class="cell">
@@ -715,7 +715,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb18-8"><a href="#cb18-8"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
-<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -789,12 +788,11 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</div>
 </section>
-<section id="条件に基づく変数" class="level3" data-number="13.1.3">
-<h3 data-number="13.1.3" class="anchored" data-anchor-id="条件に基づく変数"><span class="header-section-number">13.1.3</span> 条件に基づく変数</h3>
-<section id="条件が一つの場合" class="level4" data-number="13.1.3.1">
-<h4 data-number="13.1.3.1" class="anchored" data-anchor-id="条件が一つの場合"><span class="header-section-number">13.1.3.1</span> 条件が一つの場合</h4>
+<section id="条件に基づく変数" class="level3" data-number="14.1.3">
+<h3 data-number="14.1.3" class="anchored" data-anchor-id="条件に基づく変数"><span class="header-section-number">14.1.3</span> 条件に基づく変数</h3>
+<section id="条件が一つの場合" class="level4" data-number="14.1.3.1">
+<h4 data-number="14.1.3.1" class="anchored" data-anchor-id="条件が一つの場合"><span class="header-section-number">14.1.3.1</span> 条件が一つの場合</h4>
 <p>四則演算以外にも条件に基づいて新しい変数を作成することもできます。例えば、先ほど作ったハト派変数について、「平均値よりも大きければハト派、そうでなければタカ派」とする変数を作ってみます。</p>
 <div class="cell">
 <div class="code-with-filename">
@@ -891,7 +889,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb25-9"><a href="#cb25-9"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
-<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -972,15 +969,14 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</div>
 <ul>
 <li>変数に文字列を代入するためには<code>pl.lit()</code>を使います。</li>
 </ul>
 <p>長くて分かりにくいですが、基本的な構造はいずれも同じです。Rの標準関数の場合は<code>ifelse()</code>、<code>tidyverse</code>の場合は<a href="https://dplyr.tidyverse.org/reference/if_else.html"><code>if_else()</code></a>、<code>pandas</code>では<code>numpy</code>の<a href="https://numpy.org/doc/stable/reference/generated/numpy.where.html"><code>np.where()</code></a>、<code>polars</code>では<a href="https://docs.pola.rs/py-polars/html/reference/expressions/api/polars.when.html"><code>when().then().otherwise()</code></a>を使います。</p>
 <p>まず最初に条件式を入力し（ハト派度合いが平均値以上）、それに合致する場合は最初の値<code>dove</code>を代入し、合致しない場合は次の値<code>hawk</code>を代入しています。</p>
 </section>
-<section id="条件が複数の場合" class="level4" data-number="13.1.3.2">
-<h4 data-number="13.1.3.2" class="anchored" data-anchor-id="条件が複数の場合"><span class="header-section-number">13.1.3.2</span> 条件が複数の場合</h4>
+<section id="条件が複数の場合" class="level4" data-number="14.1.3.2">
+<h4 data-number="14.1.3.2" class="anchored" data-anchor-id="条件が複数の場合"><span class="header-section-number">14.1.3.2</span> 条件が複数の場合</h4>
 <p>条件が複数ある場合、つまり条件1に当てはまる場合はA、条件2に当てはまる場合はB、条件3に当てはまる場合はC……というような変数を作る場合は、次のように書くのが便利です。例えば、<code>F2</code>という変数は年代を表していますが、10代・20代を若者、30代から50代を中高年、60代以上を高齢者とするような変数を作ってみます。</p>
 <p><code>tidyverse</code>では<a href="https://dplyr.tidyverse.org/reference/case_when.html"><code>case_when()</code></a>を使います。<code>条件式 ~ 変数の値</code>とします。条件に合致しないものに対しては条件式を<code>TRUE</code>とします。</p>
 <div class="cell">
@@ -1027,7 +1023,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb28-11"><a href="#cb28-11"></a>df_voter2017.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
-<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1073,30 +1068,29 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</div>
 </section>
 </section>
-<section id="ラグ変数" class="level3" data-number="13.1.4">
-<h3 data-number="13.1.4" class="anchored" data-anchor-id="ラグ変数"><span class="header-section-number">13.1.4</span> ラグ変数</h3>
+<section id="ラグ変数" class="level3" data-number="14.1.4">
+<h3 data-number="14.1.4" class="anchored" data-anchor-id="ラグ変数"><span class="header-section-number">14.1.4</span> ラグ変数</h3>
 </section>
-<section id="日付" class="level3" data-number="13.1.5">
-<h3 data-number="13.1.5" class="anchored" data-anchor-id="日付"><span class="header-section-number">13.1.5</span> 日付</h3>
-</section>
-</section>
-<section id="データの結合変数の追加" class="level2" data-number="13.2">
-<h2 data-number="13.2" class="anchored" data-anchor-id="データの結合変数の追加"><span class="header-section-number">13.2</span> データの結合（変数の追加）</h2>
-<section id="左結合右結合" class="level3" data-number="13.2.1">
-<h3 data-number="13.2.1" class="anchored" data-anchor-id="左結合右結合"><span class="header-section-number">13.2.1</span> 左結合・右結合</h3>
-</section>
-<section id="全結合共通部分結合" class="level3" data-number="13.2.2">
-<h3 data-number="13.2.2" class="anchored" data-anchor-id="全結合共通部分結合"><span class="header-section-number">13.2.2</span> 全結合・共通部分結合</h3>
-</section>
-<section id="countrycode" class="level3" data-number="13.2.3">
-<h3 data-number="13.2.3" class="anchored" data-anchor-id="countrycode"><span class="header-section-number">13.2.3</span> countrycode</h3>
+<section id="日付" class="level3" data-number="14.1.5">
+<h3 data-number="14.1.5" class="anchored" data-anchor-id="日付"><span class="header-section-number">14.1.5</span> 日付</h3>
 </section>
 </section>
-<section id="データの結合観察の追加" class="level2" data-number="13.3">
-<h2 data-number="13.3" class="anchored" data-anchor-id="データの結合観察の追加"><span class="header-section-number">13.3</span> データの結合（観察の追加）</h2>
+<section id="データの結合変数の追加" class="level2" data-number="14.2">
+<h2 data-number="14.2" class="anchored" data-anchor-id="データの結合変数の追加"><span class="header-section-number">14.2</span> データの結合（変数の追加）</h2>
+<section id="左結合右結合" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="左結合右結合"><span class="header-section-number">14.2.1</span> 左結合・右結合</h3>
+</section>
+<section id="全結合共通部分結合" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="全結合共通部分結合"><span class="header-section-number">14.2.2</span> 全結合・共通部分結合</h3>
+</section>
+<section id="countrycode" class="level3" data-number="14.2.3">
+<h3 data-number="14.2.3" class="anchored" data-anchor-id="countrycode"><span class="header-section-number">14.2.3</span> countrycode</h3>
+</section>
+</section>
+<section id="データの結合観察の追加" class="level2" data-number="14.3">
+<h2 data-number="14.3" class="anchored" data-anchor-id="データの結合観察の追加"><span class="header-section-number">14.3</span> データの結合（観察の追加）</h2>
 
 
 </section>
@@ -1181,34 +1175,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/shohei-doi\.github\.io\/quant_polisci\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-          // default icon
-          link.classList.add("external");
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1218,17 +1188,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1240,130 +1201,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -1407,7 +1245,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1433,32 +1270,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1516,22 +1327,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp("https:\/\/shohei-doi\.github\.io\/quant_polisci\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./data_select.html" class="pagination-link" aria-label="データの選択">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></span>
+      <a href="./data_select.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの選択</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data_pivot.html" class="pagination-link" aria-label="ロングとワイドの変換">
-        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">ロングとワイドの変換</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data_pivot.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ロングとワイドの変換</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

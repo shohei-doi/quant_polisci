@@ -1,3 +1,9 @@
+---
+aliases: 
+  - data-import.html
+  - qualtrics.html
+---
+
 # データの読み込み
 
 政治学で用いるデータの多くは、ウェブサイト上に公開されているデータです。今回は公開されているデータを読み込む方法を紹介します。
@@ -134,6 +140,7 @@ df_sample = pl.read_excel("data/xxx.xlsx")
 
 ```{r filename="R (tidyverse)"}
 #| eval: false
+library(haven)
 
 df_sample <- read_dta("data/xxx.dta")
 ```

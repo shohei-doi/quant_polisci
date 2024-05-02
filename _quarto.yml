@@ -32,7 +32,7 @@ book:
     # - part: "回帰分析"
     - part: "データの処理"
       chapters:
-        # - data_download.qmd
+        - data_download.qmd
         - data_import.qmd
         - data_select.qmd
         - data_create.qmd
@@ -40,11 +40,14 @@ book:
         - data_missing_values.qmd
     # - part: "統計的因果推論"
     # - part: "機械学習"
-    # - part: "地理空間データ"
+    - part: "地理空間データ"
+      chapters: 
+        - plot_map.qmd
     # - part: "テキストデータ"
     # - part: "ネットワークデータ"
   appendices: 
     - encoding.qmd
+    - pipe.qmd
     - session_info.qmd
 
 bibliography: references.bib

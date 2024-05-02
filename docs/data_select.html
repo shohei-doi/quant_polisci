@@ -2,12 +2,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="ja" xml:lang="ja"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.551">
+<meta name="generator" content="quarto-1.3.290">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R/Pythonで計量政治学入門 - 12&nbsp; データの選択</title>
+<title>R/Pythonで計量政治学入門 - 13&nbsp; データの選択</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -22,7 +22,7 @@ ul.task-list li input[type="checkbox"] {
 }
 /* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -81,13 +81,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   "collapse-after": 3,
   "panel-placement": "start",
   "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
+  "limit": 20,
   "language": {
     "search-no-results-text": "一致なし",
     "search-matching-documents-text": "一致した文書",
@@ -96,10 +90,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-more-match-text": "追加の検索結果",
     "search-more-matches-text": "追加の検索結果",
     "search-clear-button-title": "消去",
-    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "取消",
-    "search-submit-button-title": "検索",
-    "search-label": "サーチ"
+    "search-submit-button-title": "検索"
   }
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-LLFB8XFPX5"></script>
@@ -124,13 +116,13 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
   <header id="quarto-header" class="headroom fixed-top">
   <nav class="quarto-secondary-nav">
     <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_import.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_select.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></a></li></ol></nav>
-        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+      <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_download.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_select.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの選択</span></a></li></ol></nav>
+      <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+      </a>
+      <button type="button" class="btn quarto-search-button" aria-label="サーチ" onclick="window.quartoOpenSearch();">
         <i class="bi bi-search"></i>
       </button>
     </div>
@@ -139,7 +131,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal sidebar-navigation floating overflow-auto">
     <div class="pt-lg-2 mt-2 text-left sidebar-header">
     <div class="sidebar-title mb-0 py-0">
       <a href="./">R/Pythonで<br>計量政治学入門</a> 
@@ -262,32 +254,38 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./data_download.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データのダウンロード</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./data_import.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></span></a>
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの読み込み</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_select.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></span></a>
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの選択</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_create.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></span></a>
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">データの追加</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_pivot.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">ロングとワイドの変換</span></span></a>
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">ロングとワイドの変換</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./data_missing_values.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">欠損値の対応</span></span></a>
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">欠損値の対応</span></span></a>
   </div>
 </li>
       </ul>
@@ -309,6 +307,12 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="./pipe.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="./session_info.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">動作環境</span></a>
   </div>
@@ -318,26 +322,26 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
     </ul>
     </div>
 </nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<div id="quarto-sidebar-glass" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar,#quarto-sidebar-glass"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
     <h2 id="toc-title">目次</h2>
    
   <ul>
-  <li><a href="#変数の選択" id="toc-変数の選択" class="nav-link active" data-scroll-target="#変数の選択"><span class="header-section-number">12.1</span> 変数の選択</a>
+  <li><a href="#変数の選択" id="toc-変数の選択" class="nav-link active" data-scroll-target="#変数の選択"><span class="header-section-number">13.1</span> 変数の選択</a>
   <ul class="collapse">
-  <li><a href="#変数名による選択" id="toc-変数名による選択" class="nav-link" data-scroll-target="#変数名による選択"><span class="header-section-number">12.1.1</span> 変数名による選択</a></li>
-  <li><a href="#番号による選択" id="toc-番号による選択" class="nav-link" data-scroll-target="#番号による選択"><span class="header-section-number">12.1.2</span> 番号による選択</a></li>
+  <li><a href="#変数名による選択" id="toc-変数名による選択" class="nav-link" data-scroll-target="#変数名による選択"><span class="header-section-number">13.1.1</span> 変数名による選択</a></li>
+  <li><a href="#番号による選択" id="toc-番号による選択" class="nav-link" data-scroll-target="#番号による選択"><span class="header-section-number">13.1.2</span> 番号による選択</a></li>
   </ul></li>
-  <li><a href="#変数名の変更" id="toc-変数名の変更" class="nav-link" data-scroll-target="#変数名の変更"><span class="header-section-number">12.2</span> 変数名の変更</a></li>
-  <li><a href="#変数の除外" id="toc-変数の除外" class="nav-link" data-scroll-target="#変数の除外"><span class="header-section-number">12.3</span> 変数の除外</a></li>
-  <li><a href="#観察の選択" id="toc-観察の選択" class="nav-link" data-scroll-target="#観察の選択"><span class="header-section-number">12.4</span> 観察の選択</a>
+  <li><a href="#変数名の変更" id="toc-変数名の変更" class="nav-link" data-scroll-target="#変数名の変更"><span class="header-section-number">13.2</span> 変数名の変更</a></li>
+  <li><a href="#変数の除外" id="toc-変数の除外" class="nav-link" data-scroll-target="#変数の除外"><span class="header-section-number">13.3</span> 変数の除外</a></li>
+  <li><a href="#観察の選択" id="toc-観察の選択" class="nav-link" data-scroll-target="#観察の選択"><span class="header-section-number">13.4</span> 観察の選択</a>
   <ul class="collapse">
-  <li><a href="#不等号による選択" id="toc-不等号による選択" class="nav-link" data-scroll-target="#不等号による選択"><span class="header-section-number">12.4.1</span> 不等号による選択</a></li>
-  <li><a href="#等号による選択" id="toc-等号による選択" class="nav-link" data-scroll-target="#等号による選択"><span class="header-section-number">12.4.2</span> 等号による選択</a></li>
-  <li><a href="#部分集合による選択" id="toc-部分集合による選択" class="nav-link" data-scroll-target="#部分集合による選択"><span class="header-section-number">12.4.3</span> 部分集合による選択</a></li>
-  <li><a href="#和集合による選択" id="toc-和集合による選択" class="nav-link" data-scroll-target="#和集合による選択"><span class="header-section-number">12.4.4</span> 和集合による選択</a></li>
+  <li><a href="#不等号による選択" id="toc-不等号による選択" class="nav-link" data-scroll-target="#不等号による選択"><span class="header-section-number">13.4.1</span> 不等号による選択</a></li>
+  <li><a href="#等号による選択" id="toc-等号による選択" class="nav-link" data-scroll-target="#等号による選択"><span class="header-section-number">13.4.2</span> 等号による選択</a></li>
+  <li><a href="#部分集合による選択" id="toc-部分集合による選択" class="nav-link" data-scroll-target="#部分集合による選択"><span class="header-section-number">13.4.3</span> 部分集合による選択</a></li>
+  <li><a href="#和集合による選択" id="toc-和集合による選択" class="nav-link" data-scroll-target="#和集合による選択"><span class="header-section-number">13.4.4</span> 和集合による選択</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -345,9 +349,9 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./data_import.html">データの処理</a></li><li class="breadcrumb-item"><a href="./data_select.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの選択</span></h1>
+<h1 class="title"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの選択</span></h1>
 </div>
 
 
@@ -360,9 +364,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
   </div>
   
 
-
 </header>
-
 
 <p>データフレームに含まれるデータのうちで実際に分析に使うのは一部ということはよくあります。その場合は不要なデータを削除していたほうが見やすいですし、PCへの負担も少なくなると思います。</p>
 <p>なお、以下ではRの標準関数を使う場合、<code>tidyverse</code>の<code>dplyr</code>を使う場合、Pythonの<code>padans</code>を使う場合、<code>polars</code>を使う場合を紹介します。</p>
@@ -384,10 +386,10 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb2-2"><a href="#cb2-2"></a><span class="im">import</span> polars <span class="im">as</span> pl</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
-<section id="変数の選択" class="level2" data-number="12.1">
-<h2 data-number="12.1" class="anchored" data-anchor-id="変数の選択"><span class="header-section-number">12.1</span> 変数の選択</h2>
-<section id="変数名による選択" class="level3" data-number="12.1.1">
-<h3 data-number="12.1.1" class="anchored" data-anchor-id="変数名による選択"><span class="header-section-number">12.1.1</span> 変数名による選択</h3>
+<section id="変数の選択" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="変数の選択"><span class="header-section-number">13.1</span> 変数の選択</h2>
+<section id="変数名による選択" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="変数名による選択"><span class="header-section-number">13.1.1</span> 変数名による選択</h3>
 <p>まずは、特定の変数だけを使う場合を考えます。例えば、以前読み込んだPolityのデータから特定の変数だけを取り出します。具体的には、<code>ccode</code>と<code>country</code>、<code>year</code>、<code>polity2</code>だけを取り出します。</p>
 <div class="cell">
 <div class="code-with-filename">
@@ -468,7 +470,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb9-6"><a href="#cb9-6"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
-<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -528,7 +529,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</div>
 <p>いずれも期待通りの結果が出ています。ところで、上の4つのコードを見比べていると共通性があることが分かります。</p>
 <ul>
 <li>Rの標準関数およびPythonの<code>pandas</code>では<code>,</code>の右側で変数名を入力することで変数を選択しています。
@@ -538,8 +538,8 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <li>一方、Rの<code>tidyverse</code>とPythonの<code>polars</code>では<code>select()</code>を使って変数名を選択しています。</li>
 </ul>
 </section>
-<section id="番号による選択" class="level3" data-number="12.1.2">
-<h3 data-number="12.1.2" class="anchored" data-anchor-id="番号による選択"><span class="header-section-number">12.1.2</span> 番号による選択</h3>
+<section id="番号による選択" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="番号による選択"><span class="header-section-number">13.1.2</span> 番号による選択</h3>
 <p>あまり使う機会はありませんが、変数の番号を指定して選択することもできます。それぞれ、3, 5, 6, 12番目の変数です。</p>
 <div class="cell">
 <div class="code-with-filename">
@@ -593,8 +593,8 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </ul>
 </section>
 </section>
-<section id="変数名の変更" class="level2" data-number="12.2">
-<h2 data-number="12.2" class="anchored" data-anchor-id="変数名の変更"><span class="header-section-number">12.2</span> 変数名の変更</h2>
+<section id="変数名の変更" class="level2" data-number="13.2">
+<h2 data-number="13.2" class="anchored" data-anchor-id="変数名の変更"><span class="header-section-number">13.2</span> 変数名の変更</h2>
 <p>変数の選択ではないですが、ついでに変数名を変更する方法を説明します。例えば、世銀のデータでは<code>Country Name</code>のように空白が変数名に入っていましたが、変数名に空白が入ることは（特に<code>tidyverse</code>を使う上で）不都合があります。変数名を変更したいと思います。</p>
 <div class="cell">
 <div class="code-with-filename">
@@ -661,7 +661,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb18-6"><a href="#cb18-6"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
-<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1176,15 +1175,14 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</div>
 <p>いずれも<code>rename()</code>を使って元の変数名と新しい変数名の対応関係を入力します。</p>
 <ul>
 <li><code>tidyverse</code>の場合は<code>新変数名 = 旧変数名</code>ですが、<code>pandas/polars</code>の場合は<code>旧変数名: 新変数名</code>です。</li>
 <li><code>tidyverse</code>の<code>select()</code>の中でも変数名を変更することができます。</li>
 </ul>
 </section>
-<section id="変数の除外" class="level2" data-number="12.3">
-<h2 data-number="12.3" class="anchored" data-anchor-id="変数の除外"><span class="header-section-number">12.3</span> 変数の除外</h2>
+<section id="変数の除外" class="level2" data-number="13.3">
+<h2 data-number="13.3" class="anchored" data-anchor-id="変数の除外"><span class="header-section-number">13.3</span> 変数の除外</h2>
 <p>特定の変数を選択するのではなく、除外したいときがあるかもしれません。例えば、SIPRIの軍事費データの<code>Notes</code>は不要な気がします。</p>
 <p><code>tidyverse</code>では<code>select()</code>の際に<code>!</code>を付けると変数を除外します。</p>
 <div class="cell">
@@ -1255,7 +1253,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb23-6"><a href="#cb23-6"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
-<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -1812,13 +1809,12 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</div>
 </section>
-<section id="観察の選択" class="level2" data-number="12.4">
-<h2 data-number="12.4" class="anchored" data-anchor-id="観察の選択"><span class="header-section-number">12.4</span> 観察の選択</h2>
+<section id="観察の選択" class="level2" data-number="13.4">
+<h2 data-number="13.4" class="anchored" data-anchor-id="観察の選択"><span class="header-section-number">13.4</span> 観察の選択</h2>
 <p>これまでは変数の操作について見てきましたが、次は観察の選択を学びます。つまり、データに含まれる観察の一部だけを取り出して分析する状況を考えます。</p>
-<section id="不等号による選択" class="level3" data-number="12.4.1">
-<h3 data-number="12.4.1" class="anchored" data-anchor-id="不等号による選択"><span class="header-section-number">12.4.1</span> 不等号による選択</h3>
+<section id="不等号による選択" class="level3" data-number="13.4.1">
+<h3 data-number="13.4.1" class="anchored" data-anchor-id="不等号による選択"><span class="header-section-number">13.4.1</span> 不等号による選択</h3>
 <p>例えば、Polityのデータのうち、第2次世界大戦後のデータを取り出したいとします。</p>
 <div class="cell">
 <div class="code-with-filename">
@@ -1934,7 +1930,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb32-6"><a href="#cb32-6"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
-<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2225,15 +2220,14 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</div>
 <p>ここでも共通点が見えてきます。<code>tidyverse</code>と<code>polars</code>では<code>filter()</code>の中に条件式を入れます。一方、Rの標準関数と<code>pandas</code>では<code>,</code>の左側に条件式を入れます。</p>
 <ul>
 <li><code>&lt;</code>や<code>&gt;</code>は通常の意味通り、使うことができます。</li>
 <li>等号も含む場合は<code>&lt;=</code>や<code>&gt;=</code>とします。</li>
 </ul>
 </section>
-<section id="等号による選択" class="level3" data-number="12.4.2">
-<h3 data-number="12.4.2" class="anchored" data-anchor-id="等号による選択"><span class="header-section-number">12.4.2</span> 等号による選択</h3>
+<section id="等号による選択" class="level3" data-number="13.4.2">
+<h3 data-number="13.4.2" class="anchored" data-anchor-id="等号による選択"><span class="header-section-number">13.4.2</span> 等号による選択</h3>
 <p>次に、日本だけのデータを取り出したいと思います。<code>=</code>ではなく<code>==</code>（<code>=</code>が2つ）である点に注意してください。</p>
 <div class="cell">
 <div class="code-with-filename">
@@ -2348,7 +2342,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb41-6"><a href="#cb41-6"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output-display">
-<div>
 <div><style>
 .dataframe > thead > tr,
 .dataframe > tbody > tr {
@@ -2639,10 +2632,9 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
-</div>
 </section>
-<section id="部分集合による選択" class="level3" data-number="12.4.3">
-<h3 data-number="12.4.3" class="anchored" data-anchor-id="部分集合による選択"><span class="header-section-number">12.4.3</span> 部分集合による選択</h3>
+<section id="部分集合による選択" class="level3" data-number="13.4.3">
+<h3 data-number="13.4.3" class="anchored" data-anchor-id="部分集合による選択"><span class="header-section-number">13.4.3</span> 部分集合による選択</h3>
 <p>第2次世界大戦後から冷戦終結までのデータを取り出したい場合は、「かつ (and)」を意味する<code>&amp;</code>を使います。</p>
 <div class="cell">
 <div class="code-with-filename">
@@ -2719,8 +2711,8 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </section>
-<section id="和集合による選択" class="level3" data-number="12.4.4">
-<h3 data-number="12.4.4" class="anchored" data-anchor-id="和集合による選択"><span class="header-section-number">12.4.4</span> 和集合による選択</h3>
+<section id="和集合による選択" class="level3" data-number="13.4.4">
+<h3 data-number="13.4.4" class="anchored" data-anchor-id="和集合による選択"><span class="header-section-number">13.4.4</span> 和集合による選択</h3>
 <p>日本と中国のデータを取り出す場合は、「または (or)」を意味する<code>|</code>を使います。</p>
 <div class="cell">
 <div class="code-with-filename">
@@ -2892,34 +2884,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/shohei-doi\.github\.io\/quant_polisci\/");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-        // undo the damage that might have been done by quarto-nav.js in the case of
-        // links that we want to consider external
-        if (link.dataset.originalHref !== undefined) {
-          link.href = link.dataset.originalHref;
-        }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-          // default icon
-          link.classList.add("external");
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+  function tippyHover(el, contentFn) {
     const config = {
       allowHTML: true,
+      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -2929,17 +2897,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start',
+      placement: 'bottom-start'
     };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -2951,130 +2910,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      if (note) {
-        return note.innerHTML;
-      } else {
-        return "";
-      }
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
-        }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
-      } else {
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(note);
-        }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
-      }
-    }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
-          }
-        } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
-          .then(res => res.text())
-          .then(html => {
-            const parser = new DOMParser();
-            const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
-            if (note !== null) {
-              const html = processXRef(id, note);
-              instance.setContent(html);
-            } 
-          }).finally(() => {
-            instance.enable();
-            instance.show();
-          });
-        }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
+      return note.innerHTML;
     });
   }
       let selectedAnnoteEl;
@@ -3118,7 +2954,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
-            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -3144,32 +2979,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -3227,22 +3036,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp("https:\/\/shohei-doi\.github\.io\/quant_polisci\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          // default icon
+          link.classList.add("external");
+      }
+    }
 });
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./data_import.html" class="pagination-link" aria-label="データの読み込み">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">データの読み込み</span></span>
+      <a href="./data_import.html" class="pagination-link">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">データの読み込み</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./data_create.html" class="pagination-link" aria-label="データの追加">
-        <span class="nav-page-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">データの追加</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./data_create.html" class="pagination-link">
+        <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">データの追加</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
 </div> <!-- /content -->
-
 
 
 

@@ -163,3 +163,5 @@ fig, ax = plt.subplots()
 sns.scatterplot(df_gap, x="gdpPercap", y="lifeExp")
 ax.set_xscale("log")
 ```
+
+## 強調

@@ -1,1 +1,6 @@
+---
+aliases: 
+  - reshape.html
+---
+
 # ロングとワイドの変換

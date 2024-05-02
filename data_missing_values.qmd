@@ -1,1 +1,6 @@
+---
+aliases: 
+  - missing-values.html
+---
+
 # 欠損値の対応
