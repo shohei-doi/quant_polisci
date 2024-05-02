@@ -375,7 +375,7 @@
     "href": "data_download.html#wikipedia",
     "title": "11  データのダウンロード",
     "section": "11.3 Wikipedia",
-    "text": "11.3 Wikipedia"
+    "text": "11.3 Wikipedia\n作成中です。トップページより、旧バージョンをご覧ください。"
   },
   {
     "objectID": "data_import.html#使用するパッケージ",
@@ -502,5 +502,26 @@
     "title": "動作環境",
     "section": "",
     "text": "本書はRとPythonについて、それぞれ以下のような動作環境で作成しています。\n\n\n\nR\n\nsessionInfo()\n\n\nR version 4.4.0 (2024-04-24)\nPlatform: x86_64-pc-linux-gnu\nRunning under: Zorin OS 16.3\n\nMatrix products: default\nBLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 \nLAPACK: /usr/lib/x86_64-linux-gnu/openblas-pthread/liblapack.so.3;  LAPACK version 3.9.0\n\nlocale:\n [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              \n [3] LC_TIME=en_AU.UTF-8        LC_COLLATE=en_US.UTF-8    \n [5] LC_MONETARY=en_AU.UTF-8    LC_MESSAGES=en_US.UTF-8   \n [7] LC_PAPER=en_AU.UTF-8       LC_NAME=C                 \n [9] LC_ADDRESS=C               LC_TELEPHONE=C            \n[11] LC_MEASUREMENT=en_AU.UTF-8 LC_IDENTIFICATION=C       \n\ntime zone: Asia/Tokyo\ntzcode source: system (glibc)\n\nattached base packages:\n[1] stats     graphics  grDevices utils     datasets  methods   base     \n\nloaded via a namespace (and not attached):\n [1] htmlwidgets_1.6.4 compiler_4.4.0    fastmap_1.1.1     cli_3.6.2        \n [5] tools_4.4.0       htmltools_0.5.8.1 rmarkdown_2.26    knitr_1.46       \n [9] jsonlite_1.8.8    xfun_0.43         digest_0.6.35     rlang_1.1.3      \n[13] evaluate_0.23    \n\n\n\n\n\nPython\n\nimport session_info\nsession_info.show()\n\n\n-----\nsession_info        1.0.0\n-----\nPython 3.11.9 (main, Apr  6 2024, 17:59:24) [GCC 9.4.0]\nLinux-5.15.0-105-generic-x86_64-with-glibc2.31\n-----\nSession information updated at 2024-05-02 20:40"
+  },
+  {
+    "objectID": "data_missing_values.html",
+    "href": "data_missing_values.html",
+    "title": "16  欠損値の対応",
+    "section": "",
+    "text": "作成中です。トップページより、旧バージョンをご覧ください。"
+  },
+  {
+    "objectID": "pipe.html",
+    "href": "pipe.html",
+    "title": "付録 B — パイプ演算子",
+    "section": "",
+    "text": "作成中です。トップページより、旧バージョンをご覧ください。"
+  },
+  {
+    "objectID": "plot_map.html",
+    "href": "plot_map.html",
+    "title": "17  地図のグラフ",
+    "section": "",
+    "text": "作成中です。トップページより、旧バージョンをご覧ください。"
   }
 ]
