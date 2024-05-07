@@ -2,86 +2,86 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/index.html</loc>
-    <lastmod>2024-05-02T11:49:12.494Z</lastmod>
+    <lastmod>2024-05-07T09:35:03.743Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/quick_start.html</loc>
-    <lastmod>2024-05-02T11:49:13.610Z</lastmod>
+    <lastmod>2024-03-12T05:55:25.000Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/data_frame.html</loc>
-    <lastmod>2024-05-02T11:40:35.251Z</lastmod>
+    <lastmod>2024-03-21T14:00:28.000Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/desc_distribution.html</loc>
-    <lastmod>2024-05-02T11:40:35.267Z</lastmod>
+    <lastmod>2024-04-11T08:55:20.106Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/desc_summary.html</loc>
-    <lastmod>2024-05-02T11:40:35.295Z</lastmod>
+    <lastmod>2024-05-02T11:29:35.000Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/desc_correlation.html</loc>
-    <lastmod>2024-05-02T11:40:35.311Z</lastmod>
+    <lastmod>2024-04-11T08:56:01.413Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/plot_distribution.html</loc>
-    <lastmod>2024-05-02T11:40:35.331Z</lastmod>
+    <lastmod>2024-05-02T11:36:39.000Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/plot_correlation.html</loc>
-    <lastmod>2024-05-02T11:40:35.351Z</lastmod>
+    <lastmod>2024-05-02T11:36:27.000Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/plot_line.html</loc>
-    <lastmod>2024-05-02T11:40:35.371Z</lastmod>
+    <lastmod>2024-05-02T11:37:01.000Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/plot_professional.html</loc>
-    <lastmod>2024-05-02T11:40:35.395Z</lastmod>
+    <lastmod>2024-05-02T11:37:24.000Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/plot_advanced.html</loc>
-    <lastmod>2024-05-02T11:40:35.411Z</lastmod>
+    <lastmod>2024-05-02T11:37:21.000Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/data_download.html</loc>
-    <lastmod>2024-05-02T11:48:40.826Z</lastmod>
+    <lastmod>2024-05-07T09:35:39.739Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/data_import.html</loc>
-    <lastmod>2024-05-02T11:48:45.882Z</lastmod>
+    <lastmod>2024-05-02T11:35:16.000Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/data_select.html</loc>
-    <lastmod>2024-05-02T11:40:35.567Z</lastmod>
+    <lastmod>2024-05-02T11:36:06.000Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/data_create.html</loc>
-    <lastmod>2024-05-02T11:40:35.603Z</lastmod>
+    <lastmod>2024-05-07T09:36:08.762Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/data_pivot.html</loc>
-    <lastmod>2024-05-02T11:40:35.607Z</lastmod>
+    <lastmod>2024-05-07T09:36:05.598Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/data_missing_values.html</loc>
-    <lastmod>2024-05-02T11:48:48.174Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shohei-doi.github.io/quant_polisci/encoding.html</loc>
-    <lastmod>2024-05-02T11:49:08.894Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shohei-doi.github.io/quant_polisci/pipe.html</loc>
-    <lastmod>2024-05-02T11:49:02.982Z</lastmod>
-  </url>
-  <url>
-    <loc>https://shohei-doi.github.io/quant_polisci/session_info.html</loc>
-    <lastmod>2024-05-02T11:49:04.134Z</lastmod>
+    <lastmod>2024-05-07T09:36:02.750Z</lastmod>
   </url>
   <url>
     <loc>https://shohei-doi.github.io/quant_polisci/plot_map.html</loc>
-    <lastmod>2024-05-02T11:49:07.494Z</lastmod>
+    <lastmod>2024-05-07T09:36:26.334Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shohei-doi.github.io/quant_polisci/encoding.html</loc>
+    <lastmod>2024-05-02T11:29:59.000Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shohei-doi.github.io/quant_polisci/pipe.html</loc>
+    <lastmod>2024-05-07T09:36:50.106Z</lastmod>
+  </url>
+  <url>
+    <loc>https://shohei-doi.github.io/quant_polisci/session_info.html</loc>
+    <lastmod>2023-08-30T08:54:04.000Z</lastmod>
   </url>
 </urlset>

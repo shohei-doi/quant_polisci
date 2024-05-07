@@ -1,3 +1,3 @@
 # パイプ演算子
 
-作成中です。トップページより、旧バージョンをご覧ください。
+作成中です。もしかすると[旧バージョン](http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/)になにかあるかもしれません。

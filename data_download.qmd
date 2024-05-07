@@ -6,8 +6,6 @@ aliases:
   - wikipedia-data.html
 ---
 
-
-
 # データのダウンロード
 
 これまではGapminderのデータを使ってデータ分析を学んできましたが、自分でデータ分析をやるとなると、当然、他のデータを使いたいと思います。今回は、R/Python上からオンラインで公開されているデータを呼び出す方法を紹介します。具体的には以下のデータを扱います。
@@ -80,4 +78,4 @@ head(out_ngram)
 
 ## Wikipedia
 
-作成中です。トップページより、旧バージョンをご覧ください。
+作成中です。もしかすると[旧バージョン](http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/)になにかあるかもしれません。

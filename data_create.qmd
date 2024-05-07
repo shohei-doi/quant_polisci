@@ -249,3 +249,5 @@ df_voter2017.head()
 ### countrycode
 
 ## データの結合（観察の追加）
+
+作成中です。もしかすると[旧バージョン](http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/)になにかあるかもしれません。
