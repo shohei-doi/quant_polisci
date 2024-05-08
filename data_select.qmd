@@ -22,9 +22,11 @@ import polars as pl
 
 ## 変数の選択
 
-### 変数名による選択
-
 まずは、特定の変数だけを使う場合を考えます。例えば、以前読み込んだPolityのデータから特定の変数だけを取り出します。具体的には、`ccode`と`country`、`year`、`polity2`だけを取り出します。
+
+![変数の選択](figures/df_select_variable.drawio.png)
+
+### 変数名による選択
 
 ```{r filename="R (base)"}
 df_polity <- read_excel("data/p5v2018.xls")
@@ -163,6 +165,8 @@ df_sipri.head()
 ## 観察の選択
 
 これまでは変数の操作について見てきましたが、次は観察の選択を学びます。つまり、データに含まれる観察の一部だけを取り出して分析する状況を考えます。
+
+![観察の選択](figures/df_select_observations.drawio.png)
 
 ### 不等号による選択
 

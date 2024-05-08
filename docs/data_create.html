@@ -359,16 +359,17 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
   <li><a href="#四則演算" id="toc-四則演算" class="nav-link" data-scroll-target="#四則演算"><span class="header-section-number">14.1.1</span> 四則演算</a></li>
   <li><a href="#尺度の反転" id="toc-尺度の反転" class="nav-link" data-scroll-target="#尺度の反転"><span class="header-section-number">14.1.2</span> 尺度の反転</a></li>
   <li><a href="#条件に基づく変数" id="toc-条件に基づく変数" class="nav-link" data-scroll-target="#条件に基づく変数"><span class="header-section-number">14.1.3</span> 条件に基づく変数</a></li>
-  <li><a href="#ラグ変数" id="toc-ラグ変数" class="nav-link" data-scroll-target="#ラグ変数"><span class="header-section-number">14.1.4</span> ラグ変数</a></li>
-  <li><a href="#日付" id="toc-日付" class="nav-link" data-scroll-target="#日付"><span class="header-section-number">14.1.5</span> 日付</a></li>
   </ul></li>
   <li><a href="#データの結合変数の追加" id="toc-データの結合変数の追加" class="nav-link" data-scroll-target="#データの結合変数の追加"><span class="header-section-number">14.2</span> データの結合（変数の追加）</a>
   <ul class="collapse">
-  <li><a href="#左結合右結合" id="toc-左結合右結合" class="nav-link" data-scroll-target="#左結合右結合"><span class="header-section-number">14.2.1</span> 左結合・右結合</a></li>
-  <li><a href="#全結合共通部分結合" id="toc-全結合共通部分結合" class="nav-link" data-scroll-target="#全結合共通部分結合"><span class="header-section-number">14.2.2</span> 全結合・共通部分結合</a></li>
-  <li><a href="#countrycode" id="toc-countrycode" class="nav-link" data-scroll-target="#countrycode"><span class="header-section-number">14.2.3</span> countrycode</a></li>
+  <li><a href="#結合の方法" id="toc-結合の方法" class="nav-link" data-scroll-target="#結合の方法"><span class="header-section-number">14.2.1</span> 結合の方法</a></li>
+  <li><a href="#countrycode" id="toc-countrycode" class="nav-link" data-scroll-target="#countrycode"><span class="header-section-number">14.2.2</span> countrycode</a></li>
   </ul></li>
-  <li><a href="#データの結合観察の追加" id="toc-データの結合観察の追加" class="nav-link" data-scroll-target="#データの結合観察の追加"><span class="header-section-number">14.3</span> データの結合（観察の追加）</a></li>
+  <li><a href="#データの結合観察の追加" id="toc-データの結合観察の追加" class="nav-link" data-scroll-target="#データの結合観察の追加"><span class="header-section-number">14.3</span> データの結合（観察の追加）</a>
+  <ul class="collapse">
+  <li><a href="#データの目印" id="toc-データの目印" class="nav-link" data-scroll-target="#データの目印"><span class="header-section-number">14.3.1</span> データの目印</a></li>
+  <li><a href="#データの結合" id="toc-データの結合" class="nav-link" data-scroll-target="#データの結合"><span class="header-section-number">14.3.2</span> データの結合</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -421,6 +422,12 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <li>別のデータフレームと結合する</li>
 </ol>
 <p>の2通りの方法があります。まずは、前者について学びます。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/df_add_variable.drawio.png" class="img-fluid figure-img"></p>
+<figcaption>変数の作成</figcaption>
+</figure>
+</div>
 <section id="四則演算" class="level3" data-number="14.1.1">
 <h3 data-number="14.1.1" class="anchored" data-anchor-id="四則演算"><span class="header-section-number">14.1.1</span> 四則演算</h3>
 <p>一般的な四則演算が実行可能です。例えば、東大朝日の2017年衆議院選挙の有権者調査のコードブックを見てみると、問23で政策に対する賛否を聞いています（質問文は間違っていますが）。特に、(1)から(4)は外交政策についてタカ派かハト派かを表しています。</p>
@@ -1103,32 +1110,587 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 </div>
 </div>
+<!-- ### ラグ変数
+
+### 日付 -->
 </section>
-</section>
-<section id="ラグ変数" class="level3" data-number="14.1.4">
-<h3 data-number="14.1.4" class="anchored" data-anchor-id="ラグ変数"><span class="header-section-number">14.1.4</span> ラグ変数</h3>
-</section>
-<section id="日付" class="level3" data-number="14.1.5">
-<h3 data-number="14.1.5" class="anchored" data-anchor-id="日付"><span class="header-section-number">14.1.5</span> 日付</h3>
 </section>
 </section>
 <section id="データの結合変数の追加" class="level2" data-number="14.2">
 <h2 data-number="14.2" class="anchored" data-anchor-id="データの結合変数の追加"><span class="header-section-number">14.2</span> データの結合（変数の追加）</h2>
-<section id="左結合右結合" class="level3" data-number="14.2.1">
-<h3 data-number="14.2.1" class="anchored" data-anchor-id="左結合右結合"><span class="header-section-number">14.2.1</span> 左結合・右結合</h3>
+<p>これまでは、既存のデータフレームの情報を使って新しい変数を作成してきました。次は、複数のデータセットを結合したいと思います。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/df_join.drawio.png" class="img-fluid figure-img"></p>
+<figcaption>データの結合（変数の追加）</figcaption>
+</figure>
+</div>
+<p>前回使った民主主義度のデータに国連総会の投票行動から推計された<a href="https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/12379">国家の理想点</a>（政策位置）のデータを結合しようと思います。</p>
+<ul>
+<li><code>IdealpointestimatesAll_Sep2023.csv</code>の右のダウンロードボタンを押して、“Comma Spearated Values”を選択して、csvファイルをダウンロードします。</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb29-2"><a href="#cb29-2"></a></span>
+<span id="cb29-3"><a href="#cb29-3"></a>df_polity <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb29-4"><a href="#cb29-4"></a></span>
+<span id="cb29-5"><a href="#cb29-5"></a>df_ideal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1"></a>df_polity <span class="op">=</span> pd.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb30-2"><a href="#cb30-2"></a></span>
+<span id="cb30-3"><a href="#cb30-3"></a>df_ideal <span class="op">=</span> pd.read_csv(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1"></a>df_polity <span class="op">=</span> pl.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb31-2"><a href="#cb31-2"></a></span>
+<span id="cb31-3"><a href="#cb31-3"></a>df_ideal <span class="op">=</span> pl.read_csv(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>それぞれのデータの見てみます（ここではRのみ）。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1"></a><span class="fu">head</span>(df_polity)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 37
+     p5   cyear ccode scode country      year  flag fragment democ autoc polity
+  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;       &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;  &lt;dbl&gt;
+1     0 7001800   700 AFG   Afghanistan  1800     0       NA     1     7     -6
+2     0 7001801   700 AFG   Afghanistan  1801     0       NA     1     7     -6
+3     0 7001802   700 AFG   Afghanistan  1802     0       NA     1     7     -6
+4     0 7001803   700 AFG   Afghanistan  1803     0       NA     1     7     -6
+5     0 7001804   700 AFG   Afghanistan  1804     0       NA     1     7     -6
+6     0 7001805   700 AFG   Afghanistan  1805     0       NA     1     7     -6
+# ℹ 26 more variables: polity2 &lt;dbl&gt;, durable &lt;dbl&gt;, xrreg &lt;dbl&gt;, xrcomp &lt;dbl&gt;,
+#   xropen &lt;dbl&gt;, xconst &lt;dbl&gt;, parreg &lt;dbl&gt;, parcomp &lt;dbl&gt;, exrec &lt;dbl&gt;,
+#   exconst &lt;dbl&gt;, polcomp &lt;dbl&gt;, prior &lt;dbl&gt;, emonth &lt;dbl&gt;, eday &lt;dbl&gt;,
+#   eyear &lt;dbl&gt;, eprec &lt;dbl&gt;, interim &lt;dbl&gt;, bmonth &lt;dbl&gt;, bday &lt;dbl&gt;,
+#   byear &lt;dbl&gt;, bprec &lt;dbl&gt;, post &lt;dbl&gt;, change &lt;dbl&gt;, d5 &lt;dbl&gt;, sf &lt;dbl&gt;,
+#   regtrans &lt;dbl&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1"></a><span class="fu">head</span>(df_ideal)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 14
+   ...1 ccode session NVotesAll IdealPointAll `QO%All` `Q5%All` `Q10%All`
+  &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt;     &lt;dbl&gt;         &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;     &lt;dbl&gt;
+1     1     2       1        42          1.73    1.07      1.43      1.49
+2     2     2       2        38          1.98    1.20      1.55      1.64
+3     3     2       3       103          1.88    1.35      1.56      1.62
+4     4     2       4        63          1.76    1.34      1.51      1.56
+5     5     2       5        53          1.62    0.894     1.22      1.31
+6     6     2       6        25          1.73    1.06      1.38      1.45
+# ℹ 6 more variables: `Q50%All` &lt;dbl&gt;, `Q90%All` &lt;dbl&gt;, `Q95%All` &lt;dbl&gt;,
+#   `Q100%All` &lt;dbl&gt;, iso3c &lt;chr&gt;, Countryname &lt;chr&gt;</code></pre>
+</div>
+</div>
+<p>データを結合する際には、どの変数を目印にして結合するかを決めなくてはいけません。今回の場合、ある年のある国で民主主義度と理想点を結合させたいので、「年」と「国」を表す変数を探します。</p>
+<p>民主主義度のデータでは一目瞭然ですが、理想点のデータではよく分かりません。まず、<code>session</code>とは国連の会期を意味しています。国連の会期は9月から始まるので、厳密には何年であるか決められないのですが、ここでは目をつぶって、第1会期が1946年ということにしたいと思います。つまり、<code>session</code>に1945を足して、年を表す変数を作成します。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>df_ideal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb36-2"><a href="#cb36-2"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> session <span class="sc">+</span> <span class="dv">1945</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb37-1"><a href="#cb37-1"></a>df_ideal <span class="op">=</span> pd.read_csv(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>)</span>
+<span id="cb37-2"><a href="#cb37-2"></a></span>
+<span id="cb37-3"><a href="#cb37-3"></a>df_ideal[<span class="st">"year"</span>] <span class="op">=</span> df_ideal[<span class="st">"session"</span>] <span class="op">+</span> <span class="dv">1945</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1"></a>df_ideal <span class="op">=</span> (</span>
+<span id="cb38-2"><a href="#cb38-2"></a>    pl.read_csv(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>)</span>
+<span id="cb38-3"><a href="#cb38-3"></a>    .with_columns(year <span class="op">=</span> pl.col(<span class="st">"session"</span>) <span class="op">+</span> <span class="dv">1945</span>)</span>
+<span id="cb38-4"><a href="#cb38-4"></a>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<p>次に国を表すコードですが、両方のデータに共通して出てくる<code>ccode</code>に着目します。これは、実は<a href="https://correlatesofwar.org/">Correlates of War</a>という国際関係のデータを整備するプロジェクトで各国に割り振られている番号になります。したがって、これを国名だと思って結合すればいいのです。</p>
+<p>以上をまとめて、データを横方向に結合します。ついでに、必要な変数だけを選択しておきます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1"></a><span class="fu">library</span>(readxl)</span>
+<span id="cb39-2"><a href="#cb39-2"></a></span>
+<span id="cb39-3"><a href="#cb39-3"></a>df_polity <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb39-4"><a href="#cb39-4"></a></span>
+<span id="cb39-5"><a href="#cb39-5"></a>df_ideal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-6"><a href="#cb39-6"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> session <span class="sc">+</span> <span class="dv">1945</span>)</span>
+<span id="cb39-7"><a href="#cb39-7"></a></span>
+<span id="cb39-8"><a href="#cb39-8"></a>df_polity_ideal <span class="ot">&lt;-</span> <span class="fu">left_join</span>(df_ideal, df_polity, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"ccode"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-9"><a href="#cb39-9"></a>    <span class="fu">select</span>(year, country, polity, IdealPointAll)</span>
+<span id="cb39-10"><a href="#cb39-10"></a></span>
+<span id="cb39-11"><a href="#cb39-11"></a><span class="fu">head</span>(df_polity_ideal)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 4
+   year country       polity IdealPointAll
+  &lt;dbl&gt; &lt;chr&gt;          &lt;dbl&gt;         &lt;dbl&gt;
+1  1946 United States      9          1.73
+2  1947 United States      9          1.98
+3  1948 United States      9          1.88
+4  1949 United States      9          1.76
+5  1950 United States      9          1.62
+6  1951 United States      9          1.73</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1"></a>df_polity <span class="op">=</span> pd.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb41-2"><a href="#cb41-2"></a></span>
+<span id="cb41-3"><a href="#cb41-3"></a>df_ideal <span class="op">=</span> pd.read_csv(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>)</span>
+<span id="cb41-4"><a href="#cb41-4"></a></span>
+<span id="cb41-5"><a href="#cb41-5"></a>df_ideal[<span class="st">"year"</span>] <span class="op">=</span> df_ideal[<span class="st">"session"</span>] <span class="op">+</span> <span class="dv">1945</span></span>
+<span id="cb41-6"><a href="#cb41-6"></a></span>
+<span id="cb41-7"><a href="#cb41-7"></a>df_polity_ideal <span class="op">=</span> pd.merge(df_ideal, df_polity, on<span class="op">=</span>[<span class="st">"year"</span>, <span class="st">"ccode"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb41-8"><a href="#cb41-8"></a>df_polity_ideal <span class="op">=</span> df_polity_ideal.loc[:, [<span class="st">"year"</span>, <span class="st">"country"</span>, <span class="st">"polity"</span>, <span class="st">"IdealPointAll"</span>]]</span>
+<span id="cb41-9"><a href="#cb41-9"></a></span>
+<span id="cb41-10"><a href="#cb41-10"></a>df_polity_ideal.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   year        country  polity  IdealPointAll
+0  1946  United States     9.0       1.726183
+1  1947  United States     9.0       1.980115
+2  1948  United States     9.0       1.880484
+3  1949  United States     9.0       1.762003
+4  1950  United States     9.0       1.624549</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1"></a>df_polity <span class="op">=</span> pl.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb43-2"><a href="#cb43-2"></a></span>
+<span id="cb43-3"><a href="#cb43-3"></a>df_ideal <span class="op">=</span> (</span>
+<span id="cb43-4"><a href="#cb43-4"></a>    pl.read_csv(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>)</span>
+<span id="cb43-5"><a href="#cb43-5"></a>    .with_columns(year <span class="op">=</span> pl.col(<span class="st">"session"</span>) <span class="op">+</span> <span class="dv">1945</span>)</span>
+<span id="cb43-6"><a href="#cb43-6"></a>)</span>
+<span id="cb43-7"><a href="#cb43-7"></a></span>
+<span id="cb43-8"><a href="#cb43-8"></a>df_polity_ideal <span class="op">=</span> (</span>
+<span id="cb43-9"><a href="#cb43-9"></a>    df_ideal.join(df_polity, on<span class="op">=</span>[<span class="st">"year"</span>, <span class="st">"ccode"</span>], how<span class="op">=</span><span class="st">"left"</span>)</span>
+<span id="cb43-10"><a href="#cb43-10"></a>    .select([<span class="st">"year"</span>, <span class="st">"country"</span>, <span class="st">"polity"</span>, <span class="st">"IdealPointAll"</span>])</span>
+<span id="cb43-11"><a href="#cb43-11"></a>)</span>
+<span id="cb43-12"><a href="#cb43-12"></a></span>
+<span id="cb43-13"><a href="#cb43-13"></a>df_polity_ideal.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div>
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 4)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">country</th>
+<th data-quarto-table-cell-role="th">polity</th>
+<th data-quarto-table-cell-role="th">IdealPointAll</th>
+</tr>
+<tr class="odd">
+<th>i64</th>
+<th>str</th>
+<th>i64</th>
+<th>f64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1946</td>
+<td>"United States"</td>
+<td>9</td>
+<td>1.726183</td>
+</tr>
+<tr class="even">
+<td>1947</td>
+<td>"United States"</td>
+<td>9</td>
+<td>1.980115</td>
+</tr>
+<tr class="odd">
+<td>1948</td>
+<td>"United States"</td>
+<td>9</td>
+<td>1.880484</td>
+</tr>
+<tr class="even">
+<td>1949</td>
+<td>"United States"</td>
+<td>9</td>
+<td>1.762003</td>
+</tr>
+<tr class="odd">
+<td>1950</td>
+<td>"United States"</td>
+<td>9</td>
+<td>1.624549</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>欲しかったデータが出来上がっていることが分かります。</p>
+<section id="結合の方法" class="level3" data-number="14.2.1">
+<h3 data-number="14.2.1" class="anchored" data-anchor-id="結合の方法"><span class="header-section-number">14.2.1</span> 結合の方法</h3>
+<p>ここでは、全て左結合で結合しました。左結合とは左側のデータフレーム（すなわち<code>df_ideal</code>）と一致する右側のデータフレームを結合するということです。</p>
+<p>同様に右結合もありますし、全結合や共通結合もあります。それぞれ<code>right</code>, <code>full</code>, <code>inner</code>です。</p>
 </section>
-<section id="全結合共通部分結合" class="level3" data-number="14.2.2">
-<h3 data-number="14.2.2" class="anchored" data-anchor-id="全結合共通部分結合"><span class="header-section-number">14.2.2</span> 全結合・共通部分結合</h3>
-</section>
-<section id="countrycode" class="level3" data-number="14.2.3">
-<h3 data-number="14.2.3" class="anchored" data-anchor-id="countrycode"><span class="header-section-number">14.2.3</span> countrycode</h3>
+<section id="countrycode" class="level3" data-number="14.2.2">
+<h3 data-number="14.2.2" class="anchored" data-anchor-id="countrycode"><span class="header-section-number">14.2.2</span> countrycode</h3>
+<p>今回は、両方のデータにCorrelates of Warのコードが含まれていましたが、多くの場合、そのようなことはありません。そして国名やISOコードなどバラバラの名称で国が示されていることがほとんどです。</p>
+<p>この場合、<code>countrycode</code>というパッケージを使って、国名を統一することができます。試しに、理想点のデータからISOコードを作ります。</p>
+<ul>
+<li>なお、完璧ではないので、ミスがないかチェックする必要はあります。</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">library</span>(countrycode)</span>
+<span id="cb44-2"><a href="#cb44-2"></a></span>
+<span id="cb44-3"><a href="#cb44-3"></a>df_ideal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-4"><a href="#cb44-4"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> session <span class="sc">+</span> <span class="dv">1945</span>, </span>
+<span id="cb44-5"><a href="#cb44-5"></a>           <span class="at">scode =</span> <span class="fu">countrycode</span>(ccode, <span class="st">"cown"</span>, <span class="st">"iso3c"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-6"><a href="#cb44-6"></a>    <span class="fu">select</span>(year, ccode, scode)</span>
+<span id="cb44-7"><a href="#cb44-7"></a></span>
+<span id="cb44-8"><a href="#cb44-8"></a><span class="fu">head</span>(df_ideal)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+   year ccode scode
+  &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;
+1  1946     2 USA  
+2  1947     2 USA  
+3  1948     2 USA  
+4  1949     2 USA  
+5  1950     2 USA  
+6  1951     2 USA  </code></pre>
+</div>
+</div>
+<ul>
+<li>Pythonにも同名のパッケージはありますが、なんかうまくいかないです。</li>
+</ul>
 </section>
 </section>
 <section id="データの結合観察の追加" class="level2" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="データの結合観察の追加"><span class="header-section-number">14.3</span> データの結合（観察の追加）</h2>
-<p>作成中です。もしかすると<a href="http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/">旧バージョン</a>になにかあるかもしれません。</p>
+<p>最後に、データフレームを縦に結合、すなわち観察を増やしたいと思います。例えば、東大朝日調査の2017年の衆院選と2021年の衆院選の有権者調査を結合して、両方を含むデータフレームを作成します。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/df_bind.drawio.png" class="img-fluid figure-img"></p>
+<figcaption>データの結合（観察の追加）</figcaption>
+</figure>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>)</span>
+<span id="cb46-2"><a href="#cb46-2"></a></span>
+<span id="cb46-3"><a href="#cb46-3"></a>df_voter2021 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2022UTASV20220730.csv"</span>, <span class="at">na =</span> <span class="st">"99"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1"></a>df_voter2017 <span class="op">=</span> pd.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb47-2"><a href="#cb47-2"></a></span>
+<span id="cb47-3"><a href="#cb47-3"></a>df_voter2021 <span class="op">=</span> pd.read_csv(<span class="st">"data/2022UTASV20220730.csv"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb48-1"><a href="#cb48-1"></a>df_voter2017 <span class="op">=</span> pl.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb48-2"><a href="#cb48-2"></a></span>
+<span id="cb48-3"><a href="#cb48-3"></a>df_voter2021 <span class="op">=</span> pl.read_csv(<span class="st">"data/2022UTASV20220730.csv"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<section id="データの目印" class="level3" data-number="14.3.1">
+<h3 data-number="14.3.1" class="anchored" data-anchor-id="データの目印"><span class="header-section-number">14.3.1</span> データの目印</h3>
+<p>データを結合する際に、どれが何年のデータであるのか区別する必要があるため、年を表す変数を作成します。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-2"><a href="#cb49-2"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2017</span>)</span>
+<span id="cb49-3"><a href="#cb49-3"></a></span>
+<span id="cb49-4"><a href="#cb49-4"></a>df_voter2021 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2022UTASV20220730.csv"</span>, <span class="at">na =</span> <span class="st">"99"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-5"><a href="#cb49-5"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2021</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1"></a>df_voter2017 <span class="op">=</span> pd.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb50-2"><a href="#cb50-2"></a>df_voter2017[<span class="st">"year"</span>] <span class="op">=</span> <span class="dv">2017</span></span>
+<span id="cb50-3"><a href="#cb50-3"></a></span>
+<span id="cb50-4"><a href="#cb50-4"></a>df_voter2021 <span class="op">=</span> pd.read_csv(<span class="st">"data/2022UTASV20220730.csv"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb50-5"><a href="#cb50-5"></a>df_voter2021[<span class="st">"year"</span>] <span class="op">=</span> <span class="dv">2021</span></span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1"></a>df_voter2017 <span class="op">=</span> (</span>
+<span id="cb51-2"><a href="#cb51-2"></a>    pl.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb51-3"><a href="#cb51-3"></a>    .with_columns(year <span class="op">=</span> <span class="dv">2017</span>)</span>
+<span id="cb51-4"><a href="#cb51-4"></a>)</span>
+<span id="cb51-5"><a href="#cb51-5"></a></span>
+<span id="cb51-6"><a href="#cb51-6"></a>df_voter2021 <span class="op">=</span> (</span>
+<span id="cb51-7"><a href="#cb51-7"></a>    pl.read_csv(<span class="st">"data/2022UTASV20220730.csv"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb51-8"><a href="#cb51-8"></a>    .with_columns(year <span class="op">=</span> <span class="dv">2021</span>)</span>
+<span id="cb51-9"><a href="#cb51-9"></a>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</section>
+<section id="データの結合" class="level3" data-number="14.3.2">
+<h3 data-number="14.3.2" class="anchored" data-anchor-id="データの結合"><span class="header-section-number">14.3.2</span> データの結合</h3>
+<p>縦に結合する場合は変数名が同じである必要があります。</p>
+<ul>
+<li>実際に同じ質問への回答が同じ変数名となっているかは、コードブックを参照してください。</li>
+<li>わかりやすさのために、<code>ID</code>と<code>year</code>だけを取り出します。</li>
+</ul>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>df_voter2017_21 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_voter2017, df_voter2021) <span class="sc">%&gt;%</span> </span>
+<span id="cb52-2"><a href="#cb52-2"></a>    <span class="fu">select</span>(ID, year)</span>
+<span id="cb52-3"><a href="#cb52-3"></a></span>
+<span id="cb52-4"><a href="#cb52-4"></a><span class="fu">head</span>(df_voter2017_21)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+     ID  year
+  &lt;dbl&gt; &lt;dbl&gt;
+1     4  2017
+2     6  2017
+3     7  2017
+4    10  2017
+5    11  2017
+6    12  2017</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb54-1"><a href="#cb54-1"></a><span class="fu">tail</span>(df_voter2017_21)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+     ID  year
+  &lt;dbl&gt; &lt;dbl&gt;
+1  1887  2021
+2  1888  2021
+3  1889  2021
+4  1890  2021
+5  1891  2021
+6  1892  2021</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1"></a>df_voter2017 <span class="op">=</span> pd.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb56-2"><a href="#cb56-2"></a>df_voter2017[<span class="st">"year"</span>] <span class="op">=</span> <span class="dv">2017</span></span>
+<span id="cb56-3"><a href="#cb56-3"></a></span>
+<span id="cb56-4"><a href="#cb56-4"></a>df_voter2021 <span class="op">=</span> pd.read_csv(<span class="st">"data/2022UTASV20220730.csv"</span>, na_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb56-5"><a href="#cb56-5"></a>df_voter2021[<span class="st">"year"</span>] <span class="op">=</span> <span class="dv">2021</span></span>
+<span id="cb56-6"><a href="#cb56-6"></a></span>
+<span id="cb56-7"><a href="#cb56-7"></a>df_voter2017_21 <span class="op">=</span> pd.concat([df_voter2017, df_voter2021])</span>
+<span id="cb56-8"><a href="#cb56-8"></a>df_voter2017_21 <span class="op">=</span> df_voter2017_21.loc[:, [<span class="st">"ID"</span>, <span class="st">"year"</span>]]</span>
+<span id="cb56-9"><a href="#cb56-9"></a></span>
+<span id="cb56-10"><a href="#cb56-10"></a>df_voter2017_21.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     ID  year
+0   4.0  2017
+1   6.0  2017
+2   7.0  2017
+3  10.0  2017
+4  11.0  2017</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1"></a>df_voter2017_21.tail()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>          ID  year
+1887  1888.0  2021
+1888  1889.0  2021
+1889  1890.0  2021
+1890  1891.0  2021
+1891  1892.0  2021</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1"></a>df_voter2017 <span class="op">=</span> (</span>
+<span id="cb60-2"><a href="#cb60-2"></a>    pl.read_csv(<span class="st">"data/2017UTASV20200326.csv"</span>, encoding<span class="op">=</span><span class="st">"Shift-JIS"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb60-3"><a href="#cb60-3"></a>    .with_columns(year <span class="op">=</span> <span class="dv">2017</span>)</span>
+<span id="cb60-4"><a href="#cb60-4"></a>)</span>
+<span id="cb60-5"><a href="#cb60-5"></a></span>
+<span id="cb60-6"><a href="#cb60-6"></a>df_voter2021 <span class="op">=</span> (</span>
+<span id="cb60-7"><a href="#cb60-7"></a>    pl.read_csv(<span class="st">"data/2022UTASV20220730.csv"</span>, null_values<span class="op">=</span><span class="st">"99"</span>)</span>
+<span id="cb60-8"><a href="#cb60-8"></a>    .with_columns(year <span class="op">=</span> <span class="dv">2021</span>)</span>
+<span id="cb60-9"><a href="#cb60-9"></a>)</span>
+<span id="cb60-10"><a href="#cb60-10"></a></span>
+<span id="cb60-11"><a href="#cb60-11"></a>df_voter2017_21 <span class="op">=</span> pl.concat([df_voter2017, df_voter2021], how<span class="op">=</span><span class="st">"diagonal"</span>)</span>
+<span id="cb60-12"><a href="#cb60-12"></a>df_voter2017_21 <span class="op">=</span> df_voter2017_21.select([<span class="st">"ID"</span>, <span class="st">"year"</span>])</span>
+<span id="cb60-13"><a href="#cb60-13"></a></span>
+<span id="cb60-14"><a href="#cb60-14"></a>df_voter2017_21.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div>
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 2)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">year</th>
+</tr>
+<tr class="odd">
+<th>i64</th>
+<th>i32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>4</td>
+<td>2017</td>
+</tr>
+<tr class="even">
+<td>6</td>
+<td>2017</td>
+</tr>
+<tr class="odd">
+<td>7</td>
+<td>2017</td>
+</tr>
+<tr class="even">
+<td>10</td>
+<td>2017</td>
+</tr>
+<tr class="odd">
+<td>11</td>
+<td>2017</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>df_voter2017_21.tail()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 2)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">ID</th>
+<th data-quarto-table-cell-role="th">year</th>
+</tr>
+<tr class="odd">
+<th>i64</th>
+<th>i32</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1888</td>
+<td>2021</td>
+</tr>
+<tr class="even">
+<td>1889</td>
+<td>2021</td>
+</tr>
+<tr class="odd">
+<td>1890</td>
+<td>2021</td>
+</tr>
+<tr class="even">
+<td>1891</td>
+<td>2021</td>
+</tr>
+<tr class="odd">
+<td>1892</td>
+<td>2021</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

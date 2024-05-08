@@ -27,6 +27,8 @@ import polars as pl
 
 の2通りの方法があります。まずは、前者について学びます。
 
+![変数の作成](figures/df_add_variable.drawio.png)
+
 ### 四則演算
 
 一般的な四則演算が実行可能です。例えば、東大朝日の2017年衆議院選挙の有権者調査のコードブックを見てみると、問23で政策に対する賛否を聞いています（質問文は間違っていますが）。特に、(1)から(4)は外交政策についてタカ派かハト派かを表しています。
@@ -236,18 +238,245 @@ df_voter2017 = (
 df_voter2017.head()
 ```
 
-### ラグ変数
+<!-- ### ラグ変数
 
-### 日付
+### 日付 -->
 
 ## データの結合（変数の追加）
 
-### 左結合・右結合
+これまでは、既存のデータフレームの情報を使って新しい変数を作成してきました。次は、複数のデータセットを結合したいと思います。
 
-### 全結合・共通部分結合
+![データの結合（変数の追加）](figures/df_join.drawio.png)
+
+前回使った民主主義度のデータに国連総会の投票行動から推計された[国家の理想点](https://dataverse.harvard.edu/dataset.xhtml?persistentId=hdl:1902.1/12379)（政策位置）のデータを結合しようと思います。
+
+- `IdealpointestimatesAll_Sep2023.csv`の右のダウンロードボタンを押して、"Comma Spearated Values"を選択して、csvファイルをダウンロードします。
+
+```{r filename="R (tidyverse)"}
+library(readxl)
+
+df_polity <- read_excel("data/p5v2018.xls")
+
+df_ideal <- read_csv("data/IdealpointestimatesAll_Sep2023.csv")
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_ideal = pd.read_csv("data/IdealpointestimatesAll_Sep2023.csv")
+```
+
+```{python filename="Python (polars)"}
+df_polity = pl.read_excel("data/p5v2018.xls")
+
+df_ideal = pl.read_csv("data/IdealpointestimatesAll_Sep2023.csv")
+```
+
+それぞれのデータの見てみます（ここではRのみ）。
+
+```{r filename="R (tidyverse)"}
+head(df_polity)
+
+head(df_ideal)
+```
+
+データを結合する際には、どの変数を目印にして結合するかを決めなくてはいけません。今回の場合、ある年のある国で民主主義度と理想点を結合させたいので、「年」と「国」を表す変数を探します。
+
+民主主義度のデータでは一目瞭然ですが、理想点のデータではよく分かりません。まず、`session`とは国連の会期を意味しています。国連の会期は9月から始まるので、厳密には何年であるか決められないのですが、ここでは目をつぶって、第1会期が1946年ということにしたいと思います。つまり、`session`に1945を足して、年を表す変数を作成します。
+
+```{r filename="R (tidyverse)"}
+df_ideal <- read_csv("data/IdealpointestimatesAll_Sep2023.csv") %>% 
+    mutate(year = session + 1945)
+```
+
+```{python filename="Python (pandas)"}
+df_ideal = pd.read_csv("data/IdealpointestimatesAll_Sep2023.csv")
+
+df_ideal["year"] = df_ideal["session"] + 1945
+```
+
+```{python filename="Python (polars)"}
+df_ideal = (
+    pl.read_csv("data/IdealpointestimatesAll_Sep2023.csv")
+    .with_columns(year = pl.col("session") + 1945)
+)
+```
+
+次に国を表すコードですが、両方のデータに共通して出てくる`ccode`に着目します。これは、実は[Correlates of War](https://correlatesofwar.org/)という国際関係のデータを整備するプロジェクトで各国に割り振られている番号になります。したがって、これを国名だと思って結合すればいいのです。
+
+以上をまとめて、データを横方向に結合します。ついでに、必要な変数だけを選択しておきます。
+
+```{r filename="R (tidyverse)"}
+library(readxl)
+
+df_polity <- read_excel("data/p5v2018.xls")
+
+df_ideal <- read_csv("data/IdealpointestimatesAll_Sep2023.csv") %>% 
+    mutate(year = session + 1945)
+
+df_polity_ideal <- left_join(df_ideal, df_polity, by = c("year", "ccode")) %>% 
+    select(year, country, polity, IdealPointAll)
+
+head(df_polity_ideal)
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_ideal = pd.read_csv("data/IdealpointestimatesAll_Sep2023.csv")
+
+df_ideal["year"] = df_ideal["session"] + 1945
+
+df_polity_ideal = pd.merge(df_ideal, df_polity, on=["year", "ccode"], how="left")
+df_polity_ideal = df_polity_ideal.loc[:, ["year", "country", "polity", "IdealPointAll"]]
+
+df_polity_ideal.head()
+```
+
+```{python filename="Python (polars)"}
+df_polity = pl.read_excel("data/p5v2018.xls")
+
+df_ideal = (
+    pl.read_csv("data/IdealpointestimatesAll_Sep2023.csv")
+    .with_columns(year = pl.col("session") + 1945)
+)
+
+df_polity_ideal = (
+    df_ideal.join(df_polity, on=["year", "ccode"], how="left")
+    .select(["year", "country", "polity", "IdealPointAll"])
+)
+
+df_polity_ideal.head()
+```
+
+欲しかったデータが出来上がっていることが分かります。
+
+### 結合の方法
+
+ここでは、全て左結合で結合しました。左結合とは左側のデータフレーム（すなわち`df_ideal`）と一致する右側のデータフレームを結合するということです。
+
+同様に右結合もありますし、全結合や共通結合もあります。それぞれ`right`, `full`, `inner`です。
 
 ### countrycode
 
+今回は、両方のデータにCorrelates of Warのコードが含まれていましたが、多くの場合、そのようなことはありません。そして国名やISOコードなどバラバラの名称で国が示されていることがほとんどです。
+
+この場合、`countrycode`というパッケージを使って、国名を統一することができます。試しに、理想点のデータからISOコードを作ります。
+
+- なお、完璧ではないので、ミスがないかチェックする必要はあります。
+
+```{r filename="R (tidyverse)"}
+library(countrycode)
+
+df_ideal <- read_csv("data/IdealpointestimatesAll_Sep2023.csv") %>% 
+    mutate(year = session + 1945, 
+           scode = countrycode(ccode, "cown", "iso3c")) %>% 
+    select(year, ccode, scode)
+
+head(df_ideal)
+```
+
+- Pythonにも同名のパッケージはありますが、なんかうまくいかないです。
+
 ## データの結合（観察の追加）
 
-作成中です。もしかすると[旧バージョン](http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/)になにかあるかもしれません。
+最後に、データフレームを縦に結合、すなわち観察を増やしたいと思います。例えば、東大朝日調査の2017年の衆院選と2021年の衆院選の有権者調査を結合して、両方を含むデータフレームを作成します。
+
+![データの結合（観察の追加）](figures/df_bind.drawio.png)
+
+```{r filename="R (tidyverse)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99")
+
+df_voter2021 <- read_csv("data/2022UTASV20220730.csv", na = "99")
+```
+
+```{python filename="Python (pandas)"}
+df_voter2017 = pd.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", na_values="99")
+
+df_voter2021 = pd.read_csv("data/2022UTASV20220730.csv", na_values="99")
+```
+
+```{python filename="Python (polars)"}
+df_voter2017 = pl.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", null_values="99")
+
+df_voter2021 = pl.read_csv("data/2022UTASV20220730.csv", null_values="99")
+```
+
+### データの目印
+
+データを結合する際に、どれが何年のデータであるのか区別する必要があるため、年を表す変数を作成します。
+
+```{r filename="R (tidyverse)"}
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99") %>% 
+    mutate(year = 2017)
+
+df_voter2021 <- read_csv("data/2022UTASV20220730.csv", na = "99") %>% 
+    mutate(year = 2021)
+```
+
+```{python filename="Python (pandas)"}
+df_voter2017 = pd.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", na_values="99")
+df_voter2017["year"] = 2017
+
+df_voter2021 = pd.read_csv("data/2022UTASV20220730.csv", na_values="99")
+df_voter2021["year"] = 2021
+```
+
+```{python filename="Python (polars)"}
+df_voter2017 = (
+    pl.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", null_values="99")
+    .with_columns(year = 2017)
+)
+
+df_voter2021 = (
+    pl.read_csv("data/2022UTASV20220730.csv", null_values="99")
+    .with_columns(year = 2021)
+)
+```
+
+### データの結合
+
+縦に結合する場合は変数名が同じである必要があります。
+
+- 実際に同じ質問への回答が同じ変数名となっているかは、コードブックを参照してください。
+- わかりやすさのために、`ID`と`year`だけを取り出します。
+
+```{r filename="R (tidyverse)"}
+df_voter2017_21 <- bind_rows(df_voter2017, df_voter2021) %>% 
+    select(ID, year)
+
+head(df_voter2017_21)
+tail(df_voter2017_21)
+```
+
+```{python filename="Python (pandas)"}
+df_voter2017 = pd.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", na_values="99")
+df_voter2017["year"] = 2017
+
+df_voter2021 = pd.read_csv("data/2022UTASV20220730.csv", na_values="99")
+df_voter2021["year"] = 2021
+
+df_voter2017_21 = pd.concat([df_voter2017, df_voter2021])
+df_voter2017_21 = df_voter2017_21.loc[:, ["ID", "year"]]
+
+df_voter2017_21.head()
+df_voter2017_21.tail()
+```
+
+```{python filename="Python (polars)"}
+df_voter2017 = (
+    pl.read_csv("data/2017UTASV20200326.csv", encoding="Shift-JIS", null_values="99")
+    .with_columns(year = 2017)
+)
+
+df_voter2021 = (
+    pl.read_csv("data/2022UTASV20220730.csv", null_values="99")
+    .with_columns(year = 2021)
+)
+
+df_voter2017_21 = pl.concat([df_voter2017, df_voter2021], how="diagonal")
+df_voter2017_21 = df_voter2017_21.select(["ID", "year"])
+
+df_voter2017_21.head()
+df_voter2017_21.tail()
+```
