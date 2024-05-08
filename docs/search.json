@@ -685,7 +685,7 @@
     "href": "data_download.html#wikipedia",
     "title": "11  データのダウンロード",
     "section": "11.3 Wikipedia",
-    "text": "11.3 Wikipedia\n作成中です。もしかすると旧バージョンになにかあるかもしれません。",
+    "text": "11.3 Wikipedia\nWikipediaのPageviews Analysisによって記事の閲覧件数を見ることができます。Rではpageviewsでデータを取得できます。\nただし、このパッケージはRで公開されていないので、GitHubからダウンロードする必要があります。まず、remotesというパッケージをインストールします。そして、次のコードを実行します。\n\n\n\nR\n\nremotes::install_github(\"ironholds/pageviews\")\n\n\n\nremotes::はremotesパッケージの中の以下の関数という意味です。library()で呼び出さずに関数を使うことができます。\ninstall_github()でGitHub上のRパッケージをインストールします。\n\n\"ironholds/pageviews\"はironholdsというリポジトリのpageviewsというパッケージという意味です。\n\n\nこのようにして閲覧件数を取得します。\n\n\n\nR\n\nlibrary(pageviews)\n\nwiki_trend &lt;- article_pageviews(project = \"ja.wikipedia\",\n                                article = c(\"小泉純一郎\", \"小泉進次郎\"),\n                                start = \"2015070100\",\n                                end = Sys.Date())\n\nhead(wiki_trend)\n\n\n    project language    article     access      agent granularity       date\n1 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-01\n2 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-02\n3 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-03\n4 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-04\n5 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-05\n6 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-06\n  views\n1  1167\n2  1095\n3  1253\n4  1116\n5  3679\n6  1448\n\n\n\nSys.Date()は本日という意味です。",
     "crumbs": [
       "データの処理",
       "<span class='chapter-number'>11</span>  <span class='chapter-title'>データのダウンロード</span>"

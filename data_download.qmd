@@ -13,7 +13,6 @@ aliases:
 - Google検索トレンド
 - Googleの電子書籍における単語割合
 - Wikipediaの閲覧トレンド
-- Wikipediaの記事
 
 ## Google Trend
 
@@ -78,4 +77,38 @@ head(out_ngram)
 
 ## Wikipedia
 
-作成中です。もしかすると[旧バージョン](http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/)になにかあるかもしれません。
+Wikipediaの[Pageviews Analysis](https://pageviews.wmcloud.org/)によって記事の閲覧件数を見ることができます。Rでは[`pageviews`](https://github.com/cran/pageviews)でデータを取得できます。
+
+ただし、このパッケージはRで公開されていないので、GitHubからダウンロードする必要があります。まず、`remotes`というパッケージをインストールします。そして、次のコードを実行します。
+
+```{r filename="R"}
+remotes::install_github("ironholds/pageviews")
+```
+
+- `remotes::`は`remotes`パッケージの中の以下の関数という意味です。`library()`で呼び出さずに関数を使うことができます。
+- `install_github()`でGitHub上のRパッケージをインストールします。
+  - `"ironholds/pageviews"`は`ironholds`というリポジトリの`pageviews`というパッケージという意味です。
+
+このようにして閲覧件数を取得します。
+
+```{r filename="R"}
+library(pageviews)
+
+wiki_trend <- article_pageviews(project = "ja.wikipedia",
+                                article = c("小泉純一郎", "小泉進次郎"),
+                                start = "2015070100",
+                                end = Sys.Date())
+
+head(wiki_trend)
+```
+
+- `Sys.Date()`は本日という意味です。
+
+<!-- ```{python filename="Python"}
+from mwviews.api import PageviewsClient
+
+# Sends a descriptive User-Agent header with every request
+p = PageviewsClient(user_agent="<person@organization.org> Selfie, Cat, and Dog analysis")
+
+p.article_views('en.wikipedia', ['Selfie', 'Cat'], granularity='monthly', start='20160201', end='20160331')
+``` -->

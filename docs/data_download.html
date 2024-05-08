@@ -387,7 +387,6 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <li>Google検索トレンド</li>
 <li>Googleの電子書籍における単語割合</li>
 <li>Wikipediaの閲覧トレンド</li>
-<li>Wikipediaの記事</li>
 </ul>
 <section id="google-trend" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="google-trend"><span class="header-section-number">11.1</span> Google Trend</h2>
@@ -509,7 +508,66 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </section>
 <section id="wikipedia" class="level2" data-number="11.3">
 <h2 data-number="11.3" class="anchored" data-anchor-id="wikipedia"><span class="header-section-number">11.3</span> Wikipedia</h2>
-<p>作成中です。もしかすると<a href="http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/">旧バージョン</a>になにかあるかもしれません。</p>
+<p>Wikipediaの<a href="https://pageviews.wmcloud.org/">Pageviews Analysis</a>によって記事の閲覧件数を見ることができます。Rでは<a href="https://github.com/cran/pageviews"><code>pageviews</code></a>でデータを取得できます。</p>
+<p>ただし、このパッケージはRで公開されていないので、GitHubからダウンロードする必要があります。まず、<code>remotes</code>というパッケージをインストールします。そして、次のコードを実行します。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1"></a>remotes<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ironholds/pageviews"</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+<ul>
+<li><code>remotes::</code>は<code>remotes</code>パッケージの中の以下の関数という意味です。<code>library()</code>で呼び出さずに関数を使うことができます。</li>
+<li><code>install_github()</code>でGitHub上のRパッケージをインストールします。
+<ul>
+<li><code>"ironholds/pageviews"</code>は<code>ironholds</code>というリポジトリの<code>pageviews</code>というパッケージという意味です。</li>
+</ul></li>
+</ul>
+<p>このようにして閲覧件数を取得します。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">library</span>(pageviews)</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>wiki_trend <span class="ot">&lt;-</span> <span class="fu">article_pageviews</span>(<span class="at">project =</span> <span class="st">"ja.wikipedia"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4"></a>                                <span class="at">article =</span> <span class="fu">c</span>(<span class="st">"小泉純一郎"</span>, <span class="st">"小泉進次郎"</span>),</span>
+<span id="cb13-5"><a href="#cb13-5"></a>                                <span class="at">start =</span> <span class="st">"2015070100"</span>,</span>
+<span id="cb13-6"><a href="#cb13-6"></a>                                <span class="at">end =</span> <span class="fu">Sys.Date</span>())</span>
+<span id="cb13-7"><a href="#cb13-7"></a></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="fu">head</span>(wiki_trend)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>    project language    article     access      agent granularity       date
+1 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-01
+2 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-02
+3 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-03
+4 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-04
+5 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-05
+6 wikipedia       ja 小泉純一郎 all-access all-agents       daily 2015-07-06
+  views
+1  1167
+2  1095
+3  1253
+4  1116
+5  3679
+6  1448</code></pre>
+</div>
+</div>
+<ul>
+<li><code>Sys.Date()</code>は本日という意味です。</li>
+</ul>
+<!-- ```{python filename="Python"}
+from mwviews.api import PageviewsClient
+
+# Sends a descriptive User-Agent header with every request
+p = PageviewsClient(user_agent="<person@organization.org> Selfie, Cat, and Dog analysis")
+
+p.article_views('en.wikipedia', ['Selfie', 'Cat'], granularity='monthly', start='20160201', end='20160331')
+``` -->
 
 
 </section>
