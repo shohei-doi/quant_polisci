@@ -333,7 +333,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pipe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子 (R)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -1208,7 +1208,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <div class="code-with-filename-file">
 <pre><strong>R (tidyverse)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>df_ideal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1"></a>df_ideal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb36-2"><a href="#cb36-2"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> session <span class="sc">+</span> <span class="dv">1945</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -1244,10 +1244,10 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <span id="cb39-2"><a href="#cb39-2"></a></span>
 <span id="cb39-3"><a href="#cb39-3"></a>df_polity <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/p5v2018.xls"</span>)</span>
 <span id="cb39-4"><a href="#cb39-4"></a></span>
-<span id="cb39-5"><a href="#cb39-5"></a>df_ideal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-5"><a href="#cb39-5"></a>df_ideal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb39-6"><a href="#cb39-6"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> session <span class="sc">+</span> <span class="dv">1945</span>)</span>
 <span id="cb39-7"><a href="#cb39-7"></a></span>
-<span id="cb39-8"><a href="#cb39-8"></a>df_polity_ideal <span class="ot">&lt;-</span> <span class="fu">left_join</span>(df_ideal, df_polity, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"ccode"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb39-8"><a href="#cb39-8"></a>df_polity_ideal <span class="ot">&lt;-</span> <span class="fu">left_join</span>(df_ideal, df_polity, <span class="at">by =</span> <span class="fu">c</span>(<span class="st">"year"</span>, <span class="st">"ccode"</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb39-9"><a href="#cb39-9"></a>    <span class="fu">select</span>(year, country, polity, IdealPointAll)</span>
 <span id="cb39-10"><a href="#cb39-10"></a></span>
 <span id="cb39-11"><a href="#cb39-11"></a><span class="fu">head</span>(df_polity_ideal)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1390,9 +1390,9 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </div>
 <div class="sourceCode cell-code" id="cb44"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1"></a><span class="fu">library</span>(countrycode)</span>
 <span id="cb44-2"><a href="#cb44-2"></a></span>
-<span id="cb44-3"><a href="#cb44-3"></a>df_ideal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-3"><a href="#cb44-3"></a>df_ideal <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/IdealpointestimatesAll_Sep2023.csv"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb44-4"><a href="#cb44-4"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> session <span class="sc">+</span> <span class="dv">1945</span>, </span>
-<span id="cb44-5"><a href="#cb44-5"></a>           <span class="at">scode =</span> <span class="fu">countrycode</span>(ccode, <span class="st">"cown"</span>, <span class="st">"iso3c"</span>)) <span class="sc">%&gt;%</span> </span>
+<span id="cb44-5"><a href="#cb44-5"></a>           <span class="at">scode =</span> <span class="fu">countrycode</span>(ccode, <span class="st">"cown"</span>, <span class="st">"iso3c"</span>)) <span class="sc">|&gt;</span> </span>
 <span id="cb44-6"><a href="#cb44-6"></a>    <span class="fu">select</span>(year, ccode, scode)</span>
 <span id="cb44-7"><a href="#cb44-7"></a></span>
 <span id="cb44-8"><a href="#cb44-8"></a><span class="fu">head</span>(df_ideal)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1461,10 +1461,10 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <div class="code-with-filename-file">
 <pre><strong>R (tidyverse)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1"></a>df_voter2017 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2017UTASV20200326.csv"</span>, <span class="at">locale =</span> <span class="fu">locale</span>(<span class="at">encoding =</span> <span class="st">"Shift-JIS"</span>), <span class="at">na =</span> <span class="st">"99"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb49-2"><a href="#cb49-2"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2017</span>)</span>
 <span id="cb49-3"><a href="#cb49-3"></a></span>
-<span id="cb49-4"><a href="#cb49-4"></a>df_voter2021 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2022UTASV20220730.csv"</span>, <span class="at">na =</span> <span class="st">"99"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb49-4"><a href="#cb49-4"></a>df_voter2021 <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/2022UTASV20220730.csv"</span>, <span class="at">na =</span> <span class="st">"99"</span>) <span class="sc">|&gt;</span> </span>
 <span id="cb49-5"><a href="#cb49-5"></a>    <span class="fu">mutate</span>(<span class="at">year =</span> <span class="dv">2021</span>)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
@@ -1509,7 +1509,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <div class="code-with-filename-file">
 <pre><strong>R (tidyverse)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>df_voter2017_21 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_voter2017, df_voter2021) <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1"></a>df_voter2017_21 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(df_voter2017, df_voter2021) <span class="sc">|&gt;</span> </span>
 <span id="cb52-2"><a href="#cb52-2"></a>    <span class="fu">select</span>(ID, year)</span>
 <span id="cb52-3"><a href="#cb52-3"></a></span>
 <span id="cb52-4"><a href="#cb52-4"></a><span class="fu">head</span>(df_voter2017_21)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>

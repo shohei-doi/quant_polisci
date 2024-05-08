@@ -1,3 +1,120 @@
-# パイプ演算子
+# パイプ演算子 (R)
 
-作成中です。もしかすると[旧バージョン](http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/)になにかあるかもしれません。
+Rのコードを見ていると`%>%`や`|>`といった謎の記号を見かけます。これらは**パイプ演算子**と呼びますが、その正体を考えたいと思います。
+
+## パイプ演算子の機能
+
+まずは、パイプ演算子の機能を確認します。まずは、普通に`gapminder`のデータの冒頭を確認します。
+
+```{r}
+library(gapminder)
+
+head(gapminder)
+```
+
+これをパイプ演算子で書くと、このようになります。
+
+```{r}
+gapminder |> 
+    head()
+```
+
+`|>`はR 4.1.0以降で備わっているパイプ演算子です。`%>%`は`tidyverse`に含まれているパイプ演算子です。
+
+```{r}
+library(tidyverse)
+
+gapminder %>% 
+    head()
+```
+
+これらから分かるように、パイプ演算子は左辺のオブジェクトを右辺の関数に入れる機能を持っています。
+
+- RStudioでは`Shift + Alt + M`でパイプ演算子を入力できます。
+
+### なにが嬉しいのか？
+
+パイプ演算子を使うとなにが嬉しいのでしょうか。ご利益は再現性と可読性にあります。まず、パイプ演算子を使わずにコードを書いてみます。
+
+- 1990年以降のアジアの国を取り出し、GDPを計算し、国ごとに平均値を求めてみます。
+
+```{r}
+gapminder <- filter(gapminder, year > 1990)
+gapminder <- filter(gapminder, continent == "Asia")
+gapminder <- mutate(gapminder, GDP = pop * gdpPercap)
+gapminder <- group_by(gapminder, country)
+gdp_mean <- summarise(gapminder, GDP = mean(GDP))
+
+head(gdp_mean)
+```
+
+十分可読性はあり、このような書き方が良くないというわけではありません。しかし、よくあるミスは、どこまで分析をやったのか忘れてしまうというものです。
+
+- 例えば、2行目までやって、少し集中が切れて、再開する時に4行目から実行してしまうと5行目でエラーが出ます。
+
+また、何度も同じもの（今回の例では`gapminder`）を書いていると、スペルミスをするリスクが上がります。
+
+パイプ演算子を使うと、次のように書くことができ、可読性を保ちつつ、一気に全ての処理を実行できます。
+
+```{r}
+gdp_mean <- gapminder |>
+    filter(year > 1990) |> 
+    filter(continent == "Asia") |> 
+    mutate(GDP = pop * gdpPercap) |> 
+    group_by(country) |> 
+    summarise(GDP = mean(GDP))
+
+head(gdp_mean)
+```
+
+パイプ演算子を使うかどうかは個人の好みですが、どちらのコードを読めるようになっておかないと、他の人の分析が分からなくなります。
+
+## データの代入
+
+パイプ演算子を使った場合、処理は上から下なのに、オブジェクトへの代入は再び上に戻るのは気持ち悪いかもしれません。その場合は、次のように書けます。ただし、あまり見かけない書き方です。
+
+```{r}
+gapminder |>
+    filter(year > 1990) |> 
+    filter(continent == "Asia") |> 
+    mutate(GDP = pop * gdpPercap) |> 
+    group_by(country) |> 
+    summarise(GDP = mean(GDP)) -> gdp_mean
+
+head(gdp_mean)
+```
+
+`|>`と`%>%`のどちらを使っても大差はないですが、`tiduverse`のパイプ演算子には次のようなものもあります。最初のオブジェクトを上書きます。
+
+```{r}
+gdp_mean <- gapminder
+
+gdp_mean %<>% 
+    filter(year > 1990) %>% 
+    filter(continent == "Asia") %>% 
+    mutate(GDP = pop * gdpPercap) %>% 
+    group_by(country) %>% 
+    summarise(GDP = mean(GDP))
+
+head(gdp_mean)
+```
+
+## 代入の位置
+
+基本的に左辺のオブジェクトは右辺の関数の最初の位置に代入されますが、`%>%`の場合は`>`によって位置を指定することができます。
+
+```{r}
+gapminder %>% 
+    filter(year > 1990) %>% 
+    lm(lifeExp ~ gdpPercap, data = .) %>% 
+    summary()
+```
+
+次のようにも書けるそうです。
+
+```{r}
+gapminder %>% 
+    filter(year > 1990) %$% 
+    lm(lifeExp ~ gdpPercap) %>% 
+    summary()
+```

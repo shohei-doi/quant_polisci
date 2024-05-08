@@ -333,7 +333,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pipe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子 (R)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -367,6 +367,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
   <li><a href="#等号による選択" id="toc-等号による選択" class="nav-link" data-scroll-target="#等号による選択"><span class="header-section-number">13.4.2</span> 等号による選択</a></li>
   <li><a href="#部分集合による選択" id="toc-部分集合による選択" class="nav-link" data-scroll-target="#部分集合による選択"><span class="header-section-number">13.4.3</span> 部分集合による選択</a></li>
   <li><a href="#和集合による選択" id="toc-和集合による選択" class="nav-link" data-scroll-target="#和集合による選択"><span class="header-section-number">13.4.4</span> 和集合による選択</a></li>
+  <li><a href="#ユニークなデータの選択" id="toc-ユニークなデータの選択" class="nav-link" data-scroll-target="#ユニークなデータの選択"><span class="header-section-number">13.4.5</span> ユニークなデータの選択</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -665,12 +666,10 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>df_pop_fem <span class="op">=</span> (</span>
-<span id="cb16-2"><a href="#cb16-2"></a>    pd.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>, skiprows<span class="op">=</span><span class="dv">4</span>)</span>
-<span id="cb16-3"><a href="#cb16-3"></a>    .rename(columns<span class="op">=</span>{<span class="st">"Country Name"</span>: <span class="st">"country_name"</span>, <span class="st">"Country Code"</span>: <span class="st">"coutnry_code"</span>, <span class="st">"Indicator Name"</span>: <span class="st">"indicator_name"</span>, <span class="st">"Indicator Code"</span>: <span class="st">"indicator_code"</span>})</span>
-<span id="cb16-4"><a href="#cb16-4"></a>)</span>
-<span id="cb16-5"><a href="#cb16-5"></a></span>
-<span id="cb16-6"><a href="#cb16-6"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1"></a>df_pop_fem <span class="op">=</span> pd.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>, skiprows<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb16-2"><a href="#cb16-2"></a>df_pop_fem <span class="op">=</span> df_pop_fem.rename(columns<span class="op">=</span>{<span class="st">"Country Name"</span>: <span class="st">"country_name"</span>, <span class="st">"Country Code"</span>: <span class="st">"coutnry_code"</span>, <span class="st">"Indicator Name"</span>: <span class="st">"indicator_name"</span>, <span class="st">"Indicator Code"</span>: <span class="st">"indicator_code"</span>})</span>
+<span id="cb16-3"><a href="#cb16-3"></a></span>
+<span id="cb16-4"><a href="#cb16-4"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>                  country_name coutnry_code  ... 2023 Unnamed: 68
@@ -1259,12 +1258,10 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <div class="code-with-filename-file">
 <pre><strong>Python (pandas)</strong></pre>
 </div>
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>df_sipri <span class="op">=</span> (</span>
-<span id="cb21-2"><a href="#cb21-2"></a>    pd.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_name<span class="op">=</span><span class="dv">5</span>, skiprows<span class="op">=</span><span class="dv">5</span>, na_values<span class="op">=</span>[<span class="st">"xxx"</span>, <span class="st">"..."</span>])</span>
-<span id="cb21-3"><a href="#cb21-3"></a>    .drop(columns<span class="op">=</span>[<span class="st">"Notes"</span>])</span>
-<span id="cb21-4"><a href="#cb21-4"></a>)</span>
-<span id="cb21-5"><a href="#cb21-5"></a></span>
-<span id="cb21-6"><a href="#cb21-6"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1"></a>df_sipri <span class="op">=</span> pd.read_excel(<span class="st">"data/SIPRI-Milex-data-1949-2022.xlsx"</span>, sheet_name<span class="op">=</span><span class="dv">5</span>, skiprows<span class="op">=</span><span class="dv">5</span>, na_values<span class="op">=</span>[<span class="st">"xxx"</span>, <span class="st">"..."</span>])</span>
+<span id="cb21-2"><a href="#cb21-2"></a>df_sipri <span class="op">=</span> df_sipri.drop(columns<span class="op">=</span>[<span class="st">"Notes"</span>])</span>
+<span id="cb21-3"><a href="#cb21-3"></a></span>
+<span id="cb21-4"><a href="#cb21-4"></a>df_sipri.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell-output cell-output-stdout">
 <pre><code>        Country  1949  1950  ...        2020         2021         2022
@@ -2848,6 +2845,106 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <ul>
 <li>RでもPythonでも<code>==</code>の否定は<code>!=</code>でも構いません。</li>
 </ul>
+</section>
+<section id="ユニークなデータの選択" class="level3" data-number="13.4.5">
+<h3 data-number="13.4.5" class="anchored" data-anchor-id="ユニークなデータの選択"><span class="header-section-number">13.4.5</span> ユニークなデータの選択</h3>
+<p>例えば、データフレームに含まれる国名をデータフレームにしたい場合、単に国名の変数だけを取り出すと、いろいろな年のデータも含まれるので重複が生じます。このような場合は、次のようにします。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb57-1"><a href="#cb57-1"></a>df_polity <span class="ot">&lt;-</span> <span class="fu">read_excel</span>(<span class="st">"data/p5v2018.xls"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb57-2"><a href="#cb57-2"></a>    <span class="fu">distinct</span>(country)</span>
+<span id="cb57-3"><a href="#cb57-3"></a></span>
+<span id="cb57-4"><a href="#cb57-4"></a><span class="fu">head</span>(df_polity)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 1
+  country    
+  &lt;chr&gt;      
+1 Afghanistan
+2 Albania    
+3 Algeria    
+4 Angola     
+5 Argentina  
+6 Armenia    </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb59"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb59-1"><a href="#cb59-1"></a>df_polity <span class="op">=</span> pd.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb59-2"><a href="#cb59-2"></a></span>
+<span id="cb59-3"><a href="#cb59-3"></a>df_polity <span class="op">=</span> df_polity.loc[:,<span class="st">"country"</span>].drop_duplicates()</span>
+<span id="cb59-4"><a href="#cb59-4"></a></span>
+<span id="cb59-5"><a href="#cb59-5"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0      Afghanistan
+219        Albania
+324        Algeria
+381         Angola
+425      Argentina
+Name: country, dtype: object</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb61"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb61-1"><a href="#cb61-1"></a>df_polity <span class="op">=</span> (</span>
+<span id="cb61-2"><a href="#cb61-2"></a>    pl.read_excel(<span class="st">"data/p5v2018.xls"</span>)</span>
+<span id="cb61-3"><a href="#cb61-3"></a>    .select(<span class="st">"country"</span>)</span>
+<span id="cb61-4"><a href="#cb61-4"></a>    .unique(maintain_order<span class="op">=</span><span class="va">True</span>)</span>
+<span id="cb61-5"><a href="#cb61-5"></a>)</span>
+<span id="cb61-6"><a href="#cb61-6"></a></span>
+<span id="cb61-7"><a href="#cb61-7"></a>df_polity.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div>
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 1)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country</th>
+</tr>
+<tr class="odd">
+<th>str</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"Afghanistan"</td>
+</tr>
+<tr class="even">
+<td>"Albania"</td>
+</tr>
+<tr class="odd">
+<td>"Algeria"</td>
+</tr>
+<tr class="even">
+<td>"Angola"</td>
+</tr>
+<tr class="odd">
+<td>"Argentina"</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
 
 
 </section>

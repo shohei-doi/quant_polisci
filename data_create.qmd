@@ -285,7 +285,7 @@ head(df_ideal)
 民主主義度のデータでは一目瞭然ですが、理想点のデータではよく分かりません。まず、`session`とは国連の会期を意味しています。国連の会期は9月から始まるので、厳密には何年であるか決められないのですが、ここでは目をつぶって、第1会期が1946年ということにしたいと思います。つまり、`session`に1945を足して、年を表す変数を作成します。
 
 ```{r filename="R (tidyverse)"}
-df_ideal <- read_csv("data/IdealpointestimatesAll_Sep2023.csv") %>% 
+df_ideal <- read_csv("data/IdealpointestimatesAll_Sep2023.csv") |> 
     mutate(year = session + 1945)
 ```
 
@@ -311,10 +311,10 @@ library(readxl)
 
 df_polity <- read_excel("data/p5v2018.xls")
 
-df_ideal <- read_csv("data/IdealpointestimatesAll_Sep2023.csv") %>% 
+df_ideal <- read_csv("data/IdealpointestimatesAll_Sep2023.csv") |> 
     mutate(year = session + 1945)
 
-df_polity_ideal <- left_join(df_ideal, df_polity, by = c("year", "ccode")) %>% 
+df_polity_ideal <- left_join(df_ideal, df_polity, by = c("year", "ccode")) |> 
     select(year, country, polity, IdealPointAll)
 
 head(df_polity_ideal)
@@ -368,9 +368,9 @@ df_polity_ideal.head()
 ```{r filename="R (tidyverse)"}
 library(countrycode)
 
-df_ideal <- read_csv("data/IdealpointestimatesAll_Sep2023.csv") %>% 
+df_ideal <- read_csv("data/IdealpointestimatesAll_Sep2023.csv") |> 
     mutate(year = session + 1945, 
-           scode = countrycode(ccode, "cown", "iso3c")) %>% 
+           scode = countrycode(ccode, "cown", "iso3c")) |> 
     select(year, ccode, scode)
 
 head(df_ideal)
@@ -407,10 +407,10 @@ df_voter2021 = pl.read_csv("data/2022UTASV20220730.csv", null_values="99")
 データを結合する際に、どれが何年のデータであるのか区別する必要があるため、年を表す変数を作成します。
 
 ```{r filename="R (tidyverse)"}
-df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99") %>% 
+df_voter2017 <- read_csv("data/2017UTASV20200326.csv", locale = locale(encoding = "Shift-JIS"), na = "99") |> 
     mutate(year = 2017)
 
-df_voter2021 <- read_csv("data/2022UTASV20220730.csv", na = "99") %>% 
+df_voter2021 <- read_csv("data/2022UTASV20220730.csv", na = "99") |> 
     mutate(year = 2021)
 ```
 
@@ -442,7 +442,7 @@ df_voter2021 = (
 - わかりやすさのために、`ID`と`year`だけを取り出します。
 
 ```{r filename="R (tidyverse)"}
-df_voter2017_21 <- bind_rows(df_voter2017, df_voter2021) %>% 
+df_voter2017_21 <- bind_rows(df_voter2017, df_voter2021) |> 
     select(ID, year)
 
 head(df_voter2017_21)

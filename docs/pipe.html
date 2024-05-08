@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>R/Pythonで計量政治学入門 - 付録 B — パイプ演算子</title>
+<title>R/Pythonで計量政治学入門 - 付録 B — パイプ演算子 (R)</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -93,7 +127,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./encoding.html">付録</a></li><li class="breadcrumb-item"><a href="./pipe.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./encoding.html">付録</a></li><li class="breadcrumb-item"><a href="./pipe.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子 (R)</span></a></li></ol></nav>
         <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="サイドバーを切り替える" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
@@ -299,7 +333,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pipe.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子 (R)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -316,14 +350,25 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#パイプ演算子の機能" id="toc-パイプ演算子の機能" class="nav-link active" data-scroll-target="#パイプ演算子の機能"><span class="header-section-number">B.1</span> パイプ演算子の機能</a>
+  <ul class="collapse">
+  <li><a href="#なにが嬉しいのか" id="toc-なにが嬉しいのか" class="nav-link" data-scroll-target="#なにが嬉しいのか"><span class="header-section-number">B.1.1</span> なにが嬉しいのか？</a></li>
+  </ul></li>
+  <li><a href="#データの代入" id="toc-データの代入" class="nav-link" data-scroll-target="#データの代入"><span class="header-section-number">B.2</span> データの代入</a></li>
+  <li><a href="#代入の位置" id="toc-代入の位置" class="nav-link" data-scroll-target="#代入の位置"><span class="header-section-number">B.3</span> 代入の位置</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./encoding.html">付録</a></li><li class="breadcrumb-item"><a href="./pipe.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./encoding.html">付録</a></li><li class="breadcrumb-item"><a href="./pipe.html"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子 (R)</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">付録 B — パイプ演算子</h1>
+<h1 class="title">付録 B — パイプ演算子 (R)</h1>
 </div>
 
 
@@ -340,9 +385,228 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </header>
 
 
-<p>作成中です。もしかすると<a href="http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/">旧バージョン</a>になにかあるかもしれません。</p>
+<p>Rのコードを見ていると<code>%&gt;%</code>や<code>|&gt;</code>といった謎の記号を見かけます。これらは<strong>パイプ演算子</strong>と呼びますが、その正体を考えたいと思います。</p>
+<section id="パイプ演算子の機能" class="level2" data-number="B.1">
+<h2 data-number="B.1" class="anchored" data-anchor-id="パイプ演算子の機能"><span class="header-section-number">B.1</span> パイプ演算子の機能</h2>
+<p>まずは、パイプ演算子の機能を確認します。まずは、普通に<code>gapminder</code>のデータの冒頭を確認します。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(gapminder)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a><span class="fu">head</span>(gapminder)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  country     continent  year lifeExp      pop gdpPercap
+  &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+1 Afghanistan Asia       1952    28.8  8425333      779.
+2 Afghanistan Asia       1957    30.3  9240934      821.
+3 Afghanistan Asia       1962    32.0 10267083      853.
+4 Afghanistan Asia       1967    34.0 11537966      836.
+5 Afghanistan Asia       1972    36.1 13079460      740.
+6 Afghanistan Asia       1977    38.4 14880372      786.</code></pre>
+</div>
+</div>
+<p>これをパイプ演算子で書くと、このようになります。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>gapminder <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a>    <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  country     continent  year lifeExp      pop gdpPercap
+  &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+1 Afghanistan Asia       1952    28.8  8425333      779.
+2 Afghanistan Asia       1957    30.3  9240934      821.
+3 Afghanistan Asia       1962    32.0 10267083      853.
+4 Afghanistan Asia       1967    34.0 11537966      836.
+5 Afghanistan Asia       1972    36.1 13079460      740.
+6 Afghanistan Asia       1977    38.4 14880372      786.</code></pre>
+</div>
+</div>
+<p><code>|&gt;</code>はR 4.1.0以降で備わっているパイプ演算子です。<code>%&gt;%</code>は<code>tidyverse</code>に含まれているパイプ演算子です。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-2"><a href="#cb5-2"></a></span>
+<span id="cb5-3"><a href="#cb5-3"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb5-4"><a href="#cb5-4"></a>    <span class="fu">head</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  country     continent  year lifeExp      pop gdpPercap
+  &lt;fct&gt;       &lt;fct&gt;     &lt;int&gt;   &lt;dbl&gt;    &lt;int&gt;     &lt;dbl&gt;
+1 Afghanistan Asia       1952    28.8  8425333      779.
+2 Afghanistan Asia       1957    30.3  9240934      821.
+3 Afghanistan Asia       1962    32.0 10267083      853.
+4 Afghanistan Asia       1967    34.0 11537966      836.
+5 Afghanistan Asia       1972    36.1 13079460      740.
+6 Afghanistan Asia       1977    38.4 14880372      786.</code></pre>
+</div>
+</div>
+<p>これらから分かるように、パイプ演算子は左辺のオブジェクトを右辺の関数に入れる機能を持っています。</p>
+<ul>
+<li>RStudioでは<code>Shift + Alt + M</code>でパイプ演算子を入力できます。</li>
+</ul>
+<section id="なにが嬉しいのか" class="level3" data-number="B.1.1">
+<h3 data-number="B.1.1" class="anchored" data-anchor-id="なにが嬉しいのか"><span class="header-section-number">B.1.1</span> なにが嬉しいのか？</h3>
+<p>パイプ演算子を使うとなにが嬉しいのでしょうか。ご利益は再現性と可読性にあります。まず、パイプ演算子を使わずにコードを書いてみます。</p>
+<ul>
+<li>1990年以降のアジアの国を取り出し、GDPを計算し、国ごとに平均値を求めてみます。</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>gapminder <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, year <span class="sc">&gt;</span> <span class="dv">1990</span>)</span>
+<span id="cb7-2"><a href="#cb7-2"></a>gapminder <span class="ot">&lt;-</span> <span class="fu">filter</span>(gapminder, continent <span class="sc">==</span> <span class="st">"Asia"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3"></a>gapminder <span class="ot">&lt;-</span> <span class="fu">mutate</span>(gapminder, <span class="at">GDP =</span> pop <span class="sc">*</span> gdpPercap)</span>
+<span id="cb7-4"><a href="#cb7-4"></a>gapminder <span class="ot">&lt;-</span> <span class="fu">group_by</span>(gapminder, country)</span>
+<span id="cb7-5"><a href="#cb7-5"></a>gdp_mean <span class="ot">&lt;-</span> <span class="fu">summarise</span>(gapminder, <span class="at">GDP =</span> <span class="fu">mean</span>(GDP))</span>
+<span id="cb7-6"><a href="#cb7-6"></a></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="fu">head</span>(gdp_mean)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  country              GDP
+  &lt;fct&gt;              &lt;dbl&gt;
+1 Afghanistan      1.85e10
+2 Bahrain          1.47e10
+3 Bangladesh       1.45e11
+4 Cambodia         1.28e10
+5 China            3.82e12
+6 Hong Kong, China 2.03e11</code></pre>
+</div>
+</div>
+<p>十分可読性はあり、このような書き方が良くないというわけではありません。しかし、よくあるミスは、どこまで分析をやったのか忘れてしまうというものです。</p>
+<ul>
+<li>例えば、2行目までやって、少し集中が切れて、再開する時に4行目から実行してしまうと5行目でエラーが出ます。</li>
+</ul>
+<p>また、何度も同じもの（今回の例では<code>gapminder</code>）を書いていると、スペルミスをするリスクが上がります。</p>
+<p>パイプ演算子を使うと、次のように書くことができ、可読性を保ちつつ、一気に全ての処理を実行できます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1"></a>gdp_mean <span class="ot">&lt;-</span> gapminder <span class="sc">|&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1990</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-3"><a href="#cb9-3"></a>    <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb9-4"><a href="#cb9-4"></a>    <span class="fu">mutate</span>(<span class="at">GDP =</span> pop <span class="sc">*</span> gdpPercap) <span class="sc">|&gt;</span> </span>
+<span id="cb9-5"><a href="#cb9-5"></a>    <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb9-6"><a href="#cb9-6"></a>    <span class="fu">summarise</span>(<span class="at">GDP =</span> <span class="fu">mean</span>(GDP))</span>
+<span id="cb9-7"><a href="#cb9-7"></a></span>
+<span id="cb9-8"><a href="#cb9-8"></a><span class="fu">head</span>(gdp_mean)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  country              GDP
+  &lt;fct&gt;              &lt;dbl&gt;
+1 Afghanistan      1.85e10
+2 Bahrain          1.47e10
+3 Bangladesh       1.45e11
+4 Cambodia         1.28e10
+5 China            3.82e12
+6 Hong Kong, China 2.03e11</code></pre>
+</div>
+</div>
+<p>パイプ演算子を使うかどうかは個人の好みですが、どちらのコードを読めるようになっておかないと、他の人の分析が分からなくなります。</p>
+</section>
+</section>
+<section id="データの代入" class="level2" data-number="B.2">
+<h2 data-number="B.2" class="anchored" data-anchor-id="データの代入"><span class="header-section-number">B.2</span> データの代入</h2>
+<p>パイプ演算子を使った場合、処理は上から下なのに、オブジェクトへの代入は再び上に戻るのは気持ち悪いかもしれません。その場合は、次のように書けます。ただし、あまり見かけない書き方です。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1"></a>gapminder <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1990</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3"></a>    <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="fu">mutate</span>(<span class="at">GDP =</span> pop <span class="sc">*</span> gdpPercap) <span class="sc">|&gt;</span> </span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="fu">group_by</span>(country) <span class="sc">|&gt;</span> </span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="fu">summarise</span>(<span class="at">GDP =</span> <span class="fu">mean</span>(GDP)) <span class="ot">-&gt;</span> gdp_mean</span>
+<span id="cb11-7"><a href="#cb11-7"></a></span>
+<span id="cb11-8"><a href="#cb11-8"></a><span class="fu">head</span>(gdp_mean)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  country              GDP
+  &lt;fct&gt;              &lt;dbl&gt;
+1 Afghanistan      1.85e10
+2 Bahrain          1.47e10
+3 Bangladesh       1.45e11
+4 Cambodia         1.28e10
+5 China            3.82e12
+6 Hong Kong, China 2.03e11</code></pre>
+</div>
+</div>
+<p><code>|&gt;</code>と<code>%&gt;%</code>のどちらを使っても大差はないですが、<code>tiduverse</code>のパイプ演算子には次のようなものもあります。最初のオブジェクトを上書きます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1"></a>gdp_mean <span class="ot">&lt;-</span> gapminder</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>gdp_mean <span class="sc">%&lt;&gt;%</span> </span>
+<span id="cb13-4"><a href="#cb13-4"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1990</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-5"><a href="#cb13-5"></a>    <span class="fu">filter</span>(continent <span class="sc">==</span> <span class="st">"Asia"</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-6"><a href="#cb13-6"></a>    <span class="fu">mutate</span>(<span class="at">GDP =</span> pop <span class="sc">*</span> gdpPercap) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-7"><a href="#cb13-7"></a>    <span class="fu">group_by</span>(country) <span class="sc">%&gt;%</span> </span>
+<span id="cb13-8"><a href="#cb13-8"></a>    <span class="fu">summarise</span>(<span class="at">GDP =</span> <span class="fu">mean</span>(GDP))</span>
+<span id="cb13-9"><a href="#cb13-9"></a></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="fu">head</span>(gdp_mean)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  country              GDP
+  &lt;fct&gt;              &lt;dbl&gt;
+1 Afghanistan      1.85e10
+2 Bahrain          1.47e10
+3 Bangladesh       1.45e11
+4 Cambodia         1.28e10
+5 China            3.82e12
+6 Hong Kong, China 2.03e11</code></pre>
+</div>
+</div>
+</section>
+<section id="代入の位置" class="level2" data-number="B.3">
+<h2 data-number="B.3" class="anchored" data-anchor-id="代入の位置"><span class="header-section-number">B.3</span> 代入の位置</h2>
+<p>基本的に左辺のオブジェクトは右辺の関数の最初の位置に代入されますが、<code>%&gt;%</code>の場合は<code>&gt;</code>によって位置を指定することができます。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb15-2"><a href="#cb15-2"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1990</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-3"><a href="#cb15-3"></a>    <span class="fu">lm</span>(lifeExp <span class="sc">~</span> gdpPercap, <span class="at">data =</span> .) <span class="sc">%&gt;%</span> </span>
+<span id="cb15-4"><a href="#cb15-4"></a>    <span class="fu">summary</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lifeExp ~ gdpPercap, data = .)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-22.200  -2.798   1.206   3.817   9.490 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 6.355e+01  6.836e-01   92.97   &lt;2e-16 ***
+gdpPercap   4.939e-04  4.421e-05   11.17   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.867 on 130 degrees of freedom
+Multiple R-squared:  0.4898,    Adjusted R-squared:  0.4859 
+F-statistic: 124.8 on 1 and 130 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<p>次のようにも書けるそうです。</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1"></a>gapminder <span class="sc">%&gt;%</span> </span>
+<span id="cb17-2"><a href="#cb17-2"></a>    <span class="fu">filter</span>(year <span class="sc">&gt;</span> <span class="dv">1990</span>) <span class="sc">%$%</span> </span>
+<span id="cb17-3"><a href="#cb17-3"></a>    <span class="fu">lm</span>(lifeExp <span class="sc">~</span> gdpPercap) <span class="sc">%&gt;%</span> </span>
+<span id="cb17-4"><a href="#cb17-4"></a>    <span class="fu">summary</span>()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = lifeExp ~ gdpPercap)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-22.200  -2.798   1.206   3.817   9.490 
+
+Coefficients:
+             Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept) 6.355e+01  6.836e-01   92.97   &lt;2e-16 ***
+gdpPercap   4.939e-04  4.421e-05   11.17   &lt;2e-16 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 5.867 on 130 degrees of freedom
+Multiple R-squared:  0.4898,    Adjusted R-squared:  0.4859 
+F-statistic: 124.8 on 1 and 130 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">

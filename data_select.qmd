@@ -105,10 +105,8 @@ head(df_pop_fem)
 ```
 
 ```{python filename="Python (pandas)"}
-df_pop_fem = (
-    pd.read_csv("data/wb_pop_fem.csv", skiprows=4)
-    .rename(columns={"Country Name": "country_name", "Country Code": "coutnry_code", "Indicator Name": "indicator_name", "Indicator Code": "indicator_code"})
-)
+df_pop_fem = pd.read_csv("data/wb_pop_fem.csv", skiprows=4)
+df_pop_fem = df_pop_fem.rename(columns={"Country Name": "country_name", "Country Code": "coutnry_code", "Indicator Name": "indicator_name", "Indicator Code": "indicator_code"})
 
 df_pop_fem.head()
 ```
@@ -145,10 +143,8 @@ head(df_sipri)
 `pandas`と`polars`は`drop()`メソッドで変数を除外します。
 
 ```{python filename="Python (pandas)"}
-df_sipri = (
-    pd.read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet_name=5, skiprows=5, na_values=["xxx", "..."])
-    .drop(columns=["Notes"])
-)
+df_sipri = pd.read_excel("data/SIPRI-Milex-data-1949-2022.xlsx", sheet_name=5, skiprows=5, na_values=["xxx", "..."])
+df_sipri = df_sipri.drop(columns=["Notes"])
 
 df_sipri.head()
 ```
@@ -353,3 +349,32 @@ df_polity = (
 なお、否定を表す場合はRの場合は`!`を、Pythonの場合は`~`を条件式の冒頭に付けます。
 
 - RでもPythonでも`==`の否定は`!=`でも構いません。
+
+### ユニークなデータの選択
+
+例えば、データフレームに含まれる国名をデータフレームにしたい場合、単に国名の変数だけを取り出すと、いろいろな年のデータも含まれるので重複が生じます。このような場合は、次のようにします。
+
+```{r filename="R (tidyverse)"}
+df_polity <- read_excel("data/p5v2018.xls") |> 
+    distinct(country)
+
+head(df_polity)
+```
+
+```{python filename="Python (pandas)"}
+df_polity = pd.read_excel("data/p5v2018.xls")
+
+df_polity = df_polity.loc[:,"country"].drop_duplicates()
+
+df_polity.head()
+```
+
+```{python filename="Python (polars)"}
+df_polity = (
+    pl.read_excel("data/p5v2018.xls")
+    .select("country")
+    .unique(maintain_order=True)
+)
+
+df_polity.head()
+```
