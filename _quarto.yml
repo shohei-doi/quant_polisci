@@ -7,7 +7,7 @@ book:
   title: "R/Pythonで計量政治学入門"
   author: "土井翔平"
   date: today
-  site-url: https://shohei-doi.github.io/quant_polisci/
+  # site-url: https://shohei-doi.github.io/quant_polisci/
   sidebar:
     title: "R/Pythonで<br>計量政治学入門"
     collapse-level: 2

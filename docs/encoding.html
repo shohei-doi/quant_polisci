@@ -362,7 +362,7 @@ window.Quarto = {
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pipe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子 (R)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -898,7 +898,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/shohei-doi\.github\.io\/quant_polisci\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -1240,8 +1240,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./pipe.html" class="pagination-link" aria-label="パイプ演算子">
-        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./pipe.html" class="pagination-link" aria-label="パイプ演算子 (R)">
+        <span class="nav-page-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子 (R)</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

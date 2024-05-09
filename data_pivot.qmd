@@ -5,4 +5,143 @@ aliases:
 
 # ロングとワイドの変換
 
-作成中です。もしかすると[旧バージョン](http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/)になにかあるかもしれません。
+以前、世界銀行のデータを読み込みましたが、GapminderやPolityのデータと形が違うことに気づいたでしょうか。GapminderやPolityではそれぞれの行が「ある年のある国の情報」であり、例えばこのような形をしています。データが増えていくと縦に伸びていくので、ロング・データと言います。
+
+![ロング・データ](figures/tabular.drawio.png)
+
+- 特に、複数時点かつ複数の観察個体からなるデータ（つまり、複数の年の複数の国など）をパネル・データや時系列横断データと呼びます。
+
+それに対して、世界銀行のデータではそれぞれの行は「ある国の特定の期間の情報」でした。つまり、世界銀行のデータはこのような形をしており、データが増えていくと横に伸びていくので、ワイド・データと呼びます。
+
+![ワイド・データ](figures/wide.drawio.png)
+
+多くの場合、ロング・データのほうが分析に適しているので、今回はワイド・データをロング・データに変換する方法を学びます。なお、データ分析に適切なデータの形式については次の資料を参照してください。
+
+- [西原史暁 (2017)「整然データとは何か」](https://www.jstage.jst.go.jp/article/jkg/67/9/67_448/_article/-char/ja/)
+- [総務省「統計表における機械判読可能なデータの表記方法の統一ルール」](https://www.soumu.go.jp/menu_news/s-news/01toukatsu01_02000186.html)
+
+## tidyverse
+
+まずはデータを読み込みます。同時に下ごしらえとして、使用する変数を選択し、ついでに変数名を変えておきます。
+
+```{r filename="R (tidyverse)"}
+library(tidyverse)
+
+df_pop_fem <- read_csv("data/wb_pop_fem.csv", skip = 4) |> 
+  select(country_code = "Country Code", "1960":"2022")
+
+head(df_pop_fem)
+```
+
+- `"1960":"2022"`という表記で`1960`から`2022`までの変数を一括して選択できます。
+
+`pivot_longer()`という関数でロング・データにします。関数の中ではロングにしたい（ワイド・データにおける）変数名を指定します。
+
+```{r filename="R (tidyverse)"}
+df_pop_fem <- df_pop_fem |> 
+  pivot_longer("1960":"2022")
+
+head(df_pop_fem)
+```
+
+もともと変数名だったものが`name`、変数の値だったものは`value`になっているので、それぞれ適当な名前に変えます。
+
+```{r filename="R (tidyverse)"}
+df_pop_fem <- df_pop_fem |> 
+  rename(year = name, pop_fem = value)
+
+head(df_pop_fem)
+```
+
+また、よく見ると`year`の下に`<chr>`とあります。これはcharacterの略で、プログラミングにおいては文字列を意味します。したがって、`year`を文字列から数値に変換します。
+
+```{r filename="R (tidyverse)"}
+df_pop_fem <- df_pop_fem |> 
+  mutate(year = parse_number(year))
+
+head(df_pop_fem)
+```
+
+- `year`の下に`<dbl>`とあります。これはdoubleの略で、数値を意味します。
+
+以上で、ワイド・データをロング・データに変換できました。
+
+## pandas
+
+同様の作業をpandasでも行いたいと思います。
+
+```{python filename="Python (pandas)"}
+import pandas as pd
+
+df_pop_fem = pd.read_csv("data/wb_pop_fem.csv", skiprows=4)
+df_pop_fem = df_pop_fem.rename(columns={"Country Code": "country_code"})
+df_pop_fem = df_pop_fem.drop(columns=df_pop_fem.columns[[0, 2, 3, -1, -2]])
+
+df_pop_fem.head()
+```
+
+- `df_pop_fem.columns[[0, 2, 3, -1, -2]]`はデータフレームの1番目、3番目、4番目および最後と最後から2番目の変数名を取り出しています。
+
+`pd.wide_to_longe()`という関数でロング・データにします。
+
+```{python filename="Python (pandas)"}
+df_pop_fem = pd.wide_to_long(df_pop_fem, stubnames="", i="country_code", j="year")
+
+df_pop_fem.head()
+```
+
+- `i`で個体を示す変数を、`j`で時間を示す変数を指定します。
+- `stubnames=""`はワイド・データの変数でロングにしたい変数の名前の共通部分を指定します。今回はそのような文字はないので、なにも指定しません。
+
+新しい変数名が空欄なので、変数名を変えます。
+
+```{python filename="Python (pandas)"}
+df_pop_fem = df_pop_fem.rename(columns={"": "pop_fem"})
+
+df_pop_fem.head()
+```
+
+分かりにくいですが、`year`と`country_code`は変数ではなく、インデックスになっているので、変数にします。ついでに、`year`を数値に変えます。
+
+```{python filename="Python (pandas)"}
+df_pop_fem = df_pop_fem.reset_index()
+df_pop_fem["year"] = df_pop_fem["year"].astype("int64")
+
+df_pop_fem.head()
+```
+
+## polars
+
+polarsでもやってみます。
+
+```{python filename="Python (polars)"}
+import polars as pl
+
+df_pop_fem = pl.read_csv("data/wb_pop_fem.csv", skip_rows=4)
+df_pop_fem = df_pop_fem.rename({"Country Code": "country_code"})
+df_pop_fem = df_pop_fem.select(pl.col("country_code"), pl.col("^[0-9]+$").exclude("2023"))
+
+df_pop_fem.head()
+```
+
+- `pl.col("^[0-9]+$").exclude("2023")`の`"^[0-9]+$"`は正規表現と呼ばれるもので、`0`から`9`までのどれかから始まり、どれかで終わる文字列を意味します。
+- `exclude("2023")`は`2023`はデータが含まれていないので除外しています。
+
+`melt()`メソッドでロング・データにします。
+
+```{python filename="Python (polars)"}
+df_pop_fem = df_pop_fem.melt(id_vars="country_code")
+
+df_pop_fem.head()
+```
+
+変数名を変更し、年を文字列から数値に変換します。
+
+```{python filename="Python (polars)"}
+df_pop_fem = df_pop_fem.rename({"variable": "year", "value": "pop_fem"})
+df_pop_fem = df_pop_fem.with_columns(year=pl.col("year").str.to_integer())
+
+df_pop_fem.head()
+```
+
+- `str.to_integer()`で文字列を整数に変換できます。

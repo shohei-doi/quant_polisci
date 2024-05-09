@@ -299,7 +299,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pipe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子 (R)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -347,7 +347,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
     <div>
     <div class="quarto-title-meta-heading">公開</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">2024年5月8日</p>
+      <p class="date">2024年5月9日</p>
     </div>
   </div>
   
@@ -368,9 +368,9 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <p>執筆者の<a href="https://shohei-doi.github.io/">土井翔平</a>は北海道大学公共政策大学院および法学部・大学院法学研究科で国際関係論の研究と教育に従事しています。データ分析やプログラミングの専門家ではありません。</p>
 <ul>
 <li>計量「政治学」とありますが、執筆者の専門の都合で政治に関する題材が多いという意味でしかありません。政治以外の社会科学を専門とする方にも役に立つ内容のはずです。</li>
-<li>一橋大学で担当していた「国際政治の計量分析I」がベースとなっています（<a href="https://www.dropbox.com/scl/fo/cuk42mywlb90pos40094v/h?rlkey=53dbol8pb76v06gfcveihqfeu&amp;dl=0">講義スライド</a></li>
+<li>一橋大学で担当していた「国際政治の計量分析I」がベースとなっています（<a href="https://www.dropbox.com/scl/fo/cuk42mywlb90pos40094v/h?rlkey=53dbol8pb76v06gfcveihqfeu&amp;dl=0">講義スライド</a>）</li>
+<li>昔のバージョンは暫定的に<a href="http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/">こちら</a>にあります。<del>本当は昔のバージョンの内容が古くなったために消したかったのですが、ありがたいことに何人かの方にご覧になっていると言われたので、改稿しました。</del></li>
 </ul>
-<p><del>本当は昔のバージョンの内容が古くなったために消したかったのですが、ありがたいことに何人かの方にご覧になっていると言われたので、改稿しました。</del>昔のバージョンは暫定的に<a href="http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/">こちら</a>にあります。</p>
 <div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -482,7 +482,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/shohei-doi\.github\.io\/quant_polisci\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

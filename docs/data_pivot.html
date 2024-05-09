@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -299,7 +333,7 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./pipe.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子</span></span></a>
+ <span class="menu-text"><span class="chapter-number">B</span>&nbsp; <span class="chapter-title">パイプ演算子 (R)</span></span></a>
   </div>
 </li>
           <li class="sidebar-item">
@@ -316,7 +350,15 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">目次</h2>
+   
+  <ul>
+  <li><a href="#tidyverse" id="toc-tidyverse" class="nav-link active" data-scroll-target="#tidyverse"><span class="header-section-number">15.1</span> tidyverse</a></li>
+  <li><a href="#pandas" id="toc-pandas" class="nav-link" data-scroll-target="#pandas"><span class="header-section-number">15.2</span> pandas</a></li>
+  <li><a href="#polars" id="toc-polars" class="nav-link" data-scroll-target="#polars"><span class="header-section-number">15.3</span> polars</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
@@ -340,9 +382,873 @@ gtag('config', 'G-LLFB8XFPX5', { 'anonymize_ip': true});
 </header>
 
 
-<p>作成中です。もしかすると<a href="http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/">旧バージョン</a>になにかあるかもしれません。</p>
+<p>以前、世界銀行のデータを読み込みましたが、GapminderやPolityのデータと形が違うことに気づいたでしょうか。GapminderやPolityではそれぞれの行が「ある年のある国の情報」であり、例えばこのような形をしています。データが増えていくと縦に伸びていくので、ロング・データと言います。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/tabular.drawio.png" class="img-fluid figure-img"></p>
+<figcaption>ロング・データ</figcaption>
+</figure>
+</div>
+<ul>
+<li>特に、複数時点かつ複数の観察個体からなるデータ（つまり、複数の年の複数の国など）をパネル・データや時系列横断データと呼びます。</li>
+</ul>
+<p>それに対して、世界銀行のデータではそれぞれの行は「ある国の特定の期間の情報」でした。つまり、世界銀行のデータはこのような形をしており、データが増えていくと横に伸びていくので、ワイド・データと呼びます。</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="figures/wide.drawio.png" class="img-fluid figure-img"></p>
+<figcaption>ワイド・データ</figcaption>
+</figure>
+</div>
+<p>多くの場合、ロング・データのほうが分析に適しているので、今回はワイド・データをロング・データに変換する方法を学びます。なお、データ分析に適切なデータの形式については次の資料を参照してください。</p>
+<ul>
+<li><a href="https://www.jstage.jst.go.jp/article/jkg/67/9/67_448/_article/-char/ja/">西原史暁 (2017)「整然データとは何か」</a></li>
+<li><a href="https://www.soumu.go.jp/menu_news/s-news/01toukatsu01_02000186.html">総務省「統計表における機械判読可能なデータの表記方法の統一ルール」</a></li>
+</ul>
+<section id="tidyverse" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="tidyverse"><span class="header-section-number">15.1</span> tidyverse</h2>
+<p>まずはデータを読み込みます。同時に下ごしらえとして、使用する変数を選択し、ついでに変数名を変えておきます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2"></a></span>
+<span id="cb1-3"><a href="#cb1-3"></a>df_pop_fem <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/wb_pop_fem.csv"</span>, <span class="at">skip =</span> <span class="dv">4</span>) <span class="sc">|&gt;</span> </span>
+<span id="cb1-4"><a href="#cb1-4"></a>  <span class="fu">select</span>(<span class="at">country_code =</span> <span class="st">"Country Code"</span>, <span class="st">"1960"</span><span class="sc">:</span><span class="st">"2022"</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a></span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="fu">head</span>(df_pop_fem)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 64
+  country_code   `1960`  `1961` `1962` `1963` `1964` `1965` `1966` `1967` `1968`
+  &lt;chr&gt;           &lt;dbl&gt;   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+1 ABW             27773  2.84e4 2.88e4 2.92e4 2.96e4 2.99e4 3.01e4 3.03e4 3.02e4
+2 AFE          65853220  6.76e7 6.95e7 7.14e7 7.34e7 7.55e7 7.76e7 7.98e7 8.21e7
+3 AFG           4145945  4.23e6 4.33e6 4.42e6 4.53e6 4.63e6 4.75e6 4.86e6 4.98e6
+4 AFW          48802898  4.99e7 5.09e7 5.20e7 5.32e7 5.44e7 5.56e7 5.69e7 5.82e7
+5 AGO           2670229  2.70e6 2.74e6 2.78e6 2.81e6 2.84e6 2.86e6 2.87e6 2.88e6
+6 ALB            785048  8.09e5 8.34e5 8.58e5 8.82e5 9.06e5 9.29e5 9.53e5 9.80e5
+# ℹ 54 more variables: `1969` &lt;dbl&gt;, `1970` &lt;dbl&gt;, `1971` &lt;dbl&gt;, `1972` &lt;dbl&gt;,
+#   `1973` &lt;dbl&gt;, `1974` &lt;dbl&gt;, `1975` &lt;dbl&gt;, `1976` &lt;dbl&gt;, `1977` &lt;dbl&gt;,
+#   `1978` &lt;dbl&gt;, `1979` &lt;dbl&gt;, `1980` &lt;dbl&gt;, `1981` &lt;dbl&gt;, `1982` &lt;dbl&gt;,
+#   `1983` &lt;dbl&gt;, `1984` &lt;dbl&gt;, `1985` &lt;dbl&gt;, `1986` &lt;dbl&gt;, `1987` &lt;dbl&gt;,
+#   `1988` &lt;dbl&gt;, `1989` &lt;dbl&gt;, `1990` &lt;dbl&gt;, `1991` &lt;dbl&gt;, `1992` &lt;dbl&gt;,
+#   `1993` &lt;dbl&gt;, `1994` &lt;dbl&gt;, `1995` &lt;dbl&gt;, `1996` &lt;dbl&gt;, `1997` &lt;dbl&gt;,
+#   `1998` &lt;dbl&gt;, `1999` &lt;dbl&gt;, `2000` &lt;dbl&gt;, `2001` &lt;dbl&gt;, `2002` &lt;dbl&gt;, …</code></pre>
+</div>
+</div>
+<ul>
+<li><code>"1960":"2022"</code>という表記で<code>1960</code>から<code>2022</code>までの変数を一括して選択できます。</li>
+</ul>
+<p><code>pivot_longer()</code>という関数でロング・データにします。関数の中ではロングにしたい（ワイド・データにおける）変数名を指定します。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a>df_pop_fem <span class="ot">&lt;-</span> df_pop_fem <span class="sc">|&gt;</span> </span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="fu">pivot_longer</span>(<span class="st">"1960"</span><span class="sc">:</span><span class="st">"2022"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3"></a></span>
+<span id="cb3-4"><a href="#cb3-4"></a><span class="fu">head</span>(df_pop_fem)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  country_code name  value
+  &lt;chr&gt;        &lt;chr&gt; &lt;dbl&gt;
+1 ABW          1960  27773
+2 ABW          1961  28380
+3 ABW          1962  28820
+4 ABW          1963  29218
+5 ABW          1964  29570
+6 ABW          1965  29875</code></pre>
+</div>
+</div>
+<p>もともと変数名だったものが<code>name</code>、変数の値だったものは<code>value</code>になっているので、それぞれ適当な名前に変えます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1"></a>df_pop_fem <span class="ot">&lt;-</span> df_pop_fem <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2"></a>  <span class="fu">rename</span>(<span class="at">year =</span> name, <span class="at">pop_fem =</span> value)</span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">head</span>(df_pop_fem)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  country_code year  pop_fem
+  &lt;chr&gt;        &lt;chr&gt;   &lt;dbl&gt;
+1 ABW          1960    27773
+2 ABW          1961    28380
+3 ABW          1962    28820
+4 ABW          1963    29218
+5 ABW          1964    29570
+6 ABW          1965    29875</code></pre>
+</div>
+</div>
+<p>また、よく見ると<code>year</code>の下に<code>&lt;chr&gt;</code>とあります。これはcharacterの略で、プログラミングにおいては文字列を意味します。したがって、<code>year</code>を文字列から数値に変換します。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>R (tidyverse)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode numberSource r number-lines code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1"></a>df_pop_fem <span class="ot">&lt;-</span> df_pop_fem <span class="sc">|&gt;</span> </span>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">parse_number</span>(year))</span>
+<span id="cb7-3"><a href="#cb7-3"></a></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="fu">head</span>(df_pop_fem)</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  country_code  year pop_fem
+  &lt;chr&gt;        &lt;dbl&gt;   &lt;dbl&gt;
+1 ABW           1960   27773
+2 ABW           1961   28380
+3 ABW           1962   28820
+4 ABW           1963   29218
+5 ABW           1964   29570
+6 ABW           1965   29875</code></pre>
+</div>
+</div>
+<ul>
+<li><code>year</code>の下に<code>&lt;dbl&gt;</code>とあります。これはdoubleの略で、数値を意味します。</li>
+</ul>
+<p>以上で、ワイド・データをロング・データに変換できました。</p>
+</section>
+<section id="pandas" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="pandas"><span class="header-section-number">15.2</span> pandas</h2>
+<p>同様の作業をpandasでも行いたいと思います。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb9-2"><a href="#cb9-2"></a></span>
+<span id="cb9-3"><a href="#cb9-3"></a>df_pop_fem <span class="op">=</span> pd.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>, skiprows<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb9-4"><a href="#cb9-4"></a>df_pop_fem <span class="op">=</span> df_pop_fem.rename(columns<span class="op">=</span>{<span class="st">"Country Code"</span>: <span class="st">"country_code"</span>})</span>
+<span id="cb9-5"><a href="#cb9-5"></a>df_pop_fem <span class="op">=</span> df_pop_fem.drop(columns<span class="op">=</span>df_pop_fem.columns[[<span class="dv">0</span>, <span class="dv">2</span>, <span class="dv">3</span>, <span class="op">-</span><span class="dv">1</span>, <span class="op">-</span><span class="dv">2</span>]])</span>
+<span id="cb9-6"><a href="#cb9-6"></a></span>
+<span id="cb9-7"><a href="#cb9-7"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  country_code        1960        1961  ...         2020         2021         2022
+0          ABW     27773.0     28380.0  ...      56373.0      56330.0      56272.0
+1          AFE  65853220.0  67606287.0  ...  345889868.0  354855221.0  363834524.0
+2          AFG   4145945.0   4233771.0  ...   19279930.0   19844584.0   20362329.0
+3          AFW  48802898.0  49850088.0  ...  231877590.0  237813580.0  243821774.0
+4          AGO   2670229.0   2704394.0  ...   16910989.0   17452283.0   17998220.0
+
+[5 rows x 64 columns]</code></pre>
+</div>
+</div>
+<ul>
+<li><code>df_pop_fem.columns[[0, 2, 3, -1, -2]]</code>はデータフレームの1番目、3番目、4番目および最後と最後から2番目の変数名を取り出しています。</li>
+</ul>
+<p><code>pd.wide_to_longe()</code>という関数でロング・データにします。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1"></a>df_pop_fem <span class="op">=</span> pd.wide_to_long(df_pop_fem, stubnames<span class="op">=</span><span class="st">""</span>, i<span class="op">=</span><span class="st">"country_code"</span>, j<span class="op">=</span><span class="st">"year"</span>)</span>
+<span id="cb11-2"><a href="#cb11-2"></a></span>
+<span id="cb11-3"><a href="#cb11-3"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                             
+country_code year            
+ABW          1960     27773.0
+AFE          1960  65853220.0
+AFG          1960   4145945.0
+AFW          1960  48802898.0
+AGO          1960   2670229.0</code></pre>
+</div>
+</div>
+<ul>
+<li><code>i</code>で個体を示す変数を、<code>j</code>で時間を示す変数を指定します。</li>
+<li><code>stubnames=""</code>はワイド・データの変数でロングにしたい変数の名前の共通部分を指定します。今回はそのような文字はないので、なにも指定しません。</li>
+</ul>
+<p>新しい変数名が空欄なので、変数名を変えます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1"></a>df_pop_fem <span class="op">=</span> df_pop_fem.rename(columns<span class="op">=</span>{<span class="st">""</span>: <span class="st">"pop_fem"</span>})</span>
+<span id="cb13-2"><a href="#cb13-2"></a></span>
+<span id="cb13-3"><a href="#cb13-3"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                      pop_fem
+country_code year            
+ABW          1960     27773.0
+AFE          1960  65853220.0
+AFG          1960   4145945.0
+AFW          1960  48802898.0
+AGO          1960   2670229.0</code></pre>
+</div>
+</div>
+<p>分かりにくいですが、<code>year</code>と<code>country_code</code>は変数ではなく、インデックスになっているので、変数にします。ついでに、<code>year</code>を数値に変えます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (pandas)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1"></a>df_pop_fem <span class="op">=</span> df_pop_fem.reset_index()</span>
+<span id="cb15-2"><a href="#cb15-2"></a>df_pop_fem[<span class="st">"year"</span>] <span class="op">=</span> df_pop_fem[<span class="st">"year"</span>].astype(<span class="st">"int64"</span>)</span>
+<span id="cb15-3"><a href="#cb15-3"></a></span>
+<span id="cb15-4"><a href="#cb15-4"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  country_code  year     pop_fem
+0          ABW  1960     27773.0
+1          AFE  1960  65853220.0
+2          AFG  1960   4145945.0
+3          AFW  1960  48802898.0
+4          AGO  1960   2670229.0</code></pre>
+</div>
+</div>
+</section>
+<section id="polars" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="polars"><span class="header-section-number">15.3</span> polars</h2>
+<p>polarsでもやってみます。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1"></a><span class="im">import</span> polars <span class="im">as</span> pl</span>
+<span id="cb17-2"><a href="#cb17-2"></a></span>
+<span id="cb17-3"><a href="#cb17-3"></a>df_pop_fem <span class="op">=</span> pl.read_csv(<span class="st">"data/wb_pop_fem.csv"</span>, skip_rows<span class="op">=</span><span class="dv">4</span>)</span>
+<span id="cb17-4"><a href="#cb17-4"></a>df_pop_fem <span class="op">=</span> df_pop_fem.rename({<span class="st">"Country Code"</span>: <span class="st">"country_code"</span>})</span>
+<span id="cb17-5"><a href="#cb17-5"></a>df_pop_fem <span class="op">=</span> df_pop_fem.select(pl.col(<span class="st">"country_code"</span>), pl.col(<span class="st">"^[0-9]+$"</span>).exclude(<span class="st">"2023"</span>))</span>
+<span id="cb17-6"><a href="#cb17-6"></a></span>
+<span id="cb17-7"><a href="#cb17-7"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div>
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 64)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">1960</th>
+<th data-quarto-table-cell-role="th">1961</th>
+<th data-quarto-table-cell-role="th">1962</th>
+<th data-quarto-table-cell-role="th">1963</th>
+<th data-quarto-table-cell-role="th">1964</th>
+<th data-quarto-table-cell-role="th">1965</th>
+<th data-quarto-table-cell-role="th">1966</th>
+<th data-quarto-table-cell-role="th">1967</th>
+<th data-quarto-table-cell-role="th">1968</th>
+<th data-quarto-table-cell-role="th">1969</th>
+<th data-quarto-table-cell-role="th">1970</th>
+<th data-quarto-table-cell-role="th">1971</th>
+<th data-quarto-table-cell-role="th">1972</th>
+<th data-quarto-table-cell-role="th">1973</th>
+<th data-quarto-table-cell-role="th">1974</th>
+<th data-quarto-table-cell-role="th">1975</th>
+<th data-quarto-table-cell-role="th">1976</th>
+<th data-quarto-table-cell-role="th">1977</th>
+<th data-quarto-table-cell-role="th">1978</th>
+<th data-quarto-table-cell-role="th">1979</th>
+<th data-quarto-table-cell-role="th">1980</th>
+<th data-quarto-table-cell-role="th">1981</th>
+<th data-quarto-table-cell-role="th">1982</th>
+<th data-quarto-table-cell-role="th">1983</th>
+<th data-quarto-table-cell-role="th">1984</th>
+<th data-quarto-table-cell-role="th">1985</th>
+<th data-quarto-table-cell-role="th">1986</th>
+<th data-quarto-table-cell-role="th">1987</th>
+<th data-quarto-table-cell-role="th">1988</th>
+<th data-quarto-table-cell-role="th">1989</th>
+<th data-quarto-table-cell-role="th">1990</th>
+<th data-quarto-table-cell-role="th">1991</th>
+<th data-quarto-table-cell-role="th">1992</th>
+<th data-quarto-table-cell-role="th">1993</th>
+<th data-quarto-table-cell-role="th">1994</th>
+<th data-quarto-table-cell-role="th">1995</th>
+<th data-quarto-table-cell-role="th">1996</th>
+<th data-quarto-table-cell-role="th">1997</th>
+<th data-quarto-table-cell-role="th">1998</th>
+<th data-quarto-table-cell-role="th">1999</th>
+<th data-quarto-table-cell-role="th">2000</th>
+<th data-quarto-table-cell-role="th">2001</th>
+<th data-quarto-table-cell-role="th">2002</th>
+<th data-quarto-table-cell-role="th">2003</th>
+<th data-quarto-table-cell-role="th">2004</th>
+<th data-quarto-table-cell-role="th">2005</th>
+<th data-quarto-table-cell-role="th">2006</th>
+<th data-quarto-table-cell-role="th">2007</th>
+<th data-quarto-table-cell-role="th">2008</th>
+<th data-quarto-table-cell-role="th">2009</th>
+<th data-quarto-table-cell-role="th">2010</th>
+<th data-quarto-table-cell-role="th">2011</th>
+<th data-quarto-table-cell-role="th">2012</th>
+<th data-quarto-table-cell-role="th">2013</th>
+<th data-quarto-table-cell-role="th">2014</th>
+<th data-quarto-table-cell-role="th">2015</th>
+<th data-quarto-table-cell-role="th">2016</th>
+<th data-quarto-table-cell-role="th">2017</th>
+<th data-quarto-table-cell-role="th">2018</th>
+<th data-quarto-table-cell-role="th">2019</th>
+<th data-quarto-table-cell-role="th">2020</th>
+<th data-quarto-table-cell-role="th">2021</th>
+<th data-quarto-table-cell-role="th">2022</th>
+</tr>
+<tr class="odd">
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"ABW"</td>
+<td>27773</td>
+<td>28380</td>
+<td>28820</td>
+<td>29218</td>
+<td>29570</td>
+<td>29875</td>
+<td>30135</td>
+<td>30253</td>
+<td>30232</td>
+<td>30166</td>
+<td>30063</td>
+<td>29927</td>
+<td>29953</td>
+<td>30229</td>
+<td>30595</td>
+<td>30972</td>
+<td>31245</td>
+<td>31416</td>
+<td>31584</td>
+<td>31749</td>
+<td>31909</td>
+<td>32121</td>
+<td>32389</td>
+<td>32659</td>
+<td>32886</td>
+<td>33008</td>
+<td>33007</td>
+<td>32904</td>
+<td>32788</td>
+<td>32892</td>
+<td>33480</td>
+<td>34657</td>
+<td>35941</td>
+<td>37137</td>
+<td>38437</td>
+<td>39724</td>
+<td>41014</td>
+<td>42336</td>
+<td>43688</td>
+<td>45050</td>
+<td>46269</td>
+<td>47178</td>
+<td>47831</td>
+<td>48374</td>
+<td>48877</td>
+<td>49414</td>
+<td>50016</td>
+<td>50636</td>
+<td>51272</td>
+<td>51919</td>
+<td>52484</td>
+<td>52980</td>
+<td>53480</td>
+<td>53953</td>
+<td>54403</td>
+<td>54828</td>
+<td>55224</td>
+<td>55591</td>
+<td>55935</td>
+<td>56254</td>
+<td>56373</td>
+<td>56330</td>
+<td>56272</td>
+</tr>
+<tr class="even">
+<td>"AFE"</td>
+<td>65853220</td>
+<td>67606287</td>
+<td>69457112</td>
+<td>71375643</td>
+<td>73386167</td>
+<td>75478396</td>
+<td>77610073</td>
+<td>79810945</td>
+<td>82111287</td>
+<td>84493601</td>
+<td>86968714</td>
+<td>89504801</td>
+<td>92051419</td>
+<td>94694181</td>
+<td>97478670</td>
+<td>100339888</td>
+<td>103289004</td>
+<td>106237590</td>
+<td>109415983</td>
+<td>112834021</td>
+<td>116060576</td>
+<td>119525759</td>
+<td>123410049</td>
+<td>127333314</td>
+<td>131344567</td>
+<td>135563206</td>
+<td>139816011</td>
+<td>144066893</td>
+<td>148288335</td>
+<td>152522362</td>
+<td>156942214</td>
+<td>161298074</td>
+<td>165609524</td>
+<td>170167926</td>
+<td>174762745</td>
+<td>179486372</td>
+<td>184468529</td>
+<td>189280003</td>
+<td>194009070</td>
+<td>198959676</td>
+<td>204048614</td>
+<td>209257664</td>
+<td>214635664</td>
+<td>220167814</td>
+<td>225898442</td>
+<td>231830259</td>
+<td>237997868</td>
+<td>244435307</td>
+<td>251105628</td>
+<td>257956460</td>
+<td>265000967</td>
+<td>272174714</td>
+<td>279546577</td>
+<td>287224924</td>
+<td>295089133</td>
+<td>303195897</td>
+<td>311387401</td>
+<td>319637365</td>
+<td>328159112</td>
+<td>336930970</td>
+<td>345889868</td>
+<td>354855221</td>
+<td>363834524</td>
+</tr>
+<tr class="odd">
+<td>"AFG"</td>
+<td>4145945</td>
+<td>4233771</td>
+<td>4326881</td>
+<td>4424511</td>
+<td>4526691</td>
+<td>4634341</td>
+<td>4745981</td>
+<td>4861918</td>
+<td>4983086</td>
+<td>5108507</td>
+<td>5239568</td>
+<td>5372747</td>
+<td>5509781</td>
+<td>5655304</td>
+<td>5803603</td>
+<td>5948268</td>
+<td>6083166</td>
+<td>6214979</td>
+<td>6342838</td>
+<td>6373547</td>
+<td>6136856</td>
+<td>5490160</td>
+<td>4973968</td>
+<td>4916351</td>
+<td>5074600</td>
+<td>5225679</td>
+<td>5207273</td>
+<td>5152650</td>
+<td>5188060</td>
+<td>5334609</td>
+<td>5346409</td>
+<td>5372208</td>
+<td>6028939</td>
+<td>7000119</td>
+<td>7722096</td>
+<td>8199445</td>
+<td>8537421</td>
+<td>8871958</td>
+<td>9217591</td>
+<td>9595036</td>
+<td>9727541</td>
+<td>9793166</td>
+<td>10438055</td>
+<td>11247647</td>
+<td>11690825</td>
+<td>12109086</td>
+<td>12614497</td>
+<td>12835340</td>
+<td>13088192</td>
+<td>13557331</td>
+<td>13949295</td>
+<td>14468875</td>
+<td>15067373</td>
+<td>15594637</td>
+<td>16172321</td>
+<td>16682054</td>
+<td>17115346</td>
+<td>17614722</td>
+<td>18136922</td>
+<td>18679089</td>
+<td>19279930</td>
+<td>19844584</td>
+<td>20362329</td>
+</tr>
+<tr class="even">
+<td>"AFW"</td>
+<td>48802898</td>
+<td>49850088</td>
+<td>50928609</td>
+<td>52044907</td>
+<td>53196730</td>
+<td>54389295</td>
+<td>55621877</td>
+<td>56890201</td>
+<td>58204276</td>
+<td>59560501</td>
+<td>60963620</td>
+<td>62404746</td>
+<td>63900687</td>
+<td>65482730</td>
+<td>67160750</td>
+<td>68943269</td>
+<td>70786681</td>
+<td>72718234</td>
+<td>74770813</td>
+<td>76909670</td>
+<td>79104037</td>
+<td>81359426</td>
+<td>83714354</td>
+<td>85996392</td>
+<td>88238093</td>
+<td>90605997</td>
+<td>93047700</td>
+<td>95556172</td>
+<td>98139171</td>
+<td>100824162</td>
+<td>103478502</td>
+<td>106184462</td>
+<td>109071980</td>
+<td>111968903</td>
+<td>114896750</td>
+<td>117979287</td>
+<td>121143186</td>
+<td>124399328</td>
+<td>127775360</td>
+<td>131211380</td>
+<td>134795501</td>
+<td>138546839</td>
+<td>142408066</td>
+<td>146370538</td>
+<td>150463219</td>
+<td>154696476</td>
+<td>159035017</td>
+<td>163481052</td>
+<td>168058833</td>
+<td>172782717</td>
+<td>177645233</td>
+<td>182657978</td>
+<td>187755307</td>
+<td>192900081</td>
+<td>198163527</td>
+<td>203513873</td>
+<td>208980433</td>
+<td>214578994</td>
+<td>220253839</td>
+<td>226004857</td>
+<td>231877590</td>
+<td>237813580</td>
+<td>243821774</td>
+</tr>
+<tr class="odd">
+<td>"AGO"</td>
+<td>2670229</td>
+<td>2704394</td>
+<td>2742689</td>
+<td>2779473</td>
+<td>2812590</td>
+<td>2838939</td>
+<td>2856740</td>
+<td>2867926</td>
+<td>2879001</td>
+<td>2902120</td>
+<td>2953347</td>
+<td>3032948</td>
+<td>3132441</td>
+<td>3244749</td>
+<td>3362438</td>
+<td>3483416</td>
+<td>3606782</td>
+<td>3735823</td>
+<td>3872130</td>
+<td>4014347</td>
+<td>4164145</td>
+<td>4321167</td>
+<td>4485276</td>
+<td>4656894</td>
+<td>4834820</td>
+<td>5018620</td>
+<td>5206761</td>
+<td>5396035</td>
+<td>5588733</td>
+<td>5787505</td>
+<td>5991207</td>
+<td>6199060</td>
+<td>6408303</td>
+<td>6621767</td>
+<td>6845622</td>
+<td>7077381</td>
+<td>7315200</td>
+<td>7561436</td>
+<td>7813123</td>
+<td>8071413</td>
+<td>8339311</td>
+<td>8619083</td>
+<td>8912191</td>
+<td>9219638</td>
+<td>9545020</td>
+<td>9886765</td>
+<td>10244381</td>
+<td>10620174</td>
+<td>11013001</td>
+<td>11422969</td>
+<td>11853530</td>
+<td>12303450</td>
+<td>12770743</td>
+<td>13252938</td>
+<td>13746371</td>
+<td>14248799</td>
+<td>14764575</td>
+<td>15293335</td>
+<td>15828040</td>
+<td>16370553</td>
+<td>16910989</td>
+<td>17452283</td>
+<td>17998220</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><code>pl.col("^[0-9]+$").exclude("2023")</code>の<code>"^[0-9]+$"</code>は正規表現と呼ばれるもので、<code>0</code>から<code>9</code>までのどれかから始まり、どれかで終わる文字列を意味します。</li>
+<li><code>exclude("2023")</code>は<code>2023</code>はデータが含まれていないので除外しています。</li>
+</ul>
+<p><code>melt()</code>メソッドでロング・データにします。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1"></a>df_pop_fem <span class="op">=</span> df_pop_fem.melt(id_vars<span class="op">=</span><span class="st">"country_code"</span>)</span>
+<span id="cb18-2"><a href="#cb18-2"></a></span>
+<span id="cb18-3"><a href="#cb18-3"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div>
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 3)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">variable</th>
+<th data-quarto-table-cell-role="th">value</th>
+</tr>
+<tr class="odd">
+<th>str</th>
+<th>str</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"ABW"</td>
+<td>"1960"</td>
+<td>27773</td>
+</tr>
+<tr class="even">
+<td>"AFE"</td>
+<td>"1960"</td>
+<td>65853220</td>
+</tr>
+<tr class="odd">
+<td>"AFG"</td>
+<td>"1960"</td>
+<td>4145945</td>
+</tr>
+<tr class="even">
+<td>"AFW"</td>
+<td>"1960"</td>
+<td>48802898</td>
+</tr>
+<tr class="odd">
+<td>"AGO"</td>
+<td>"1960"</td>
+<td>2670229</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<p>変数名を変更し、年を文字列から数値に変換します。</p>
+<div class="cell">
+<div class="code-with-filename">
+<div class="code-with-filename-file">
+<pre><strong>Python (polars)</strong></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1"></a>df_pop_fem <span class="op">=</span> df_pop_fem.rename({<span class="st">"variable"</span>: <span class="st">"year"</span>, <span class="st">"value"</span>: <span class="st">"pop_fem"</span>})</span>
+<span id="cb19-2"><a href="#cb19-2"></a>df_pop_fem <span class="op">=</span> df_pop_fem.with_columns(year<span class="op">=</span>pl.col(<span class="st">"year"</span>).<span class="bu">str</span>.to_integer())</span>
+<span id="cb19-3"><a href="#cb19-3"></a></span>
+<span id="cb19-4"><a href="#cb19-4"></a>df_pop_fem.head()</span></code><button title="コピー" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell-output-display">
+<div>
+<div><style>
+.dataframe > thead > tr,
+.dataframe > tbody > tr {
+  text-align: right;
+  white-space: pre-wrap;
+}
+</style>
+<small>shape: (5, 3)</small>
+<table class="dataframe table table-sm table-striped small" data-quarto-postprocess="true" data-border="1">
+<thead>
+<tr class="header">
+<th data-quarto-table-cell-role="th">country_code</th>
+<th data-quarto-table-cell-role="th">year</th>
+<th data-quarto-table-cell-role="th">pop_fem</th>
+</tr>
+<tr class="odd">
+<th>str</th>
+<th>i64</th>
+<th>i64</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>"ABW"</td>
+<td>1960</td>
+<td>27773</td>
+</tr>
+<tr class="even">
+<td>"AFE"</td>
+<td>1960</td>
+<td>65853220</td>
+</tr>
+<tr class="odd">
+<td>"AFG"</td>
+<td>1960</td>
+<td>4145945</td>
+</tr>
+<tr class="even">
+<td>"AFW"</td>
+<td>1960</td>
+<td>48802898</td>
+</tr>
+<tr class="odd">
+<td>"AGO"</td>
+<td>1960</td>
+<td>2670229</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><code>str.to_integer()</code>で文字列を整数に変換できます。</li>
+</ul>
 
 
+</section>
 
 </main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -426,7 +1332,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   });
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/shohei-doi\.github\.io\/quant_polisci\/");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }

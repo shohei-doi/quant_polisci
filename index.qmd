@@ -7,9 +7,8 @@
 執筆者の[土井翔平](https://shohei-doi.github.io/)は北海道大学公共政策大学院および法学部・大学院法学研究科で国際関係論の研究と教育に従事しています。データ分析やプログラミングの専門家ではありません。
 
 - 計量「政治学」とありますが、執筆者の専門の都合で政治に関する題材が多いという意味でしかありません。政治以外の社会科学を専門とする方にも役に立つ内容のはずです。
-- 一橋大学で担当していた「国際政治の計量分析I」がベースとなっています（[講義スライド](https://www.dropbox.com/scl/fo/cuk42mywlb90pos40094v/h?rlkey=53dbol8pb76v06gfcveihqfeu&dl=0)
-
-~~本当は昔のバージョンの内容が古くなったために消したかったのですが、ありがたいことに何人かの方にご覧になっていると言われたので、改稿しました。~~昔のバージョンは暫定的に[こちら](http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/)にあります。
+- 一橋大学で担当していた「国際政治の計量分析I」がベースとなっています（[講義スライド](https://www.dropbox.com/scl/fo/cuk42mywlb90pos40094v/h?rlkey=53dbol8pb76v06gfcveihqfeu&dl=0)）
+- 昔のバージョンは暫定的に[こちら](http://web.archive.org/web/20210117052842/https://shohei-doi.github.io/quant_polisci/)にあります。~~本当は昔のバージョンの内容が古くなったために消したかったのですが、ありがたいことに何人かの方にご覧になっていると言われたので、改稿しました。~~
 
 :::{.callout-note collapse="true"}
 ## RかPythonか？
